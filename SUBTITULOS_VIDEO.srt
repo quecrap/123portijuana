@@ -1,0 +1,83 @@
+1
+00:00:00,000 --> 00:00:05,000
+Tijuana sufre interrupciones constantes de agua y altos costos en pipas.
+
+2
+00:00:05,100 --> 00:00:11,500
+Sin embargo, bajo sus valles aluviales existe un manto freático no aprovechado a menos de 10 metros de profundidad.
+
+3
+00:00:11,600 --> 00:00:18,000
+El reto no era encontrar el agua, sino saber dónde perforar con precisión y cómo potabilizarla a bajo costo.
+
+4
+00:00:18,100 --> 00:00:24,000
+AquaResiliencia Tijuana es la primera plataforma de inteligencia territorial y tecnología frugal para el agua urbana.
+
+5
+00:00:24,100 --> 00:00:30,000
+Esto no es una teoría en papel. En 2022 probamos físicamente nuestro prototipo en Tijuana.
+
+6
+00:00:30,100 --> 00:00:37,000
+Alcanzamos agua a 8.5 metros de profundidad usando una técnica de perforación hidráulica liviana y ademe de PVC.
+
+7
+00:00:37,100 --> 00:00:44,000
+El sistema operó durante tres meses produciendo hasta 600 litros diarios de forma intermitente.
+
+8
+00:00:44,100 --> 00:00:50,000
+Pero no perforamos a ciegas. Cruzamos bases de datos oficiales de CONAGUA y del USGS en California.
+
+9
+00:00:50,100 --> 00:00:57,500
+El 100% de los pozos de monitoreo en aluvión analizados en la cuenca compartida presentan agua a menos de 10 metros.
+
+10
+00:00:57,600 --> 00:01:05,000
+Con estos datos delimitamos los primeros cinco polígonos prioritarios de intervención en Tijuana, incluyendo el Alamar y Cañón del Pato.
+
+11
+00:01:05,100 --> 00:01:12,000
+Ahora bien, el agua somera contiene salinidad y nitratos que exigen un tratamiento especializado.
+
+12
+00:01:12,100 --> 00:01:18,500
+Potabilizar todo el flujo de una vivienda es muy costoso. Por eso diseñamos la arquitectura diferenciada 80/20.
+
+13
+00:01:18,600 --> 00:01:25,000
+Potabilizamos únicamente de 10 a 20 litros diarios para beber y cocinar mediante ósmosis inversa de sobremesa.
+
+14
+00:01:25,100 --> 00:01:31,000
+Esto reduce el costo del equipo de potabilización en más de un 70%, haciendo la tecnología accesible.
+
+15
+00:01:31,100 --> 00:01:38,000
+El 80% restante del agua se acondiciona con filtración básica y cloración en línea para inodoros y limpieza.
+
+16
+00:01:38,100 --> 00:01:44,500
+En el aspecto legal, no promovemos la extracción clandestina ni la violación a las vedas del acuífero.
+
+17
+00:01:44,600 --> 00:01:52,000
+AquaResiliencia propone a las autoridades un marco de prueba piloto de investigación con telemetría digital en boca de pozo.
+
+18
+00:01:52,100 --> 00:01:58,000
+El sistema transmite en tiempo real el volumen extraído y la calidad del agua, garantizando total transparencia.
+
+19
+00:01:58,100 --> 00:02:05,000
+Inspirados en leyes internacionales como SGMA en California o Schedule 1 en Sudáfrica, demostramos que la micro-extracción es segura.
+
+20
+00:02:05,100 --> 00:02:12,000
+El proyecto se alinea al programa Agua para el Futuro del Plan Estratégico Metropolitano PEM 2034.
+
+21
+00:02:12,100 --> 00:02:19,000
+AquaResiliencia Tijuana: tecnología frugal, datos abiertos e inteligencia territorial para la resiliencia hídrica de la ciudad.
