@@ -39,7 +39,6 @@ AquaResiliencia no propone una "perforación indiscriminada", sino una **infraes
 - **Extracción Frugal Asistida:** Métodos de bajo impacto con bombeo solar/eléctrico de bajo caudal para evitar abatimiento.
 - **Tratamiento Diferenciado 80/20:** Desacoplamiento del agua de uso general vs. agua de ingesta bajo norma NOM-127-SSA1.
 - **Telemetría Regulada IoT:** Medición de flujo, nivel estático/dinámico y conductividad en tiempo real.
-- **Gobernanza Comunitaria y Enlace Social (Diálogos con Violeta):** Integración de comités vecinales de vigilancia y corresponsabilidad en el uso del agua bajo el enfoque del derecho humano al agua (Art. 4to Constitucional).
 - **Cumplimiento Legal Proactivo:** Gobernanza alineada a CONAGUA y normativas del Acuífero 0201 Tijuana.
 
 ---
@@ -59,24 +58,25 @@ AquaResiliencia no propone una "perforación indiscriminada", sino una **infraes
 
 ```mermaid
 flowchart TD
-    subgraph CAPTACION ["1. Captación Somera Frugal"]
-        A[Sensor SIG / Mapeo Territorial] --> B[Sondeo / Captación Somera 8-12m]
+    subgraph CAPTACION ["1. Red Centinela y Captación Somera"]
+        A[Sensor SIG / Mapeo Territorial] --> B[Sondeo Centinela Somero 8-12m]
         B --> C[Bomba de Bajo Caudal 2-5 L/min]
+        B --> S["🚦 Semáforo de Calidad Hídrica<br>🟢 Verde | 🟡 Amarillo | 🔴 Rojo | ⚫ Negro"]
     end
 
-    subgraph MONITOREO ["2. Telemetría IoT & Control"]
+    subgraph MONITOREO ["2. Telemetría IoT & Datos Abiertos"]
         C --> D[Medidor Inteligente IoT]
-        D -->|Caudal, TDS, Nivel| E[Cloud Telemetry Dashboard]
+        D -->|Caudal, TDS, Piezometría| E[Cloud Telemetry Dashboard para CESPT/CONAGUA]
     end
 
-    subgraph ARQUITECTURA_8020 ["3. Tratamiento 80/20 (Point of Use)"]
+    subgraph ARQUITECTURA_8020 ["3. Tratamiento 80/20 y Humedal Artificial"]
         D --> F[Tanque de Desacople / Cisterna]
-        F --> G["Línea 80% (350-500 L/día)<br>Filtro Sedimentos + Cloración Controlada"]
+        F --> G["Línea 80% (350-500 L/día)<br>Humedal Fitosanitario + Bioindicadores"]
         F --> H["Línea 20% (70-120 L/día)<br>Ósmosis Inversa + UV + Remineralización"]
     end
 
-    subgraph USOS_FINALES ["4. Consumo Seguro"]
-        G --> I[Sanitarios, Limpieza, Riego Controlado]
+    subgraph USOS_FINALES ["4. Consumo Seguro y Justicia Hídrica"]
+        G --> I[Sanitarios, Limpieza y Microoasis en Parques]
         H --> J[Bebida y Cocción - Cumple NOM-127-SSA1]
     end
 
@@ -88,22 +88,22 @@ flowchart TD
 
 ---
 
-## 🔬 La Estrategia 80/20 (Point-of-Use)
+## 🔬 La Estrategia 80/20 & Humedales Artificiales
 
-En una vivienda típica, de **350 a 600 litros diarios** de consumo:
+En una vivienda o nodo barrial típico, de **350 a 600 litros diarios** de consumo:
 
 ```
 ┌─────────────────────────────────────────────────────────────────────────┐
 │ TOTAL DEL VOLUMEN EXTRAÍDO (100%)                                       │
 ├────────────────────────────────────────────────────┬────────────────────┤
-│ 80% — USO DIFERENCIADO (~300–480 L/día)            │ 20% — INGESTA      │
-│ • Sanitarios, lavado de pisos, autos, riego        │ (~70–120 L/día)    │
-│ • Tratamiento: Filtración 5 micras + desinfección   │ • Cocina y bebida  │
-│ • Costo energético y de mantenimiento muy bajo     │ • RO + Remin + UV  │
+│ 80% — USO GENERAL & REGENERACIÓN (~300–480 L/día) │ 20% — INGESTA      │
+│ • Humedal artificial: grava, arena y fitorremedio │ (~70–120 L/día)    │
+│ • Bioindicadores acuáticos (Validación biológica) │ • Cocina y bebida  │
+│ • Riego de parques/microoasis y sanitarios         │ • RO + Remin + UV  │
 └────────────────────────────────────────────────────┴────────────────────┘
 ```
 
-> **Principio de Eficiencia:** Potabilizar todo el flujo multiplica por 10 el desperdicio de membranas y energía. Desacoplar los usos hace viable la solución técnica y financieramente.
+> **Principio de Eficiencia y Justicia Hídrica:** Desacoplar usos permite purificar al 100% de calidad NOM-127 únicamente el volumen de ingesta, mientras el 80% regenera el entorno verde mediante biotecnología pasiva de bajísimo costo.
 
 ---
 

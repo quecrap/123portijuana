@@ -116,17 +116,6 @@ Un hackathon no exige que todo esté resuelto. Exige convertir una necesidad rea
 > 💡 **HACKATHON ≠ ATAJO ILEGAL Aquí “hack” significa rediseñar el problema, utilizar mejor la información disponible, construir un experimento mínimo y descubrir una ruta regulatoria reproducible. No significa ocultar una perforación ni cambiarle el nombre para evitar permisos.**
 
 
-# 5. Diálogos estratégicos con Violeta: Gobernanza, Tejido Social y Factibilidad
-
-Las deliberaciones y retroalimentación derivadas de las charlas con **Violeta** transformaron la visión del proyecto: el agua no es sólo un reto de hidrodinámica o filtración, sino un asunto de **derechos humanos, corresponsabilidad vecinal y gobernanza territorial**.
-
-> 💡 **APRENDIZAJES CLAVE DE LAS CHARLAS CON VIOLETA:**
-> 1. **El agua como bien común y derecho fundamental:** Evitar esquemas privatizadores o mercantilistas; el proyecto se fundamenta en el Artículo 4to Constitucional para garantizar el acceso al mínimo vital doméstico.
-> 2. **Comités Locales de Resiliencia Hídrica:** La tecnología por sí sola falla si no existe un comité vecinal que supervise el uso, mantenimiento del POU 80/20 y vigile que no haya sobreexplotación.
-> 3. **Diálogo institucional no confrontativo:** Presentar el proyecto ante CESPT y CONAGUA no como una impugnación a su cobertura, sino como un esquema complementario de mitigación y monitoreo de mantos someros en zonas de alta vulnerabilidad.
-> 4. **Transparencia radical de datos:** Toda medición piezométrica y de calidad debe ser abierta y accesible a la comunidad y a la academia para generar confianza colectiva.
-
-
 > 💡 **II. QUÉ ES EL SISTEMA Y CÓMO FUNCIONARÍA**
 
 
@@ -347,6 +336,33 @@ Metales: hierro, manganeso, aluminio, arsénico, plomo, cromo, cadmio, cobre y n
 Riesgo urbano: carbono orgánico, DQO, hidrocarburos, BTEX y solventes según uso histórico del predio.
 
 Muestra confirmatoria y repetición estacional cuando proceda.
+
+
+# 6. Biotratamiento del 80% mediante Humedales Artificiales y Bioindicadores (Acuaponía Frugal)
+
+Para el 80% del volumen (280–480 L/día destinados a sanitarios, limpieza y riego), recurrir a filtración mecánica de recambio continuo encarece la operación. Se propone un **tren de biotratamiento pasivo y humedal artificial**:
+- **Lecho de biofiltración:** Estratos sucesivos de grava, arena silícea y bio-carbón para retención física y digestión microbiana aerobia.
+- **Fitorremediación:** Plantas de humedal nativas (carrizo, tule, lirio de pantano) que absorben activamente nitrógeno, fósforo y metales traza.
+- **Bioindicadores y macroinvertebrados (Langostinos de agua dulce / Microorganismos):** Incorporación de un estanque secundario en circuito cerrado con macroinvertebrados bentónicos y langostinos. Estos organismos actúan como **sensores biológicos vivos**: su comportamiento y supervivencia validan la no toxicidad del efluente tratado, al tiempo que degradan biofilm y materia orgánica residual sin adición de químicos.
+
+
+# 7. Red Centinela Territorial y Semáforo Hídrico Abierto
+
+Los pozos someros no deben concebirse únicamente como puntos de extracción de agua, sino como **estaciones centinela de inteligencia ambiental** para toda Tijuana:
+- **Semáforo Freático en Mapa SIG:**
+  - 🟢 **Verde:** Agua aluvial somera limpia, baja salinidad y libre de patógenos (lista para POU 80/20).
+  - 🟡 **Amarillo:** Presencia moderada de sales o dureza (acondicionable con tren estándar).
+  - 🔴 **Rojo:** Presencia de amonio, coliformes de drenaje o lixiviados industriales (alerta de no consumo y protocolo de aislamiento).
+  - ⚫ **Negro:** Hidrocarburos o solventes clorados (zona crítica para remediación institucional).
+- **Herramienta estratégica para CONAGUA y CESPT:** El mapeo dinámico de estos pozos permite a la autoridad identificar fugas subterráneas de drenaje, intrusión salina o plumas contaminantes industriales que la red convencional no alcanza a detectar.
+
+
+# 8. Nodos de Regeneración en Parques Urbanos y Microoasis (Ej. Playas de Tijuana)
+
+En colonias con alta densidad de espacios públicos (como Playas de Tijuana, con parques cada pocas cuadras), la infraestructura frugal puede instalarse en **parques comunitarios**:
+- **Riego y Microoasis:** El agua del 80% tratada por el humedal mantiene vivas las áreas verdes barriales sin consumir agua potable de la red pública de CESPT.
+- **Nodo de Resiliencia y Reserva Barrial:** En contingencias o cortes prolongados de agua, el nodo del parque se activa como punto de abastecimiento seguro y controlado para la comunidad.
+
 
 
 > 💡 **VI. MARCO LEGAL EXPLICADO SIN TECNICISMOS**
