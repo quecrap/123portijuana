@@ -1,0 +1,32 @@
+# Archivos multimedia y confidenciales bajo llave (Privados)
+*.jpg
+*.jpeg
+*.png
+*.webp
+*.gif
+*.bmp
+*.svg
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.webm
+*.srt
+*.zip
+*.tar
+*.gz
+
+# Carpetas de medios y fotos reales
+assets/
+fotos_reales/
+media/
+videos/
+photos/
+
+# Archivos de entorno y temporales
+.env
+.env.*
+*.tmp
+*.temp
+.DS_Store
+Thumbs.db
