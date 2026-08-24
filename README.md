@@ -39,6 +39,7 @@ AquaResiliencia no propone una "perforación indiscriminada", sino una **infraes
 - **Extracción Frugal Asistida:** Métodos de bajo impacto con bombeo solar/eléctrico de bajo caudal para evitar abatimiento.
 - **Tratamiento Diferenciado 80/20:** Desacoplamiento del agua de uso general vs. agua de ingesta bajo norma NOM-127-SSA1.
 - **Telemetría Regulada IoT:** Medición de flujo, nivel estático/dinámico y conductividad en tiempo real.
+- **Gobernanza Comunitaria y Enlace Social (Diálogos con Violeta):** Integración de comités vecinales de vigilancia y corresponsabilidad en el uso del agua bajo el enfoque del derecho humano al agua (Art. 4to Constitucional).
 - **Cumplimiento Legal Proactivo:** Gobernanza alineada a CONAGUA y normativas del Acuífero 0201 Tijuana.
 
 ---

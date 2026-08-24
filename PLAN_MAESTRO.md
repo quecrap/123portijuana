@@ -116,6 +116,17 @@ Un hackathon no exige que todo esté resuelto. Exige convertir una necesidad rea
 > 💡 **HACKATHON ≠ ATAJO ILEGAL Aquí “hack” significa rediseñar el problema, utilizar mejor la información disponible, construir un experimento mínimo y descubrir una ruta regulatoria reproducible. No significa ocultar una perforación ni cambiarle el nombre para evitar permisos.**
 
 
+# 5. Diálogos estratégicos con Violeta: Gobernanza, Tejido Social y Factibilidad
+
+Las deliberaciones y retroalimentación derivadas de las charlas con **Violeta** transformaron la visión del proyecto: el agua no es sólo un reto de hidrodinámica o filtración, sino un asunto de **derechos humanos, corresponsabilidad vecinal y gobernanza territorial**.
+
+> 💡 **APRENDIZAJES CLAVE DE LAS CHARLAS CON VIOLETA:**
+> 1. **El agua como bien común y derecho fundamental:** Evitar esquemas privatizadores o mercantilistas; el proyecto se fundamenta en el Artículo 4to Constitucional para garantizar el acceso al mínimo vital doméstico.
+> 2. **Comités Locales de Resiliencia Hídrica:** La tecnología por sí sola falla si no existe un comité vecinal que supervise el uso, mantenimiento del POU 80/20 y vigile que no haya sobreexplotación.
+> 3. **Diálogo institucional no confrontativo:** Presentar el proyecto ante CESPT y CONAGUA no como una impugnación a su cobertura, sino como un esquema complementario de mitigación y monitoreo de mantos someros en zonas de alta vulnerabilidad.
+> 4. **Transparencia radical de datos:** Toda medición piezométrica y de calidad debe ser abierta y accesible a la comunidad y a la academia para generar confianza colectiva.
+
+
 > 💡 **II. QUÉ ES EL SISTEMA Y CÓMO FUNCIONARÍA**
 
 
