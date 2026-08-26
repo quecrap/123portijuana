@@ -15,6 +15,16 @@
 *.tar
 *.gz
 
+# Manuales y documentos confidenciales en texto plano (Privados)
+docs/*.md
+docs/**/*.md
+!docs/README.md
+docs/manual_perforacion_*.md
+*.raw.md
+
+# Permitir archivos cifrados y protegidos
+!docs/*_protegido.zip
+
 # Carpetas de medios y fotos reales
 assets/
 fotos_reales/
