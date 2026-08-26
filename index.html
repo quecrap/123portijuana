@@ -1312,6 +1312,8 @@
   <footer>
     <ul class="footer-links">
       <li><a href="PLAN_MAESTRO.md" target="_blank">Plan Maestro</a></li>
+      <li><a href="INVESTIGACION_BINACIONAL_HIDROGEOLOGIA.md" target="_blank">Investigación Binacional ↗</a></li>
+      <li><a href="ORDEN_DE_COMPRA_IOT_ESP32.md" target="_blank">BOM Hardware ESP32</a></li>
       <li><a href="STORYBOARD.md" target="_blank">Storyboard</a></li>
       <li><a href="GUION_CAPCUT.md" target="_blank">Guion CapCut</a></li>
       <li><a href="https://github.com/quecrap/123portijuana" target="_blank">Repositorio GitHub</a></li>
@@ -1320,21 +1322,25 @@
   </footer>
 
   <script>
-    // 1. RED PIEZOMÉTRICA OFICIAL CONAGUA (PUBLICACIÓN DOF / ESTUDIO 2024)
+    // 1. RED PIEZOMÉTRICA OFICIAL CONAGUA & USGS BINACIONAL (ESTUDIO 2024 / USGS NWIS)
     const conaguaPiezometers = [
-      { id: "PZ-01", name: "Estación Piezométrica Río Tijuana - Álamos", lat: 32.5185, lng: -116.9850, depthStatic: 4.2, year: 2024, type: "Piezómetro Oficial" },
-      { id: "PZ-02", name: "Estación Piezométrica Arroyo Alamar - Murúa", lat: 32.5320, lng: -116.9380, depthStatic: 6.1, year: 2024, type: "Piezómetro Oficial" },
-      { id: "PZ-03", name: "Estación Piezométrica Playas - Estuario Sur", lat: 32.5280, lng: -117.1180, depthStatic: 5.4, year: 2024, type: "Piezómetro Oficial" },
-      { id: "PZ-04", name: "Estación Piezométrica Cañón del Sainz - Lecho", lat: 32.4220, lng: -116.9420, depthStatic: 9.8, year: 2024, type: "Piezómetro Oficial" },
-      { id: "PZ-05", name: "Estación Piezométrica Maclovio Rojas - Vado", lat: 32.4780, lng: -116.7920, depthStatic: 11.2, year: 2024, type: "Piezómetro Oficial" },
-      { id: "PZ-06", name: "Estación Piezométrica Valle Redondo - El Refugio", lat: 32.4850, lng: -116.8450, depthStatic: 8.9, year: 2024, type: "Piezómetro Oficial" }
+      { id: "PZ-01", name: "Estación Piezométrica Río Tijuana - Álamos", lat: 32.5185, lng: -116.9850, depthStatic: 4.2, year: 2024, type: "Piezómetro Oficial CONAGUA" },
+      { id: "PZ-02", name: "Estación Piezométrica Arroyo Alamar - Murúa", lat: 32.5320, lng: -116.9380, depthStatic: 6.1, year: 2024, type: "Piezómetro Oficial CONAGUA" },
+      { id: "PZ-03", name: "Estación Piezométrica Playas - Estuario Sur", lat: 32.5280, lng: -117.1180, depthStatic: 5.4, year: 2024, type: "Piezómetro Oficial CONAGUA" },
+      { id: "PZ-04", name: "Estación Piezométrica Cañón del Sainz - Lecho", lat: 32.4220, lng: -116.9420, depthStatic: 9.8, year: 2024, type: "Piezómetro Oficial CONAGUA" },
+      { id: "PZ-05", name: "Estación Piezométrica Maclovio Rojas - Vado", lat: 32.4780, lng: -116.7920, depthStatic: 11.2, year: 2024, type: "Piezómetro Oficial CONAGUA" },
+      { id: "PZ-06", name: "Estación Piezométrica Valle Redondo - El Refugio", lat: 32.4850, lng: -116.8450, depthStatic: 8.9, year: 2024, type: "Piezómetro Oficial CONAGUA" },
+      { id: "PZ-USGS-01", name: "Estación Binacional USGS 11013500 (Tijuana River Border)", lat: 32.5440, lng: -117.0850, depthStatic: 3.8, year: 2024, type: "Monitoreo Binacional USGS/IBWC" },
+      { id: "PZ-TRNERR-02", name: "Sensor Costero Tijuana Estuary Reserve (TRNERR)", lat: 32.5510, lng: -117.1250, depthStatic: 2.9, year: 2024, type: "Monitoreo Intrusión Salina" }
     ];
 
-    // 2. POZOS CONCESIONADOS REGISTRADOS EN EL REPDA (CORTE 30/DIC/2022 CONAGUA 2024)
+    // 2. POZOS CONCESIONADOS REGISTRADOS EN EL REPDA (CORTE 30/DIC/2022 CONAGUA 2024 / CESPT)
     const repdaWells = [
       { id: "REPDA-02BC100234", owner: "CESPT - Batería Pozo Alamar 1", lat: 32.5240, lng: -116.9310, volAuth: "450,000 m³/año", use: "Público Urbano", depthTotal: 45 },
       { id: "REPDA-02BC100589", owner: "CESPT - Batería Pozo Alamar 2", lat: 32.5200, lng: -116.9220, volAuth: "380,000 m³/año", use: "Público Urbano", depthTotal: 50 },
+      { id: "REPDA-02BC100712", owner: "CESPT - Batería Pozo Alamar 3", lat: 32.5270, lng: -116.9150, volAuth: "320,000 m³/año", use: "Público Urbano", depthTotal: 48 },
       { id: "REPDA-02BC101102", owner: "Parque Industrial Otay - Pozo Auxiliar", lat: 32.5410, lng: -116.9580, volAuth: "120,000 m³/año", use: "Industrial", depthTotal: 85 },
+      { id: "REPDA-02BC101250", owner: "CESPT - Batería La Presa Rodríguez", lat: 32.4450, lng: -116.9050, volAuth: "210,000 m³/año", use: "Público Urbano", depthTotal: 35 },
       { id: "REPDA-02BC101450", owner: "Comité Agrícola Cañón del Sainz", lat: 32.4110, lng: -116.9280, volAuth: "85,000 m³/año", use: "Agrícola / Riego", depthTotal: 30 },
       { id: "REPDA-02BC101780", owner: "Aprovechamiento Servicios Urbanos Río", lat: 32.5290, lng: -117.0180, volAuth: "60,000 m³/año", use: "Servicios", depthTotal: 25 },
       { id: "REPDA-02BC101990", owner: "Pozo San Antonio del Mar - Fracc", lat: 32.4680, lng: -117.0850, volAuth: "95,000 m³/año", use: "Doméstico / Servicios", depthTotal: 40 }
