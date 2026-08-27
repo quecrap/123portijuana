@@ -701,6 +701,54 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
   .report-section-title{color:#0284c7!important}
   .print-cert-footer{display:block!important;margin-top:1.5rem;padding-top:1rem;border-top:2px dashed #94a3b8}
 }
+
+/* ===================== DÍA CERO — RÍO COLORADO (issue #1) ===================== */
+.dia-cero-widget{position:fixed;top:var(--dia-cero-top, calc(4.75rem + var(--sat)));right:max(1.25rem,var(--sar));z-index:900;display:flex;align-items:center;gap:.55rem;background:rgba(7,13,24,.88);border:1px solid var(--border-color);border-radius:999px;padding:.5rem .95rem .5rem .65rem;cursor:pointer;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 8px 24px rgba(0,0,0,.4);transition:border-color .25s,box-shadow .25s,transform .2s;font-family:var(--font-mono);user-select:none}
+.dia-cero-widget:active{transform:scale(.97)}
+.dia-cero-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;background:var(--text-dim)}
+.dia-cero-widget.state-green .dia-cero-dot{background:var(--emerald-accent);box-shadow:0 0 8px var(--emerald-accent)}
+.dia-cero-widget.state-yellow .dia-cero-dot{background:var(--amber-accent);box-shadow:0 0 8px var(--amber-accent)}
+.dia-cero-widget.state-red .dia-cero-dot{background:var(--rose-accent);box-shadow:0 0 10px var(--rose-accent);animation:diaCeroPulse 1.6s ease-in-out infinite}
+.dia-cero-widget.state-green{border-color:rgba(16,185,129,.4)}
+.dia-cero-widget.state-yellow{border-color:rgba(245,158,11,.45)}
+.dia-cero-widget.state-red{border-color:rgba(244,63,94,.55);box-shadow:0 0 0 3px rgba(244,63,94,.12),0 8px 24px rgba(244,63,94,.3)}
+@keyframes diaCeroPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.55;transform:scale(.8)}}
+.dia-cero-label{font-size:.68rem;text-transform:uppercase;letter-spacing:.06em;color:var(--text-dim)}
+.dia-cero-value{font-size:.82rem;font-weight:700;color:var(--text-main);white-space:nowrap}
+.dia-cero-widget.state-red .dia-cero-value{color:var(--rose-accent)}
+.dia-cero-widget.state-yellow .dia-cero-value{color:var(--amber-accent)}
+.dia-cero-widget.state-green .dia-cero-value{color:var(--emerald-accent)}
+.dia-cero-panel{position:fixed;top:var(--dia-cero-panel-top, calc(7.9rem + var(--sat)));right:max(1.25rem,var(--sar));z-index:900;width:min(370px,calc(100vw - 2.5rem));max-height:calc(100vh - 9rem);overflow-y:auto;background:var(--bg-card);border:1px solid var(--border-color);border-radius:18px;padding:1.1rem 1.2rem 1.3rem;box-shadow:0 20px 50px rgba(0,0,0,.55);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);display:none}
+.dia-cero-panel.open{display:block;animation:diaCeroPanelIn .22s ease}
+@keyframes diaCeroPanelIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
+.dia-cero-panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem;margin-bottom:.15rem}
+.dia-cero-panel-title{font-family:var(--font-heading);font-size:1rem;font-weight:700;color:var(--text-main);line-height:1.3}
+.dia-cero-panel-sub{font-size:.74rem;color:var(--text-dim);margin-top:.2rem;line-height:1.4}
+.dia-cero-close{background:none;border:none;color:var(--text-muted);font-size:1.3rem;line-height:1;cursor:pointer;padding:.1rem .3rem;flex-shrink:0}
+.dia-cero-close:hover{color:var(--text-main)}
+.dia-cero-stats{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin:.9rem 0}
+.dia-cero-stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:.6rem .7rem}
+.dia-cero-stat-label{font-size:.66rem;text-transform:uppercase;letter-spacing:.05em;color:var(--text-dim);font-family:var(--font-mono)}
+.dia-cero-stat-val{font-size:1.05rem;font-weight:700;color:var(--text-main);margin-top:.15rem;font-family:var(--font-mono)}
+.dia-cero-stat-val.down{color:var(--rose-accent)}
+.dia-cero-stat-val.up{color:var(--emerald-accent)}
+.dia-cero-days-banner{margin:.2rem 0 1rem;padding:.65rem .8rem;border-radius:12px;background:rgba(244,63,94,.1);border:1px solid rgba(244,63,94,.3);display:flex;align-items:center;gap:.6rem}
+.dia-cero-days-banner .n{font-family:var(--font-mono);font-size:1.3rem;font-weight:800;color:var(--rose-accent);white-space:nowrap}
+.dia-cero-days-banner .t{font-size:.74rem;color:var(--text-muted);line-height:1.3}
+.dia-cero-chart-wrap{margin-top:.3rem}
+.dia-cero-chart-title{font-size:.68rem;text-transform:uppercase;letter-spacing:.05em;color:var(--text-dim);margin-bottom:.4rem;font-family:var(--font-mono)}
+#diaCeroChart{width:100%;height:130px;display:block}
+.dia-cero-legend{display:flex;flex-wrap:wrap;gap:.5rem .8rem;margin-top:.5rem}
+.dia-cero-legend span{font-size:.65rem;color:var(--text-dim);display:flex;align-items:center;gap:.3rem}
+.dia-cero-legend i{width:9px;height:3px;border-radius:2px;display:inline-block}
+.dia-cero-panel-foot{margin-top:.9rem;padding-top:.7rem;border-top:1px solid rgba(255,255,255,.08);font-size:.68rem;color:var(--text-dim);display:flex;justify-content:space-between;gap:.5rem;flex-wrap:wrap}
+.dia-cero-panel-foot a{color:var(--cyan-primary);text-decoration:none}
+.dia-cero-panel-foot a:hover{text-decoration:underline}
+@media(max-width:480px){
+  .dia-cero-widget{right:.75rem;padding:.45rem .8rem .45rem .6rem}
+  .dia-cero-label{display:none}
+  .dia-cero-panel{right:.75rem;width:calc(100vw - 1.5rem)}
+}
 </style>
 </head>
 <body>
@@ -1119,6 +1167,62 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
     <button class="mobile-nav-toggle" id="mobile-menu-btn" onclick="toggleMobileDrawer(true)" aria-label="Abrir Menú">☰</button>
   </div>
 </header>
+
+<!-- Widget flotante: Día Cero — Río Colorado (issue #1) -->
+<div id="diaCeroWidget" class="dia-cero-widget" onclick="toggleDiaCeroPanel()" title="Nivel del Lago Mead — origen del agua que abastece indirectamente al Valle de Tijuana">
+  <span class="dia-cero-dot" id="diaCeroDot"></span>
+  <span class="dia-cero-label">Lago Mead</span>
+  <span class="dia-cero-value" id="diaCeroValue">Cargando…</span>
+</div>
+<div id="diaCeroPanel" class="dia-cero-panel">
+  <div class="dia-cero-panel-head">
+    <div>
+      <div class="dia-cero-panel-title">🏜️ Día Cero — Río Colorado</div>
+      <div class="dia-cero-panel-sub">Lago Mead, presa Hoover — la reserva que sostiene la asignación de agua que México recibe por tratado y que abastece indirectamente al Valle de Tijuana.</div>
+    </div>
+    <button class="dia-cero-close" onclick="toggleDiaCeroPanel(false)" aria-label="Cerrar">×</button>
+  </div>
+
+  <div class="dia-cero-stats">
+    <div class="dia-cero-stat">
+      <div class="dia-cero-stat-label">Elevación</div>
+      <div class="dia-cero-stat-val" id="diaCeroElev">—</div>
+    </div>
+    <div class="dia-cero-stat">
+      <div class="dia-cero-stat-label">% de capacidad</div>
+      <div class="dia-cero-stat-val" id="diaCeroPct">—</div>
+    </div>
+    <div class="dia-cero-stat">
+      <div class="dia-cero-stat-label">Tendencia 7 días</div>
+      <div class="dia-cero-stat-val" id="diaCeroTrend">—</div>
+    </div>
+    <div class="dia-cero-stat">
+      <div class="dia-cero-stat-label">Actualizado</div>
+      <div class="dia-cero-stat-val" id="diaCeroUpdated" style="font-size:.78rem">—</div>
+    </div>
+  </div>
+
+  <div class="dia-cero-days-banner" id="diaCeroBanner" style="display:none">
+    <span class="n" id="diaCeroDays">—</span>
+    <span class="t">días estimados para llegar a "nivel muerto" (895 ft) al ritmo de descenso de los últimos 90 días.</span>
+  </div>
+
+  <div class="dia-cero-chart-wrap">
+    <div class="dia-cero-chart-title">Histórico 12 meses (pies)</div>
+    <canvas id="diaCeroChart" width="640" height="130"></canvas>
+    <div class="dia-cero-legend">
+      <span><i style="background:#f59e0b"></i>1,075 ft alerta</span>
+      <span><i style="background:#fb923c"></i>1,050 ft crisis</span>
+      <span><i style="background:#a855f7"></i>950 ft severo</span>
+      <span><i style="background:#f43f5e"></i>895 ft nivel muerto</span>
+    </div>
+  </div>
+
+  <div class="dia-cero-panel-foot">
+    <span id="diaCeroSourceNote">Fuente: U.S. Bureau of Reclamation</span>
+    <a href="https://www.usbr.gov/lc/region/g4000/hourly/mead-elv.html" target="_blank" rel="noopener">Fuente oficial ↗</a>
+  </div>
+</div>
 
 <!-- Mobile Slide Drawer for iPhone -->
 <div id="drawer-backdrop" onclick="toggleMobileDrawer(false)"></div>
@@ -2585,8 +2689,240 @@ function initCorte3D(){
   requestAnimationFrame(render);
 }
 
+// ==================== DÍA CERO — RÍO COLORADO (issue #1) ====================
+// Widget flotante con el nivel del Lago Mead (fuente de la asignación de agua que
+// México recibe por tratado y que abastece indirectamente al Valle de Tijuana).
+// Primario: intenta lectura en vivo (USGS/USBR waterservices, parámetro 62614).
+// Fallback: data/lake_mead_history.json con la última lectura oficial capturada
+// manualmente y una serie mensual interpolada para el gráfico (ver "methodology_note"
+// dentro del propio JSON).
+const DIA_CERO_USGS_SITE = '09421900'; // TODO(equipo): confirmar site id oficial antes de depender 100% del feed en vivo
+const DIA_CERO_REFRESH_MS = 20 * 60 * 1000;
+
+async function fetchDiaCeroLive(){
+  const url = `https://waterservices.usgs.gov/nwis/iv/?sites=${DIA_CERO_USGS_SITE}&parameterCd=62614&period=P1D&format=json`;
+  const ctrl = new AbortController();
+  const timer = setTimeout(() => ctrl.abort(), 4000);
+  try{
+    const res = await fetch(url, { signal: ctrl.signal });
+    clearTimeout(timer);
+    if(!res.ok) throw new Error('status ' + res.status);
+    const json = await res.json();
+    const series = json?.value?.timeSeries?.[0]?.values?.[0]?.value;
+    if(!series || !series.length) throw new Error('sin serie de datos');
+    const last = series[series.length - 1];
+    const elev = parseFloat(last.value);
+    if(!isFinite(elev)) throw new Error('valor no numérico');
+    return { elevation_ft: elev, date: last.dateTime };
+  }catch(err){
+    clearTimeout(timer);
+    console.warn('[DiaCero] feed en vivo no disponible, se usa fallback local:', err.message);
+    return null;
+  }
+}
+
+async function loadDiaCeroFallback(){
+  try{
+    const res = await fetch('data/lake_mead_history.json', { cache: 'no-store' });
+    if(!res.ok) throw new Error('status ' + res.status);
+    return await res.json();
+  }catch(err){
+    console.warn('[DiaCero] no se pudo cargar data/lake_mead_history.json:', err.message);
+    return null;
+  }
+}
+
+function diaCeroState(elevFt, thresholds){
+  if(elevFt > thresholds.normal) return 'green';
+  if(elevFt >= thresholds.tier1) return 'yellow';
+  return 'red';
+}
+
+function diaCeroInterpAt(monthlyHistory, targetDate){
+  const pts = monthlyHistory
+    .map(h => ({ t: new Date(h.month + '-15T00:00:00Z').getTime(), v: h.elevation_ft }))
+    .sort((a, b) => a.t - b.t);
+  const tt = targetDate.getTime();
+  if(tt <= pts[0].t) return pts[0].v;
+  if(tt >= pts[pts.length - 1].t) return pts[pts.length - 1].v;
+  for(let i = 0; i < pts.length - 1; i++){
+    if(tt >= pts[i].t && tt <= pts[i + 1].t){
+      const frac = (tt - pts[i].t) / (pts[i + 1].t - pts[i].t);
+      return pts[i].v + frac * (pts[i + 1].v - pts[i].v);
+    }
+  }
+  return pts[pts.length - 1].v;
+}
+
+function diaCeroDaysToDeadPool(currentElev, monthlyHistory, deadPool, now){
+  if(!monthlyHistory || !monthlyHistory.length) return null;
+  const past90 = new Date(now.getTime() - 90 * 86400000);
+  const elevPast = diaCeroInterpAt(monthlyHistory, past90);
+  const ratePerDay = (elevPast - currentElev) / 90; // positivo = descendiendo
+  if(ratePerDay <= 0.001) return null; // estable o en recuperación
+  return Math.round((currentElev - deadPool) / ratePerDay);
+}
+
+function renderDiaCeroChart(canvas, history, thresholds){
+  if(!canvas || !history || !history.length) return;
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.getBoundingClientRect();
+  const w = rect.width || 320, h = 130;
+  canvas.width = w * dpr; canvas.height = h * dpr;
+  canvas.style.width = w + 'px'; canvas.style.height = h + 'px';
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+  ctx.clearRect(0, 0, w, h);
+
+  const values = history.map(p => p.elevation_ft);
+  const minV = Math.min(...values, thresholds.dead_pool) - 5;
+  const maxV = Math.max(...values, thresholds.normal) + 5;
+  const padL = 34, padR = 6, padT = 8, padB = 16;
+  const plotW = w - padL - padR, plotH = h - padT - padB;
+  const xAt = i => padL + (i / (history.length - 1)) * plotW;
+  const yAt = v => padT + (1 - ((v - minV) / (maxV - minV))) * plotH;
+
+  const refs = [
+    { v: thresholds.normal, c: '#f59e0b' },
+    { v: thresholds.tier1, c: '#fb923c' },
+    { v: thresholds.severe, c: '#a855f7' },
+    { v: thresholds.dead_pool, c: '#f43f5e' }
+  ];
+  ctx.setLineDash([3, 3]);
+  refs.forEach(r => {
+    if(r.v < minV || r.v > maxV) return;
+    ctx.strokeStyle = r.c; ctx.globalAlpha = .55; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(padL, yAt(r.v)); ctx.lineTo(w - padR, yAt(r.v)); ctx.stroke();
+  });
+  ctx.setLineDash([]); ctx.globalAlpha = 1;
+
+  ctx.beginPath();
+  history.forEach((p, i) => { const px = xAt(i), py = yAt(p.elevation_ft); i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py); });
+  ctx.lineTo(xAt(history.length - 1), padT + plotH);
+  ctx.lineTo(xAt(0), padT + plotH);
+  ctx.closePath();
+  const grad = ctx.createLinearGradient(0, padT, 0, padT + plotH);
+  grad.addColorStop(0, 'rgba(0,229,255,.28)');
+  grad.addColorStop(1, 'rgba(0,229,255,0)');
+  ctx.fillStyle = grad; ctx.fill();
+
+  ctx.beginPath();
+  history.forEach((p, i) => { const px = xAt(i), py = yAt(p.elevation_ft); i === 0 ? ctx.moveTo(px, py) : ctx.lineTo(px, py); });
+  ctx.strokeStyle = '#00e5ff'; ctx.lineWidth = 2; ctx.stroke();
+
+  const lastI = history.length - 1;
+  ctx.beginPath(); ctx.arc(xAt(lastI), yAt(history[lastI].elevation_ft), 4, 0, Math.PI * 2);
+  ctx.fillStyle = '#00e5ff'; ctx.fill();
+  ctx.strokeStyle = '#070d18'; ctx.lineWidth = 2; ctx.stroke();
+
+  ctx.fillStyle = 'rgba(148,163,184,.7)'; ctx.font = '9px monospace'; ctx.textAlign = 'right';
+  ctx.fillText(Math.round(maxV) + ' ft', padL - 4, padT + 8);
+  ctx.fillText(Math.round(minV) + ' ft', padL - 4, padT + plotH);
+}
+
+let diaCeroPositionQueued = false;
+function positionDiaCero(){
+  const header = document.getElementById('main-header');
+  const widget = document.getElementById('diaCeroWidget');
+  if(!header || !widget) return;
+  // header es sticky: antes de engancharse arriba, su propio bottom (no su height)
+  // ya nos dice cuánto ocupa desde el top real del viewport en el scroll actual.
+  const top = header.getBoundingClientRect().bottom + 12;
+  document.documentElement.style.setProperty('--dia-cero-top', top + 'px');
+  const widgetH = widget.getBoundingClientRect().height || 39;
+  document.documentElement.style.setProperty('--dia-cero-panel-top', (top + widgetH + 10) + 'px');
+}
+function queueDiaCeroReposition(){
+  if(diaCeroPositionQueued) return;
+  diaCeroPositionQueued = true;
+  requestAnimationFrame(() => { positionDiaCero(); diaCeroPositionQueued = false; });
+}
+window.addEventListener('resize', queueDiaCeroReposition);
+window.addEventListener('scroll', queueDiaCeroReposition, { passive: true });
+window.addEventListener('orientationchange', () => setTimeout(positionDiaCero, 200));
+
+function toggleDiaCeroPanel(force){
+  const panel = document.getElementById('diaCeroPanel');
+  if(!panel) return;
+  const open = force !== undefined ? force : !panel.classList.contains('open');
+  panel.classList.toggle('open', open);
+}
+
+document.addEventListener('click', (e) => {
+  const panel = document.getElementById('diaCeroPanel');
+  const widget = document.getElementById('diaCeroWidget');
+  if(!panel || !widget || !panel.classList.contains('open')) return;
+  if(panel.contains(e.target) || widget.contains(e.target)) return;
+  panel.classList.remove('open');
+});
+
+async function initDiaCero(){
+  const widget = document.getElementById('diaCeroWidget');
+  const valueEl = document.getElementById('diaCeroValue');
+  if(!widget || !valueEl) return;
+
+  const [fallback, live] = await Promise.all([loadDiaCeroFallback(), fetchDiaCeroLive()]);
+  const thresholds = (fallback && fallback.thresholds) || { normal: 1075, tier1: 1050, severe: 950, dead_pool: 895 };
+  const now = new Date();
+
+  let current, updatedLabel, sourceLabel;
+  if(live){
+    current = live.elevation_ft;
+    updatedLabel = new Date(live.date).toLocaleString('es-MX', { dateStyle: 'medium', timeStyle: 'short' });
+    sourceLabel = 'Fuente: USGS/USBR (lectura en vivo)';
+  } else if(fallback && fallback.current){
+    current = fallback.current.elevation_ft;
+    updatedLabel = new Date(fallback.current.date + 'T00:00:00').toLocaleDateString('es-MX', { day: 'numeric', month: 'short', year: 'numeric' });
+    sourceLabel = 'Fuente: U.S. Bureau of Reclamation (dato local, sin conexión en vivo)';
+  } else {
+    valueEl.textContent = 'Sin datos';
+    return;
+  }
+
+  const state = diaCeroState(current, thresholds);
+  widget.classList.remove('state-green', 'state-yellow', 'state-red');
+  widget.classList.add('state-' + state);
+
+  const monthlyHistory = fallback && fallback.monthly_history;
+  let days = null;
+  if(state === 'red') days = diaCeroDaysToDeadPool(current, monthlyHistory, thresholds.dead_pool, now);
+
+  valueEl.textContent = days ? `~${days.toLocaleString('es-MX')} días` : `${current.toFixed(1)} ft`;
+
+  const banner = document.getElementById('diaCeroBanner');
+  if(banner){
+    if(days){
+      banner.style.display = 'flex';
+      document.getElementById('diaCeroDays').textContent = days.toLocaleString('es-MX');
+    } else {
+      banner.style.display = 'none';
+    }
+  }
+
+  const setText = (id, txt) => { const el = document.getElementById(id); if(el) el.textContent = txt; };
+  setText('diaCeroElev', current.toFixed(1) + ' ft');
+  setText('diaCeroUpdated', updatedLabel);
+  setText('diaCeroSourceNote', sourceLabel);
+
+  if(fallback && fallback.current){
+    setText('diaCeroPct', typeof fallback.current.pct_full === 'number' ? fallback.current.pct_full.toFixed(1) + '%' : '—');
+    const trend = fallback.current.trend_7d_ft;
+    const trendEl = document.getElementById('diaCeroTrend');
+    if(trendEl && typeof trend === 'number'){
+      trendEl.textContent = (trend < 0 ? '▼ ' : '▲ ') + Math.abs(trend).toFixed(2) + ' ft';
+      trendEl.classList.remove('down', 'up');
+      trendEl.classList.add(trend < 0 ? 'down' : 'up');
+    }
+  }
+
+  if(monthlyHistory && monthlyHistory.length){
+    renderDiaCeroChart(document.getElementById('diaCeroChart'), monthlyHistory, thresholds);
+  }
+  positionDiaCero();
+}
+
 // ==================== INIT ====================
-document.addEventListener('DOMContentLoaded',()=>{initCalc();initTelemetry();initCorte3D();init();});
+document.addEventListener('DOMContentLoaded',()=>{initCalc();initTelemetry();initCorte3D();init();positionDiaCero();initDiaCero();setInterval(initDiaCero, DIA_CERO_REFRESH_MS);});
 </script>
 </body>
 </html>

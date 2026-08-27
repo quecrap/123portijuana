@@ -1,0 +1,41 @@
+{
+  "unit": "ft",
+  "datum": "NGVD 29 (aprox., referencia estándar usada por USBR para Lago Mead)",
+  "capacity_maf": 26.12,
+  "thresholds": {
+    "normal": 1075,
+    "tier1": 1050,
+    "severe": 950,
+    "dead_pool": 895
+  },
+  "current": {
+    "elevation_ft": 1039.1,
+    "date": "2026-08-26",
+    "pct_full": 26.5,
+    "storage_maf": 6.91,
+    "trend_7d_ft": -0.5,
+    "trend_24h_ft": -0.11
+  },
+  "monthly_history": [
+    { "month": "2025-08", "elevation_ft": 1055.1 },
+    { "month": "2025-09", "elevation_ft": 1053.0 },
+    { "month": "2025-10", "elevation_ft": 1051.2 },
+    { "month": "2025-11", "elevation_ft": 1049.8 },
+    { "month": "2025-12", "elevation_ft": 1048.9 },
+    { "month": "2026-01", "elevation_ft": 1048.3 },
+    { "month": "2026-02", "elevation_ft": 1048.0 },
+    { "month": "2026-03", "elevation_ft": 1048.6 },
+    { "month": "2026-04", "elevation_ft": 1049.5 },
+    { "month": "2026-05", "elevation_ft": 1050.3 },
+    { "month": "2026-06", "elevation_ft": 1049.0 },
+    { "month": "2026-07", "elevation_ft": 1044.5 },
+    { "month": "2026-08", "elevation_ft": 1039.1 }
+  ],
+  "sources": [
+    { "label": "U.S. Bureau of Reclamation — Lower Colorado Hourly Elevation Report", "url": "https://www.usbr.gov/lc/region/g4000/hourly/mead-elv.html" },
+    { "label": "ReservoirBench — Lake Mead", "url": "https://reservoirbench.com/lake-mead/" },
+    { "label": "HydroStatus — Lake Mead", "url": "https://hydrostatus.com/lake-mead/" }
+  ],
+  "methodology_note": "El punto 'current' y los dos puntos ancla de 'monthly_history' (2025-08 y 2026-08) provienen de lecturas reales publicadas por el Bureau of Reclamation y agregadores públicos (ver 'sources'), capturadas manualmente el 27-ago-2026. Los 11 puntos mensuales intermedios son una interpolación estacional razonada (no lecturas diarias oficiales) para dar continuidad al gráfico mientras no hay acceso a la serie histórica completa; el total de descenso de 16.0 ft en 12 meses sí coincide con el reportado por las fuentes. 'días_para_nivel_muerto' se calcula en el cliente como (elevación_actual - 895) / (tasa de descenso de los últimos 90 días, interpolada de esta misma serie) — no es un valor fijo en este archivo. Reemplazar este archivo por la serie oficial completa de USBR/USGS en cuanto el equipo tenga acceso de datos confiable.",
+  "generated_at": "2026-08-27T00:00:00Z"
+}
