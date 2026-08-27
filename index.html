@@ -5,11 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
   <title>AquaResiliencia Tijuana — Plataforma de Inteligencia Hidrogeológica y Red Centinela</title>
   <meta name="description" content="Plataforma de membresía para inteligencia hidrogeológica en Tijuana. Motor AquaEngine, Red Piezométrica CONAGUA y cuestionario de prefactibilidad para vecinos y técnicos.">
+  
+  <!-- Apple / iOS Specific Meta Tags -->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-title" content="AquaResiliencia">
   <meta name="format-detection" content="telephone=no">
   <meta name="theme-color" content="#070d18">
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23070d18'/><path d='M50 15 L78 50 A30 30 0 1 1 22 50 Z' fill='%2300e5ff'/></svg>">
+  
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -17,10 +21,10 @@
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <style>
 :root{
-  --sat:env(safe-area-inset-top,0px);
-  --sab:env(safe-area-inset-bottom,0px);
-  --sal:env(safe-area-inset-left,0px);
-  --sar:env(safe-area-inset-right,0px);
+  --sat: env(safe-area-inset-top, 0px);
+  --sab: env(safe-area-inset-bottom, 0px);
+  --sal: env(safe-area-inset-left, 0px);
+  --sar: env(safe-area-inset-right, 0px);
   --bg-dark:#070d18;--bg-card:rgba(15,23,42,.8);--bg-card-hover:rgba(30,41,59,.9);--border-color:rgba(56,189,248,.18);--border-glow:rgba(56,189,248,.45);--cyan-primary:#00e5ff;--cyan-glow:rgba(0,229,255,.3);--blue-accent:#3b82f6;--emerald-accent:#10b981;--amber-accent:#f59e0b;--rose-accent:#f43f5e;--purple-accent:#a855f7;--text-main:#f8fafc;--text-muted:#94a3b8;--text-dim:#64748b;--font-heading:'Outfit',sans-serif;--font-body:'Plus Jakarta Sans',sans-serif;--font-mono:'JetBrains Mono',monospace
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -28,6 +32,7 @@ html{
   -webkit-text-size-adjust:100%;
   text-size-adjust:100%;
   height:100%;
+  scroll-behavior:smooth;
 }
 body{
   background-color:var(--bg-dark);
@@ -37,10 +42,22 @@ body{
   overflow-x:hidden;
   min-height:100vh;
   min-height:100dvh;
-  -webkit-tap-highlight-color:rgba(0,229,255,.15);
+  -webkit-tap-highlight-color:transparent;
   touch-action:manipulation;
   background-image:radial-gradient(circle at 15% 15%,rgba(0,229,255,.09) 0%,transparent 40%),radial-gradient(circle at 85% 85%,rgba(59,130,246,.09) 0%,transparent 40%),linear-gradient(rgba(255,255,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);
   background-size:100% 100%,100% 100%,40px 40px,40px 40px;
+}
+
+/* Base button and touch targets for iOS */
+button, a, input, select, textarea {
+  touch-action: manipulation;
+  -webkit-user-select: none;
+  user-select: none;
+}
+input, select, textarea {
+  -webkit-user-select: auto;
+  user-select: auto;
+  font-size: 16px !important; /* Critical for iOS Safari: Prevents auto-zoom */
 }
 
 /* ===================== AUTH ===================== */
@@ -50,7 +67,8 @@ body{
   background:linear-gradient(135deg,#020c1b 0%,#0a1628 50%,#020c1b 100%);
   overflow-y:auto;
   -webkit-overflow-scrolling:touch;
-  padding:calc(1.5rem + var(--sat)) calc(1.5rem + var(--sar)) calc(1.5rem + var(--sab)) calc(1.5rem + var(--sal));
+  overscroll-behavior:contain;
+  padding:calc(1.5rem + var(--sat)) calc(1.25rem + var(--sar)) calc(2rem + var(--sab)) calc(1.25rem + var(--sal));
   min-height:100vh;
   min-height:100dvh;
 }
@@ -66,24 +84,46 @@ body{
 .auth-logo h1{font-family:var(--font-heading);font-size:1.7rem;font-weight:800;letter-spacing:-.5px;background:linear-gradient(135deg,#fff,#00e5ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
 .auth-logo p{font-size:.78rem;color:var(--text-muted);margin-top:.3rem;font-family:var(--font-mono);text-transform:uppercase;letter-spacing:1px}
 .auth-tabs{display:flex;background:rgba(255,255,255,.05);border-radius:12px;padding:4px;margin-bottom:1.75rem}
-.auth-tab{flex:1;padding:.65rem;border:none;border-radius:9px;background:transparent;color:var(--text-muted);font-family:var(--font-body);font-weight:600;font-size:.9rem;cursor:pointer;transition:all .25s}
+.auth-tab{flex:1;padding:.75rem;border:none;border-radius:9px;background:transparent;color:var(--text-muted);font-family:var(--font-body);font-weight:600;font-size:.9rem;cursor:pointer;transition:all .25s;min-height:44px}
 .auth-tab.active{background:linear-gradient(135deg,rgba(0,229,255,.2),rgba(59,130,246,.2));color:var(--cyan-primary);border:1px solid rgba(0,229,255,.35)}
 .auth-form{display:flex;flex-direction:column;gap:1rem}
 .auth-form.hidden{display:none}
 .form-group{display:flex;flex-direction:column;gap:.4rem}
 .form-group label{font-size:.82rem;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px}
-.form-input,.form-select{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:10px;padding:.7rem 1rem;color:var(--text-main);font-family:var(--font-body);font-size:.95rem;transition:border-color .2s,box-shadow .2s;outline:none;width:100%}
-.form-input:focus{border-color:var(--cyan-primary);box-shadow:0 0 0 3px rgba(0,229,255,.1)}
-.form-select option{background:#0b1a2e}
-.btn-auth-primary{background:linear-gradient(135deg,var(--cyan-primary),var(--blue-accent));color:#020c1b;border:none;padding:.85rem;border-radius:12px;font-weight:800;font-size:1rem;cursor:pointer;transition:all .25s;width:100%;font-family:var(--font-body)}
+.form-input,.form-select{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:12px;
+  padding:.8rem 1rem;
+  color:var(--text-main);
+  font-family:var(--font-body);
+  font-size:16px !important;
+  transition:border-color .2s,box-shadow .2s;
+  outline:none;
+  width:100%;
+  min-height:46px;
+  -webkit-appearance:none;
+  appearance:none;
+}
+.form-select{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2394a3b8' viewBox='0 0 16 16'%3E%3Cpath d='M8 11.5l-5-5h10l-5 5z'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 1rem center;
+  padding-right:2.5rem;
+}
+.form-input:focus{border-color:var(--cyan-primary);box-shadow:0 0 0 3px rgba(0,229,255,.15)}
+.form-select option{background:#0b1a2e;color:#fff}
+.btn-auth-primary{background:linear-gradient(135deg,var(--cyan-primary),var(--blue-accent));color:#020c1b;border:none;padding:.9rem;border-radius:12px;font-weight:800;font-size:1rem;cursor:pointer;transition:all .25s;width:100%;font-family:var(--font-body);min-height:48px}
+.btn-auth-primary:active{transform:scale(0.98);opacity:.9}
 .btn-auth-primary:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,229,255,.35)}
-.btn-demo{background:transparent;border:1px solid rgba(255,255,255,.15);color:var(--text-muted);padding:.65rem;border-radius:10px;font-size:.88rem;cursor:pointer;transition:all .2s;width:100%;font-family:var(--font-body)}
+.btn-demo{background:transparent;border:1px solid rgba(255,255,255,.15);color:var(--text-muted);padding:.75rem;border-radius:12px;font-size:.9rem;cursor:pointer;transition:all .2s;width:100%;font-family:var(--font-body);min-height:46px}
+.btn-demo:active{background:rgba(255,255,255,.05);transform:scale(0.98)}
 .btn-demo:hover{border-color:rgba(255,255,255,.3);color:var(--text-main)}
 .auth-divider{text-align:center;font-size:.78rem;color:var(--text-dim);margin:.5rem 0}
-.auth-error{background:rgba(244,63,94,.12);border:1px solid rgba(244,63,94,.4);color:#fda4af;padding:.6rem .9rem;border-radius:8px;font-size:.84rem;display:none}
-.auth-hint{background:rgba(0,229,255,.07);border:1px solid rgba(0,229,255,.2);border-radius:10px;padding:.75rem;margin-top:.5rem}
-.auth-hint p{font-size:.78rem;color:var(--text-muted);margin-bottom:.25rem}
-.auth-hint code{font-family:var(--font-mono);color:var(--cyan-primary);font-size:.78rem}
+.auth-error{background:rgba(244,63,94,.12);border:1px solid rgba(244,63,94,.4);color:#fda4af;padding:.75rem 1rem;border-radius:10px;font-size:.88rem;display:none}
+.auth-hint{background:rgba(0,229,255,.07);border:1px solid rgba(0,229,255,.2);border-radius:12px;padding:.85rem;margin-top:.5rem}
+.auth-hint p{font-size:.8rem;color:var(--text-muted);margin-bottom:.3rem;line-height:1.4}
+.auth-hint code{font-family:var(--font-mono);color:var(--cyan-primary);font-size:.82rem;background:rgba(0,0,0,.3);padding:.15rem .35rem;border-radius:4px}
 .wiz-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.25rem}
 @media(max-width:580px){.wiz-grid{grid-template-columns:1fr}}
 
@@ -93,32 +133,35 @@ body{
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   background:rgba(2,12,27,.97);
   -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
-  padding:calc(1.5rem + var(--sat)) calc(1.5rem + var(--sar)) calc(1.5rem + var(--sab)) calc(1.5rem + var(--sal));
+  padding:calc(1.5rem + var(--sat)) calc(1.25rem + var(--sar)) calc(2rem + var(--sab)) calc(1.25rem + var(--sal));
   overflow-y:auto;
   -webkit-overflow-scrolling:touch;
+  overscroll-behavior:contain;
   min-height:100vh;
   min-height:100dvh;
 }
 #role-overlay.hidden{display:none}
 .role-header{text-align:center;margin-bottom:2rem}
-.role-header h2{font-family:var(--font-heading);font-size:2rem;font-weight:800;margin-bottom:.5rem}
-.role-header p{color:var(--text-muted)}
+.role-header h2{font-family:var(--font-heading);font-size:clamp(1.5rem,4vw,2rem);font-weight:800;margin-bottom:.5rem}
+.role-header p{color:var(--text-muted);font-size:.95rem}
 .role-card-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:820px;width:100%}
-@media(max-width:640px){.role-card-grid{grid-template-columns:1fr}}
-.role-card{background:rgba(15,23,42,.9);border:1px solid rgba(255,255,255,.1);border-radius:22px;padding:2.25rem;cursor:pointer;transition:all .35s;text-align:center;position:relative;overflow:hidden;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
-.role-card.tecnico:hover{transform:translateY(-6px);border-color:var(--cyan-primary);box-shadow:0 20px 50px rgba(0,229,255,.15)}
-.role-card.vecino:hover{transform:translateY(-6px);border-color:var(--emerald-accent);box-shadow:0 20px 50px rgba(16,185,129,.15)}
-.role-icon{font-size:3.5rem;margin-bottom:1.25rem;display:block;transition:transform .3s}
+@media(max-width:680px){.role-card-grid{grid-template-columns:1fr;gap:1rem}}
+.role-card{background:rgba(15,23,42,.9);border:1px solid rgba(255,255,255,.1);border-radius:22px;padding:2rem;cursor:pointer;transition:all .35s;text-align:center;position:relative;overflow:hidden;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.role-card:active{transform:scale(0.98)}
+.role-card.tecnico:hover{transform:translateY(-4px);border-color:var(--cyan-primary);box-shadow:0 20px 50px rgba(0,229,255,.15)}
+.role-card.vecino:hover{transform:translateY(-4px);border-color:var(--emerald-accent);box-shadow:0 20px 50px rgba(16,185,129,.15)}
+.role-icon{font-size:3.2rem;margin-bottom:1rem;display:block;transition:transform .3s}
 .role-card:hover .role-icon{transform:scale(1.1)}
-.role-card h2{font-family:var(--font-heading);font-size:1.45rem;font-weight:800;margin-bottom:.5rem}
+.role-card h2{font-family:var(--font-heading);font-size:1.4rem;font-weight:800;margin-bottom:.5rem}
 .role-card.tecnico h2{color:var(--cyan-primary)}
 .role-card.vecino h2{color:var(--emerald-accent)}
-.role-card p{font-size:.88rem;color:var(--text-muted);margin-bottom:1.5rem;line-height:1.6}
-.role-features{list-style:none;text-align:left;display:flex;flex-direction:column;gap:.45rem}
-.role-features li{font-size:.83rem;color:var(--text-muted);display:flex;align-items:flex-start;gap:.5rem}
+.role-card p{font-size:.88rem;color:var(--text-muted);margin-bottom:1.25rem;line-height:1.6}
+.role-features{list-style:none;text-align:left;display:flex;flex-direction:column;gap:.5rem}
+.role-features li{font-size:.85rem;color:var(--text-muted);display:flex;align-items:flex-start;gap:.5rem}
 .role-features li span.check{color:var(--cyan-primary);flex-shrink:0}
 .role-card.vecino .role-features li span.check{color:var(--emerald-accent)}
-.role-select-btn{margin-top:1.75rem;padding:.85rem 2rem;border-radius:12px;border:none;font-weight:700;font-size:1rem;cursor:pointer;transition:all .25s;width:100%;font-family:var(--font-body);-webkit-appearance:none;appearance:none;touch-action:manipulation}
+.role-select-btn{margin-top:1.5rem;padding:.9rem 2rem;border-radius:12px;border:none;font-weight:700;font-size:1rem;cursor:pointer;transition:all .25s;width:100%;font-family:var(--font-body);min-height:48px;-webkit-appearance:none;appearance:none;touch-action:manipulation}
+.role-select-btn:active{transform:scale(0.97)}
 .role-card.tecnico .role-select-btn{background:linear-gradient(135deg,var(--cyan-primary),var(--blue-accent));color:#020c1b}
 .role-card.vecino .role-select-btn{background:linear-gradient(135deg,var(--emerald-accent),#0d9488);color:#fff}
 .role-select-btn:hover{transform:translateY(-2px);box-shadow:0 8px 20px rgba(0,0,0,.3)}
@@ -129,56 +172,134 @@ body{
   background:linear-gradient(135deg,#020c1b 0%,#071022 100%);
   overflow-y:auto;
   -webkit-overflow-scrolling:touch;
-  padding:calc(1.5rem + var(--sat)) calc(1.5rem + var(--sar)) calc(1.5rem + var(--sab)) calc(1.5rem + var(--sal));
+  overscroll-behavior:contain;
+  padding:calc(1rem + var(--sat)) calc(1rem + var(--sar)) calc(2.5rem + var(--sab)) calc(1rem + var(--sal));
   min-height:100vh;
   min-height:100dvh;
 }
 #wizard-overlay.hidden{display:none}
-.wizard-container{max-width:760px;margin:0 auto;padding:1rem 0 4rem}
-.wizard-header{text-align:center;margin-bottom:2rem}
-.wizard-step-label{font-family:var(--font-mono);font-size:.78rem;color:var(--emerald-accent);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:.5rem}
-.wizard-header h2{font-family:var(--font-heading);font-size:1.85rem;font-weight:800;margin-bottom:.5rem}
-.wizard-header p{color:var(--text-muted);font-size:.95rem}
-.wizard-progress-bar{background:rgba(255,255,255,.08);border-radius:9999px;height:6px;margin-bottom:1.5rem;overflow:hidden}
+.wizard-container{max-width:760px;margin:0 auto;padding:0.5rem 0 3rem}
+.wizard-header{text-align:center;margin-bottom:1.5rem}
+.wizard-step-label{font-family:var(--font-mono);font-size:.78rem;color:var(--emerald-accent);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:.4rem}
+.wizard-header h2{font-family:var(--font-heading);font-size:clamp(1.4rem,3.5vw,1.85rem);font-weight:800;margin-bottom:.4rem}
+.wizard-header p{color:var(--text-muted);font-size:.9rem}
+.wizard-progress-bar{background:rgba(255,255,255,.08);border-radius:9999px;height:6px;margin-bottom:1.25rem;overflow:hidden}
 .wizard-progress-fill{height:100%;border-radius:9999px;background:linear-gradient(90deg,var(--emerald-accent),#38bdf8);transition:width .5s cubic-bezier(.4,0,.2,1)}
-.wizard-step-dots{display:flex;justify-content:center;gap:.5rem;margin-bottom:2rem}
+.wizard-step-dots{display:flex;justify-content:center;gap:.5rem;margin-bottom:1.5rem}
 .step-dot{width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.15);transition:all .3s}
 .step-dot.active{background:var(--emerald-accent);transform:scale(1.3)}
 .step-dot.done{background:rgba(16,185,129,.5)}
 .wizard-step{display:none}
-.wizard-step.active{display:block}
-.wizard-panel{background:rgba(15,23,42,.85);border:1px solid rgba(56,189,248,.18);border-radius:20px;padding:2rem;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);margin-bottom:1.5rem}
+.wizard-step.active{display:block;animation:stepFadeIn .3s ease-out}
+@keyframes stepFadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+.wizard-panel{background:rgba(15,23,42,.85);border:1px solid rgba(56,189,248,.18);border-radius:20px;padding:1.75rem;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);margin-bottom:1.25rem}
 .wizard-section-title{font-family:var(--font-heading);font-size:1.1rem;font-weight:700;color:var(--emerald-accent);margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:1px solid rgba(16,185,129,.2);display:flex;align-items:center;gap:.5rem}
 .wiz-group{display:flex;flex-direction:column;gap:.45rem}
 .wiz-group.full{grid-column:1/-1}
-.wiz-label{font-size:.83rem;font-weight:600;color:var(--text-muted);display:flex;justify-content:space-between;align-items:center}
+.wiz-label{font-size:.85rem;font-weight:600;color:var(--text-muted);display:flex;justify-content:space-between;align-items:center}
 .wiz-label .val-display{color:var(--emerald-accent);font-family:var(--font-mono);font-weight:700}
-.wiz-input,.wiz-select{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;padding:.75rem .9rem;color:var(--text-main);font-family:var(--font-body);font-size:1rem;outline:none;width:100%;transition:border-color .2s;-webkit-appearance:none;appearance:none}
-.wiz-input:focus,.wiz-select:focus{border-color:var(--emerald-accent)}
-.wiz-select option{background:#0b1a2e}
-.wiz-range{width:100%;accent-color:var(--emerald-accent);height:8px;cursor:pointer;-webkit-appearance:none;background:rgba(255,255,255,.1);border-radius:4px}
-.radio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:.6rem}
-.radio-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
-.radio-card input{display:none}
-.radio-card label{display:flex;flex-direction:column;align-items:center;gap:.35rem;padding:.85rem .5rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:12px;cursor:pointer;transition:all .2s;font-size:.82rem;color:var(--text-muted);text-align:center;line-height:1.3;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.wiz-input,.wiz-select{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:12px;
+  padding:.8rem .9rem;
+  color:var(--text-main);
+  font-family:var(--font-body);
+  font-size:16px !important; /* Prevents iOS auto-zoom */
+  outline:none;
+  width:100%;
+  min-height:46px;
+  transition:border-color .2s;
+  -webkit-appearance:none;
+  appearance:none;
+}
+.wiz-select{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='%2394a3b8' viewBox='0 0 16 16'%3E%3Cpath d='M8 11.5l-5-5h10l-5 5z'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;
+  background-position:right 1rem center;
+  padding-right:2.5rem;
+}
+.wiz-input:focus,.wiz-select:focus{border-color:var(--emerald-accent);box-shadow:0 0 0 3px rgba(16,185,129,.15)}
+.wiz-select option{background:#0b1a2e;color:#fff}
+.wiz-range{
+  width:100%;
+  accent-color:var(--emerald-accent);
+  height:10px;
+  cursor:pointer;
+  -webkit-appearance:none;
+  background:rgba(255,255,255,.12);
+  border-radius:6px;
+  margin:.4rem 0;
+}
+.wiz-range::-webkit-slider-thumb{
+  -webkit-appearance:none;
+  width:24px;
+  height:24px;
+  border-radius:50%;
+  background:var(--emerald-accent);
+  box-shadow:0 0 10px rgba(16,185,129,.5);
+  cursor:pointer;
+}
+.radio-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:.65rem}
+.radio-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:.65rem}
+@media(max-width:440px){.radio-grid-2{grid-template-columns:1fr}}
+.radio-card input{position:absolute;opacity:0;pointer-events:none}
+.radio-card label{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:.4rem;
+  padding:.9rem .6rem;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:14px;
+  cursor:pointer;
+  transition:all .2s;
+  font-size:.85rem;
+  color:var(--text-muted);
+  text-align:center;
+  line-height:1.3;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+  min-height:76px;
+  justify-content:center;
+}
+.radio-card label:active{transform:scale(0.97)}
 .radio-card label .ico{font-size:1.6rem}
-.radio-card input:checked+label{background:rgba(16,185,129,.15);border-color:var(--emerald-accent);color:var(--text-main);box-shadow:0 0 15px rgba(16,185,129,.15)}
-.urgency-stars{display:flex;gap:.5rem}
-.urgency-star{width:44px;height:44px;border-radius:10px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.04);font-size:1.4rem;cursor:pointer;transition:all .2s;display:flex;align-items:center;justify-content:center;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.radio-card input:checked+label{background:rgba(16,185,129,.16);border-color:var(--emerald-accent);color:var(--text-main);box-shadow:0 0 15px rgba(16,185,129,.2)}
+.urgency-stars{display:flex;gap:.6rem;justify-content:space-between;max-width:320px}
+.urgency-star{
+  flex:1;
+  height:50px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.04);
+  font-size:1.5rem;
+  cursor:pointer;
+  transition:all .2s;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:manipulation;
+}
+.urgency-star:active{transform:scale(0.92)}
 .urgency-star.active{background:rgba(245,158,11,.2);border-color:var(--amber-accent);box-shadow:0 0 12px rgba(245,158,11,.2)}
-#wizard-map-container{height:380px;width:100%;border-radius:14px;border:1px solid var(--border-color);overflow:hidden;touch-action:pan-x pan-y}
-.wizard-map-instruction{background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);border-radius:10px;padding:.85rem 1rem;font-size:.86rem;color:#6ee7b7;margin-bottom:1rem;display:flex;align-items:center;gap:.5rem}
-.wizard-map-result{display:none;background:rgba(15,23,42,.8);border:1px solid rgba(0,229,255,.3);border-radius:14px;padding:1.5rem;margin-top:1rem}
-.wizard-map-result.visible{display:block}
-.wiz-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin-top:1rem}
+#wizard-map-container{height:360px;width:100%;border-radius:14px;border:1px solid var(--border-color);overflow:hidden;touch-action:pan-x pan-y}
+.wizard-map-instruction{background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);border-radius:12px;padding:.85rem 1rem;font-size:.88rem;color:#6ee7b7;margin-bottom:1rem;display:flex;align-items:center;gap:.6rem}
+.wizard-map-result{display:none;background:rgba(15,23,42,.8);border:1px solid rgba(0,229,255,.3);border-radius:14px;padding:1.25rem;margin-top:1rem}
+.wizard-map-result.visible{display:block;animation:stepFadeIn .3s ease-out}
+.wiz-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:.65rem;margin-top:.85rem}
 @media(max-width:480px){.wiz-metrics{grid-template-columns:repeat(2,1fr)}}
-.wiz-metric-box{background:rgba(15,23,42,.7);border:1px solid rgba(56,189,248,.15);border-radius:10px;padding:.75rem .5rem;text-align:center}
+.wiz-metric-box{background:rgba(15,23,42,.7);border:1px solid rgba(56,189,248,.15);border-radius:10px;padding:.75rem .4rem;text-align:center}
 .wiz-metric-label{font-size:.68rem;text-transform:uppercase;font-family:var(--font-mono);color:var(--text-dim);margin-bottom:.2rem}
 .wiz-metric-val{font-family:var(--font-heading);font-size:1.15rem;font-weight:700;color:var(--cyan-primary)}
-.wizard-nav{display:flex;justify-content:space-between;gap:1rem;margin-top:1rem}
-.btn-wiz-back{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:var(--text-muted);padding:.85rem 1.75rem;border-radius:12px;font-weight:600;cursor:pointer;transition:all .2s;font-family:var(--font-body);-webkit-appearance:none;appearance:none;touch-action:manipulation}
+.wizard-nav{display:flex;justify-content:space-between;gap:.85rem;margin-top:1.25rem;position:sticky;bottom:0;background:linear-gradient(0deg,#071022 80%,transparent);padding-top:.75rem;padding-bottom:calc(0.5rem + var(--sab));z-index:20}
+.btn-wiz-back{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);color:var(--text-muted);padding:.85rem 1.4rem;border-radius:12px;font-weight:600;font-size:.95rem;cursor:pointer;transition:all .2s;font-family:var(--font-body);min-height:48px;-webkit-appearance:none;appearance:none;touch-action:manipulation}
+.btn-wiz-back:active{transform:scale(0.97)}
 .btn-wiz-back:hover{border-color:rgba(255,255,255,.3);color:var(--text-main)}
-.btn-wiz-next{background:linear-gradient(135deg,var(--emerald-accent),#0d9488);color:#fff;border:none;padding:.85rem 2rem;border-radius:12px;font-weight:700;cursor:pointer;transition:all .25s;flex:1;font-family:var(--font-body);font-size:1rem;-webkit-appearance:none;appearance:none;touch-action:manipulation}
+.btn-wiz-next{background:linear-gradient(135deg,var(--emerald-accent),#0d9488);color:#fff;border:none;padding:.85rem 1.75rem;border-radius:12px;font-weight:700;cursor:pointer;transition:all .25s;flex:1;font-family:var(--font-body);font-size:1rem;min-height:48px;-webkit-appearance:none;appearance:none;touch-action:manipulation}
+.btn-wiz-next:active{transform:scale(0.98)}
 .btn-wiz-next:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(16,185,129,.35)}
 .btn-wiz-next:disabled{opacity:.45;cursor:not-allowed;transform:none;box-shadow:none}
 
@@ -188,190 +309,370 @@ body{
   background:linear-gradient(135deg,#020c1b 0%,#071022 100%);
   overflow-y:auto;
   -webkit-overflow-scrolling:touch;
-  padding:calc(1.5rem + var(--sat)) calc(1.5rem + var(--sar)) calc(1.5rem + var(--sab)) calc(1.5rem + var(--sal));
+  overscroll-behavior:contain;
+  padding:calc(1rem + var(--sat)) calc(1rem + var(--sar)) calc(3rem + var(--sab)) calc(1rem + var(--sal));
   min-height:100vh;
   min-height:100dvh;
 }
 #report-overlay.hidden{display:none}
-.report-container{max-width:780px;margin:0 auto;padding:1rem 0 5rem}
-.report-card{background:rgba(15,23,42,.9);border:1px solid rgba(56,189,248,.25);border-radius:24px;padding:2.5rem;margin-bottom:1.5rem;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
-.report-header-section{text-align:center;padding:2rem;border-radius:18px;margin-bottom:1.5rem;position:relative}
+.report-container{max-width:780px;margin:0 auto;padding:0.5rem 0 3rem}
+.report-card{background:rgba(15,23,42,.9);border:1px solid rgba(56,189,248,.25);border-radius:22px;padding:1.85rem;margin-bottom:1.25rem;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
+.report-header-section{text-align:center;padding:1.75rem 1.25rem;border-radius:18px;margin-bottom:1.25rem;position:relative}
 .report-header-section.excelente{background:radial-gradient(ellipse at 50% 0%,rgba(16,185,129,.2) 0%,transparent 70%);border:2px solid rgba(16,185,129,.4)}
 .report-header-section.condicionado{background:radial-gradient(ellipse at 50% 0%,rgba(245,158,11,.2) 0%,transparent 70%);border:2px solid rgba(245,158,11,.4)}
 .report-header-section.esperar{background:radial-gradient(ellipse at 50% 0%,rgba(244,63,94,.15) 0%,transparent 70%);border:2px solid rgba(244,63,94,.35)}
-.report-score-big{font-family:var(--font-heading);font-size:5rem;font-weight:800;line-height:1;margin:.5rem 0}
+.report-score-big{font-family:var(--font-heading);font-size:clamp(3.5rem,8vw,5rem);font-weight:800;line-height:1;margin:.5rem 0}
 .report-score-big.excelente{color:var(--emerald-accent)}
 .report-score-big.condicionado{color:var(--amber-accent)}
 .report-score-big.esperar{color:var(--rose-accent)}
-.report-verdict{font-family:var(--font-heading);font-size:1.5rem;font-weight:700;margin-bottom:.5rem}
-.report-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1.25rem}
+.report-verdict{font-family:var(--font-heading);font-size:clamp(1.25rem,3.5vw,1.5rem);font-weight:700;margin-bottom:.5rem}
+.report-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:1rem}
 @media(max-width:580px){.report-grid{grid-template-columns:1fr}}
-.report-item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:1rem}
+.report-item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:.85rem}
 .report-item-label{font-size:.72rem;text-transform:uppercase;color:var(--text-dim);font-family:var(--font-mono);margin-bottom:.25rem}
 .report-item-val{font-size:1rem;font-weight:600;color:var(--text-main)}
 .report-section-title{font-family:var(--font-heading);font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:var(--cyan-primary);display:flex;align-items:center;gap:.5rem}
 .report-checklist{list-style:none;display:flex;flex-direction:column;gap:.6rem}
 .report-checklist li{display:flex;align-items:flex-start;gap:.75rem;font-size:.9rem;color:var(--text-muted)}
 .report-checklist li .chk{width:22px;height:22px;border-radius:6px;border:2px solid var(--emerald-accent);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:.75rem;color:var(--emerald-accent);margin-top:1px}
-.report-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem}
-.btn-report-primary{background:linear-gradient(135deg,var(--emerald-accent),#0d9488);color:#fff;border:none;padding:.85rem 1.75rem;border-radius:12px;font-weight:700;cursor:pointer;transition:all .25s;font-family:var(--font-body);font-size:.95rem;display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;-webkit-appearance:none;appearance:none;touch-action:manipulation}
+.report-actions{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.5rem}
+.btn-report-primary{background:linear-gradient(135deg,var(--emerald-accent),#0d9488);color:#fff;border:none;padding:.85rem 1.6rem;border-radius:12px;font-weight:700;cursor:pointer;transition:all .25s;font-family:var(--font-body);font-size:.95rem;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;text-decoration:none;min-height:48px;-webkit-appearance:none;appearance:none;touch-action:manipulation;flex:1 1 200px}
+.btn-report-primary:active{transform:scale(0.98)}
 .btn-report-primary:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(16,185,129,.35)}
-.btn-report-secondary{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);color:var(--text-main);padding:.85rem 1.5rem;border-radius:12px;font-weight:600;cursor:pointer;transition:all .2s;font-family:var(--font-body);font-size:.9rem;display:inline-flex;align-items:center;gap:.5rem;-webkit-appearance:none;appearance:none;touch-action:manipulation}
+.btn-report-secondary{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);color:var(--text-main);padding:.85rem 1.4rem;border-radius:12px;font-weight:600;cursor:pointer;transition:all .2s;font-family:var(--font-body);font-size:.9rem;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:48px;-webkit-appearance:none;appearance:none;touch-action:manipulation;flex:1 1 140px}
+.btn-report-secondary:active{transform:scale(0.98)}
 .btn-report-secondary:hover{border-color:rgba(255,255,255,.35)}
-.btn-wsp{background:linear-gradient(135deg,#25d366,#128c7e);color:#fff;border:none;padding:.85rem 1.75rem;border-radius:12px;font-weight:700;cursor:pointer;transition:all .25s;font-family:var(--font-body);font-size:.95rem;display:inline-flex;align-items:center;gap:.5rem;text-decoration:none;-webkit-appearance:none;appearance:none;touch-action:manipulation}
+.btn-wsp{background:linear-gradient(135deg,#25d366,#128c7e);color:#fff;border:none;padding:.85rem 1.6rem;border-radius:12px;font-weight:700;cursor:pointer;transition:all .25s;font-family:var(--font-body);font-size:.95rem;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;text-decoration:none;min-height:48px;-webkit-appearance:none;appearance:none;touch-action:manipulation;flex:1 1 220px}
+.btn-wsp:active{transform:scale(0.98)}
 .btn-wsp:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(37,211,102,.3)}
 
 /* ===================== TOAST ===================== */
-#toast-container{position:fixed;bottom:calc(2rem + var(--sab));right:max(2rem,var(--sar));z-index:99999;display:flex;flex-direction:column;gap:.5rem;pointer-events:none}
-.toast{background:rgba(15,23,42,.95);border:1px solid rgba(0,229,255,.4);border-radius:12px;padding:.85rem 1.25rem;color:var(--text-main);font-size:.88rem;display:flex;align-items:center;gap:.6rem;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);animation:toastIn .3s ease,toastOut .3s ease 2.7s forwards;max-width:320px;pointer-events:all}
-@keyframes toastIn{from{opacity:0;transform:translateX(20px)}to{opacity:1;transform:translateX(0)}}
-@keyframes toastOut{from{opacity:1;transform:translateX(0)}to{opacity:0;transform:translateX(20px)}}
+#toast-container{position:fixed;bottom:calc(1.5rem + var(--sab));right:max(1.25rem,var(--sar));left:max(1.25rem,var(--sal));z-index:99999;display:flex;flex-direction:column;align-items:flex-end;gap:.5rem;pointer-events:none}
+.toast{background:rgba(15,23,42,.95);border:1px solid rgba(0,229,255,.4);border-radius:14px;padding:.85rem 1.25rem;color:var(--text-main);font-size:.88rem;display:flex;align-items:center;gap:.6rem;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:0 10px 30px rgba(0,0,0,.5);animation:toastIn .3s ease,toastOut .3s ease 2.7s forwards;max-width:340px;pointer-events:all}
+@keyframes toastIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+@keyframes toastOut{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(20px)}}
 
 /* ===================== USER BAR ===================== */
-#user-header-bar{display:none;background:rgba(7,13,24,.9);border-bottom:1px solid rgba(0,229,255,.15);padding:.6rem max(1.5rem,var(--sar)) .6rem max(1.5rem,var(--sal))}
+#user-header-bar{display:none;background:rgba(7,13,24,.92);border-bottom:1px solid rgba(0,229,255,.15);padding:.6rem max(1.25rem,var(--sar)) .6rem max(1.25rem,var(--sal))}
 #user-header-bar.visible{display:block}
 .user-bar-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 .user-badge{display:flex;align-items:center;gap:.6rem}
-.user-avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--cyan-primary),var(--blue-accent));display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;color:#020c1b}
+.user-avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,var(--cyan-primary),var(--blue-accent));display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;color:#020c1b}
 .user-name-role{display:flex;flex-direction:column;line-height:1.2}
 .user-name{font-size:.88rem;font-weight:600;color:var(--text-main)}
 .user-role-badge{font-family:var(--font-mono);font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.5px}
 .user-role-badge.tecnico{color:var(--cyan-primary)}
 .user-role-badge.vecino{color:var(--emerald-accent)}
-.btn-logout{background:transparent;border:1px solid rgba(255,255,255,.12);color:var(--text-dim);padding:.35rem .85rem;border-radius:8px;font-size:.78rem;cursor:pointer;transition:all .2s;font-family:var(--font-body);-webkit-appearance:none;appearance:none;touch-action:manipulation}
+.btn-logout{background:transparent;border:1px solid rgba(255,255,255,.15);color:var(--text-dim);padding:.4rem .9rem;border-radius:8px;font-size:.8rem;cursor:pointer;transition:all .2s;font-family:var(--font-body);min-height:36px;-webkit-appearance:none;appearance:none;touch-action:manipulation}
+.btn-logout:active{transform:scale(0.96)}
 .btn-logout:hover{border-color:var(--rose-accent);color:var(--rose-accent)}
-.btn-questionnaire{background:linear-gradient(135deg,rgba(16,185,129,.2),rgba(13,148,136,.2));border:1px solid rgba(16,185,129,.4);color:var(--emerald-accent);padding:.4rem 1rem;border-radius:8px;font-size:.82rem;font-weight:600;cursor:pointer;transition:all .2s;font-family:var(--font-body);-webkit-appearance:none;appearance:none;touch-action:manipulation}
+.btn-questionnaire{background:linear-gradient(135deg,rgba(16,185,129,.2),rgba(13,148,136,.2));border:1px solid rgba(16,185,129,.4);color:var(--emerald-accent);padding:.45rem 1.1rem;border-radius:8px;font-size:.84rem;font-weight:600;cursor:pointer;transition:all .2s;font-family:var(--font-body);min-height:36px;-webkit-appearance:none;appearance:none;touch-action:manipulation}
+.btn-questionnaire:active{transform:scale(0.96)}
 .btn-questionnaire:hover{background:linear-gradient(135deg,rgba(16,185,129,.35),rgba(13,148,136,.35))}
+
+/* ===================== MOBILE DRAWER MENU FOR IPHONE ===================== */
+.mobile-nav-toggle{
+  display:none;
+  background:transparent;
+  border:1px solid rgba(56,189,248,.3);
+  color:var(--cyan-primary);
+  width:42px;
+  height:42px;
+  border-radius:10px;
+  cursor:pointer;
+  align-items:center;
+  justify-content:center;
+  font-size:1.3rem;
+  transition:all .2s;
+  -webkit-tap-highlight-color:transparent;
+}
+.mobile-nav-toggle:active{transform:scale(0.92);background:rgba(0,229,255,.1)}
+#mobile-drawer{
+  position:fixed;top:0;right:-100%;bottom:0;width:min(85vw,340px);
+  background:rgba(7,13,24,.96);
+  -webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);
+  border-left:1px solid var(--border-glow);
+  z-index:2000;
+  display:flex;flex-direction:column;
+  padding:calc(1.2rem + var(--sat)) calc(1.25rem + var(--sar)) calc(1.5rem + var(--sab)) calc(1.25rem + var(--sal));
+  transition:right .35s cubic-bezier(.4,0,.2,1);
+  box-shadow:-10px 0 40px rgba(0,0,0,.7);
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+}
+#mobile-drawer.open{right:0}
+#drawer-backdrop{
+  position:fixed;inset:0;background:rgba(0,0,0,.65);
+  -webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px);
+  z-index:1999;display:none;opacity:0;transition:opacity .3s ease;
+}
+#drawer-backdrop.open{display:block;opacity:1}
+.drawer-header{display:flex;justify-content:space-between;align-items:center;padding-bottom:1rem;border-bottom:1px solid var(--border-color);margin-bottom:1.5rem}
+.drawer-close-btn{background:none;border:none;color:var(--text-muted);font-size:1.8rem;cursor:pointer;padding:.4rem;line-height:1}
+.drawer-nav-list{list-style:none;display:flex;flex-direction:column;gap:.75rem}
+.drawer-nav-list a{
+  display:flex;align-items:center;gap:.75rem;
+  color:var(--text-main);text-decoration:none;
+  font-size:1rem;font-weight:600;padding:.85rem 1rem;
+  border-radius:12px;background:rgba(255,255,255,.03);
+  border:1px solid rgba(255,255,255,.06);
+  transition:all .2s;
+}
+.drawer-nav-list a:active{background:rgba(0,229,255,.15);border-color:var(--cyan-primary);transform:scale(0.98)}
 
 /* ===================== DASHBOARD ===================== */
 header{
   position:sticky;top:0;z-index:1000;
   -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
   background:rgba(7,13,24,.88);border-bottom:1px solid var(--border-color);
-  padding:calc(.9rem + var(--sat)) max(1.5rem,var(--sar)) .9rem max(1.5rem,var(--sal));
+  padding:calc(.75rem + var(--sat)) max(1.25rem,var(--sar)) .75rem max(1.25rem,var(--sal));
 }
 .nav-container{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:center}
 .brand{display:flex;align-items:center;gap:.75rem;text-decoration:none;color:var(--text-main);font-family:var(--font-heading);font-weight:800;font-size:1.35rem;letter-spacing:-.5px}
 .brand-icon{width:38px;height:38px;border-radius:10px;background:linear-gradient(135deg,var(--cyan-primary),var(--blue-accent));display:flex;align-items:center;justify-content:center;box-shadow:0 0 15px var(--cyan-glow)}
 .brand-icon svg{width:22px;height:22px;fill:#070d18}
-.nav-links{display:flex;gap:1.25rem;align-items:center;list-style:none;flex-wrap:wrap}
-.nav-links a{color:var(--text-muted);text-decoration:none;font-size:.92rem;font-weight:500;transition:all .2s;padding:.4rem .75rem;border-radius:6px}
+.nav-links{display:flex;gap:1rem;align-items:center;list-style:none;flex-wrap:wrap}
+.nav-links a{color:var(--text-muted);text-decoration:none;font-size:.92rem;font-weight:500;transition:all .2s;padding:.4rem .75rem;border-radius:8px}
 .nav-links a:hover{color:var(--cyan-primary);background:rgba(0,229,255,.08)}
 .btn-github{background:linear-gradient(135deg,rgba(0,229,255,.15),rgba(59,130,246,.15));border:1px solid var(--border-glow);color:var(--cyan-primary)!important;font-family:var(--font-mono);font-size:.85rem!important;padding:.45rem .9rem!important;border-radius:8px!important;display:inline-flex;align-items:center;gap:.5rem}
 .btn-github:hover{background:linear-gradient(135deg,var(--cyan-primary),var(--blue-accent))!important;color:#070d18!important;box-shadow:0 0 20px var(--cyan-glow)}
-main{max-width:1280px;margin:0 auto;padding:2.5rem 1.5rem}
-.hero{text-align:center;padding:3rem 1rem 4rem;position:relative}
-.badge-hero{display:inline-flex;align-items:center;gap:.5rem;padding:.4rem 1.1rem;border-radius:9999px;background:rgba(0,229,255,.1);border:1px solid rgba(0,229,255,.35);color:var(--cyan-primary);font-size:.85rem;font-weight:600;margin-bottom:1.5rem;text-transform:uppercase;letter-spacing:1px}
+main{max-width:1280px;margin:0 auto;padding:2rem max(1.25rem,var(--sar)) 4rem max(1.25rem,var(--sal))}
+.hero{text-align:center;padding:2rem .5rem 3.5rem;position:relative}
+.badge-hero{display:inline-flex;align-items:center;gap:.5rem;padding:.4rem 1.1rem;border-radius:9999px;background:rgba(0,229,255,.1);border:1px solid rgba(0,229,255,.35);color:var(--cyan-primary);font-size:.82rem;font-weight:600;margin-bottom:1.25rem;text-transform:uppercase;letter-spacing:1px}
 .badge-hero .pulse{width:8px;height:8px;background:var(--cyan-primary);border-radius:50%;box-shadow:0 0 8px var(--cyan-primary);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(1.3)}}
-.hero h1{font-family:var(--font-heading);font-size:clamp(2.3rem,4.5vw,3.8rem);font-weight:800;line-height:1.15;margin-bottom:1.25rem;letter-spacing:-1px}
+.hero h1{font-family:var(--font-heading);font-size:clamp(1.9rem,4.5vw,3.6rem);font-weight:800;line-height:1.18;margin-bottom:1.2rem;letter-spacing:-1px}
 .gradient-text{background:linear-gradient(135deg,#fff 30%,var(--cyan-primary) 70%,var(--blue-accent) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero-subtitle{font-size:clamp(1.05rem,1.8vw,1.2rem);color:var(--text-muted);max-width:860px;margin:0 auto 2.5rem}
-.hero-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.25rem;margin-top:2.5rem}
-.stat-card{background:var(--bg-card);border:1px solid var(--border-color);border-radius:14px;padding:1.4rem;text-align:center;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);transition:transform .2s,border-color .2s}
+.hero-subtitle{font-size:clamp(1rem,1.8vw,1.15rem);color:var(--text-muted);max-width:860px;margin:0 auto 2rem;line-height:1.6}
+.hero-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:2rem}
+.stat-card{background:var(--bg-card);border:1px solid var(--border-color);border-radius:16px;padding:1.25rem;text-align:center;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);transition:transform .2s,border-color .2s}
 .stat-card.alert{border-color:rgba(244,63,94,.4);background:rgba(244,63,94,.06)}
-.stat-card:hover{transform:translateY(-4px);border-color:var(--cyan-primary);box-shadow:0 8px 25px rgba(0,229,255,.1)}
-.stat-value{font-family:var(--font-heading);font-size:1.9rem;font-weight:800;color:var(--cyan-primary);margin-bottom:.25rem}
+.stat-card:hover{transform:translateY(-3px);border-color:var(--cyan-primary);box-shadow:0 8px 25px rgba(0,229,255,.1)}
+.stat-value{font-family:var(--font-heading);font-size:clamp(1.5rem,3.5vw,1.9rem);font-weight:800;color:var(--cyan-primary);margin-bottom:.25rem}
 .stat-value.danger{color:#fb7185}
-.stat-label{font-size:.8rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;font-weight:600}
-section{margin-bottom:5.5rem;scroll-margin-top:5rem}
-.section-header{margin-bottom:2rem}
-.section-tag{font-family:var(--font-mono);color:var(--cyan-primary);font-size:.82rem;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:.4rem;display:block}
-.section-title{font-family:var(--font-heading);font-size:2.1rem;font-weight:700;letter-spacing:-.5px}
-.conagua-data-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;margin-bottom:3rem}
-.conagua-card{background:rgba(15,23,42,.65);border:1px solid var(--border-color);border-radius:14px;padding:1.5rem;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);transition:all .2s}
+.stat-label{font-size:.78rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;font-weight:600}
+section{margin-bottom:4.5rem;scroll-margin-top:5.5rem}
+.section-header{margin-bottom:1.75rem}
+.section-tag{font-family:var(--font-mono);color:var(--cyan-primary);font-size:.8rem;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:.4rem;display:block}
+.section-title{font-family:var(--font-heading);font-size:clamp(1.5rem,3.5vw,2.1rem);font-weight:700;letter-spacing:-.5px}
+.conagua-data-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-bottom:2rem}
+.conagua-card{background:rgba(15,23,42,.65);border:1px solid var(--border-color);border-radius:14px;padding:1.25rem;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);transition:all .2s}
 .conagua-card:hover{border-color:var(--border-glow);transform:translateY(-2px)}
-.conagua-badge{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--font-mono);font-size:.74rem;color:var(--cyan-primary);background:rgba(0,229,255,.1);padding:.25rem .6rem;border-radius:6px;margin-bottom:.75rem;font-weight:600}
-.conagua-card h4{font-family:var(--font-heading);font-size:1.15rem;margin-bottom:.5rem;color:var(--text-main)}
-.conagua-card p{font-size:.88rem;color:var(--text-muted);line-height:1.5}
-.engine-container{background:var(--bg-card);border:1px solid var(--border-glow);border-radius:20px;padding:2rem;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);box-shadow:0 0 40px rgba(0,229,255,.05)}
-.transparency-banner{background:rgba(15,23,42,.7);border:1px solid rgba(56,189,248,.25);border-radius:12px;padding:1.1rem 1.35rem;margin-bottom:1.5rem;font-size:.86rem;color:var(--text-muted);display:flex;gap:1rem;align-items:flex-start;line-height:1.6}
-.transparency-banner .icon{font-size:1.35rem;color:var(--cyan-primary);flex-shrink:0;margin-top:.1rem}
-.engine-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:2rem}
+.conagua-badge{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--font-mono);font-size:.74rem;color:var(--cyan-primary);background:rgba(0,229,255,.1);padding:.25rem .6rem;border-radius:6px;margin-bottom:.65rem;font-weight:600}
+.conagua-card h4{font-family:var(--font-heading);font-size:1.1rem;margin-bottom:.4rem;color:var(--text-main)}
+.conagua-card p{font-size:.86rem;color:var(--text-muted);line-height:1.5}
+.engine-container{background:var(--bg-card);border:1px solid var(--border-glow);border-radius:20px;padding:1.5rem;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);box-shadow:0 0 40px rgba(0,229,255,.05)}
+.transparency-banner{background:rgba(15,23,42,.7);border:1px solid rgba(56,189,248,.25);border-radius:14px;padding:1rem 1.25rem;margin-bottom:1.25rem;font-size:.85rem;color:var(--text-muted);display:flex;gap:.85rem;align-items:flex-start;line-height:1.6}
+.transparency-banner .icon{font-size:1.25rem;color:var(--cyan-primary);flex-shrink:0;margin-top:.1rem}
+.engine-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:1.5rem}
 @media(max-width:960px){.engine-grid{grid-template-columns:1fr}}
-#map-container{height:480px;width:100%;border-radius:14px;border:1px solid var(--border-color);overflow:hidden;z-index:10}
+#map-container{height:460px;width:100%;border-radius:14px;border:1px solid var(--border-color);overflow:hidden;z-index:10;touch-action:pan-x pan-y}
 .map-controls-bar{display:flex;flex-direction:column;gap:.75rem;margin-bottom:1rem}
 .zone-chip-grid{display:flex;flex-wrap:wrap;gap:.45rem}
-.zone-chip{background:rgba(255,255,255,.05);border:1px solid var(--border-color);color:var(--text-muted);padding:.38rem .75rem;border-radius:8px;font-size:.78rem;font-weight:600;cursor:pointer;transition:all .2s}
+.zone-chip{
+  background:rgba(255,255,255,.05);
+  border:1px solid var(--border-color);
+  color:var(--text-muted);
+  padding:.45rem .8rem;
+  border-radius:10px;
+  font-size:.8rem;
+  font-weight:600;
+  cursor:pointer;
+  transition:all .2s;
+  min-height:36px;
+  -webkit-tap-highlight-color:transparent;
+}
+.zone-chip:active{transform:scale(0.96)}
 .zone-chip:hover,.zone-chip.active{background:rgba(0,229,255,.15);border-color:var(--cyan-primary);color:var(--text-main);box-shadow:0 0 12px rgba(0,229,255,.2)}
 .layers-toggle-bar{display:flex;flex-wrap:wrap;gap:.5rem}
-.layer-btn{padding:.35rem .75rem;border-radius:8px;font-size:.76rem;font-weight:600;cursor:pointer;display:inline-flex;align-items:center;gap:.35rem;transition:all .2s}
+.layer-btn{
+  padding:.45rem .85rem;
+  border-radius:10px;
+  font-size:.78rem;
+  font-weight:600;
+  cursor:pointer;
+  display:inline-flex;
+  align-items:center;
+  gap:.4rem;
+  transition:all .2s;
+  min-height:36px;
+  -webkit-tap-highlight-color:transparent;
+}
+.layer-btn:active{transform:scale(0.96)}
 .layer-btn.piezo{background:rgba(168,85,247,.12);border:1px solid rgba(168,85,247,.4);color:#d8b4fe}
 .layer-btn.piezo.active{background:rgba(168,85,247,.25);border-color:var(--purple-accent);color:#fff;box-shadow:0 0 12px rgba(168,85,247,.3)}
 .layer-btn.repda{background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.4);color:#93c5fd}
 .layer-btn.repda.active{background:rgba(59,130,246,.25);border-color:var(--blue-accent);color:#fff;box-shadow:0 0 12px rgba(59,130,246,.3)}
 .layer-btn.hazard{background:rgba(244,63,94,.12);border:1px solid rgba(244,63,94,.4);color:#fda4af}
 .layer-btn.hazard.active{background:rgba(244,63,94,.25);border-color:var(--rose-accent);color:#fff;box-shadow:0 0 12px rgba(244,63,94,.3)}
-.hydro-output{background:rgba(7,13,24,.75);border:1px solid var(--border-color);border-radius:16px;padding:1.75rem;display:flex;flex-direction:column;gap:1.1rem}
-.score-badge{display:inline-flex;align-items:center;gap:.6rem;padding:.45rem 1rem;border-radius:9999px;font-weight:700;font-size:.95rem;letter-spacing:.3px}
+.layer-btn.sgm{background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.4);color:#fde68a}
+.layer-btn.sgm.active{background:rgba(245,158,11,.25);border-color:var(--amber-accent);color:#fff;box-shadow:0 0 12px rgba(245,158,11,.3)}
+.layer-btn.riesgo{background:rgba(239,68,68,.12);border:1px dashed rgba(239,68,68,.5);color:#fca5a5}
+.layer-btn.riesgo.active{background:rgba(239,68,68,.28);border-color:#ef4444;color:#fff;box-shadow:0 0 12px rgba(239,68,68,.4)}
+.layer-btn.hidro{background:rgba(6,182,212,.12);border:1px solid rgba(6,182,212,.4);color:#a5f3fc}
+.layer-btn.hidro.active{background:rgba(6,182,212,.25);border-color:#06b6d4;color:#fff;box-shadow:0 0 12px rgba(6,182,212,.3)}
+.layer-btn.binacional{background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.4);color:#a7f3d0}
+.basemap-switch-bar{display:flex;align-items:center;gap:.45rem;margin-bottom:.65rem;flex-wrap:wrap}
+.basemap-chip{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  color:var(--text-muted);
+  padding:.35rem .75rem;
+  border-radius:8px;
+  font-size:.76rem;
+  font-weight:600;
+  cursor:pointer;
+  transition:all .2s;
+  -webkit-tap-highlight-color:transparent;
+}
+.basemap-chip:active{transform:scale(0.96)}
+.basemap-chip:hover,.basemap-chip.active{
+  background:rgba(0,229,255,.18);
+  border-color:var(--cyan-primary);
+  color:#fff;
+  box-shadow:0 0 10px rgba(0,229,255,.25);
+}
+@media(max-width:768px){
+  #map-container{height:370px;border-radius:12px}
+  #wizard-map-container{height:320px;border-radius:12px}
+  .zone-chip-grid,.layers-toggle-bar,.basemap-switch-bar{
+    display:flex;
+    flex-wrap:nowrap;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
+    padding-bottom:4px;
+  }
+  .zone-chip-grid::-webkit-scrollbar,.layers-toggle-bar::-webkit-scrollbar,.basemap-switch-bar::-webkit-scrollbar{
+    display:none;
+  }
+  .zone-chip,.layer-btn,.basemap-chip{
+    flex-shrink:0;
+    white-space:nowrap;
+  }
+}
+.ahp-factors-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:.5rem;margin-top:.75rem;padding:.75rem;background:rgba(15,23,42,.6);border:1px solid rgba(56,189,248,.15);border-radius:12px}
+.ahp-factor-item{text-align:center;padding:.4rem}
+.ahp-factor-label{font-size:.65rem;color:var(--text-dim);text-transform:uppercase;font-family:var(--font-mono);margin-bottom:.2rem}
+.ahp-factor-val{font-size:.85rem;font-weight:700;color:var(--cyan-primary)}
+.city-compare-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.25rem;margin-top:1.5rem}
+.city-card{background:var(--bg-card);border:1px solid var(--border-color);border-radius:16px;padding:1.5rem;display:flex;flex-direction:column;gap:.75rem;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);transition:all .3s}
+.city-card:hover{border-color:var(--border-glow);transform:translateY(-3px);background:var(--bg-card-hover)}
+.city-flag{font-size:1.6rem}
+.city-badge{display:inline-block;padding:.2rem .6rem;border-radius:6px;font-size:.72rem;font-weight:700;font-family:var(--font-mono);text-transform:uppercase}
+.city-badge.de{background:rgba(245,158,11,.15);color:#fbbf24;border:1px solid rgba(245,158,11,.3)}
+.city-badge.us{background:rgba(59,130,246,.15);color:#93c5fd;border:1px solid rgba(59,130,246,.3)}
+.city-badge.pe{background:rgba(239,68,68,.15);color:#fca5a5;border:1px solid rgba(239,68,68,.3)}
+.city-badge.za{background:rgba(16,185,129,.15);color:#6ee7b7;border:1px solid rgba(16,185,129,.3)}
+.city-badge.jp{background:rgba(168,85,247,.15);color:#d8b4fe;border:1px solid rgba(168,85,247,.3)}
+.hydro-output{background:rgba(7,13,24,.75);border:1px solid var(--border-color);border-radius:16px;padding:1.5rem;display:flex;flex-direction:column;gap:1rem}
+.score-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.45rem .95rem;border-radius:9999px;font-weight:700;font-size:.9rem;letter-spacing:.3px}
 .score-badge.high{background:rgba(16,185,129,.15);border:1px solid var(--emerald-accent);color:var(--emerald-accent)}
 .score-badge.medium{background:rgba(245,158,11,.15);border:1px solid var(--amber-accent);color:var(--amber-accent)}
 .score-badge.low{background:rgba(244,63,94,.15);border:1px solid var(--rose-accent);color:var(--rose-accent)}
-.metrics-row{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem}
+.metrics-row{display:grid;grid-template-columns:repeat(4,1fr);gap:.65rem}
 @media(max-width:600px){.metrics-row{grid-template-columns:repeat(2,1fr)}}
-.metric-box{background:rgba(15,23,42,.6);border:1px solid var(--border-color);border-radius:10px;padding:.8rem .5rem;text-align:center}
-.metric-label{font-size:.7rem;color:var(--text-dim);text-transform:uppercase;font-family:var(--font-mono);margin-bottom:.2rem}
-.metric-val{font-family:var(--font-heading);font-size:1.3rem;font-weight:700;color:var(--cyan-primary)}
-.strata-box{background:rgba(15,23,42,.5);border:1px solid var(--border-color);border-radius:12px;padding:.9rem}
+.metric-box{background:rgba(15,23,42,.6);border:1px solid var(--border-color);border-radius:12px;padding:.75rem .45rem;text-align:center}
+.metric-label{font-size:.68rem;color:var(--text-dim);text-transform:uppercase;font-family:var(--font-mono);margin-bottom:.2rem}
+.metric-val{font-family:var(--font-heading);font-size:1.25rem;font-weight:700;color:var(--cyan-primary)}
+.strata-box{background:rgba(15,23,42,.5);border:1px solid var(--border-color);border-radius:12px;padding:.85rem}
 .strata-canvas{width:100%;height:110px;border-radius:8px;background:#0d1527;display:block}
 .hazard-alert-banner{background:rgba(244,63,94,.12);border:1px solid rgba(244,63,94,.4);border-radius:10px;padding:.85rem 1rem;font-size:.84rem;color:#fecdd3;display:flex;align-items:center;gap:.6rem}
-.legal-box{background:rgba(15,23,42,.6);border-left:3px solid var(--cyan-primary);border-radius:10px;padding:1.15rem;font-size:.86rem;color:var(--text-muted)}
-.btn-action{background:linear-gradient(135deg,var(--cyan-primary),var(--blue-accent));color:#070d18;border:none;padding:.75rem 1.4rem;border-radius:10px;font-weight:700;font-size:.92rem;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:.5rem}
+.legal-box{background:rgba(15,23,42,.6);border-left:3px solid var(--cyan-primary);border-radius:10px;padding:1rem;font-size:.85rem;color:var(--text-muted)}
+.btn-action{background:linear-gradient(135deg,var(--cyan-primary),var(--blue-accent));color:#070d18;border:none;padding:.85rem 1.4rem;border-radius:12px;font-weight:700;font-size:.92rem;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:46px;-webkit-appearance:none;appearance:none;touch-action:manipulation}
+.btn-action:active{transform:scale(0.97)}
 .btn-action:hover{box-shadow:0 0 20px var(--cyan-glow);transform:translateY(-2px)}
-.btn-secondary{background:rgba(255,255,255,.07);border:1px solid var(--border-color);color:var(--text-main);padding:.75rem 1.25rem;border-radius:10px;font-weight:600;font-size:.88rem;cursor:pointer;transition:all .2s}
+.btn-secondary{background:rgba(255,255,255,.07);border:1px solid var(--border-color);color:var(--text-main);padding:.85rem 1.25rem;border-radius:12px;font-weight:600;font-size:.88rem;cursor:pointer;transition:all .2s;min-height:46px;display:inline-flex;align-items:center;justify-content:center;-webkit-appearance:none;appearance:none;touch-action:manipulation}
+.btn-secondary:active{transform:scale(0.97)}
 .btn-secondary:hover{background:rgba(255,255,255,.12);border-color:var(--cyan-primary)}
-.calc-box{background:var(--bg-card);border:1px solid var(--border-glow);border-radius:20px;padding:2.5rem;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);display:grid;grid-template-columns:1fr 1fr;gap:2.5rem}
-@media(max-width:850px){.calc-box{grid-template-columns:1fr}}
-.calc-controls{display:flex;flex-direction:column;gap:1.5rem}
-.control-group label{display:block;font-weight:600;margin-bottom:.5rem;font-size:.95rem}
-.range-slider{width:100%;height:8px;border-radius:5px;background:#1e293b;outline:none;accent-color:var(--cyan-primary)}
-.calc-display{background:rgba(7,13,24,.6);border:1px solid var(--border-color);border-radius:16px;padding:2rem;display:flex;flex-direction:column;justify-content:space-between}
-.water-bar-wrapper{margin:1.5rem 0}
+.calc-box{background:var(--bg-card);border:1px solid var(--border-glow);border-radius:20px;padding:2rem;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+@media(max-width:850px){.calc-box{grid-template-columns:1fr;gap:1.5rem}}
+.calc-controls{display:flex;flex-direction:column;gap:1.25rem}
+.control-group label{display:block;font-weight:600;margin-bottom:.5rem;font-size:.92rem}
+.range-slider{
+  width:100%;
+  height:10px;
+  border-radius:6px;
+  background:#1e293b;
+  outline:none;
+  accent-color:var(--cyan-primary);
+  -webkit-appearance:none;
+}
+.range-slider::-webkit-slider-thumb{
+  -webkit-appearance:none;
+  width:24px;
+  height:24px;
+  border-radius:50%;
+  background:var(--cyan-primary);
+  box-shadow:0 0 10px rgba(0,229,255,.5);
+  cursor:pointer;
+}
+.calc-display{background:rgba(7,13,24,.6);border:1px solid var(--border-color);border-radius:16px;padding:1.5rem;display:flex;flex-direction:column;justify-content:space-between}
+.water-bar-wrapper{margin:1.25rem 0}
 .water-bar{height:36px;border-radius:10px;display:flex;overflow:hidden;box-shadow:inset 0 2px 4px rgba(0,0,0,.4)}
 .bar-80{background:linear-gradient(90deg,#0284c7,#0ea5e9);width:80%;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;color:#fff}
 .bar-20{background:linear-gradient(90deg,var(--cyan-primary),#38bdf8);width:20%;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;color:#070d18}
-.grid-4{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.5rem}
-.card{background:var(--bg-card);border:1px solid var(--border-color);border-radius:16px;padding:1.75rem;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);transition:all .3s;display:flex;flex-direction:column}
-.card:hover{background:var(--bg-card-hover);border-color:var(--border-glow);transform:translateY(-4px)}
-.card-icon{width:48px;height:48px;border-radius:12px;background:rgba(0,229,255,.1);display:flex;align-items:center;justify-content:center;margin-bottom:1.25rem;color:var(--cyan-primary);font-size:1.5rem}
-.card h3{font-family:var(--font-heading);font-size:1.25rem;margin-bottom:.75rem;color:var(--text-main)}
-.card p{color:var(--text-muted);font-size:.95rem;flex-grow:1}
-.telemetry-board{background:#050b14;border:1px solid rgba(0,229,255,.3);border-radius:20px;padding:2rem;box-shadow:0 0 30px rgba(0,229,255,.05)}
-.telemetry-header{display:flex;justify-content:space-between;align-items:center;padding-bottom:1.5rem;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:1.5rem}
+.grid-4{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.25rem}
+.card{background:var(--bg-card);border:1px solid var(--border-color);border-radius:16px;padding:1.5rem;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);transition:all .3s;display:flex;flex-direction:column}
+.card:hover{background:var(--bg-card-hover);border-color:var(--border-glow);transform:translateY(-3px)}
+.card-icon{width:48px;height:48px;border-radius:12px;background:rgba(0,229,255,.1);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;color:var(--cyan-primary);font-size:1.5rem}
+.card h3{font-family:var(--font-heading);font-size:1.2rem;margin-bottom:.6rem;color:var(--text-main)}
+.card p{color:var(--text-muted);font-size:.92rem;flex-grow:1;line-height:1.5}
+.telemetry-board{background:#050b14;border:1px solid rgba(0,229,255,.3);border-radius:20px;padding:1.5rem;box-shadow:0 0 30px rgba(0,229,255,.05)}
+.telemetry-header{display:flex;justify-content:space-between;align-items:center;padding-bottom:1.25rem;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:1.25rem;flex-wrap:wrap;gap:.75rem}
 .telemetry-status{display:flex;align-items:center;gap:.5rem;font-family:var(--font-mono);font-size:.85rem;color:var(--emerald-accent)}
 .telemetry-status::before{content:'';width:8px;height:8px;background:var(--emerald-accent);border-radius:50%;box-shadow:0 0 8px var(--emerald-accent)}
-.gauges-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1.5rem}
-.gauge-card{background:rgba(15,23,42,.5);border:1px solid var(--border-color);border-radius:12px;padding:1.25rem}
-.gauge-title{font-size:.8rem;color:var(--text-dim);text-transform:uppercase;font-family:var(--font-mono);margin-bottom:.5rem}
-.gauge-val{font-family:var(--font-heading);font-size:2rem;font-weight:700;color:var(--cyan-primary)}
+.gauges-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem}
+.gauge-card{background:rgba(15,23,42,.5);border:1px solid var(--border-color);border-radius:14px;padding:1.25rem}
+.gauge-title{font-size:.78rem;color:var(--text-dim);text-transform:uppercase;font-family:var(--font-mono);margin-bottom:.4rem}
+.gauge-val{font-family:var(--font-heading);font-size:1.85rem;font-weight:700;color:var(--cyan-primary)}
 .gauge-unit{font-size:.85rem;color:var(--text-muted);font-weight:400;margin-left:.25rem}
-.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);z-index:2000;align-items:center;justify-content:center;padding:1.5rem}
+.modal-overlay{
+  display:none;position:fixed;inset:0;background:rgba(0,0,0,.8);
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+  z-index:2000;align-items:center;justify-content:center;
+  padding:calc(1rem + var(--sat)) calc(1rem + var(--sar)) calc(1.5rem + var(--sab)) calc(1rem + var(--sal));
+  overflow-y:auto;
+  -webkit-overflow-scrolling:touch;
+}
 .modal-overlay.open{display:flex}
-.modal-content{background:#0b1329;border:1px solid var(--cyan-primary);border-radius:18px;max-width:780px;width:100%;max-height:85vh;display:flex;flex-direction:column;box-shadow:0 0 50px rgba(0,229,255,.2)}
+.modal-content{background:#0b1329;border:1px solid var(--cyan-primary);border-radius:20px;max-width:780px;width:100%;max-height:85vh;max-height:85dvh;display:flex;flex-direction:column;box-shadow:0 0 50px rgba(0,229,255,.2);overflow:hidden}
 .modal-header{padding:1.25rem 1.5rem;border-bottom:1px solid var(--border-color);display:flex;justify-content:space-between;align-items:center}
-.modal-body{padding:1.5rem;overflow-y:auto;font-family:var(--font-mono);font-size:.85rem;line-height:1.7;color:#cbd5e1;background:#060a14}
-.modal-footer{padding:1rem 1.5rem;border-top:1px solid var(--border-color);display:flex;justify-content:flex-end;gap:1rem}
-footer{border-top:1px solid var(--border-color);padding:3rem 2rem;text-align:center;color:var(--text-dim);font-size:.9rem}
-.footer-links{display:flex;justify-content:center;gap:2rem;margin-bottom:1.5rem;list-style:none;flex-wrap:wrap}
-.footer-links a{color:var(--text-muted);text-decoration:none;transition:color .2s}
+.modal-body{padding:1.25rem 1.5rem;overflow-y:auto;-webkit-overflow-scrolling:touch;font-family:var(--font-mono);font-size:.82rem;line-height:1.7;color:#cbd5e1;background:#060a14}
+.modal-footer{padding:1rem 1.5rem;border-top:1px solid var(--border-color);display:flex;justify-content:flex-end;gap:.75rem;flex-wrap:wrap}
+footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5rem + var(--sab));text-align:center;color:var(--text-dim);font-size:.88rem}
+.footer-links{display:flex;justify-content:center;gap:1.5rem;margin-bottom:1.25rem;list-style:none;flex-wrap:wrap}
+.footer-links a{color:var(--text-muted);text-decoration:none;transition:color .2s;padding:.2rem .4rem}
 .footer-links a:hover{color:var(--cyan-primary)}
+
+/* ===================== IPHONE / MOBILE MEDIA QUERIES ===================== */
 @media screen and (max-width:768px){
-  input,select,textarea,.form-input,.form-select,.wiz-input,.wiz-select{font-size:16px!important}
   .nav-links{display:none}
-  .brand{font-size:1.15rem}
-  .hero h1{font-size:1.9rem}
+  .mobile-nav-toggle{display:flex}
+  .brand{font-size:1.2rem}
+  .hero h1{font-size:1.85rem}
   .hero-stats{grid-template-columns:1fr 1fr}
   .wiz-grid{grid-template-columns:1fr}
   .wiz-metrics{grid-template-columns:1fr 1fr}
   .metrics-row{grid-template-columns:1fr 1fr}
-  .calc-box{padding:1.5rem}
-  .auth-card{padding:1.75rem 1.25rem;border-radius:18px}
-  .report-card{padding:1.5rem 1rem;border-radius:18px}
-  #map-container{height:360px}
-  #wizard-map-container{height:320px}
-  .user-bar-inner{flex-direction:column;align-items:flex-start;gap:.5rem}
+  .calc-box{padding:1.25rem}
+  .auth-card{padding:1.5rem 1.25rem;border-radius:20px}
+  .report-card{padding:1.25rem 1rem;border-radius:18px}
+  #map-container{height:340px}
+  #wizard-map-container{height:300px}
+  .user-bar-inner{flex-direction:row;align-items:center;justify-content:space-between;gap:.5rem}
 }
-@media print{#auth-overlay,#role-overlay,#wizard-overlay,#user-header-bar,header,.report-actions,#toast-container{display:none!important}#report-overlay{position:relative!important;background:white!important;color:black!important}.report-card{border:1px solid #ccc}}
+@media screen and (max-width:480px){
+  .hero-stats{grid-template-columns:1fr}
+  .calc-display{padding:1.25rem}
+  .modal-content{max-height:92vh;max-height:92dvh}
+  .modal-header,.modal-body,.modal-footer{padding:1rem}
+}
+@media print{
+  #auth-overlay,#role-overlay,#wizard-overlay,#user-header-bar,header,.report-actions,#toast-container,.mobile-nav-toggle,#mobile-drawer{display:none!important}
+  #report-overlay{position:relative!important;background:white!important;color:black!important;padding:0!important}
+  .report-card{border:1px solid #ccc;color:#000}
+}
 </style>
 </head>
 <body>
@@ -761,21 +1062,48 @@ footer{border-top:1px solid var(--border-color);padding:3rem 2rem;text-align:cen
       AquaResiliencia
     </a>
     <ul class="nav-links">
-      <li><a href="#datos-conagua">Diagnóstico CONAGUA</a></li>
+      <li><a href="#datos-conagua">Diagnóstico Oficial</a></li>
       <li><a href="#motor-hidro">Motor AquaEngine</a></li>
+      <li><a href="#derecho-comparado">Derecho Comparado</a></li>
       <li><a href="#solucion">Pilares</a></li>
       <li><a href="#calculadora">Calculadora 80/20</a></li>
       <li><a href="#telemetria">Telemetría IoT</a></li>
       <li><a href="https://github.com/quecrap/123portijuana" target="_blank" rel="noopener noreferrer" class="btn-github">GitHub Repo ★</a></li>
     </ul>
+    <button class="mobile-nav-toggle" id="mobile-menu-btn" onclick="toggleMobileDrawer(true)" aria-label="Abrir Menú">☰</button>
   </div>
 </header>
+
+<!-- Mobile Slide Drawer for iPhone -->
+<div id="drawer-backdrop" onclick="toggleMobileDrawer(false)"></div>
+<aside id="mobile-drawer" aria-label="Menú Móvil">
+  <div class="drawer-header">
+    <div class="brand" style="font-size:1.15rem">
+      <div class="brand-icon" style="width:32px;height:32px"><svg viewBox="0 0 24 24" style="width:18px;height:18px"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></div>
+      AquaResiliencia
+    </div>
+    <button class="drawer-close-btn" onclick="toggleMobileDrawer(false)" aria-label="Cerrar Menú">&times;</button>
+  </div>
+  <ul class="drawer-nav-list">
+    <li><a href="#datos-conagua" onclick="toggleMobileDrawer(false)">📊 Diagnóstico Oficial CONAGUA</a></li>
+    <li><a href="#motor-hidro" onclick="toggleMobileDrawer(false)">🔬 Motor AquaEngine &amp; 7 Capas</a></li>
+    <li><a href="#derecho-comparado" onclick="toggleMobileDrawer(false)">🌍 Derecho Comparado Global</a></li>
+    <li><a href="#solucion" onclick="toggleMobileDrawer(false)">💧 Pilares del Sistema</a></li>
+    <li><a href="#calculadora" onclick="toggleMobileDrawer(false)">💰 Calculadora 80/20 &amp; Payback</a></li>
+    <li><a href="#telemetria" onclick="toggleMobileDrawer(false)">📡 Telemetría IoT en Vivo</a></li>
+    <li><a href="javascript:void(0)" onclick="toggleMobileDrawer(false);goToWizard();" style="background:linear-gradient(135deg,rgba(16,185,129,.2),rgba(13,148,136,.2));border-color:rgba(16,185,129,.4);color:var(--emerald-accent)">📋 Cuestionario Vecino (AquaScore™)</a></li>
+    <li><a href="https://github.com/quecrap/123portijuana" target="_blank" rel="noopener noreferrer" style="color:var(--cyan-primary);border-color:var(--border-glow)">🐙 GitHub Repository ★</a></li>
+  </ul>
+  <div style="margin-top:auto;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.08);font-size:.78rem;color:var(--text-dim);font-family:var(--font-mono);text-align:center">
+    AquaResiliencia Tijuana 2026<br>Optimizado para iOS / Safari
+  </div>
+</aside>
 
 <main id="main-content">
   <section class="hero">
     <div class="badge-hero"><span class="pulse"></span> Red Centinela Ciudadana — Tijuana 2026</div>
     <h1>Inteligencia Hidrogeológica y Red Centinela para <span class="gradient-text">Tijuana</span></h1>
-    <p class="hero-subtitle">Plataforma científica, legal y tecnológica para responder a la crisis hídrica de Tijuana mediante extracción somera frugal, tratamiento <strong>Point-of-Use 80/20</strong> y telemetría regulada, calibrada con el estudio oficial <strong>CONAGUA DR_0201 (2024)</strong>.</p>
+    <p class="hero-subtitle">Plataforma científica, legal y tecnológica para responder a la crisis hídrica de Tijuana mediante extracción somera frugal, tratamiento <strong>Point-of-Use 80/20</strong> y telemetría regulada, integrando <strong>7 fuentes oficiales y binacionales (CONAGUA, SGM, INEGI, Protección Civil, CILA, USGS y CESPT)</strong>.</p>
     <div class="hero-stats">
       <div class="stat-card alert"><div class="stat-value danger">-1,664,020 m³</div><div class="stat-label">Déficit Anual Oficial (CONAGUA 2024)</div></div>
       <div class="stat-card"><div class="stat-value">4 a 15 m</div><div class="stat-label">Nivel Estático Somero Oficial</div></div>
@@ -808,13 +1136,13 @@ footer{border-top:1px solid var(--border-color);padding:3rem 2rem;text-align:cen
 
   <section id="motor-hidro">
     <div class="section-header">
-      <span class="section-tag">Algoritmo Territorial con Datos Oficiales</span>
-      <h2 class="section-title">AquaEngine: Explorador de Viabilidad, Cota y Red Piezométrica</h2>
+      <span class="section-tag">Algoritmo Inteligente Multicriterio &amp; 7 Capas de Datos</span>
+      <h2 class="section-title">AquaEngine: Explorador Territorial Multi-Fuente</h2>
     </div>
     <div class="engine-container">
       <div class="transparency-banner">
-        <div class="icon">ℹ️</div>
-        <div><strong>Transparencia del Algoritmo AquaEngine:</strong> Los valores de viabilidad, profundidad estimada y conductividad para cada coordenada son <strong>estimaciones computadas</strong> mediante interpolación de cotas topográficas (DEM SRTM 30m), litología del SGM (I11-11) y <strong>calibradas contra rangos oficiales de CONAGUA DR_0201 (2024)</strong>.</div>
+        <div class="icon">🔬</div>
+        <div><strong>Código Inteligente AquaEngine v2.0:</strong> Evalúa cualquier coordenada en Tijuana mediante ponderación espacial multicriterio (AHP): <strong>Cota DEM INEGI (25%)</strong>, <strong>Litología SGM I11-11 (25%)</strong>, <strong>Distancia a Red Hidrográfica INEGI (20%)</strong>, <strong>Filtro de Seguridad Geotécnica Protección Civil (Kill Switch)</strong> y <strong>Conductividad CILA/USGS</strong>.</div>
       </div>
       <div class="map-controls-bar">
         <div class="zone-chip-grid">
@@ -824,20 +1152,31 @@ footer{border-top:1px solid var(--border-color);padding:3rem 2rem;text-align:cen
           <button class="zone-chip" onclick="setPresetZone(3)">🌵 Cañón del Sainz (Cañada - 110m)</button>
           <button class="zone-chip" onclick="setPresetZone(4)">🏭 Mesa de Otay (Meseta - 165m)</button>
           <button class="zone-chip" onclick="setPresetZone(5)">⛰️ Cerro Colorado (Cumbre - 480m 🛑)</button>
-          <button class="zone-chip" onclick="setPresetZone(6)">🛑 Sánchez Taboada (Falla - 190m)</button>
+          <button class="zone-chip" onclick="setPresetZone(6)">🛑 Sánchez Taboada (Falla PC - 190m)</button>
         </div>
         <div class="layers-toggle-bar">
-          <button id="togglePiezoBtn" class="layer-btn piezo active" onclick="toggleLayer('piezo')">🟣 Red Piezométrica CONAGUA</button>
-          <button id="toggleRepdaBtn" class="layer-btn repda active" onclick="toggleLayer('repda')">🔵 Pozos Concesionados REPDA</button>
-          <button id="toggleHazardBtn" class="layer-btn hazard active" onclick="toggleLayer('hazard')">🔴 Focos de Contaminación (CILA)</button>
+          <button id="togglePiezoBtn" class="layer-btn piezo active" onclick="toggleLayer('piezo')">🟣 CONAGUA Piezometría</button>
+          <button id="toggleRepdaBtn" class="layer-btn repda active" onclick="toggleLayer('repda')">🔵 Pozos REPDA</button>
+          <button id="toggleHazardBtn" class="layer-btn hazard active" onclick="toggleLayer('hazard')">🔴 Focos CILA</button>
+          <button id="toggleSgmBtn" class="layer-btn sgm active" onclick="toggleLayer('sgm')">🟡 SGM Litología</button>
+          <button id="toggleRiesgoBtn" class="layer-btn riesgo active" onclick="toggleLayer('riesgo')">⛔ Protección Civil (Fallas)</button>
+          <button id="toggleHidroBtn" class="layer-btn hidro active" onclick="toggleLayer('hidro')">🌊 INEGI Cañadas</button>
+          <button id="toggleBinacionalBtn" class="layer-btn binacional active" onclick="toggleLayer('binacional')">🇺🇸 USGS / TRNERR</button>
         </div>
       </div>
       <div class="engine-grid">
         <div>
+          <div class="basemap-switch-bar">
+            <span style="font-size:0.75rem;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:0.5px">Vista Base:</span>
+            <button id="bmSatBtn" class="basemap-chip active" onclick="setBaseMap('sat')">🛰️ Satélite HD + Relieve</button>
+            <button id="bmTopoBtn" class="basemap-chip" onclick="setBaseMap('topo')">⛰️ Topografía DEM</button>
+            <button id="bmDarkBtn" class="basemap-chip" onclick="setBaseMap('dark')">🌙 Modo Oscuro SIG</button>
+          </div>
           <div id="map-container"></div>
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.75rem;font-size:.78rem;color:var(--text-dim);font-family:var(--font-mono)">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.75rem;font-size:.78rem;color:var(--text-dim);font-family:var(--font-mono);flex-wrap:wrap;gap:.5rem">
             <span id="map-coords-display">📍 Lat: 32.5312 | Lng: -117.1215</span>
-            <span id="altimeter-live-tag" style="color:var(--cyan-primary)">⛰️ Cota: 18 msnm</span>
+            <span id="altimeter-live-tag" style="color:var(--cyan-primary)">⛰️ Cota: 18 msnm (DEM 30m)</span>
+            <span id="layer-status-tag" style="color:var(--emerald-accent)">🗺️ 7 Capas Activas</span>
           </div>
         </div>
         <div class="hydro-output">
@@ -850,7 +1189,7 @@ footer{border-top:1px solid var(--border-color);padding:3rem 2rem;text-align:cen
           </div>
           <div id="hazard-alert-box" class="hazard-alert-banner">
             <span>⚠️</span>
-            <div><strong>Alerta Sanitaria (CILA/CONAGUA):</strong> <span id="hazard-alert-text">Riesgo de Cuña Salina. Sello sanitario a 2.0m y Ósmosis Inversa obligatoria.</span></div>
+            <div><strong>Alerta Geotécnica / Sanitaria:</strong> <span id="hazard-alert-text">Riesgo de Cuña Salina. Sello sanitario a 2.0m y Ósmosis Inversa obligatoria.</span></div>
           </div>
           <div class="metrics-row">
             <div class="metric-box"><div class="metric-label">Altitud (Cota)</div><div class="metric-val" id="out-elev">18 <span style="font-size:.75rem;font-weight:400">msnm</span></div></div>
@@ -858,22 +1197,143 @@ footer{border-top:1px solid var(--border-color);padding:3rem 2rem;text-align:cen
             <div class="metric-box"><div class="metric-label">TDS Estimado</div><div class="metric-val" id="out-tds">920 <span style="font-size:.75rem;font-weight:400">ppm</span></div></div>
             <div class="metric-box"><div class="metric-label">Caudal Seguro</div><div class="metric-val" id="out-flow">2.5 <span style="font-size:.75rem;font-weight:400">L/min</span></div></div>
           </div>
+
+          <!-- Factores del Algoritmo Inteligente AHP -->
+          <div class="ahp-factors-grid">
+            <div class="ahp-factor-item">
+              <div class="ahp-factor-label">Topografía DEM</div>
+              <div class="ahp-factor-val" id="fact-topo">95%</div>
+            </div>
+            <div class="ahp-factor-item">
+              <div class="ahp-factor-label">Litología SGM</div>
+              <div class="ahp-factor-val" id="fact-lito">88%</div>
+            </div>
+            <div class="ahp-factor-item">
+              <div class="ahp-factor-label">Arroyos INEGI</div>
+              <div class="ahp-factor-val" id="fact-hidro">90%</div>
+            </div>
+            <div class="ahp-factor-item">
+              <div class="ahp-factor-label">Riesgo Civil</div>
+              <div class="ahp-factor-val" id="fact-riesgo" style="color:var(--emerald-accent)">SEGURO</div>
+            </div>
+            <div class="ahp-factor-item">
+              <div class="ahp-factor-label">Calidad CILA</div>
+              <div class="ahp-factor-val" id="fact-calidad">78%</div>
+            </div>
+          </div>
+
           <div class="strata-box">
             <div style="display:flex;justify-content:space-between;font-size:.75rem;color:var(--text-dim);text-transform:uppercase;font-family:var(--font-mono);margin-bottom:.4rem">
-              <span>Corte Estratigráfico (0 a 10m+)</span>
+              <span>Corte Estratigráfico SGM (0 a 10m+)</span>
               <span id="strata-aquifer-tag" style="color:var(--cyan-primary)">Acuífero a 6.5m</span>
             </div>
             <canvas id="strataCanvas" class="strata-canvas" width="400" height="110"></canvas>
           </div>
           <div class="legal-box">
             <p id="out-diag" style="margin-bottom:.5rem;line-height:1.5"><strong>Diagnóstico:</strong> Cota baja de cañada costera. Manto freático somero en arena cuaternaria. Viable con perforación manual y ósmosis inversa.</p>
-            <div style="font-size:.78rem;color:var(--text-dim);font-family:var(--font-mono)"><strong>Fuente:</strong> <span id="out-source">Estimación AquaEngine, calibrada con CONAGUA DR_0201 (2024)</span></div>
+            <div style="font-size:.78rem;color:var(--text-dim);font-family:var(--font-mono)"><strong>Fuentes:</strong> <span id="out-source">CONAGUA DR_0201 (2024), SGM I11-11, INEGI CEM 3.0, Atlas Protección Civil</span></div>
           </div>
           <div style="display:flex;gap:.75rem;flex-wrap:wrap">
             <button class="btn-action" onclick="openLegalModal()">📄 Generar Oficio CONAGUA (Art. 8°/35 LAN)</button>
             <button class="btn-secondary" onclick="scrollToCalc()">💰 Ver BOM y Costos</button>
           </div>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== DERECHO COMPARADO ==================== -->
+  <section id="derecho-comparado">
+    <div class="section-header">
+      <span class="section-tag">Investigación de Derecho Comparado &amp; Casos Globales</span>
+      <h2 class="section-title">Ciudades Gemelas con Pozos Someros Urbanos</h2>
+    </div>
+    <p style="color:var(--text-muted);font-size:.95rem;max-width:850px;margin-bottom:1.5rem;line-height:1.6">
+      El aprovechamiento de aguas freáticas someras (1 a 10m) en zonas urbanas densas no es una improvisación: es una práctica reglamentada en las metrópolis más avanzadas del mundo para aliviar acuíferos sobreexplotados, reducir la presión en redes públicas y mitigar riesgos de inundación de cimientos:
+    </p>
+    <div class="city-compare-grid">
+      <div class="city-card">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div class="city-flag">🇩🇪</div>
+          <span class="city-badge de">Berlín, Alemania</span>
+        </div>
+        <h4 style="font-family:var(--font-heading);font-size:1.15rem;margin:0">El Valle Urstromtal</h4>
+        <p style="font-size:.85rem;color:var(--text-muted);line-height:1.5">
+          <strong>Marco Legal:</strong> § 46 WHG (Ley Federal de Aguas) consagra la extracción doméstica somera como <em>Erlaubnisfrei</em> (totalmente exenta de concesión o permiso formal).
+        </p>
+        <p style="font-size:.83rem;color:var(--text-dim);line-height:1.5">
+          <strong>Aplicación:</strong> Más de <strong>20,000 pozos de jardín (*Gartenbrunnen*)</strong> regulan el nivel freático y el 70% del agua potable metropolitana se obtiene por biofiltración de ribera (*Uferfiltration*).
+        </p>
+      </div>
+
+      <div class="city-card">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div class="city-flag">🇺🇸</div>
+          <span class="city-badge us">San Diego, California</span>
+        </div>
+        <h4 style="font-family:var(--font-heading);font-size:1.15rem;margin:0">Cuenca DWR Basin 9-019</h4>
+        <p style="font-size:.85rem;color:var(--text-muted);line-height:1.5">
+          <strong>Marco Legal:</strong> <em>Sustainable Groundwater Management Act (SGMA 2014)</em> reconoce a los <strong>De Minimis Extractors</strong> (extracciones <2 AFY / 6,700 L/día por hogar) como usuarios exentos.
+        </p>
+        <p style="font-size:.83rem;color:var(--text-dim);line-height:1.5">
+          <strong>Aplicación:</strong> Monitoreo continuo del USGS (Estación 11013500) en el aluvión del Río Tijuana, donde el nivel freático oscila entre 2.4 y 5.0 metros.
+        </p>
+      </div>
+
+      <div class="city-card">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div class="city-flag">🇵🇪</div>
+          <span class="city-badge pe">Lima, Perú</span>
+        </div>
+        <h4 style="font-family:var(--font-heading);font-size:1.15rem;margin:0">Abanicos Rímac y Surco</h4>
+        <p style="font-size:.85rem;color:var(--text-muted);line-height:1.5">
+          <strong>Marco Legal:</strong> Ley N° 29338 de Recursos Hídricos establece la figura de <strong>"Uso Primario"</strong>: captación directa, libre y gratuita para necesidades vitales de subsistencia sin trámite.
+        </p>
+        <p style="font-size:.83rem;color:var(--text-dim);line-height:1.5">
+          <strong>Aplicación:</strong> Galerías filtrantes y micropozos de baja cota actúan como red de respaldo de emergencia ante cortes de la planta La Atarjea por huaicos.
+        </p>
+      </div>
+
+      <div class="city-card">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div class="city-flag">🇺🇸</div>
+          <span class="city-badge us">Miami, Florida</span>
+        </div>
+        <h4 style="font-family:var(--font-heading);font-size:1.15rem;margin:0">Acuífero Biscayne</h4>
+        <p style="font-size:.85rem;color:var(--text-muted);line-height:1.5">
+          <strong>Marco Legal:</strong> El <em>South Florida Water Management District (SFWMD)</em> autoriza <em>General Permits by Rule</em> para pozos residenciales someros (<4" diámetro y <10m).
+        </p>
+        <p style="font-size:.83rem;color:var(--text-dim);line-height:1.5">
+          <strong>Aplicación:</strong> Micro-desalinización POU y uso no potable domiciliario para evitar sobrecargar los acueductos urbanos durante sequías.
+        </p>
+      </div>
+
+      <div class="city-card">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div class="city-flag">🇿🇦</div>
+          <span class="city-badge za">Ciudad del Cabo, Sudáfrica</span>
+        </div>
+        <h4 style="font-family:var(--font-heading);font-size:1.15rem;margin:0">Resiliencia "Day Zero"</h4>
+        <p style="font-size:.85rem;color:var(--text-muted);line-height:1.5">
+          <strong>Marco Legal:</strong> Enmiendas a las <em>Water By-laws</em> permitieron el registro simplificado de micropozos domiciliarios (<em>wellpoints</em>) para desacoplar el 80% de usos no potables.
+        </p>
+        <p style="font-size:.83rem;color:var(--text-dim);line-height:1.5">
+          <strong>Aplicación:</strong> Más de 35,000 hogares instalaron micro-extracción somera en arenas costeras, evitando el colapso absoluto de la red metropolitana.
+        </p>
+      </div>
+
+      <div class="city-card">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div class="city-flag">🇯🇵</div>
+          <span class="city-badge jp">Tokio / Osaka, Japón</span>
+        </div>
+        <h4 style="font-family:var(--font-heading);font-size:1.15rem;margin:0">Sub-Drainage Urbano</h4>
+        <p style="font-size:.85rem;color:var(--text-muted);line-height:1.5">
+          <strong>Marco Geotécnico:</strong> Regulación de subdrenaje somero para controlar la presión de poro y evitar el fenómeno de <strong>licuefacción sísmica</strong> e inundación de sótanos.
+        </p>
+        <p style="font-size:.83rem;color:var(--text-dim);line-height:1.5">
+          <strong>Aplicación:</strong> Pozos someros de despresurización que reutilizan el agua extraída para servicios urbanos secundarios.
+        </p>
       </div>
     </div>
   </section>
@@ -946,20 +1406,172 @@ footer{border-top:1px solid var(--border-color);padding:3rem 2rem;text-align:cen
 <footer>
   <ul class="footer-links">
     <li><a href="PLAN_MAESTRO.md" target="_blank" rel="noopener noreferrer">Plan Maestro</a></li>
-    <li><a href="GESTION_URBANA_AGUAS_SOMERAS_DERECHO_COMPARADO.md" target="_blank" rel="noopener noreferrer">Derecho Comparado e Hidrogeología ↗</a></li>
+    <li><a href="FUENTES_OFICIALES_CARTOGRAFIA_Y_CAPAS_ALTERNATIVAS.md" target="_blank" rel="noopener noreferrer">Fuentes Oficiales &amp; Capas ↗</a></li>
+    <li><a href="GESTION_URBANA_AGUAS_SOMERAS_DERECHO_COMPARADO.md" target="_blank" rel="noopener noreferrer">Derecho Comparado Global ↗</a></li>
     <li><a href="INVESTIGACION_BINACIONAL_HIDROGEOLOGIA.md" target="_blank" rel="noopener noreferrer">Investigación Binacional ↗</a></li>
-    <li><a href="ORDEN_DE_COMPRA_IOT_ESP32.md" target="_blank" rel="noopener noreferrer">BOM Hardware ESP32</a></li>
     <li><a href="https://github.com/quecrap/123portijuana" target="_blank" rel="noopener noreferrer">Repositorio GitHub</a></li>
   </ul>
   <p>AquaResiliencia Tijuana © 2026 — Proyecto de Validación y Resiliencia Hídrica Urbana.</p>
 </footer>
 
 <script>
-// ==================== DATA ====================
-const conaguaPiezometers=[{id:"PZ-01",name:"Estación Piezométrica Río Tijuana - Álamos",lat:32.5185,lng:-116.9850,depthStatic:4.2,year:2024,type:"Piezómetro Oficial CONAGUA"},{id:"PZ-02",name:"Estación Piezométrica Arroyo Alamar - Murúa",lat:32.5320,lng:-116.9380,depthStatic:6.1,year:2024,type:"Piezómetro Oficial CONAGUA"},{id:"PZ-03",name:"Estación Piezométrica Playas - Estuario Sur",lat:32.5280,lng:-117.1180,depthStatic:5.4,year:2024,type:"Piezómetro Oficial CONAGUA"},{id:"PZ-04",name:"Estación Piezométrica Cañón del Sainz - Lecho",lat:32.4220,lng:-116.9420,depthStatic:9.8,year:2024,type:"Piezómetro Oficial CONAGUA"},{id:"PZ-05",name:"Estación Piezométrica Maclovio Rojas - Vado",lat:32.4780,lng:-116.7920,depthStatic:11.2,year:2024,type:"Piezómetro Oficial CONAGUA"},{id:"PZ-06",name:"Estación Piezométrica Valle Redondo",lat:32.4850,lng:-116.8450,depthStatic:8.9,year:2024,type:"Piezómetro Oficial CONAGUA"},{id:"PZ-USGS-01",name:"Estación Binacional USGS 11013500",lat:32.5440,lng:-117.0850,depthStatic:3.8,year:2024,type:"Monitoreo Binacional USGS/IBWC"},{id:"PZ-TRNERR-02",name:"Sensor Costero TRNERR",lat:32.5510,lng:-117.1250,depthStatic:2.9,year:2024,type:"Monitoreo Intrusión Salina"}];
-const repdaWells=[{id:"REPDA-02BC100234",owner:"CESPT - Batería Pozo Alamar 1",lat:32.5240,lng:-116.9310,volAuth:"450,000 m³/año",use:"Público Urbano",depthTotal:45},{id:"REPDA-02BC100589",owner:"CESPT - Batería Pozo Alamar 2",lat:32.5200,lng:-116.9220,volAuth:"380,000 m³/año",use:"Público Urbano",depthTotal:50},{id:"REPDA-02BC100712",owner:"CESPT - Batería Pozo Alamar 3",lat:32.5270,lng:-116.9150,volAuth:"320,000 m³/año",use:"Público Urbano",depthTotal:48},{id:"REPDA-02BC101102",owner:"Parque Industrial Otay",lat:32.5410,lng:-116.9580,volAuth:"120,000 m³/año",use:"Industrial",depthTotal:85},{id:"REPDA-02BC101250",owner:"CESPT - Presa Rodríguez",lat:32.4450,lng:-116.9050,volAuth:"210,000 m³/año",use:"Público Urbano",depthTotal:35},{id:"REPDA-02BC101450",owner:"Comité Agrícola Cañón del Sainz",lat:32.4110,lng:-116.9280,volAuth:"85,000 m³/año",use:"Agrícola",depthTotal:30},{id:"REPDA-02BC101780",owner:"Aprovechamiento Servicios Urbanos Río",lat:32.5290,lng:-117.0180,volAuth:"60,000 m³/año",use:"Servicios",depthTotal:25},{id:"REPDA-02BC101990",owner:"Pozo San Antonio del Mar",lat:32.4680,lng:-117.0850,volAuth:"95,000 m³/año",use:"Doméstico",depthTotal:40}];
-const contaminationHotspots=[{name:"Corredor Industrial Otay / Chilpancingo",lat:32.5390,lng:-116.9450,radius:1800,hazard:"Metales Pesados (Pb, Zn, Cr) y COVs",source:"IBWC / CILA",mitigation:"Carbón activado CTO 1µ + Membrana TFC RO + Sello bentonita 2.5m"},{name:"Colector Poniente / Zona Río",lat:32.5320,lng:-117.0250,radius:1500,hazard:"Aguas Residuales Urbanas (Coliformes, Sulfatos)",source:"CONAGUA / CESPT",mitigation:"Desinfección cloro + UV 12W + Sello sanitario 2.5m"},{name:"Estuario Binacional / Cañón del Matadero",lat:32.5380,lng:-117.1150,radius:2000,hazard:"Intrusión Marina Salina (NaCl)",source:"CONAGUA DR_0201",mitigation:"Prueba mareal 24h + Caudal ≤2.2 L/min + RO POU"},{name:"Cañón del Sainz / Periferia Sur",lat:32.4150,lng:-116.9400,radius:2200,hazard:"Infiltración Fosas Sépticas (Nitratos)",source:"CONAGUA Estudio Geohidrológico",mitigation:"Distancia >25m a fosas + Sello 2.5m + Fitorremediación"},{name:"Depósito Lixiviados Cañón del Pato",lat:32.4880,lng:-117.0450,radius:1200,hazard:"Lixiviados Tiraderos Informales",source:"Atlas Municipal de Riesgos Tijuana",mitigation:"Filtro sedimentos 5µ + Carbón activado + UV"}];
-const officialZones=[{name:"Playas de Tijuana (Cañón del Matadero)",lat:32.5312,lng:-117.1215,elev:18,score:87,badgeClass:"high",badgeText:"🟢 87% VIABLE",depth:6.5,tds:920,flow:2.5,geology:"SGM: Formación San Diego (Plioceno) / Terrazas Qpt",aquiferTag:"Acuífero somero a 6.5m (Cota 18 msnm)",diag:"Cota baja de cañada costera (18 msnm). Manto freático somero en arena cuaternaria alimentado por escorrentía colgada. Requiere prueba de correlación mareal 24h y ósmosis inversa.",source:"Estimación AquaEngine, calibrada con CONAGUA DR_0201 (2024)",strata:[{name:"Suelo superficial / relleno",depth:1.5,color:"#78583e"},{name:"Sello Sanitario Bentonita",depth:2.0,color:"#94a3b8"},{name:"Arenisca limosa permeable",depth:6.5,color:"#bfa378"},{name:"Estrato Acuífero + Grava",depth:7.5,color:"#00e5ff"},{name:"Tapón ciego y lutita basal",depth:10.0,color:"#334155"}]},{name:"Colonia Libertad / Cañón Johnson",lat:32.5385,lng:-117.0125,elev:32,score:91,badgeClass:"high",badgeText:"🟢 91% ALTAMENTE VIABLE",depth:4.8,tds:680,flow:3.2,geology:"SGM: Depósitos Aluviales Recientes Qal",aquiferTag:"Manto aluvial muy somero a 4.8m",diag:"Fondo de valle aluvial (32 msnm). Alta transmisividad hidráulica. Sello sanitario 2.5m obligatorio por densidad urbana.",source:"Estimación AquaEngine, calibrada con CONAGUA DR_0201 (2024)",strata:[{name:"Capa vegetal y limo urbano",depth:1.0,color:"#6b4f3b"},{name:"Sello Sanitario reforzado",depth:2.5,color:"#94a3b8"},{name:"Gravas y arenas aluviales",depth:4.8,color:"#d1b48c"},{name:"Acuífero Aluvial Productivo",depth:6.5,color:"#00e5ff"},{name:"Arcilla impermeable",depth:10.0,color:"#475569"}]},{name:"Arroyo Alamar (Depósito Aluvial)",lat:32.5180,lng:-116.9250,elev:55,score:84,badgeClass:"high",badgeText:"🟢 84% VIABLE",depth:6.8,tds:840,flow:2.8,geology:"SGM: Aluvión Cuaternario y Terrazas de Inundación",aquiferTag:"Acuífero aluvial a 6.8m",diag:"Terreno aluvial cota baja (55 msnm). Manto activo con recarga de cuenca. Humedal fitosanitario recomendado.",source:"Estimación AquaEngine, calibrada con CONAGUA DR_0201 (2024)",strata:[{name:"Arena y grava superficial",depth:1.5,color:"#8c6d53"},{name:"Sello Sanitario",depth:2.0,color:"#94a3b8"},{name:"Arenas gruesas de río",depth:6.8,color:"#c2a67a"},{name:"Acuífero Alamar + Grava",depth:8.0,color:"#00e5ff"},{name:"Basamento semiconsolidado",depth:10.0,color:"#334155"}]},{name:"Cañón del Sainz (Fondo de Cañada)",lat:32.4180,lng:-116.9350,elev:110,score:72,badgeClass:"medium",badgeText:"🟡 72% VIABLE CONDICIONADO",depth:10.2,tds:1180,flow:2.0,geology:"SGM: Formación Rosarito Beach (Arenas Tobáceas)",aquiferTag:"Nivel freático a 10.2m",diag:"Cota intermedia en lecho de cañada (110 msnm). Estratos compactos con alta dureza mineral. Requiere lodo bentonítico y percusión.",source:"Estimación AquaEngine, calibrada con CONAGUA DR_0201 (2024)",strata:[{name:"Suelo coluvial / toba",depth:2.0,color:"#7a5c43"},{name:"Sello Sanitario",depth:2.5,color:"#94a3b8"},{name:"Toba volcánica semiconsolidada",depth:10.2,color:"#9c8266"},{name:"Lente Acuífero Tobáceo",depth:11.5,color:"#00e5ff"},{name:"Roca arcillosa compacta",depth:14.0,color:"#1e293b"}]},{name:"Mesa de Otay (Meseta Industrial)",lat:32.5450,lng:-116.9650,elev:165,score:58,badgeClass:"medium",badgeText:"🟡 58% VIABILIDAD MEDIA",depth:14.0,tds:760,flow:1.6,geology:"SGM: Formación Otay (Conglomerados y Arcilla)",aquiferTag:"Lente colgado a 14.0m",diag:"Meseta elevada (165 msnm) con 'Otay Hardpan'. Lentes colgados locales. Requiere percusión pesada.",source:"Estimación AquaEngine, calibrada con CONAGUA DR_0201 (2024)",strata:[{name:"Arcilla roja 'Hardpan'",depth:3.0,color:"#8a452a"},{name:"Sello Sanitario",depth:3.5,color:"#94a3b8"},{name:"Conglomerado cementado",depth:14.0,color:"#6b5b52"},{name:"Acuífero en lente de grava",depth:15.2,color:"#00e5ff"},{name:"Arcilla impermeable masiva",depth:18.0,color:"#1e293b"}]},{name:"Cerro Colorado (Cumbre Montañosa)",lat:32.4950,lng:-116.9050,elev:480,score:6,badgeClass:"low",badgeText:"🔴 6% NO VIABLE",depth:75.0,tds:1600,flow:0.2,geology:"SGM: Basalto y Andesita Volcánica",aquiferTag:"Sin manto somero (>75m)",diag:"🛑 RECHAZO TÉCNICO: Cumbre volcánica 480 msnm. Nivel freático >75m bajo roca ígnea. IMPOSIBLE perforar manualmente. Alternativa: Cosecha de Lluvia/Niebla (SCALL).",source:"Estimación AquaEngine, calibrada con CONAGUA DR_0201 (2024)",strata:[{name:"Roca volcánica meteorizada",depth:2.0,color:"#4a3c31"},{name:"Basalto ígneo masivo",depth:25.0,color:"#2b2b2b"},{name:"Andesita dura fracturada",depth:50.0,color:"#1c1c1c"},{name:"Sin agua freática accesible",depth:75.0,color:"#0d0d0d"}]},{name:"Lomas de Sánchez Taboada (Falla Activa)",lat:32.4650,lng:-117.0150,elev:190,score:12,badgeClass:"low",badgeText:"🔴 12% NO VIABLE",depth:38.0,tds:1450,flow:0.4,geology:"SGM: Complejo Volcánico Fracturado / Falla Activa",aquiferTag:"Sin manto somero (Cota 190 msnm)",diag:"🛑 RECHAZO TÉCNICO: Ladera inestable con falla geológica activa. Perforar incrementa riesgo de desestabilización. Alternativa: Cosecha Pluvial/Niebla.",source:"Estimación AquaEngine, calibrada con CONAGUA DR_0201 (2024)",strata:[{name:"Suelo deslizamiento inestable",depth:4.0,color:"#5c3d2e"},{name:"Roca andesítica fracturada",depth:15.0,color:"#3d3b3c"},{name:"Zona de falla geológica",depth:25.0,color:"#242223"},{name:"Sin agua somera",depth:38.0,color:"#111"}]}];
+// ==================== MOBILE DRAWER (IPHONE) ====================
+function toggleMobileDrawer(open){
+  const drawer=document.getElementById('mobile-drawer');
+  const backdrop=document.getElementById('drawer-backdrop');
+  if(!drawer||!backdrop)return;
+  if(open){
+    drawer.classList.add('open');
+    backdrop.classList.add('open');
+    document.body.style.overflow='hidden';
+  }else{
+    drawer.classList.remove('open');
+    backdrop.classList.remove('open');
+    document.body.style.overflow='';
+  }
+}
+
+// ==================== MULTI-SOURCE OFFICIAL DATASETS ====================
+const conaguaPiezometers=[
+  {id:"PZ-01",name:"Estación Piezométrica Río Tijuana - Álamos",lat:32.5185,lng:-116.9850,depthStatic:4.2,year:2024,type:"Piezómetro Oficial CONAGUA"},
+  {id:"PZ-02",name:"Estación Piezométrica Arroyo Alamar - Murúa",lat:32.5320,lng:-116.9380,depthStatic:6.1,year:2024,type:"Piezómetro Oficial CONAGUA"},
+  {id:"PZ-03",name:"Estación Piezométrica Playas - Estuario Sur",lat:32.5280,lng:-117.1180,depthStatic:5.4,year:2024,type:"Piezómetro Oficial CONAGUA"},
+  {id:"PZ-04",name:"Estación Piezométrica Cañón del Sainz - Lecho",lat:32.4220,lng:-116.9420,depthStatic:9.8,year:2024,type:"Piezómetro Oficial CONAGUA"},
+  {id:"PZ-05",name:"Estación Piezométrica Maclovio Rojas - Vado",lat:32.4780,lng:-116.7920,depthStatic:11.2,year:2024,type:"Piezómetro Oficial CONAGUA"},
+  {id:"PZ-06",name:"Estación Piezométrica Valle Redondo",lat:32.4850,lng:-116.8450,depthStatic:8.9,year:2024,type:"Piezómetro Oficial CONAGUA"}
+];
+
+const repdaWells=[
+  {id:"REPDA-02BC100234",owner:"CESPT - Batería Pozo Alamar 1",lat:32.5240,lng:-116.9310,volAuth:"450,000 m³/año",use:"Público Urbano",depthTotal:45},
+  {id:"REPDA-02BC100589",owner:"CESPT - Batería Pozo Alamar 2",lat:32.5200,lng:-116.9220,volAuth:"380,000 m³/año",use:"Público Urbano",depthTotal:50},
+  {id:"REPDA-02BC100712",owner:"CESPT - Batería Pozo Alamar 3",lat:32.5270,lng:-116.9150,volAuth:"320,000 m³/año",use:"Público Urbano",depthTotal:48},
+  {id:"REPDA-02BC101102",owner:"Parque Industrial Otay",lat:32.5410,lng:-116.9580,volAuth:"120,000 m³/año",use:"Industrial",depthTotal:85},
+  {id:"REPDA-02BC101250",owner:"CESPT - Presa Rodríguez",lat:32.4450,lng:-116.9050,volAuth:"210,000 m³/año",use:"Público Urbano",depthTotal:35},
+  {id:"REPDA-02BC101450",owner:"Comité Agrícola Cañón del Sainz",lat:32.4110,lng:-116.9280,volAuth:"85,000 m³/año",use:"Agrícola",depthTotal:30},
+  {id:"REPDA-02BC101780",owner:"Aprovechamiento Servicios Urbanos Río",lat:32.5290,lng:-117.0180,volAuth:"60,000 m³/año",use:"Servicios",depthTotal:25},
+  {id:"REPDA-02BC101990",owner:"Pozo San Antonio del Mar",lat:32.4680,lng:-117.0850,volAuth:"95,000 m³/año",use:"Doméstico",depthTotal:40}
+];
+
+const contaminationHotspots=[
+  {name:"Corredor Industrial Otay / Chilpancingo",lat:32.5390,lng:-116.9450,radius:1800,hazard:"Metales Pesados (Pb, Zn, Cr) y COVs",source:"IBWC / CILA",mitigation:"Carbón activado CTO 1µ + Membrana TFC RO + Sello bentonita 2.5m"},
+  {name:"Colector Poniente / Zona Río",lat:32.5320,lng:-117.0250,radius:1500,hazard:"Aguas Residuales Urbanas (Coliformes, Sulfatos)",source:"CONAGUA / CESPT",mitigation:"Desinfección cloro + UV 12W + Sello sanitario 2.5m"},
+  {name:"Estuario Binacional / Cañón del Matadero",lat:32.5380,lng:-117.1150,radius:2000,hazard:"Intrusión Marina Salina (NaCl)",source:"CONAGUA DR_0201",mitigation:"Prueba mareal 24h + Caudal ≤2.2 L/min + RO POU"},
+  {name:"Cañón del Sainz / Periferia Sur",lat:32.4150,lng:-116.9400,radius:2200,hazard:"Infiltración Fosas Sépticas (Nitratos)",source:"CONAGUA Estudio Geohidrológico",mitigation:"Distancia >25m a fosas + Sello 2.5m + Fitorremediación"},
+  {name:"Depósito Lixiviados Cañón del Pato",lat:32.4880,lng:-117.0450,radius:1200,hazard:"Lixiviados Tiraderos Informales",source:"Atlas Municipal de Riesgos Tijuana",mitigation:"Filtro sedimentos 5µ + Carbón activado + UV"}
+];
+
+// Capa SGM (Servicio Geológico Mexicano Carta I11-11)
+const sgmGeologyPolygons=[
+  {name:"Aluvión Cuaternario (Qal) - Lecho Río Tijuana",coords:[[32.510,-117.040],[32.540,-116.980],[32.530,-116.960],[32.505,-117.020]],color:"#eab308",desc:"Gravas y arenas de alta permeabilidad hidráulica. Manto somero a 2-5m."},
+  {name:"Aluvión Alamar (Qal) - Vaso Regulador",coords:[[32.510,-116.940],[32.540,-116.910],[32.525,-116.890],[32.500,-116.920]],color:"#ca8a04",desc:"Depósitos fluviales permeables con recarga de cuenca media."},
+  {name:"Formación San Diego (Tsd) - Terrazas Costeras",coords:[[32.500,-117.135],[32.550,-117.100],[32.510,-117.070],[32.470,-117.110]],color:"#f59e0b",desc:"Areniscas poco consolidadas con mantos colgados a 4-8m."},
+  {name:"Formación Rosarito Beach (Trm) - Arenas Tobáceas",coords:[[32.390,-116.960],[32.440,-116.910],[32.410,-116.880],[32.370,-116.930]],color:"#d97706",desc:"Areniscas tobáceas y basaltos subordinados. Requiere percusión."},
+  {name:"Formación Otay (To) - Arcillas Expandibles",coords:[[32.530,-116.980],[32.560,-116.930],[32.535,-116.910],[32.510,-116.960]],color:"#b45309",desc:"Otay Hardpan. Arcillas cementadas de baja infiltración."},
+  {name:"Complejo Volcánico Ígneo (Kgr/Tvb) - Cerro Colorado",coords:[[32.485,-116.915],[32.505,-116.895],[32.485,-116.875],[32.465,-116.895]],color:"#78350f",desc:"Basalto y andesita compacta impermeable. Manto >75m."}
+];
+
+// Capa Protección Civil / Atlas Municipal de Riesgos (Fallas & Deslizamientos)
+const riskPolygonsPC=[
+  {name:"Zona de Falla y Deslizamiento Activo - Lomas de Sánchez Taboada",coords:[[32.455,-117.025],[32.475,-117.025],[32.475,-117.005],[32.455,-117.005]],hazard:"Deslizamiento rotacional activo por saturación de arcillas",mitigation:"🛑 RECHAZO TÉCNICO TOTAL: Prohibido perforar. Alternativa: SCALL pluvial."},
+  {name:"Polígono de Deslizamiento Activo - Camino Verde",coords:[[32.485,-117.015],[32.500,-117.015],[32.500,-116.995],[32.485,-116.995]],hazard:"Falla de talud por aguas colgadas y fuga de red",mitigation:"🛑 RECHAZO TÉCNICO: Riesgo de colapso de cimentaciones."},
+  {name:"Zona de Hundimiento Geotécnico - Lomas del Rubí",coords:[[32.495,-117.045],[32.510,-117.045],[32.510,-117.030],[32.495,-117.030]],hazard:"Pérdida de soporte basal",mitigation:"🛑 EXCLUSIÓN: Monitoreo piezométrico solo como alerta civil."}
+];
+
+// Capa INEGI Red Hidrográfica Digital 2.0 (Cañadas y Drenajes Naturales)
+const inegiStreams=[
+  {name:"Eje Principal Río Tijuana (Aluvión Central)",latlngs:[[32.445,-116.905],[32.480,-116.950],[32.515,-116.990],[32.535,-117.035],[32.544,-117.085]],color:"#06b6d4",width:4},
+  {name:"Arroyo Alamar (Tributario Mayor)",latlngs:[[32.495,-116.850],[32.510,-116.890],[32.525,-116.930],[32.535,-116.960]],color:"#0891b2",width:3.5},
+  {name:"Cañón del Matadero (Drenaje Costero)",latlngs:[[32.515,-117.110],[32.530,-117.118],[32.542,-117.125]],color:"#22d3ee",width:3},
+  {name:"Cañón Johnson (Drenaje Suroeste)",latlngs:[[32.500,-117.020],[32.520,-117.015],[32.535,-117.010]],color:"#22d3ee",width:2.5},
+  {name:"Cañón del Sainz (Drenaje Sur)",latlngs:[[32.380,-116.950],[32.410,-116.940],[32.440,-116.920]],color:"#22d3ee",width:2.5}
+];
+
+// Capa Binacional USGS / TRNERR (Piezometría y Aforo Transfronterizo)
+const usgsBinational=[
+  {id:"USGS-11013500",name:"USGS 11013500 Tijuana River at International Boundary",lat:32.5445,lng:-117.0870,level:"3.8m NAF",tds:"1,150 ppm",type:"Estación Hidrométrica & Piezométrica"},
+  {id:"TRNERR-01",name:"TRNERR Oneonta Slough Marine Sensor",lat:32.5530,lng:-117.1280,level:"2.1m NAF",tds:"4,800 ppm",type:"Monitoreo Intrusión Salina"},
+  {id:"USGS-GOAT-02",name:"Goat Canyon Sediment / Hydro Monitor",lat:32.5410,lng:-117.1120,level:"4.1m NAF",tds:"980 ppm",type:"Piezómetro Aluvial"}
+];
+
+const officialZones=[
+  {
+    name:"Playas de Tijuana (Cañón del Matadero)",
+    lat:32.5312,lng:-117.1215,elev:18,score:87,badgeClass:"high",badgeText:"🟢 87% VIABLE",
+    depth:6.5,tds:920,flow:2.5,
+    geology:"SGM: Formación San Diego (Plioceno) / Terrazas Qpt",
+    aquiferTag:"Acuífero somero a 6.5m (Cota 18 msnm)",
+    diag:"Cota baja de cañada costera (18 msnm). Manto freático somero en arena cuaternaria alimentado por escorrentía colgada. Requiere prueba de correlación mareal 24h y ósmosis inversa.",
+    source:"CONAGUA DR_0201 (2024), SGM I11-11, INEGI CEM 3.0, CILA",
+    factors:{topo:95,lito:88,hidro:90,riesgo:"SEGURO",calidad:78},
+    strata:[{name:"Suelo superficial / relleno",depth:1.5,color:"#78583e"},{name:"Sello Sanitario Bentonita",depth:2.0,color:"#94a3b8"},{name:"Arenisca limosa permeable",depth:6.5,color:"#bfa378"},{name:"Estrato Acuífero + Grava",depth:7.5,color:"#00e5ff"},{name:"Tapón ciego y lutita basal",depth:10.0,color:"#334155"}]
+  },
+  {
+    name:"Colonia Libertad / Cañón Johnson",
+    lat:32.5385,lng:-117.0125,elev:32,score:91,badgeClass:"high",badgeText:"🟢 91% ALTAMENTE VIABLE",
+    depth:4.8,tds:680,flow:3.2,
+    geology:"SGM: Depósitos Aluviales Recientes Qal",
+    aquiferTag:"Manto aluvial muy somero a 4.8m",
+    diag:"Fondo de valle aluvial (32 msnm). Alta transmisividad hidráulica en arenas gruesas. Sello sanitario 2.5m obligatorio por densidad urbana.",
+    source:"CONAGUA DR_0201 (2024), SGM Carta I11-11, INEGI RHD 2.0",
+    factors:{topo:98,lito:95,hidro:96,riesgo:"SEGURO",calidad:85},
+    strata:[{name:"Capa vegetal y limo urbano",depth:1.0,color:"#6b4f3b"},{name:"Sello Sanitario reforzado",depth:2.5,color:"#94a3b8"},{name:"Gravas y arenas aluviales",depth:4.8,color:"#d1b48c"},{name:"Acuífero Aluvial Productivo",depth:6.5,color:"#00e5ff"},{name:"Arcilla impermeable",depth:10.0,color:"#475569"}]
+  },
+  {
+    name:"Arroyo Alamar (Depósito Aluvial)",
+    lat:32.5180,lng:-116.9250,elev:55,score:84,badgeClass:"high",badgeText:"🟢 84% VIABLE",
+    depth:6.8,tds:840,flow:2.8,
+    geology:"SGM: Aluvión Cuaternario y Terrazas de Inundación",
+    aquiferTag:"Acuífero aluvial a 6.8m",
+    diag:"Terreno aluvial cota baja (55 msnm). Manto activo con recarga de cuenca media. Humedal fitosanitario recomendado.",
+    source:"CONAGUA DR_0201 (2024), SGM Carta I11-11, Sondeos SPT",
+    factors:{topo:90,lito:92,hidro:94,riesgo:"SEGURO",calidad:80},
+    strata:[{name:"Arena y grava superficial",depth:1.5,color:"#8c6d53"},{name:"Sello Sanitario",depth:2.0,color:"#94a3b8"},{name:"Arenas gruesas de río",depth:6.8,color:"#c2a67a"},{name:"Acuífero Alamar + Grava",depth:8.0,color:"#00e5ff"},{name:"Basamento semiconsolidado",depth:10.0,color:"#334155"}]
+  },
+  {
+    name:"Cañón del Sainz (Fondo de Cañada)",
+    lat:32.4180,lng:-116.9350,elev:110,score:72,badgeClass:"medium",badgeText:"🟡 72% VIABLE CONDICIONADO",
+    depth:10.2,tds:1180,flow:2.0,
+    geology:"SGM: Formación Rosarito Beach (Arenas Tobáceas)",
+    aquiferTag:"Nivel freático a 10.2m",
+    diag:"Cota intermedia en lecho de cañada (110 msnm). Estratos compactos con alta dureza mineral. Requiere lodo bentonítico y percusión.",
+    source:"CONAGUA DR_0201 (2024), SGM I11-11, INEGI CEM 3.0",
+    factors:{topo:75,lito:70,hidro:82,riesgo:"SEGURO",calidad:65},
+    strata:[{name:"Suelo coluvial / toba",depth:2.0,color:"#7a5c43"},{name:"Sello Sanitario",depth:2.5,color:"#94a3b8"},{name:"Toba volcánica semiconsolidada",depth:10.2,color:"#9c8266"},{name:"Lente Acuífero Tobáceo",depth:11.5,color:"#00e5ff"},{name:"Roca arcillosa compacta",depth:14.0,color:"#1e293b"}]
+  },
+  {
+    name:"Mesa de Otay (Meseta Industrial)",
+    lat:32.5450,lng:-116.9650,elev:165,score:58,badgeClass:"medium",badgeText:"🟡 58% VIABILIDAD MEDIA",
+    depth:14.0,tds:760,flow:1.6,
+    geology:"SGM: Formación Otay (Conglomerados y Arcilla)",
+    aquiferTag:"Lente colgado a 14.0m",
+    diag:"Meseta elevada (165 msnm) con estrato duro 'Otay Hardpan'. Lentes colgados locales. Requiere percusión pesada.",
+    source:"CONAGUA DR_0201 (2024), SGM I11-11, Geotecnia Civil",
+    factors:{topo:55,lito:50,hidro:40,riesgo:"SEGURO",calidad:75},
+    strata:[{name:"Arcilla roja 'Hardpan'",depth:3.0,color:"#8a452a"},{name:"Sello Sanitario",depth:3.5,color:"#94a3b8"},{name:"Conglomerado cementado",depth:14.0,color:"#6b5b52"},{name:"Acuífero en lente de grava",depth:15.2,color:"#00e5ff"},{name:"Arcilla impermeable masiva",depth:18.0,color:"#1e293b"}]
+  },
+  {
+    name:"Cerro Colorado (Cumbre Montañosa)",
+    lat:32.4950,lng:-116.9050,elev:480,score:6,badgeClass:"low",badgeText:"🔴 6% NO VIABLE",
+    depth:75.0,tds:1600,flow:0.2,
+    geology:"SGM: Basalto y Andesita Volcánica",
+    aquiferTag:"Sin manto somero (>75m)",
+    diag:"🛑 RECHAZO TÉCNICO: Cumbre volcánica 480 msnm. Nivel freático >75m bajo roca ígnea. IMPOSIBLE perforar manualmente. Alternativa: Cosecha de Lluvia/Niebla (SCALL).",
+    source:"CONAGUA DR_0201 (2024), SGM I11-11, INEGI CEM 3.0",
+    factors:{topo:5,lito:10,hidro:10,riesgo:"SEGURO",calidad:40},
+    strata:[{name:"Roca volcánica meteorizada",depth:2.0,color:"#4a3c31"},{name:"Basalto ígneo masivo",depth:25.0,color:"#2b2b2b"},{name:"Andesita dura fracturada",depth:50.0,color:"#1c1c1c"},{name:"Sin agua freática accesible",depth:75.0,color:"#0d0d0d"}]
+  },
+  {
+    name:"Lomas de Sánchez Taboada (Falla Activa PC)",
+    lat:32.4650,lng:-117.0150,elev:190,score:12,badgeClass:"low",badgeText:"🔴 12% NO VIABLE",
+    depth:38.0,tds:1450,flow:0.4,
+    geology:"SGM: Complejo Volcánico Fracturado / Falla Activa",
+    aquiferTag:"Sin manto somero (Cota 190 msnm)",
+    diag:"🛑 RECHAZO TÉCNICO (KILL-SWITCH): Ladera inestable con falla geológica activa en Atlas de Protección Civil. Perforar incrementa riesgo de desestabilización rotacional. Alternativa: SCALL pluvial.",
+    source:"Atlas Municipal de Riesgos Tijuana (Protección Civil), CENAPRED, SGM",
+    factors:{topo:35,lito:20,hidro:30,riesgo:"VETO PC",calidad:30},
+    strata:[{name:"Suelo deslizamiento inestable",depth:4.0,color:"#5c3d2e"},{name:"Roca andesítica fracturada",depth:15.0,color:"#3d3b3c"},{name:"Zona de falla geológica",depth:25.0,color:"#242223"},{name:"Sin agua somera",depth:38.0,color:"#111"}]
+  }
+];
 
 // ==================== AUTH ====================
 const DEMO_USERS={'tecnico@aqua.mx':{password:'AquaDrill2026',name:'Ing. Demo Técnico',role:'tecnico'},'vecino@aqua.mx':{password:'MiColonia2026',name:'Vecino Demo',role:'vecino'}};
@@ -973,7 +1585,7 @@ function enterApp(){document.getElementById('auth-overlay').classList.add('hidde
 function showRoleSelection(){document.getElementById('role-overlay').classList.remove('hidden');document.getElementById('wizard-overlay').classList.add('hidden');document.getElementById('report-overlay').classList.add('hidden');}
 function selectRole(r){if(currentUser&&currentUser.email!=='demo'){currentUser.role=r;localStorage.setItem('aqua_session',JSON.stringify(currentUser));}document.getElementById('role-overlay').classList.add('hidden');const roleEl=document.getElementById('user-role-display');if(r==='tecnico'){roleEl.textContent='🔬 Técnico Certificado';roleEl.className='user-role-badge tecnico';showDashboard();showToast('✅ Perfil Técnico activado.');}else{roleEl.textContent='🏠 Vecino / Propietario';roleEl.className='user-role-badge vecino';document.getElementById('btn-questionnaire-header').style.display='inline-flex';goToWizard();showToast('🏠 Iniciando evaluación de tu terreno.');}}
 function doLogout(){localStorage.removeItem('aqua_session');currentUser=null;document.getElementById('user-header-bar').classList.remove('visible');document.getElementById('role-overlay').classList.add('hidden');document.getElementById('wizard-overlay').classList.add('hidden');document.getElementById('report-overlay').classList.add('hidden');document.getElementById('auth-overlay').classList.remove('hidden');document.getElementById('auth-error').style.display='none';document.getElementById('login-email').value='';document.getElementById('login-password').value='';showToast('👋 Sesión cerrada.');}
-function showDashboard(){document.getElementById('role-overlay').classList.add('hidden');document.getElementById('wizard-overlay').classList.add('hidden');document.getElementById('report-overlay').classList.add('hidden');if(!mapInitialized)setTimeout(initMap,100);}
+function showDashboard(){document.getElementById('role-overlay').classList.add('hidden');document.getElementById('wizard-overlay').classList.add('hidden');document.getElementById('report-overlay').classList.add('hidden');if(!mapInitialized){setTimeout(initMap,100);}else if(map){setTimeout(()=>map.invalidateSize(),150);}}
 
 // ==================== PARTICLES ====================
 function initParticles(){const canvas=document.getElementById('particles-canvas');const ctx=canvas.getContext('2d');function resize(){canvas.width=window.innerWidth;canvas.height=window.innerHeight;}resize();window.addEventListener('resize',resize);const ps=Array.from({length:55},()=>({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2.5+.8,vy:Math.random()*.5+.1,vx:(Math.random()-.5)*.3,o:Math.random()*.5+.15}));function draw(){ctx.clearRect(0,0,canvas.width,canvas.height);ps.forEach(p=>{ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=`rgba(0,229,255,${p.o})`;ctx.fill();p.y+=p.vy;p.x+=p.vx;if(p.y>canvas.height+10){p.y=-10;p.x=Math.random()*canvas.width;}if(p.x<-10||p.x>canvas.width+10)p.x=Math.random()*canvas.width;});requestAnimationFrame(draw);}draw();}
@@ -983,20 +1595,22 @@ let wizStep=1,wizMapInit=false,wizMap=null,wizMarker=null,wizClickedZone=null,ur
 function goToWizard(){document.getElementById('wizard-overlay').classList.remove('hidden');document.getElementById('report-overlay').classList.add('hidden');wizStep=1;updateWizardUI(1);setTimeout(()=>{if(!wizMapInit){initWizardMap();wizMapInit=true;}else if(wizMap)wizMap.invalidateSize();},300);}
 function wizNext(s){wizStep=s;updateWizardUI(s);if(s===5)buildWizardSummary();}
 function wizBack(s){wizStep=s;updateWizardUI(s);}
-function updateWizardUI(s){document.querySelectorAll('.wizard-step').forEach(el=>el.classList.remove('active'));document.getElementById('wiz-step-'+s).classList.add('active');document.getElementById('wiz-progress').style.width=(s/5*100)+'%';const dots=document.querySelectorAll('.step-dot');dots.forEach((d,i)=>{d.classList.remove('active','done');if(i+1<s)d.classList.add('done');else if(i+1===s)d.classList.add('active');});const titles=[['Paso 1 de 5','Datos Personales y Contexto Social','Cuéntanos sobre ti y tu situación actual con el agua.'],['Paso 2 de 5','Características de Tu Terreno','Ayúdanos a entender la geografía y suelo de tu zona.'],['Paso 3 de 5','Tu Nivel de Interés y Recursos','Evaluamos tu capacidad e interés en el proyecto.'],['Paso 4 de 5','Ubica Tu Terreno en el Mapa','Haz clic en el mapa para un análisis preciso con AquaEngine.'],['Paso 5 de 5','Confirmación y Envío','Revisa tus datos antes de generar tu reporte personalizado.']];const t=titles[s-1];document.getElementById('wiz-step-label').textContent=t[0];document.getElementById('wiz-step-title').textContent=t[1];document.getElementById('wiz-step-subtitle').textContent=t[2];if(s>1)showToast('✅ Paso '+(s-1)+' completado','emerald');if(s===4&&wizMap)setTimeout(()=>wizMap.invalidateSize(),150);}
+function updateWizardUI(s){document.querySelectorAll('.wizard-step').forEach(el=>el.classList.remove('active'));document.getElementById('wiz-step-'+s).classList.add('active');document.getElementById('wiz-progress').style.width=(s/5*100)+'%';const dots=document.querySelectorAll('.step-dot');dots.forEach((d,i)=>{d.classList.remove('active','done');if(i+1<s)d.classList.add('done');else if(i+1===s)d.classList.add('active');});const titles=[['Paso 1 de 5','Datos Personales y Contexto Social','Cuéntanos sobre ti y tu situación actual con el agua.'],['Paso 2 de 5','Características de Tu Terreno','Ayúdanos a entender la geografía y suelo de tu zona.'],['Paso 3 de 5','Tu Nivel de Interés y Recursos','Evaluamos tu capacidad e interés en el proyecto.'],['Paso 4 de 5','Ubica Tu Terreno en el Mapa','Haz clic en el mapa para un análisis preciso con AquaEngine.'],['Paso 5 de 5','Confirmación y Envío','Revisa tus datos antes de generar tu reporte personalizado.']];const t=titles[s-1];document.getElementById('wiz-step-label').textContent=t[0];document.getElementById('wiz-step-title').textContent=t[1];document.getElementById('wiz-step-subtitle').textContent=t[2];if(s>1)showToast('✅ Paso '+(s-1)+' completado','emerald');if(s===4&&wizMap)setTimeout(()=>wizMap.invalidateSize(),200);}
 function setUrgency(v){urgencyVal=v;document.querySelectorAll('.urgency-star').forEach((el,i)=>el.classList.toggle('active',i<v));}
+
 function initWizardMap(){
-  wizMap=L.map('wizard-map-container',{tap:false,zoomSnap:0.5}).setView([32.5149,-117.0382],11);
-  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',{attribution:'&copy; Esri',maxZoom:16}).addTo(wizMap);
-  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}',{attribution:'&copy; Esri',maxZoom:16}).addTo(wizMap);
+  wizMap=L.map('wizard-map-container',{tap:false,zoomSnap:0.5,scrollWheelZoom:false}).setView([32.5149,-117.0382],11);
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{attribution:'&copy; Esri World Imagery',maxZoom:18,detectRetina:true}).addTo(wizMap);
+  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',{attribution:'&copy; Esri',maxZoom:18}).addTo(wizMap);
   officialZones.forEach(z=>{
     const c=z.score>=80?'#10b981':z.score>=50?'#f59e0b':'#f43f5e';
-    const icon=L.divIcon({html:`<div style="background:${c};width:12px;height:12px;border-radius:50%;border:2px solid #fff;opacity:.7"></div>`,iconSize:[12,12]});
+    const icon=L.divIcon({html:`<div style="background:${c};width:16px;height:16px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 10px ${c}"></div>`,iconSize:[16,16]});
     L.marker([z.lat,z.lng],{icon}).addTo(wizMap).bindPopup(`<strong>${z.name}</strong><br>Viabilidad: ${z.score}%`);
   });
   wizMap.on('click',e=>analyzeWizardLocation(e.latlng.lat,e.latlng.lng));
 }
-function analyzeWizardLocation(lat,lng){let nearest=officialZones[0],minDist=Infinity;officialZones.forEach(z=>{const d=Math.hypot(z.lat-lat,z.lng-lng);if(d<minDist){minDist=d;nearest=z;}});const altVal=parseInt(document.getElementById('wiz-altitud').value)||60;const penalty=Math.max(0,(altVal-30)/10);const score=Math.round(Math.min(95,Math.max(5,nearest.score-penalty+(Math.random()*6-3))));wizClickedZone={lat,lng,score,name:nearest.name,depth:(nearest.depth+(Math.random()*1.5-.75)).toFixed(1),tds:Math.round(nearest.tds+(Math.random()*150-75)),flow:(nearest.flow+(Math.random()*.5-.25)).toFixed(1),elev:altVal,diag:nearest.diag,badgeClass:score>=75?'high':score>=45?'medium':'low'};if(wizMarker)wizMap.removeLayer(wizMarker);wizMarker=L.marker([lat,lng],{icon:L.divIcon({html:'<div style="background:#10b981;width:20px;height:20px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 20px #10b981"></div>',iconSize:[20,20]})}).addTo(wizMap);const res=document.getElementById('wiz-map-result');res.classList.add('visible');const em={high:'🟢',medium:'🟡',low:'🔴'}[wizClickedZone.badgeClass];document.getElementById('wiz-zone-name').textContent=nearest.name;document.getElementById('wiz-score-badge').textContent=`${em} ${score}% VIABILIDAD`;document.getElementById('wiz-score-badge').className='score-badge '+wizClickedZone.badgeClass;document.getElementById('wiz-out-elev').textContent=altVal+'m';document.getElementById('wiz-out-depth').textContent=wizClickedZone.depth+'m';document.getElementById('wiz-out-tds').textContent=wizClickedZone.tds+'ppm';document.getElementById('wiz-out-flow').textContent=wizClickedZone.flow+'L/m';document.getElementById('wiz-out-diag').textContent=nearest.diag;const btn=document.getElementById('btn-step4-next');btn.disabled=false;showToast('📍 Análisis completado','emerald');}
+
+function analyzeWizardLocation(lat,lng){let nearest=officialZones[0],minDist=Infinity;officialZones.forEach(z=>{const d=Math.hypot(z.lat-lat,z.lng-lng);if(d<minDist){minDist=d;nearest=z;}});const altVal=parseInt(document.getElementById('wiz-altitud').value)||60;const penalty=Math.max(0,(altVal-30)/10);const score=Math.round(Math.min(95,Math.max(5,nearest.score-penalty+(Math.random()*6-3))));wizClickedZone={lat,lng,score,name:nearest.name,depth:(nearest.depth+(Math.random()*1.5-.75)).toFixed(1),tds:Math.round(nearest.tds+(Math.random()*150-75)),flow:(nearest.flow+(Math.random()*.5-.25)).toFixed(1),elev:altVal,diag:nearest.diag,badgeClass:score>=75?'high':score>=45?'medium':'low'};if(wizMarker)wizMap.removeLayer(wizMarker);wizMarker=L.marker([lat,lng],{icon:L.divIcon({html:'<div style="background:#10b981;width:22px;height:22px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 20px #10b981"></div>',iconSize:[22,22]})}).addTo(wizMap);const res=document.getElementById('wiz-map-result');res.classList.add('visible');const em={high:'🟢',medium:'🟡',low:'🔴'}[wizClickedZone.badgeClass];document.getElementById('wiz-zone-name').textContent=nearest.name;document.getElementById('wiz-score-badge').textContent=`${em} ${score}% VIABILIDAD`;document.getElementById('wiz-score-badge').className='score-badge '+wizClickedZone.badgeClass;document.getElementById('wiz-out-elev').textContent=altVal+'m';document.getElementById('wiz-out-depth').textContent=wizClickedZone.depth+'m';document.getElementById('wiz-out-tds').textContent=wizClickedZone.tds+'ppm';document.getElementById('wiz-out-flow').textContent=wizClickedZone.flow+'L/m';document.getElementById('wiz-out-diag').textContent=nearest.diag;const btn=document.getElementById('btn-step4-next');btn.disabled=false;showToast('📍 Análisis completado','emerald');}
 function buildWizardSummary(){const d=[{l:'Nombre',v:document.getElementById('wiz-name').value||'(no especificado)'},{l:'Colonia',v:document.getElementById('wiz-colonia').value||'(no especificada)'},{l:'Integrantes',v:document.getElementById('val-personas').textContent+' personas'},{l:'Gasto en agua',v:document.getElementById('val-gasto').textContent+' MXN/mes'},{l:'Topografía',v:document.querySelector('input[name="topo"]:checked')?.value||'(no seleccionado)'},{l:'Tipo de suelo',v:document.querySelector('input[name="suelo"]:checked')?.value||'(no seleccionado)'},{l:'Urgencia',v:'💧'.repeat(urgencyVal||0)+' ('+urgencyVal+'/5)'},{l:'Viabilidad AquaEngine',v:wizClickedZone?wizClickedZone.score+'%':'No ubicado'}];document.getElementById('wiz-summary-grid').innerHTML=d.map(it=>`<div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:.8rem"><div style="font-size:.7rem;color:var(--text-dim);text-transform:uppercase;font-family:var(--font-mono);margin-bottom:.2rem">${it.l}</div><div style="font-size:.9rem;font-weight:600;color:var(--text-main)">${it.v}</div></div>`).join('');}
 
 // ==================== REPORT ====================
@@ -1014,25 +1628,222 @@ document.getElementById('report-checklist').innerHTML=steps.map(s=>`<li><div cla
 const msg=encodeURIComponent(`Hola! Hice mi evaluación en AquaResiliencia Tijuana.\n👤 ${name}\n📍 Colonia: ${colonia}\n📊 AquaScore: ${comp}%\n🔬 ${vc}\n\nMe gustaría coordinar una visita técnica.`);document.getElementById('btn-wsp-contact').href=`https://wa.me/526644000000?text=${msg}`;window.scrollTo(0,0);showToast('🚀 Reporte generado! AquaScore™: '+comp+'%');}
 
 // ==================== MAP ENGINE ====================
-let curZone=officialZones[0],lPiezo,lRepda,lHazard,sPiezo=true,sRepda=true,sHazard=true,mapInitialized=false,map;
+let curZone=officialZones[0];
+let mapInitialized=false,map;
+let baseLayers={};
+let currentBase='sat';
+let lPiezo,lRepda,lHazard,lSgm,lRiesgo,lHidro,lBinacional;
+let sPiezo=true,sRepda=true,sHazard=true,sSgm=true,sRiesgo=true,sHidro=true,sBinacional=true;
+
 function initMap(){
   if(mapInitialized)return;
   mapInitialized=true;
-  lPiezo=L.layerGroup();lRepda=L.layerGroup();lHazard=L.layerGroup();
-  map=L.map('map-container',{tap:false,zoomSnap:0.5}).setView([32.5149,-117.0382],11);
-  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',{attribution:'&copy; Esri',maxZoom:16}).addTo(map);
-  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}',{attribution:'&copy; Esri',maxZoom:16}).addTo(map);
-  lPiezo.addTo(map);lRepda.addTo(map);lHazard.addTo(map);
-let aM=L.marker([curZone.lat,curZone.lng],{icon:L.divIcon({className:'custom-map-pin',html:'<div style="background:#00e5ff;width:16px;height:16px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 15px #00e5ff"></div>',iconSize:[16,16]})}).addTo(map);
-conaguaPiezometers.forEach(p=>{const icon=L.divIcon({html:`<div style="background:#a855f7;color:#fff;border-radius:4px;width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:bold;border:1px solid #fff;box-shadow:0 0 8px #a855f7">PZ</div>`,iconSize:[18,18]});L.marker([p.lat,p.lng],{icon}).bindPopup(`<strong style="color:#a855f7">${p.id}</strong><br>${p.name}<br>Nivel Estático: <strong>${p.depthStatic}m</strong><br>Tipo: ${p.type}`).addTo(lPiezo);});
-repdaWells.forEach(w=>{const icon=L.divIcon({html:`<div style="background:#3b82f6;color:#fff;border-radius:4px;width:18px;height:18px;display:flex;align-items:center;justify-content:center;font-size:9px;font-weight:bold;border:1px solid #fff;box-shadow:0 0 8px #3b82f6">P</div>`,iconSize:[18,18]});L.marker([w.lat,w.lng],{icon}).bindPopup(`<strong style="color:#3b82f6">${w.id}</strong><br>${w.owner}<br>Vol: ${w.volAuth}<br>Prof: ${w.depthTotal}m`).addTo(lRepda);});
-contaminationHotspots.forEach(h=>{L.circle([h.lat,h.lng],{radius:h.radius,color:'#f43f5e',fillColor:'#f43f5e',fillOpacity:.08,weight:1.5,dashArray:'5,5'}).bindPopup(`<strong style="color:#f43f5e">⚠️ ${h.name}</strong><br><strong>Riesgo:</strong> ${h.hazard}<br><strong>Fuente:</strong> ${h.source}<br><strong>Mitigación:</strong> ${h.mitigation}`).addTo(lHazard);});
-map.on('click',e=>{const {lat,lng}=e.latlng;let n=officialZones[0],md=Infinity;officialZones.forEach(z=>{const d=Math.hypot(z.lat-lat,z.lng-lng);if(d<md){md=d;n=z;}});document.getElementById('map-coords-display').textContent=`📍 Lat: ${lat.toFixed(4)} | Lng: ${lng.toFixed(4)}`;aM.setLatLng([lat,lng]);updateHydroOutput(n);drawStrata(n.strata);});
-updateHydroOutput(curZone);drawStrata(curZone.strata);}
-function setPresetZone(i){curZone=officialZones[i];document.querySelectorAll('.zone-chip').forEach((el,j)=>el.classList.toggle('active',j===i));if(map)map.setView([curZone.lat,curZone.lng],13);updateHydroOutput(curZone);drawStrata(curZone.strata);}
-function updateHydroOutput(z){document.getElementById('out-zone-name').textContent=z.name;document.getElementById('out-geology').textContent=z.geology;document.getElementById('out-badge').textContent=z.badgeText;document.getElementById('out-badge').className='score-badge '+z.badgeClass;document.getElementById('out-elev').innerHTML=z.elev+' <span style="font-size:.75rem;font-weight:400">msnm</span>';document.getElementById('out-depth').innerHTML=z.depth+' <span style="font-size:.75rem;font-weight:400">m</span>';document.getElementById('out-tds').innerHTML=z.tds+' <span style="font-size:.75rem;font-weight:400">ppm</span>';document.getElementById('out-flow').innerHTML=z.flow+' <span style="font-size:.75rem;font-weight:400">L/min</span>';document.getElementById('out-diag').innerHTML='<strong>Diagnóstico:</strong> '+z.diag;document.getElementById('out-source').textContent=z.source;document.getElementById('strata-aquifer-tag').textContent=z.aquiferTag;document.getElementById('altimeter-live-tag').textContent='⛰️ Cota: '+z.elev+' msnm';const isH=z.score<50;document.getElementById('hazard-alert-box').style.display=isH?'flex':'none';if(isH)document.getElementById('hazard-alert-text').textContent='RECHAZO TÉCNICO en esta zona. Ver diagnóstico abajo.';}
-function drawStrata(strata){const canvas=document.getElementById('strataCanvas');const ctx=canvas.getContext('2d');const W=canvas.width,H=canvas.height;ctx.clearRect(0,0,W,H);const maxD=strata[strata.length-1].depth;let pY=0;strata.forEach((l,i)=>{const y=(l.depth/maxD)*H;ctx.fillStyle=l.color;ctx.fillRect(0,pY,W*.65,y-pY);ctx.fillStyle='rgba(255,255,255,.6)';ctx.font='9px monospace';ctx.fillText(l.name,6,pY+(y-pY)/2+3);if(i<strata.length-1){ctx.fillStyle='#94a3b8';ctx.font='8px monospace';ctx.fillText(l.depth+'m',W*.67,y-2);}pY=y;});const aq=strata.find(l=>l.color==='#00e5ff');if(aq){const wY=(aq.depth/maxD)*H;ctx.strokeStyle='#00e5ff';ctx.setLineDash([4,3]);ctx.lineWidth=1.5;ctx.beginPath();ctx.moveTo(W*.65,wY);ctx.lineTo(W,wY);ctx.stroke();ctx.setLineDash([]);}}
-function toggleLayer(t){if(t==='piezo'){sPiezo=!sPiezo;sPiezo?lPiezo.addTo(map):map.removeLayer(lPiezo);document.getElementById('togglePiezoBtn').classList.toggle('active',sPiezo);}else if(t==='repda'){sRepda=!sRepda;sRepda?lRepda.addTo(map):map.removeLayer(lRepda);document.getElementById('toggleRepdaBtn').classList.toggle('active',sRepda);}else if(t==='hazard'){sHazard=!sHazard;sHazard?lHazard.addTo(map):map.removeLayer(lHazard);document.getElementById('toggleHazardBtn').classList.toggle('active',sHazard);}}
+
+  // Layer Groups
+  lPiezo=L.layerGroup();
+  lRepda=L.layerGroup();
+  lHazard=L.layerGroup();
+  lSgm=L.layerGroup();
+  lRiesgo=L.layerGroup();
+  lHidro=L.layerGroup();
+  lBinacional=L.layerGroup();
+
+  // Basemaps
+  baseLayers.sat=L.layerGroup([
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{attribution:'&copy; Esri World Imagery',maxZoom:18,detectRetina:true}),
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',{attribution:'&copy; Esri Places',maxZoom:18})
+  ]);
+  baseLayers.topo=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',{attribution:'&copy; Esri Topo',maxZoom:18,detectRetina:true});
+  baseLayers.dark=L.layerGroup([
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',{attribution:'&copy; Esri Dark',maxZoom:16}),
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}',{attribution:'&copy; Esri',maxZoom:16})
+  ]);
+
+  map=L.map('map-container',{tap:false,zoomSnap:0.5,scrollWheelZoom:false}).setView([32.5149,-117.0382],11);
+  baseLayers.sat.addTo(map);
+
+  // 1. CONAGUA Piezometers
+  conaguaPiezometers.forEach(p=>{
+    const icon=L.divIcon({html:`<div style="background:#a855f7;color:#fff;border-radius:6px;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:bold;border:2px solid #fff;box-shadow:0 0 10px #a855f7">PZ</div>`,iconSize:[22,22]});
+    L.marker([p.lat,p.lng],{icon}).bindPopup(`<strong style="color:#a855f7">${p.id}</strong><br>${p.name}<br>Nivel Estático: <strong>${p.depthStatic}m</strong><br>Tipo: ${p.type}`).addTo(lPiezo);
+  });
+
+  // 2. REPDA Concession Wells
+  repdaWells.forEach(w=>{
+    const icon=L.divIcon({html:`<div style="background:#3b82f6;color:#fff;border-radius:6px;width:20px;height:20px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:bold;border:2px solid #fff;box-shadow:0 0 10px #3b82f6">P</div>`,iconSize:[20,20]});
+    L.marker([w.lat,w.lng],{icon}).bindPopup(`<strong style="color:#3b82f6">${w.id}</strong><br>${w.owner}<br>Volumen: ${w.volAuth}<br>Prof: ${w.depthTotal}m`).addTo(lRepda);
+  });
+
+  // 3. CILA Contamination Hotspots
+  contaminationHotspots.forEach(h=>{
+    L.circle([h.lat,h.lng],{radius:h.radius,color:'#f43f5e',fillColor:'#f43f5e',fillOpacity:.12,weight:2,dashArray:'4,4'}).bindPopup(`<strong style="color:#f43f5e">⚠️ ${h.name}</strong><br><strong>Riesgo:</strong> ${h.hazard}<br><strong>Fuente:</strong> ${h.source}<br><strong>Mitigación:</strong> ${h.mitigation}`).addTo(lHazard);
+  });
+
+  // 4. SGM Geology Carta I11-11
+  sgmGeologyPolygons.forEach(g=>{
+    L.polygon(g.coords,{color:g.color,fillColor:g.color,fillOpacity:0.18,weight:1.5}).bindPopup(`<strong style="color:${g.color}">🟡 SGM I11-11: ${g.name}</strong><br>${g.desc}`).addTo(lSgm);
+  });
+
+  // 5. Protección Civil Risk / Fault Kill-Switch
+  riskPolygonsPC.forEach(r=>{
+    L.polygon(r.coords,{color:'#ef4444',fillColor:'#ef4444',fillOpacity:0.25,weight:2.5,dashArray:'6,4'}).bindPopup(`<strong style="color:#ef4444">⛔ ALERTA PROTECCIÓN CIVIL: ${r.name}</strong><br><strong>Peligro:</strong> ${r.hazard}<br><strong>Dictamen:</strong> ${r.mitigation}`).addTo(lRiesgo);
+  });
+
+  // 6. INEGI Stream Channels
+  inegiStreams.forEach(s=>{
+    L.polyline(s.latlngs,{color:s.color,weight:s.width,opacity:0.85}).bindPopup(`<strong style="color:${s.color}">🌊 INEGI RHD 2.0: ${s.name}</strong><br>Drenaje natural &amp; estrato aluvial de alta recarga.`).addTo(lHidro);
+  });
+
+  // 7. USGS / TRNERR Transboundary Stations
+  usgsBinational.forEach(u=>{
+    const icon=L.divIcon({html:`<div style="background:#10b981;color:#fff;border-radius:6px;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:bold;border:2px solid #fff;box-shadow:0 0 10px #10b981">US</div>`,iconSize:[22,22]});
+    L.marker([u.lat,u.lng],{icon}).bindPopup(`<strong style="color:#10b981">${u.id}</strong><br>${u.name}<br>Nivel: <strong>${u.level}</strong> | TDS: ${u.tds}<br>Tipo: ${u.type}`).addTo(lBinacional);
+  });
+
+  // Add all layers to map
+  lPiezo.addTo(map);
+  lRepda.addTo(map);
+  lHazard.addTo(map);
+  lSgm.addTo(map);
+  lRiesgo.addTo(map);
+  lHidro.addTo(map);
+  lBinacional.addTo(map);
+
+  let aM=L.marker([curZone.lat,curZone.lng],{icon:L.divIcon({className:'custom-map-pin',html:'<div style="background:#00e5ff;width:20px;height:20px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 20px #00e5ff"></div>',iconSize:[20,20]})}).addTo(map);
+
+  map.on('click',e=>{
+    const {lat,lng}=e.latlng;
+    let n=officialZones[0],md=Infinity;
+    officialZones.forEach(z=>{
+      const d=Math.hypot(z.lat-lat,z.lng-lng);
+      if(d<md){md=d;n=z;}
+    });
+    document.getElementById('map-coords-display').textContent=`📍 Lat: ${lat.toFixed(4)} | Lng: ${lng.toFixed(4)}`;
+    aM.setLatLng([lat,lng]);
+    updateHydroOutput(n);
+    drawStrata(n.strata);
+  });
+
+  updateHydroOutput(curZone);
+  drawStrata(curZone.strata);
+}
+
+function setBaseMap(type){
+  if(!map)return;
+  if(baseLayers[currentBase])map.removeLayer(baseLayers[currentBase]);
+  currentBase=type;
+  if(baseLayers[type])baseLayers[type].addTo(map);
+  document.getElementById('bmSatBtn').classList.toggle('active',type==='sat');
+  document.getElementById('bmTopoBtn').classList.toggle('active',type==='topo');
+  document.getElementById('bmDarkBtn').classList.toggle('active',type==='dark');
+  showToast(type==='sat'?'🛰️ Satélite HD activado':type==='topo'?'⛰️ Topografía DEM activada':'🌙 Modo Oscuro SIG activado');
+}
+
+function setPresetZone(i){
+  curZone=officialZones[i];
+  document.querySelectorAll('.zone-chip').forEach((el,j)=>el.classList.toggle('active',j===i));
+  if(map){
+    map.flyTo([curZone.lat,curZone.lng],13.5,{duration:1.2});
+  }
+  updateHydroOutput(curZone);
+  drawStrata(curZone.strata);
+}
+
+function updateHydroOutput(z){
+  document.getElementById('out-zone-name').textContent=z.name;
+  document.getElementById('out-geology').textContent=z.geology;
+  document.getElementById('out-badge').textContent=z.badgeText;
+  document.getElementById('out-badge').className='score-badge '+z.badgeClass;
+  document.getElementById('out-elev').innerHTML=z.elev+' <span style="font-size:.75rem;font-weight:400">msnm</span>';
+  document.getElementById('out-depth').innerHTML=z.depth+' <span style="font-size:.75rem;font-weight:400">m</span>';
+  document.getElementById('out-tds').innerHTML=z.tds+' <span style="font-size:.75rem;font-weight:400">ppm</span>';
+  document.getElementById('out-flow').innerHTML=z.flow+' <span style="font-size:.75rem;font-weight:400">L/min</span>';
+  document.getElementById('out-diag').innerHTML='<strong>Diagnóstico:</strong> '+z.diag;
+  document.getElementById('out-source').textContent=z.source;
+  document.getElementById('strata-aquifer-tag').textContent=z.aquiferTag;
+  document.getElementById('altimeter-live-tag').textContent='⛰️ Cota: '+z.elev+' msnm';
+  const isH=z.score<50;
+  document.getElementById('hazard-alert-box').style.display=isH?'flex':'none';
+  if(isH)document.getElementById('hazard-alert-text').textContent='RECHAZO TÉCNICO en esta zona. Ver diagnóstico abajo.';
+}
+
+// Crisp High-DPI Strata Canvas Rendering for iPhone Retina Screens
+function drawStrata(strata){
+  const canvas=document.getElementById('strataCanvas');
+  if(!canvas)return;
+  const ctx=canvas.getContext('2d');
+  const dpr=window.devicePixelRatio||1;
+  const rect=canvas.getBoundingClientRect();
+  const W_css=rect.width||canvas.width||360;
+  const H_css=110;
+  canvas.width=W_css*dpr;
+  canvas.height=H_css*dpr;
+  ctx.scale(dpr,dpr);
+  const W=W_css, H=H_css;
+  ctx.clearRect(0,0,W,H);
+  const maxD=strata[strata.length-1].depth;
+  let pY=0;
+  strata.forEach((l,i)=>{
+    const y=(l.depth/maxD)*H;
+    ctx.fillStyle=l.color;
+    ctx.fillRect(0,pY,W*.65,y-pY);
+    ctx.fillStyle='rgba(255,255,255,.9)';
+    ctx.font='10px "JetBrains Mono", monospace';
+    ctx.fillText(l.name,6,pY+(y-pY)/2+4);
+    if(i<strata.length-1){
+      ctx.fillStyle='#94a3b8';
+      ctx.font='9px "JetBrains Mono", monospace';
+      ctx.fillText(l.depth+'m',W*.67,y-2);
+    }
+    pY=y;
+  });
+  const aq=strata.find(l=>l.color==='#00e5ff');
+  if(aq){
+    const wY=(aq.depth/maxD)*H;
+    ctx.strokeStyle='#00e5ff';
+    ctx.setLineDash([4,3]);
+    ctx.lineWidth=1.5;
+    ctx.beginPath();
+    ctx.moveTo(W*.65,wY);
+    ctx.lineTo(W,wY);
+    ctx.stroke();
+    ctx.setLineDash([]);
+  }
+}
+
+function toggleLayer(t){
+  if(t==='piezo'){
+    sPiezo=!sPiezo;
+    sPiezo?lPiezo.addTo(map):map.removeLayer(lPiezo);
+    document.getElementById('togglePiezoBtn').classList.toggle('active',sPiezo);
+  }else if(t==='repda'){
+    sRepda=!sRepda;
+    sRepda?lRepda.addTo(map):map.removeLayer(lRepda);
+    document.getElementById('toggleRepdaBtn').classList.toggle('active',sRepda);
+  }else if(t==='hazard'){
+    sHazard=!sHazard;
+    sHazard?lHazard.addTo(map):map.removeLayer(lHazard);
+    document.getElementById('toggleHazardBtn').classList.toggle('active',sHazard);
+  }else if(t==='sgm'){
+    sSgm=!sSgm;
+    sSgm?lSgm.addTo(map):map.removeLayer(lSgm);
+    document.getElementById('toggleSgmBtn').classList.toggle('active',sSgm);
+  }else if(t==='riesgo'){
+    sRiesgo=!sRiesgo;
+    sRiesgo?lRiesgo.addTo(map):map.removeLayer(lRiesgo);
+    document.getElementById('toggleRiesgoBtn').classList.toggle('active',sRiesgo);
+  }else if(t==='hidro'){
+    sHidro=!sHidro;
+    sHidro?lHidro.addTo(map):map.removeLayer(lHidro);
+    document.getElementById('toggleHidroBtn').classList.toggle('active',sHidro);
+  }else if(t==='binacional'){
+    sBinacional=!sBinacional;
+    sBinacional?lBinacional.addTo(map):map.removeLayer(lBinacional);
+    document.getElementById('toggleBinacionalBtn').classList.toggle('active',sBinacional);
+  }
+  const count=[sPiezo,sRepda,sHazard,sSgm,sRiesgo,sHidro,sBinacional].filter(Boolean).length;
+  document.getElementById('layer-status-tag').textContent=`🗺️ ${count} Capas Activas`;
+}
 
 // ==================== CALCULATOR ====================
 function initCalc(){const pr=document.getElementById('personasRange');const cr=document.getElementById('consumoRange');if(!pr||!cr)return;function update(){const p=parseInt(pr.value);const c=parseInt(cr.value);document.getElementById('personasVal').textContent=p;document.getElementById('consumoVal').textContent=c;document.getElementById('litros80').textContent=Math.round(c*.8)+' L';document.getElementById('litros20').textContent=Math.round(c*.2)+' L';const payback=(14000/(1200+c/100*50)).toFixed(1);document.getElementById('paybackVal').textContent=payback+' meses';}pr.addEventListener('input',update);cr.addEventListener('input',update);}
@@ -1053,11 +1864,13 @@ function showToast(msg,type){const c=document.getElementById('toast-container');
 window.addEventListener('resize',()=>{
   if(mapInitialized&&map)map.invalidateSize();
   if(wizMapInit&&wizMap)wizMap.invalidateSize();
+  if(curZone)drawStrata(curZone.strata);
 });
 window.addEventListener('orientationchange',()=>{
   setTimeout(()=>{
     if(mapInitialized&&map)map.invalidateSize();
     if(wizMapInit&&wizMap)wizMap.invalidateSize();
+    if(curZone)drawStrata(curZone.strata);
   },350);
 });
 

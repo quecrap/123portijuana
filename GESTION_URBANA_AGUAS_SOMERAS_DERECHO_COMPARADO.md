@@ -115,10 +115,17 @@ En los distritos de Surco, Miraflores y San Borja, se han implementado cientos d
 
 ## V. ESTUDIO COMPARADO: MIAMI / SUR DE FLORIDA (ACUÍFERO BISCAYNE)
 
-### 1. Contexto Hidrogeológico
-El Acuífero Biscayne es un acuífero kárstico no confinado de roca caliza extremadamente porosa y arenas finas, con un manto freático a flor de tierra (**1 a 3 metros**).
+### 1. Contexto Hidrogeológico y Dinámica Costera
+* **Hidrogeología:** Formación permeable de caliza oolítica (*Miami Limestone*) y arenas cuarzosas con manto freático a **1–3 metros** de la superficie.
+* **Transmisividad Hidráulica:** Extremadamente alta ($T > 10,000\text{ m}^2/\text{día}$), lo que permite a pequeños pozos someros suministrar caudales continuos con abatimientos dinámicos mínimos.
+* **Gestión de la Cuña Salina:** Se controla mediante bombeo distribuido de bajo caudal y desalinización *Point-of-Use* (POU), evitando la sobreexplotación puntual.
 
-### 2. Tecnología Frugal: *Sand Points* (*Driven Well Points*)
+### 2. Marco Regulatorio: *General Permits by Rule* (SFWMD)
+El **South Florida Water Management District (SFWMD)** y el Capítulo 40E-2 del Código Administrativo de Florida:
+* **Exención por Regla (*General Permits by Rule*):** Los pozos someros residenciales (<4" de diámetro y <12m de profundidad) para uso doméstico secundario y riego están **exentos de trámite concesional individual**.
+* **Alivio de Red:** Desacoplan la demanda de agua no potable de la red central municipal durante temporadas secas.
+
+### 3. Tecnología Frugal: *Sand Points* (*Driven Well Points*)
 En el sur de Florida, la captación somera residencial se realiza mediante el método de **Puntas Arenadas (*Sand Points* o *Well Points*)**:
 * Se hinca mecánicamente un tubo de acero galvanizado o acero inoxidable de **1.25" a 2" de diámetro**, provisto en su extremo de una punta cónica y una malla de alambre ranurada continua (*Well Screen*).
 * La instalación se completa en menos de 3 horas sin necesidad de maquinaria de perforación pesada rotatoria.
@@ -144,6 +151,10 @@ DIAGRAMA TÉCNICO DE SAND POINT (EXTRACCIÓN SOMERA FRUGAL)
                  │ ▲ │ Punta de penetración cónica
                  └───┘
 ```
+
+### 4. Transferibilidad Directa a AquaResiliencia Tijuana
+* **Similitud Geológica:** Las cañadas aluviales de Tijuana (Playas de Tijuana, Cañón del Matadero, Arroyo Alamar, Cañón Johnson) presentan gravas y arenas de alta transmisividad idénticas a los lechos permeables de Florida.
+* **Control de Salinidad:** La experiencia de Miami demuestra que la interfaz salina costera se gestiona eficientemente con la separación 80/20: el 80% para uso de servicios e higiene y el 20% mediante micro-ósmosis inversa POU domiciliaria.
 
 ---
 
