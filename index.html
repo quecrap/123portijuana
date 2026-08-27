@@ -1620,14 +1620,14 @@ function setUrgency(v){urgencyVal=v;document.querySelectorAll('.urgency-star').f
 
 function initWizardMap(){
   wizMap=L.map('wizard-map-container',{tap:false,zoomSnap:0.5,scrollWheelZoom:false}).setView([32.5149,-117.0382],11);
-  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{attribution:'&copy; Esri World Imagery',maxZoom:18,detectRetina:true}).addTo(wizMap);
-  L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',{attribution:'&copy; Esri',maxZoom:18}).addTo(wizMap);
+  L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}',{attribution:'&copy; Google Satellite',maxZoom:20}).addTo(wizMap);
   officialZones.forEach(z=>{
     const c=z.score>=80?'#10b981':z.score>=50?'#f59e0b':'#f43f5e';
     const icon=L.divIcon({html:`<div style="background:${c};width:16px;height:16px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 10px ${c}"></div>`,iconSize:[16,16]});
     L.marker([z.lat,z.lng],{icon}).addTo(wizMap).bindPopup(`<strong>${z.name}</strong><br>Viabilidad: ${z.score}%`);
   });
   wizMap.on('click',e=>analyzeWizardLocation(e.latlng.lat,e.latlng.lng));
+  setTimeout(()=>{if(wizMap)wizMap.invalidateSize();},250);
 }
 
 function analyzeWizardLocation(lat,lng){let nearest=officialZones[0],minDist=Infinity;officialZones.forEach(z=>{const d=Math.hypot(z.lat-lat,z.lng-lng);if(d<minDist){minDist=d;nearest=z;}});const altVal=parseInt(document.getElementById('wiz-altitud').value)||60;const penalty=Math.max(0,(altVal-30)/10);const score=Math.round(Math.min(95,Math.max(5,nearest.score-penalty+(Math.random()*6-3))));wizClickedZone={lat,lng,score,name:nearest.name,depth:(nearest.depth+(Math.random()*1.5-.75)).toFixed(1),tds:Math.round(nearest.tds+(Math.random()*150-75)),flow:(nearest.flow+(Math.random()*.5-.25)).toFixed(1),elev:altVal,diag:nearest.diag,badgeClass:score>=75?'high':score>=45?'medium':'low'};if(wizMarker)wizMap.removeLayer(wizMarker);wizMarker=L.marker([lat,lng],{icon:L.divIcon({html:'<div style="background:#10b981;width:22px;height:22px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 20px #10b981"></div>',iconSize:[22,22]})}).addTo(wizMap);const res=document.getElementById('wiz-map-result');res.classList.add('visible');const em={high:'🟢',medium:'🟡',low:'🔴'}[wizClickedZone.badgeClass];document.getElementById('wiz-zone-name').textContent=nearest.name;document.getElementById('wiz-score-badge').textContent=`${em} ${score}% VIABILIDAD`;document.getElementById('wiz-score-badge').className='score-badge '+wizClickedZone.badgeClass;document.getElementById('wiz-out-elev').textContent=altVal+'m';document.getElementById('wiz-out-depth').textContent=wizClickedZone.depth+'m';document.getElementById('wiz-out-tds').textContent=wizClickedZone.tds+'ppm';document.getElementById('wiz-out-flow').textContent=wizClickedZone.flow+'L/m';document.getElementById('wiz-out-diag').textContent=nearest.diag;const btn=document.getElementById('btn-step4-next');btn.disabled=false;showToast('📍 Análisis completado','emerald');}
@@ -1668,19 +1668,29 @@ function initMap(){
   lHidro=L.layerGroup();
   lBinacional=L.layerGroup();
 
-  // Basemaps
-  baseLayers.sat=L.layerGroup([
-    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{attribution:'&copy; Esri World Imagery',maxZoom:18,detectRetina:true}),
-    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',{attribution:'&copy; Esri Places',maxZoom:18})
-  ]);
-  baseLayers.topo=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}',{attribution:'&copy; Esri Topo',maxZoom:18,detectRetina:true});
-  baseLayers.dark=L.layerGroup([
-    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',{attribution:'&copy; Esri Dark',maxZoom:16}),
-    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}',{attribution:'&copy; Esri',maxZoom:16})
-  ]);
+  // High-reliability multi-CDN basemaps for Android & iOS
+  baseLayers.sat=L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}',{attribution:'&copy; Google Satélite HD',maxZoom:20});
+  baseLayers.topo=L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',{attribution:'&copy; CartoDB &amp; OSM',subdomains:'abcd',maxZoom:19});
+  baseLayers.dark=L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{attribution:'&copy; CartoDB Dark Matter',subdomains:'abcd',maxZoom:19});
 
   map=L.map('map-container',{tap:false,zoomSnap:0.5,scrollWheelZoom:false}).setView([32.5149,-117.0382],11);
   baseLayers.sat.addTo(map);
+
+  // Progressive invalidateSize triggers to guarantee instant mobile tile rendering
+  setTimeout(()=>{if(map)map.invalidateSize();},150);
+  setTimeout(()=>{if(map)map.invalidateSize();},500);
+  setTimeout(()=>{if(map)map.invalidateSize();},1200);
+
+  window.addEventListener('resize',()=>{if(map)map.invalidateSize();});
+  window.addEventListener('orientationchange',()=>{setTimeout(()=>{if(map)map.invalidateSize();},300);});
+
+  if('IntersectionObserver' in window){
+    const obs=new IntersectionObserver((entries)=>{
+      entries.forEach(e=>{if(e.isIntersecting&&map)map.invalidateSize();});
+    },{threshold:0.05});
+    const el=document.getElementById('map-container');
+    if(el)obs.observe(el);
+  }
 
   // 1. CONAGUA Piezometers
   conaguaPiezometers.forEach(p=>{
@@ -1752,7 +1762,10 @@ function setBaseMap(type){
   if(!map)return;
   if(baseLayers[currentBase])map.removeLayer(baseLayers[currentBase]);
   currentBase=type;
-  if(baseLayers[type])baseLayers[type].addTo(map);
+  if(baseLayers[type]){
+    baseLayers[type].addTo(map);
+    if(typeof baseLayers[type].bringToBack==='function')baseLayers[type].bringToBack();
+  }
   document.getElementById('bmSatBtn').classList.toggle('active',type==='sat');
   document.getElementById('bmTopoBtn').classList.toggle('active',type==='topo');
   document.getElementById('bmDarkBtn').classList.toggle('active',type==='dark');
