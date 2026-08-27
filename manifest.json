@@ -1,0 +1,24 @@
+{
+  "name": "AquaResiliencia Tijuana — Red Centinela",
+  "short_name": "AquaResiliencia",
+  "description": "Plataforma de Inteligencia Hidrogeológica, Viabilidad de Pozos Someros y Red Centinela IoT para Tijuana.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#070d18",
+  "theme_color": "#070d18",
+  "orientation": "any",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 192 192'><rect width='192' height='192' rx='40' fill='%23070d18'/><path d='M96 28 L150 96 A54 54 0 1 1 42 96 Z' fill='%2300e5ff'/><circle cx='96' cy='120' r='18' fill='%23070d18'/></svg>",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect width='512' height='512' rx='100' fill='%23070d18'/><path d='M256 75 L400 256 A144 144 0 1 1 112 256 Z' fill='%2300e5ff'/><circle cx='256' cy='320' r='48' fill='%23070d18'/></svg>",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
