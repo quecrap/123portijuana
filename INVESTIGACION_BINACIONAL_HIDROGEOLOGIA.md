@@ -77,7 +77,7 @@ A continuación se detalla la base de datos de aprovechamientos subterráneos y 
 
 ## 🛡️ 4. BLINDAJE TÉCNICO Y VINCULACIÓN AL SOFTWARE (AQUAENGINE)
 
-Toda esta matriz de datos geológicos y químicos se conecta directamente con el código en [index.html](file:///c:/Users/PEPITO/Downloads/123portijuana/index.html):
+Toda esta matriz de datos geológicos y químicos se conecta directamente con el código en [index.html](./index.html):
 1. **Altimetría SRTM 30m:** Evalúa la cota satelital contra el perfil geológico regional.
 2. **Capas Dinámicas:** Permite al usuario activar/desactivar la red oficial de CONAGUA, los puntos binacionales del USGS y los pozos de la CESPT.
 3. **Cálculo de Sello Sanitario y Tren POU:** Si el pozo está en una zona de alta conductividad ($>3,000\text{ µS/cm}$) o cerca de un foco industrial, el software prescribe automáticamente el tren de ósmosis inversa reforzada con booster y sello sanitario a 2.5m de profundidad.
