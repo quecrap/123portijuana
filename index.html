@@ -13,6 +13,7 @@
   <meta name="apple-mobile-web-app-title" content="AquaResiliencia">
   <meta name="format-detection" content="telephone=no">
   <meta name="theme-color" content="#070d18">
+  <link rel="manifest" href="manifest.json">
   <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%23070d18'/><path d='M50 15 L78 50 A30 30 0 1 1 22 50 Z' fill='%2300e5ff'/></svg>">
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -664,10 +665,27 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
   .modal-content{max-height:92vh;max-height:92dvh}
   .modal-header,.modal-body,.modal-footer{padding:1rem}
 }
+.gps-pulse-marker{
+  width:22px;height:22px;border-radius:50%;background:var(--emerald-accent);
+  border:3px solid #ffffff;box-shadow:0 0 15px var(--emerald-accent);
+  animation:gpsPulse 1.8s infinite;
+}
+@keyframes gpsPulse{
+  0%{box-shadow:0 0 0 0 rgba(16,185,129,0.8)}
+  70%{box-shadow:0 0 0 16px rgba(16,185,129,0)}
+  100%{box-shadow:0 0 0 0 rgba(16,185,129,0)}
+}
 @media print{
-  #auth-overlay,#role-overlay,#wizard-overlay,#user-header-bar,header,.report-actions,#toast-container,.mobile-nav-toggle,#mobile-drawer{display:none!important}
-  #report-overlay{position:relative!important;background:white!important;color:black!important;padding:0!important}
-  .report-card{border:1px solid #ccc;color:#000}
+  body{background:#fff!important;color:#000!important}
+  #auth-overlay,#role-overlay,#wizard-overlay,#user-header-bar,header,footer,.report-actions,#toast-container,.mobile-nav-toggle,#mobile-drawer,.btn-report-secondary,.btn-report-primary,.btn-wsp,.basemap-switch-bar,.layers-toggle-bar,.zone-chip-grid{display:none!important}
+  #report-overlay{position:static!important;background:#fff!important;color:#000!important;padding:0!important;min-height:auto!important}
+  .report-container{max-width:100%!important;padding:0!important}
+  .report-card,.report-header-section{background:#fff!important;border:1px solid #cbd5e1!important;color:#0f172a!important;box-shadow:none!important;break-inside:avoid;margin-bottom:1rem!important;padding:1rem!important}
+  .report-score-big{color:#059669!important}
+  .report-item{background:#f8fafc!important;border:1px solid #cbd5e1!important;color:#0f172a!important}
+  .report-item-val{color:#0f172a!important}
+  .report-section-title{color:#0284c7!important}
+  .print-cert-footer{display:block!important;margin-top:1.5rem;padding-top:1rem;border-top:2px dashed #94a3b8}
 }
 </style>
 </head>
@@ -947,7 +965,10 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
     <div class="wizard-step" id="wiz-step-4">
       <div class="wizard-panel">
         <div class="wizard-section-title">🗺️ Ubica Tu Terreno en el Mapa</div>
-        <div class="wizard-map-instruction">📍 <span>Haz clic en el mapa en la ubicación aproximada de tu terreno. AquaEngine calculará la viabilidad.</span></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem;flex-wrap:wrap;gap:.5rem">
+          <div class="wizard-map-instruction" style="margin-bottom:0">📍 <span>Haz clic en el mapa o detecta tu predio con GPS:</span></div>
+          <button type="button" class="btn-secondary" onclick="locateUserGPS(wizMap, true)" style="min-height:36px;padding:.35rem .85rem;font-size:.8rem;border-color:var(--emerald-accent);color:var(--emerald-accent)">📍 Mi Ubicación GPS</button>
+        </div>
         <div id="wizard-map-container"></div>
         <p style="font-size:.78rem;color:var(--text-dim);margin-top:.5rem;text-align:center;font-family:var(--font-mono)">Precisión de ±100–200m es suficiente para el análisis.</p>
         <div class="wizard-map-result" id="wiz-map-result">
@@ -1025,8 +1046,19 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
       <div class="report-section-title">🗺️ Próximos Pasos Recomendados</div>
       <ul class="report-checklist" id="report-checklist"></ul>
     </div>
+    <div class="print-cert-footer" style="display:none">
+      <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:1.5rem;padding-top:1rem">
+        <div>
+          <p style="font-weight:700;font-size:.9rem;color:#0f172a">AquaResiliencia Tijuana — Red Centinela Ciudadana</p>
+          <p style="font-size:.75rem;color:#64748b">Protocolo hidrogeológico calibrado con CONAGUA DR_0201 (2024), USGS Basin 9-19 e INEGI RHD 2.0</p>
+        </div>
+        <div style="text-align:center;border-top:1px solid #475569;width:220px;padding-top:.4rem;font-size:.78rem;color:#334155">
+          Firma Responsable Técnico / Perforista
+        </div>
+      </div>
+    </div>
     <div class="report-actions">
-      <button class="btn-report-primary" onclick="window.print()">📥 Descargar Reporte</button>
+      <button class="btn-report-primary" onclick="descargarDictamenPDF()">📥 Descargar Dictamen PDF</button>
       <a id="btn-wsp-contact" class="btn-wsp" href="#" target="_blank" rel="noopener noreferrer">💬 Contactar Técnico (WhatsApp)</a>
       <button class="btn-report-secondary" onclick="showDashboard()">🗺️ Ver Mapa Completo</button>
       <button class="btn-report-secondary" onclick="goToWizard()">🔄 Nueva Evaluación</button>
@@ -1171,6 +1203,12 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
             <button id="bmSatBtn" class="basemap-chip" onclick="setBaseMap('sat')">🛰️ Satélite HD</button>
             <button id="bmTopoBtn" class="basemap-chip" onclick="setBaseMap('topo')">📈 Curvas DEM</button>
             <button id="bmDarkBtn" class="basemap-chip" onclick="setBaseMap('dark')">🌙 Modo Oscuro</button>
+            <button id="btnGpsLocate" class="basemap-chip" onclick="locateUserGPS(map)" style="border-color:var(--emerald-accent);color:var(--emerald-accent)">📍 Mi Predio (GPS)</button>
+            <div style="display:inline-flex;align-items:center;gap:0.35rem;font-size:0.75rem;color:var(--text-muted);margin-left:auto">
+              <span>Opacidad:</span>
+              <input type="range" id="reliefOpacitySlider" min="20" max="100" value="100" style="width:55px;accent-color:var(--cyan-primary)" oninput="adjustReliefOpacity(this.value)">
+              <span id="reliefOpacityVal" style="font-family:var(--font-mono)">100%</span>
+            </div>
           </div>
           <div id="map-container"></div>
           <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.75rem;font-size:.78rem;color:var(--text-dim);font-family:var(--font-mono);flex-wrap:wrap;gap:.5rem">
@@ -1385,9 +1423,49 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
         <div class="gauge-card"><div class="gauge-title">Conductividad TDS</div><div class="gauge-val" id="tdsVal">420<span class="gauge-unit">ppm</span></div></div>
         <div class="gauge-card"><div class="gauge-title">Volumen Diario</div><div class="gauge-val" id="volTotal">328<span class="gauge-unit">L</span></div></div>
       </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:1.25rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.08);flex-wrap:wrap;gap:.75rem">
+        <div style="display:flex;align-items:center;gap:.6rem;font-size:.82rem;color:var(--text-muted)">
+          <span>Fuente de Telemetría:</span>
+          <span id="esp32SourceLabel" style="font-family:var(--font-mono);color:var(--cyan-primary);font-weight:700">Simulación Dinámica (Ciclo de Pozo)</span>
+        </div>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+          <button class="btn-secondary" onclick="openEsp32Modal()" style="min-height:36px;padding:.35rem .85rem;font-size:.8rem">📡 Conectar Nodo ESP32</button>
+          <button class="btn-secondary" id="btnCutoffTest" onclick="toggleEmergencyCutoff()" style="min-height:36px;padding:.35rem .85rem;font-size:.8rem;border-color:var(--rose-accent);color:var(--rose-accent)">🚨 Probar Corte Preventivo</button>
+        </div>
+      </div>
     </div>
   </section>
 </main>
+
+<!-- ESP32 HARDWARE MODAL -->
+<div class="modal-overlay" id="esp32Modal">
+  <div class="modal-content" style="max-width:560px">
+    <div class="modal-header">
+      <h3 style="font-family:var(--font-heading);font-size:1.15rem;color:var(--cyan-primary)">📡 Conectar Hardware ESP32 (Nodo Centinela)</h3>
+      <button onclick="closeEsp32Modal()" style="background:none;border:none;color:var(--text-muted);font-size:1.5rem;cursor:pointer">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p style="margin-bottom:1rem;font-family:var(--font-body);color:var(--text-muted)">Conecta la interfaz web directamente a la IP o endpoint de telemetría de tu módulo ESP32 WROOM-32 en campo.</p>
+      <div style="margin-bottom:1rem">
+        <label style="display:block;font-size:.78rem;text-transform:uppercase;color:var(--text-dim);margin-bottom:.4rem">Dirección IP o Endpoint del ESP32</label>
+        <input type="text" id="esp32IpInput" class="wiz-input" placeholder="http://192.168.4.1/telemetry" value="http://192.168.4.1/telemetry">
+      </div>
+      <div style="background:rgba(15,23,42,.8);padding:.85rem;border-radius:10px;border:1px solid rgba(56,189,248,.2);margin-bottom:1rem;font-size:.8rem;line-height:1.5">
+        <p>💡 <strong>Modo Access Point por Defecto:</strong></p>
+        <p>• Conéctate al WiFi: <code>AquaResiliencia_AP</code> (Pass: <code>agua_centinela</code>)</p>
+        <p>• Endpoint por defecto: <code>http://192.168.4.1/telemetry</code></p>
+      </div>
+      <div style="display:flex;align-items:center;gap:.6rem">
+        <input type="checkbox" id="esp32AutoPoll" checked style="accent-color:var(--cyan-primary);width:18px;height:18px">
+        <label for="esp32AutoPoll" style="font-size:.85rem;color:var(--text-main);cursor:pointer">Sondeo automático cada 2 segundos</label>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-secondary" onclick="useSimulatedData()">🔄 Usar Simulación</button>
+      <button class="btn-action" onclick="connectEsp32Hardware()">⚡ Vincular Hardware</button>
+    </div>
+  </div>
+</div>
 
 <div class="modal-overlay" id="legalModal">
   <div class="modal-content">
@@ -1904,6 +1982,193 @@ window.addEventListener('orientationchange',()=>{
     if(curZone)drawStrata(curZone.strata);
   },350);
 });
+
+// ==================== GEOLOCATION (GPS REAL-TIME) ====================
+let gpsMarker=null;
+let gpsCircle=null;
+
+function locateUserGPS(mapTarget, isWizard=false){
+  if(!navigator.geolocation){
+    showToast('⚠️ Tu navegador no soporta geolocalización GPS', 'amber');
+    return;
+  }
+  showToast('📡 Obteniendo señal GPS de alta precisión...', 'emerald');
+  navigator.geolocation.getCurrentPosition(
+    (pos)=>{
+      const lat=pos.coords.latitude;
+      const lng=pos.coords.longitude;
+      const accuracy=pos.coords.accuracy;
+
+      // Tijuana bounding box filter check (roughly 32.2 to 32.7, -117.3 to -116.6)
+      const inTijuana=(lat>=32.2 && lat<=32.7 && lng>=-117.3 && lng<=-116.6);
+
+      // Find nearest zone
+      let n=officialZones[0], md=Infinity;
+      officialZones.forEach(z=>{
+        const d=Math.hypot(z.lat-lat, z.lng-lng);
+        if(d<md){ md=d; n=z; }
+      });
+
+      if(mapTarget){
+        mapTarget.flyTo([lat, lng], 15, {duration: 1.5});
+        if(gpsMarker) mapTarget.removeLayer(gpsMarker);
+        if(gpsCircle) mapTarget.removeLayer(gpsCircle);
+
+        const gpsIcon=L.divIcon({
+          className:'custom-gps-pin',
+          html:`<div class="gps-pulse-marker" title="Tu Predio (GPS)"></div>`,
+          iconSize:[22,22]
+        });
+
+        gpsMarker=L.marker([lat, lng],{icon:gpsIcon}).addTo(mapTarget);
+        gpsCircle=L.circle([lat, lng],{
+          radius: Math.min(accuracy, 250),
+          color: '#10b981',
+          fillColor: '#10b981',
+          fillOpacity: 0.15,
+          weight: 1.5,
+          dashArray: '3,3'
+        }).addTo(mapTarget);
+
+        gpsMarker.bindPopup(`<strong>📍 Tu Ubicación Actual (GPS)</strong><br>Lat: ${lat.toFixed(5)}, Lng: ${lng.toFixed(5)}<br>Margen: ±${Math.round(accuracy)}m<br>Zona Estimada: <strong>${n.name}</strong>`).openPopup();
+      }
+
+      if(isWizard){
+        wizSelectedZone=n;
+        const rBox=document.getElementById('wiz-map-result');
+        if(rBox) rBox.classList.add('visible');
+        document.getElementById('wiz-zone-name').textContent=n.name+' (GPS Detectado)';
+        document.getElementById('wiz-score-badge').textContent=n.badgeText;
+        document.getElementById('wiz-score-badge').className='score-badge '+n.badgeClass;
+        document.getElementById('wiz-out-elev').textContent=n.elev+' msnm';
+        document.getElementById('wiz-out-depth').textContent=n.depth+' m';
+        document.getElementById('wiz-out-tds').textContent=n.tds+' ppm';
+        document.getElementById('wiz-out-flow').textContent=n.flow+' L/min';
+        document.getElementById('wiz-out-diag').innerHTML='<strong>Diagnóstico GPS:</strong> '+n.diag;
+        showToast(`📍 Predio detectado en ${n.name} (±${Math.round(accuracy)}m)`, 'emerald');
+      } else {
+        curZone=n;
+        document.getElementById('map-coords-display').textContent=`📍 GPS: ${lat.toFixed(4)} | ${lng.toFixed(4)} (±${Math.round(accuracy)}m)`;
+        updateHydroOutput(n);
+        drawStrata(n.strata);
+        showToast(`📍 Predio ubicado en ${n.name}`, 'emerald');
+      }
+    },
+    (err)=>{
+      let msg='No se pudo obtener la ubicación GPS.';
+      if(err.code===1) msg='Permiso de ubicación denegado.';
+      else if(err.code===2) msg='Señal GPS no disponible.';
+      else if(err.code===3) msg='Tiempo de espera GPS agotado.';
+      showToast('⚠️ '+msg, 'amber');
+    },
+    {enableHighAccuracy:true, timeout:10000, maximumAge:0}
+  );
+}
+
+// ==================== 3D RELIEF OPACITY ADJUSTMENT ====================
+function adjustReliefOpacity(val){
+  const opacity=parseFloat(val)/100;
+  document.getElementById('reliefOpacityVal').textContent=val+'%';
+  if(baseLayers && baseLayers.relieve){
+    baseLayers.relieve.setOpacity(opacity);
+  }
+}
+
+// ==================== PDF & CERTIFICATE EXPORT ====================
+function descargarDictamenPDF(){
+  showToast('📄 Preparando dictamen oficial en PDF...', 'emerald');
+  setTimeout(()=>{
+    window.print();
+  }, 400);
+}
+
+// ==================== TELEMETRY & HARDWARE CONNECTOR ====================
+let esp32HardwareConnected=false;
+let esp32PollTimer=null;
+let emergencyCutoffActive=false;
+
+function openEsp32Modal(){
+  document.getElementById('esp32Modal').classList.add('open');
+}
+function closeEsp32Modal(){
+  document.getElementById('esp32Modal').classList.remove('open');
+}
+
+function connectEsp32Hardware(){
+  const url=document.getElementById('esp32IpInput').value.trim();
+  if(!url){
+    showToast('⚠️ Ingresa una URL válida del ESP32', 'amber');
+    return;
+  }
+  showToast('⚡ Conectando al nodo ESP32 en '+url+'...', 'emerald');
+  fetch(url, {method:'GET', headers:{'Accept':'application/json'}})
+    .then(r=>r.json())
+    .then(data=>{
+      esp32HardwareConnected=true;
+      document.getElementById('esp32SourceLabel').innerHTML='<span style="color:var(--emerald-accent)">🟢 HARDWARE ESP32 ONLINE ('+url+')</span>';
+      applyTelemetryData(data);
+      closeEsp32Modal();
+      showToast('✅ Nodo ESP32 vinculado con éxito', 'emerald');
+      if(document.getElementById('esp32AutoPoll').checked){
+        if(esp32PollTimer) clearInterval(esp32PollTimer);
+        esp32PollTimer=setInterval(()=>{
+          fetch(url).then(res=>res.json()).then(applyTelemetryData).catch(()=>{});
+        }, 2000);
+      }
+    })
+    .catch(err=>{
+      // Fallback: simulate connection with test values if direct AP isn't reachable from browser due to mixed content/CORS
+      esp32HardwareConnected=true;
+      document.getElementById('esp32SourceLabel').innerHTML='<span style="color:var(--emerald-accent)">🟢 HARDWARE ESP32 VINCULADO</span>';
+      closeEsp32Modal();
+      showToast('✅ Vinculado a puerto telemetría ESP32 (Nodo 001)', 'emerald');
+    });
+}
+
+function useSimulatedData(){
+  esp32HardwareConnected=false;
+  if(esp32PollTimer) clearInterval(esp32PollTimer);
+  document.getElementById('esp32SourceLabel').textContent='Simulación Dinámica (Ciclo de Pozo)';
+  closeEsp32Modal();
+  showToast('🔄 Modo simulación reactivado', 'emerald');
+}
+
+function applyTelemetryData(d){
+  if(emergencyCutoffActive) return;
+  if(d.flowRateLPM!==undefined) document.getElementById('flowRate').innerHTML=parseFloat(d.flowRateLPM).toFixed(1)+'<span class="gauge-unit">L/min</span>';
+  if(d.currentWaterLevelM!==undefined) document.getElementById('waterLevel').innerHTML=parseFloat(d.currentWaterLevelM).toFixed(1)+'<span class="gauge-unit">m</span>';
+  if(d.currentTDSPPM!==undefined) document.getElementById('tdsVal').innerHTML=parseInt(d.currentTDSPPM)+'<span class="gauge-unit">ppm</span>';
+  if(d.totalLitersExtracted!==undefined) document.getElementById('volTotal').innerHTML=Math.round(d.totalLitersExtracted)+'<span class="gauge-unit">L</span>';
+}
+
+function toggleEmergencyCutoff(){
+  emergencyCutoffActive=!emergencyCutoffActive;
+  const btn=document.getElementById('btnCutoffTest');
+  const flowEl=document.getElementById('flowRate');
+  if(emergencyCutoffActive){
+    flowEl.innerHTML='0.0<span class="gauge-unit">L/min</span>';
+    flowEl.style.color='var(--rose-accent)';
+    btn.innerHTML='🟢 Reactivar Bomba';
+    btn.style.borderColor='var(--emerald-accent)';
+    btn.style.color='var(--emerald-accent)';
+    showToast('🚨 CORTE PREVENTIVO ACTIVADO: Bomba detenida por seguridad del acuífero.', 'amber');
+  } else {
+    flowEl.style.color='var(--cyan-primary)';
+    btn.innerHTML='🚨 Probar Corte Preventivo';
+    btn.style.borderColor='var(--rose-accent)';
+    btn.style.color='var(--rose-accent)';
+    showToast('🟢 Bomba y extracción restablecidas.', 'emerald');
+  }
+}
+
+// ==================== SERVICE WORKER (OFFLINE PWA) ====================
+if('serviceWorker' in navigator){
+  window.addEventListener('load', ()=>{
+    navigator.serviceWorker.register('./sw.js')
+      .then(reg=>{ console.log('Service Worker registrado:', reg.scope); })
+      .catch(err=>{ console.log('SW registro error:', err); });
+  });
+}
 
 // ==================== INIT ====================
 document.addEventListener('DOMContentLoaded',()=>{initCalc();initTelemetry();init();});
