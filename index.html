@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>AquaResiliencia Tijuana — Plataforma de Inteligencia Hidrogeológica y Red Centinela</title>
   <meta name="description" content="Plataforma de membresía para inteligencia hidrogeológica en Tijuana. Motor AquaEngine, Red Piezométrica CONAGUA y cuestionario de prefactibilidad para vecinos y técnicos.">
   
@@ -67,7 +67,6 @@ input, select, textarea {
   display:flex;align-items:center;justify-content:center;
   background:linear-gradient(135deg,#020c1b 0%,#0a1628 50%,#020c1b 100%);
   overflow-y:auto;
-  -webkit-overflow-scrolling:touch;
   overscroll-behavior:contain;
   padding:calc(1.5rem + var(--sat)) calc(1.25rem + var(--sar)) calc(2rem + var(--sab)) calc(1.25rem + var(--sal));
   min-height:100vh;
@@ -82,7 +81,7 @@ input, select, textarea {
 .auth-logo-icon{width:64px;height:64px;border-radius:18px;background:linear-gradient(135deg,#00e5ff,#3b82f6);display:inline-flex;align-items:center;justify-content:center;margin-bottom:1rem;animation:logoGlow 3s ease-in-out infinite;box-shadow:0 0 30px rgba(0,229,255,.4)}
 @keyframes logoGlow{0%,100%{box-shadow:0 0 20px rgba(0,229,255,.4)}50%{box-shadow:0 0 45px rgba(0,229,255,.7),0 0 80px rgba(0,229,255,.2)}}
 .auth-logo-icon svg{width:34px;height:34px;fill:#020c1b}
-.auth-logo h1{font-family:var(--font-heading);font-size:1.7rem;font-weight:800;letter-spacing:-.5px;background:linear-gradient(135deg,#fff,#00e5ff);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.auth-logo h1{font-family:var(--font-heading);font-size:1.7rem;font-weight:800;letter-spacing:-.5px;background:linear-gradient(135deg,#fff,#00e5ff);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
 .auth-logo p{font-size:.78rem;color:var(--text-muted);margin-top:.3rem;font-family:var(--font-mono);text-transform:uppercase;letter-spacing:1px}
 .auth-tabs{display:flex;background:rgba(255,255,255,.05);border-radius:12px;padding:4px;margin-bottom:1.75rem}
 .auth-tab{flex:1;padding:.75rem;border:none;border-radius:9px;background:transparent;color:var(--text-muted);font-family:var(--font-body);font-weight:600;font-size:.9rem;cursor:pointer;transition:all .25s;min-height:44px}
@@ -136,7 +135,6 @@ input, select, textarea {
   -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
   padding:calc(1.5rem + var(--sat)) calc(1.25rem + var(--sar)) calc(2rem + var(--sab)) calc(1.25rem + var(--sal));
   overflow-y:auto;
-  -webkit-overflow-scrolling:touch;
   overscroll-behavior:contain;
   min-height:100vh;
   min-height:100dvh;
@@ -172,7 +170,6 @@ input, select, textarea {
   position:fixed;inset:0;z-index:9997;
   background:linear-gradient(135deg,#020c1b 0%,#071022 100%);
   overflow-y:auto;
-  -webkit-overflow-scrolling:touch;
   overscroll-behavior:contain;
   padding:calc(1rem + var(--sat)) calc(1rem + var(--sar)) calc(2.5rem + var(--sab)) calc(1rem + var(--sal));
   min-height:100vh;
@@ -228,12 +225,14 @@ input, select, textarea {
   height:10px;
   cursor:pointer;
   -webkit-appearance:none;
+  appearance:none;
   background:rgba(255,255,255,.12);
   border-radius:6px;
   margin:.4rem 0;
 }
 .wiz-range::-webkit-slider-thumb{
   -webkit-appearance:none;
+  appearance:none;
   width:24px;
   height:24px;
   border-radius:50%;
@@ -540,7 +539,6 @@ section{margin-bottom:4.5rem;scroll-margin-top:5.5rem}
     display:flex;
     flex-wrap:nowrap;
     overflow-x:auto;
-    -webkit-overflow-scrolling:touch;
     scrollbar-width:none;
     padding-bottom:4px;
   }
@@ -580,10 +578,10 @@ section{margin-bottom:4.5rem;scroll-margin-top:5.5rem}
 .strata-canvas{width:100%;height:110px;border-radius:8px;background:#0d1527;display:block}
 .hazard-alert-banner{background:rgba(244,63,94,.12);border:1px solid rgba(244,63,94,.4);border-radius:10px;padding:.85rem 1rem;font-size:.84rem;color:#fecdd3;display:flex;align-items:center;gap:.6rem}
 .legal-box{background:rgba(15,23,42,.6);border-left:3px solid var(--cyan-primary);border-radius:10px;padding:1rem;font-size:.85rem;color:var(--text-muted)}
-.btn-action{background:linear-gradient(135deg,var(--cyan-primary),var(--blue-accent));color:#070d18;border:none;padding:.85rem 1.4rem;border-radius:12px;font-weight:700;font-size:.92rem;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:46px;-webkit-appearance:none;appearance:none;touch-action:manipulation}
+.btn-action{background:linear-gradient(135deg,var(--cyan-primary),var(--blue-accent));color:#070d18;border:none;padding:.85rem 1.4rem;border-radius:12px;font-weight:700;font-size:.92rem;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:46px;appearance:none;touch-action:manipulation}
 .btn-action:active{transform:scale(0.97)}
 .btn-action:hover{box-shadow:0 0 20px var(--cyan-glow);transform:translateY(-2px)}
-.btn-secondary{background:rgba(255,255,255,.07);border:1px solid var(--border-color);color:var(--text-main);padding:.85rem 1.25rem;border-radius:12px;font-weight:600;font-size:.88rem;cursor:pointer;transition:all .2s;min-height:46px;display:inline-flex;align-items:center;justify-content:center;-webkit-appearance:none;appearance:none;touch-action:manipulation}
+.btn-secondary{background:rgba(255,255,255,.07);border:1px solid var(--border-color);color:var(--text-main);padding:.85rem 1.25rem;border-radius:12px;font-weight:600;font-size:.88rem;cursor:pointer;transition:all .2s;min-height:46px;display:inline-flex;align-items:center;justify-content:center;appearance:none;touch-action:manipulation}
 .btn-secondary:active{transform:scale(0.97)}
 .btn-secondary:hover{background:rgba(255,255,255,.12);border-color:var(--cyan-primary)}
 .calc-box{background:var(--bg-card);border:1px solid var(--border-glow);border-radius:20px;padding:2rem;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);display:grid;grid-template-columns:1fr 1fr;gap:2rem}
@@ -597,7 +595,7 @@ section{margin-bottom:4.5rem;scroll-margin-top:5.5rem}
   background:#1e293b;
   outline:none;
   accent-color:var(--cyan-primary);
-  -webkit-appearance:none;
+  appearance:none;
 }
 .range-slider::-webkit-slider-thumb{
   -webkit-appearance:none;
@@ -634,12 +632,11 @@ section{margin-bottom:4.5rem;scroll-margin-top:5.5rem}
   z-index:2000;align-items:center;justify-content:center;
   padding:calc(1rem + var(--sat)) calc(1rem + var(--sar)) calc(1.5rem + var(--sab)) calc(1rem + var(--sal));
   overflow-y:auto;
-  -webkit-overflow-scrolling:touch;
 }
 .modal-overlay.open{display:flex}
 .modal-content{background:#0b1329;border:1px solid var(--cyan-primary);border-radius:20px;max-width:780px;width:100%;max-height:85vh;max-height:85dvh;display:flex;flex-direction:column;box-shadow:0 0 50px rgba(0,229,255,.2);overflow:hidden}
 .modal-header{padding:1.25rem 1.5rem;border-bottom:1px solid var(--border-color);display:flex;justify-content:space-between;align-items:center}
-.modal-body{padding:1.25rem 1.5rem;overflow-y:auto;-webkit-overflow-scrolling:touch;font-family:var(--font-mono);font-size:.82rem;line-height:1.7;color:#cbd5e1;background:#060a14}
+.modal-body{padding:1.25rem 1.5rem;overflow-y:auto;font-family:var(--font-mono);font-size:.82rem;line-height:1.7;color:#cbd5e1;background:#060a14}
 .modal-footer{padding:1rem 1.5rem;border-top:1px solid var(--border-color);display:flex;justify-content:flex-end;gap:.75rem;flex-wrap:wrap}
 footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5rem + var(--sab));text-align:center;color:var(--text-dim);font-size:.88rem}
 .footer-links{display:flex;justify-content:center;gap:1.5rem;margin-bottom:1.25rem;list-style:none;flex-wrap:wrap}
