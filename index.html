@@ -1572,11 +1572,15 @@
     // 5. INICIALIZACIÓN DEL MAPA LEAFLET
     let map = L.map('map-container').setView([32.5149, -117.0382], 11);
 
-    // Tiles estilo oscuro de CartoDB
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; OpenStreetMap contributors &copy; CARTO',
-      subdomains: 'abcd',
-      maxZoom: 19
+    // Tiles estilo oscuro de Esri Dark Gray (Libre, sin API Key ni marcas de agua)
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+      attribution: '&copy; Esri, DeLorme, NAVTEQ',
+      maxZoom: 16
+    }).addTo(map);
+
+    L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}', {
+      attribution: '&copy; Esri',
+      maxZoom: 16
     }).addTo(map);
 
     layerPiezo.addTo(map);
