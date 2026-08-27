@@ -1172,9 +1172,10 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
         <div>
           <div class="basemap-switch-bar">
             <span style="font-size:0.75rem;color:var(--text-muted);font-weight:600;text-transform:uppercase;letter-spacing:0.5px">Vista Base:</span>
-            <button id="bmSatBtn" class="basemap-chip active" onclick="setBaseMap('sat')">🛰️ Satélite HD + Relieve</button>
-            <button id="bmTopoBtn" class="basemap-chip" onclick="setBaseMap('topo')">⛰️ Topografía DEM</button>
-            <button id="bmDarkBtn" class="basemap-chip" onclick="setBaseMap('dark')">🌙 Modo Oscuro SIG</button>
+            <button id="bmRelieveBtn" class="basemap-chip active" onclick="setBaseMap('relieve')">⛰️ Relieve y Cerros 3D</button>
+            <button id="bmSatBtn" class="basemap-chip" onclick="setBaseMap('sat')">🛰️ Satélite HD</button>
+            <button id="bmTopoBtn" class="basemap-chip" onclick="setBaseMap('topo')">📈 Curvas DEM</button>
+            <button id="bmDarkBtn" class="basemap-chip" onclick="setBaseMap('dark')">🌙 Modo Oscuro</button>
           </div>
           <div id="map-container"></div>
           <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.75rem;font-size:.78rem;color:var(--text-dim);font-family:var(--font-mono);flex-wrap:wrap;gap:.5rem">
@@ -1620,7 +1621,7 @@ function setUrgency(v){urgencyVal=v;document.querySelectorAll('.urgency-star').f
 
 function initWizardMap(){
   wizMap=L.map('wizard-map-container',{tap:false,zoomSnap:0.5,scrollWheelZoom:false}).setView([32.5149,-117.0382],11);
-  L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}',{attribution:'&copy; Google Satellite',maxZoom:20}).addTo(wizMap);
+  L.tileLayer('https://mt1.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',{attribution:'&copy; Google Relieve 3D',maxZoom:20}).addTo(wizMap);
   officialZones.forEach(z=>{
     const c=z.score>=80?'#10b981':z.score>=50?'#f59e0b':'#f43f5e';
     const icon=L.divIcon({html:`<div style="background:${c};width:16px;height:16px;border-radius:50%;border:2px solid #fff;box-shadow:0 0 10px ${c}"></div>`,iconSize:[16,16]});
@@ -1651,7 +1652,7 @@ const msg=encodeURIComponent(`Hola! Hice mi evaluación en AquaResiliencia Tijua
 let curZone=officialZones[0];
 let mapInitialized=false,map;
 let baseLayers={};
-let currentBase='sat';
+let currentBase='relieve';
 let lPiezo,lRepda,lHazard,lSgm,lRiesgo,lHidro,lBinacional;
 let sPiezo=true,sRepda=true,sHazard=true,sSgm=true,sRiesgo=true,sHidro=true,sBinacional=true;
 
@@ -1668,13 +1669,14 @@ function initMap(){
   lHidro=L.layerGroup();
   lBinacional=L.layerGroup();
 
-  // High-reliability multi-CDN basemaps for Android & iOS
+  // Multi-source basemaps with high 3D terrain and shaded relief
+  baseLayers.relieve=L.tileLayer('https://mt1.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',{attribution:'&copy; Google Relieve 3D y Curvas',maxZoom:20});
   baseLayers.sat=L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}',{attribution:'&copy; Google Satélite HD',maxZoom:20});
-  baseLayers.topo=L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',{attribution:'&copy; CartoDB &amp; OSM',subdomains:'abcd',maxZoom:19});
+  baseLayers.topo=L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',{attribution:'&copy; OpenTopoMap (DEM)',maxZoom:17});
   baseLayers.dark=L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{attribution:'&copy; CartoDB Dark Matter',subdomains:'abcd',maxZoom:19});
 
   map=L.map('map-container',{tap:false,zoomSnap:0.5,scrollWheelZoom:false}).setView([32.5149,-117.0382],11);
-  baseLayers.sat.addTo(map);
+  baseLayers.relieve.addTo(map);
 
   // Progressive invalidateSize triggers to guarantee instant mobile tile rendering
   setTimeout(()=>{if(map)map.invalidateSize();},150);
@@ -1766,10 +1768,11 @@ function setBaseMap(type){
     baseLayers[type].addTo(map);
     if(typeof baseLayers[type].bringToBack==='function')baseLayers[type].bringToBack();
   }
+  document.getElementById('bmRelieveBtn').classList.toggle('active',type==='relieve');
   document.getElementById('bmSatBtn').classList.toggle('active',type==='sat');
   document.getElementById('bmTopoBtn').classList.toggle('active',type==='topo');
   document.getElementById('bmDarkBtn').classList.toggle('active',type==='dark');
-  showToast(type==='sat'?'🛰️ Satélite HD activado':type==='topo'?'⛰️ Topografía DEM activada':'🌙 Modo Oscuro SIG activado');
+  showToast(type==='relieve'?'⛰️ Relieve y Cerros 3D activado':type==='sat'?'🛰️ Satélite HD activado':type==='topo'?'📈 Curvas DEM activadas':'🌙 Modo Oscuro activado');
 }
 
 function setPresetZone(i){
