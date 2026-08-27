@@ -132,12 +132,18 @@ En una vivienda o nodo barrial típico, de **350 a 600 litros diarios** de consu
 ├── .gitignore              # Protección estricta de archivos multimedia y datos privados
 ├── README.md               # Presentación formal, arquitectura y visión del proyecto
 ├── PLAN_MAESTRO.md         # Documento maestro (37,500+ palabras): técnica, leyes y finanzas
+├── GESTION_URBANA_AGUAS_SOMERAS_DERECHO_COMPARADO.md # Estudio de Derecho Comparado (Berlín, San Diego, Lima, Miami) y Hack Geotécnico
+├── INVESTIGACION_BINACIONAL_HIDROGEOLOGIA.md         # Geohidrología binacional y censo de pozos CONAGUA/USGS
+├── ORDEN_DE_COMPRA_IOT_ESP32.md                      # BOM de hardware, sensores y telemetría
 ├── STORYBOARD.md           # Guía narrativa visual, especificaciones de arte y prompts de IA
 └── GUION_CAPCUT.md         # Guion de producción audiovisual (60s Pitch y 30s Redes)
 ```
 
 ### Documentos Destacados:
+- 🌍 [**GESTION_URBANA_AGUAS_SOMERAS_DERECHO_COMPARADO.md**](GESTION_URBANA_AGUAS_SOMERAS_DERECHO_COMPARADO.md) — *Estudio profundo internacional (Berlín, San Diego, Lima, Miami) y estabilización geotécnica.*
+- 🌊 [**INVESTIGACION_BINACIONAL_HIDROGEOLOGIA.md**](INVESTIGACION_BINACIONAL_HIDROGEOLOGIA.md) — *Datos oficiales CONAGUA DR_0201, USGS y censo de pozos REPDA.*
 - 📖 [**PLAN_MAESTRO.md**](PLAN_MAESTRO.md) — *Lectura obligatoria para el equipo e inversionistas.*
+- 🛠️ [**ORDEN_DE_COMPRA_IOT_ESP32.md**](ORDEN_DE_COMPRA_IOT_ESP32.md) — *BOM de telemetría IoT y tren 80/20.*
 - 🎬 [**STORYBOARD.md**](STORYBOARD.md) — *Identidad audiovisual y prompts de generación.*
 - 🎙️ [**GUION_CAPCUT.md**](GUION_CAPCUT.md) — *Tiempos, overlays y locución para video.*
 
