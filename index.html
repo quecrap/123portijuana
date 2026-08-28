@@ -656,6 +656,43 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
 .corte-legend-dot{width:12px;height:12px;border-radius:3px;flex-shrink:0}
 
 
+/* ===================== NAVEGACIÓN POR PANELES (vista sin scroll continuo) ===================== */
+#main-content > section:not(.panel-active){display:none}
+#main-content > section.panel-active{display:block;animation:panelFade .28s ease both}
+#main-content > section{margin-bottom:2.5rem}
+@keyframes panelFade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+
+.panel-progress{
+  display:flex;gap:.55rem;justify-content:center;align-items:center;flex-wrap:wrap;
+  max-width:1280px;margin:.7rem auto 0;padding-top:.7rem;
+  border-top:1px solid var(--border-color);
+}
+.panel-progress button{
+  width:10px;height:10px;border-radius:50%;border:0;padding:0;cursor:pointer;
+  background:rgba(255,255,255,.16);transition:transform .2s,background .2s,box-shadow .2s;
+  -webkit-tap-highlight-color:transparent;
+}
+.panel-progress button:hover{background:rgba(0,229,255,.45)}
+.panel-progress button.active{background:var(--cyan-primary);box-shadow:0 0 10px var(--cyan-primary);transform:scale(1.35)}
+
+.nav-links a.nav-active{color:var(--cyan-primary);background:rgba(0,229,255,.1);box-shadow:inset 0 -2px 0 var(--cyan-primary)}
+.drawer-nav-list a.nav-active{color:var(--cyan-primary);border-color:var(--cyan-primary);background:rgba(0,229,255,.12)}
+
+.panel-nav{
+  display:flex;justify-content:space-between;align-items:stretch;gap:.75rem;
+  margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border-color);
+}
+.panel-nav button{
+  flex:1;max-width:48%;min-height:48px;
+  background:rgba(255,255,255,.04);border:1px solid var(--border-color);color:var(--text-muted);
+  border-radius:12px;padding:.7rem 1rem;font-size:.85rem;font-weight:600;cursor:pointer;
+  font-family:var(--font-body);transition:all .2s;-webkit-tap-highlight-color:transparent;
+}
+.panel-nav button:hover:not(:disabled){border-color:var(--cyan-primary);color:var(--text-main);background:rgba(0,229,255,.08)}
+.panel-nav button:active:not(:disabled){transform:scale(.98)}
+.panel-nav button:disabled{opacity:.3;cursor:not-allowed}
+.panel-nav .panel-next{text-align:right}
+
 /* ===================== IPHONE / MOBILE MEDIA QUERIES ===================== */
 @media screen and (max-width:768px){
   .nav-links{display:none}
@@ -703,18 +740,21 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
 }
 
 /* ===================== DÍA CERO — RÍO COLORADO (issue #1) ===================== */
-.dia-cero-widget{position:fixed;top:var(--dia-cero-top, calc(4.75rem + var(--sat)));right:max(1.25rem,var(--sar));z-index:900;display:flex;align-items:center;gap:.55rem;background:rgba(7,13,24,.88);border:1px solid var(--border-color);border-radius:999px;padding:.5rem .95rem .5rem .65rem;cursor:pointer;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 8px 24px rgba(0,0,0,.4);transition:border-color .25s,box-shadow .25s,transform .2s;font-family:var(--font-mono);user-select:none}
-.dia-cero-widget:active{transform:scale(.97)}
-.dia-cero-dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;background:var(--text-dim)}
+.dia-cero-widget{position:fixed;top:var(--dia-cero-top, calc(4.75rem + var(--sat)));right:max(1.25rem,var(--sar));z-index:900;display:flex;align-items:center;gap:.7rem;background:rgba(7,13,24,.93);border:1px solid var(--border-color);border-radius:16px;padding:.7rem 1.05rem;cursor:pointer;-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);box-shadow:0 10px 30px rgba(0,0,0,.45);transition:border-color .25s,box-shadow .25s,transform .2s;font-family:var(--font-mono);user-select:none;max-width:min(80vw,340px)}
+.dia-cero-widget:hover{transform:translateY(-1px)}
+.dia-cero-widget:active{transform:scale(.98)}
+.dia-cero-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;background:var(--text-dim);align-self:flex-start;margin-top:.5rem}
+.dia-cero-body{display:flex;flex-direction:column;gap:.12rem;min-width:0}
 .dia-cero-widget.state-green .dia-cero-dot{background:var(--emerald-accent);box-shadow:0 0 8px var(--emerald-accent)}
 .dia-cero-widget.state-yellow .dia-cero-dot{background:var(--amber-accent);box-shadow:0 0 8px var(--amber-accent)}
 .dia-cero-widget.state-red .dia-cero-dot{background:var(--rose-accent);box-shadow:0 0 10px var(--rose-accent);animation:diaCeroPulse 1.6s ease-in-out infinite}
 .dia-cero-widget.state-green{border-color:rgba(16,185,129,.4)}
 .dia-cero-widget.state-yellow{border-color:rgba(245,158,11,.45)}
-.dia-cero-widget.state-red{border-color:rgba(244,63,94,.55);box-shadow:0 0 0 3px rgba(244,63,94,.12),0 8px 24px rgba(244,63,94,.3)}
+.dia-cero-widget.state-red{border-color:rgba(244,63,94,.6);animation:diaCeroCardPulse 2.6s ease-in-out infinite}
 @keyframes diaCeroPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.55;transform:scale(.8)}}
-.dia-cero-label{font-size:.68rem;text-transform:uppercase;letter-spacing:.06em;color:var(--text-dim)}
-.dia-cero-value{font-size:.82rem;font-weight:700;color:var(--text-main);white-space:nowrap}
+@keyframes diaCeroCardPulse{0%,100%{box-shadow:0 0 0 3px rgba(244,63,94,.14),0 12px 32px rgba(244,63,94,.32)}50%{box-shadow:0 0 0 7px rgba(244,63,94,.07),0 12px 40px rgba(244,63,94,.5)}}
+.dia-cero-value{font-size:clamp(1.35rem,4.6vw,1.95rem);font-weight:800;line-height:1.04;color:var(--text-main);white-space:nowrap;letter-spacing:-.5px}
+.dia-cero-caption{font-size:.62rem;text-transform:uppercase;letter-spacing:.07em;color:var(--text-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
 .dia-cero-widget.state-red .dia-cero-value{color:var(--rose-accent)}
 .dia-cero-widget.state-yellow .dia-cero-value{color:var(--amber-accent)}
 .dia-cero-widget.state-green .dia-cero-value{color:var(--emerald-accent)}
@@ -745,8 +785,8 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
 .dia-cero-panel-foot a{color:var(--cyan-primary);text-decoration:none}
 .dia-cero-panel-foot a:hover{text-decoration:underline}
 @media(max-width:480px){
-  .dia-cero-widget{right:.75rem;padding:.45rem .8rem .45rem .6rem}
-  .dia-cero-label{display:none}
+  .dia-cero-widget{right:.6rem;padding:.6rem .8rem;gap:.55rem;max-width:calc(100vw - 1.2rem)}
+  .dia-cero-value{font-size:1.4rem}
   .dia-cero-panel{right:.75rem;width:calc(100vw - 1.5rem)}
 }
 </style>
@@ -1169,10 +1209,12 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
 </header>
 
 <!-- Widget flotante: Día Cero — Río Colorado (issue #1) -->
-<div id="diaCeroWidget" class="dia-cero-widget" onclick="toggleDiaCeroPanel()" title="Nivel del Lago Mead — origen del agua que abastece indirectamente al Valle de Tijuana">
+<div id="diaCeroWidget" class="dia-cero-widget" onclick="toggleDiaCeroPanel()" title="Cuenta regresiva estimada al 'nivel muerto' del Lago Mead (Río Colorado), la reserva que sostiene el agua que Tijuana recibe por tratado. Toca para ver el detalle.">
   <span class="dia-cero-dot" id="diaCeroDot"></span>
-  <span class="dia-cero-label">Lago Mead</span>
-  <span class="dia-cero-value" id="diaCeroValue">Cargando…</span>
+  <span class="dia-cero-body">
+    <span class="dia-cero-value" id="diaCeroValue">Cargando…</span>
+    <span class="dia-cero-caption" id="diaCeroCaption">Lago Mead · Río Colorado</span>
+  </span>
 </div>
 <div id="diaCeroPanel" class="dia-cero-panel">
   <div class="dia-cero-panel-head">
@@ -1251,7 +1293,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
 </aside>
 
 <main id="main-content">
-  <section class="hero">
+  <section class="hero" id="hero">
     <div class="badge-hero"><span class="pulse"></span> Red Centinela Ciudadana — Tijuana 2026</div>
     <h1>Inteligencia Hidrogeológica y Red Centinela para <span class="gradient-text">Tijuana</span></h1>
     <p class="hero-subtitle">Plataforma científica, legal y tecnológica para responder a la crisis hídrica de Tijuana mediante extracción somera frugal, tratamiento <strong>Point-of-Use 80/20</strong> y telemetría regulada, integrando <strong>7 fuentes oficiales y binacionales (CONAGUA, SGM, INEGI, Protección Civil, CILA, USGS y CESPT)</strong>.</p>
@@ -2144,7 +2186,7 @@ function initTelemetry(){setInterval(()=>{const fr=document.getElementById('flow
 function openLegalModal(){const z=curZone;const hoy=new Date().toLocaleDateString('es-MX',{year:'numeric',month:'long',day:'numeric'});document.getElementById('modalText').textContent=`AVISO DE CAPTACIÓN SOMERA RESPONSABLE Y MONITOREO CENTINELA\nArt. 8° Fracción XXVII y Art. 35 LAN\n\nFecha: ${hoy}\nZona: ${z.name}\nAltitud: ${z.elev} msnm | Profundidad Estimada: ${z.depth} m\nTDS Estimado: ${z.tds} ppm\n\nSe notifica al Organismo de Cuenca Baja California CONAGUA que el suscrito tiene intención de realizar captación somera de uso doméstico de subsistencia en el acuífero 0201 Tijuana:\n\n1. EXTRACCIÓN: Caudal máximo ${z.flow} L/min (${(z.flow*1440/1000).toFixed(2)} m³/día)\n2. PROFUNDIDAD: Perforación máxima ${z.depth+2} m con entubado PVC\n3. TRATAMIENTO: Arquitectura 80/20 POU con RO+UV para fracción de ingesta\n4. MONITOREO: Sensor ESP32 con registro continuo de nivel y conductividad\n5. CONTINGENCIA: Corte automático si nivel dinámico desciende >30%\n\nGeología (SGM): ${z.geology}\nDiagnóstico AquaEngine: ${z.diag}\n\n_______________________________\n[Nombre y firma del solicitante]\n\nAquaResiliencia Tijuana — Red Centinela Ciudadana\nCalibrado con CONAGUA DR_0201 (2024)\nGenerado: ${hoy}`;document.getElementById('legalModal').classList.add('open');}
 function closeLegalModal(){document.getElementById('legalModal').classList.remove('open');}
 function copyLegalText(){navigator.clipboard.writeText(document.getElementById('modalText').textContent).then(()=>showToast('📋 Texto copiado'));}
-function scrollToCalc(){document.getElementById('calculadora').scrollIntoView({behavior:'smooth'});}
+function scrollToCalc(){ if(typeof showPanel==='function'){ showPanel('calculadora'); } else { document.getElementById('calculadora').scrollIntoView({behavior:'smooth'}); } }
 
 // ==================== TOAST ====================
 function showToast(msg,type){const c=document.getElementById('toast-container');const t=document.createElement('div');t.className='toast';if(type==='emerald')t.style.borderColor='rgba(16,185,129,.4)';else if(type==='amber')t.style.borderColor='rgba(245,158,11,.4)';t.textContent=msg;c.appendChild(t);setTimeout(()=>t.remove(),3200);}
@@ -2840,6 +2882,9 @@ function queueDiaCeroReposition(){
 window.addEventListener('resize', queueDiaCeroReposition);
 window.addEventListener('scroll', queueDiaCeroReposition, { passive: true });
 window.addEventListener('orientationchange', () => setTimeout(positionDiaCero, 200));
+// Reposicionar tras la carga de fuentes web (que cambian la altura del header sticky)
+window.addEventListener('load', () => { positionDiaCero(); setTimeout(positionDiaCero, 300); });
+if(document.fonts && document.fonts.ready){ document.fonts.ready.then(() => positionDiaCero()); }
 
 function toggleDiaCeroPanel(force){
   const panel = document.getElementById('diaCeroPanel');
@@ -2887,7 +2932,14 @@ async function initDiaCero(){
   let days = null;
   if(state === 'red') days = diaCeroDaysToDeadPool(current, monthlyHistory, thresholds.dead_pool, now);
 
-  valueEl.textContent = days ? `~${days.toLocaleString('es-MX')} días` : `${current.toFixed(1)} ft`;
+  const captionEl = document.getElementById('diaCeroCaption');
+  if(days){
+    valueEl.textContent = `${days.toLocaleString('es-MX')} días`;
+    if(captionEl) captionEl.textContent = 'para el «Día Cero» · Río Colorado';
+  } else {
+    valueEl.textContent = `${current.toFixed(1)} ft`;
+    if(captionEl) captionEl.textContent = 'Lago Mead · nivel actual del embalse';
+  }
 
   const banner = document.getElementById('diaCeroBanner');
   if(banner){
@@ -2921,8 +2973,125 @@ async function initDiaCero(){
   positionDiaCero();
 }
 
+// ==================== NAVEGACIÓN POR PANELES (vista sin scroll continuo) ====================
+const PANEL_IDS = ['hero','datos-conagua','motor-hidro','corte-3d','derecho-comparado','solucion','calculadora','telemetria'];
+const PANEL_LABELS = ['Portada','Diagnóstico','Motor AquaEngine','Corte 3D','Derecho Comparado','Pilares','Calculadora 80/20','Telemetría IoT'];
+let currentPanel = 'hero';
+
+function panelIndex(id){ return PANEL_IDS.indexOf(id); }
+
+function showPanel(id, opts){
+  opts = opts || {};
+  const push = opts.push !== false;
+  const animate = opts.animate !== false;
+  if(PANEL_IDS.indexOf(id) === -1) id = 'hero';
+  currentPanel = id;
+
+  document.querySelectorAll('#main-content > section').forEach(sec=>{
+    sec.classList.toggle('panel-active', sec.id === id);
+  });
+
+  document.querySelectorAll('.nav-links a[href^="#"], .drawer-nav-list a[href^="#"]').forEach(a=>{
+    a.classList.toggle('nav-active', a.getAttribute('href').slice(1) === id);
+  });
+
+  document.querySelectorAll('.panel-progress button').forEach((b,i)=>{
+    b.classList.toggle('active', PANEL_IDS[i] === id);
+  });
+
+  const idx = panelIndex(id);
+  document.querySelectorAll('.panel-prev').forEach(b=>{ b.disabled = idx <= 0; });
+  document.querySelectorAll('.panel-next').forEach(b=>{ b.disabled = idx >= PANEL_IDS.length - 1; });
+
+  if(push){
+    const target = id === 'hero' ? location.pathname + location.search : '#' + id;
+    if((location.hash.slice(1) || 'hero') !== id){
+      try{ history.pushState({panel:id}, '', target); }catch(e){ location.hash = id === 'hero' ? '' : id; }
+    }
+  }
+
+  window.scrollTo({ top:0, behavior: animate ? 'smooth' : 'auto' });
+
+  // Re-layout de componentes que necesitan estar visibles para medirse
+  if(id === 'motor-hidro' && typeof map !== 'undefined' && map){
+    setTimeout(()=>{ try{ map.invalidateSize(); }catch(e){} }, 70);
+  }
+
+  toggleMobileDrawer(false);
+}
+
+function panelStep(delta){
+  const next = Math.min(PANEL_IDS.length - 1, Math.max(0, panelIndex(currentPanel) + delta));
+  showPanel(PANEL_IDS[next]);
+}
+
+function buildPanelChrome(){
+  const header = document.getElementById('main-header');
+  if(header && !document.querySelector('.panel-progress')){
+    const bar = document.createElement('div');
+    bar.className = 'panel-progress';
+    PANEL_IDS.forEach((pid,i)=>{
+      const b = document.createElement('button');
+      b.type = 'button';
+      b.title = PANEL_LABELS[i];
+      b.setAttribute('aria-label', 'Ir a ' + PANEL_LABELS[i]);
+      b.addEventListener('click', ()=> showPanel(pid));
+      bar.appendChild(b);
+    });
+    // Dentro del <header> sticky para que el indicador quede siempre visible
+    header.appendChild(bar);
+    if(typeof positionDiaCero === 'function') positionDiaCero();
+  }
+
+  document.querySelectorAll('#main-content > section').forEach(sec=>{
+    const idx = panelIndex(sec.id);
+    if(idx === -1 || sec.querySelector(':scope > .panel-nav')) return;
+    const nav = document.createElement('div');
+    nav.className = 'panel-nav';
+    const prev = document.createElement('button');
+    prev.type = 'button';
+    prev.className = 'panel-prev';
+    prev.textContent = idx > 0 ? '← ' + PANEL_LABELS[idx-1] : '← Anterior';
+    prev.addEventListener('click', ()=> panelStep(-1));
+    const next = document.createElement('button');
+    next.type = 'button';
+    next.className = 'panel-next';
+    next.textContent = idx < PANEL_IDS.length - 1 ? PANEL_LABELS[idx+1] + ' →' : 'Siguiente →';
+    next.addEventListener('click', ()=> panelStep(1));
+    nav.appendChild(prev);
+    nav.appendChild(next);
+    sec.appendChild(nav);
+  });
+}
+
+function initPanelNav(){
+  buildPanelChrome();
+
+  document.querySelectorAll('.nav-links a[href^="#"], .drawer-nav-list a[href^="#"], a.brand[href="#"]').forEach(a=>{
+    a.addEventListener('click', e=>{
+      const href = a.getAttribute('href');
+      const id = (href === '#' || href === '') ? 'hero' : href.slice(1);
+      if(PANEL_IDS.indexOf(id) !== -1){
+        e.preventDefault();
+        showPanel(id);
+      }
+    });
+  });
+
+  window.addEventListener('popstate', ()=>{
+    showPanel(location.hash.slice(1) || 'hero', { push:false });
+  });
+  window.addEventListener('hashchange', ()=>{
+    const id = location.hash.slice(1) || 'hero';
+    if(id !== currentPanel) showPanel(id, { push:false });
+  });
+
+  const initial = location.hash.slice(1) || 'hero';
+  showPanel(PANEL_IDS.indexOf(initial) !== -1 ? initial : 'hero', { push:false, animate:false });
+}
+
 // ==================== INIT ====================
-document.addEventListener('DOMContentLoaded',()=>{initCalc();initTelemetry();initCorte3D();init();positionDiaCero();initDiaCero();setInterval(initDiaCero, DIA_CERO_REFRESH_MS);});
+document.addEventListener('DOMContentLoaded',()=>{initCalc();initTelemetry();initCorte3D();init();initPanelNav();positionDiaCero();initDiaCero();setInterval(initDiaCero, DIA_CERO_REFRESH_MS);});
 </script>
 </body>
 </html>
