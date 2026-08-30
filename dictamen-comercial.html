@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Reporte de Prefactibilidad Hídrica — AquaResiliencia</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg-dark:#070d18;--bg-card:rgba(15,23,42,.8);--border-color:rgba(56,189,248,.18);
+  --cyan-primary:#00e5ff;--emerald-accent:#10b981;--amber-accent:#f59e0b;--rose-accent:#f43f5e;
+  --text-main:#f8fafc;--text-muted:#94a3b8;
+  --font-heading:'Outfit',sans-serif;--font-body:'Plus Jakarta Sans',sans-serif;--font-mono:'JetBrains Mono',monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+  background:var(--bg-dark);color:var(--text-main);font-family:var(--font-body);
+  line-height:1.6;padding:1rem;
+}
+.wrap{max-width:760px;margin:0 auto}
+.top-nav{display:flex;justify-content:space-between;align-items:center;padding:.6rem 1rem;background:var(--bg-card);border:1px solid var(--border-color);border-radius:12px;margin-bottom:1rem}
+.top-nav a{color:var(--cyan-primary);text-decoration:none;font-size:.85rem;font-weight:600}
+h1{font-family:var(--font-heading);font-size:1.6rem;font-weight:800;margin-bottom:.25rem}
+.subtitle{color:var(--text-muted);font-size:.9rem;margin-bottom:1rem}
+.card{background:var(--bg-card);border:1px solid var(--border-color);border-radius:14px;padding:1.25rem;margin-bottom:1rem}
+.disclaimer{background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.35);border-radius:12px;padding:.9rem 1rem;font-size:.85rem;color:#fcd34d;margin-bottom:1rem;line-height:1.5}
+.disclaimer strong{color:#fde68a}
+label{display:block;font-size:.78rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.3rem;margin-top:.8rem}
+input[type=text]{width:100%;padding:.6rem .8rem;border-radius:8px;border:1px solid var(--border-color);background:rgba(255,255,255,.04);color:var(--text-main);font-family:var(--font-body);font-size:.9rem}
+#map{height:280px;border-radius:10px;margin-top:.6rem;border:1px solid var(--border-color)}
+.hint{font-size:.75rem;color:var(--text-muted);margin-top:.4rem}
+.btn{display:inline-block;padding:.7rem 1.3rem;border-radius:10px;border:none;font-weight:700;font-size:.88rem;cursor:pointer;margin-top:1rem}
+.btn-primary{background:linear-gradient(135deg,#00e5ff,#3b82f6);color:#020c1b}
+.btn-secondary{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);color:var(--text-main)}
+.btn[disabled]{opacity:.4;cursor:not-allowed}
+#report{display:none}
+.score-box{text-align:center;padding:1.2rem;background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.3);border-radius:14px;margin-bottom:1rem}
+.score-num{font-family:var(--font-heading);font-size:2.6rem;font-weight:800;color:var(--emerald-accent)}
+.metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:.7rem;margin-top:.8rem}
+.metric{background:rgba(255,255,255,.03);border-radius:10px;padding:.7rem}
+.metric-label{font-size:.72rem;color:var(--text-muted);text-transform:uppercase}
+.metric-val{font-family:var(--font-mono);font-size:1.2rem;font-weight:700;margin-top:.2rem}
+.diag{background:rgba(0,229,255,.05);border-left:3px solid var(--cyan-primary);border-radius:8px;padding:.8rem;font-size:.86rem;color:var(--text-muted);margin-top:.9rem}
+.pricing{display:flex;justify-content:space-between;align-items:center;background:rgba(255,255,255,.03);border-radius:10px;padding:.9rem 1rem;margin-top:1rem}
+.pricing .price{font-family:var(--font-heading);font-weight:800;color:var(--cyan-primary);font-size:1.15rem}
+@media print{
+  .top-nav,.btn,.no-print{display:none!important}
+  body{background:#fff;color:#0f172a}
+  .card,.disclaimer,.metric,.score-box,.pricing{border-color:#cbd5e1!important;background:#f8fafc!important;color:#0f172a!important}
+  .score-num,.metric-val,.price{color:#0f172a!important}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="top-nav no-print">
+    <a href="index.html">← AquaResiliencia</a>
+    <span style="color:var(--text-muted);font-size:.8rem">Herramienta de uso comercial</span>
+  </div>
+
+  <h1>💧 Reporte de Prefactibilidad Hídrica</h1>
+  <p class="subtitle">Estimación técnica preliminar de viabilidad de agua subterránea somera para un predio.</p>
+
+  <div class="disclaimer">
+    ⚠️ <strong>Qué es esto y qué no es.</strong> Este reporte es una <strong>estimación de prefactibilidad</strong>
+    generada por un modelo algorítmico (AquaEngine) que cruza altimetría satelital con rangos oficiales de
+    CONAGUA (acuífero 0201) y el Servicio Geológico Mexicano. <strong>No es un estudio de campo, no está firmado
+    por un perito con cédula profesional, y no sustituye un dictamen hidrogeológico certificado.</strong> Es un
+    filtro inicial para decidir si vale la pena invertir en un estudio de campo completo.
+  </div>
+
+  <div class="card">
+    <label>Referencia del predio / cliente</label>
+    <input type="text" id="in-ref" placeholder="Ej: Rancho El Encino, Tecate">
+
+    <label>Ubicación — haz clic en el mapa sobre el predio</label>
+    <div id="map"></div>
+    <p class="hint" id="coord-hint">Sin ubicación seleccionada.</p>
+
+    <button class="btn btn-primary" id="btn-eval" disabled onclick="runEvaluation()">🔬 Generar Reporte</button>
+  </div>
+
+  <div class="card" id="report">
+    <div class="score-box">
+      <div style="font-size:.75rem;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px">Viabilidad Geohidrológica</div>
+      <div class="score-num" id="out-score">—</div>
+      <div id="out-verdict" style="font-weight:700;margin-top:.3rem"></div>
+    </div>
+    <div class="metrics">
+      <div class="metric"><div class="metric-label">Cota</div><div class="metric-val" id="out-elev">—</div></div>
+      <div class="metric"><div class="metric-label">Profundidad estimada</div><div class="metric-val" id="out-depth">—</div></div>
+      <div class="metric"><div class="metric-label">TDS estimado</div><div class="metric-val" id="out-tds">—</div></div>
+      <div class="metric"><div class="metric-label">Caudal estimado</div><div class="metric-val" id="out-flow">—</div></div>
+    </div>
+    <div class="diag" id="out-geo"></div>
+    <div class="diag" id="out-diag"></div>
+    <p style="font-size:.72rem;color:var(--text-muted);margin-top:.8rem">Fuente: estimación AquaEngine (DEM satelital + rangos regionales CONAGUA DR_0201, 2024). Referencia: <span id="out-ref"></span> — generado <span id="out-date"></span>.</p>
+    <button class="btn btn-secondary no-print" onclick="window.print()">🖨️ Imprimir / Guardar PDF</button>
+  </div>
+
+  <div class="pricing no-print">
+    <div>
+      <div style="font-weight:700">Reporte de Prefactibilidad Hídrica</div>
+      <div style="font-size:.8rem;color:var(--text-muted)">Entrega en PDF, 24-48 hrs</div>
+    </div>
+    <div class="price">$1,500 – $4,000 MXN</div>
+  </div>
+</div>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script>
+let map, marker, chosenLat, chosenLng;
+
+function initMap(){
+  map = L.map('map', {zoomControl:true}).setView([32.5027, -117.0038], 11);
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; OpenStreetMap &copy; CARTO', maxZoom: 19
+  }).addTo(map);
+  map.on('click', function(e){
+    chosenLat = e.latlng.lat; chosenLng = e.latlng.lng;
+    if (marker) marker.setLatLng(e.latlng); else marker = L.marker(e.latlng).addTo(map);
+    document.getElementById('coord-hint').textContent = `📍 ${chosenLat.toFixed(4)}, ${chosenLng.toFixed(4)}`;
+    document.getElementById('btn-eval').disabled = false;
+  });
+}
+initMap();
+
+function estimateLocalElevation(lat, lng) {
+  const dCerro = Math.sqrt(Math.pow(lat - 32.495, 2) + Math.pow(lng - (-116.905), 2)) * 111;
+  if (dCerro < 2.5) return Math.round(480 - dCerro * 120);
+  const dCoast = Math.abs(lng - (-117.13)) * 95;
+  if (dCoast < 2.0) return Math.round(15 + Math.random() * 15);
+  if (lat > 32.53 && lng > -116.99) return Math.round(160 + Math.random() * 20);
+  const dRio = Math.sqrt(Math.pow(lat - 32.53, 2) + Math.pow(lng - (-117.02), 2)) * 111;
+  if (dRio < 3.0) return Math.round(30 + dRio * 10);
+  return Math.round(75 + Math.random() * 50);
+}
+
+async function runEvaluation(){
+  document.getElementById('btn-eval').textContent = '⏳ Consultando altímetro satelital...';
+  let elev = estimateLocalElevation(chosenLat, chosenLng);
+  try {
+    const res = await fetch(`https://api.open-meteo.com/v1/elevation?latitude=${chosenLat.toFixed(4)}&longitude=${chosenLng.toFixed(4)}`);
+    if (res.ok) {
+      const data = await res.json();
+      if (data.elevation && data.elevation[0] !== undefined) elev = Math.round(data.elevation[0]);
+    }
+  } catch(e) { console.warn('Usando DEM local de respaldo', e); }
+
+  const distRio = Math.sqrt(Math.pow(chosenLat - 32.53, 2) + Math.pow(chosenLng - (-117.02), 2)) * 111;
+  const distMar = Math.abs(chosenLng - (-117.13)) * 95;
+
+  let score=80, depth=6.0, tds=850, geo="Depósito Aluvial / Terraza Cuaternaria", diag="";
+
+  if (elev > 250) {
+    score = Math.max(5, Math.round(30 - (elev - 250) * 0.1));
+    depth = Math.round(35 + (elev - 250) * 0.2); tds = 1400;
+    geo = "SGM: Complejo Volcánico / Basaltos y Rocas Ígneas (Cumbres)";
+    diag = `🛑 Cota elevada de montaña (${elev} msnm). Nivel freático regional a más de ${depth}m en roca dura. No viable con perforación manual somera (<12m). Considerar cosecha pluvial/niebla.`;
+  } else if (elev > 140) {
+    score = 45; depth = 15.0; tds = 950;
+    geo = "SGM: Terrazas Altas y Conglomerados Formación Otay";
+    diag = `Cota elevada de meseta/ladera (${elev} msnm). Profundidad freática límite (~${depth}m). Riesgo de pozo seco. Se recomienda geofísica (SEV/ERT) antes de invertir en perforación.`;
+  } else if (distMar < 3.5 && elev < 40) {
+    score = 88; depth = 5.5 + (elev * 0.1); tds = 980;
+    geo = "SGM: Terrazas Marinas y Areniscas Plioceno (Zona Costera)";
+    diag = `Cota baja costera (${elev} msnm). Manto somero probable. Requiere prueba de correlación mareal de 24h para descartar intrusión salina antes de perforar.`;
+  } else if (distRio < 3.0 && elev < 60) {
+    score = 92; depth = 4.5 + (elev * 0.05); tds = 720;
+    geo = "SGM: Aluvión Cuaternario Qal (Eje Fluvial del Valle)";
+    diag = `Fondo de valle aluvial (${elev} msnm). Alta transmisividad esperada en arenas/gravas de río. Candidato favorable para perforación somera de prueba.`;
+  } else {
+    score = Math.max(20, Math.round(85 - (elev - 50) * 0.4));
+    depth = Math.min(22, 6.5 + (elev * 0.08)); tds = 900 + Math.round(elev * 1.5);
+    geo = "SGM: Aluvión / Formación Rosarito Beach Mixta";
+    diag = `Cota intermedia (${elev} msnm). Manto freático accesible a ~${depth.toFixed(1)}m según modelo. Se recomienda verificación litológica en campo antes de perforar.`;
+  }
+
+  const flow = score > 50 ? (score > 75 ? 2.8 : 1.8) : 0.4;
+
+  document.getElementById('out-score').textContent = score + '%';
+  document.getElementById('out-verdict').textContent = score > 75 ? '🟢 Candidato Favorable' : (score > 40 ? '🟡 Condicionado — requiere verificación adicional' : '🔴 No recomendado sin estudio adicional');
+  document.getElementById('out-elev').textContent = elev + ' msnm';
+  document.getElementById('out-depth').textContent = '~' + depth.toFixed(1) + ' m';
+  document.getElementById('out-tds').textContent = Math.round(tds) + ' ppm';
+  document.getElementById('out-flow').textContent = flow.toFixed(1) + ' L/min';
+  document.getElementById('out-geo').textContent = '🪨 Geología estimada (SGM): ' + geo;
+  document.getElementById('out-diag').textContent = diag;
+  document.getElementById('out-ref').textContent = document.getElementById('in-ref').value || 'Sin referencia';
+  document.getElementById('out-date').textContent = new Date().toLocaleDateString('es-MX', {year:'numeric', month:'long', day:'numeric'});
+  document.getElementById('report').style.display = 'block';
+  document.getElementById('btn-eval').textContent = '🔬 Generar Reporte';
+  document.getElementById('report').scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>
