@@ -207,7 +207,9 @@ La caracterización hidrogeoquímica del agua somera en Tijuana refleja una faci
  └──────────────────────────────────────┴──────────────────────────────────────┴──────────────────────────────────────┘
 ```
 
-### Ficha Científica de los 4 Investigadores Regionales
+> ⚠️ **Estado real de contacto: NINGUNO todavía.** Los cuatro investigadores listados abajo fueron identificados por su publicación científica directamente relevante al acuífero Tijuana — el equipo **no los ha contactado aún** ni tiene acuerdo, convenio o colaboración confirmada con ellos, con UABC, El Colef o CICESE como instituciones. Es una lista de a quién acercarse, no un respaldo obtenido. No presentar ante jurado ni terceros como colaboración vigente hasta tener al menos una respuesta por correo.
+
+### Ficha Científica de los 4 Investigadores Regionales (candidatos a contactar — sin acercamiento aún)
 
 #### 1. Dr. Fernando Toyohiko Wakida Kusunoki
 * **Afiliación Actual:** Profesor-Investigador Titular, Facultad de Ciencias Químicas e Ingeniería (FCQI), Universidad Autónoma de Baja California (UABC), Campus Tijuana.
@@ -472,16 +474,18 @@ Se propone una red piloto de **8 estaciones experimentales de observación y mon
 
 ### Tabla de Sitios de la Red Piloto
 
-| ID Nodo | Ubicación Territorial | Latitud / Longitud | Profundidad Prevista ($m$) | Clasificación de Sitio | Permiso / Trámite Requerido | Variable Primaria de Estudio |
+> ⚠️ **Ninguno de estos trámites/convenios se ha iniciado o conseguido.** La columna describe qué instrumento *habría que tramitar* con cada contraparte, no un acuerdo vigente.
+
+| ID Nodo | Ubicación Territorial | Latitud / Longitud | Profundidad Prevista ($m$) | Clasificación de Sitio | Permiso / Trámite Requerido (propuesto, sin gestionar) | Variable Primaria de Estudio |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **PILOTO-01** | Parque Morelos (Sistema Metropolitano) | 32.4985, -116.9350 | 6.0 a 8.0 | **Categoría B (Tecnológico)** | Convenio de Colaboración SIMPATT / CDT | Nivel freático aluvial y riego de arbolado |
-| **PILOTO-02** | Arroyo Alamar (Murúa - Lecho Aluvial) | 32.5320, -116.9380 | 4.5 a 6.5 | **Categoría A (Investigación)**| Protocolo Académico UABC FCQI (Art. 35 LGA) | Dinámica de atenuación de nitratos y recarga |
-| **PILOTO-03** | Ecoparque (Mesa de Otay / Pastejé) | 32.5295, -116.9890 | 8.0 a 12.0 | **Categoría B (Tecnológico)** | Convenio Institucional El Colef | Acoplamiento Humedal + Pulimento 80/20 |
-| **PILOTO-04** | Cañón del Sainz (Comunidad Periurbana)| 32.4220, -116.9420 | 5.0 a 9.0 | **Categoría C (Doméstico)** | Registro de Sistema Comunitario (Art. 40 LGA)| Autonomía hídrica frente a cortes de red |
-| **PILOTO-05** | Playas de Tijuana (Parque Los Sauces) | 32.5180, -117.1120 | 3.5 a 5.5 | **Categoría A (Investigación)**| Notificación de Investigación Académica | Monitoreo continuo de cuña salina y CE |
-| **PILOTO-06** | Parque de la Amistad (Otay) | 32.5380, -116.9480 | 12.0 a 18.0 | **Categoría B (Tecnológico)** | Convenio SIMPATT / Municipio de Tijuana | Infiltración urbana y solventes en Fm. Otay |
-| **PILOTO-07** | Maclovio Rojas (Zona Este / Vado) | 32.4780, -116.7920 | 7.0 a 11.0 | **Categoría C (Doméstico)** | Acta de Asamblea Comunitaria + Art. 4° Const. | Calidad de agua en periferia sin red formal |
-| **PILOTO-08** | Estación Binacional (Límite CILA/USGS) | 32.5440, -117.0850 | 3.0 a 5.0 | **Categoría A (Investigación)**| Coordinación CILA / Acta 320 | Correlación con estación USGS 11013500 |
+| **PILOTO-01** | Parque Morelos (Sistema Metropolitano) | 32.4985, -116.9350 | 6.0 a 8.0 | **Categoría B (Tecnológico)** | Por tramitar: Convenio de Colaboración con SIMPATT / CDT | Nivel freático aluvial y riego de arbolado |
+| **PILOTO-02** | Arroyo Alamar (Murúa - Lecho Aluvial) | 32.5320, -116.9380 | 4.5 a 6.5 | **Categoría A (Investigación)**| Por tramitar: Protocolo Académico con UABC FCQI (Art. 35 LGA) | Dinámica de atenuación de nitratos y recarga |
+| **PILOTO-03** | Ecoparque (Mesa de Otay / Pastejé) | 32.5295, -116.9890 | 8.0 a 12.0 | **Categoría B (Tecnológico)** | Por tramitar: Convenio Institucional con El Colef | Acoplamiento Humedal + Pulimento 80/20 |
+| **PILOTO-04** | Cañón del Sainz (Comunidad Periurbana)| 32.4220, -116.9420 | 5.0 a 9.0 | **Categoría C (Doméstico)** | Por tramitar: Registro de Sistema Comunitario (Art. 40 LGA)| Autonomía hídrica frente a cortes de red |
+| **PILOTO-05** | Playas de Tijuana (Parque Los Sauces) | 32.5180, -117.1120 | 3.5 a 5.5 | **Categoría A (Investigación)**| Por tramitar: Notificación de Investigación Académica | Monitoreo continuo de cuña salina y CE |
+| **PILOTO-06** | Parque de la Amistad (Otay) | 32.5380, -116.9480 | 12.0 a 18.0 | **Categoría B (Tecnológico)** | Por tramitar: Convenio con SIMPATT / Municipio de Tijuana | Infiltración urbana y solventes en Fm. Otay |
+| **PILOTO-07** | Maclovio Rojas (Zona Este / Vado) | 32.4780, -116.7920 | 7.0 a 11.0 | **Categoría C (Doméstico)** | Por tramitar: Acta de Asamblea Comunitaria + Art. 4° Const. | Calidad de agua en periferia sin red formal |
+| **PILOTO-08** | Estación Binacional (Límite CILA/USGS) | 32.5440, -117.0850 | 3.0 a 5.0 | **Categoría A (Investigación)**| Por tramitar: Coordinación con CILA (referencia Acta 320) | Correlación con estación USGS 11013500 |
 
 ### Cronograma de Campaña Experimental (6 Meses)
 * **Día 0 (Caracterización Inicial):** Perforación manual frugal con AquaDrill (método rotatorio de bajo impacto / *sand point*), registro estratigráfico, instalación de ademe PVC hidráulico ranurado de fábrica (ranura $0.020''$), empaque de grava seleccionada, colocación de sello bentonítico superior (0.0 a 2.5 m), purga y aforo de pozo, toma de muestra para análisis de espectro completo en laboratorio (Nivel 3).
@@ -520,7 +524,7 @@ Se propone una red piloto de **8 estaciones experimentales de observación y mon
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | **Instalación de Sensores Piezométricos y Calidad** | **SÍ (Totalmente viable)** | Ninguno (Obra no extractiva en predio autorizado) | CONAGUA / Protección Civil | Art. 6° Const. (Acceso a la información), Art. 38 LGA | 🟢 NULO | Firma de convenio de comodato con dueños de predios o parques. |
 | **Muestreo y Análisis de Calidad de Agua** | **SÍ (Totalmente viable)** | Ninguno | Laboratorios Acreditados EMA / UABC | Art. 35 LGA, Ley General de Transparencia | 🟢 NULO | Protocolo de cadena de custodia bajo norma NMX-AA-014. |
-| **Perforación Experimental de Observación (<4")** | **SÍ (Condicionado)** | Aviso de Obra de Investigación Científica | CONAGUA (Organismo de Cuenca PBC) | Art. 35 LGA, Art. 33 LAN | 🟡 BAJO | Convenio de colaboración con UABC/CICESE para amparo académico. |
+| **Perforación Experimental de Observación (<4")** | **SÍ (Condicionado)** | Aviso de Obra de Investigación Científica | CONAGUA (Organismo de Cuenca PBC) | Art. 35 LGA, Art. 33 LAN | 🟡 BAJO | Requeriría convenio de colaboración con UABC/CICESE para amparo académico (aún no gestionado). |
 | **Extracción Doméstica / Riego Comunitario (<150 m³/año)**| **SÍ (Conforme a Ley)**| Registro de Sistema Comunitario de Agua | CONAGUA / Ayuntamiento de Tijuana | Arts. 40 y 41 LGA (2025), Veda 15/05/1965 | 🟡 MEDIO | Limitador físico de caudal (orificio calibrado a $\le 2\text{ L/min}$) y medidor telemétrico abierto. |
 | **Operación de Tren de Tratamiento 80/20 In-Situ** | **SÍ (Totalmente viable)** | Ninguno (Tratamiento en punto de uso POU) | COFEPRIS / Regulación Sanitaria BC | NOM-127-SSA1-2021, NOM-001-SEMARNAT-2021 | 🟢 BAJO | Bitácora de mantenimiento, reemplazo de filtros y análisis semestral. |
 | **Reúso de Agua Filtrada para Riego del SMP** | **SÍ (Totalmente viable)** | Acuerdo con Administrador del Parque (SIMPATT) | Ayuntamiento de Tijuana / SIMPATT | NOM-003-SEMARNAT-1997 / NOM-001-2021 | 🟢 BAJO | Cumplimiento de límites de coliformes y contacto no directo. |
