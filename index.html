@@ -2814,7 +2814,7 @@ function initMap(){
   baseLayers.relieve=L.tileLayer('https://mt1.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',{attribution:'&copy; Google Relieve 3D y Curvas',maxZoom:20});
   baseLayers.sat=L.tileLayer('https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}',{attribution:'&copy; Google Satélite HD',maxZoom:20});
   baseLayers.topo=L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png',{attribution:'&copy; OpenTopoMap (DEM)',maxZoom:17});
-  baseLayers.dark=L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',{attribution:'&copy; CartoDB Dark Matter',subdomains:'abcd',maxZoom:19});
+  baseLayers.dark=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}',{attribution:'&copy; Esri &copy; OpenStreetMap contributors',maxZoom:16});
 
   map=L.map('map-container',{tap:false,zoomSnap:0.5,scrollWheelZoom:false}).setView([32.5149,-117.0382],11);
   baseLayers.relieve.addTo(map);
