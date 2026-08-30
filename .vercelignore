@@ -1,0 +1,15 @@
+# Archivos de control de versiones y configuración interna
+.git
+.github
+.claude
+node_modules
+
+# Documentación interna e investigación
+*.md
+*.docx
+*.srt
+*.zip
+docs/
+firmware/
+inventario de parques/
+verify_android_map.js

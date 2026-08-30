@@ -531,6 +531,408 @@ section{margin-bottom:4.5rem;scroll-margin-top:5.5rem}
   color:#fff;
   box-shadow:0 0 10px rgba(0,229,255,.25);
 }
+/* ===================== CONAGUA EXPANDED SECTION & TABS ===================== */
+.conagua-tabs-bar {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  padding-bottom: 0.75rem;
+}
+/* ===================== GAME HUD & GLITCH OVERLAY ===================== */
+.game-hud-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(7, 13, 24, 0.85);
+  border-bottom: 1px solid rgba(0, 229, 255, 0.25);
+  padding: 0.5rem 1.25rem;
+  position: sticky;
+  top: 0;
+  z-index: 1100;
+  -webkit-backdrop-filter: blur(16px);
+  backdrop-filter: blur(16px);
+}
+.hud-level-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--cyan-primary);
+  background: rgba(0, 229, 255, 0.1);
+  padding: 0.35rem 0.85rem;
+  border-radius: 9999px;
+  border: 1px solid rgba(0, 229, 255, 0.3);
+}
+.hud-nodes-nav {
+  display: flex;
+  gap: 0.35rem;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.hud-node-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: var(--text-dim);
+  padding: 0.35rem 0.65rem;
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.hud-node-btn.unlocked {
+  color: var(--text-muted);
+  border-color: rgba(0, 229, 255, 0.3);
+}
+.hud-node-btn.active {
+  background: rgba(0, 229, 255, 0.2);
+  border-color: var(--cyan-primary);
+  color: var(--cyan-primary);
+  box-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
+}
+.hud-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.hud-btn-secret {
+  background: rgba(168, 85, 247, 0.15);
+  border: 1px solid rgba(168, 85, 247, 0.4);
+  color: #d8b4fe;
+  padding: 0.35rem 0.75rem;
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.hud-btn-secret:hover {
+  background: rgba(168, 85, 247, 0.3);
+  box-shadow: 0 0 12px rgba(168, 85, 247, 0.4);
+}
+.hud-audio-btn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  padding: 0.35rem 0.65rem;
+  border-radius: 8px;
+  font-size: 0.75rem;
+  cursor: pointer;
+}
+
+/* Glitch Overlay */
+.glitch-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(8, 0, 8, 0.95);
+  z-index: 10000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  animation: glitchFlash 0.3s ease;
+}
+.glitch-overlay.hidden { display: none; }
+@keyframes glitchFlash {
+  0% { transform: scale(1.02); opacity: 0; }
+  50% { opacity: 1; filter: hue-rotate(90deg) contrast(2); }
+  100% { transform: scale(1); opacity: 1; }
+}
+.glitch-box {
+  background: rgba(20, 5, 12, 0.9);
+  border: 2px solid #f43f5e;
+  border-radius: 20px;
+  padding: 2.5rem;
+  max-width: 540px;
+  text-align: center;
+  box-shadow: 0 0 60px rgba(244, 63, 94, 0.35), inset 0 0 30px rgba(244, 63, 94, 0.15);
+  animation: glitchVibe 0.15s infinite alternate;
+}
+@keyframes glitchVibe {
+  0% { transform: translate(-1px, 1px); }
+  100% { transform: translate(1px, -1px); }
+}
+.glitch-icon { font-size: 3.5rem; margin-bottom: 0.75rem; }
+.glitch-title { font-family: var(--font-heading); font-size: 1.8rem; font-weight: 800; color: #fb7185; letter-spacing: 1px; margin-bottom: 0.5rem; text-shadow: 0 0 10px rgba(244,63,94,0.6); }
+.glitch-subtitle { font-family: var(--font-mono); font-size: 0.8rem; color: #fda4af; text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 1.25rem; }
+.glitch-body { font-size: 0.95rem; color: #cbd5e1; line-height: 1.6; margin-bottom: 1.5rem; }
+.glitch-counter { font-family: var(--font-mono); font-size: 0.82rem; color: var(--text-dim); }
+
+/* Secret CLI Modal */
+.secret-cli-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+.secret-cli-overlay.hidden { display: none; }
+.secret-cli-box {
+  background: #030712;
+  border: 1px solid #10b981;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 680px;
+  box-shadow: 0 0 40px rgba(16, 185, 129, 0.25);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.secret-cli-header {
+  background: #052e16;
+  border-bottom: 1px solid #10b981;
+  padding: 0.65rem 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: #34d399;
+  font-weight: 700;
+}
+.secret-cli-close {
+  background: none;
+  border: none;
+  color: #34d399;
+  font-size: 1.25rem;
+  cursor: pointer;
+  padding: 0.1rem 0.4rem;
+}
+.secret-cli-output {
+  padding: 1.25rem;
+  height: 280px;
+  overflow-y: auto;
+  font-family: var(--font-mono);
+  font-size: 0.82rem;
+  color: #a7f3d0;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  background: #020c15;
+}
+.secret-cli-input-row {
+  display: flex;
+  align-items: center;
+  background: #061e12;
+  border-top: 1px solid #059669;
+  padding: 0.5rem 1rem;
+  gap: 0.5rem;
+}
+.cli-prompt { font-family: var(--font-mono); font-size: 0.85rem; color: #10b981; font-weight: 700; }
+.cli-input {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-family: var(--font-mono);
+  font-size: 0.85rem !important;
+}
+
+/* Door & Node puzzle styles */
+.gate-chamber {
+  max-width: 780px;
+  margin: 0 auto;
+  text-align: center;
+  padding: 1rem 0;
+}
+.glyph-water-pulse {
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.25), rgba(59, 130, 246, 0.25));
+  border: 2px solid var(--cyan-primary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 0 30px rgba(0, 229, 255, 0.35);
+  animation: glyphPulse 2.5s infinite;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.glyph-water-pulse:hover { transform: scale(1.08); box-shadow: 0 0 45px rgba(0,229,255,.6); }
+@keyframes glyphPulse {
+  0%, 100% { box-shadow: 0 0 20px rgba(0, 229, 255, 0.3); }
+  50% { box-shadow: 0 0 45px rgba(0, 229, 255, 0.6), 0 0 80px rgba(59, 130, 246, 0.3); }
+}
+.gate-options-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+  margin-top: 1.5rem;
+  text-align: left;
+}
+.gate-option-card {
+  background: rgba(15, 23, 42, 0.7);
+  border: 1px solid var(--border-color);
+  border-radius: 14px;
+  padding: 1.15rem 1.25rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  gap: 0.85rem;
+  align-items: center;
+  -webkit-tap-highlight-color: transparent;
+}
+.gate-option-card:hover {
+  background: rgba(30, 41, 59, 0.9);
+  border-color: var(--cyan-primary);
+  transform: translateX(4px);
+  box-shadow: 0 0 20px rgba(0, 229, 255, 0.15);
+}
+.gate-option-card:active { transform: scale(0.98); }
+.gate-opt-badge {
+  font-family: var(--font-mono);
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--cyan-primary);
+  background: rgba(0, 229, 255, 0.1);
+  padding: 0.35rem 0.65rem;
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+.gate-opt-text { font-size: 0.92rem; color: #f1f5f9; line-height: 1.5; }
+.secret-hint-link {
+  font-family: var(--font-mono);
+  font-size: 0.74rem;
+  color: var(--text-dim);
+  cursor: pointer;
+  margin-top: 1.25rem;
+  display: inline-block;
+  transition: color 0.2s;
+}
+.secret-hint-link:hover { color: var(--cyan-primary); }
+
+.conagua-tab-btn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  padding: 0.65rem 1.15rem;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+.conagua-tab-btn:hover {
+  background: rgba(0, 229, 255, 0.08);
+  color: var(--text-main);
+  border-color: var(--cyan-primary);
+}
+.conagua-tab-btn.active {
+  background: linear-gradient(135deg, rgba(0, 229, 255, 0.2), rgba(59, 130, 246, 0.2));
+  border-color: var(--cyan-primary);
+  color: var(--cyan-primary);
+  box-shadow: 0 0 15px rgba(0, 229, 255, 0.2);
+}
+.conagua-tab-panel {
+  display: none;
+  animation: panelFade 0.25s ease both;
+}
+.conagua-tab-panel.active {
+  display: block;
+}
+.water-balance-visual {
+  background: rgba(7, 13, 24, 0.75);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-bottom: 1.5rem;
+}
+.balance-bar-row {
+  margin-bottom: 1.25rem;
+}
+.balance-bar-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: var(--text-main);
+}
+.balance-bar-track {
+  height: 24px;
+  background: #1e293b;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+.balance-bar-fill {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding-left: 0.75rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  color: #fff;
+  border-radius: 8px;
+  transition: width 1s ease;
+}
+.chem-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+  font-size: 0.84rem;
+}
+.chem-table th {
+  background: rgba(15, 23, 42, 0.8);
+  color: var(--cyan-primary);
+  text-align: left;
+  padding: 0.65rem 0.85rem;
+  border-bottom: 1px solid var(--border-color);
+  font-family: var(--font-mono);
+  font-size: 0.76rem;
+  text-transform: uppercase;
+}
+.chem-table td {
+  padding: 0.65rem 0.85rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  color: #cbd5e1;
+}
+.chem-table tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
+}
+.badge-danger-soft {
+  background: rgba(244, 63, 94, 0.15);
+  color: #fb7185;
+  border: 1px solid rgba(244, 63, 94, 0.3);
+  padding: 0.15rem 0.45rem;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+}
+.badge-success-soft {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 0.15rem 0.45rem;
+  border-radius: 6px;
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+}
+.sim-box {
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid var(--border-glow);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-top: 1.25rem;
+}
 @media(max-width:768px){
   #map-container{height:370px;border-radius:12px}
   #wizard-map-container{height:320px;border-radius:12px}
@@ -1193,16 +1595,18 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
       AquaResiliencia
     </a>
     <ul class="nav-links">
-      <li><a href="#datos-conagua">Diagnóstico</a></li>
-      <li><a href="#motor-hidro">Motor AquaEngine</a></li>
-      <li><a href="#corte-3d">🏔️ Corte 3D</a></li>
-      <li><a href="#derecho-comparado">Derecho Comparado</a></li>
-      <li><a href="#solucion">Pilares</a></li>
-      <li><a href="#calculadora">Calculadora 80/20</a></li>
-      <li><a href="#telemetria">Telemetría IoT</a></li>
-      <li><button onclick="goToWizard()" style="background:linear-gradient(135deg,rgba(16,185,129,.25),rgba(13,148,136,.25));border:1px solid var(--emerald-accent);color:var(--emerald-accent);padding:.4rem .9rem;border-radius:10px;font-weight:700;font-size:.82rem;cursor:pointer">📋 Evaluar Terreno</button></li>
+      <li><a href="#hero">🚪 0. Umbral</a></li>
+      <li><a href="#datos-conagua">📊 1. Balance</a></li>
+      <li><a href="#motor-hidro">🔬 2. AquaEngine</a></li>
+      <li><a href="candidatos.html" style="color:var(--emerald-accent);font-weight:700">🌳 Parques SMP</a></li>
+      <li><a href="#corte-3d">🏔️ 3. Corte 3D</a></li>
+      <li><a href="#derecho-comparado">🌍 4. Derecho</a></li>
+      <li><a href="#solucion">💧 5. Pilares</a></li>
+      <li><a href="#calculadora">💰 6. Calc 80/20</a></li>
+      <li><a href="#telemetria">📡 7. IoT</a></li>
+      <li><button onclick="toggleSecretCli(true)" class="hud-btn-secret" style="border-radius:8px">>_ Terminal</button></li>
+      <li><button onclick="goToWizard()" style="background:linear-gradient(135deg,rgba(16,185,129,.25),rgba(13,148,136,.25));border:1px solid var(--emerald-accent);color:var(--emerald-accent);padding:.4rem .9rem;border-radius:10px;font-weight:700;font-size:.82rem;cursor:pointer">📋 Evaluar Predio</button></li>
       <li><button onclick="openAuthModal()" style="background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.15);color:var(--text-main);padding:.4rem .8rem;border-radius:10px;font-size:.82rem;cursor:pointer">👤 Acceso</button></li>
-      <li><a href="https://github.com/quecrap/123portijuana" target="_blank" rel="noopener noreferrer" class="btn-github">GitHub ★</a></li>
     </ul>
     <button class="mobile-nav-toggle" id="mobile-menu-btn" onclick="toggleMobileDrawer(true)" aria-label="Abrir Menú">☰</button>
   </div>
@@ -1294,35 +1698,333 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
 
 <main id="main-content">
   <section class="hero" id="hero">
-    <div class="badge-hero"><span class="pulse"></span> Red Centinela Ciudadana — Tijuana 2026</div>
-    <h1>Inteligencia Hidrogeológica y Red Centinela para <span class="gradient-text">Tijuana</span></h1>
-    <p class="hero-subtitle">Plataforma científica, legal y tecnológica para responder a la crisis hídrica de Tijuana mediante extracción somera frugal, tratamiento <strong>Point-of-Use 80/20</strong> y telemetría regulada, integrando <strong>7 fuentes oficiales y binacionales (CONAGUA, SGM, INEGI, Protección Civil, CILA, USGS y CESPT)</strong>.</p>
-    <div class="hero-stats">
-      <div class="stat-card alert"><div class="stat-value danger">-1,664,020 m³</div><div class="stat-label">Déficit Anual Oficial (CONAGUA 2024)</div></div>
-      <div class="stat-card"><div class="stat-value">4 a 15 m</div><div class="stat-label">Nivel Estático Somero Oficial</div></div>
-      <div class="stat-card"><div class="stat-value">80 / 20 POU</div><div class="stat-label">Arquitectura Desacoplada</div></div>
-      <div class="stat-card"><div class="stat-value">600–4,900 ppm</div><div class="stat-label">Salinidad Acuífero (850–7,000 μS/cm)</div></div>
+    <div class="gate-chamber">
+      <div class="glyph-water-pulse" onclick="handleSecretGlyphClick()" title="Glifo Centinela: Toca para calibración">
+        <svg viewBox="0 0 24 24" width="38" height="38" fill="var(--cyan-primary)"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+      </div>
+      
+      <div class="badge-hero"><span class="pulse"></span> PROTOCOLO AQUARESILIENCIA // NODO 0: EL UMBRAL</div>
+      <h1 style="font-size:clamp(1.75rem,4vw,3rem);margin-bottom:.75rem">
+        El Laberinto del Agua:<br><span class="gradient-text">El Acuífero Descartado de Tijuana</span>
+      </h1>
+      <p class="hero-subtitle" style="font-size:clamp(.92rem,1.6vw,1.05rem);max-width:720px">
+        Esta plataforma no es un documento pasivo. Es un <strong>laberinto de inteligencia hidrogeológica</strong> donde la información solo se abre ante la <em>intención del buen ver</em>. Responde con criterio científico para abrir la compuerta:
+      </p>
+
+      <div style="background:rgba(15,23,42,.8);border:1px solid var(--border-glow);border-radius:18px;padding:1.5rem;margin-top:1.5rem;box-shadow:0 0 35px rgba(0,229,255,.08)">
+        <div style="display:flex;align-items:center;gap:.6rem;font-family:var(--font-mono);font-size:.8rem;color:var(--cyan-primary);margin-bottom:1rem;text-transform:uppercase;font-weight:700">
+          <span>🔒 Enigma de Acceso:</span>
+          <span>¿Hacia dónde apunta la legítima defensa del agua en Tijuana?</span>
+        </div>
+
+        <div class="gate-options-grid">
+          <div class="gate-option-card" onclick="handleGateAnswer('A')">
+            <div class="gate-opt-badge">OPCIÓN A</div>
+            <div class="gate-opt-text">
+              <strong>Extracción masiva y comercialización:</strong> Bombar el subsuelo a gran escala para embotellar agua y lucrar con la escasez urbana.
+            </div>
+          </div>
+
+          <div class="gate-option-card" onclick="handleGateAnswer('B')" style="border-color:rgba(16,185,129,.35)">
+            <div class="gate-opt-badge" style="color:var(--emerald-accent);background:rgba(16,185,129,.1)">OPCIÓN B</div>
+            <div class="gate-opt-text">
+              <strong>Resiliencia doméstica y tratamiento POU:</strong> Aprovechar el agua somera que el Estado valuó en cero (&le;150 m³/año) sin dañar el acuífero, tratándola localmente.
+            </div>
+          </div>
+
+          <div class="gate-option-card" onclick="handleGateAnswer('C')">
+            <div class="gate-opt-badge">OPCIÓN C</div>
+            <div class="gate-opt-text">
+              <strong>Inacción y resignación:</strong> Depender únicamente de los tandeos de la red y esperar el colapso del acueducto del Río Colorado.
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:1.5rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.75rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.06)">
+          <span class="secret-hint-link" onclick="handleSecretGlyphClick()">
+            📍 [Coordenada Secreta: 32.5312° N, 117.1228° W · Pozo 001 Playas]
+          </span>
+          <button onclick="toggleSecretCli(true)" class="hud-btn-secret" style="border-radius:6px">
+            >_ Abrir Terminal Secreta
+          </button>
+        </div>
+      </div>
+
+      <div class="hero-stats" style="margin-top:2rem">
+        <div class="stat-card"><div class="stat-value">26.6 hm³</div><div class="stat-label">Recarga Anual Acuífero 0201</div></div>
+        <div class="stat-card"><div class="stat-value" style="color:var(--emerald-accent)">6.0 hm³ (23%)</div><div class="stat-label">Extracción Real en Campo</div></div>
+        <div class="stat-card"><div class="stat-value" style="color:var(--cyan-primary)">&le; 150 m³/año</div><div class="stat-label">Aprovechamiento Doméstico</div></div>
+        <div class="stat-card"><div class="stat-value">80 / 20 POU</div><div class="stat-label">Tratamiento Descentralizado</div></div>
+      </div>
     </div>
   </section>
 
   <section id="datos-conagua">
     <div class="section-header">
-      <span class="section-tag">Fundamentación Oficial y Cifras Textuales</span>
-      <h2 class="section-title">El Estado Real del Acuífero 0201 Tijuana (CONAGUA 2024)</h2>
+      <span class="section-tag">Fundamentación Oficial, Legal e Hidrogeoquímica</span>
+      <h2 class="section-title">El Balance Real del Acuífero 0201 Tijuana: Del "Déficit" al Agua Descartada</h2>
     </div>
-    <div style="background:rgba(15,23,42,.7);border:1px solid var(--border-glow);border-radius:18px;padding:2rem;margin-bottom:2rem;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)">
-      <p style="color:var(--text-muted);font-size:.96rem;margin-bottom:1.5rem;line-height:1.7">Las siguientes cifras corresponden a datos textuales del documento oficial <strong>"Actualización de la Disponibilidad Media Anual de Agua en el Acuífero Tijuana (0201)"</strong> publicado por CONAGUA (2024). Sustentan la urgencia, viabilidad física y necesidad de tratamiento de AquaResiliencia:</p>
-      <div class="conagua-data-grid">
-        <div class="conagua-card" style="border-left:3px solid var(--rose-accent)"><div class="conagua-badge">Sección 8.4 · Disponibilidad Media</div><h4>Déficit: -1,664,020 m³/año</h4><p>El acuífero 0201 se encuentra en déficit estructural. No existe volumen disponible para nuevas concesiones industriales o de gran escala.</p></div>
-        <div class="conagua-card" style="border-left:3px solid var(--amber-accent)"><div class="conagua-badge">Marco Legal · Veda DOF</div><h4>Veda Federal Tipo III (15/Mayo/1965)</h4><p>Veda decretada en 1965 que regula la cuenca pero reconoce legalmente las extracciones domésticas limitadas y faculta el monitoreo piezométrico ciudadano.</p></div>
-        <div class="conagua-card" style="border-left:3px solid var(--cyan-primary)"><div class="conagua-badge">Geohidrología · Nivel Freático</div><h4>Nivel Estático: 4 a 15 metros</h4><p>Los niveles son más someros hacia las márgenes del Río Tijuana y cañadas aluviales. Abatimiento histórico documentado: -1 a -3 metros (2009–2013).</p></div>
-        <div class="conagua-card" style="border-left:3px solid var(--purple-accent)"><div class="conagua-badge">Geomorfología Litoral</div><h4>Farallones Costeros de hasta 30m</h4><p>La línea litoral presenta farallones donde emergen "lloraderos" de agua dulce colgada, validando la prospección visual de AquaDrill.</p></div>
-        <div class="conagua-card" style="border-left:3px solid var(--emerald-accent)"><div class="conagua-badge">Química del Agua · Justificación 80/20</div><h4>Conductividad: 850 a 7,000 μS/cm</h4><p>Equivalente a 600–4,900 ppm TDS. El agua supera límites en Na, Cl, SO4, Mn, Fe y B, justificando 100% la Ósmosis Inversa + UV en la línea del 20%.</p></div>
-        <div class="conagua-card" style="border-left:3px solid var(--blue-accent)"><div class="conagua-badge">Censo REPDA (Corte 30/Dic/2022)</div><h4>270 Aprovechamientos Registrados</h4><p>Extracción anual de 16,564,020 m³/año (64.1% uso público urbano). Vacío de datos en colonias periféricas no conectadas a la red.</p></div>
+    
+    <div style="background:rgba(15,23,42,.75);border:1px solid var(--border-glow);border-radius:20px;padding:2rem;margin-bottom:2rem;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);box-shadow:0 0 50px rgba(0,229,255,.06)">
+      
+      <!-- Pestañas Interactivas de Fundamentación -->
+      <div class="conagua-tabs-bar">
+        <button class="conagua-tab-btn active" onclick="switchConaguaTab(0)">📊 1. Balance Físico vs. Burocracia</button>
+        <button class="conagua-tab-btn" onclick="switchConaguaTab(1)">⚖️ 2. Marco Legal (&le;150 m³/año)</button>
+        <button class="conagua-tab-btn" onclick="switchConaguaTab(2)">🧪 3. El Agua que el Estado Descartó</button>
+        <button class="conagua-tab-btn" onclick="switchConaguaTab(3)">🧬 4. El Reto: Tratamiento Modular</button>
       </div>
-      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;padding-top:1rem;border-top:1px solid var(--border-color);font-size:.82rem;color:var(--text-dim);font-family:var(--font-mono)">
-        <span>📄 Fuente Oficial: CONAGUA DR_0201 (2024), Baja California</span>
-        <a href="https://sigagis.conagua.gob.mx/gas1/Edos_Acuiferos_18/BajaCalifornia/DR_0201.pdf" target="_blank" rel="noopener noreferrer" style="color:var(--cyan-primary);text-decoration:underline">Descargar PDF Oficial ↗</a>
+
+      <!-- TAB 1: BALANCE FÍSICO VS PAPEL -->
+      <div id="conagua-tab-0" class="conagua-tab-panel active">
+        <div style="margin-bottom:1.5rem">
+          <h3 style="font-family:var(--font-heading);font-size:1.35rem;color:var(--text-main);margin-bottom:.5rem">
+            ¿Por qué se habla de "Déficit" si el 77% del agua subterránea no se extrae?
+          </h3>
+          <p style="color:var(--text-muted);font-size:.92rem;line-height:1.65">
+            Existe una confusión fundamental entre la <strong>escasez superficial del Río Colorado</strong> (de la que depende el 95% de la red de Tijuana) y la <strong>realidad física del acuífero costero 0201</strong>. Los propios estudios técnicos de CONAGUA documentan que la extracción real en campo es menos de la cuarta parte de la recarga anual.
+          </p>
+        </div>
+
+        <div class="water-balance-visual">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.25rem;flex-wrap:wrap;gap:.5rem">
+            <span style="font-family:var(--font-mono);font-size:.82rem;color:var(--cyan-primary);font-weight:700;text-transform:uppercase">
+              Balance Anual Acuífero Tijuana 0201 (CONAGUA Oficial)
+            </span>
+            <span style="font-size:.78rem;color:var(--text-dim);font-family:var(--font-mono)">Unidad: Millones de m³ (hm³/año)</span>
+          </div>
+
+          <!-- Barra 1: Recarga Total -->
+          <div class="balance-bar-row">
+            <div class="balance-bar-label">
+              <span>🌧️ Recarga Total Media Anual (R)</span>
+              <span style="color:var(--cyan-primary);font-family:var(--font-mono)">26.60 hm³/año (100%)</span>
+            </div>
+            <div class="balance-bar-track">
+              <div class="balance-bar-fill" style="width:100%;background:linear-gradient(90deg,#0284c7,#00e5ff)">26.6 hm³ Entrada Natural Total</div>
+            </div>
+          </div>
+
+          <!-- Barra 2: Extracción Real Censada -->
+          <div class="balance-bar-row">
+            <div class="balance-bar-label">
+              <span>⛏️ Extracción Real en Campo (Censo de Pozos VEAS)</span>
+              <span style="color:var(--emerald-accent);font-family:var(--font-mono)">6.00 hm³/año (22.5%)</span>
+            </div>
+            <div class="balance-bar-track">
+              <div class="balance-bar-fill" style="width:22.5%;background:linear-gradient(90deg,#059669,#10b981)">6.0 hm³ (22.5%)</div>
+            </div>
+          </div>
+
+          <!-- Barra 3: Agua no aprovechada que drena al mar -->
+          <div class="balance-bar-row">
+            <div class="balance-bar-label">
+              <span>🌊 Flujo Subterráneo que se Drena al Mar sin Aprovechar</span>
+              <span style="color:#38bdf8;font-family:var(--font-mono)">~20.60 hm³/año (77.5%)</span>
+            </div>
+            <div class="balance-bar-track">
+              <div class="balance-bar-fill" style="width:77.5%;background:linear-gradient(90deg,#1e3a8a,#3b82f6)">20.6 hm³ Subutilizado / Drenaje natural</div>
+            </div>
+          </div>
+
+          <!-- Barra 4: Concesiones en papel REPDA -->
+          <div class="balance-bar-row" style="margin-bottom:0">
+            <div class="balance-bar-label">
+              <span>📑 Concesiones Tituladas en Papel (REPDA VCAS)</span>
+              <span style="color:var(--amber-accent);font-family:var(--font-mono)">14.47 – 16.56 hm³ (Titulación Administrativa)</span>
+            </div>
+            <div class="balance-bar-track">
+              <div class="balance-bar-fill" style="width:58%;background:linear-gradient(90deg,#d97706,#f59e0b)">14.47 hm³ Titulados pero no extraídos en su totalidad</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="conagua-data-grid" style="margin-bottom:1rem">
+          <div class="conagua-card" style="border-left:3px solid var(--cyan-primary)">
+            <div class="conagua-badge">Superávit Técnico DOF</div>
+            <h4>+12.13 hm³/año Disponibles</h4>
+            <p>El estudio base de CONAGUA calcula formalmente 12.13 millones de m³ anuales de disponibilidad técnica real sobre la recarga no aprovechada.</p>
+          </div>
+          <div class="conagua-card" style="border-left:3px solid var(--amber-accent)">
+            <div class="conagua-badge">Déficit de Red, no de Manto</div>
+            <h4>Dependencia del Río Colorado (95%)</h4>
+            <p>La crisis y los tandeos en Tijuana ocurren porque la ciudad depende de la presa Hoover/Lake Mead y del acueducto ARCT, no por agotamiento del acuífero local.</p>
+          </div>
+          <div class="conagua-card" style="border-left:3px solid var(--emerald-accent)">
+            <div class="conagua-badge">Nivel Freático Accesible</div>
+            <h4>Profundidad: 4 a 15 metros</h4>
+            <p>El agua somera está al alcance en cañadas y valles aluviales sin requerir perforación pesada ni bombas industriales.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 2: MARCO LEGAL Y SIMULADOR 150 M3 -->
+      <div id="conagua-tab-1" class="conagua-tab-panel">
+        <div style="margin-bottom:1.5rem">
+          <h3 style="font-family:var(--font-heading);font-size:1.35rem;color:var(--text-main);margin-bottom:.5rem">
+            ⚖️ Marco Jurídico: Nueva Ley General de Aguas (Dic 2025) &amp; Veda Tipo III
+          </h3>
+          <p style="color:var(--text-muted);font-size:.92rem;line-height:1.65">
+            AquaResiliencia opera bajo el <strong>Artículo 35 de la Nueva Ley General de Aguas (publicada el 11 de diciembre de 2025)</strong>, que promueve la investigación, innovación tecnológica y redes de telemetría ciudadana para garantizar el derecho humano al agua (Art. 4° Const.) y la recuperación de acuíferos. Asimismo, los <strong>Artículos 40 y 41 de la LGA</strong> reconocen a los <em>Sistemas Comunitarios de Agua</em> para uso doméstico y sin fines de lucro en zonas fuera de la red formal, respetando la Veda Tipo III del Acuífero 0201 bajo el umbral de bajo impacto de <strong>&le; 150 m³ anuales</strong> (~410 L/día por predio).
+          </p>
+        </div>
+
+        <!-- Simulador interactivo de impacto de pozos comunitarios -->
+        <div class="sim-box">
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem">
+            <span style="font-family:var(--font-mono);font-size:.85rem;color:var(--emerald-accent);font-weight:700;text-transform:uppercase">
+              🧮 Simulador de Impacto Acuífero a Escala Comunitaria
+            </span>
+            <span style="font-size:.8rem;color:var(--text-muted)">Tope por pozo: 150 m³/año</span>
+          </div>
+
+          <div style="margin-bottom:1.25rem">
+            <label style="display:flex;justify-content:space-between;font-weight:600;font-size:.9rem;margin-bottom:.5rem">
+              <span>Número de Pozos Domésticos AquaResiliencia:</span>
+              <span id="sim-wells-display" style="color:var(--cyan-primary);font-family:var(--font-mono);font-size:1.1rem;font-weight:700">2,000 pozos</span>
+            </label>
+            <input type="range" class="range-slider" min="100" max="5000" step="100" value="2000" id="sim-wells-slider" oninput="updateWellImpactSim(this.value)">
+          </div>
+
+          <div class="metrics-row" style="margin-top:1rem">
+            <div class="metric-box">
+              <div class="metric-label">Extracción Anual Agregada</div>
+              <div class="metric-val" id="sim-vol-display">0.30 hm³</div>
+              <div style="font-size:.7rem;color:var(--text-dim)">300,000 m³/año</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-label">% Disponibilidad CONAGUA</div>
+              <div class="metric-val" id="sim-pct-disp" style="color:var(--emerald-accent)">2.47%</div>
+              <div style="font-size:.7rem;color:var(--text-dim)">De los 12.13 hm³</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-label">% Recarga Total Anual</div>
+              <div class="metric-val" id="sim-pct-rec" style="color:#38bdf8">1.13%</div>
+              <div style="font-size:.7rem;color:var(--text-dim)">De los 26.60 hm³</div>
+            </div>
+            <div class="metric-box">
+              <div class="metric-label">Familias Beneficiadas</div>
+              <div class="metric-val" id="sim-people-display" style="color:var(--amber-accent)">8,000</div>
+              <div style="font-size:.7rem;color:var(--text-dim)">~4 personas / pozo</div>
+            </div>
+          </div>
+
+          <div style="margin-top:1rem;background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);border-radius:10px;padding:.85rem 1rem;font-size:.82rem;color:#a7f3d0;display:flex;align-items:center;gap:.6rem">
+            <span>🛡️</span>
+            <span><strong>Conclusión Técnica:</strong> Incluso con miles de pozos comunitarios operando simultáneamente, la huella combinada no supera el 2.5% del superávit oficial disponible, impidiendo conos de depresión o intrusión marina.</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- TAB 3: EL AGUA QUE EL ESTADO DESCARTÓ (CALIDAD) -->
+      <div id="conagua-tab-2" class="conagua-tab-panel">
+        <div style="margin-bottom:1.25rem">
+          <h3 style="font-family:var(--font-heading);font-size:1.35rem;color:var(--text-main);margin-bottom:.5rem">
+            La Razón del Abandono: Calidad Fisicoquímica y Descarte Estatal
+          </h3>
+          <p style="color:var(--text-muted);font-size:.92rem;line-height:1.65">
+            El acuífero de Tijuana no fue ignorado por falta de agua, sino porque la autoridad centralizada <strong>lo descartó formalmente para consumo directo</strong> al rebasar los parámetros de la norma de agua potable (NOM-127-SSA1). El agua que el Estado valuó en cero es precisamente la que AquaResiliencia purifica localmente.
+          </p>
+        </div>
+
+        <div style="overflow-x:auto;background:rgba(7,13,24,.6);border:1px solid var(--border-color);border-radius:14px;padding:.5rem">
+          <table class="chem-table">
+            <thead>
+              <tr>
+                <th>Parámetro Químico</th>
+                <th>Medición Oficial CONAGUA</th>
+                <th>Límite NOM-127-SSA1</th>
+                <th>Diagnóstico Oficial</th>
+                <th>Solución Modular AquaResiliencia</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>Conductividad / TDS</strong></td>
+                <td>850 – 7,000 μS/cm (600–4,900 ppm)</td>
+                <td>&le; 1,000 ppm</td>
+                <td><span class="badge-danger-soft">Rebasa Límite</span></td>
+                <td><span class="badge-success-soft">Micro-Ósmosis Inversa POU</span></td>
+              </tr>
+              <tr>
+                <td><strong>Cloruros y Sodio (NaCl)</strong></td>
+                <td>Elevados por contacto marino litoral</td>
+                <td>Cl &le; 250 mg/L · Na &le; 200 mg/L</td>
+                <td><span class="badge-danger-soft">Salobre / Dura</span></td>
+                <td><span class="badge-success-soft">Membrana TFC Desalación</span></td>
+              </tr>
+              <tr>
+                <td><strong>Sulfatos (SO₄)</strong></td>
+                <td>Rebasa límites en valles aluviales</td>
+                <td>&le; 400 mg/L</td>
+                <td><span class="badge-danger-soft">Sabor / Turbidez</span></td>
+                <td><span class="badge-success-soft">Filtración Mixta Zeolitas</span></td>
+              </tr>
+              <tr>
+                <td><strong>Hierro y Manganeso (Fe/Mn)</strong></td>
+                <td>Presencia en estratos geológicos someros</td>
+                <td>Fe &le; 0.3 mg/L · Mn &le; 0.15 mg/L</td>
+                <td><span class="badge-danger-soft">Manchado / Metales</span></td>
+                <td><span class="badge-success-soft">Lecho Catalítico Birm/Zeolita</span></td>
+              </tr>
+              <tr>
+                <td><strong>Boro (B)</strong></td>
+                <td>Anomalías naturales litológicas</td>
+                <td>&le; 1.5 mg/L</td>
+                <td><span class="badge-danger-soft">Fitotóxico</span></td>
+                <td><span class="badge-success-soft">Ósmosis con paso selectivo</span></td>
+              </tr>
+              <tr>
+                <td><strong>Huella Urbana (Detergentes/Nitrógeno)</strong></td>
+                <td>Infiltración por descargas y letrinas</td>
+                <td>SAAM &le; 0.5 mg/L · NO₃ &le; 11 mg/L</td>
+                <td><span class="badge-danger-soft">Antropogénico</span></td>
+                <td><span class="badge-success-soft">Carbón Activado en Bloque + UV</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- TAB 4: HOJA DE RUTA - TRATAMIENTO MODULAR -->
+      <div id="conagua-tab-3" class="conagua-tab-panel">
+        <div style="margin-bottom:1.5rem">
+          <h3 style="font-family:var(--font-heading);font-size:1.35rem;color:var(--text-main);margin-bottom:.5rem">
+            El Verdadero Reto: Desarrollo de Trenes de Tratamiento Descentralizados
+          </h3>
+          <p style="color:var(--text-muted);font-size:.92rem;line-height:1.65">
+            Con el volumen y la legalidad resueltos, la misión de AquaResiliencia consiste en <strong>democratizar el tratamiento físico-químico</strong>. Mediante la arquitectura desacoplada 80/20, solo se purifica a nivel bacteriológico y desalinizado la fracción que se ingiere o toca los alimentos.
+          </p>
+        </div>
+
+        <div class="grid-4" style="margin-top:1rem">
+          <div class="card" style="border-top:3px solid #38bdf8">
+            <div class="card-icon">1️⃣</div>
+            <h3>Fase 1: Desbaste y Metales</h3>
+            <p>Filtro de sedimentos PP de 5 micras + Zeolita catalítica natural para atrapar partículas sólidas, óxidos de hierro y manganeso.</p>
+          </div>
+          <div class="card" style="border-top:3px solid var(--purple-accent)">
+            <div class="card-icon">2️⃣</div>
+            <h3>Fase 2: Absorción Orgánica</h3>
+            <p>Carbón activado de concha de coco extruido (CTO) para remover detergentes, olores, compuestos nitrogenados y compuestos volátiles.</p>
+          </div>
+          <div class="card" style="border-top:3px solid var(--cyan-primary)">
+            <div class="card-icon">3️⃣</div>
+            <h3>Fase 3: Desalación POU (20%)</h3>
+            <p>Membrana de Micro-Ósmosis Inversa (50–100 GPD) de bajo consumo eléctrico que reduce la salinidad (TDS) de 2,000 ppm a &lt;150 ppm potable.</p>
+          </div>
+          <div class="card" style="border-top:3px solid var(--emerald-accent)">
+            <div class="card-icon">4️⃣</div>
+            <h3>Fase 4: Esterilización UV</h3>
+            <p>Cámara de radiación ultravioleta germicida (UV-C 254 nm) que garantiza 99.99% de desinfección bacteriológica instantánea sin químicos.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Pie de sección oficial con enlaces -->
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;padding-top:1.25rem;margin-top:1.5rem;border-top:1px solid var(--border-color);font-size:.82rem;color:var(--text-dim);font-family:var(--font-mono)">
+        <span>📄 Referencia: CONAGUA DR_0201 (Baja California) &middot; DOF &middot; NOM-127-SSA1</span>
+        <a href="https://sigagis.conagua.gob.mx/gas1/Edos_Acuiferos_18/BajaCalifornia/DR_0201.pdf" target="_blank" rel="noopener noreferrer" style="color:var(--cyan-primary);text-decoration:underline">Ver Estudio Técnico Oficial CONAGUA ↗</a>
       </div>
     </div>
   </section>
@@ -3090,8 +3792,239 @@ function initPanelNav(){
   showPanel(PANEL_IDS.indexOf(initial) !== -1 ? initial : 'hero', { push:false, animate:false });
 }
 
+// ==================== CONAGUA TAB SWITCHER & WELL IMPACT SIM ====================
+function switchConaguaTab(idx){
+  document.querySelectorAll('.conagua-tab-btn').forEach((btn, i)=>{
+    btn.classList.toggle('active', i === idx);
+  });
+  document.querySelectorAll('.conagua-tab-panel').forEach((panel, i)=>{
+    panel.classList.toggle('active', i === idx);
+}
+
+// ==================== GAME AUDIO SYNTHESIZER (Web Audio API) ====================
+let audioCtx = null;
+function getAudioContext(){
+  if(!audioCtx){
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    if(AudioContext) audioCtx = new AudioContext();
+  }
+  if(audioCtx && audioCtx.state === 'suspended'){
+    audioCtx.resume();
+  }
+  return audioCtx;
+}
+
+function playTone(freq, duration, type, startGain){
+  try {
+    const ctx = getAudioContext();
+    if(!ctx) return;
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = type || 'sine';
+    osc.frequency.setValueAtTime(freq, ctx.currentTime);
+    gain.gain.setValueAtTime(startGain || 0.15, ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+    osc.connect(gain);
+    gain.connect(ctx.destination);
+    osc.start();
+    osc.stop(ctx.currentTime + duration);
+  } catch(e){}
+}
+
+function playSuccessChime(){
+  try {
+    playTone(523.25, 0.18, 'triangle', 0.2); // C5
+    setTimeout(()=> playTone(659.25, 0.22, 'triangle', 0.22), 100); // E5
+    setTimeout(()=> playTone(783.99, 0.35, 'triangle', 0.25), 200); // G5
+    setTimeout(()=> playTone(1046.50, 0.5, 'sine', 0.2), 320); // C6
+  }catch(e){}
+}
+
+function playGlitchSound(){
+  try {
+    const ctx = getAudioContext();
+    if(!ctx) return;
+    playTone(110, 0.3, 'sawtooth', 0.3);
+    setTimeout(()=> playTone(75, 0.35, 'square', 0.35), 80);
+    setTimeout(()=> playTone(55, 0.4, 'sawtooth', 0.4), 160);
+  }catch(e){}
+}
+
+function playDoorOpenSound(){
+  try {
+    playTone(330, 0.15, 'sine', 0.15);
+    setTimeout(()=> playTone(440, 0.25, 'sine', 0.18), 120);
+  }catch(e){}
+}
+
+// ==================== GAME PROGRESSION & MYSTERY LOGIC ====================
+let userIntentionProven = false;
+
+function handleGateAnswer(choice){
+  getAudioContext();
+  if(choice === 'B'){
+    userIntentionProven = true;
+    playSuccessChime();
+    showToast('💧 ¡Intención Alineada! Desbloqueando Nodo 1: El Balance...', 3000);
+    setTimeout(()=>{
+      showPanel('datos-conagua');
+    }, 450);
+  } else {
+    playGlitchSound();
+    triggerGlitchScreen();
+  }
+}
+
+function triggerGlitchScreen(){
+  const overlay = document.getElementById('glitch-overlay');
+  if(!overlay) return;
+  overlay.classList.remove('hidden');
+  
+  let count = 2;
+  const countEl = document.getElementById('glitch-sec');
+  if(countEl) countEl.textContent = count;
+  
+  const timer = setInterval(()=>{
+    count--;
+    if(countEl) countEl.textContent = count;
+    if(count <= 0){
+      clearInterval(timer);
+      overlay.classList.add('hidden');
+    }
+  }, 1000);
+}
+
+function handleSecretGlyphClick(){
+  getAudioContext();
+  playSuccessChime();
+  userIntentionProven = true;
+  showToast('🔓 [PASE TÉCNICO CENTINELA]: Calibración Playas de Tijuana 32.53°N', 3500);
+  setTimeout(()=>{
+    showPanel('motor-hidro');
+  }, 400);
+}
+
+// ==================== SECRET CLI TERMINAL ====================
+function toggleSecretCli(show){
+  const el = document.getElementById('secret-cli-modal');
+  if(!el) return;
+  if(show){
+    getAudioContext();
+    playTone(880, 0.1, 'sine', 0.15);
+    el.classList.remove('hidden');
+    const input = document.getElementById('secret-cli-input');
+    if(input) setTimeout(()=> input.focus(), 100);
+  } else {
+    el.classList.add('hidden');
+  }
+}
+
+function handleCliKey(e){
+  if(e.key === 'Enter'){
+    const input = document.getElementById('secret-cli-input');
+    const log = document.getElementById('secret-cli-log');
+    if(!input || !log) return;
+    const cmd = input.value.trim().toLowerCase();
+    input.value = '';
+    
+    log.innerHTML += `\n<span style="color:#00e5ff">> ${cmd}</span>\n`;
+    
+    if(cmd === 'help'){
+      log.innerHTML += `Comandos del Sistema AquaResiliencia:\n  balance     - Muestra el balance hidrogeológico CONAGUA\n  telemetry   - Volcado de sensores IoT ESP32 en vivo\n  legal       - Muestra el criterio normativo de los 150 m3\n  unlock-all  - Abre todos los nodos y herramientas\n  clear       - Limpia la pantalla\n  exit        - Cierra la terminal\n`;
+    } else if(cmd === 'balance'){
+      log.innerHTML += `[BALANCE HIDROLÓGICO ACUÍFERO TIJUANA 0201]\n  Recarga Total (R):      26.60 hm³/año (100%)\n  Extracción Censada:     6.00 hm³/año  (22.5%)\n  Agua no aprovechada:    20.60 hm³/año (77.5%)\n  Superávit Técnico DOF:  +12.13 hm³/año\n`;
+    } else if(cmd === 'telemetry'){
+      log.innerHTML += `[TELEMETRÍA CENTINELA ESP32 // CASO 001 PLAYAS]\n  Nivel Freático: 7.12 m (Estable)\n  Conductividad: 1,420 μS/cm (~994 ppm TDS)\n  Flujo 24h:      340 Litros (Tope ≤600 L)\n  Estado Sensor:  EN LÍNEA (Batería 94% / Solar)\n`;
+    } else if(cmd === 'legal'){
+      log.innerHTML += `[CRITERIO JURÍDICO APROVECHAMIENTO DOMÉSTICO]\n  Tope por Predio: ≤ 150 m³/año (~410 L/día)\n  Régimen: Libre de memoria técnica compleja\n  Huella 2,000 pozos: 0.30 hm³ (2.47% de la disponibilidad)\n`;
+    } else if(cmd === 'unlock-all' || cmd === 'aquadrill'){
+      userIntentionProven = true;
+      playSuccessChime();
+      log.innerHTML += `[ACCESO TOTAL CONCEDIDO] Todos los nodos y visores desbloqueados.\n`;
+      showToast('🔓 Acceso Total Concedido vía Terminal', 3000);
+    } else if(cmd === 'clear'){
+      log.innerHTML = `[TERMINAL LIMPIA]\n`;
+    } else if(cmd === 'exit'){
+      toggleSecretCli(false);
+    } else {
+      log.innerHTML += `Comando no reconocido: '${cmd}'. Escribe 'help' para ayuda.\n`;
+    }
+    log.scrollTop = log.scrollHeight;
+  }
+}
+
+// Secret Keystroke Buffer
+let keyBuffer = '';
+window.addEventListener('keydown', (e)=>{
+  if(e.key === '~' || e.key === '`'){
+    e.preventDefault();
+    toggleSecretCli(true);
+    return;
+  }
+  if(e.target && (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA' || e.target.tagName === 'SELECT')) return;
+  keyBuffer = (keyBuffer + e.key.toLowerCase()).slice(-12);
+  if(keyBuffer.includes('aquadrill') || keyBuffer.includes('0201') || keyBuffer.includes('150m3') || keyBuffer.includes('tijuana')){
+    keyBuffer = '';
+    handleSecretGlyphClick();
+  }
+});
+
+function updateWellImpactSim(wells){
+  wells = parseInt(wells, 10) || 100;
+  const volM3 = wells * 150;
+  const volHm3 = volM3 / 1000000;
+  const dispHm3 = 12.13;
+  const recHm3 = 26.60;
+  const pctDisp = ((volHm3 / dispHm3) * 100).toFixed(2);
+  const pctRec = ((volHm3 / recHm3) * 100).toFixed(2);
+  const people = wells * 4;
+
+  const wDisp = document.getElementById('sim-wells-display');
+  const vDisp = document.getElementById('sim-vol-display');
+  const pDisp = document.getElementById('sim-pct-disp');
+  const rDisp = document.getElementById('sim-pct-rec');
+  const peoDisp = document.getElementById('sim-people-display');
+
+  if(wDisp) wDisp.textContent = wells.toLocaleString('es-MX') + ' pozos';
+  if(vDisp) vDisp.textContent = volHm3.toFixed(2) + ' hm³';
+  if(pDisp) pDisp.textContent = pctDisp + '%';
+  if(rDisp) rDisp.textContent = pctRec + '%';
+  if(peoDisp) peoDisp.textContent = people.toLocaleString('es-MX');
+}
+
 // ==================== INIT ====================
 document.addEventListener('DOMContentLoaded',()=>{initCalc();initTelemetry();initCorte3D();init();initPanelNav();positionDiaCero();initDiaCero();setInterval(initDiaCero, DIA_CERO_REFRESH_MS);});
 </script>
+
+<!-- ==================== GLITCH OVERLAY ==================== -->
+<div id="glitch-overlay" class="glitch-overlay hidden">
+  <div class="glitch-box">
+    <div class="glitch-icon">⛔</div>
+    <div class="glitch-title">ACCESO DENEGADO</div>
+    <div class="glitch-subtitle">INTENCIÓN NO ALINEADA CON LA RESILIENCIA HÍDRICA</div>
+    <div class="glitch-body">
+      El agua subterránea de Tijuana no se abre ante el despojo, la prisa o la especulación comercial.<br><br>
+      Solo quien comprende el equilibrio del manto y el derecho humano al agua puede avanzar.
+    </div>
+    <div class="glitch-counter">Reiniciando compuerta en <span id="glitch-sec">2</span>s...</div>
+  </div>
+</div>
+
+<!-- ==================== SECRET CLI MODAL ==================== -->
+<div id="secret-cli-modal" class="secret-cli-overlay hidden">
+  <div class="secret-cli-box">
+    <div class="secret-cli-header">
+      <span>>_ AQUARESILIENCIA SHELL v2.6 // TERMINAL CLASIFICADA</span>
+      <button class="secret-cli-close" onclick="toggleSecretCli(false)">&times;</button>
+    </div>
+    <div class="secret-cli-output" id="secret-cli-log">[SYSTEM READY] Terminal de Inteligencia Hidrogeológica v2.6.
+Escribe 'help' para listar los comandos disponibles o 'balance' para datos duros.</div>
+    <div class="secret-cli-input-row">
+      <span class="cli-prompt">aqua@tijuana:~$</span>
+      <input type="text" id="secret-cli-input" class="cli-input" placeholder="escribe comando y presiona Enter..." onkeydown="handleCliKey(event)">
+    </div>
+  </div>
+</div>
+
 </body>
 </html>

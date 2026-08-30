@@ -39,3 +39,8 @@ photos/
 *.temp
 .DS_Store
 Thumbs.db
+.vercel
+
+# Material de referencia pesado, no es entregable del repo
+inventario de parques/
+node_modules/
