@@ -95,6 +95,7 @@ input[type=text]{width:100%;padding:.6rem .8rem;border-radius:8px;border:1px sol
     </div>
     <div class="diag" id="out-geo"></div>
     <div class="diag" id="out-diag"></div>
+    <div class="diag" id="out-method" style="border-left-color:var(--emerald)"></div>
     <p style="font-size:.72rem;color:var(--text-muted);margin-top:.8rem">Fuente: estimación AquaEngine (DEM satelital + rangos regionales CONAGUA DR_0201, 2024). Referencia: <span id="out-ref"></span> — generado <span id="out-date"></span>.</p>
     <button class="btn btn-secondary no-print" onclick="window.print()">🖨️ Imprimir / Guardar PDF</button>
   </div>
@@ -151,30 +152,35 @@ async function runEvaluation(){
   const distRio = Math.sqrt(Math.pow(chosenLat - 32.53, 2) + Math.pow(chosenLng - (-117.02), 2)) * 111;
   const distMar = Math.abs(chosenLng - (-117.13)) * 95;
 
-  let score=80, depth=6.0, tds=850, geo="Depósito Aluvial / Terraza Cuaternaria", diag="";
+  let score=80, depth=6.0, tds=850, geo="Depósito Aluvial / Terraza Cuaternaria", diag="", method="";
 
   if (elev > 250) {
     score = Math.max(5, Math.round(30 - (elev - 250) * 0.1));
     depth = Math.round(35 + (elev - 250) * 0.2); tds = 1400;
     geo = "SGM: Complejo Volcánico / Basaltos y Rocas Ígneas (Cumbres)";
     diag = `🛑 Cota elevada de montaña (${elev} msnm). Nivel freático regional a más de ${depth}m en roca dura. No viable con perforación manual somera (<12m). Considerar cosecha pluvial/niebla.`;
+    method = "Ninguno recomendado — roca ígnea maciza requiere equipo rotatorio industrial con broca tricónica, incompatible con perforación frugal. No intentar con AquaDrill.";
   } else if (elev > 140) {
     score = 45; depth = 15.0; tds = 950;
     geo = "SGM: Terrazas Altas y Conglomerados Formación Otay";
     diag = `Cota elevada de meseta/ladera (${elev} msnm). Profundidad freática límite (~${depth}m). Riesgo de pozo seco. Se recomienda geofísica (SEV/ERT) antes de invertir en perforación.`;
+    method = "Percusión pesada con barra de acero + lodo bentonítico denso (~50 g/L) — los cantos rodados del conglomerado obstruyen la hidrocirculación simple. Requiere más tiempo/esfuerzo que arena.";
   } else if (distMar < 3.5 && elev < 40) {
     score = 88; depth = 5.5 + (elev * 0.1); tds = 980;
     geo = "SGM: Terrazas Marinas y Areniscas Plioceno (Zona Costera)";
     diag = `Cota baja costera (${elev} msnm). Manto somero probable. Requiere prueba de correlación mareal de 24h para descartar intrusión salina antes de perforar.`;
+    method = "Hidrocirculación con percusión ligera de apoyo — la arenisca marina suele tener capas cementadas intermedias que la sola hidrocirculación no rompe. Sello sanitario reforzado (2.5m) obligatorio por riesgo de cuña salina.";
   } else if (distRio < 3.0 && elev < 60) {
     score = 92; depth = 4.5 + (elev * 0.05); tds = 720;
     geo = "SGM: Aluvión Cuaternario Qal (Eje Fluvial del Valle)";
     diag = `Fondo de valle aluvial (${elev} msnm). Alta transmisividad esperada en arenas/gravas de río. Candidato favorable para perforación somera de prueba.`;
+    method = "Punta de arena hincada (sand point) o hidrocirculación simple — arena/grava suelta no requiere romper roca, es el escenario más rápido y barato de perforar (método AquaDrill estándar).";
   } else {
     score = Math.max(20, Math.round(85 - (elev - 50) * 0.4));
     depth = Math.min(22, 6.5 + (elev * 0.08)); tds = 900 + Math.round(elev * 1.5);
     geo = "SGM: Aluvión / Formación Rosarito Beach Mixta";
     diag = `Cota intermedia (${elev} msnm). Manto freático accesible a ~${depth.toFixed(1)}m según modelo. Se recomienda verificación litológica en campo antes de perforar.`;
+    method = "Método mixto a definir en campo (hidrocirculación con respaldo de percusión ligera) — la litología es variable en esta zona, se necesita sarta guía de prueba antes de comprometerse a un solo método.";
   }
 
   const flow = score > 50 ? (score > 75 ? 2.8 : 1.8) : 0.4;
@@ -187,6 +193,7 @@ async function runEvaluation(){
   document.getElementById('out-flow').textContent = flow.toFixed(1) + ' L/min';
   document.getElementById('out-geo').textContent = '🪨 Geología estimada (SGM): ' + geo;
   document.getElementById('out-diag').textContent = diag;
+  document.getElementById('out-method').textContent = '🛠️ Método de perforación recomendado: ' + method;
   document.getElementById('out-ref').textContent = document.getElementById('in-ref').value || 'Sin referencia';
   document.getElementById('out-date').textContent = new Date().toLocaleDateString('es-MX', {year:'numeric', month:'long', day:'numeric'});
   document.getElementById('report').style.display = 'block';
