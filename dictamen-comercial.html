@@ -174,7 +174,7 @@ async function runEvaluation(){
     score = 92; depth = 4.5 + (elev * 0.05); tds = 720;
     geo = "SGM: Aluvión Cuaternario Qal (Eje Fluvial del Valle)";
     diag = `Fondo de valle aluvial (${elev} msnm). Alta transmisividad esperada en arenas/gravas de río. Candidato favorable para perforación somera de prueba.`;
-    method = "Punta de arena hincada (sand point) o hidrocirculación simple — arena/grava suelta no requiere romper roca, es el escenario más rápido y barato de perforar (método AquaDrill estándar).";
+    method = "Punta de arena hincada (sand point) o hidrocirculación simple — arena/grava suelta no requiere romper roca, es el escenario más rápido y barato de perforar (método AquaDrill estándar). Contingencia real de campo: si aparece una lente de grava gruesa (1-2\") la hidrocirculación pierde circulación y se atasca — tener a la mano trépano de percusión y cuchara con válvula para romper y extraer el material grueso.";
   } else {
     score = Math.max(20, Math.round(85 - (elev - 50) * 0.4));
     depth = Math.min(22, 6.5 + (elev * 0.08)); tds = 900 + Math.round(elev * 1.5);
