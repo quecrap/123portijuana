@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AquaResiliencia — Presentación Whiteboard & Mapa Mental</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Outfit:wght@400;600;700;800;900&family=Permanent+Marker&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-canvas: #f8fafc;
+      --grid-color: rgba(203, 213, 225, 0.4);
+      --ink-primary: #0f172a;
+      --ink-blue: #0284c7;
+      --ink-teal: #0d9488;
+      --ink-amber: #d97706;
+      --ink-purple: #9333ea;
+      --ink-emerald: #16a34a;
+      --ink-rose: #e11d48;
+      --card-bg: rgba(255, 255, 255, 0.94);
+      --card-border: #cbd5e1;
+      --shadow-sketch: 4px 5px 0px rgba(15, 23, 42, 0.85);
+      --font-doodle: 'Caveat', cursive, sans-serif;
+      --font-title: 'Permanent Marker', cursive, sans-serif;
+      --font-ui: 'Outfit', -apple-system, sans-serif;
+    }
+
+    [data-theme="blueprint"] {
+      --bg-canvas: #0a2540;
+      --grid-color: rgba(255, 255, 255, 0.12);
+      --ink-primary: #ffffff;
+      --ink-blue: #38bdf8;
+      --ink-teal: #2dd4bf;
+      --ink-amber: #fbbf24;
+      --ink-purple: #c084fc;
+      --ink-emerald: #4ade80;
+      --ink-rose: #fb7185;
+      --card-bg: rgba(15, 42, 74, 0.95);
+      --card-border: #38bdf8;
+      --shadow-sketch: 4px 5px 0px rgba(0, 0, 0, 0.6);
+    }
+
+    [data-theme="chalkboard"] {
+      --bg-canvas: #1e293b;
+      --grid-color: rgba(255, 255, 255, 0.05);
+      --ink-primary: #f8fafc;
+      --ink-blue: #7dd3fc;
+      --ink-teal: #5eead4;
+      --ink-amber: #fde047;
+      --ink-purple: #d8b4fe;
+      --ink-emerald: #86efac;
+      --ink-rose: #fda4af;
+      --card-bg: rgba(30, 41, 59, 0.96);
+      --card-border: rgba(255, 255, 255, 0.3);
+      --shadow-sketch: 4px 5px 0px rgba(0, 0, 0, 0.8);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    body {
+      font-family: var(--font-ui);
+      background-color: var(--bg-canvas);
+      color: var(--ink-primary);
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* TOP HEADER & CONTROLS */
+    header {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      background: var(--card-bg);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 2px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+      z-index: 100;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .brand-group {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .brand-icon {
+      font-size: 1.6rem;
+      animation: float 3s ease-in-out infinite;
+    }
+
+    .brand-title {
+      font-family: var(--font-title);
+      font-size: 1.35rem;
+      letter-spacing: 0.5px;
+      color: var(--ink-blue);
+    }
+
+    .brand-badge {
+      font-family: var(--font-doodle);
+      font-size: 1.2rem;
+      font-weight: 700;
+      background: rgba(2, 132, 199, 0.12);
+      color: var(--ink-blue);
+      padding: 0.15rem 0.6rem;
+      border-radius: 999px;
+      border: 1px dashed var(--ink-blue);
+    }
+
+    .chapter-nav {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .chapter-btn {
+      background: transparent;
+      border: 2px solid transparent;
+      padding: 0.35rem 0.75rem;
+      border-radius: 8px;
+      font-family: var(--font-ui);
+      font-size: 0.825rem;
+      font-weight: 700;
+      color: var(--ink-primary);
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .chapter-btn:hover {
+      background: rgba(0, 0, 0, 0.05);
+      border-color: var(--card-border);
+    }
+
+    .chapter-btn.active {
+      background: var(--ink-blue);
+      color: #ffffff;
+      border-color: var(--ink-blue);
+      box-shadow: var(--shadow-sketch);
+    }
+
+    .tool-group {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+    }
+
+    .tool-btn {
+      background: var(--card-bg);
+      border: 2px solid var(--card-border);
+      padding: 0.35rem 0.65rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--ink-primary);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: all 0.15s ease;
+    }
+
+    .tool-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 2px 3px 0px var(--ink-primary);
+    }
+
+    /* MAIN VIEWPORT CANVAS */
+    #viewport {
+      flex: 1;
+      position: relative;
+      overflow: hidden;
+      cursor: grab;
+      margin-top: 64px;
+      margin-bottom: 74px;
+      background-size: 28px 28px;
+      background-image: 
+        linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+    }
+
+    #viewport.dragging {
+      cursor: grabbing;
+    }
+
+    #canvas-layer {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 2400px;
+      height: 1600px;
+      transform-origin: 0 0;
+      transition: transform 0.1s cubic-bezier(0.1, 0.9, 0.2, 1);
+    }
+
+    svg#mindmap-svg {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    /* SKETCH NODES & CARDS */
+    .doodle-card {
+      position: absolute;
+      background: var(--card-bg);
+      border: 2.5px solid var(--ink-primary);
+      border-radius: 16px;
+      padding: 1.1rem 1.25rem;
+      box-shadow: var(--shadow-sketch);
+      transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+      cursor: pointer;
+      pointer-events: auto;
+      transform: scale(0.9);
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .doodle-card.drawn {
+      opacity: 1;
+      visibility: visible;
+      transform: scale(1);
+    }
+
+    .doodle-card:hover {
+      transform: scale(1.04) translateY(-4px);
+      box-shadow: 6px 8px 0px var(--ink-primary);
+    }
+
+    .doodle-card.focused {
+      border-color: var(--ink-blue);
+      box-shadow: 0 0 0 4px rgba(2, 132, 199, 0.3), var(--shadow-sketch);
+      transform: scale(1.06);
+    }
+
+    .node-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.4rem;
+    }
+
+    .node-icon {
+      font-size: 1.5rem;
+    }
+
+    .node-title {
+      font-family: var(--font-title);
+      font-size: 1.05rem;
+      color: var(--ink-primary);
+      letter-spacing: 0.5px;
+    }
+
+    .node-tag {
+      font-family: var(--font-doodle);
+      font-size: 1rem;
+      font-weight: 700;
+      margin-left: auto;
+      padding: 0.1rem 0.4rem;
+      border-radius: 4px;
+      border: 1px solid currentColor;
+    }
+
+    .node-body {
+      font-family: var(--font-doodle);
+      font-size: 1.25rem;
+      line-height: 1.25;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    .node-bullets {
+      list-style: none;
+      margin-top: 0.4rem;
+    }
+
+    .node-bullets li {
+      position: relative;
+      padding-left: 1.2rem;
+      margin-bottom: 0.2rem;
+    }
+
+    .node-bullets li::before {
+      content: "✏️";
+      position: absolute;
+      left: 0;
+      font-size: 0.75rem;
+      top: 2px;
+    }
+
+    /* CENTER CORE NODE */
+    #node-core {
+      top: 700px;
+      left: 1050px;
+      width: 300px;
+      text-align: center;
+      background: linear-gradient(135deg, rgba(2, 132, 199, 0.12), rgba(13, 148, 136, 0.18)), var(--card-bg);
+      border-width: 3.5px;
+      border-color: var(--ink-blue);
+      border-radius: 24px;
+      z-index: 10;
+    }
+
+    #node-core .node-title {
+      font-size: 1.5rem;
+      color: var(--ink-blue);
+    }
+
+    /* BRANCH NODES POSITIONING */
+    #node-crisis { top: 380px; left: 600px; width: 320px; border-color: var(--ink-rose); }
+    #node-crisis .node-tag { color: var(--ink-rose); }
+
+    #node-somera { top: 340px; left: 1460px; width: 340px; border-color: var(--ink-emerald); }
+    #node-somera .node-tag { color: var(--ink-emerald); }
+
+    #node-iot { top: 720px; left: 1540px; width: 330px; border-color: var(--ink-purple); }
+    #node-iot .node-tag { color: var(--ink-purple); }
+
+    #node-comunidad { top: 1060px; left: 1350px; width: 330px; border-color: var(--ink-teal); }
+    #node-comunidad .node-tag { color: var(--ink-teal); }
+
+    #node-asesores { top: 1040px; left: 680px; width: 350px; border-color: var(--ink-amber); }
+    #node-asesores .node-tag { color: var(--ink-amber); }
+
+    #node-futuro { top: 720px; left: 480px; width: 300px; border-color: var(--ink-blue); }
+    #node-futuro .node-tag { color: var(--ink-blue); }
+
+    /* ANIMATING PENCIL HAND */
+    #drawing-hand {
+      position: absolute;
+      width: 64px;
+      height: 64px;
+      pointer-events: none;
+      z-index: 200;
+      transform: translate(-10px, -50px);
+      transition: opacity 0.3s ease;
+      filter: drop-shadow(4px 8px 6px rgba(0,0,0,0.3));
+    }
+
+    #drawing-hand.hidden {
+      opacity: 0;
+    }
+
+    /* BOTTOM CONTROLS & AUDIO PLAYER */
+    footer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 74px;
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-top: 2px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+      z-index: 100;
+      box-shadow: 0 -4px 16px rgba(0,0,0,0.06);
+    }
+
+    .playback-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .play-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: var(--ink-blue);
+      color: #ffffff;
+      border: 2px solid var(--ink-primary);
+      font-size: 1.3rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: var(--shadow-sketch);
+      transition: all 0.15s ease;
+    }
+
+    .play-btn:hover {
+      transform: scale(1.08);
+    }
+
+    .play-btn:active {
+      transform: scale(0.95);
+    }
+
+    .timeline-container {
+      flex: 1;
+      max-width: 700px;
+      margin: 0 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+    }
+
+    .time-info {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--ink-primary);
+    }
+
+    .scrubber-bar {
+      width: 100%;
+      height: 10px;
+      background: rgba(0, 0, 0, 0.1);
+      border-radius: 999px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--card-border);
+    }
+
+    .scrubber-progress {
+      height: 100%;
+      background: linear-gradient(90deg, var(--ink-blue), var(--ink-teal));
+      width: 0%;
+      border-radius: 999px;
+      transition: width 0.1s linear;
+    }
+
+    .speed-badge {
+      background: rgba(0,0,0,0.06);
+      border: 1px solid var(--card-border);
+      padding: 0.25rem 0.55rem;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .volume-group {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .volume-slider {
+      width: 70px;
+      accent-color: var(--ink-blue);
+      cursor: pointer;
+    }
+
+    /* FLOATING MINI INFO OVERLAY */
+    .legend-overlay {
+      position: absolute;
+      bottom: 86px;
+      left: 20px;
+      background: var(--card-bg);
+      border: 2px solid var(--card-border);
+      padding: 0.75rem 1rem;
+      border-radius: 12px;
+      box-shadow: var(--shadow-sketch);
+      font-family: var(--font-doodle);
+      font-size: 1.15rem;
+      font-weight: 700;
+      z-index: 50;
+      pointer-events: none;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-5px); }
+    }
+  </style>
+</head>
+<body data-theme="whiteboard">
+
+  <!-- TOP HEADER -->
+  <header>
+    <div class="brand-group">
+      <span class="brand-icon">💧</span>
+      <h1 class="brand-title">AquaResiliencia</h1>
+      <span class="brand-badge">Mapa Mental & Whiteboard Video</span>
+    </div>
+
+    <!-- CHAPTER NAVIGATION -->
+    <nav class="chapter-nav">
+      <button type="button" class="chapter-btn active" onclick="seekChapter(0)">
+        <span>1.</span> Génesis & Crisis
+      </button>
+      <button type="button" class="chapter-btn" onclick="seekChapter(160)">
+        <span>2.</span> Agua Somera
+      </button>
+      <button type="button" class="chapter-btn" onclick="seekChapter(375)">
+        <span>3.</span> Red IoT & Telemetría
+      </button>
+      <button type="button" class="chapter-btn" onclick="seekChapter(690)">
+        <span>4.</span> Nodos 80/20
+      </button>
+      <button type="button" class="chapter-btn" onclick="seekChapter(840)">
+        <span>5.</span> Día Cero & Visión
+      </button>
+    </nav>
+
+    <!-- TOOLS & THEMES -->
+    <div class="tool-group">
+      <button type="button" class="tool-btn" onclick="toggleTheme()" title="Cambiar tema de pizarra">
+        🎨 <span id="themeLabel">Pizarra</span>
+      </button>
+      <button type="button" class="tool-btn" onclick="zoomFit()" title="Ajustar vista">
+        🔍 Ajustar
+      </button>
+      <button type="button" class="tool-btn" onclick="replayAnimation()" title="Reiniciar dibujo">
+        🔄 Redibujar
+      </button>
+    </div>
+  </header>
+
+  <!-- VIEWPORT & CANVAS -->
+  <main id="viewport">
+    <div id="canvas-layer">
+      <!-- SVG CONNECTORS & SKETCHES -->
+      <svg id="mindmap-svg" viewBox="0 0 2400 1600">
+        <defs>
+          <filter id="handdrawn" x="-10%" y="-10%" width="120%" height="120%">
+            <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="3" result="noise" />
+            <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.5" xChannelSelector="R" yChannelSelector="G" />
+          </filter>
+        </defs>
+
+        <!-- BRANCH CURVES (Drawn with SVG Dashoffset) -->
+        <g id="svg-paths" filter="url(#handdrawn)">
+          <!-- Core to Crisis -->
+          <path id="path-crisis" d="M 1050 780 C 900 750, 850 550, 750 480" fill="none" stroke="#e11d48" stroke-width="4.5" stroke-linecap="round" stroke-dasharray="1000" stroke-dashoffset="1000" />
+          
+          <!-- Core to Somera -->
+          <path id="path-somera" d="M 1350 750 C 1450 680, 1500 500, 1600 440" fill="none" stroke="#16a34a" stroke-width="4.5" stroke-linecap="round" stroke-dasharray="1000" stroke-dashoffset="1000" />
+
+          <!-- Core to IoT -->
+          <path id="path-iot" d="M 1350 820 C 1450 830, 1500 810, 1540 810" fill="none" stroke="#9333ea" stroke-width="4.5" stroke-linecap="round" stroke-dasharray="1000" stroke-dashoffset="1000" />
+
+          <!-- Core to Comunidad -->
+          <path id="path-comunidad" d="M 1300 880 C 1350 980, 1400 1080, 1450 1120" fill="none" stroke="#0d9488" stroke-width="4.5" stroke-linecap="round" stroke-dasharray="1000" stroke-dashoffset="1000" />
+
+          <!-- Core to Asesores -->
+          <path id="path-asesores" d="M 1100 880 C 1020 980, 950 1050, 880 1100" fill="none" stroke="#d97706" stroke-width="4.5" stroke-linecap="round" stroke-dasharray="1000" stroke-dashoffset="1000" />
+
+          <!-- Core to Futuro -->
+          <path id="path-futuro" d="M 1050 820 C 950 820, 880 810, 780 810" fill="none" stroke="#0284c7" stroke-width="4.5" stroke-linecap="round" stroke-dasharray="1000" stroke-dashoffset="1000" />
+        </g>
+      </svg>
+
+      <!-- 1. CORE NODE -->
+      <div id="node-core" class="doodle-card" onclick="focusNode('node-core')">
+        <div class="node-header">
+          <span class="node-icon">💧</span>
+          <h2 class="node-title">AQUARESILIENCIA</h2>
+        </div>
+        <div class="node-body">
+          Red Comunitaria & Telemétrica<br>de Aguas Someras de Tijuana
+        </div>
+      </div>
+
+      <!-- 2. CRISIS & GENESIS -->
+      <div id="node-crisis" class="doodle-card" onclick="focusNode('node-crisis')">
+        <div class="node-header">
+          <span class="node-icon">⏳</span>
+          <h3 class="node-title">1. Crisis & Urgencia</h3>
+          <span class="node-tag">Día Cero</span>
+        </div>
+        <div class="node-body">
+          <ul class="node-bullets">
+            <li>Presa Hoover: Ventana crítica de ~1,128 días.</li>
+            <li>Monopolio de pipas: Cobro hasta 8x superior.</li>
+            <li>Agotamiento de pozos profundos (>40m).</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 3. AGUA SOMERA & LEGALIDAD -->
+      <div id="node-somera" class="doodle-card" onclick="focusNode('node-somera')">
+        <div class="node-header">
+          <span class="node-icon">🌱</span>
+          <h3 class="node-title">2. Agua Somera</h3>
+          <span class="node-tag">Frugal ~$10k</span>
+        </div>
+        <div class="node-body">
+          <ul class="node-bullets">
+            <li>Profundidad 3 a 15m (manto freático activo).</li>
+            <li>Extracción doméstica amparada: &le;150 m³/año.</li>
+            <li>Bombeo solar fotovoltaico 12V/24V autónomo.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 4. RED IOT & TELEMETRÍA -->
+      <div id="node-iot" class="doodle-card" onclick="focusNode('node-iot')">
+        <div class="node-header">
+          <span class="node-icon">📡</span>
+          <h3 class="node-title">3. Telemetría IoT</h3>
+          <span class="node-tag">Tiempo Real</span>
+        </div>
+        <div class="node-body">
+          <ul class="node-bullets">
+            <li>Microcontroladores Arduino / ESP32 de bajo costo.</li>
+            <li>Monitoreo continuo de Salinidad (CE), Nivel y pH.</li>
+            <li>Datos abiertos para calibración de modelos numéricos.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 5. NODOS COMUNITARIOS 80/20 -->
+      <div id="node-comunidad" class="doodle-card" onclick="focusNode('node-comunidad')">
+        <div class="node-header">
+          <span class="node-icon">🏫</span>
+          <h3 class="node-title">4. Nodos 80/20</h3>
+          <span class="node-tag">Comunitario</span>
+        </div>
+        <div class="node-body">
+          <ul class="node-bullets">
+            <li>20%: Purificación avanzada para consumo humano.</li>
+            <li>80%: Biofiltros & fitodepuración para sanitarios/riego.</li>
+            <li>Espacios ancla: Escuelas, parques y lavaderos públicos.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 6. ASESORES CIENTÍFICOS -->
+      <div id="node-asesores" class="doodle-card" onclick="focusNode('node-asesores')">
+        <div class="node-header">
+          <span class="node-icon">🔬</span>
+          <h3 class="node-title">5. Alianza Científica</h3>
+          <span class="node-tag">Cuádruple Hélice</span>
+        </div>
+        <div class="node-body">
+          <ul class="node-bullets">
+            <li><b>#01-WFE56-A:</b> Calidad aluvial y retención de nitratos.</li>
+            <li><b>#02-OLI58-B:</b> Biofiltros y modelo Ecoparque.</li>
+            <li><b>#03-CJO62-B:</b> Gobernanza cívica y Art. 40/41 LGA.</li>
+            <li><b>#04-KTH61-A:</b> Modelado hidrogeoquímico e isótopos.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- 7. EL FUTURO & LLAMADO -->
+      <div id="node-futuro" class="doodle-card" onclick="focusNode('node-futuro')">
+        <div class="node-header">
+          <span class="node-icon">🚀</span>
+          <h3 class="node-title">6. Resiliencia Total</h3>
+          <span class="node-tag">Meta 3 Años</span>
+        </div>
+        <div class="node-body">
+          <ul class="node-bullets">
+            <li>Red distribuida y autorregulada con IA.</li>
+            <li>Independencia ante cortes de la red central.</li>
+            <li>Ciencia ciudadana para cambiar la política hídrica.</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- ANIMATED DRAWING HAND / PENCIL -->
+      <svg id="drawing-hand" viewBox="0 0 100 100">
+        <!-- Stylized Hand holding pencil -->
+        <g transform="rotate(-30 50 50)">
+          <!-- Pencil Body -->
+          <rect x="42" y="10" width="14" height="60" rx="3" fill="#f59e0b" stroke="#78350f" stroke-width="2.5" />
+          <rect x="42" y="10" width="4" height="60" fill="#fbbf24" />
+          <!-- Eraser -->
+          <rect x="42" y="4" width="14" height="8" rx="2" fill="#f43f5e" stroke="#881337" stroke-width="2" />
+          <rect x="42" y="10" width="14" height="4" fill="#94a3b8" />
+          <!-- Pencil Tip -->
+          <polygon points="42,70 56,70 49,88" fill="#fde68a" stroke="#78350f" stroke-width="2" />
+          <polygon points="46,80 52,80 49,88" fill="#0f172a" />
+          <!-- Hand Fingers Sketch -->
+          <path d="M 28 55 Q 38 48, 50 54 Q 60 58, 68 52" fill="none" stroke="#0f172a" stroke-width="3" stroke-linecap="round" />
+          <path d="M 32 63 Q 44 58, 54 64" fill="none" stroke="#0f172a" stroke-width="2.5" stroke-linecap="round" />
+        </g>
+      </svg>
+    </div>
+  </main>
+
+  <!-- FLOATING LEGEND -->
+  <aside class="legend-overlay">
+    ✏️ Dibujando en vivo con voz original del creador
+  </aside>
+
+  <!-- BOTTOM CONTROLS & NATIVE AUDIO SYNC -->
+  <footer>
+    <div class="playback-controls">
+      <button type="button" id="playBtn" class="play-btn" onclick="togglePlay()">
+        ▶
+      </button>
+      <button type="button" class="speed-badge" onclick="cycleSpeed()" id="speedBtn">
+        1.0x
+      </button>
+    </div>
+
+    <!-- TIMELINE SCRUBBER -->
+    <div class="timeline-container">
+      <div class="time-info">
+        <span id="curTime">00:00</span>
+        <span id="activeChapterName" style="color:var(--ink-blue)">1. Génesis & Crisis</span>
+        <span id="totTime">16:10</span>
+      </div>
+      <div class="scrubber-bar" id="scrubber" onclick="seekAudio(event)">
+        <div class="scrubber-progress" id="scrubberProgress"></div>
+      </div>
+    </div>
+
+    <!-- AUDIO SOURCE ELEMENT -->
+    <audio id="audioSource" preload="metadata">
+      <source src="assets/audio/como_nace_aquaresiliencia.m4a" type="audio/mp4">
+      <source src="como nace aquaresilencia.m4a" type="audio/mp4">
+      Tu navegador no soporta reproducción de audio nativa.
+    </audio>
+
+    <div class="volume-group">
+      <span>🔊</span>
+      <input type="range" class="volume-slider" min="0" max="1" step="0.05" value="0.9" onchange="setVolume(this.value)">
+    </div>
+  </footer>
+
+  <script>
+    // VIEWPORT PAN & ZOOM STATE
+    const viewport = document.getElementById('viewport');
+    const canvasLayer = document.getElementById('canvas-layer');
+    const audio = document.getElementById('audioSource');
+    const playBtn = document.getElementById('playBtn');
+    const speedBtn = document.getElementById('speedBtn');
+    const scrubberProgress = document.getElementById('scrubberProgress');
+    const curTimeLabel = document.getElementById('curTime');
+    const totTimeLabel = document.getElementById('totTime');
+    const activeChapterLabel = document.getElementById('activeChapterName');
+    const drawingHand = document.getElementById('drawing-hand');
+
+    let scale = 0.65;
+    let panX = -200;
+    let panY = -150;
+    let isDragging = false;
+    let startX, startY;
+    let currentSpeedIndex = 0;
+    const speeds = [1.0, 1.25, 1.5, 2.0];
+
+    // CHAPTER DEFINITION & SCRIPT TIMESTAMPS
+    const chapters = [
+      { start: 0, name: "1. Génesis & Crisis", node: "node-crisis", path: "path-crisis", handPos: { x: 750, y: 480 } },
+      { start: 160, name: "2. Agua Somera", node: "node-somera", path: "path-somera", handPos: { x: 1600, y: 440 } },
+      { start: 375, name: "3. Red IoT & Telemetría", node: "node-iot", path: "path-iot", handPos: { x: 1540, y: 810 } },
+      { start: 690, name: "4. Nodos 80/20", node: "node-comunidad", path: "path-comunidad", handPos: { x: 1450, y: 1120 } },
+      { start: 840, name: "5. Alianza Científica", node: "node-asesores", path: "path-asesores", handPos: { x: 880, y: 1100 } },
+      { start: 940, name: "6. Resiliencia Día Cero", node: "node-futuro", path: "path-futuro", handPos: { x: 780, y: 810 } }
+    ];
+
+    function updateTransform() {
+      canvasLayer.style.transform = `translate(${panX}px, ${panY}px) scale(${scale})`;
+    }
+    updateTransform();
+
+    // PANNING INTERACTION
+    viewport.addEventListener('mousedown', (e) => {
+      if (e.target.closest('.doodle-card')) return;
+      isDragging = true;
+      viewport.classList.add('dragging');
+      startX = e.clientX - panX;
+      startY = e.clientY - panY;
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      panX = e.clientX - startX;
+      panY = e.clientY - startY;
+      updateTransform();
+    });
+
+    window.addEventListener('mouseup', () => {
+      isDragging = false;
+      viewport.classList.remove('dragging');
+    });
+
+    // ZOOM ON WHEEL
+    viewport.addEventListener('wheel', (e) => {
+      e.preventDefault();
+      const zoomFactor = e.deltaY < 0 ? 1.08 : 0.92;
+      const newScale = Math.min(Math.max(scale * zoomFactor, 0.35), 1.5);
+      scale = newScale;
+      updateTransform();
+    }, { passive: false });
+
+    // AUDIO CONTROLS
+    function togglePlay() {
+      if (audio.paused) {
+        audio.play().then(() => {
+          playBtn.innerHTML = "⏸";
+        }).catch(err => {
+          console.warn("Audio playback initiated without user media unlock", err);
+          playBtn.innerHTML = "⏸";
+        });
+      } else {
+        audio.pause();
+        playBtn.innerHTML = "▶";
+      }
+    }
+
+    function cycleSpeed() {
+      currentSpeedIndex = (currentSpeedIndex + 1) % speeds.length;
+      const s = speeds[currentSpeedIndex];
+      audio.playbackRate = s;
+      speedBtn.innerText = s.toFixed(1) + "x";
+    }
+
+    function setVolume(v) {
+      audio.volume = v;
+    }
+
+    function seekAudio(e) {
+      const rect = document.getElementById('scrubber').getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const ratio = clickX / rect.width;
+      audio.currentTime = ratio * (audio.duration || 970);
+      updateWhiteboardState();
+    }
+
+    function seekChapter(seconds) {
+      audio.currentTime = seconds;
+      if (audio.paused) audio.play();
+      playBtn.innerHTML = "⏸";
+      updateWhiteboardState();
+    }
+
+    function formatTime(sec) {
+      const m = Math.floor(sec / 60);
+      const s = Math.floor(sec % 60);
+      return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+    }
+
+    // WHITEBOARD DRAWING ENGINE SYNCED TO AUDIO TIME
+    function drawNode(nodeId, pathId) {
+      const card = document.getElementById(nodeId);
+      const path = document.getElementById(pathId);
+      if (card) card.classList.add('drawn');
+      if (path) path.style.strokeDashoffset = '0';
+    }
+
+    function resetDraw(nodeId, pathId) {
+      const card = document.getElementById(nodeId);
+      const path = document.getElementById(pathId);
+      if (card) card.classList.remove('drawn', 'focused');
+      if (path) path.style.strokeDashoffset = '1000';
+    }
+
+    function updateWhiteboardState() {
+      const cur = audio.currentTime;
+      const dur = audio.duration || 970;
+      
+      // Update scrubber
+      const pct = (cur / dur) * 100;
+      scrubberProgress.style.width = pct + "%";
+      curTimeLabel.innerText = formatTime(cur);
+      totTimeLabel.innerText = formatTime(dur);
+
+      // Core node is drawn immediately
+      document.getElementById('node-core').classList.add('drawn');
+
+      // Determine active chapter & animate hand
+      let activeChap = chapters[0];
+      chapters.forEach((chap, idx) => {
+        if (cur >= chap.start) {
+          activeChap = chap;
+          drawNode(chap.node, chap.path);
+        } else {
+          resetDraw(chap.node, chap.path);
+        }
+      });
+
+      activeChapterLabel.innerText = activeChap.name;
+
+      // Update Nav Buttons
+      document.querySelectorAll('.chapter-btn').forEach((btn, i) => {
+        btn.classList.toggle('active', chapters[i] === activeChap);
+      });
+
+      // Move Hand to current active target
+      if (drawingHand && activeChap.handPos) {
+        drawingHand.classList.remove('hidden');
+        drawingHand.style.transform = `translate(${activeChap.handPos.x}px, ${activeChap.handPos.y}px)`;
+      }
+    }
+
+    audio.addEventListener('timeupdate', updateWhiteboardState);
+    audio.addEventListener('loadedmetadata', () => {
+      totTimeLabel.innerText = formatTime(audio.duration || 970);
+    });
+
+    // FOCUS AND ZOOM TO SPECIFIC NODE
+    function focusNode(nodeId) {
+      document.querySelectorAll('.doodle-card').forEach(c => c.classList.remove('focused'));
+      const el = document.getElementById(nodeId);
+      if (!el) return;
+      el.classList.add('focused');
+
+      // Smooth pan to center node
+      const rect = el.getBoundingClientRect();
+      const nodeX = parseInt(el.style.left || el.offsetLeft);
+      const nodeY = parseInt(el.style.top || el.offsetTop);
+
+      scale = 0.9;
+      panX = (window.innerWidth / 2) - (nodeX * scale) - 150;
+      panY = (window.innerHeight / 2) - (nodeY * scale) - 100;
+      updateTransform();
+    }
+
+    function zoomFit() {
+      scale = 0.62;
+      panX = (window.innerWidth - (2400 * scale)) / 2;
+      panY = (window.innerHeight - (1600 * scale)) / 2;
+      updateTransform();
+    }
+
+    function replayAnimation() {
+      audio.currentTime = 0;
+      chapters.forEach(c => resetDraw(c.node, c.path));
+      audio.play();
+      playBtn.innerHTML = "⏸";
+      zoomFit();
+    }
+
+    // THEME SWITCHER
+    const themes = ["whiteboard", "blueprint", "chalkboard"];
+    let curThemeIdx = 0;
+    function toggleTheme() {
+      curThemeIdx = (curThemeIdx + 1) % themes.length;
+      const theme = themes[curThemeIdx];
+      document.body.setAttribute('data-theme', theme);
+      const labels = { "whiteboard": "Pizarra", "blueprint": "Blueprint", "chalkboard": "Tiza" };
+      document.getElementById('themeLabel').innerText = labels[theme];
+    }
+
+    // INITIAL SETUP
+    window.addEventListener('DOMContentLoaded', () => {
+      zoomFit();
+      // Draw initial core
+      document.getElementById('node-core').classList.add('drawn');
+      // Draw first chapter
+      drawNode(chapters[0].node, chapters[0].path);
+    });
+  </script>
+</body>
+</html>
