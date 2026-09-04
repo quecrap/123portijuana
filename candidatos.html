@@ -4,6 +4,14 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
   <title>Tablero de Parques Candidatos — AquaResiliencia Tijuana</title>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', window.GA_MEASUREMENT_ID || 'G-XXXXXXXXXX');
+  </script>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
   <style>
@@ -287,6 +295,51 @@
     catch(e){ console.error('No se pudo guardar el voto', e); }
   }
   async function saveComments(){
+
+  const FB_APP_ID = "1707104730582804";
+
+  const FIREBASE_CONFIG = {
+    apiKey: "AIzaSyAHP35_v8IoJpvQnvCzifMXm0hjUPxcFRU",
+    authDomain: "parte-aguas.firebaseapp.com",
+    projectId: "parte-aguas",
+    storageBucket: "parte-aguas.firebasestorage.app",
+    messagingSenderId: "975640697956",
+    appId: "1:975640697956:web:4eb552be12acefe5761371"
+  };
+  let db = null;
+
+  let currentUser = null;
+  let votesData = {};
+  let commentsData = {};
+  let filterTipo = 'Todos';
+  let sortBy = 'likes';
+  let map = null;
+  let markers = {};
+
+  const $ = (sel, root) => (root||document).querySelector(sel);
+  const $$ = (sel, root) => Array.from((root||document).querySelectorAll(sel));
+
+  function likesFor(id){ return (votesData[id] && votesData[id].likes) || 0; }
+  function hasLiked(id){ return currentUser && votesData[id] && (votesData[id].likedBy||[]).includes(currentUser.name); }
+
+  async function loadData(){
+    if (!db) { votesData = {}; commentsData = {}; return; }
+    try {
+      const snap = await db.collection('agua_de_gia').doc('votes-all').get();
+      votesData = snap.exists ? snap.data() : {};
+    } catch(e){ console.error('No se pudo leer votos', e); votesData = {}; }
+    try {
+      const snap = await db.collection('agua_de_gia').doc('comments-all').get();
+      commentsData = snap.exists ? snap.data() : {};
+    } catch(e){ console.error('No se pudo leer comentarios', e); commentsData = {}; }
+  }
+
+  async function saveVotes(){
+    if (!db) return;
+    try { await db.collection('agua_de_gia').doc('votes-all').set(votesData); }
+    catch(e){ console.error('No se pudo guardar el voto', e); }
+  }
+  async function saveComments(){
     if (!db) return;
     try { await db.collection('agua_de_gia').doc('comments-all').set(commentsData); }
     catch(e){ console.error('No se pudo guardar el comentario', e); }
@@ -298,6 +351,21 @@
     db = firebase.firestore();
   }
 
+  function trackEvent(tipo, datos = {}){
+    if (!db) return;
+    try {
+      db.collection('telemetria').add({
+        tipo: tipo,
+        datos: datos,
+        url: window.location.href,
+        search: window.location.search || '',
+        ref: document.referrer || 'directo',
+        fecha_iso: new Date().toISOString(),
+        ts: firebase.firestore.FieldValue.serverTimestamp()
+      });
+    } catch(e){}
+  }
+
   function renderAuth(){
     const controls = $('#ar-auth-controls');
     const note = $('#ar-fb-note');
@@ -307,7 +375,7 @@
       return;
     }
     if (FB_APP_ID === 'TU_APP_ID_AQUI') {
-      note.textContent = 'Facebook Login no est├í configurado todav├¡a ΓÇö usa el modo de prueba con tu nombre.';
+      note.textContent = 'Facebook Login no está configurado todavía — usa el modo de prueba con tu nombre.';
       controls.innerHTML = `
         <input id="ar-name-input" placeholder="Tu nombre" />
         <button class="fb-btn" id="ar-name-btn">Entrar</button>`;
@@ -318,7 +386,7 @@
         renderAuth(); renderList();
       };
     } else {
-      note.textContent = 'Inicia sesi├│n con Facebook para votar y comentar.';
+      note.textContent = 'Inicia sesión con Facebook para votar y comentar.';
       controls.innerHTML = `<button class="fb-btn" id="ar-fb-btn">Continuar con Facebook</button>`;
       $('#ar-fb-btn').onclick = () => {
         if (window.FB) {
@@ -361,11 +429,14 @@
         radius: 7,
         color: '#fff',
         weight: 1,
-        fillColor: (c.tipo_predio === 'Público' || c.tipo_predio === 'P├║blico') ? '#1C7293' : '#6B3FA0',
+        fillColor: (c.tipo_predio === 'Público') ? '#1C7293' : '#6B3FA0',
         fillOpacity: 0.85
       }).addTo(map);
       m.bindPopup(`<b>${c.nombre}</b><br>${c.delegacion||''}<br>💧 <span id="pop-likes-${c.id}">${likesFor(c.id)}</span> likes`);
-      m.on('click', () => focusCard(c.id, false));
+      m.on('click', () => {
+        trackEvent('clic_parque', { id: c.id, nombre: c.nombre, colonia: c.colonia, prof: c.profundidad });
+        focusCard(c.id, false);
+      });
       markers[c.id] = m;
     });
 
@@ -377,6 +448,9 @@
         fillColor: '#2e7d32',
         fillOpacity: 0.9
       }).addTo(map);
+      t.on('click', () => {
+        trackEvent('clic_arbol_freatofito', { especie: a.especie, lugar: a.lugar, obs: a.obs });
+      });
       const link = a.obs ? `<br><a href="https://www.inaturalist.org/observations/${a.obs}" target="_blank" rel="noopener">Ver observacion</a>` : '';
       t.bindPopup(`🌳 <b>${a.especie}</b><br>${a.lugar}<br>${a.fecha}${link}`);
     });
@@ -433,7 +507,7 @@
 
   function renderList(){
     renderPodium();
-    let items = CANDIDATOS.filter(c => filterTipo === 'Todos' || c.tipo_predio === filterTipo || (filterTipo === 'Público' && c.tipo_predio === 'P├║blico'));
+    let items = CANDIDATOS.filter(c => filterTipo === 'Todos' || c.tipo_predio === filterTipo);
     const actOrder = {ALTA:0, MEDIA:1, BAJA:2};
     if (sortBy === 'likes') items.sort((a,b) => likesFor(b.id) - likesFor(a.id));
     else if (sortBy === 'actividad') items.sort((a,b) => actOrder[a.actividad]-actOrder[b.actividad] || likesFor(b.id)-likesFor(a.id));
@@ -460,7 +534,7 @@
     card.dataset.cid = c.id;
     const liked = hasLiked(c.id);
     const cmts = commentsData[c.id] || [];
-    const tipoLabel = (c.tipo_predio === 'P├║blico' || c.tipo_predio === 'Público') ? 'Público' : c.tipo_predio;
+    const tipoLabel = c.tipo_predio;
     card.innerHTML = `
       <div class="top">
         <button class="like-btn ${liked?'liked':''}" data-id="${c.id}">
@@ -492,19 +566,24 @@
     const likeBtn = e.target.closest('.like-btn');
     if (likeBtn) {
       if (!currentUser) { alert('Entra con tu nombre o Facebook para votar.'); return; }
-      if (!db) { alert('El guardado (Firebase) todavía no está conectado — este voto no se guardará hasta que se configure.'); }
       const id = likeBtn.dataset.id;
       votesData[id] = votesData[id] || { likes: 0, likedBy: [] };
       const idx = votesData[id].likedBy.indexOf(currentUser.name);
       if (idx >= 0) { votesData[id].likedBy.splice(idx,1); votesData[id].likes = Math.max(0, votesData[id].likes-1); }
-      else { votesData[id].likedBy.push(currentUser.name); votesData[id].likes += 1; }
+      else { 
+          votesData[id].likedBy.push(currentUser.name); 
+          votesData[id].likes += 1; 
+          trackEvent('voto_parque', { id: id });
+      }
       renderList();
       await saveVotes();
       return;
     }
     const locateBtn = e.target.closest('[data-locate]');
     if (locateBtn) {
-      focusCard(locateBtn.dataset.locate, true);
+      const lid = locateBtn.dataset.locate;
+      trackEvent('localizar_en_mapa', { id: lid });
+      focusCard(lid, true);
       return;
     }
     const toggle = e.target.closest('.toggle-comments');
@@ -521,6 +600,7 @@
       if (!text) return;
       commentsData[id] = commentsData[id] || [];
       commentsData[id].push({ author: currentUser.name, text, ts: Date.now() });
+      trackEvent('comentario_parque', { id: id });
       renderList();
       $('#comments-'+id).classList.add('open');
       await saveComments();
@@ -542,6 +622,7 @@
 
   (async function init(){
     initFirebase();
+    trackEvent('visita_tablero', { hora_local: new Date().toLocaleTimeString('es-MX') });
     await loadData();
     renderList();
     initFacebookSDK();

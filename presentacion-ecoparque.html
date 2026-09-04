@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>De la Parra de Ecoparque a la Red Invisible de Tijuana — Presentación Dra. Lina Ojeda</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@600;700&family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-dark: #07101c;
+      --bg-surface: rgba(13, 25, 44, 0.85);
+      --bg-card: rgba(18, 36, 64, 0.65);
+      --border-glow: rgba(0, 229, 255, 0.22);
+      --border-subtle: rgba(255, 255, 255, 0.1);
+      
+      --cyan-aqua: #00e5ff;
+      --emerald-eco: #10b981;
+      --amber-warm: #f59e0b;
+      --purple-morada: #a855f7;
+      
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      
+      --font-title: 'Outfit', sans-serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --font-note: 'Caveat', cursive;
+      --font-mono: 'JetBrains Mono', monospace;
+      
+      --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    body {
+      background: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      min-height: 100vh;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      user-select: none;
+    }
+
+    /* BACKGROUND ATMOSPHERE */
+    .bg-canvas {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background: radial-gradient(circle at 20% 20%, rgba(0, 229, 255, 0.08) 0%, transparent 45%),
+                  radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.07) 0%, transparent 50%),
+                  radial-gradient(circle at 50% 50%, rgba(168, 85, 247, 0.04) 0%, transparent 60%);
+    }
+
+    .grid-lines {
+      position: fixed;
+      inset: 0;
+      background-size: 40px 40px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    /* TOP BAR */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 64px;
+      padding: 0 1.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 50;
+      background: rgba(7, 16, 28, 0.75);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .badge-eco {
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.35);
+      color: #34d399;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      padding: 0.25rem 0.65rem;
+      border-radius: 999px;
+    }
+
+    .brand-title {
+      font-family: var(--font-title);
+      font-weight: 800;
+      font-size: 1.05rem;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .btn-action {
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      padding: 0.45rem 0.9rem;
+      border-radius: 10px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      transition: all 0.2s ease;
+    }
+
+    .btn-action:hover {
+      background: rgba(255, 255, 255, 0.12);
+      border-color: var(--cyan-aqua);
+    }
+
+    /* SLIDE CONTAINER */
+    #deck {
+      position: relative;
+      flex: 1;
+      width: 100%;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 80px 2rem 90px 2rem;
+      z-index: 10;
+    }
+
+    .slide {
+      position: absolute;
+      width: 100%;
+      max-width: 1100px;
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(24px) scale(0.98);
+      transition: opacity 0.5s var(--ease-out), transform 0.5s var(--ease-out), visibility 0.5s;
+      pointer-events: none;
+    }
+
+    .slide.active {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0) scale(1);
+      pointer-events: auto;
+    }
+
+    /* SLIDE TYPOGRAPHY */
+    .slide-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-family: var(--font-mono);
+      font-size: 0.82rem;
+      color: var(--cyan-aqua);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.85rem;
+    }
+
+    .slide-title {
+      font-family: var(--font-title);
+      font-size: clamp(2rem, 4.2vw, 3.2rem);
+      font-weight: 900;
+      line-height: 1.12;
+      margin-bottom: 1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .slide-title span.highlight {
+      background: linear-gradient(135deg, var(--cyan-aqua) 0%, #38bdf8 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .slide-title span.green {
+      background: linear-gradient(135deg, #34d399 0%, #10b981 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .slide-title span.purple {
+      background: linear-gradient(135deg, #c084fc 0%, #a855f7 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .slide-lead {
+      font-size: clamp(1.05rem, 1.6vw, 1.25rem);
+      color: var(--text-muted);
+      line-height: 1.6;
+      max-width: 860px;
+      margin-bottom: 2rem;
+    }
+
+    /* GRID CARDS LAYOUT */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.25rem;
+      margin-top: 1rem;
+    }
+
+    .card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-glow);
+      border-radius: 18px;
+      padding: 1.6rem;
+      backdrop-filter: blur(12px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--cyan-aqua), transparent);
+    }
+
+    .card.green::before {
+      background: linear-gradient(90deg, var(--emerald-eco), transparent);
+    }
+
+    .card.purple::before {
+      background: linear-gradient(90deg, var(--purple-morada), transparent);
+    }
+
+    .card.amber::before {
+      background: linear-gradient(90deg, var(--amber-warm), transparent);
+    }
+
+    .card-icon {
+      font-size: 1.8rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .card-h3 {
+      font-family: var(--font-title);
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text-main);
+    }
+
+    .card-p {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+    }
+
+    .card-stat {
+      font-family: var(--font-title);
+      font-size: 2.6rem;
+      font-weight: 900;
+      color: var(--cyan-aqua);
+      line-height: 1;
+      margin: 0.6rem 0 0.2rem 0;
+    }
+
+    .card-stat.green { color: #34d399; }
+    .card-stat.amber { color: #fbbf24; }
+    .card-stat.purple { color: #c084fc; }
+
+    /* QUOTE BOX */
+    .personal-note {
+      font-family: var(--font-note);
+      font-size: 1.45rem;
+      color: #fef08a;
+      background: rgba(245, 158, 11, 0.08);
+      border: 1px dashed rgba(245, 158, 11, 0.35);
+      border-radius: 16px;
+      padding: 1.25rem 1.75rem;
+      margin-top: 1.5rem;
+      line-height: 1.4;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    /* BOTTOM CONTROLS */
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 70px;
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 50;
+      background: rgba(7, 16, 28, 0.85);
+      backdrop-filter: blur(14px);
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .nav-controls {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .btn-nav {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: all 0.2s ease;
+    }
+
+    .btn-nav:hover {
+      background: var(--cyan-aqua);
+      color: #03101e;
+      border-color: var(--cyan-aqua);
+      transform: scale(1.05);
+    }
+
+    .btn-nav:disabled {
+      opacity: 0.3;
+      pointer-events: none;
+    }
+
+    .slide-dots {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.2);
+      cursor: pointer;
+      transition: all 0.25s ease;
+    }
+
+    .dot.active {
+      width: 28px;
+      background: var(--cyan-aqua);
+      box-shadow: 0 0 12px rgba(0, 229, 255, 0.6);
+    }
+
+    .slide-counter {
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    /* TELEPROMPTER MODAL */
+    #prompter {
+      position: fixed;
+      bottom: 80px;
+      right: 2rem;
+      width: 440px;
+      max-width: 90vw;
+      background: rgba(10, 22, 38, 0.96);
+      border: 1px solid var(--cyan-aqua);
+      border-radius: 18px;
+      padding: 1.5rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+      backdrop-filter: blur(20px);
+      z-index: 100;
+      display: none;
+    }
+
+    #prompter.visible {
+      display: block;
+      animation: popIn 0.25s var(--ease-out);
+    }
+
+    @keyframes popIn {
+      from { opacity: 0; transform: translateY(12px) scale(0.96); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+
+    .prompter-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.8rem;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      padding-bottom: 0.5rem;
+    }
+
+    .prompter-title {
+      font-family: var(--font-title);
+      font-size: 0.92rem;
+      color: var(--cyan-aqua);
+      font-weight: 700;
+    }
+
+    .prompter-close {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      font-size: 1.1rem;
+    }
+
+    .prompter-body {
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: #e2e8f0;
+      max-height: 260px;
+      overflow-y: auto;
+    }
+
+    .prompter-body p {
+      margin-bottom: 0.75rem;
+    }
+
+    .prompter-body strong {
+      color: #fef08a;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="bg-canvas"></div>
+  <div class="grid-lines"></div>
+
+  <!-- HEADER -->
+  <header>
+    <div class="brand">
+      <span class="badge-eco">AquaResiliencia + El Colef</span>
+      <div class="brand-title">
+        <span>💧 Propuesta Ecoparque Tijuana</span>
+      </div>
+    </div>
+    <div class="header-actions">
+      <button class="btn-action" id="btn-prompter" onclick="togglePrompter()">
+        🎙️ <span>Guion de Voz (Tus Palabras)</span>
+      </button>
+      <button class="btn-action" onclick="toggleFullscreen()">
+        ⛶ <span>Pantalla Completa</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- DECK PRESENTATION -->
+  <main id="deck">
+
+    <!-- SLIDE 1: INTRODUCCIÓN & MEMORIA PERSONAL -->
+    <section class="slide active" data-slide="1">
+      <div class="slide-tag">🌱 Capítulo 1 · El Respeto a su Trayectoria</div>
+      <h1 class="slide-title">De la Parra de Ecoparque a la <span class="highlight">Red Invisible</span> de Tijuana</h1>
+      <p class="slide-lead">
+        Doctora Lina Ojeda: Ecoparque siempre ha sido el faro de lo que Tijuana <em>podría ser</em>. 
+        Hoy venimos a ofrecerle algo simbólico, pero con el potencial de transformar la ciudad entera.
+      </p>
+
+      <div class="card-grid">
+        <div class="card amber">
+          <div class="card-icon">🍇</div>
+          <h3 class="card-h3">La Memoria de las Uvas</h3>
+          <p class="card-p">
+            Desde estudiante y luego como empresario gastronómico comprando plantas nativas. Aquella vez que me regalaron las uvas de la parra del fondo de Ecoparque para crear una bebida en mi restaurante. Fue poquito, pero profundamente simbólico.
+          </p>
+        </div>
+
+        <div class="card green">
+          <div class="card-icon">🏛️</div>
+          <h3 class="card-h3">La Pregunta Inevitable</h3>
+          <p class="card-p">
+            Si la idea de Ecoparque es extraordinaria, <strong>¿por qué no hay más Ecoparques en Tijuana?</strong> ¿Por qué se quedó como un oasis aislado en la rampa a Otay mientras el resto de los parques de la ciudad se secan en cada tandeo?
+          </p>
+        </div>
+      </div>
+
+      <div class="personal-note">
+        "Así de poquito y simbólico como fueron esas uvas, es lo que hoy le venimos a contar. Pero con una escala que puede abarcar toda la ciudad."
+      </div>
+    </section>
+
+    <!-- SLIDE 2: EL DILEMA DEL AGUA MORADA -->
+    <section class="slide" data-slide="2">
+      <div class="slide-tag">⚡ Capítulo 2 · La Paradoja de la Infraestructura</div>
+      <h1 class="slide-title">¿Por qué se Atoró la <span class="purple">Línea Morada</span>?</h1>
+      <p class="slide-lead">
+        Todos soñamos con el reúso de agua tratada. Sin embargo, bombearla a través de las colinas de Tijuana resultó ser un laberinto económico insostenible.
+      </p>
+
+      <div class="card-grid">
+        <div class="card purple">
+          <div class="card-icon">⛰️</div>
+          <h3 class="card-h3">El Costo de Bombear Cerros</h3>
+          <p class="card-p">
+            Llevar tubería morada presurizada desde las plantas de tratamiento deprimidas hasta las colonias y parques altos cuesta decenas de millones de dólares. El proyecto se volvió inaccesible para el 95% de la mancha urbana.
+          </p>
+          <div class="card-stat purple">x10</div>
+          <p class="card-p" style="font-size:0.8rem">Costo de bombeo y tubería centralizada</p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🔍</div>
+          <h3 class="card-h3">La Pregunta Contraintuitiva</h3>
+          <p class="card-p">
+            ¿Qué sentido tiene gastar fortunas en bombear agua tratada por kilómetros, cuando <strong>justo debajo de nuestros pies</strong> ya corre una red invisible de agua somera en los valles y cañadas?
+          </p>
+          <div class="card-stat">3–10 m</div>
+          <p class="card-p" style="font-size:0.8rem">Profundidad del manto freático en cañadas</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 3: LA PRUEBA EN CAMPO -->
+    <section class="slide" data-slide="3">
+      <div class="slide-tag">🛠️ Capítulo 3 · Hechos Reales de Campo</div>
+      <h1 class="slide-title">7 Metros y <span class="green">600 Litros Diarios</span> Comprobados</h1>
+      <p class="slide-lead">
+        Esto no es una maqueta ni una simulación digital. Hace 3 años decidí probarlo en la práctica.
+      </p>
+
+      <div class="card-grid">
+        <div class="card green">
+          <div class="card-icon">🚰</div>
+          <h3 class="card-h3">Pozo 01: El Hallazgo</h3>
+          <p class="card-p">
+            Perforé a 7 metros de profundidad en Tijuana. El resultado: más de <strong>600 litros de agua al día</strong> constantes, suficientes para abastecer una casa sin llegar jamás al límite del pozo.
+          </p>
+          <div class="card-stat green">600 L</div>
+          <p class="card-p" style="font-size:0.8rem">Caudal diario comprobado sin abatimiento</p>
+        </div>
+
+        <div class="card amber">
+          <div class="card-icon">💵</div>
+          <h3 class="card-h3">Costo Frugal Disruptivo</h3>
+          <p class="card-p">
+            Un pozo tradicional de CONAGUA cuesta más de $50,000 USD. Nosotros lo hicimos por <strong>menos de $10,000 pesos</strong> —menos de un mes de salario en la zona fronteriza—.
+          </p>
+          <div class="card-stat amber">&lt;$10,000</div>
+          <p class="card-p" style="font-size:0.8rem">Pesos mexicanos por punto de extracción</p>
+        </div>
+      </div>
+
+      <div class="personal-note">
+        "Con ese pozo aprendí algo vital: dejar de sentirme como un ermitaño revolucionario esperando el Día Cero, y mejor convertirme en un constructor de proyectos con sentido."
+      </div>
+    </section>
+
+    <!-- SLIDE 4: EL CAMBIO DE LEY -->
+    <section class="slide" data-slide="4">
+      <div class="slide-tag">⚖️ Capítulo 4 · Certeza Jurídica 2025</div>
+      <h1 class="slide-title">La Ley que por Fin <span class="highlight">Juega a Favor</span></h1>
+      <p class="slide-lead">
+        La vieja veda de 1965 paralizó la iniciativa ciudadana. La nueva Ley General de Aguas abre la puerta legal a la ciencia y la comunidad.
+      </p>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon">📜</div>
+          <h3 class="card-h3">Artículos 40 y 41</h3>
+          <p class="card-p">
+            Amparan la <strong>extracción doméstica y comunitaria de hasta 150 m³/año</strong> (~2 tambos diarios). Ya no se requiere una concesión industrial para rescatar el espacio público.
+          </p>
+        </div>
+
+        <div class="card green">
+          <div class="card-icon">🔬</div>
+          <h3 class="card-h3">Artículos 35 y 38</h3>
+          <p class="card-p">
+            Establecen protección y fomento directo para la <strong>investigación científica y el monitoreo ciudadano del agua</strong>. Exactamente la alianza entre El Colef y nuestra red.
+          </p>
+        </div>
+
+        <div class="card purple">
+          <div class="card-icon">🛡️</div>
+          <h3 class="card-h3">Blindaje Institucional</h3>
+          <p class="card-p">
+            Esto nos permite operar a plena luz del día: con comités vecinales, sensores transparentes y el respaldo metodológico universitario.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 5: EL CRUCE DE DATOS -->
+    <section class="slide" data-slide="5">
+      <div class="slide-tag">🗺️ Capítulo 5 · El Catálogo Oculto</div>
+      <h1 class="slide-title">+100 Parques Candidatos en <span class="highlight">Tijuana</span></h1>
+      <p class="slide-lead">
+        Cruzamos el inventario de áreas verdes del Sistema Metropolitano de Parques (SMP) con los mapas hidrogeológicos y piezométricos de CONAGUA.
+      </p>
+
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon">📍</div>
+          <h3 class="card-h3">AquaEngine: Inteligencia Territorial</h3>
+          <p class="card-p">
+            Desarrollamos un visor cartográfico que localiza cañadas y parques asentados sobre depósitos aluviales permeables con agua a menos de 10 metros.
+          </p>
+          <div class="card-stat">100+</div>
+          <p class="card-p" style="font-size:0.8rem">Parques y camellones con potencial freático</p>
+        </div>
+
+        <div class="card amber">
+          <div class="card-icon">⚠️</div>
+          <h3 class="card-h3">La Gran Incógnita: La Calidad</h3>
+          <p class="card-p">
+            Sabemos que hay agua. Pero <strong>¿qué tan contaminada está?</strong> Coliformes, nitratos de fosas sépticas o sales. Un ciudadano común no puede saberlo; ahí es donde la ciencia de El Colef es indispensable.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 6: LA PROPUESTA ECOPARQUE -->
+    <section class="slide" data-slide="6">
+      <div class="slide-tag">🤝 Capítulo 6 · La Alianza y el Futuro</div>
+      <h1 class="slide-title">De la Exclusividad a la <span class="green">Ciudad Entera</span></h1>
+      <p class="slide-lead">
+        No queremos reinventar la rueda: queremos que el modelo de Ecoparque sea el corazón de cada parque rescatado en Tijuana.
+      </p>
+
+      <div class="card-grid">
+        <div class="card green">
+          <div class="card-icon">🌿</div>
+          <h3 class="card-h3">1. Ecoparques Satélites</h3>
+          <p class="card-p">
+            Llevar el modelo de <strong>biofiltros, humedales pequeños y fitorremediación con plantas nativas</strong> de Ecoparque a cada parque municipal con micropozo somero.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">🎚️</div>
+          <h3 class="card-h3">2. El Modelo 80/20</h3>
+          <p class="card-p">
+            <strong>80% del agua</strong> tratada con biofiltros de Ecoparque para áreas verdes y sanitarios. <strong>20% con micro-ósmosis y UV</strong> para crear bebederos de agua potable en las colonias.
+          </p>
+        </div>
+
+        <div class="card amber">
+          <div class="card-icon">👥</div>
+          <h3 class="card-h3">3. Empleos Verdes Comunitarios</h3>
+          <p class="card-p">
+            Por el costo equivalente a un sueldo mínimo, se capacita a comités vecinales para operar y cuidar sus propios pulmones de agua.
+          </p>
+        </div>
+      </div>
+
+      <div class="personal-note">
+        "Doctora Lina: la invitamos a ser la Directora Científica y Asesora de este primer Nodo Piloto. Permítanos llevar su conocimiento y la semilla de Ecoparque a toda la ciudad."
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER NAVIGATION -->
+  <footer>
+    <div class="slide-counter">
+      <span id="curr-num">1</span> / <span id="total-num">6</span>
+    </div>
+
+    <div class="slide-dots" id="dots-container"></div>
+
+    <div class="nav-controls">
+      <button class="btn-nav" id="btn-prev" onclick="prevSlide()" title="Anterior (←)">←</button>
+      <button class="btn-nav" id="btn-next" onclick="nextSlide()" title="Siguiente (→ / Espacio)">→</button>
+    </div>
+  </footer>
+
+  <!-- FLOATING PROMPTER (TUS PALABRAS EXACTAS) -->
+  <div id="prompter">
+    <div class="prompter-header">
+      <span class="prompter-title">🎙️ Guion de Apoyo — Diapositiva <span id="prompter-slide-num">1</span></span>
+      <button class="prompter-close" onclick="togglePrompter()">✕</button>
+    </div>
+    <div class="prompter-body" id="prompter-text">
+      <!-- El texto dinámico se inserta por JavaScript -->
+    </div>
+  </div>
+
+  <script>
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+    let currentIdx = 0;
+
+    const guiones = [
+      `<strong>Tus palabras para iniciar:</strong><br>
+      "Doctora, he seguido su trayectoria en Ecoparque desde que era estudiante, y luego como empresario gastronómico al comprar plantas nativas. Recuerdo con mucho cariño a Mónica y aquella vez que me regaló la cosecha de uvas de la parra que tienen al fondo; con ellas hicimos una bebida en mi restaurante. Fue poquito, pero muy simbólico. Y así de poquito y simbólico es lo que hoy le vengo a ofrecer y a contar: ¿por qué no hay más Ecoparques en Tijuana?"`,
+
+      `<strong>Sobre la Línea Morada:</strong><br>
+      "Todos nos acordamos del proyecto de agua morada, pero cuando uno investiga ve por qué se atoró: el costo de bombear agua hacia los cerros de Tijuana es carísimo. Pero entonces surge la pregunta: ¿para qué gastar millones en bombear agua morada, si debajo de nuestros pies ya existe una red invisible de agua somera en las cañadas?"`,
+
+      `<strong>Tu experiencia con el Pozo 01:</strong><br>
+      "Hace 3 años yo mismo perforé a 7 metros y comprobé que se pueden sacar más de 600 litros diarios sin llegar al límite, y por menos de $10,000 pesos. Eso cambió mi mentalidad: ya no se trata de sentirse un ermitaño del Día Cero esperando el apocalipsis, sino de convertirse en un constructor de proyectos con sentido para la ciudad."`,
+
+      `<strong>Sobre la Ley y el Blindaje:</strong><br>
+      "Recientemente la Ley General de Aguas cambió y nos favorece: el Artículo 40 y 41 reconocen el derecho a la extracción doméstica comunitaria, y los Artículos 35 y 38 protegen la investigación científica y el monitoreo ciudadano. Ya no estamos en una zona gris; la ley nos respalda."`,
+
+      `<strong>El Cruce de Datos con los Parques:</strong><br>
+      "Hicimos un cruce de datos entre el catálogo de parques del Sistema Metropolitano y los datos geológicos de CONAGUA, y para mi sorpresa salieron más de 100 parques candidatos que tienen agua somera abajo. El detalle es: esa agua seguramente viene con contaminantes, pero no sabemos qué tanto. Y ahí es donde el rigor de ustedes hace toda la diferencia."`,
+
+      `<strong>La Propuesta y Cierre:</strong><br>
+      "Esa contaminación es justo la oportunidad de replicar el modelo de Ecoparque en esos 100 parques: biofiltros, plantas nativas y fitorremediación comunitaria. Es el paso de la teoría y la exclusividad académica a la población y a la ciudad. Queremos que usted sea la guía científica de este proyecto."`
+    ];
+
+    function updateDeck() {
+      slides.forEach((s, idx) => {
+        s.classList.toggle('active', idx === currentIdx);
+      });
+
+      document.getElementById('curr-num').textContent = currentIdx + 1;
+      document.getElementById('total-num').textContent = totalSlides;
+
+      // Update dots
+      const dots = document.querySelectorAll('.dot');
+      dots.forEach((d, idx) => {
+        d.classList.toggle('active', idx === currentIdx);
+      });
+
+      // Update buttons
+      document.getElementById('btn-prev').disabled = (currentIdx === 0);
+      document.getElementById('btn-next').disabled = (currentIdx === totalSlides - 1);
+
+      // Update prompter text
+      document.getElementById('prompter-slide-num').textContent = currentIdx + 1;
+      document.getElementById('prompter-text').innerHTML = guiones[currentIdx] || '';
+    }
+
+    function nextSlide() {
+      if (currentIdx < totalSlides - 1) {
+        currentIdx++;
+        updateDeck();
+      }
+    }
+
+    function prevSlide() {
+      if (currentIdx > 0) {
+        currentIdx--;
+        updateDeck();
+      }
+    }
+
+    function goToSlide(idx) {
+      currentIdx = idx;
+      updateDeck();
+    }
+
+    // Initialize dots
+    const dotsContainer = document.getElementById('dots-container');
+    for (let i = 0; i < totalSlides; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'dot' + (i === 0 ? ' active' : '');
+      dot.onclick = () => goToSlide(i);
+      dotsContainer.appendChild(dot);
+    }
+
+    // Keyboard events
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        prevSlide();
+      } else if (e.key === 'f' || e.key === 'F') {
+        toggleFullscreen();
+      }
+    });
+
+    // Touch Swipe
+    let touchStartX = 0;
+    window.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+    window.addEventListener('touchend', (e) => {
+      let touchEndX = e.changedTouches[0].screenX;
+      if (touchStartX - touchEndX > 50) nextSlide();
+      if (touchEndX - touchStartX > 50) prevSlide();
+    });
+
+    function togglePrompter() {
+      const p = document.getElementById('prompter');
+      p.classList.toggle('visible');
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    }
+
+    updateDeck();
+  </script>
+</body>
+</html>
