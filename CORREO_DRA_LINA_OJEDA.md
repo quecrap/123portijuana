@@ -65,7 +65,7 @@ Identificamos **varias decenas de parques públicos y espacios verdes ubicados e
 
 *(Le adjunto la cartografía en alta resolución con el cruce geoespacial de los parques candidatos).*
 
-Además, la nueva Ley General de Aguas (2025) ampara este camino: los **Artículos 40 y 41** reconocen la extracción doméstica comunitaria (&le; 150 m³/año), mientras que los **Artículos 35 y 38** protegen expresamente los proyectos de **investigación científica y monitoreo ciudadano**.
+Además, la nueva Ley General de Aguas (2025) da respaldo a este camino: los **Artículos 40 y 41** reconocen la extracción doméstica comunitaria (&le; 150 m³/año); el **Artículo 35** encarga a la Secretaría de Ciencia, Humanidades, Tecnología e Innovación promover la investigación e innovación hídrica, y el **Artículo 38** establece mecanismos generales de participación ciudadana en la gestión del agua — un marco amplio que aún no menciona de forma explícita el monitoreo ciudadano o la ciencia cívica, pero que abre la puerta a impulsarlos.
 
 ---
 
