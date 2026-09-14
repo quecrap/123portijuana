@@ -1,0 +1,44 @@
+{
+  "metodologia": "Quinta ronda: revisión del repositorio institucional de FLACSO México (sugerido por el usuario) y seguimiento de una referencia real encontrada ahí (UNESCO 2007, Sistema Acuífero Transfronterizo San Diego-Tijuana) hacia su fuente académica actualizada.",
+  "fecha_investigacion": "2026-09-14",
+
+  "hallazgo_1_tesis_flacso": {
+    "fuente": "Meza Villegas, Juanalberto (2020). 'Relaciones de poder y escasez socialmente producida. El ciclo hidrosocial en la ciudad de Tijuana.' Tesis de Maestría en Ciencias Sociales, FLACSO México.",
+    "url": "https://flacso.repositorioinstitucional.mx/jspui/bitstream/1026/239/1/Meza_J.pdf",
+    "verificado": true,
+    "nota_metodo": "Descargado completo (4.6 MB, texto extraíble) y leído directamente — no es un documento técnico-geotécnico sino de ciencias sociales/gobernanza del agua, pero contiene datos institucionales reales basados en entrevistas directas a personal de CESPT (agradece nominalmente a 'Carlos Machado y Antonino Cabrera, CESPT')",
+    "datos_clave": {
+      "censo_pozos_2019": "180 pozos registrados en el municipio de Tijuana según CESPT/REPDA, concentrados fuera de las delegaciones formales, coincidiendo con las áreas de recarga del IMPLAN. La mayor concentración de pozos de alto volumen está en el subálveo del Río Tijuana, cerca del bulevar Agua Caliente.",
+      "tabla_20_principales_usuarios_agua_subterranea_2020": [
+        {"titular": "Pasteurizadora Jersey del Noroeste, S.A.", "volumen_m3_anio": 479092, "giro": "Lácteos (familia Jiménez, desde 1926)"},
+        {"titular": "Ramiro Laguna Mora", "volumen_m3_anio": 477110, "giro": "Uso agrícola"},
+        {"titular": "Compañía Embotelladora del Fuerte, S. de R.L. de C.V.", "volumen_m3_anio": 387680, "giro": "Grupo Coca-Cola"},
+        {"titular": "Compañía General de Aguas, S. de R.L. de C.V.", "volumen_m3_anio": 340000, "giro": "Purificación/embotellado, corporativo Bonafont"},
+        {"titular": "Unión de Distribuidores de Agua en Tanque C.R.O.M.", "volumen_m3_anio": 327600, "giro": "Pipas"},
+        {"titular": "Hipódromo de Agua Caliente, S.A. de C.V.", "volumen_m3_anio": 240000, "giro": "Grupo Caliente (Jorge Hank)"},
+        {"titular": "Veiceica, S.A. de C.V.", "volumen_m3_anio": 157680, "giro": "Inmobiliaria, Grupo ICA"},
+        {"titular": "Desarrollo e Inmobiliaria DEGO, S. de R.L. de C.V.", "volumen_m3_anio": 153968, "giro": "Inmobiliaria"}
+      ],
+      "fuente_tabla": "Elaboración propia del autor de la tesis con base en REPDA 2020 (no incluye el volumen de CESPT, que representa ~70% del total de agua subterránea de uso público-urbano)",
+      "infraestructura_historica_1996": "135 pozos y 486 [dato truncado en extracción] de infraestructura del ARCT (Acueducto Río Colorado-Tijuana); uso complementario de 15 pozos profundos del acuífero Tijuana (8,438,184 m³/año), 4 pozos profundos del acuífero La Misión (4,730,400 m³/año), citado de CESPT 1996.",
+      "contexto_relevante": "La CESPT declaró la sustitución casi total de las fuentes de agua subterránea (pozos y norias) por el ARCT a partir de los años 90 — es decir, el sistema municipal se ha vuelto cada vez menos dependiente de pozos propios, aunque persisten muchos usuarios privados/industriales."
+    }
+  },
+
+  "hallazgo_2_acuifero_transfronterizo_san_diego_tijuana": {
+    "fuente_citada_en_tesis_flacso": "UNESCO (2007), evaluación del Sistema Acuífero Transfronterizo (SAT) San Diego-Tijuana",
+    "fuente_academica_verificada_directamente": "Sanchez, R. et al. (2016). 'Identifying and characterizing transboundary aquifers along the Mexico-US border', Journal of Hydrology 535, 101-119 — artículo arbitrado, descargado y leído completo",
+    "url": "https://twri.agrilife.org/transboundary/wp-content/uploads/sites/41/2023/09/sanchez_et_al-2016-jh.pdf",
+    "verificado": true,
+    "datos_clave": {
+      "espesor_acuifero": "El acuífero Tijuana-San Diego tiene una extensión superficial reducida y su espesor es mayor en el lado mexicano: ~300 m (citando Chávez-Guillén y Klein, 2007) — consistente con el rango '140 a 300+ m' ya encontrado en el Atlas 2024 de IMPLAN.",
+      "salinidad_y_contaminacion": "Preocupación principal: alta salinidad por escurrimiento agrícola y descarga de aguas residuales urbanas sin tratar que se infiltran y recargan el acuífero; intrusión de agua marina en la franja costera de ambos lados de la frontera por sobrebombeo.",
+      "tasas_de_bombeo": "Tijuana tiene tasas de bombeo más altas que San Diego debido a su mayor tasa de crecimiento poblacional (Tijuana 4.9% vs San Diego 2.8%, según Kiy y Kada 2004).",
+      "descenso_del_nivel_ALERTA": "Cita textual (traducida): 'los datos de CONAGUA sugieren que los niveles de agua en el acuífero al SUR de Tijuana descendieron 5 metros por año durante los últimos veinte años' (CONAGUA, 2008a). Esto implicaría un abatimiento acumulado de hasta ~100 m en esa zona/periodo si la tasa fue sostenida.",
+      "advertencia_de_alcance": "El artículo NO especifica la ubicación exacta ('sur de Tijuana' es impreciso — no se aclara si es una zona de pozos específica o toda la porción sur del acuífero) ni si la tasa de 5 m/año se mantuvo constante todo el periodo o es un promedio. México 'no ha reportado ningún déficit en el acuífero' según la misma fuente (CONAGUA, 2008a), lo cual parece en tensión con un abatimiento tan pronunciado — posible indicio de que el descenso reportado es localizado (una batería de pozos específica), no representativo de todo el acuífero. Se recomienda tratar esta cifra con cautela hasta verificar el documento fuente original de CONAGUA 2008a."
+    },
+    "clasificacion_binacional": "El acuífero Tijuana-San Diego es 1 de los 16 acuíferos transfronterizos México-EUA clasificados con nivel de confianza 'razonable' (de un total de 36 identificados a lo largo de toda la frontera)."
+  },
+
+  "conclusion_de_esta_ronda": "El repositorio de FLACSO sí aportó valor, pero no en forma de datos geotécnicos directos (NAF/SPT), sino de: (a) un censo institucional real de pozos y usuarios de agua subterránea en Tijuana con nombres y volúmenes verificables (tesis Meza 2020, basada en REPDA/CESPT), y (b) una pista hacia literatura científica internacional (Sanchez et al. 2016, Journal of Hydrology) con el hallazgo más alarmante de toda la investigación: un posible descenso de 5 m/año en el nivel del acuífero al sur de Tijuana — dato que amerita verificación adicional contra la fuente primaria (CONAGUA, 2008a) antes de usarse como cifra de diseño."
+}

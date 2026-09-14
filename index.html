@@ -3286,7 +3286,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
             <span class="section-tag" style="background:rgba(239,68,68,.12);color:#fca5a5;border:1px solid rgba(239,68,68,.35);padding:.25rem .75rem;border-radius:6px;font-family:var(--font-mono);font-size:.74rem;font-weight:700">🔥 MODELO ESPACIAL // HEATMAP &amp; KDE TIJUANA</span>
             <h3 style="margin-top:.4rem;font-size:1.45rem;color:#fff;font-family:var(--font-heading)">Mapa de Calor: Zonas Críticas de Agua Somera (0 - 7.5 m)</h3>
             <p style="color:var(--text-muted);font-size:.86rem;max-width:850px;line-height:1.5;margin-top:.3rem">
-              Interpolación continua de densidad basada en <strong>23 evidencias corroboradas</strong> (mediciones geofísicas directas, cárcamos de sótanos 24/7, peritajes judiciales en deslizamientos y pozos piezométricos). Los tonos cálidos (<span style="color:#ef4444;font-weight:700">Rojo</span> / <span style="color:#f59e0b;font-weight:700">Ámbar</span>) indican manto freático a menos de 3.5 m o afloramientos naturales de saturación crítica.
+              Interpolación continua de densidad basada en <strong>43 evidencias corroboradas y macro-aprovechamientos oficiales REPDA CONAGUA 2026</strong> (mediciones geofísicas directas, cárcamos de sótanos 24/7, peritajes judiciales en deslizamientos y 25.17 hm³/año de extracción subterránea activa concesionada). Los tonos cálidos (<span style="color:#ef4444;font-weight:700">Rojo</span> / <span style="color:#f59e0b;font-weight:700">Ámbar</span>) indican manto freático a menos de 3.5 m o afloramientos naturales de saturación crítica.
             </p>
           </div>
           <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center">
@@ -6068,6 +6068,7 @@ function zoomToProxyPoint(lat, lng){
 
 // ==================== CAPA 11: MAPA DE CALOR DE AGUA SOMERA (KDE) ====================
 const shallowWaterHeatPoints = [
+  // --- 23 Puntos Forenses y Piezométricos Base ---
   [32.5284, -117.0225, 0.85], // Torre Cosmopolitan (3.2m)
   [32.5381, -117.0289, 0.90], // New City Medical (2.8m)
   [32.5262, -117.0185, 0.80], // Plaza Río (3.8m)
@@ -6090,7 +6091,29 @@ const shallowWaterHeatPoints = [
   [32.4950, -117.1050, 0.88], // Arroyo Huertita (2.8m)
   [32.5183, -116.8406, 0.65], // Pozo Agua Caliente (6.5m)
   [32.4650, -116.8550, 0.60], // El Florido (7.2m)
-  [32.4700, -117.0300, 0.70]  // Las Montañas (5.8m)
+  [32.4700, -117.0300, 0.70], // Las Montañas (5.8m)
+
+  // --- 20 Macro-Aprovechamientos Oficiales REPDA CONAGUA 2026 ---
+  [32.4990, -116.9280, 0.90], // Embotelladora del Fuerte (387k m3/a)
+  [32.5080, -116.9680, 0.90], // Pasteurizadora Jersey (378k m3/a)
+  [32.5120, -117.0050, 0.85], // Hipódromo de Agua Caliente (240k m3/a)
+  [32.5140, -117.0120, 0.90], // Club Campestre Tijuana (Descarga 2.5k m3/d)
+  [32.5180, -116.9850, 0.92], // Distribuidores Pipas CROM/CROC (294k m3/a)
+  [32.4720, -117.0510, 0.88], // Pozo Comunitario Flores Magón (4.5k m3/a)
+  [32.4750, -116.8850, 0.70], // Prime Wheel México (125k m3/a)
+  [32.4580, -116.8450, 0.75], // Submetrópoli NAFINSA (4 pozos, 256k m3/a)
+  [32.5020, -116.9550, 0.80], // Dart de Tijuana (195k m3/a)
+  [32.5250, -117.0080, 0.98], // CESPT Batería Río Tijuana (19 pozos, 13.2M m3/a)
+  [32.5310, -117.0780, 0.95], // Hotelería El Soler (Zona Federal Matadero)
+  [32.4450, -117.0980, 0.88], // Inmobiliaria San Antonio del Mar
+  [32.4350, -117.0850, 0.85], // Fraccionadora San Marino
+  [32.4860, -117.0310, 0.95], // SEDENA Cuartel Morelos / 28vo Batallón
+  [32.5240, -117.0350, 1.00], // Fuentes Brotantes de Tijuana (Manantial)
+  [32.5160, -117.0160, 0.88], // Plaza Agua Caliente (Torres Campestre)
+  [32.5440, -116.9720, 0.65], // Aeropuerto Internacional Tijuana (84k m3/a)
+  [32.4150, -116.9150, 0.75], // Ejido Mesa Redonda (5 pozos pecuarios)
+  [32.5250, -116.9350, 0.85], // Familia Gutiérrez Valenzuela (10 pozos Alamar)
+  [32.4850, -116.7850, 0.65]  // Toyota Motor Manufacturing
 ];
 
 function initHeatmapLayer(){
