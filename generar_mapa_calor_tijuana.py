@@ -18,9 +18,16 @@ Genera:
 2. 'mapa_calor_agua_somera_tijuana.html' (Visor interactivo Leaflet con Leaflet.heat y popups)
 """
 
+import os
+os.environ["OPENBLAS_NUM_THREADS"] = "1"
+os.environ["OMP_NUM_THREADS"] = "1"
+os.environ["MKL_NUM_THREADS"] = "1"
+
 import json
 import csv
 import numpy as np
+import matplotlib
+matplotlib.use('Agg')
 import matplotlib.pyplot as plt
 import matplotlib.patheffects as pe
 

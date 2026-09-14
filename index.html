@@ -3286,7 +3286,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
             <span class="section-tag" style="background:rgba(239,68,68,.12);color:#fca5a5;border:1px solid rgba(239,68,68,.35);padding:.25rem .75rem;border-radius:6px;font-family:var(--font-mono);font-size:.74rem;font-weight:700">🔥 MODELO ESPACIAL // HEATMAP &amp; KDE TIJUANA</span>
             <h3 style="margin-top:.4rem;font-size:1.45rem;color:#fff;font-family:var(--font-heading)">Mapa de Calor: Zonas Críticas de Agua Somera (0 - 7.5 m)</h3>
             <p style="color:var(--text-muted);font-size:.86rem;max-width:850px;line-height:1.5;margin-top:.3rem">
-              Interpolación continua de densidad basada en <strong>43 evidencias corroboradas y macro-aprovechamientos oficiales REPDA CONAGUA 2026</strong> (mediciones geofísicas directas, cárcamos de sótanos 24/7, peritajes judiciales en deslizamientos y 25.17 hm³/año de extracción subterránea activa concesionada). Los tonos cálidos (<span style="color:#ef4444;font-weight:700">Rojo</span> / <span style="color:#f59e0b;font-weight:700">Ámbar</span>) indican manto freático a menos de 3.5 m o afloramientos naturales de saturación crítica.
+              Interpolación continua de densidad basada en <strong>50 evidencias corroboradas, macro-aprovechamientos REPDA y pozos piezométricos oficiales CONAGUA GAS1</strong> (mediciones geofísicas directas, cárcamos de sótanos 24/7, peritajes judiciales en deslizamientos, 25.17 hm³/año de extracción activa y red de monitoreo oficial). Los tonos cálidos (<span style="color:#ef4444;font-weight:700">Rojo</span> / <span style="color:#f59e0b;font-weight:700">Ámbar</span>) indican manto freático a menos de 3.5 m o afloramientos naturales de saturación crítica.
             </p>
           </div>
           <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center">
@@ -6113,7 +6113,16 @@ const shallowWaterHeatPoints = [
   [32.5440, -116.9720, 0.65], // Aeropuerto Internacional Tijuana (84k m3/a)
   [32.4150, -116.9150, 0.75], // Ejido Mesa Redonda (5 pozos pecuarios)
   [32.5250, -116.9350, 0.85], // Familia Gutiérrez Valenzuela (10 pozos Alamar)
-  [32.4850, -116.7850, 0.65]  // Toyota Motor Manufacturing
+  [32.4850, -116.7850, 0.65], // Toyota Motor Manufacturing
+
+  // --- 7 Pozos Piezométricos Oficiales CONAGUA GAS1 (NAF < 5.5m) ---
+  [32.5178, -117.0019, 0.90], // Pozo CNA_99 (Agua Caliente, NAF 3.8m, Cota 28m)
+  [32.5226, -116.9141, 0.88], // Pozo CNA_33 (Arroyo Alamar, NAF 3.9m, Cota 59m)
+  [32.5359, -117.0268, 0.85], // Pozo 36 (Zona Río Padre Kino, NAF 4.3m, Cota 20m)
+  [32.5253, -117.0153, 0.85], // Pozo XD (Plaza Río / Héroes, NAF 4.4m, Cota 25m)
+  [32.5127, -116.9682, 0.82], // Pozo 14 (La Mesa - Benítez, NAF 4.5m, Cota 36m)
+  [32.5304, -117.0138, 0.78], // Pozo 73 (Vía Rápida Oriente, NAF 5.1m, Cota 25m)
+  [32.5069, -117.0138, 0.75]  // Pozo 70 (Cañón del Rubí / Fundadores, NAF 5.5m, Cota 49m)
 ];
 
 function initHeatmapLayer(){

@@ -1,11 +1,11 @@
 {
   "type": "FeatureCollection",
-  "metadata": {
-    "titulo": "Inventario Consolidado de Evidencias y Concesiones de Agua Somera en Tijuana (43 Nodos)",
-    "descripcion": "Dataset calibrado para mapa de calor (Heatmap/KDE) integrando 23 puntos forenses + 20 macro-concesiones oficiales de extracción y descarga subterránea del REPDA CONAGUA 2026.",
-    "total_puntos": 43,
-    "volumen_total_subterraneo_repda_m3_año": 25173690.8,
-    "sistema_coordenadas": "EPSG:4326 (WGS84)"
+  "name": "Dataset_Mapa_Calor_Agua_Somera_Tijuana_Oficial",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
   },
   "features": [
     {
@@ -19,13 +19,15 @@
       },
       "properties": {
         "id": "P01",
-        "nombre": "Torre Cosmopolitan / Paseo de los Héroes",
+        "nombre_sitio": "Torre Cosmopolitan / Paseo de los Héroes",
         "delegacion": "Centro - Zona Río",
-        "profundidad_naf_m": 3.2,
-        "intensidad_calor": 0.85,
-        "categoria": "Sótano con Cárcamo 24/7",
-        "geologia": "Aluvión arenoso saturado del Río Tijuana",
-        "fuente": "Bitácora de obra civil y losa de supresión con achique continuo",
+        "latitud": "32.5284",
+        "longitud": "-117.0225",
+        "profundidad_naf_m": "3.2",
+        "intensidad_calor": "0.85",
+        "categoria_evidencia": "Sótano con Cárcamo 24/7",
+        "tipo_suelo_geologia": "Aluvión arenoso saturado del Río Tijuana",
+        "fuente_documental": "Bitácora de obra civil y losa de supresión con achique continuo",
         "verificacion": "Verificado"
       }
     },
@@ -40,13 +42,15 @@
       },
       "properties": {
         "id": "P02",
-        "nombre": "New City Medical Plaza",
+        "nombre_sitio": "New City Medical Plaza",
         "delegacion": "Centro - Zona Río",
-        "profundidad_naf_m": 2.8,
-        "intensidad_calor": 0.9,
-        "categoria": "Sótano con Cárcamo 24/7",
-        "geologia": "Aluvión fluvial saturado próximo a canalización",
-        "fuente": "Cimentación profunda con pilotes y bombeo permanente de freático",
+        "latitud": "32.5381",
+        "longitud": "-117.0289",
+        "profundidad_naf_m": "2.8",
+        "intensidad_calor": "0.90",
+        "categoria_evidencia": "Sótano con Cárcamo 24/7",
+        "tipo_suelo_geologia": "Aluvión fluvial saturado próximo a canalización",
+        "fuente_documental": "Cimentación profunda con pilotes y bombeo permanente de freático",
         "verificacion": "Verificado"
       }
     },
@@ -61,13 +65,15 @@
       },
       "properties": {
         "id": "P03",
-        "nombre": "Plaza Río Tijuana / Sótanos Comerciales",
+        "nombre_sitio": "Plaza Río Tijuana / Sótanos Comerciales",
         "delegacion": "Centro - Zona Río",
-        "profundidad_naf_m": 3.8,
-        "intensidad_calor": 0.8,
-        "categoria": "Sótano con Cárcamo 24/7",
-        "geologia": "Aluvión del Río Tijuana manto freático somero",
-        "fuente": "Pozos de alivio piezométrico contra subpresión hidrostática",
+        "latitud": "32.5262",
+        "longitud": "-117.0185",
+        "profundidad_naf_m": "3.8",
+        "intensidad_calor": "0.80",
+        "categoria_evidencia": "Sótano con Cárcamo 24/7",
+        "tipo_suelo_geologia": "Aluvión del Río Tijuana manto freático somero",
+        "fuente_documental": "Pozos de alivio piezométrico contra subpresión hidrostática",
         "verificacion": "Verificado"
       }
     },
@@ -82,13 +88,15 @@
       },
       "properties": {
         "id": "P04",
-        "nombre": "Puente El Chaparral / Garita Internacional",
+        "nombre_sitio": "Puente El Chaparral / Garita Internacional",
         "delegacion": "Centro - Chaparral",
-        "profundidad_naf_m": 2.5,
-        "intensidad_calor": 0.95,
-        "categoria": "Obra Pública con Sobredrenaje",
-        "geologia": "Aluvión limoso-arcilloso con freático somero",
-        "fuente": "Obras de rehabilitación SIDURT 2023-2024 con partidas de achique continuo",
+        "latitud": "32.5422",
+        "longitud": "-117.0341",
+        "profundidad_naf_m": "2.5",
+        "intensidad_calor": "0.95",
+        "categoria_evidencia": "Obra Pública con Sobredrenaje",
+        "tipo_suelo_geologia": "Aluvión limoso-arcilloso con freático somero",
+        "fuente_documental": "Obras de rehabilitación SIDURT 2023-2024 con partidas de achique continuo",
         "verificacion": "Verificado"
       }
     },
@@ -103,13 +111,15 @@
       },
       "properties": {
         "id": "P05",
-        "nombre": "Arroyo Alamar / Puente Murúa",
+        "nombre_sitio": "Arroyo Alamar / Puente Murúa",
         "delegacion": "Otay Centenario",
-        "profundidad_naf_m": 4.2,
-        "intensidad_calor": 0.8,
-        "categoria": "Piezometría Oficial CONAGUA",
-        "geologia": "Aluvión grueso de alta transmisividad hidráulica",
-        "fuente": "CONAGUA Determinación de Disponibilidad Acuífero Tijuana DR_0201 (Censo 2010)",
+        "latitud": "32.5315",
+        "longitud": "-116.9420",
+        "profundidad_naf_m": "4.2",
+        "intensidad_calor": "0.80",
+        "categoria_evidencia": "Piezometría Oficial CONAGUA",
+        "tipo_suelo_geologia": "Aluvión grueso de alta transmisividad hidráulica",
+        "fuente_documental": "CONAGUA Determinación de Disponibilidad Acuífero Tijuana DR_0201 (Censo 2010)",
         "verificacion": "Verificado"
       }
     },
@@ -124,13 +134,15 @@
       },
       "properties": {
         "id": "P06",
-        "nombre": "Cañón del Padre / San José del Rincón",
+        "nombre_sitio": "Cañón del Padre / San José del Rincón",
         "delegacion": "Otay Centenario",
-        "profundidad_naf_m": 5.5,
-        "intensidad_calor": 0.7,
-        "categoria": "Aprovechamiento Concesionado REPDA",
-        "geologia": "Aluvión fluvial permeable cuenca Alamar",
-        "fuente": "Censo de aprovechamientos CONAGUA y pozos agrícolas someros",
+        "latitud": "32.5208",
+        "longitud": "-116.9050",
+        "profundidad_naf_m": "5.5",
+        "intensidad_calor": "0.70",
+        "categoria_evidencia": "Aprovechamiento Concesionado REPDA",
+        "tipo_suelo_geologia": "Aluvión fluvial permeable cuenca Alamar",
+        "fuente_documental": "Censo de aprovechamientos CONAGUA y pozos agrícolas someros",
         "verificacion": "Verificado"
       }
     },
@@ -145,13 +157,15 @@
       },
       "properties": {
         "id": "P07",
-        "nombre": "Parque Morelos / Humedal y Lago Urbano",
+        "nombre_sitio": "Parque Morelos / Humedal y Lago Urbano",
         "delegacion": "La Mesa",
-        "profundidad_naf_m": 3.5,
-        "intensidad_calor": 0.85,
-        "categoria": "Afloramiento / Espejo de Agua",
-        "geologia": "Aluvión fluvial de valle central",
-        "fuente": "Espejo de agua perenne sustentado por manto freático somero del Río Tijuana",
+        "latitud": "32.5035",
+        "longitud": "-116.9380",
+        "profundidad_naf_m": "3.5",
+        "intensidad_calor": "0.85",
+        "categoria_evidencia": "Afloramiento / Espejo de Agua",
+        "tipo_suelo_geologia": "Aluvión fluvial de valle central",
+        "fuente_documental": "Espejo de agua perenne sustentado por manto freático somero del Río Tijuana",
         "verificacion": "Verificado"
       }
     },
@@ -166,13 +180,15 @@
       },
       "properties": {
         "id": "P08",
-        "nombre": "Fracc. Valle del Sur / Talud y Parque",
+        "nombre_sitio": "Fracc. Valle del Sur / Talud y Parque",
         "delegacion": "San Antonio de los Buenos",
-        "profundidad_naf_m": 3.0,
-        "intensidad_calor": 1.0,
-        "categoria": "Medición Geofísica Directa",
-        "geologia": "Paleocanal con limos y arcillas sobre discordancia",
-        "fuente": "Delgado Argote et al. GEOS Vol. 37 No. 2 (2017) Unión Geofísica Mexicana (Tomografía Dipolo-Dipolo)",
+        "latitud": "32.4882",
+        "longitud": "-117.0421",
+        "profundidad_naf_m": "3.0",
+        "intensidad_calor": "1.00",
+        "categoria_evidencia": "Medición Geofísica Directa",
+        "tipo_suelo_geologia": "Paleocanal con limos y arcillas sobre discordancia",
+        "fuente_documental": "Delgado Argote et al. GEOS Vol. 37 No. 2 (2017) Unión Geofísica Mexicana (Tomografía Dipolo-Dipolo)",
         "verificacion": "Verificado"
       }
     },
@@ -187,13 +203,15 @@
       },
       "properties": {
         "id": "P09",
-        "nombre": "Lomas del Rubí / Calle Mirador",
+        "nombre_sitio": "Lomas del Rubí / Calle Mirador",
         "delegacion": "San Antonio de los Buenos",
-        "profundidad_naf_m": 1.8,
-        "intensidad_calor": 0.95,
-        "categoria": "Deslizamiento Rotacional con Fuga",
-        "geologia": "Fm. Otay / Fm. San Diego contacto arcilloso impermeable",
-        "fuente": "Peritajes judiciales y dictamen Protección Civil colapso 2018 (saturación por fugas crónicas)",
+        "latitud": "32.4975",
+        "longitud": "-117.0385",
+        "profundidad_naf_m": "1.8",
+        "intensidad_calor": "0.95",
+        "categoria_evidencia": "Deslizamiento Rotacional con Fuga",
+        "tipo_suelo_geologia": "Fm. Otay / Fm. San Diego contacto arcilloso impermeable",
+        "fuente_documental": "Peritajes judiciales y dictamen Protección Civil colapso 2018 (saturación por fugas crónicas)",
         "verificacion": "Verificado"
       }
     },
@@ -208,13 +226,15 @@
       },
       "properties": {
         "id": "P10",
-        "nombre": "Camino Verde / Cañón de las Carretas",
+        "nombre_sitio": "Camino Verde / Cañón de las Carretas",
         "delegacion": "Sánchez Taboada",
-        "profundidad_naf_m": 2.2,
-        "intensidad_calor": 0.95,
-        "categoria": "Deslizamiento Rotacional con Fuga",
-        "geologia": "Fm. Otay arcillas expansivas saturadas",
-        "fuente": "Declaratoria de Emergencia Geológica municipal 2022 y sondeos geotécnicos con freático a 2m",
+        "latitud": "32.4820",
+        "longitud": "-116.9980",
+        "profundidad_naf_m": "2.2",
+        "intensidad_calor": "0.95",
+        "categoria_evidencia": "Deslizamiento Rotacional con Fuga",
+        "tipo_suelo_geologia": "Fm. Otay arcillas expansivas saturadas",
+        "fuente_documental": "Declaratoria de Emergencia Geológica municipal 2022 y sondeos geotécnicos con freático a 2m",
         "verificacion": "Verificado"
       }
     },
@@ -229,13 +249,15 @@
       },
       "properties": {
         "id": "P11",
-        "nombre": "Sánchez Taboada / Calle Casiopea",
+        "nombre_sitio": "Sánchez Taboada / Calle Casiopea",
         "delegacion": "Sánchez Taboada",
-        "profundidad_naf_m": 2.0,
-        "intensidad_calor": 0.95,
-        "categoria": "Deslizamiento Rotacional con Fuga",
-        "geologia": "Areniscas y limolitas con paleocanal de arcilla",
-        "fuente": "Deslindes CESPT agua sin cloro / peritajes geológicos de agrietamiento estructural",
+        "latitud": "32.4760",
+        "longitud": "-116.9855",
+        "profundidad_naf_m": "2.0",
+        "intensidad_calor": "0.95",
+        "categoria_evidencia": "Deslizamiento Rotacional con Fuga",
+        "tipo_suelo_geologia": "Areniscas y limolitas con paleocanal de arcilla",
+        "fuente_documental": "Deslindes CESPT agua sin cloro / peritajes geológicos de agrietamiento estructural",
         "verificacion": "Verificado"
       }
     },
@@ -250,13 +272,15 @@
       },
       "properties": {
         "id": "P12",
-        "nombre": "Cañón del Matadero / Desarenador",
+        "nombre_sitio": "Cañón del Matadero / Desarenador",
         "delegacion": "Playas de Tijuana",
-        "profundidad_naf_m": 1.5,
-        "intensidad_calor": 1.0,
-        "categoria": "Obra Pública con Sobredrenaje",
-        "geologia": "Arenas limosas colapsables saturadas",
-        "fuente": "Colapso de terraplén carretero 2023 y cárcamos de achique forzado de emergencia",
+        "latitud": "32.5290",
+        "longitud": "-117.0985",
+        "profundidad_naf_m": "1.5",
+        "intensidad_calor": "1.00",
+        "categoria_evidencia": "Obra Pública con Sobredrenaje",
+        "tipo_suelo_geologia": "Arenas limosas colapsables saturadas",
+        "fuente_documental": "Colapso de terraplén carretero 2023 y cárcamos de achique forzado de emergencia",
         "verificacion": "Verificado"
       }
     },
@@ -271,13 +295,15 @@
       },
       "properties": {
         "id": "P13",
-        "nombre": "Playas de Tijuana / Pozo 001 Los Sauces",
+        "nombre_sitio": "Playas de Tijuana / Pozo 001 Los Sauces",
         "delegacion": "Playas de Tijuana",
-        "profundidad_naf_m": 3.8,
-        "intensidad_calor": 0.85,
-        "categoria": "Medición Piezométrica Directa",
-        "geologia": "Aluvión costero sobre terraza marina colapsable",
-        "fuente": "Pozo piloto experimental AquaResiliencia Caso 001 perforado y aforado en 2022",
+        "latitud": "32.5225",
+        "longitud": "-117.1180",
+        "profundidad_naf_m": "3.8",
+        "intensidad_calor": "0.85",
+        "categoria_evidencia": "Medición Piezométrica Directa",
+        "tipo_suelo_geologia": "Aluvión costero sobre terraza marina colapsable",
+        "fuente_documental": "Pozo piloto experimental AquaResiliencia Caso 001 perforado y aforado en 2022",
         "verificacion": "Verificado"
       }
     },
@@ -292,13 +318,15 @@
       },
       "properties": {
         "id": "P14",
-        "nombre": "El Faro / Malecón Playas",
+        "nombre_sitio": "El Faro / Malecón Playas",
         "delegacion": "Playas de Tijuana",
-        "profundidad_naf_m": 2.1,
-        "intensidad_calor": 0.95,
-        "categoria": "Interfase Marina / Freático Costero",
-        "geologia": "Arenas de playa y aluvión costero saturado",
-        "fuente": "Sótanos de condominios costeros con bombas sumergibles de freático continuo",
+        "latitud": "32.5335",
+        "longitud": "-117.1235",
+        "profundidad_naf_m": "2.1",
+        "intensidad_calor": "0.95",
+        "categoria_evidencia": "Interfase Marina / Freático Costero",
+        "tipo_suelo_geologia": "Arenas de playa y aluvión costero saturado",
+        "fuente_documental": "Sótanos de condominios costeros con bombas sumergibles de freático continuo",
         "verificacion": "Verificado"
       }
     },
@@ -313,13 +341,15 @@
       },
       "properties": {
         "id": "P15",
-        "nombre": "Cañón de Los Laureles / Vertedero Binacional",
+        "nombre_sitio": "Cañón de Los Laureles / Vertedero Binacional",
         "delegacion": "Playas de Tijuana",
-        "profundidad_naf_m": 1.8,
-        "intensidad_calor": 0.95,
-        "categoria": "Afloramiento / Flujo Somero",
-        "geologia": "Aluvión y azolve en lecho de cañada",
-        "fuente": "Estudios transfronterizos CILA/EPA flujo base subterráneo y superficial continuo",
+        "latitud": "32.5385",
+        "longitud": "-117.1080",
+        "profundidad_naf_m": "1.8",
+        "intensidad_calor": "0.95",
+        "categoria_evidencia": "Afloramiento / Flujo Somero",
+        "tipo_suelo_geologia": "Aluvión y azolve en lecho de cañada",
+        "fuente_documental": "Estudios transfronterizos CILA/EPA flujo base subterráneo y superficial continuo",
         "verificacion": "Verificado"
       }
     },
@@ -334,13 +364,15 @@
       },
       "properties": {
         "id": "P16",
-        "nombre": "Cañón Johnson / Venero Col. Hidalgo",
+        "nombre_sitio": "Cañón Johnson / Venero Col. Hidalgo",
         "delegacion": "Centro - Cañón Johnson",
-        "profundidad_naf_m": 0.8,
-        "intensidad_calor": 1.0,
-        "categoria": "Manantial / Afloramiento Natural",
-        "geologia": "Contacto geológico permeable-impermeable",
-        "fuente": "Afloramiento permanente de agua dulce de venero natural documentado por vecinos y CESPT",
+        "latitud": "32.5125",
+        "longitud": "-117.0460",
+        "profundidad_naf_m": "0.8",
+        "intensidad_calor": "1.00",
+        "categoria_evidencia": "Manantial / Afloramiento Natural",
+        "tipo_suelo_geologia": "Contacto geológico permeable-impermeable",
+        "fuente_documental": "Afloramiento permanente de agua dulce de venero natural documentado por vecinos y CESPT",
         "verificacion": "Verificado"
       }
     },
@@ -355,13 +387,15 @@
       },
       "properties": {
         "id": "P17",
-        "nombre": "Aguaje de la Tuna / Manantial Histórico",
+        "nombre_sitio": "Aguaje de la Tuna / Manantial Histórico",
         "delegacion": "San Antonio de los Buenos",
-        "profundidad_naf_m": 1.0,
-        "intensidad_calor": 1.0,
-        "categoria": "Manantial / Afloramiento Natural",
-        "geologia": "Discordancia geológica basal",
-        "fuente": "Manantial histórico fundacional de Tijuana registrado en cartografía histórica del Siglo XIX",
+        "latitud": "32.4840",
+        "longitud": "-117.0250",
+        "profundidad_naf_m": "1.0",
+        "intensidad_calor": "1.00",
+        "categoria_evidencia": "Manantial / Afloramiento Natural",
+        "tipo_suelo_geologia": "Discordancia geológica basal",
+        "fuente_documental": "Manantial histórico fundacional de Tijuana registrado en cartografía histórica del Siglo XIX",
         "verificacion": "Verificado"
       }
     },
@@ -376,13 +410,15 @@
       },
       "properties": {
         "id": "P18",
-        "nombre": "Cañón del Sáinz / Vado Principal",
+        "nombre_sitio": "Cañón del Sáinz / Vado Principal",
         "delegacion": "Presa Rural",
-        "profundidad_naf_m": 3.5,
-        "intensidad_calor": 0.85,
-        "categoria": "Afloramiento / Norias Agrícolas",
-        "geologia": "Depósitos aluviales y coluviales en cañada",
-        "fuente": "Norias rústicas artesanales y brotes de humedad freática en pie de talud",
+        "latitud": "32.4280",
+        "longitud": "-116.9450",
+        "profundidad_naf_m": "3.5",
+        "intensidad_calor": "0.85",
+        "categoria_evidencia": "Afloramiento / Norias Agrícolas",
+        "tipo_suelo_geologia": "Depósitos aluviales y coluviales en cañada",
+        "fuente_documental": "Norias rústicas artesanales y brotes de humedad freática en pie de talud",
         "verificacion": "Verificado"
       }
     },
@@ -397,13 +433,15 @@
       },
       "properties": {
         "id": "P19",
-        "nombre": "Sauceda Cañón de San Antonio",
+        "nombre_sitio": "Sauceda Cañón de San Antonio",
         "delegacion": "Otay - La Mesa",
-        "profundidad_naf_m": 2.5,
-        "intensidad_calor": 0.9,
-        "categoria": "Bioindicador Freatófito",
-        "geologia": "Aluvión húmedo en fondo de cañada",
-        "fuente": "Observaciones iNaturalist Salix gooddingii y Populus fremontii (freatófitos obligados)",
+        "latitud": "32.5180",
+        "longitud": "-116.9650",
+        "profundidad_naf_m": "2.5",
+        "intensidad_calor": "0.90",
+        "categoria_evidencia": "Bioindicador Freatófito",
+        "tipo_suelo_geologia": "Aluvión húmedo en fondo de cañada",
+        "fuente_documental": "Observaciones iNaturalist Salix gooddingii y Populus fremontii (freatófitos obligados)",
         "verificacion": "Verificado"
       }
     },
@@ -418,13 +456,15 @@
       },
       "properties": {
         "id": "P20",
-        "nombre": "Arroyo Huertita / Sauceda Costera",
+        "nombre_sitio": "Arroyo Huertita / Sauceda Costera",
         "delegacion": "Playas Sur",
-        "profundidad_naf_m": 2.8,
-        "intensidad_calor": 0.88,
-        "categoria": "Bioindicador Freatófito",
-        "geologia": "Aluvión de cañada costera sin red de agua",
-        "fuente": "Bosquete de Salix laevigata dependiente de manto freático colgado somero permanente",
+        "latitud": "32.4950",
+        "longitud": "-117.1050",
+        "profundidad_naf_m": "2.8",
+        "intensidad_calor": "0.88",
+        "categoria_evidencia": "Bioindicador Freatófito",
+        "tipo_suelo_geologia": "Aluvión de cañada costera sin red de agua",
+        "fuente_documental": "Bosquete de Salix laevigata dependiente de manto freático colgado somero permanente",
         "verificacion": "Verificado"
       }
     },
@@ -439,13 +479,15 @@
       },
       "properties": {
         "id": "P21",
-        "nombre": "Pozo Industrial Agua Caliente",
+        "nombre_sitio": "Pozo Industrial Agua Caliente",
         "delegacion": "La Mesa",
-        "profundidad_naf_m": 6.5,
-        "intensidad_calor": 0.65,
-        "categoria": "Aprovechamiento Concesionado REPDA",
-        "geologia": "Aluvión del Río Tijuana",
-        "fuente": "Título REPDA CONAGUA 01BCA100142/01IPGR94 uso servicios e industrial",
+        "latitud": "32.5183",
+        "longitud": "-116.8406",
+        "profundidad_naf_m": "6.5",
+        "intensidad_calor": "0.65",
+        "categoria_evidencia": "Aprovechamiento Concesionado REPDA",
+        "tipo_suelo_geologia": "Aluvión del Río Tijuana",
+        "fuente_documental": "Título REPDA CONAGUA 01BCA100142/01IPGR94 uso servicios e industrial",
         "verificacion": "Verificado"
       }
     },
@@ -460,13 +502,15 @@
       },
       "properties": {
         "id": "P22",
-        "nombre": "Pozos Aluviales El Florido",
+        "nombre_sitio": "Pozos Aluviales El Florido",
         "delegacion": "El Florido - La Presa",
-        "profundidad_naf_m": 7.2,
-        "intensidad_calor": 0.6,
-        "categoria": "Piezometría Oficial CONAGUA",
-        "geologia": "Gravas y arenas aluviales de recarga",
-        "fuente": "Censo CONAGUA DR_0201 (18 pozos censados en sector El Florido)",
+        "latitud": "32.4650",
+        "longitud": "-116.8550",
+        "profundidad_naf_m": "7.2",
+        "intensidad_calor": "0.60",
+        "categoria_evidencia": "Piezometría Oficial CONAGUA",
+        "tipo_suelo_geologia": "Gravas y arenas aluviales de recarga",
+        "fuente_documental": "Censo CONAGUA DR_0201 (18 pozos censados en sector El Florido)",
         "verificacion": "Verificado"
       }
     },
@@ -481,13 +525,15 @@
       },
       "properties": {
         "id": "P23",
-        "nombre": "Pozo Las Montañas",
+        "nombre_sitio": "Pozo Las Montañas",
         "delegacion": "San Antonio de los Buenos",
-        "profundidad_naf_m": 5.8,
-        "intensidad_calor": 0.7,
-        "categoria": "Aprovechamiento Concesionado REPDA",
-        "geologia": "Conglomerados y arenas de transición",
-        "fuente": "Título REPDA CONAGUA 01BCA100709/01FMGR94 extracción subterránea activa",
+        "latitud": "32.4700",
+        "longitud": "-117.0300",
+        "profundidad_naf_m": "5.8",
+        "intensidad_calor": "0.70",
+        "categoria_evidencia": "Aprovechamiento Concesionado REPDA",
+        "tipo_suelo_geologia": "Conglomerados y arenas de transición",
+        "fuente_documental": "Título REPDA CONAGUA 01BCA100709/01FMGR94 extracción subterránea activa",
         "verificacion": "Verificado"
       }
     },
@@ -502,13 +548,15 @@
       },
       "properties": {
         "id": "R01",
-        "nombre": "Compañía Embotelladora del Fuerte (Coca-Cola) / Río Tijuana 3ra Etapa",
+        "nombre_sitio": "Compañía Embotelladora del Fuerte (Coca-Cola) / Río Tijuana 3ra Etapa",
         "delegacion": "La Mesa - Insurgentes",
-        "profundidad_naf_m": 4.5,
-        "intensidad_calor": 0.9,
-        "categoria": "Concesión Subterránea REPDA (Industrial)",
-        "geologia": "Aluvión del Río Tijuana de alta recarga y transmisividad",
-        "fuente": "REPDA CONAGUA Título BCA101749 (2 pozos, 387,680 m3/año de extracción subterránea)",
+        "latitud": "32.4990",
+        "longitud": "-116.9280",
+        "profundidad_naf_m": "4.5",
+        "intensidad_calor": "0.90",
+        "categoria_evidencia": "Concesión Subterránea REPDA (Industrial)",
+        "tipo_suelo_geologia": "Aluvión del Río Tijuana de alta recarga y transmisividad",
+        "fuente_documental": "REPDA CONAGUA Título BCA101749 (2 pozos, 387,680 m3/año de extracción subterránea)",
         "verificacion": "Oficial CONAGUA"
       }
     },
@@ -523,13 +571,15 @@
       },
       "properties": {
         "id": "R02",
-        "nombre": "Pasteurizadora Jersey del Noroeste / Vía Rápida Poniente",
+        "nombre_sitio": "Pasteurizadora Jersey del Noroeste / Vía Rápida Poniente",
         "delegacion": "La Mesa - Benítez",
-        "profundidad_naf_m": 5.2,
-        "intensidad_calor": 0.9,
-        "categoria": "Concesión Subterránea REPDA (Industrial)",
-        "geologia": "Depósitos aluviales y lentes arenosos cuenca media Río Tijuana",
-        "fuente": "REPDA CONAGUA Título BCA109271 (3 pozos, 378,432 m3/año de extracción subterránea)",
+        "latitud": "32.5080",
+        "longitud": "-116.9680",
+        "profundidad_naf_m": "5.2",
+        "intensidad_calor": "0.90",
+        "categoria_evidencia": "Concesión Subterránea REPDA (Industrial)",
+        "tipo_suelo_geologia": "Depósitos aluviales y lentes arenosos cuenca media Río Tijuana",
+        "fuente_documental": "REPDA CONAGUA Título BCA109271 (3 pozos, 378,432 m3/año de extracción subterránea)",
         "verificacion": "Oficial CONAGUA"
       }
     },
@@ -544,13 +594,15 @@
       },
       "properties": {
         "id": "R03",
-        "nombre": "Hipódromo de Agua Caliente / Estadio Caliente",
+        "nombre_sitio": "Hipódromo de Agua Caliente / Estadio Caliente",
         "delegacion": "La Mesa - Hipódromo",
-        "profundidad_naf_m": 4.8,
-        "intensidad_calor": 0.85,
-        "categoria": "Concesión Subterránea REPDA (Servicios)",
-        "geologia": "Aluvión del Valle de Agua Caliente con gradiente termal somero",
-        "fuente": "REPDA CONAGUA Título 01BCA109174/01ELGR04 (150,000 m3/año) y 1BCA101317 (90,000 m3/año)",
+        "latitud": "32.5120",
+        "longitud": "-117.0050",
+        "profundidad_naf_m": "4.8",
+        "intensidad_calor": "0.85",
+        "categoria_evidencia": "Concesión Subterránea REPDA (Servicios)",
+        "tipo_suelo_geologia": "Aluvión del Valle de Agua Caliente con gradiente termal somero",
+        "fuente_documental": "REPDA CONAGUA Título 01BCA109174/01ELGR04 (150,000 m3/año) y 1BCA101317 (90,000 m3/año)",
         "verificacion": "Oficial CONAGUA"
       }
     },
@@ -565,13 +617,15 @@
       },
       "properties": {
         "id": "R04",
-        "nombre": "Club Social y Deportivo Campestre de Tijuana A.C.",
+        "nombre_sitio": "Club Social y Deportivo Campestre de Tijuana A.C.",
         "delegacion": "Centro - Campestre",
-        "profundidad_naf_m": 3.8,
-        "intensidad_calor": 0.9,
-        "categoria": "Permiso de Descarga y Bombeo REPDA",
-        "geologia": "Aluvión saturado somero del Valle de Agua Caliente",
-        "fuente": "REPDA CONAGUA Título 01BCA150194/01ERDA18 (Descarga y achique de 2,592 m3/día)",
+        "latitud": "32.5140",
+        "longitud": "-117.0120",
+        "profundidad_naf_m": "3.8",
+        "intensidad_calor": "0.90",
+        "categoria_evidencia": "Permiso de Descarga y Bombeo REPDA",
+        "tipo_suelo_geologia": "Aluvión saturado somero del Valle de Agua Caliente",
+        "fuente_documental": "REPDA CONAGUA Título 01BCA150194/01ERDA18 (Descarga y achique de 2,592 m3/día)",
         "verificacion": "Oficial CONAGUA"
       }
     },
@@ -586,13 +640,15 @@
       },
       "properties": {
         "id": "R05",
-        "nombre": "Unión de Distribuidores de Agua en Tanque (Pipas CROM/CROC)",
+        "nombre_sitio": "Unión de Distribuidores de Agua en Tanque (Pipas CROM/CROC)",
         "delegacion": "La Mesa - Vía Rápida",
-        "profundidad_naf_m": 4.2,
-        "intensidad_calor": 0.92,
-        "categoria": "Concesión Subterránea REPDA (Servicios)",
-        "geologia": "Aluvión fluvial grueso de máxima explotación para pipas",
-        "fuente": "REPDA CONAGUA Título 01BCA100166/01EMDA14 (2 pozos, 294,600 m3/año de extracción)",
+        "latitud": "32.5180",
+        "longitud": "-116.9850",
+        "profundidad_naf_m": "4.2",
+        "intensidad_calor": "0.92",
+        "categoria_evidencia": "Concesión Subterránea REPDA (Servicios)",
+        "tipo_suelo_geologia": "Aluvión fluvial grueso de máxima explotación para pipas",
+        "fuente_documental": "REPDA CONAGUA Título 01BCA100166/01EMDA14 (2 pozos, 294,600 m3/año de extracción)",
         "verificacion": "Oficial CONAGUA"
       }
     },
@@ -607,13 +663,15 @@
       },
       "properties": {
         "id": "R06",
-        "nombre": "Comité de Agua Potable Col. Ricardo Flores Magón A.C.",
+        "nombre_sitio": "Comité de Agua Potable Col. Ricardo Flores Magón A.C.",
         "delegacion": "San Antonio de los Buenos",
-        "profundidad_naf_m": 3.6,
-        "intensidad_calor": 0.88,
-        "categoria": "Pozo Comunitario Público Urbano REPDA",
-        "geologia": "Fondo de cañada aluvial permeable sobre arcillas Fm. Otay",
-        "fuente": "REPDA CONAGUA Título 01BCA108150/01HMGR00 (Pozo comunitario público urbano, 4,500 m3/año)",
+        "latitud": "32.4720",
+        "longitud": "-117.0510",
+        "profundidad_naf_m": "3.6",
+        "intensidad_calor": "0.88",
+        "categoria_evidencia": "Pozo Comunitario Público Urbano REPDA",
+        "tipo_suelo_geologia": "Fondo de cañada aluvial permeable sobre arcillas Fm. Otay",
+        "fuente_documental": "REPDA CONAGUA Título 01BCA108150/01HMGR00 (Pozo comunitario público urbano, 4,500 m3/año)",
         "verificacion": "Oficial CONAGUA"
       }
     },
@@ -628,13 +686,15 @@
       },
       "properties": {
         "id": "R07",
-        "nombre": "Prime Wheel México / Ciudad Industrial El Florido",
+        "nombre_sitio": "Prime Wheel México / Ciudad Industrial El Florido",
         "delegacion": "La Presa - El Florido",
-        "profundidad_naf_m": 7.5,
-        "intensidad_calor": 0.7,
-        "categoria": "Concesión Subterránea REPDA (Industrial 2023)",
-        "geologia": "Gravas y arenas aluviales cuenca El Florido",
-        "fuente": "REPDA CONAGUA Título 851051 (Pozo industrial vigente 2023, 125,000 m3/año)",
+        "latitud": "32.4750",
+        "longitud": "-116.8850",
+        "profundidad_naf_m": "7.5",
+        "intensidad_calor": "0.70",
+        "categoria_evidencia": "Concesión Subterránea REPDA (Industrial 2023)",
+        "tipo_suelo_geologia": "Gravas y arenas aluviales cuenca El Florido",
+        "fuente_documental": "REPDA CONAGUA Título 851051 (Pozo industrial vigente 2023, 125,000 m3/año)",
         "verificacion": "Oficial CONAGUA"
       }
     },
@@ -649,13 +709,15 @@
       },
       "properties": {
         "id": "R08",
-        "nombre": "Submetrópoli de Tijuana (Fideicomiso NAFINSA) / El Florido",
+        "nombre_sitio": "Submetrópoli de Tijuana (Fideicomiso NAFINSA) / El Florido",
         "delegacion": "La Presa - El Florido",
-        "profundidad_naf_m": 6.8,
-        "intensidad_calor": 0.75,
-        "categoria": "Concesión Subterránea REPDA (Batería Pozos)",
-        "geologia": "Cono de deyección aluvial y arenas gruesas de recarga",
-        "fuente": "REPDA CONAGUA Título 1BCA100183/01AMGR94 (Batería de 4 pozos, 256,320 m3/año)",
+        "latitud": "32.4580",
+        "longitud": "-116.8450",
+        "profundidad_naf_m": "6.8",
+        "intensidad_calor": "0.75",
+        "categoria_evidencia": "Concesión Subterránea REPDA (Batería Pozos)",
+        "tipo_suelo_geologia": "Cono de deyección aluvial y arenas gruesas de recarga",
+        "fuente_documental": "REPDA CONAGUA Título 1BCA100183/01AMGR94 (Batería de 4 pozos, 256,320 m3/año)",
         "verificacion": "Oficial CONAGUA"
       }
     },
@@ -670,13 +732,15 @@
       },
       "properties": {
         "id": "R09",
-        "nombre": "Dart de Tijuana S. de R.L. de C.V. / Parque Industrial La Mesa",
+        "nombre_sitio": "Dart de Tijuana S. de R.L. de C.V. / Parque Industrial La Mesa",
         "delegacion": "La Mesa",
-        "profundidad_naf_m": 5.0,
-        "intensidad_calor": 0.8,
-        "categoria": "Concesión Subterránea REPDA (Industrial)",
-        "geologia": "Aluvión intermedio saturado cuenca media",
-        "fuente": "REPDA CONAGUA Título 01BCA108416/01ISOC12 (2 pozos, 195,640 m3/año + descargas)",
+        "latitud": "32.5020",
+        "longitud": "-116.9550",
+        "profundidad_naf_m": "5.0",
+        "intensidad_calor": "0.80",
+        "categoria_evidencia": "Concesión Subterránea REPDA (Industrial)",
+        "tipo_suelo_geologia": "Aluvión intermedio saturado cuenca media",
+        "fuente_documental": "REPDA CONAGUA Título 01BCA108416/01ISOC12 (2 pozos, 195,640 m3/año + descargas)",
         "verificacion": "Oficial CONAGUA"
       }
     },
@@ -691,13 +755,15 @@
       },
       "properties": {
         "id": "R10",
-        "nombre": "CESPT Batería Principal Pozos Río Tijuana (19 Pozos)",
+        "nombre_sitio": "CESPT Batería Principal Pozos Río Tijuana (19 Pozos)",
         "delegacion": "Centro - Aluvión Río Tijuana",
-        "profundidad_naf_m": 3.8,
-        "intensidad_calor": 0.98,
-        "categoria": "Batería Oficial Masiva CESPT (19 Pozos)",
-        "geologia": "Aluvión cuaternario principal del Valle de Tijuana (Acuífero 0201)",
-        "fuente": "REPDA CONAGUA Título 01BCA100301/01HSDA19 (19 pozos subterráneos, 13,213,584 m3/año)",
+        "latitud": "32.5250",
+        "longitud": "-117.0080",
+        "profundidad_naf_m": "3.8",
+        "intensidad_calor": "0.98",
+        "categoria_evidencia": "Batería Oficial Masiva CESPT (19 Pozos)",
+        "tipo_suelo_geologia": "Aluvión cuaternario principal del Valle de Tijuana (Acuífero 0201)",
+        "fuente_documental": "REPDA CONAGUA Título 01BCA100301/01HSDA19 (19 pozos subterráneos, 13,213,584 m3/año)",
         "verificacion": "Oficial CONAGUA"
       }
     },
@@ -712,13 +778,15 @@
       },
       "properties": {
         "id": "R11",
-        "nombre": "Servicios de Hotelería El Soler (Cañón del Matadero)",
+        "nombre_sitio": "Servicios de Hotelería El Soler (Cañón del Matadero)",
         "delegacion": "Playas de Tijuana - El Soler",
-        "profundidad_naf_m": 2.4,
-        "intensidad_calor": 0.95,
-        "categoria": "Concesión Zona Federal / Cañada Húmeda",
-        "geologia": "Ladera de cañón costero con freático colgado y flujo hacia el mar",
-        "fuente": "REPDA CONAGUA Título 836987 (Zona Federal 4,844 m2 en cauce / drenaje)",
+        "latitud": "32.5310",
+        "longitud": "-117.0780",
+        "profundidad_naf_m": "2.4",
+        "intensidad_calor": "0.95",
+        "categoria_evidencia": "Concesión Zona Federal / Cañada Húmeda",
+        "tipo_suelo_geologia": "Ladera de cañón costero con freático colgado y flujo hacia el mar",
+        "fuente_documental": "REPDA CONAGUA Título 836987 (Zona Federal 4,844 m2 en cauce / drenaje)",
         "verificacion": "Oficial CONAGUA"
       }
     },
@@ -733,13 +801,15 @@
       },
       "properties": {
         "id": "R12",
-        "nombre": "Inmobiliaria San Antonio del Mar S.A. de C.V.",
+        "nombre_sitio": "Inmobiliaria San Antonio del Mar S.A. de C.V.",
         "delegacion": "San Antonio de los Buenos - Costa",
-        "profundidad_naf_m": 3.2,
-        "intensidad_calor": 0.88,
-        "categoria": "Permiso de Descarga y Drenaje Costero",
-        "geologia": "Terraza marina y aluvión costero sobre acantilado",
-        "fuente": "REPDA CONAGUA Título 01BCA150205/01EROC13 (Descarga y achique de 412.80 m3/día)",
+        "latitud": "32.4450",
+        "longitud": "-117.0980",
+        "profundidad_naf_m": "3.2",
+        "intensidad_calor": "0.88",
+        "categoria_evidencia": "Permiso de Descarga y Drenaje Costero",
+        "tipo_suelo_geologia": "Terraza marina y aluvión costero sobre acantilado",
+        "fuente_documental": "REPDA CONAGUA Título 01BCA150205/01EROC13 (Descarga y achique de 412.80 m3/día)",
         "verificacion": "Oficial CONAGUA"
       }
     },
@@ -754,13 +824,15 @@
       },
       "properties": {
         "id": "R13",
-        "nombre": "Fraccionadora San Marino S. de R.L. de C.V.",
+        "nombre_sitio": "Fraccionadora San Marino S. de R.L. de C.V.",
         "delegacion": "San Antonio de los Buenos - Costa",
-        "profundidad_naf_m": 3.5,
-        "intensidad_calor": 0.85,
-        "categoria": "Permiso de Descarga Costera",
-        "geologia": "Suelo colapsable de terraza marina y descarga freática",
-        "fuente": "REPDA CONAGUA Título 01BCA150131/01EROC12 (Descarga de drenaje freático costero)",
+        "latitud": "32.4350",
+        "longitud": "-117.0850",
+        "profundidad_naf_m": "3.5",
+        "intensidad_calor": "0.85",
+        "categoria_evidencia": "Permiso de Descarga Costera",
+        "tipo_suelo_geologia": "Suelo colapsable de terraza marina y descarga freática",
+        "fuente_documental": "REPDA CONAGUA Título 01BCA150131/01EROC12 (Descarga de drenaje freático costero)",
         "verificacion": "Oficial CONAGUA"
       }
     },
@@ -775,13 +847,15 @@
       },
       "properties": {
         "id": "R14",
-        "nombre": "SEDENA Cuartel Morelos / 28vo Batallón de Infantería",
+        "nombre_sitio": "SEDENA Cuartel Morelos / 28vo Batallón de Infantería",
         "delegacion": "San Antonio de los Buenos - Aguaje",
-        "profundidad_naf_m": 2.0,
-        "intensidad_calor": 0.95,
-        "categoria": "Aprovechamiento y Descarga Federal",
-        "geologia": "Contacto geológico basal y manantiales del Aguaje de la Tuna",
-        "fuente": "REPDA CONAGUA Título 01BCA150147/01EROC12 y 01BCA150293 (Aguaje de la Tuna)",
+        "latitud": "32.4860",
+        "longitud": "-117.0310",
+        "profundidad_naf_m": "2.0",
+        "intensidad_calor": "0.95",
+        "categoria_evidencia": "Aprovechamiento y Descarga Federal",
+        "tipo_suelo_geologia": "Contacto geológico basal y manantiales del Aguaje de la Tuna",
+        "fuente_documental": "REPDA CONAGUA Título 01BCA150147/01EROC12 y 01BCA150293 (Aguaje de la Tuna)",
         "verificacion": "Oficial CONAGUA"
       }
     },
@@ -796,13 +870,15 @@
       },
       "properties": {
         "id": "R15",
-        "nombre": "Fuentes Brotantes de Tijuana",
+        "nombre_sitio": "Fuentes Brotantes de Tijuana",
         "delegacion": "Centro - Valle de Tijuana",
-        "profundidad_naf_m": 1.2,
-        "intensidad_calor": 1.0,
-        "categoria": "Afloramiento / Concesión Subterránea",
-        "geologia": "Aluvión basal con nivel freático aflorante",
-        "fuente": "REPDA CONAGUA Título BCA101675 (Concesión histórica de fuente brotante / manantial)",
+        "latitud": "32.5240",
+        "longitud": "-117.0350",
+        "profundidad_naf_m": "1.2",
+        "intensidad_calor": "1.00",
+        "categoria_evidencia": "Afloramiento / Concesión Subterránea",
+        "tipo_suelo_geologia": "Aluvión basal con nivel freático aflorante",
+        "fuente_documental": "REPDA CONAGUA Título BCA101675 (Concesión histórica de fuente brotante / manantial)",
         "verificacion": "Oficial CONAGUA"
       }
     },
@@ -817,13 +893,15 @@
       },
       "properties": {
         "id": "R16",
-        "nombre": "Plaza Agua Caliente (Torres Campestre)",
+        "nombre_sitio": "Plaza Agua Caliente (Torres Campestre)",
         "delegacion": "Centro - Agua Caliente",
-        "profundidad_naf_m": 3.4,
-        "intensidad_calor": 0.88,
-        "categoria": "Concesión Subterránea y Cárcamo",
-        "geologia": "Aluvión del Valle de Agua Caliente con losa de supresión",
-        "fuente": "REPDA CONAGUA Título 01BCA101318/01EMGR04 (Extracción subterránea autorizada)",
+        "latitud": "32.5160",
+        "longitud": "-117.0160",
+        "profundidad_naf_m": "3.4",
+        "intensidad_calor": "0.88",
+        "categoria_evidencia": "Concesión Subterránea y Cárcamo",
+        "tipo_suelo_geologia": "Aluvión del Valle de Agua Caliente con losa de supresión",
+        "fuente_documental": "REPDA CONAGUA Título 01BCA101318/01EMGR04 (Extracción subterránea autorizada)",
         "verificacion": "Oficial CONAGUA"
       }
     },
@@ -838,13 +916,15 @@
       },
       "properties": {
         "id": "R17",
-        "nombre": "Aeropuerto Internacional de Tijuana (GAP)",
+        "nombre_sitio": "Aeropuerto Internacional de Tijuana (GAP)",
         "delegacion": "Otay Centenario",
-        "profundidad_naf_m": 8.5,
-        "intensidad_calor": 0.65,
-        "categoria": "Concesión Subterránea Aeroportuaria",
-        "geologia": "Formación Otay lente colgado en conglomerado cementado",
-        "fuente": "REPDA CONAGUA Título BCA101394 (Pozo subterráneo aeroportuario, 84,000 m3/año)",
+        "latitud": "32.5440",
+        "longitud": "-116.9720",
+        "profundidad_naf_m": "8.5",
+        "intensidad_calor": "0.65",
+        "categoria_evidencia": "Concesión Subterránea Aeroportuaria",
+        "tipo_suelo_geologia": "Formación Otay lente colgado en conglomerado cementado",
+        "fuente_documental": "REPDA CONAGUA Título BCA101394 (Pozo subterráneo aeroportuario, 84,000 m3/año)",
         "verificacion": "Oficial CONAGUA"
       }
     },
@@ -859,13 +939,15 @@
       },
       "properties": {
         "id": "R18",
-        "nombre": "Batería Pecuaria Ejido Mesa Redonda (5 Pozos)",
+        "nombre_sitio": "Batería Pecuaria Ejido Mesa Redonda (5 Pozos)",
         "delegacion": "Presa Rural - Mesa Redonda",
-        "profundidad_naf_m": 5.5,
-        "intensidad_calor": 0.75,
-        "categoria": "Batería de Pozos Pecuarios REPDA",
-        "geologia": "Aluvión y coluvión de cañada en ladera sur de la Presa",
-        "fuente": "REPDA CONAGUA Títulos 01BCA105667 a 105671 (Batería de 5 pozos pecuarios)",
+        "latitud": "32.4150",
+        "longitud": "-116.9150",
+        "profundidad_naf_m": "5.5",
+        "intensidad_calor": "0.75",
+        "categoria_evidencia": "Batería de Pozos Pecuarios REPDA",
+        "tipo_suelo_geologia": "Aluvión y coluvión de cañada en ladera sur de la Presa",
+        "fuente_documental": "REPDA CONAGUA Títulos 01BCA105667 a 105671 (Batería de 5 pozos pecuarios)",
         "verificacion": "Oficial CONAGUA"
       }
     },
@@ -880,13 +962,15 @@
       },
       "properties": {
         "id": "R19",
-        "nombre": "Batería Agrícola Familia Gutiérrez Valenzuela (10 Pozos)",
+        "nombre_sitio": "Batería Agrícola Familia Gutiérrez Valenzuela (10 Pozos)",
         "delegacion": "Otay Centenario - Alamar",
-        "profundidad_naf_m": 4.5,
-        "intensidad_calor": 0.85,
-        "categoria": "Batería Masiva Agrícola REPDA (10 Pozos)",
-        "geologia": "Aluvión fluvial grueso de máxima recarga en el Arroyo Alamar",
-        "fuente": "REPDA CONAGUA Títulos 01BCA156959 a 156968 (10 pozos agrícolas, 180,000+ m3/año)",
+        "latitud": "32.5250",
+        "longitud": "-116.9350",
+        "profundidad_naf_m": "4.5",
+        "intensidad_calor": "0.85",
+        "categoria_evidencia": "Batería Masiva Agrícola REPDA (10 Pozos)",
+        "tipo_suelo_geologia": "Aluvión fluvial grueso de máxima recarga en el Arroyo Alamar",
+        "fuente_documental": "REPDA CONAGUA Títulos 01BCA156959 a 156968 (10 pozos agrícolas, 180,000+ m3/año)",
         "verificacion": "Oficial CONAGUA"
       }
     },
@@ -901,14 +985,177 @@
       },
       "properties": {
         "id": "R20",
-        "nombre": "Toyota Motor Manufacturing de Baja California",
+        "nombre_sitio": "Toyota Motor Manufacturing de Baja California",
         "delegacion": "La Presa Este",
-        "profundidad_naf_m": 7.8,
-        "intensidad_calor": 0.65,
-        "categoria": "Concesión Subterránea y Descarga Industrial",
-        "geologia": "Aluvión de pie de monte y transición granítica cuenca alta",
-        "fuente": "REPDA CONAGUA Título 844753 y 01BCA109150 (2,184 m3/año pozo + 2,250 m3/día descarga)",
+        "latitud": "32.4850",
+        "longitud": "-116.7850",
+        "profundidad_naf_m": "7.8",
+        "intensidad_calor": "0.65",
+        "categoria_evidencia": "Concesión Subterránea y Descarga Industrial",
+        "tipo_suelo_geologia": "Aluvión de pie de monte y transición granítica cuenca alta",
+        "fuente_documental": "REPDA CONAGUA Título 844753 y 01BCA109150 (2,184 m3/año pozo + 2,250 m3/día descarga)",
         "verificacion": "Oficial CONAGUA"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.0019,
+          32.5178
+        ]
+      },
+      "properties": {
+        "id": "Z01",
+        "nombre_sitio": "Pozo Oficial CONAGUA CNA_99 (Agua Caliente)",
+        "delegacion": "Centro - Campestre",
+        "latitud": "32.5178",
+        "longitud": "-117.0019",
+        "profundidad_naf_m": "3.8",
+        "intensidad_calor": "0.90",
+        "categoria_evidencia": "Piezometría Instrumental CONAGUA GAS1",
+        "tipo_suelo_geologia": "Aluvión Valle Agua Caliente (Brocal 28.17m - Nivel Estático Cota 24.34m)",
+        "fuente_documental": "CONAGUA GAS1 Red Piezométrica Nacional Acuífero 0201 Pozo CNA_99 (PNE -3.83m)",
+        "verificacion": "Oficial CONAGUA GAS1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.9141,
+          32.5226
+        ]
+      },
+      "properties": {
+        "id": "Z02",
+        "nombre_sitio": "Pozo Oficial CONAGUA CNA_33 (Arroyo Alamar)",
+        "delegacion": "Otay Centenario - Alamar",
+        "latitud": "32.5226",
+        "longitud": "-116.9141",
+        "profundidad_naf_m": "3.9",
+        "intensidad_calor": "0.88",
+        "categoria_evidencia": "Piezometría Instrumental CONAGUA GAS1",
+        "tipo_suelo_geologia": "Aluvión fluvial grueso cuenca Alamar (Brocal 59.38m - Nivel Estático Cota 55.43m)",
+        "fuente_documental": "CONAGUA GAS1 Red Piezométrica Nacional Acuífero 0201 Pozo CNA_33 (PNE -3.95m)",
+        "verificacion": "Oficial CONAGUA GAS1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.0268,
+          32.5359
+        ]
+      },
+      "properties": {
+        "id": "Z03",
+        "nombre_sitio": "Pozo Oficial CONAGUA Pozo 36 (Zona Río Padre Kino)",
+        "delegacion": "Centro - Zona Río",
+        "latitud": "32.5359",
+        "longitud": "-117.0268",
+        "profundidad_naf_m": "4.3",
+        "intensidad_calor": "0.85",
+        "categoria_evidencia": "Piezometría Instrumental CONAGUA GAS1",
+        "tipo_suelo_geologia": "Aluvión arenoso saturado Zona Río (Brocal 20.01m - Nivel Estático Cota 15.67m)",
+        "fuente_documental": "CONAGUA GAS1 Red Piezométrica Nacional Acuífero 0201 Pozo 36 (PNE -4.34m)",
+        "verificacion": "Oficial CONAGUA GAS1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.0153,
+          32.5253
+        ]
+      },
+      "properties": {
+        "id": "Z04",
+        "nombre_sitio": "Pozo Oficial CONAGUA Pozo XD (Plaza Río / Héroes)",
+        "delegacion": "Centro - Zona Río",
+        "latitud": "32.5253",
+        "longitud": "-117.0153",
+        "profundidad_naf_m": "4.4",
+        "intensidad_calor": "0.85",
+        "categoria_evidencia": "Piezometría Instrumental CONAGUA GAS1",
+        "tipo_suelo_geologia": "Aluvión fluvial lecho canalizado (Brocal 25.83m - Nivel Estático Cota 21.47m)",
+        "fuente_documental": "CONAGUA GAS1 Red Piezométrica Nacional Acuífero 0201 Pozo XD (PNE -4.36m)",
+        "verificacion": "Oficial CONAGUA GAS1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.9682,
+          32.5127
+        ]
+      },
+      "properties": {
+        "id": "Z05",
+        "nombre_sitio": "Pozo Oficial CONAGUA Pozo 14 (La Mesa - Benítez)",
+        "delegacion": "La Mesa",
+        "latitud": "32.5127",
+        "longitud": "-116.9682",
+        "profundidad_naf_m": "4.5",
+        "intensidad_calor": "0.82",
+        "categoria_evidencia": "Piezometría Instrumental CONAGUA GAS1",
+        "tipo_suelo_geologia": "Lentes arenosos aluviales cuenca media (Brocal 35.96m - Nivel Estático Cota 31.48m)",
+        "fuente_documental": "CONAGUA GAS1 Red Piezométrica Nacional Acuífero 0201 Pozo 14 (PNE -4.48m)",
+        "verificacion": "Oficial CONAGUA GAS1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.0138,
+          32.5304
+        ]
+      },
+      "properties": {
+        "id": "Z06",
+        "nombre_sitio": "Pozo Oficial CONAGUA Pozo 73 (Vía Rápida Oriente)",
+        "delegacion": "Centro - Vía Rápida",
+        "latitud": "32.5304",
+        "longitud": "-117.0138",
+        "profundidad_naf_m": "5.1",
+        "intensidad_calor": "0.78",
+        "categoria_evidencia": "Piezometría Instrumental CONAGUA GAS1",
+        "tipo_suelo_geologia": "Aluvión de ribera saturado cuenca baja (Brocal 25.74m - Nivel Estático Cota 20.62m)",
+        "fuente_documental": "CONAGUA GAS1 Red Piezométrica Nacional Acuífero 0201 Pozo 73 (PNE -5.12m)",
+        "verificacion": "Oficial CONAGUA GAS1"
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.0138,
+          32.5069
+        ]
+      },
+      "properties": {
+        "id": "Z07",
+        "nombre_sitio": "Pozo Oficial CONAGUA Pozo 70 (Cañón del Rubí / Fundadores)",
+        "delegacion": "San Antonio de los Buenos",
+        "latitud": "32.5069",
+        "longitud": "-117.0138",
+        "profundidad_naf_m": "5.5",
+        "intensidad_calor": "0.75",
+        "categoria_evidencia": "Piezometría Instrumental CONAGUA GAS1",
+        "tipo_suelo_geologia": "Cono de deyección aluvial en garganta de cañón (Brocal 49.07m - Nivel Estático Cota 43.60m)",
+        "fuente_documental": "CONAGUA GAS1 Red Piezométrica Nacional Acuífero 0201 Pozo 70 (PNE -5.47m)",
+        "verificacion": "Oficial CONAGUA GAS1"
       }
     }
   ]
