@@ -1,0 +1,106 @@
+{
+  "metodologia": "Minería de repositorios públicos abiertos (sin PNT/solicitud formal): portal de transparencia UMAI del Ayuntamiento de Tijuana, IMPLAN Tijuana, gacetas ecológicas SEMARNAT/SINAT, y portal de obra pública DOIUM. Se descargaron y leyeron directamente los documentos PDF fuente cuando fue posible; ningún dato fue inventado. Donde no se pudo verificar un dato, se reporta null y se explica la limitación.",
+  "fecha_investigacion": "2026-09-14",
+  "advertencia_anti_fabricacion": "Durante la investigación se detectaron dos intentos de 'alucinación' de datos que NO se incluyen aquí: (1) el número de licitación 'DOIUM-2024-MRM-R23-ENH-LP-003' (usado como ejemplo en la solicitud original) fue verificado como INEXISTENTE al revisar las fuentes primarias citadas por el propio buscador — ningún documento real lo respalda; (2) el motor de búsqueda generó un resumen con montos y folios de licitación para el malecón que, al rastrear los enlaces de origen, resultaron ser de temas completamente distintos (benchmarks de hardware, licitaciones colombianas, otro parque). Se recomienda tratar con la misma cautela cualquier expediente o cédula de perito que circule sin URL verificable a un PDF oficial, incluido el ejemplo 'PT2023A55 / Ing. Muñiz Rico Roberto (Reg. 1443)' de la plantilla original, que tampoco pudo ser localizado ni verificado en ninguna fuente real consultada.",
+  "registros": [
+    {
+      "id_registro": "PT2022A45",
+      "tipo_fuente": "Licencia de Construcción — obligación de transparencia Art. 83 Fracción IV inciso j, Ley de Transparencia BC (UMAI Ayuntamiento de Tijuana)",
+      "ubicacion": "Calle Chichenitza, Fraccionamiento Baja Malibú Sección Lomas, Delegación Playas de Tijuana (lote/manzana testados por ser dato personal en la versión pública)",
+      "coordenadas_aprox": null,
+      "uso_o_proyecto": "Casa habitación con planta baja a nivel de subrasante y dos sótanos; 5 cajones de estacionamiento",
+      "profundidad_desplante_o_naf_m": null,
+      "sistema_cimentacion": "Concreto armado (castillos, columnas, firmes, cerramientos y trabes de concreto armado; muros de block)",
+      "perito_dro": "Arq. Carlos Ruvalcaba Limón — Reg./cédula DRO No. 1669 (también perito de Proyecto Arquitectónico); estructurista no especificado en el documento",
+      "fecha": "Trámite 023/2022; licencia emitida 14-mar-2022",
+      "url_documento": "https://www.tijuana.gob.mx/webpanel/UMAIHipervinculos/Archivo/Hipervinculos/163-202242095742185-32022173.pdf",
+      "verificado": true,
+      "notas": "Único registro individual de licencia de edificación en Playas de Tijuana localizado y verificado leyendo el PDF completo. El repositorio UMAI publica lotes batch (cientos de licencias por PDF) sin índice navegable por expediente/delegación, por lo que no fue posible localizar otros expedientes 'PT' de forma sistemática vía buscador externo."
+    },
+    {
+      "id_registro": "PROG-PARCIAL-PLAYAS-2008-2030",
+      "tipo_fuente": "Documento técnico IMPLAN — Programa Parcial de Crecimiento de Playas de Tijuana 2008-2030",
+      "ubicacion": "Delegación Playas de Tijuana (todo el polígono, incluye Sección Rivera, Costa, Cañón El Matadero)",
+      "coordenadas_aprox": null,
+      "uso_o_proyecto": "Planeación urbana / caracterización geológica-hidrológica de la delegación",
+      "profundidad_desplante_o_naf_m": "No se reporta cifra de NAF: el documento indica textualmente que 'la zona de estudio se encuentra fuera del perímetro natural de área de recarga acuífera de la región' y que las aguas subterráneas son 'escasas y se distribuyen solo en ciertas áreas relativamente pequeñas' (se menciona un pozo artesiano/noria en el arroyo San Antonio, uso agropecuario)",
+      "perito_dro": null,
+      "fecha": "Programa vigente 2008-2030",
+      "url_documento": "https://implan.tijuana.gob.mx/pdf/atlas/PROGRAMA%20PARCIAL%20DE%20CRECIMIENTO%20DE%20PLAYAS%20DE%20TIJUANA.pdf",
+      "verificado": true,
+      "notas": "Litología: limolita-arenisca 12.84%, arenisca-conglomerado 36.12%, conglomerado 10.76%, arenisca 4.05% del área (estratos débiles / material pobremente consolidado). Fallas geológicas locales identificadas: Silver Strand norte (Sector 1) y Silver Strand sur (Sector 2), más una falla activa paralela a la costa a ~2.5 km. Cañón del Matadero confirmado como cauce/subsector 1.8 dentro de la delegación (3.6 km, riesgo de inundación, tiraderos clandestinos)."
+    },
+    {
+      "id_registro": "ATLASV2024-IMPLAN",
+      "tipo_fuente": "Atlas Municipal de Riesgos de Tijuana 2024 (IMPLAN)",
+      "ubicacion": "Municipio de Tijuana (dato de NAF es regional, no específico de Playas de Tijuana)",
+      "coordenadas_aprox": null,
+      "uso_o_proyecto": "Gestión de riesgos",
+      "profundidad_desplante_o_naf_m": "4 a 15 m (CONAGUA, 2013/2024) — dato regional asociado al Río Tijuana, NO atribuido específicamente a Playas de Tijuana",
+      "perito_dro": null,
+      "fecha": "2024",
+      "url_documento": "https://implan.tijuana.gob.mx/pdf/atlas/ATLASV2024.pdf",
+      "verificado": true,
+      "notas": "Susceptibilidad de licuación reportada solo para zona Río Tijuana, Presa Abelardo L. Rodríguez y cauce del Arroyo Alamar — Playas de Tijuana NO aparece mencionada en la conclusión de licuación. Vs30 en límite norte de la delegación: basaltos ~548 m/s, limolita-arenisca ~282 m/s; periodos dominantes de suelo >3s en algunas zonas de Playas (posible amplificación sísmica)."
+    },
+    {
+      "id_registro": "02BC2023TD020",
+      "tipo_fuente": "MIA (Manifestación de Impacto Ambiental) — Gaceta Ecológica SEMARNAT/SINAT",
+      "ubicacion": "Paseo Playas de Tijuana, Sección Rivera, Delegación Playas de Tijuana (8.44 ha)",
+      "coordenadas_aprox": null,
+      "uso_o_proyecto": "Desarrollo Urbano \"Civantia\" — RUBA Desarrollos S.A. de C.V.; 9 torres, ~1,480-1,600 unidades habitacionales, hotel y centro comercial",
+      "profundidad_desplante_o_naf_m": null,
+      "perito_dro": null,
+      "fecha": "Ingreso a SEMARNAT: 18-may-2023 (Gaceta DGIRA/0023/23, 25-may-2023)",
+      "url_documento": "http://sinat.semarnat.gob.mx/Gacetas/archivos2023/gaceta_0023-23.pdf",
+      "verificado": "parcial",
+      "notas": "Expediente y ubicación confirmados en la gaceta oficial. No fue posible acceder a la MIA completa ni a su Capítulo IV (Medio Físico) — el buscador de expedientes SINAT no es navegable por scraping/URL directa — por lo que NO se reportan cifras de NAF, SPT ni consultora para evitar fabricación. Es el caso público más activo de desarrollo vertical en Playas de Tijuana (controversia por afectación a la Cañada Azteca)."
+    },
+    {
+      "id_registro": "02BC2025TD039",
+      "tipo_fuente": "MIA — SEMARNAT (transparencia INAI)",
+      "ubicacion": "Zona federal marítimo-terrestre y playa frente al Fraccionamiento Playas de Tijuana",
+      "coordenadas_aprox": null,
+      "uso_o_proyecto": "Malecón de Playas de Tijuana (infraestructura pública, Ayuntamiento de Tijuana)",
+      "profundidad_desplante_o_naf_m": "No hay cifra puntual de NAF del sitio; el documento describe el acuífero regional 'Valle de Tijuana' con espesor de sedimentos de 140 a más de 300 m. Sondeos identificaron capas de arenisca/limolita de baja-mediana compacidad con espesor promedio de 3 m (sin tabla de golpes SPT)",
+      "perito_dro": "Geomar Consultores, S.C. (RFC GCO900319FN1) — responsable técnico Jorge Nava Jiménez, Ensenada, B.C.",
+      "fecha": "Oficios referenciados sep-oct 2024; proceso público desde 6-jun-2025; resolutivo de RECHAZO notificado 21-abr-2026",
+      "url_documento": "https://dsiappsdev.semarnat.gob.mx/inai/F69/2025/122/2T/02BC2025TD039_MIA.pdf",
+      "verificado": true,
+      "notas": "MIA completa accesible y leída. El proyecto fue RECHAZADO por SEMARNAT (21-abr-2026)."
+    },
+    {
+      "id_registro": "MALECON-CIMENTACION-PRENSA",
+      "tipo_fuente": "Reportaje periodístico (Semanario ZETA) sobre obra de cimentación del malecón — fuente secundaria, no portal oficial",
+      "ubicacion": "Malecón de Playas de Tijuana, franja costera, 1.2 km",
+      "coordenadas_aprox": null,
+      "uso_o_proyecto": "Cimentación con pilotes hincados con varilla, tubo y cemento; ~300 pilotes planeados",
+      "profundidad_desplante_o_naf_m": "Pilotes de 6 a 8.5 m de profundidad, separación ~2 m entre ejes",
+      "perito_dro": "PTC Ingeniería SA de RL de CV (proyecto ejecutivo, 2022, $1,376,413); Geocimentaciones de Tijuana (proyecto de cimentación, $945,461)",
+      "fecha": "Adjudicaciones bajo administración municipal 2022-2024",
+      "url_documento": "https://zetatijuana.com/2024/09/malecon-de-playas-obra-millonaria-al-aventon/ ; https://zetatijuana.com/2026/04/ayuntamiento-embarulla-malecon-de-playas/",
+      "verificado": "parcial (fuente periodística, cifras y empresas confirmadas por reportaje pero sin folio de licitación/contrato oficial localizado en el portal DOIUM)",
+      "notas": "IMPORTANTE: no se encontró ningún folio de licitación pública (LP) para esta obra en el portal oficial de transparencia. La evidencia periodística indica que la obra se adjudicó de forma DIRECTA (no por concurso) a Urbanizadora ROMA S.A. de C.V. ($91,573,503) y Crisol Constructora S.A. de C.V. ($92,001,788). El proyecto ejecutivo de PTC Ingeniería habría omitido estudios de transporte litoral y patrones de marea según la prensa; no hay cifras públicas de cota de marea ni de profundidad de achique/bombeo."
+    },
+    {
+      "id_registro": "DOIUM-2021-R33-DC-001-DC-007-LP-013",
+      "tipo_fuente": "Licitación pública DOIUM (formato real de nomenclatura confirmado)",
+      "ubicacion": "Calles de Playas de Tijuana (pavimentación — no es la franja costera/malecón)",
+      "coordenadas_aprox": null,
+      "uso_o_proyecto": "Pavimentación",
+      "profundidad_desplante_o_naf_m": null,
+      "perito_dro": null,
+      "fecha": "2021",
+      "url_documento": "https://www.tijuana.gob.mx/webpanel/UMAIHipervinculos/Archivo/Hipervinculos/98-202110158263648-12021399.pdf",
+      "verificado": true,
+      "notas": "Único folio DOIUM real confirmado que menciona Playas de Tijuana; sirve como referencia del formato de nomenclatura oficial, pero no aporta datos de NAF ni cimentación costera."
+    }
+  ],
+  "brechas_no_resueltas": [
+    "No existe (o no es públicamente accesible) un dato puntual y verificado de profundidad de NAF específico para ninguna parcela de Playas de Tijuana — todas las cifras regionales (4-15 m) provienen de CONAGUA vía el Atlas 2024 y están asociadas al Río Tijuana, no a la zona costera.",
+    "SMADS Baja California no tiene resolutivos de condominios en Playas de Tijuana localizables por buscador externo.",
+    "El SINAT (SEMARNAT) no expone un índice de expedientes navegable/scrapeable; solo se pudo acceder a MIA completas cuando ya existía un enlace directo indexado (gaceta o portal de transparencia INAI).",
+    "El repositorio UMAI publica licencias en lotes PDF de cientos de páginas sin metadatos por expediente, lo que impide un rastreo sistemático de todos los expedientes 'PT'.",
+    "Ningún expediente de licitación LP fue encontrado para la cimentación del malecón — la obra fue adjudicada directamente."
+  ]
+}

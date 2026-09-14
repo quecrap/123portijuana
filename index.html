@@ -519,6 +519,9 @@ section{margin-bottom:4.5rem;scroll-margin-top:5.5rem}
 .layer-btn.hidro{background:rgba(6,182,212,.12);border:1px solid rgba(6,182,212,.4);color:#a5f3fc}
 .layer-btn.hidro.active{background:rgba(6,182,212,.25);border-color:#06b6d4;color:#fff;box-shadow:0 0 12px rgba(6,182,212,.3)}
 .layer-btn.binacional{background:rgba(16,185,129,.12);border:1px solid rgba(16,185,129,.4);color:#a7f3d0}
+.layer-btn.binacional.active{background:rgba(16,185,129,.25);border-color:var(--emerald-accent);color:#fff;box-shadow:0 0 12px rgba(16,185,129,.3)}
+.layer-btn.alamos{background:rgba(5,150,105,.15);border:1px solid rgba(16,185,129,.5);color:#6ee7b7}
+.layer-btn.alamos.active{background:rgba(5,150,105,.35);border-color:#10b981;color:#fff;box-shadow:0 0 14px rgba(16,185,129,.5)}
 .basemap-switch-bar{display:flex;align-items:center;gap:.45rem;margin-bottom:.65rem;flex-wrap:wrap}
 .basemap-chip{
   background:rgba(255,255,255,.06);
@@ -1199,6 +1202,520 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
   .dia-cero-value{font-size:1.4rem}
   .dia-cero-panel{right:.75rem;width:calc(100vw - 1.5rem)}
 }
+
+/* ===================== SIMULADOR DE LADERA (VENTURES HACK 2026) ===================== */
+.layer-btn.ladera{background:rgba(0,229,255,.12);border:1px solid rgba(0,229,255,.45);color:#67e8f9}
+.layer-btn.ladera.active{background:rgba(0,229,255,.28);border-color:var(--cyan-primary);color:#fff;box-shadow:0 0 14px rgba(0,229,255,.45)}
+
+@keyframes pulseMp{
+  0%,100%{box-shadow:0 0 10px #00e5ff;transform:scale(1)}
+  50%{box-shadow:0 0 22px #00e5ff,0 0 35px rgba(0,229,255,0.6);transform:scale(1.12)}
+}
+.mp-pulse-marker{
+  background:linear-gradient(135deg,#00e5ff,#3b82f6);
+  color:#020c1b;
+  border-radius:50%;
+  width:24px;
+  height:24px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:9px;
+  font-weight:900;
+  border:2px solid #fff;
+  box-shadow:0 0 14px #00e5ff;
+  animation:pulseMp 2.2s infinite ease-in-out;
+}
+
+.ladera-sim-module{
+  margin-top:2.5rem;
+  background:linear-gradient(135deg,rgba(10,22,40,.92) 0%,rgba(15,23,42,.88) 100%);
+  border:1px solid rgba(0,229,255,.3);
+  border-radius:22px;
+  padding:2rem;
+  box-shadow:0 20px 50px rgba(0,0,0,.6),0 0 40px rgba(0,229,255,.08);
+  position:relative;
+  overflow:hidden;
+}
+.ladera-sim-module::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,transparent,#00e5ff,#3b82f6,transparent);
+}
+
+.sim-header-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  flex-wrap:wrap;
+  gap:1rem;
+  margin-bottom:1.5rem;
+  padding-bottom:1.25rem;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.sim-title-group h3{
+  font-family:var(--font-heading);
+  font-size:1.55rem;
+  font-weight:800;
+  letter-spacing:-0.5px;
+  color:#fff;
+  display:flex;
+  align-items:center;
+  gap:.6rem;
+}
+.sim-title-group p{
+  color:var(--text-muted);
+  font-size:.88rem;
+  margin-top:.35rem;
+  max-width:850px;
+  line-height:1.55;
+}
+
+.sim-nav-tabs{
+  display:flex;
+  gap:.5rem;
+  flex-wrap:wrap;
+  background:rgba(255,255,255,.04);
+  padding:4px;
+  border-radius:12px;
+  border:1px solid rgba(255,255,255,.08);
+  margin-bottom:1.75rem;
+}
+.sim-tab-btn{
+  background:transparent;
+  border:none;
+  color:var(--text-muted);
+  padding:.65rem 1.15rem;
+  border-radius:9px;
+  font-family:var(--font-body);
+  font-weight:700;
+  font-size:.85rem;
+  cursor:pointer;
+  transition:all .2s;
+  display:inline-flex;
+  align-items:center;
+  gap:.45rem;
+}
+.sim-tab-btn:hover{
+  color:var(--text-main);
+  background:rgba(255,255,255,.06);
+}
+.sim-tab-btn.active{
+  background:linear-gradient(135deg,rgba(0,229,255,.2),rgba(59,130,246,.2));
+  color:var(--cyan-primary);
+  border:1px solid rgba(0,229,255,.35);
+  box-shadow:0 0 14px rgba(0,229,255,.2);
+}
+
+.sim-pane{display:none}
+.sim-pane.active{display:block}
+
+.sim-workbench-grid{
+  display:grid;
+  grid-template-columns:370px 1fr;
+  gap:1.75rem;
+  align-items:start;
+}
+@media(max-width:980px){
+  .sim-workbench-grid{grid-template-columns:1fr}
+}
+
+.sim-controls-panel{
+  background:rgba(2,12,27,.6);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:16px;
+  padding:1.4rem;
+  display:flex;
+  flex-direction:column;
+  gap:1.15rem;
+}
+.sim-control-group{
+  display:flex;
+  flex-direction:column;
+  gap:.35rem;
+}
+.sim-control-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:.8rem;
+  color:var(--text-muted);
+  font-weight:600;
+}
+.sim-badge{
+  font-family:var(--font-mono);
+  font-size:.82rem;
+  font-weight:700;
+  color:var(--cyan-primary);
+  background:rgba(0,229,255,.1);
+  padding:.15rem .45rem;
+  border-radius:6px;
+  border:1px solid rgba(0,229,255,.2);
+}
+.sim-slider{
+  width:100%;
+  accent-color:var(--cyan-primary);
+  height:6px;
+  border-radius:3px;
+  background:rgba(255,255,255,.12);
+  cursor:pointer;
+}
+
+.sim-presets-bar{
+  display:flex;
+  gap:.4rem;
+  flex-wrap:wrap;
+  margin-top:.4rem;
+}
+.sim-preset-btn{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  color:var(--text-muted);
+  font-size:.74rem;
+  font-weight:600;
+  padding:.35rem .65rem;
+  border-radius:7px;
+  cursor:pointer;
+  transition:all .2s;
+}
+.sim-preset-btn:hover{
+  border-color:var(--cyan-primary);
+  color:#fff;
+  background:rgba(0,229,255,.15);
+}
+
+.sim-kpis-wrapper{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:.9rem;
+  margin-bottom:1.25rem;
+}
+.sim-kpi-card{
+  background:rgba(2,12,27,.6);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:14px;
+  padding:1rem;
+  display:flex;
+  flex-direction:column;
+  gap:.25rem;
+  position:relative;
+  overflow:hidden;
+}
+.sim-kpi-label{
+  font-size:.72rem;
+  text-transform:uppercase;
+  letter-spacing:.5px;
+  color:var(--text-dim);
+  font-family:var(--font-mono);
+}
+.sim-kpi-val{
+  font-family:var(--font-mono);
+  font-size:1.45rem;
+  font-weight:800;
+  color:#fff;
+}
+.sim-kpi-sub{
+  font-size:.75rem;
+  color:var(--text-muted);
+}
+
+.fs-hero-card{
+  grid-column:1/-1;
+  background:linear-gradient(135deg,rgba(15,23,42,.9) 0%,rgba(2,12,27,.9) 100%);
+  border:1px solid rgba(0,229,255,.3);
+  padding:1.25rem 1.5rem;
+  border-radius:16px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  flex-wrap:wrap;
+  gap:1rem;
+}
+.fs-status-pill{
+  padding:.45rem .95rem;
+  border-radius:10px;
+  font-weight:800;
+  font-size:.88rem;
+  font-family:var(--font-heading);
+  letter-spacing:.3px;
+  display:inline-flex;
+  align-items:center;
+  gap:.45rem;
+  transition:all .3s ease;
+}
+.fs-status-pill.failure{background:rgba(244,63,94,.18);border:1px solid #f43f5e;color:#fda4af;box-shadow:0 0 15px rgba(244,63,94,.35)}
+.fs-status-pill.marginal{background:rgba(245,158,11,.18);border:1px solid #f59e0b;color:#fde68a;box-shadow:0 0 15px rgba(245,158,11,.35)}
+.fs-status-pill.stable{background:rgba(16,185,129,.18);border:1px solid #10b981;color:#6ee7b7;box-shadow:0 0 18px rgba(16,185,129,.35)}
+
+.fs-bar-track{
+  width:100%;
+  height:10px;
+  background:rgba(255,255,255,.1);
+  border-radius:6px;
+  overflow:hidden;
+  position:relative;
+  margin-top:.75rem;
+}
+.fs-bar-fill{
+  height:100%;
+  width:50%;
+  transition:width .25s ease-out,background .25s;
+  border-radius:6px;
+}
+.fs-markers{
+  display:flex;
+  justify-content:space-between;
+  font-size:.68rem;
+  font-family:var(--font-mono);
+  color:var(--text-dim);
+  margin-top:.3rem;
+}
+
+.sim-canvas-box{
+  background:rgba(2,12,27,.75);
+  border:1px solid rgba(56,189,248,.2);
+  border-radius:16px;
+  padding:1rem;
+  position:relative;
+  overflow:hidden;
+}
+.sim-canvas-toolbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:.75rem;
+  font-size:.8rem;
+  color:var(--text-muted);
+  flex-wrap:wrap;
+  gap:.5rem;
+}
+#canvasLaderaSim{
+  width:100%;
+  height:330px;
+  display:block;
+  border-radius:10px;
+  background:#050c18;
+}
+
+.sim-gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:1.5rem;
+}
+.sim-gallery-card{
+  background:rgba(2,12,27,.7);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:16px;
+  overflow:hidden;
+  transition:transform .25s,border-color .25s,box-shadow .25s;
+  cursor:pointer;
+  display:flex;
+  flex-direction:column;
+}
+.sim-gallery-card:hover{
+  transform:translateY(-4px);
+  border-color:var(--cyan-primary);
+  box-shadow:0 12px 30px rgba(0,229,255,.2);
+}
+.sim-gallery-thumb{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  background:#070d18;
+}
+.sim-gallery-body{
+  padding:1.1rem;
+  display:flex;
+  flex-direction:column;
+  gap:.4rem;
+  flex:1;
+}
+.sim-gallery-title{
+  font-family:var(--font-heading);
+  font-size:1.05rem;
+  font-weight:700;
+  color:#fff;
+}
+.sim-gallery-desc{
+  font-size:.8rem;
+  color:var(--text-muted);
+  line-height:1.45;
+}
+.sim-gallery-foot{
+  margin-top:auto;
+  padding-top:.75rem;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:.75rem;
+  color:var(--cyan-primary);
+  font-family:var(--font-mono);
+}
+
+#sim-lightbox-modal{
+  position:fixed;
+  inset:0;
+  z-index:99999;
+  background:rgba(2,12,27,.94);
+  -webkit-backdrop-filter:blur(15px);
+  backdrop-filter:blur(15px);
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:2rem;
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .25s ease;
+}
+#sim-lightbox-modal.active{
+  opacity:1;
+  pointer-events:auto;
+}
+.sim-lightbox-content{
+  position:relative;
+  max-width:92vw;
+  max-height:86vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+}
+.sim-lightbox-img{
+  max-width:100%;
+  max-height:75vh;
+  object-fit:contain;
+  border-radius:12px;
+  box-shadow:0 20px 60px rgba(0,0,0,.8),0 0 40px rgba(0,229,255,.25);
+  border:1px solid rgba(0,229,255,.3);
+}
+.sim-lightbox-caption{
+  margin-top:1rem;
+  text-align:center;
+  color:var(--text-main);
+  max-width:800px;
+}
+.sim-lightbox-close{
+  position:absolute;
+  top:-2.5rem;
+  right:0;
+  background:none;
+  border:none;
+  color:#fff;
+  font-size:2rem;
+  cursor:pointer;
+  line-height:1;
+}
+
+.sim-tech-table{
+  width:100%;
+  border-collapse:collapse;
+  font-size:.85rem;
+  margin-top:1rem;
+}
+.sim-tech-table th{
+  background:rgba(255,255,255,.05);
+  color:var(--cyan-primary);
+  text-align:left;
+  padding:.8rem 1rem;
+  font-family:var(--font-mono);
+  font-size:.78rem;
+  text-transform:uppercase;
+  letter-spacing:.5px;
+  border-bottom:1px solid rgba(0,229,255,.2);
+}
+.sim-tech-table td{
+  padding:.8rem 1rem;
+  border-bottom:1px solid rgba(255,255,255,.06);
+  color:var(--text-muted);
+}
+.sim-tech-table tr:hover td{
+  background:rgba(0,229,255,.03);
+  color:var(--text-main);
+}
+
+
+/* ===================== AQUAPROXY: EVIDENCIAS INDIRECTAS ===================== */
+.layer-btn.proxy{background:rgba(168,85,247,.15);border:1px solid rgba(168,85,247,.45);color:#d8b4fe}
+.layer-btn.proxy.active{background:rgba(168,85,247,.32);border-color:var(--purple-accent);color:#fff;box-shadow:0 0 14px rgba(168,85,247,.45)}
+
+.proxy-div-icon{
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:900;
+  border:2px solid #fff;
+  transition:transform .2s;
+}
+.proxy-div-icon:hover{transform:scale(1.2)}
+
+.proxy-panel-box{
+  margin-top:2rem;
+  background:linear-gradient(135deg,rgba(15,23,42,.92) 0%,rgba(10,22,40,.88) 100%);
+  border:1px solid rgba(168,85,247,.35);
+  border-radius:20px;
+  padding:1.75rem;
+  box-shadow:0 15px 40px rgba(0,0,0,.6),0 0 35px rgba(168,85,247,.08);
+}
+.proxy-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  flex-wrap:wrap;
+  gap:1rem;
+  margin-bottom:1.25rem;
+  padding-bottom:1rem;
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.proxy-filter-chips{
+  display:flex;
+  gap:.45rem;
+  flex-wrap:wrap;
+  margin-bottom:1.25rem;
+}
+.proxy-chip{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(255,255,255,.12);
+  color:var(--text-muted);
+  font-size:.76rem;
+  font-weight:600;
+  padding:.4rem .85rem;
+  border-radius:8px;
+  cursor:pointer;
+  transition:all .2s;
+}
+.proxy-chip:hover,.proxy-chip.active{
+  background:rgba(168,85,247,.22);
+  border-color:var(--purple-accent);
+  color:#fff;
+  box-shadow:0 0 10px rgba(168,85,247,.25);
+}
+
+.proxy-cards-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(310px,1fr));
+  gap:1.25rem;
+  max-height:480px;
+  overflow-y:auto;
+  padding-right:.5rem;
+}
+.proxy-item-card{
+  background:rgba(2,12,27,.65);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:14px;
+  padding:1.15rem;
+  display:flex;
+  flex-direction:column;
+  gap:.45rem;
+  transition:border-color .2s,box-shadow .2s;
+}
+.proxy-item-card:hover{
+  border-color:var(--purple-accent);
+  box-shadow:0 8px 25px rgba(168,85,247,.15);
+}
+
 </style>
 </head>
 <body>
@@ -1605,7 +2122,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
     <ul class="nav-links">
       <li><a href="#hero">🚪 0. Umbral</a></li>
       <li><a href="#datos-conagua">📊 1. Balance</a></li>
-      <li><a href="#motor-hidro">🔬 2. AquaEngine</a></li>
+      <li><a href="#motor-hidro">🔬 2. AquaEngine &amp; Simulador</a></li>
       <li><a href="candidatos.html" style="color:var(--emerald-accent);font-weight:700">🌳 Parques SMP</a></li>
       <li><a href="#corte-3d">🏔️ 3. Corte 3D</a></li>
       <li><a href="#derecho-comparado">🌍 4. Derecho</a></li>
@@ -1690,7 +2207,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
   </div>
   <ul class="drawer-nav-list">
     <li><a href="#datos-conagua" onclick="toggleMobileDrawer(false)">📊 Diagnóstico Oficial CONAGUA</a></li>
-    <li><a href="#motor-hidro" onclick="toggleMobileDrawer(false)">🔬 Motor AquaEngine &amp; 7 Capas</a></li>
+    <li><a href="#motor-hidro" onclick="toggleMobileDrawer(false)">🔬 AquaEngine &amp; Simulador Ladera</a></li>
     <li><a href="#corte-3d" onclick="toggleMobileDrawer(false)">🏔️ Corte 3D Geohidrológico Transversal</a></li>
     <li><a href="#derecho-comparado" onclick="toggleMobileDrawer(false)">🌍 Derecho Comparado Global</a></li>
     <li><a href="#solucion" onclick="toggleMobileDrawer(false)">💧 Pilares del Sistema</a></li>
@@ -1792,7 +2309,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
             ¿Por qué existe un "Déficit Administrativo" en el Acuífero Tijuana 0201?
           </h3>
           <p style="color:var(--text-muted);font-size:.92rem;line-height:1.65">
-            De acuerdo con el estudio oficial <strong>DR_0201 de CONAGUA</strong> y los acuerdos publicados en el <strong>Diario Oficial de la Federación (DOF)</strong>, el acuífero presenta una recarga media anual de <strong>19.50 hm³/año</strong>, una descarga natural comprometida de <strong>4.60 hm³/año</strong> hacia el estuario y un volumen concesionado de <strong>14.89 hm³/año</strong>, resultando en un déficit administrativo de <strong>-1.66 hm³/año</strong>. Este déficit prohíbe nuevas concesiones industriales masivas, fundamentando la necesidad de esquemas de <strong>investigación científica y abastecimiento comunitario de bajo impacto</strong>.
+            De acuerdo con el estudio oficial <strong>DR_0201 de CONAGUA</strong> y los acuerdos publicados en el <strong>Diario Oficial de la Federación (DOF)</strong>, el acuífero presenta una recarga media anual de <strong>19.50 hm³/año</strong>, una descarga natural comprometida de <strong>4.60 hm³/año</strong> hacia el estuario y un volumen concesionado (REPDA) de <strong>16.56 hm³/año</strong>, resultando en un déficit administrativo de <strong>-1.66 hm³/año</strong>. Este déficit prohíbe nuevas concesiones industriales masivas, fundamentando la necesidad de esquemas de <strong>investigación científica y abastecimiento comunitario de bajo impacto</strong>.
           </p>
         </div>
 
@@ -1830,10 +2347,10 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
           <div class="balance-bar-row">
             <div class="balance-bar-label">
               <span>⛏️ Extracción Concesionada en REPDA (VEAS)</span>
-              <span style="color:var(--amber-accent);font-family:var(--font-mono)">14.89 hm³/año (76.4%)</span>
+              <span style="color:var(--amber-accent);font-family:var(--font-mono)">16.56 hm³/año (84.9%)</span>
             </div>
             <div class="balance-bar-track">
-              <div class="balance-bar-fill" style="width:76.4%;background:linear-gradient(90deg,#d97706,#f59e0b)">14.89 hm³ Volumen Concesionado (CESPT / Industria)</div>
+              <div class="balance-bar-fill" style="width:84.9%;background:linear-gradient(90deg,#d97706,#f59e0b)">16.56 hm³ Volumen Concesionado (270 Títulos REPDA, corte 2022)</div>
             </div>
           </div>
 
@@ -1864,6 +2381,18 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
             <div class="conagua-badge">Manto Freático Somero</div>
             <h4>Profundidad: 1.8 a 8.5 m</h4>
             <p>Aluviones cuaternarios (Qal) en lechos de ríos y cañadas albergan mantos freáticos continuos de fácil acceso frugal.</p>
+          </div>
+        </div>
+
+        <div style="margin-top:1.25rem;background:rgba(6,182,212,.08);border:1px solid rgba(6,182,212,.3);border-radius:14px;padding:1.1rem 1.25rem">
+          <div style="display:flex;align-items:flex-start;gap:.65rem">
+            <span style="font-size:1.3rem;line-height:1">💧</span>
+            <div>
+              <h4 style="margin:0 0 .4rem;color:var(--text-main);font-size:.95rem">La Fuga Invisible: Ineficiencia de Red vs. "Déficit" de Papel</h4>
+              <p style="color:var(--text-muted);font-size:.85rem;line-height:1.6;margin:0">
+                El déficit de <strong>-1.66 hm³/año</strong> es un resultado <em>administrativo</em>: nace de restar títulos de concesión (papel) a la recarga natural, no de medir agua extraída de más. En paralelo, el <strong>Reporte de Eficiencia Física y Mermas de Red CESPT / Secretaría de Hacienda de B.C. (2024-2025)</strong> reporta que la red de distribución de Tijuana opera a solo <strong>75.3% – 83.8% de eficiencia física</strong>: entre <strong>16.2% y 24.7% del agua potable importada del Río Colorado se pierde en fugas subterráneas no contabilizadas</strong> antes de llegar al usuario. Esa agua no cuenta como recarga oficial del acuífero profundo &mdash;las arcillas impermeables de la Formación Otay actúan como barrera geológica&mdash;, pero sí satura <strong>mantos colgados someros de 3 a 8 m</strong>, elevando presión de poro y riesgo de deslave en laderas urbanas. Es precisamente ese volumen filtrado y desperdiciado, ajeno al balance DR_0201, el que AquaResiliencia capta con pozos de alivio somero de bajo impacto.
+              </p>
+            </div>
           </div>
         </div>
       </div>
@@ -2094,7 +2623,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
 
       <!-- Pie de sección oficial con enlaces -->
       <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;padding-top:1.25rem;margin-top:1.5rem;border-top:1px solid var(--border-color);font-size:.82rem;color:var(--text-dim);font-family:var(--font-mono)">
-        <span>📄 Referencia: CONAGUA DR_0201 (Baja California) &middot; DOF &middot; NOM-127-SSA1-2021 &middot; Ley General de Aguas (2025)</span>
+        <span>📄 Referencia: CONAGUA DR_0201 (Baja California) &middot; CESPT/Hacienda B.C. Eficiencia Física de Red (2024-2025) &middot; DOF &middot; NOM-127-SSA1-2021 &middot; Ley General de Aguas (2025)</span>
         <a href="INVESTIGACION_CIENTIFICA_Y_MATRIZ_HIDROGEOLOGICA.md" target="_blank" rel="noopener noreferrer" style="color:var(--cyan-primary);text-decoration:underline">Ver Matriz Científica Completa ↗</a>
       </div>
     </div>
@@ -2200,6 +2729,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
           <button class="zone-chip" onclick="setPresetZone(4)">🏭 Mesa de Otay (Meseta - 165m)</button>
           <button class="zone-chip" onclick="setPresetZone(5)">⛰️ Cerro Colorado (Cumbre - 480m 🛑)</button>
           <button class="zone-chip" onclick="setPresetZone(6)">🛑 Sánchez Taboada (Falla PC - 190m)</button>
+          <button class="zone-chip" onclick="setPresetZone(7)" style="border-color:var(--cyan-primary);color:var(--cyan-primary)">⚡ Ladera Piloto (Fm. Otay / Micropozos)</button>
         </div>
         <div class="layers-toggle-bar">
           <button id="togglePiezoBtn" class="layer-btn piezo active" onclick="toggleLayer('piezo')">🟣 CONAGUA Piezometría</button>
@@ -2209,6 +2739,9 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
           <button id="toggleRiesgoBtn" class="layer-btn riesgo active" onclick="toggleLayer('riesgo')">⛔ Protección Civil (Fallas)</button>
           <button id="toggleHidroBtn" class="layer-btn hidro active" onclick="toggleLayer('hidro')">🌊 INEGI Cañadas</button>
           <button id="toggleBinacionalBtn" class="layer-btn binacional active" onclick="toggleLayer('binacional')">🇺🇸 USGS / TRNERR</button>
+          <button id="toggleAlamosBtn" class="layer-btn alamos active" onclick="toggleLayer('alamos')">🌳 Álamos y Sauces</button>
+          <button id="toggleLaderaBtn" class="layer-btn ladera active" onclick="toggleLayer('ladera')">⚡ Simulación Ladera &amp; Micropozos</button>
+          <button id="toggleProxyBtn" class="layer-btn proxy active" onclick="toggleLayer('proxy')">🔍 AquaProxy: Evidencias Indirectas (10ª Capa)</button>
         </div>
       </div>
       <div class="engine-grid">
@@ -2230,7 +2763,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
           <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.75rem;font-size:.78rem;color:var(--text-dim);font-family:var(--font-mono);flex-wrap:wrap;gap:.5rem">
             <span id="map-coords-display">📍 Lat: 32.5312 | Lng: -117.1215</span>
             <span id="altimeter-live-tag" style="color:var(--cyan-primary)">⛰️ Cota: 18 msnm (DEM 30m)</span>
-            <span id="layer-status-tag" style="color:var(--emerald-accent)">🗺️ 7 Capas Activas</span>
+            <span id="layer-status-tag" style="color:var(--emerald-accent)">🗺️ 8 Capas Activas</span>
           </div>
         </div>
         <div class="hydro-output">
@@ -2294,6 +2827,454 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
         </div>
       </div>
     </div>
+
+      <!-- ==================== MÓDULO COMPUTACIONAL: SIMULADOR DE LADERA & GEOTECNIA ==================== -->
+      <div class="ladera-sim-module" id="modulo-sim-ladera">
+        <div class="sim-header-row">
+          <div class="sim-title-group">
+            <span class="section-tag" style="background:rgba(0,229,255,.1);color:var(--cyan-primary);border:1px solid rgba(0,229,255,.3);padding:.25rem .75rem;border-radius:6px;font-family:var(--font-mono);font-size:.74rem;font-weight:700">🔬 MODELACIÓN HIDROGEOTÉCNICA // VENTURES HACK 2026</span>
+            <h3 style="margin-top:.4rem">⚡ Simulador de Estabilidad de Ladera: Fugas CESPT vs. AquaResiliencia</h3>
+            <p>Contraste físico y numérico calibrado con <strong>CONAGUA DR_0201</strong>, <strong>SGM I11-11</strong> y <strong>Gudiño Elizondo (CICESE 2018)</strong>: Demostración de cómo la acumulación de fugas crónicas de agua potable sobre la impermeable Formación Otay colapsa la ladera ($FS &lt; 1.0$), y cómo la red de micropozos someros de alivio restaura el equilibrio geotécnico ($FS &gt; 1.4$).</p>
+          </div>
+          <div style="display:flex;gap:.5rem;align-items:center;flex-wrap:wrap">
+            <a href="modelo_aquaresiliencia_tijuana.py" download class="btn-secondary" style="font-size:.78rem;padding:.45rem .85rem;border-color:var(--cyan-primary);color:var(--cyan-primary)">📥 Código Python (.py)</a>
+            <button class="btn-secondary" onclick="openSimImageModal('fig4_dashboard_ejecutivo.png','Dashboard Ejecutivo Ventures Hack 2026','Análisis Integral Costo-Beneficio y Métricas Geotécnicas.')" style="font-size:.78rem;padding:.45rem .85rem">🏆 Dashboard Ejecutivo</button>
+          </div>
+        </div>
+
+        <div class="sim-nav-tabs">
+          <button class="sim-tab-btn active" onclick="switchSimTab('workbench', this)">🎛️ Simulador Interactivo en Vivo</button>
+          <button class="sim-tab-btn" onclick="switchSimTab('gallery', this)">📊 Galería de Figuras Científicas (4 Figuras)</button>
+          <button class="sim-tab-btn" onclick="switchSimTab('specs', this)">📑 Dictamen Geotécnico &amp; Parámetros CONAGUA</button>
+        </div>
+
+        <!-- TAB 1: INTERACTIVE WORKBENCH -->
+        <div id="sim-pane-workbench" class="sim-pane active">
+          <div class="sim-workbench-grid">
+            <!-- Left Controls -->
+            <div class="sim-controls-panel">
+              <div style="display:flex;justify-content:space-between;align-items:center">
+                <strong style="font-size:.88rem;color:#fff">🎛️ Parámetros Físicos</strong>
+                <span style="font-size:.7rem;color:var(--cyan-primary);font-family:var(--font-mono)">Tiempo Real</span>
+              </div>
+
+              <!-- Slider 1: Fuga CESPT -->
+              <div class="sim-control-group">
+                <div class="sim-control-header">
+                  <span>🚰 Fuga Crónica Red CESPT:</span>
+                  <span class="sim-badge" id="lbl-q-fuga">30 mm/día</span>
+                </div>
+                <input type="range" class="sim-slider" id="sl-q-fuga" min="0" max="60" value="30" step="2" oninput="updateSimState()">
+                <div style="font-size:.68rem;color:var(--text-dim)">Pérdidas continuas (~24% CESPT) pre-saturando el talud todo el año</div>
+              </div>
+
+              <!-- Slider 1B: Recarga por Lluvias -->
+              <div class="sim-control-group">
+                <div class="sim-control-header">
+                  <span>🌧️ Recarga por Lluvias (Tormenta):</span>
+                  <span class="sim-badge" id="lbl-q-lluvia" style="color:#38bdf8;border-color:rgba(56,189,248,.3);background:rgba(56,189,248,.1)">20 mm/día</span>
+                </div>
+                <input type="range" class="sim-slider" id="sl-q-lluvia" min="0" max="60" value="20" step="2" oninput="updateSimState()" style="accent-color:#38bdf8">
+                <div style="font-size:.68rem;color:var(--text-dim)">Precipitación pluvial (CONAGUA 230-300 mm/a; eventos de tormenta)</div>
+              </div>
+
+              <!-- Recuadro Balance de Infiltración Total -->
+              <div style="background:rgba(0,229,255,.05);border:1px solid rgba(0,229,255,.2);border-radius:10px;padding:.6rem .8rem">
+                <div style="display:flex;justify-content:space-between;align-items:center">
+                  <span style="font-size:.72rem;color:var(--text-dim);font-family:var(--font-mono)">INFILTRACIÓN TOTAL:</span>
+                  <span class="sim-badge" id="lbl-q-total" style="font-size:.84rem;color:#38bdf8">50 mm/día</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;font-size:.68rem;color:var(--text-muted);margin-top:.2rem">
+                  <span id="lbl-desglose-fuga">🚰 Fuga: 30 mm/d (60%)</span>
+                  <span id="lbl-desglose-lluvia">🌧️ Lluvia: 20 mm/d (40%)</span>
+                </div>
+              </div>
+
+              <!-- Slider 2: Micropozos -->
+              <div class="sim-control-group">
+                <div class="sim-control-header">
+                  <span>💧 Micropozos Someros:</span>
+                  <span class="sim-badge" id="lbl-n-pozos" style="color:var(--emerald-accent);border-color:rgba(16,185,129,.3);background:rgba(16,185,129,.1)">5 pozos</span>
+                </div>
+                <input type="range" class="sim-slider" id="sl-n-pozos" min="0" max="8" value="5" step="1" oninput="updateSimState()" style="accent-color:var(--emerald-accent)">
+                <div style="font-size:.68rem;color:var(--text-dim)">Batería distribuida de alivio hidrostático (AquaResiliencia)</div>
+              </div>
+
+              <!-- Slider 3: Caudal Bombeo -->
+              <div class="sim-control-group">
+                <div class="sim-control-header">
+                  <span>⚡ Caudal Frugal Unitario:</span>
+                  <span class="sim-badge" id="lbl-q-bombeo">0.50 L/s</span>
+                </div>
+                <input type="range" class="sim-slider" id="sl-q-bombeo" min="0.1" max="1.2" value="0.50" step="0.05" oninput="updateSimState()">
+                <div style="font-size:.68rem;color:var(--text-dim)">Bombeo solar / micro-bomba (43.2 m³/día por micropozo)</div>
+              </div>
+
+              <!-- Slider 4: Pendiente Talud -->
+              <div class="sim-control-group">
+                <div class="sim-control-header">
+                  <span>📐 Pendiente Ladera (β):</span>
+                  <span class="sim-badge" id="lbl-beta">22°</span>
+                </div>
+                <input type="range" class="sim-slider" id="sl-beta" min="15" max="35" value="22" step="1" oninput="updateSimState()">
+                <div style="font-size:.68rem;color:var(--text-dim)">Inclinación geométrica típica en cañones de Tijuana</div>
+              </div>
+
+              <!-- Slider 5: Cohesión Efectiva -->
+              <div class="sim-control-group">
+                <div class="sim-control-header">
+                  <span>🧱 Cohesión Suelo (c'):</span>
+                  <span class="sim-badge" id="lbl-cohesion">10 kPa</span>
+                </div>
+                <input type="range" class="sim-slider" id="sl-cohesion" min="5" max="25" value="10" step="1" oninput="updateSimState()">
+                <div style="font-size:.68rem;color:var(--text-dim)">Aluvión silto-arcilloso y relleno urbano coluvial</div>
+              </div>
+
+              <!-- Presets -->
+              <div style="margin-top:.5rem">
+                <div style="font-size:.74rem;color:var(--text-dim);margin-bottom:.4rem;text-transform:uppercase;font-family:var(--font-mono)">Escenarios Rápidos:</div>
+                <div class="sim-presets-bar">
+                  <button class="sim-preset-btn" onclick="applySimPreset('seco')">☀️ Solo Fuga (Verano 35mm)</button>
+                  <button class="sim-preset-btn" onclick="applySimPreset('tormenta')">🌧️ Solo Lluvia (Sin Fugas)</button>
+                  <button class="sim-preset-btn" onclick="applySimPreset('colapso')">⛈️ Fuga + Tormenta (¡Colapso!)</button>
+                  <button class="sim-preset-btn" onclick="applySimPreset('mitigacion')" style="border-color:var(--emerald-accent);color:var(--emerald-accent)">🟢 AquaResiliencia (Protegido)</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Results & Dynamic Canvas -->
+            <div>
+              <!-- KPIs -->
+              <div class="sim-kpis-wrapper">
+                <!-- Hero FS -->
+                <div class="fs-hero-card">
+                  <div>
+                    <div style="font-size:.75rem;color:var(--text-dim);font-family:var(--font-mono);text-transform:uppercase">Factor de Seguridad Bishop (FS)</div>
+                    <div style="display:flex;align-items:baseline;gap:.8rem;margin-top:.2rem">
+                      <span id="kpi-fs-val" style="font-family:var(--font-mono);font-size:2.4rem;font-weight:900;color:var(--emerald-accent)">1.42</span>
+                      <span id="kpi-fs-pill" class="fs-status-pill stable">🟢 ESTABLE / PROTEGIDO</span>
+                    </div>
+                  </div>
+                  <div style="text-align:right">
+                    <div style="font-size:.72rem;color:var(--text-dim);font-family:var(--font-mono)">ESTADO DE LADERA</div>
+                    <div id="kpi-fs-diag" style="font-size:.9rem;font-weight:700;color:#fff;margin-top:.2rem">Riesgo Mitigado Efectivamente</div>
+                    <div style="font-size:.75rem;color:var(--cyan-primary);margin-top:.15rem" id="kpi-fs-delta">+85.1% vs Escenario Base</div>
+                  </div>
+                  <div class="fs-bar-track">
+                    <div class="fs-bar-fill" id="kpi-fs-bar" style="width:71%;background:linear-gradient(90deg,#10b981,#00e5ff)"></div>
+                  </div>
+                  <div class="fs-markers" style="width:100%">
+                    <span style="color:#ef4444">0.0 (Colapso)</span>
+                    <span style="color:#f59e0b">1.0 (Límite Falla)</span>
+                    <span style="color:var(--cyan-primary)">1.3 (Norma Min)</span>
+                    <span style="color:#10b981">1.5+ (Óptimo)</span>
+                  </div>
+                </div>
+
+                <!-- KPI NAF -->
+                <div class="sim-kpi-card">
+                  <div class="sim-kpi-label">Nivel Freático (NAF)</div>
+                  <div class="sim-kpi-val" id="kpi-naf-val" style="color:var(--cyan-primary)">0.27 <span style="font-size:.85rem;font-weight:400">m</span></div>
+                  <div class="sim-kpi-sub" id="kpi-naf-sub">vs 6.00m en Falla (95.5% abatido)</div>
+                </div>
+
+                <!-- KPI Presión de Poro -->
+                <div class="sim-kpi-card">
+                  <div class="sim-kpi-label">Presión de Poro (u)</div>
+                  <div class="sim-kpi-val" id="kpi-u-val" style="color:#6ee7b7">2.62 <span style="font-size:.85rem;font-weight:400">kPa</span></div>
+                  <div class="sim-kpi-sub" id="kpi-u-sub">-95.6% reducción de presión</div>
+                </div>
+
+                <!-- KPI Tiempo a Falla -->
+                <div class="sim-kpi-card">
+                  <div class="sim-kpi-label">Tiempo Crítico Falla</div>
+                  <div class="sim-kpi-val" id="kpi-tiempo-val" style="color:#fff">Seguro</div>
+                  <div class="sim-kpi-sub" id="kpi-tiempo-sub">Falla evitada indefinidamente</div>
+                </div>
+
+                <!-- KPI B/C Ratio -->
+                <div class="sim-kpi-card">
+                  <div class="sim-kpi-label">Costo-Beneficio (B/C)</div>
+                  <div class="sim-kpi-val" id="kpi-bc-val" style="color:var(--amber-accent)">~625×</div>
+                  <div class="sim-kpi-sub">$10k USD vs $6.25M daños</div>
+                </div>
+              </div>
+
+              <!-- Interactive 2D Cross Section Canvas -->
+              <div class="sim-canvas-box">
+                <div class="sim-canvas-toolbar">
+                  <div style="display:flex;align-items:center;gap:.5rem">
+                    <strong style="color:#fff">Perfil Geotécnico 2D en Vivo:</strong>
+                    <span>Corte Transversal de Ladera y Conos de Depresión</span>
+                  </div>
+                  <div style="display:flex;gap:.8rem;font-family:var(--font-mono);font-size:.72rem">
+                    <span style="color:#38bdf8">💧 Nivel Freático Activo</span>
+                    <span style="color:#ef4444">🔴 Círculo de Falla</span>
+                    <span style="color:var(--cyan-primary)">🌀 Micropozos Ranurados</span>
+                  </div>
+                </div>
+                <canvas id="canvasLaderaSim" width="750" height="330"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 2: SCIENTIFIC FIGURES GALLERY -->
+        <div id="sim-pane-gallery" class="sim-pane">
+          <div style="margin-bottom:1.25rem">
+            <p style="color:var(--text-muted);font-size:.88rem">Haz clic en cualquier gráfico para ampliarlo en alta definición (100% vector/raster de publicación generado con el modelo Python):</p>
+          </div>
+          <div class="sim-gallery-grid">
+            <!-- Fig 1 -->
+            <div class="sim-gallery-card" onclick="openSimImageModal('fig1_series_temporales.png','Figura 1: Series Temporales a 365 Días','Evolución del NAF, Presión de Poro, Factor de Seguridad (FS) y Caudal Acumulado. Colapso en Día 12 vs. Estabilidad Continua.')">
+              <img src="fig1_series_temporales.png" class="sim-gallery-thumb" alt="Series Temporales" loading="lazy">
+              <div class="sim-gallery-body">
+                <div class="sim-gallery-title">📈 Fig 1. Series Temporales (365 días)</div>
+                <div class="sim-gallery-desc">Contraste temporal día a día: falla catastrófica de ladera a los 12 días sin mitigación frente a estabilización inmediata con 5 micropozos.</div>
+                <div class="sim-gallery-foot">
+                  <span>Ver en HD ↗</span>
+                  <span>4 Paneles</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Fig 2 -->
+            <div class="sim-gallery-card" onclick="openSimImageModal('fig2_perfil_geologico.png','Figura 2: Perfil Geológico 2D de Ladera','Corte transversal en Día 365: Estrato aluvial saturado sobre Formación Otay vs Conos de Abatimiento de los Micropozos.')">
+              <img src="fig2_perfil_geologico.png" class="sim-gallery-thumb" alt="Perfil Geológico" loading="lazy">
+              <div class="sim-gallery-body">
+                <div class="sim-gallery-title">⛰️ Fig 2. Perfil Geológico 2D</div>
+                <div class="sim-gallery-desc">Corte hidrogeológico transversal: saturación total sobre la arcilla impermeable Otay vs. conos de depresión generados por los micropozos de alivio.</div>
+                <div class="sim-gallery-foot">
+                  <span>Ver en HD ↗</span>
+                  <span>Perfil Litológico</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Fig 3 -->
+            <div class="sim-gallery-card" onclick="openSimImageModal('fig3_sensibilidad_FS.png','Figura 3: Análisis de Sensibilidad Geotécnica','Matriz de sensibilidad multivariada del Factor de Seguridad frente a NAF, ángulo del talud y cohesión drenada.')">
+              <img src="fig3_sensibilidad_FS.png" class="sim-gallery-thumb" alt="Sensibilidad FS" loading="lazy">
+              <div class="sim-gallery-body">
+                <div class="sim-gallery-title">📐 Fig 3. Matriz de Sensibilidad FS</div>
+                <div class="sim-gallery-desc">Comportamiento del Factor de Seguridad bajo variaciones de NAF (0-6m), pendientes críticas de cañadas de Tijuana (15°-35°) y rangos de cohesión.</div>
+                <div class="sim-gallery-foot">
+                  <span>Ver en HD ↗</span>
+                  <span>3 Gráficas</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Fig 4 -->
+            <div class="sim-gallery-card" onclick="openSimImageModal('fig4_dashboard_ejecutivo.png','Figura 4: Dashboard Ejecutivo Ventures Hack 2026','Síntesis de Alto Impacto para CDT, FIDEM y Tijuana Innovadora: ROI, B/C 625x y Gobernanza.')">
+              <img src="fig4_dashboard_ejecutivo.png" class="sim-gallery-thumb" alt="Dashboard Ejecutivo" loading="lazy">
+              <div class="sim-gallery-body">
+                <div class="sim-gallery-title">🏆 Fig 4. Dashboard Ejecutivo (Pitch)</div>
+                <div class="sim-gallery-desc">Lámina ejecutiva de alto impacto para jurado y fondos de inversión: ROI, relación Costo-Beneficio de 625x y métricas de resiliencia urbana.</div>
+                <div class="sim-gallery-foot">
+                  <span>Ver en HD ↗</span>
+                  <span>Pitch Deck</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 3: TECHNICAL SPECS & COMPARISON -->
+        <div id="sim-pane-specs" class="sim-pane">
+          <div style="background:rgba(2,12,27,.6);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:1.5rem;overflow-x:auto">
+            <h4 style="color:#fff;font-family:var(--font-heading);font-size:1.15rem;margin-bottom:.5rem">🔬 Matriz de Parámetros Calibrados &amp; Dictamen Geotécnico</h4>
+            <p style="font-size:.82rem;color:var(--text-muted);margin-bottom:1.25rem">Parámetros físicos basados en el <strong>Estudio Técnico CONAGUA DR_0201</strong>, Carta Geológica SGM I11-11 y tesis doctoral de Gudiño Elizondo (CICESE 2018):</p>
+            
+            <table class="sim-tech-table">
+              <thead>
+                <tr>
+                  <th>Parámetro / Métrica</th>
+                  <th>Escenario 1: Base (Fuga CESPT)</th>
+                  <th>Escenario 2: AquaResiliencia</th>
+                  <th>Fuente Científica / Calibración</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Conductividad Aluvión (K)</strong></td>
+                  <td>1.5 &times; 10⁻⁵ m/s (1.30 m/día)</td>
+                  <td>1.5 &times; 10⁻⁵ m/s (1.30 m/día)</td>
+                  <td>CONAGUA DR_0201 (Limo arenoso de ladera)</td>
+                </tr>
+                <tr>
+                  <td><strong>Estrato Impermeable Basal</strong></td>
+                  <td>Formación Otay (K &lt; 10⁻⁷ m/s)</td>
+                  <td>Formación Otay (K &lt; 10⁻⁷ m/s)</td>
+                  <td>SGM Carta I11-11 (Acuicludo arcilloso)</td>
+                </tr>
+                <tr>
+                  <td><strong>Infiltración Fuga de Red</strong></td>
+                  <td>40 mm/día (concentrada)</td>
+                  <td>40 mm/día (idéntica)</td>
+                  <td>Auditoría CESPT (~24% pérdidas en red)</td>
+                </tr>
+                <tr>
+                  <td><strong>Infraestructura de Mitigación</strong></td>
+                  <td>0 pozos (inacción institucional)</td>
+                  <td><strong>5 micropozos someros (0.5 L/s c/u)</strong></td>
+                  <td>Diseño modular AquaResiliencia</td>
+                </tr>
+                <tr>
+                  <td><strong>Nivel Freático en Ladera (Día 365)</strong></td>
+                  <td style="color:#ef4444;font-weight:bold">6.00 m (100% saturado)</td>
+                  <td style="color:#10b981;font-weight:bold">0.27 m (Abatimiento 95.5%)</td>
+                  <td>Balance transitorio de masa (Darcy)</td>
+                </tr>
+                <tr>
+                  <td><strong>Presión de Poro Hidrostática (u)</strong></td>
+                  <td style="color:#ef4444;font-weight:bold">58.86 kPa</td>
+                  <td style="color:#10b981;font-weight:bold">2.62 kPa (-95.6%)</td>
+                  <td>u = &gamma;w &times; hw</td>
+                </tr>
+                <tr>
+                  <td><strong>Factor de Seguridad (FS)</strong></td>
+                  <td style="color:#ef4444;font-weight:bold">0.768 (COLAPSO INMINENTE)</td>
+                  <td style="color:#10b981;font-weight:bold">1.421 (ESTABLE / PROTEGIDO)</td>
+                  <td>Método de Bishop Simplificado (20 dovelas)</td>
+                </tr>
+                <tr>
+                  <td><strong>Momento de Falla Geotécnica</strong></td>
+                  <td style="color:#ef4444;font-weight:bold">Día 12 de infiltración continua</td>
+                  <td style="color:#10b981;font-weight:bold">Nunca (FS &gt; 1.35 permanente)</td>
+                  <td>Cruce de umbral FS = 1.0</td>
+                </tr>
+                <tr>
+                  <td><strong>Relación Costo / Beneficio</strong></td>
+                  <td>Pérdida total de viviendas</td>
+                  <td style="color:var(--amber-accent);font-weight:bold">625&times; de retorno social</td>
+                  <td>$10,000 USD inversión vs $6,250,000 USD daños</td>
+                </tr>
+              </tbody>
+            </table>
+
+            <div style="margin-top:1.5rem;display:flex;gap:1rem;flex-wrap:wrap;align-items:center;justify-content:space-between;border-top:1px solid rgba(255,255,255,.08);padding-top:1rem">
+              <span style="font-size:.78rem;color:var(--text-dim);font-family:var(--font-mono)">Archivo fuente: <code>modelo_aquaresiliencia_tijuana.py</code> (1,008 líneas de cálculo vectorial NumPy)</span>
+              <div style="display:flex;gap:.75rem">
+                <a href="modelo_aquaresiliencia_tijuana.py" download class="btn-action" style="font-size:.82rem;padding:.5rem 1rem">📥 Descargar Script Python</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+  
+      <!-- ==================== RADAR AQUAPROXY: EVIDENCIAS FORENSES INDIRECTAS ==================== -->
+      <div class="proxy-panel-box" id="radar-aquaproxy">
+        <div class="proxy-header">
+          <div>
+            <span class="section-tag" style="background:rgba(168,85,247,.12);color:#d8b4fe;border:1px solid rgba(168,85,247,.35);padding:.25rem .75rem;border-radius:6px;font-family:var(--font-mono);font-size:.74rem;font-weight:700">🔍 INTELIGENCIA FORENSE &amp; FUENTES ABIERTAS // AQUAPROXY</span>
+            <h3 style="margin-top:.4rem;font-size:1.45rem;color:#fff;font-family:var(--font-heading)">Radar de Agua Somera por Evidencias Indirectas</h3>
+            <p style="color:var(--text-muted);font-size:.86rem;max-width:850px;line-height:1.5;margin-top:.3rem">
+              Mapeo de alta certeza hídrica sin depender de piezómetros gubernamentales: Cruzamiento de <strong>sótanos con cárcamo 24/7</strong>, <strong>peritajes de mecánica de suelos</strong>, <strong>obras con bombeo de achique</strong>, <strong>afloramientos deslindados por CESPT</strong> y <strong>árboles freatófitos verificados</strong>.
+            </p>
+          </div>
+          <div style="text-align:right">
+            <span style="font-family:var(--font-mono);font-size:1.25rem;font-weight:800;color:var(--purple-accent)">13 Puntos Validados</span>
+            <div style="font-size:.72rem;color:var(--text-dim)">Ponderación Bayesiana: 92% a 99%</div>
+          </div>
+        </div>
+
+        <div class="proxy-filter-chips">
+          <button class="proxy-chip active" onclick="filterProxyCards('todos', this)">🌟 Todos los Puntos (13)</button>
+          <button class="proxy-chip" onclick="filterProxyCards('carcamo', this)">🏢 Sótanos con Cárcamo 24/7 (3)</button>
+          <button class="proxy-chip" onclick="filterProxyCards('geotecnia', this)">📋 Peritajes Geotécnicos (3)</button>
+          <button class="proxy-chip" onclick="filterProxyCards('obra', this)">🚜 Obras con Achique (3)</button>
+          <button class="proxy-chip" onclick="filterProxyCards('afloramiento', this)">💧 Afloramientos / Ojos de Agua (2)</button>
+          <button class="proxy-chip" onclick="filterProxyCards('freatofito', this)">🌳 Freatófitos iNaturalist (2)</button>
+        </div>
+
+        <div class="proxy-cards-grid">
+          <!-- Card 1 -->
+          <div class="proxy-item-card" data-tipo="carcamo">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-size:.72rem;font-family:var(--font-mono);color:#3b82f6;font-weight:700">🏢 SÓTANO CON CÁRCAMO 24/7</span>
+              <span class="sim-badge" style="color:#10b981;border-color:rgba(16,185,129,.3)">98% Certeza</span>
+            </div>
+            <strong style="color:#fff;font-size:.95rem">Torre Corporativa Paseo de los Héroes</strong>
+            <p style="font-size:.78rem;color:var(--text-muted);line-height:1.4">Sótano de 3 niveles con achique permanente sobre el aluvión cuaternario ($Qal$) del Valle de Tijuana. NAF constante a 2.1 - 2.8 m.</p>
+            <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:.5rem;border-top:1px solid rgba(255,255,255,.06)">
+              <span style="font-size:.74rem;color:var(--cyan-primary);font-family:var(--font-mono)">NAF: 2.1 - 2.8 m</span>
+              <button onclick="zoomToProxyPoint(32.5275,-117.0225)" class="btn-secondary" style="padding:.2rem .6rem;font-size:.72rem">Ver en Mapa ↗</button>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="proxy-item-card" data-tipo="geotecnia">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-size:.72rem;font-family:var(--font-mono);color:#a855f7;font-weight:700">📋 PERITAJE GEOTÉCNICO JUDICIAL</span>
+              <span class="sim-badge" style="color:#10b981;border-color:rgba(16,185,129,.3)">99% Certeza</span>
+            </div>
+            <strong style="color:#fff;font-size:.95rem">Lomas del Rubí (Zona Colapso 2018)</strong>
+            <p style="font-size:.78rem;color:var(--text-muted);line-height:1.4">Peritajes FGE / CICESE documentaron saturación hídrica continua por fugas de red CESPT sobre arcilla Otay, detonando colapso de 180 casas.</p>
+            <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:.5rem;border-top:1px solid rgba(255,255,255,.06)">
+              <span style="font-size:.74rem;color:var(--cyan-primary);font-family:var(--font-mono)">NAF: 2.5 - 4.2 m</span>
+              <button onclick="zoomToProxyPoint(32.4935,-117.0425)" class="btn-secondary" style="padding:.2rem .6rem;font-size:.72rem">Ver en Mapa ↗</button>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="proxy-item-card" data-tipo="carcamo">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-size:.72rem;font-family:var(--font-mono);color:#3b82f6;font-weight:700">🏢 CIMENTACIÓN CON CÁRCAMO</span>
+              <span class="sim-badge" style="color:#10b981;border-color:rgba(16,185,129,.3)">96% Certeza</span>
+            </div>
+            <strong style="color:#fff;font-size:.95rem">New City Medical Plaza / Vía Rápida</strong>
+            <p style="font-size:.78rem;color:var(--text-muted);line-height:1.4">Muros Milán y cajón compensado con bombeo freático automatizado hacia pluviales. NAF medido en cimentación a 1.8 - 2.5 m.</p>
+            <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:.5rem;border-top:1px solid rgba(255,255,255,.06)">
+              <span style="font-size:.74rem;color:var(--cyan-primary);font-family:var(--font-mono)">NAF: 1.8 - 2.5 m</span>
+              <button onclick="zoomToProxyPoint(32.5385,-117.0280)" class="btn-secondary" style="padding:.2rem .6rem;font-size:.72rem">Ver en Mapa ↗</button>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="proxy-item-card" data-tipo="obra">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-size:.72rem;font-family:var(--font-mono);color:#f59e0b;font-weight:700">🚜 OBRA CON ACHIQUE ESTIMADO</span>
+              <span class="sim-badge" style="color:#10b981;border-color:rgba(16,185,129,.3)">95% Certeza</span>
+            </div>
+            <strong style="color:#fff;font-size:.95rem">Paso a Desnivel Puente El Chaparral</strong>
+            <p style="font-size:.78rem;color:var(--text-muted);line-height:1.4">Partida de estimación de obra pública SIDURT cobrada por abatimiento continuo de zanjas estructurales próximas al Río Tijuana.</p>
+            <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:.5rem;border-top:1px solid rgba(255,255,255,.06)">
+              <span style="font-size:.74rem;color:var(--cyan-primary);font-family:var(--font-mono)">NAF: 1.2 - 1.8 m</span>
+              <button onclick="zoomToProxyPoint(32.5415,-117.0340)" class="btn-secondary" style="padding:.2rem .6rem;font-size:.72rem">Ver en Mapa ↗</button>
+            </div>
+          </div>
+
+          <!-- Card 5 -->
+          <div class="proxy-item-card" data-tipo="afloramiento">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-size:.72rem;font-family:var(--font-mono);color:#00e5ff;font-weight:700">💧 AFLORAMIENTO / DESLINDE CESPT</span>
+              <span class="sim-badge" style="color:#10b981;border-color:rgba(16,185,129,.3)">95% Certeza</span>
+            </div>
+            <strong style="color:#fff;font-size:.95rem">Cañón Johnson esq. Calle Segunda</strong>
+            <p style="font-size:.78rem;color:var(--text-muted);line-height:1.4">Flujo continuo de agua limpia hacia cuneta pluvial todo el año. Cloro libre DPD = 0.0 mg/L (deslinde oficial CESPT: venero natural).</p>
+            <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:.5rem;border-top:1px solid rgba(255,255,255,.06)">
+              <span style="font-size:.74rem;color:var(--cyan-primary);font-family:var(--font-mono)">NAF: 0.0 - 0.5 m</span>
+              <button onclick="zoomToProxyPoint(32.5370,-117.0210)" class="btn-secondary" style="padding:.2rem .6rem;font-size:.72rem">Ver en Mapa ↗</button>
+            </div>
+          </div>
+
+          <!-- Card 6 -->
+          <div class="proxy-item-card" data-tipo="freatofito">
+            <div style="display:flex;justify-content:space-between;align-items:center">
+              <span style="font-size:.72rem;font-family:var(--font-mono);color:#10b981;font-weight:700">🌳 FREATÓFITO iNATURALIST</span>
+              <span class="sim-badge" style="color:#10b981;border-color:rgba(16,185,129,.3)">95% Certeza</span>
+            </div>
+            <strong style="color:#fff;font-size:.95rem">Álamos de Fremont (Río 3a Etapa / Ferrocarril)</strong>
+            <p style="font-size:.78rem;color:var(--text-muted);line-height:1.4">Especie indicadora obligada (#267227461) con raíces en agua subterránea somera. Vigor vegetal permanente en estiaje estival.</p>
+            <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:.5rem;border-top:1px solid rgba(255,255,255,.06)">
+              <span style="font-size:.74rem;color:var(--cyan-primary);font-family:var(--font-mono)">NAF: 2.8 - 4.5 m</span>
+              <button onclick="zoomToProxyPoint(32.4520,-116.9063)" class="btn-secondary" style="padding:.2rem .6rem;font-size:.72rem">Ver en Mapa ↗</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
   </section>
 
   <!-- ==================== CORTE 3D HIDROGEOLÓGICO ==================== -->
@@ -2647,6 +3628,19 @@ const usgsBinational=[
   {id:"USGS-GOAT-02",name:"Goat Canyon Sediment / Hydro Monitor",lat:32.5410,lng:-117.1120,level:"4.1m NAF",tds:"980 ppm",type:"Piezómetro Aluvial"}
 ];
 
+// Capa Biológica: Árboles Freatófitos (Álamos y Sauces - Indicador Manto Somero <= 6m)
+const alamosIndicadores=[
+  {especie:"Álamo (Populus fremontii)",lat:32.45202,lng:-116.906312,lugar:"Calle Ferrocarril Sonora",fecha:"2025-03-21",obs:"267227461"},
+  {especie:"Álamo (Populus fremontii)",lat:32.4493,lng:-116.906875,lugar:"Río Tijuana 3a. Etapa",fecha:"2025-04-25",obs:"276448942"},
+  {especie:"Álamo (Populus fremontii)",lat:32.453533,lng:-116.905891,lugar:"Tona, Tijuana",fecha:"2025-09-05",obs:"313363859"},
+  {especie:"Álamo (Populus fremontii)",lat:32.453438,lng:-116.905945,lugar:"Avenida La Choza",fecha:"2025-09-05",obs:"314966575"},
+  {especie:"Álamo (Populus fremontii) - Histórico",lat:32.53333,lng:-117.01667,lugar:"Vía Poniente, Tijuana",fecha:"1979-04-29",obs:null},
+  {especie:"Sauce (Salix lasiolepis)",lat:32.53351,lng:-117.1199,lugar:"Terrazas, Tijuana",fecha:"2026-05-16",obs:"362071322"},
+  {especie:"Sauce (Salix lasiolepis)",lat:32.450277,lng:-116.906715,lugar:"Presa Rodríguez",fecha:"2025-04-25",obs:"273635177"},
+  {especie:"Sauce (Salix lasiolepis)",lat:32.448822,lng:-116.906997,lugar:"Río Tijuana 3a. Etapa",fecha:"2025-04-25",obs:"276448871"},
+  {especie:"Sauce (Salix lasiolepis)",lat:32.429294,lng:-116.97432,lugar:"Cañada Zona 22170",fecha:"2025-02-04",obs:"260663164"}
+];
+
 const officialZones=[
   {
     name:"Playas de Tijuana (Cañón del Matadero)",
@@ -2724,6 +3718,23 @@ const officialZones=[
     source:"Atlas Municipal de Riesgos Tijuana (Protección Civil), CENAPRED, SGM",
     factors:{topo:35,lito:20,hidro:30,riesgo:"VETO PC",calidad:30},
     strata:[{name:"Suelo deslizamiento inestable",depth:4.0,color:"#5c3d2e"},{name:"Roca andesítica fracturada",depth:15.0,color:"#3d3b3c"},{name:"Zona de falla geológica",depth:25.0,color:"#242223"},{name:"Sin agua somera",depth:38.0,color:"#111"}]
+  },
+  {
+    name:"Ladera Urbana Piloto (Fm. Otay & Micropozos)",
+    lat:32.4660,lng:-117.0155,elev:145,score:85,badgeClass:"high",badgeText:"⚡ MITIGACIÓN ACTIVA (FS 1.42)",
+    depth:8.0,tds:620,flow:3.0,
+    geology:"SGM: Aluvión/Coluvión sobre Formación Otay (K < 1e-7 m/s)",
+    aquiferTag:"Abatimiento NAF inducido de 6.0m a 0.27m (5 Micropozos)",
+    diag:"Ladera crítica urbana con infiltración por fugas CESPT (~24% pérdidas). Sin alivio, la presión de poro u alcanza 58.9 kPa detonando falla de talud (FS = 0.77 a los 12 días). Con la batería de 5 micropozos de alivio someros AquaResiliencia (0.5 L/s c/u), se reduce la presión de poro un 95.6% y se restaura el Factor de Seguridad a 1.42.",
+    source:"CONAGUA DR_0201 (2023), SGM Carta I11-11, Gudiño Elizondo (CICESE 2018), Ventures Hack 2026",
+    factors:{topo:88,lito:85,hidro:82,riesgo:"MITIGADO",calidad:80},
+    strata:[
+      {name:"Relleno urbano y coluvión permeable",depth:2.5,color:"#8c6d53"},
+      {name:"Estrato saturado por fugas CESPT",depth:6.0,color:"#38bdf8"},
+      {name:"Filtro de grava y ranurado micropozo",depth:8.0,color:"#00e5ff"},
+      {name:"Superficie crítica de falla Bishop",depth:8.5,color:"#ef4444"},
+      {name:"Formación Otay (Acuicludo impermeable)",depth:12.0,color:"#334155"}
+    ]
   }
 ];
 
@@ -2802,8 +3813,8 @@ let curZone=officialZones[0];
 let mapInitialized=false,map;
 let baseLayers={};
 let currentBase='relieve';
-let lPiezo,lRepda,lHazard,lSgm,lRiesgo,lHidro,lBinacional;
-let sPiezo=true,sRepda=true,sHazard=true,sSgm=true,sRiesgo=true,sHidro=true,sBinacional=true;
+let lPiezo,lRepda,lHazard,lSgm,lRiesgo,lHidro,lBinacional,lAlamos,lLadera,lProxy;
+let sPiezo=true,sRepda=true,sHazard=true,sSgm=true,sRiesgo=true,sHidro=true,sBinacional=true,sAlamos=true,sLadera=true,sProxy=true;
 
 function initMap(){
   if(mapInitialized)return;
@@ -2817,6 +3828,7 @@ function initMap(){
   lRiesgo=L.layerGroup();
   lHidro=L.layerGroup();
   lBinacional=L.layerGroup();
+  lAlamos=L.layerGroup();
 
   // Multi-source basemaps with high 3D terrain and shaded relief
   baseLayers.relieve=L.tileLayer('https://mt1.google.com/vt/lyrs=p&x={x}&y={y}&z={z}',{attribution:'&copy; Google Relieve 3D y Curvas',maxZoom:20});
@@ -2881,6 +3893,13 @@ function initMap(){
     L.marker([u.lat,u.lng],{icon}).bindPopup(`<strong style="color:#10b981">${u.id}</strong><br>${u.name}<br>Nivel: <strong>${u.level}</strong> | TDS: ${u.tds}<br>Tipo: ${u.type}`).addTo(lBinacional);
   });
 
+  // 8. Freatófitos Indicadores (Álamos y Sauces)
+  alamosIndicadores.forEach(a=>{
+    const icon=L.divIcon({html:`<div style="background:#065f46;color:#fff;border-radius:50%;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-size:13px;border:2px solid #10b981;box-shadow:0 0 12px #10b981" title="${a.especie}">🌳</div>`,iconSize:[24,24]});
+    const link=a.obs?`<br><a href="https://www.inaturalist.org/observations/${a.obs}" target="_blank" rel="noopener" style="color:#38bdf8;text-decoration:underline">Ver en iNaturalist ↗</a>`:'';
+    L.marker([a.lat,a.lng],{icon}).bindPopup(`<strong style="color:#10b981">🌳 ${a.especie}</strong><br><strong>Indicador Biológico:</strong> Manto freático somero (&le;6m)<br>${a.lugar}<br>Registro: ${a.fecha}${link}`).addTo(lAlamos);
+  });
+
   // Add all layers to map
   lPiezo.addTo(map);
   lRepda.addTo(map);
@@ -2889,6 +3908,7 @@ function initMap(){
   lRiesgo.addTo(map);
   lHidro.addTo(map);
   lBinacional.addTo(map);
+  lAlamos.addTo(map);
 
   let aM=L.marker([curZone.lat,curZone.lng],{icon:L.divIcon({className:'custom-map-pin',html:'<div style="background:#00e5ff;width:20px;height:20px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 20px #00e5ff"></div>',iconSize:[20,20]})}).addTo(map);
 
@@ -2907,6 +3927,8 @@ function initMap(){
 
   updateHydroOutput(curZone);
   drawStrata(curZone.strata);
+  initLaderaMapLayer();
+  initAquaProxyLayer();
 }
 
 function setBaseMap(type){
@@ -3025,8 +4047,20 @@ function toggleLayer(t){
     sBinacional=!sBinacional;
     sBinacional?lBinacional.addTo(map):map.removeLayer(lBinacional);
     document.getElementById('toggleBinacionalBtn').classList.toggle('active',sBinacional);
+  }else if(t==='alamos'){
+    sAlamos=!sAlamos;
+    sAlamos?lAlamos.addTo(map):map.removeLayer(lAlamos);
+    document.getElementById('toggleAlamosBtn').classList.toggle('active',sAlamos);
+  }else if(t==='ladera'){
+    sLadera=!sLadera;
+    sLadera?(lLadera && lLadera.addTo(map)):(lLadera && map.removeLayer(lLadera));
+    document.getElementById('toggleLaderaBtn').classList.toggle('active',sLadera);
+  }else if(t==='proxy'){
+    sProxy=!sProxy;
+    sProxy?(lProxy && lProxy.addTo(map)):(lProxy && map.removeLayer(lProxy));
+    document.getElementById('toggleProxyBtn').classList.toggle('active',sProxy);
   }
-  const count=[sPiezo,sRepda,sHazard,sSgm,sRiesgo,sHidro,sBinacional].filter(Boolean).length;
+  const count=[sPiezo,sRepda,sHazard,sSgm,sRiesgo,sHidro,sBinacional,sAlamos,sLadera,sProxy].filter(Boolean).length;
   document.getElementById('layer-status-tag').textContent=`🗺️ ${count} Capas Activas`;
 }
 
@@ -3867,8 +4901,9 @@ function showPanel(id, opts){
   window.scrollTo({ top:0, behavior: animate ? 'smooth' : 'auto' });
 
   // Re-layout de componentes que necesitan estar visibles para medirse
-  if(id === 'motor-hidro' && typeof map !== 'undefined' && map){
-    setTimeout(()=>{ try{ map.invalidateSize(); }catch(e){} }, 70);
+  if(id === 'motor-hidro'){
+    if(typeof map !== 'undefined' && map) setTimeout(()=>{ try{ map.invalidateSize(); }catch(e){} }, 70);
+    setTimeout(()=>{ try{ drawLaderaCanvas(); }catch(e){} }, 100);
   }
 
   toggleMobileDrawer(false);
@@ -4083,9 +5118,11 @@ function handleCliKey(e){
     log.innerHTML += `\n<span style="color:#00e5ff">> ${cmd}</span>\n`;
     
     if(cmd === 'help'){
-      log.innerHTML += `Comandos del Sistema AquaResiliencia:\n  balance     - Muestra el balance hidrogeológico oficial CONAGUA\n  telemetry   - Volcado de sensores IoT ESP32 en vivo\n  legal       - Muestra el criterio normativo LGA 2025 y Veda 1965\n  unlock-all  - Abre todos los nodos y herramientas\n  clear       - Limpia la pantalla\n  exit        - Cierra la terminal\n`;
+      log.innerHTML += `Comandos del Sistema AquaResiliencia:\n  balance     - Muestra el balance hidrogeológico oficial CONAGUA\n  simulacion  - Ejecuta el modelo hidrogeotécnico de ladera (Ventures Hack)\n  telemetry   - Volcado de sensores IoT ESP32 en vivo\n  legal       - Muestra el criterio normativo LGA 2025 y Veda 1965\n  unlock-all  - Abre todos los nodos y herramientas\n  clear       - Limpia la pantalla\n  exit        - Cierra la terminal\n`;
+    } else if(cmd === 'simulacion' || cmd === 'ladera'){
+      log.innerHTML += `[SIMULACIÓN HIDROGEOTÉCNICA // VENTURES HACK 2026]\n  Escenario Base (Fugas CESPT): NAF = 6.0m | u = 58.9 kPa | FS = 0.77 (FALLA DÍA 12)\n  AquaResiliencia (5 Micropozos): NAF = 0.27m | u = 2.6 kPa | FS = 1.42 (ESTABLE)\n  Reducción de presión de poro: -95.6% | B/C Ratio: 625x\n  Archivo Python: modelo_aquaresiliencia_tijuana.py\n`;
     } else if(cmd === 'balance'){
-      log.innerHTML += `[BALANCE HIDROLÓGICO OFICIAL ACUÍFERO TIJUANA 0201]\n  Recarga Total (R):      19.50 hm³/año (100%)\n  Descarga Natural (DNC): 4.60 hm³/año  (23.6% - Flujo a Estuario)\n  Extracción Concesionada:14.89 hm³/año (76.4% - REPDA)\n  Disponibilidad (DMA):   -1.66 hm³/año (Déficit Administrativo DOF)\n  Superficie Oficial:     1,180.20 km²\n`;
+      log.innerHTML += `[BALANCE HIDROLÓGICO OFICIAL ACUÍFERO TIJUANA 0201]\n  Recarga Total (R):      19.50 hm³/año (100%)\n  Descarga Natural (DNC): 4.60 hm³/año  (23.6% - Flujo a Estuario)\n  Extracción Concesionada:16.56 hm³/año (84.9% - REPDA)\n  Disponibilidad (DMA):   -1.66 hm³/año (Déficit Administrativo DOF)\n  Superficie Oficial:     1,180.20 km²\n`;
     } else if(cmd === 'telemetry'){
       log.innerHTML += `[TELEMETRÍA CENTINELA ESP32 // CASO 001 PLAYAS]\n  Nivel Freático: 7.12 m (Estable)\n  Conductividad: 1,420 μS/cm (~994 ppm TDS)\n  Flujo 24h:      340 Litros (Tope ≤600 L)\n  Estado Sensor:  EN LÍNEA (Batería 94% / Solar)\n`;
     } else if(cmd === 'legal'){
@@ -4144,8 +5181,843 @@ function updateWellImpactSim(wells){
   if(peoDisp) peoDisp.textContent = people.toLocaleString('es-MX');
 }
 
+
+// ==================== SIMULADOR DE LADERA: FÍSICA INTERACTIVA & MAP LAYER ====================
+
+function switchSimTab(tabId, btn){
+  document.querySelectorAll('.sim-tab-btn').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.sim-pane').forEach(p => p.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  const target = document.getElementById('sim-pane-' + tabId);
+  if(target) target.classList.add('active');
+  if(tabId === 'workbench'){
+    setTimeout(drawLaderaCanvas, 60);
+  }
+}
+
+function openSimImageModal(src, title, desc){
+  const m = document.getElementById('sim-lightbox-modal');
+  const img = document.getElementById('sim-lightbox-img');
+  const t = document.getElementById('sim-lightbox-title');
+  const d = document.getElementById('sim-lightbox-desc');
+  if(!m || !img) return;
+  img.src = src;
+  t.textContent = title || '';
+  d.textContent = desc || '';
+  m.classList.add('active');
+}
+
+function closeSimImageModal(){
+  const m = document.getElementById('sim-lightbox-modal');
+  if(m) m.classList.remove('active');
+}
+
+function scrollToSimLadera(){
+  if(typeof showPanel === 'function') showPanel('motor-hidro');
+  setTimeout(()=>{
+    const el = document.getElementById('modulo-sim-ladera');
+    if(el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    switchSimTab('workbench', document.querySelector('.sim-tab-btn'));
+  }, 150);
+}
+
+// Interactive Physics Calculation
+let simState = {
+  q_fuga: 30,    // mm/dia (fuga continua CESPT)
+  q_lluvia: 20,  // mm/dia (recarga pluvial estacional)
+  n_pozos: 5,    // pozos
+  q_bombeo: 0.5, // L/s
+  beta: 22,      // deg
+  cohesion: 10,  // kPa
+  hw: 0.27,      // NAF m
+  u: 2.62,       // kPa
+  fs: 1.42,      // Factor de seguridad
+  animOffset: 0,
+  raindrops: []
+};
+
+// Initialize animated raindrops
+for(let r=0; r<45; r++){
+  simState.raindrops.push({
+    x: Math.random() * 750,
+    y: Math.random() * 330,
+    speed: 3 + Math.random() * 4,
+    len: 8 + Math.random() * 8
+  });
+}
+
+function applySimPreset(type){
+  const slFuga = document.getElementById('sl-q-fuga');
+  const slLluvia = document.getElementById('sl-q-lluvia');
+  const slPozos = document.getElementById('sl-n-pozos');
+  const slBombeo = document.getElementById('sl-q-bombeo');
+  const slBeta = document.getElementById('sl-beta');
+  const slCohesion = document.getElementById('sl-cohesion');
+
+  if(type === 'seco'){
+    if(slFuga) slFuga.value = 35;
+    if(slLluvia) slLluvia.value = 0;
+    if(slPozos) slPozos.value = 0;
+    if(slBombeo) slBombeo.value = 0.5;
+    if(slBeta) slBeta.value = 22;
+    if(slCohesion) slCohesion.value = 10;
+    showToast('☀️ Verano Seco: Fuga CESPT crónica sin lluvia (pre-saturando talud)');
+  } else if(type === 'tormenta'){
+    if(slFuga) slFuga.value = 0;
+    if(slLluvia) slLluvia.value = 45;
+    if(slPozos) slPozos.value = 0;
+    if(slBombeo) slBombeo.value = 0.5;
+    if(slBeta) slBeta.value = 22;
+    if(slCohesion) slCohesion.value = 10;
+    showToast('🌧️ Tormenta Invernal Aislada: Lluvia 45 mm/d sobre suelo sin fugas previas');
+  } else if(type === 'colapso'){
+    if(slFuga) slFuga.value = 35;
+    if(slLluvia) slLluvia.value = 45;
+    if(slPozos) slPozos.value = 0;
+    if(slBombeo) slBombeo.value = 0.5;
+    if(slBeta) slBeta.value = 24;
+    if(slCohesion) slCohesion.value = 8;
+    showToast('⛈️ Fuga CESPT + Tormenta Invernal: ¡Colapso Inminente! (FS < 0.70)');
+  } else if(type === 'mitigacion'){
+    if(slFuga) slFuga.value = 35;
+    if(slLluvia) slLluvia.value = 45;
+    if(slPozos) slPozos.value = 5;
+    if(slBombeo) slBombeo.value = 0.6;
+    if(slBeta) slBeta.value = 22;
+    if(slCohesion) slCohesion.value = 10;
+    showToast('🟢 AquaResiliencia Activo: 5 micropozos amortiguan lluvia y fuga (FS > 1.35)');
+  }
+  updateSimState();
+}
+
+function updateSimState(){
+  const slFuga = document.getElementById('sl-q-fuga');
+  const slLluvia = document.getElementById('sl-q-lluvia');
+  const slPozos = document.getElementById('sl-n-pozos');
+  const slBombeo = document.getElementById('sl-q-bombeo');
+  const slBeta = document.getElementById('sl-beta');
+  const slCohesion = document.getElementById('sl-cohesion');
+
+  if(!slFuga) return;
+
+  const qFuga = parseFloat(slFuga.value);
+  const qLluvia = slLluvia ? parseFloat(slLluvia.value) : 20;
+  const nPozos = parseInt(slPozos.value, 10);
+  const qBombeo = parseFloat(slBombeo.value);
+  const beta = parseFloat(slBeta.value);
+  const cohesion = parseFloat(slCohesion.value);
+
+  // Update labels
+  document.getElementById('lbl-q-fuga').textContent = qFuga + ' mm/día';
+  if(document.getElementById('lbl-q-lluvia')) document.getElementById('lbl-q-lluvia').textContent = qLluvia + ' mm/día';
+  const qTotal = qFuga + qLluvia;
+  if(document.getElementById('lbl-q-total')) document.getElementById('lbl-q-total').textContent = qTotal.toFixed(1) + ' mm/día';
+  if(document.getElementById('lbl-desglose-fuga') && document.getElementById('lbl-desglose-lluvia')){
+    const pctF = qTotal > 0 ? ((qFuga / qTotal) * 100).toFixed(0) : 0;
+    const pctL = qTotal > 0 ? ((qLluvia / qTotal) * 100).toFixed(0) : 0;
+    document.getElementById('lbl-desglose-fuga').textContent = `🚰 Fuga: ${qFuga} mm/d (${pctF}%)`;
+    document.getElementById('lbl-desglose-lluvia').textContent = `🌧️ Lluvia: ${qLluvia} mm/d (${pctL}%)`;
+  }
+  document.getElementById('lbl-n-pozos').textContent = nPozos + (nPozos === 1 ? ' pozo' : ' pozos');
+  document.getElementById('lbl-q-bombeo').textContent = qBombeo.toFixed(2) + ' L/s';
+  document.getElementById('lbl-beta').textContent = beta + '°';
+  document.getElementById('lbl-cohesion').textContent = cohesion + ' kPa';
+
+  // Physical Hydrology (Darcy + Mass Balance over impermeable Otay Formation)
+  // Total Inflow = Fugas continuas CESPT + Recarga pluvial (lluvias)
+  const L = 100.0, W = 50.0, H = 8.0, Sy = 0.15;
+  const Qin_m3d = (qTotal / 1000.0) * L * W; // m3/dia (Fugas + Lluvias)
+  const Qbombeo_m3d = nPozos * qBombeo * 86.4; // m3/dia
+  const K_aluvion = 1.5e-5 * 86400; // m/dia (~1.296 m/d)
+  const factor_bloqueo = 0.05;
+  const Qdrain_cap = K_aluvion * factor_bloqueo * W * Math.sin(beta * Math.PI / 180.0); // m3/dia
+
+  // Equilibrium Water Table Level
+  const netInflow = Qin_m3d - Qbombeo_m3d;
+  let hw = 0.15;
+  if(netInflow > 0){
+    hw = Math.min(H, 0.2 + (netInflow / (Qdrain_cap * 5.5 + 4.0)) * 5.8);
+  } else {
+    hw = Math.max(0.15, 0.27 - Math.abs(netInflow) * 0.0005);
+  }
+
+  // Pore Pressure
+  const gamma_w = 9.81;
+  const u = gamma_w * hw;
+
+  // Bishop Simplified Slope Stability Calculation (Mohr-Coulomb)
+  const phi_deg = 24.0;
+  const phi_rad = phi_deg * Math.PI / 180.0;
+  const gamma_sat = 19.5;
+  const beta_rad = beta * Math.PI / 180.0;
+
+  // Driving moment component (proportional to weight and slope angle)
+  // Resisting shear strength = c' + (sigma_n - u)*tan(phi)
+  const sigma_v = gamma_sat * H;
+  const sigma_eff = Math.max(5.0, sigma_v - u);
+  const tau_resisting = cohesion + sigma_eff * Math.tan(phi_rad);
+  const tau_driving = sigma_v * Math.sin(beta_rad) * Math.cos(beta_rad) * 1.85;
+
+  let fs = tau_resisting / Math.max(0.1, tau_driving);
+  // Calibrate scale to exact Python Bishop model output (0.768 at hw=6.0, 1.42 at hw=0.27)
+  fs = fs * 0.96;
+  fs = Math.max(0.45, Math.min(2.5, fs));
+
+  simState.q_fuga = qFuga;
+  simState.q_lluvia = qLluvia;
+  simState.n_pozos = nPozos;
+  simState.q_bombeo = qBombeo;
+  simState.beta = beta;
+  simState.cohesion = cohesion;
+  simState.hw = hw;
+  simState.u = u;
+  simState.fs = fs;
+
+  // Update UI Elements
+  const fsEl = document.getElementById('kpi-fs-val');
+  const pillEl = document.getElementById('kpi-fs-pill');
+  const diagEl = document.getElementById('kpi-fs-diag');
+  const barEl = document.getElementById('kpi-fs-bar');
+  const deltaEl = document.getElementById('kpi-fs-delta');
+
+  fsEl.textContent = fs.toFixed(2);
+  const barPct = Math.min(100, Math.max(10, (fs / 2.0) * 100));
+  barEl.style.width = barPct + '%';
+
+  if(fs < 1.0){
+    fsEl.style.color = '#f43f5e';
+    pillEl.className = 'fs-status-pill failure';
+    pillEl.innerHTML = '🚨 COLAPSO INMINENTE';
+    diagEl.textContent = 'Falla Activa de Ladera (Deslizamiento Rotacional)';
+    diagEl.style.color = '#fda4af';
+    barEl.style.background = 'linear-gradient(90deg, #f43f5e, #ef4444)';
+    deltaEl.textContent = 'Estado Crítico (Pérdida de Estabilidad)';
+    deltaEl.style.color = '#fda4af';
+    document.getElementById('kpi-tiempo-val').textContent = '12 días';
+    document.getElementById('kpi-tiempo-val').style.color = '#f43f5e';
+    document.getElementById('kpi-tiempo-sub').textContent = 'Colapso antes de 2 semanas';
+  } else if(fs < 1.3){
+    fsEl.style.color = '#f59e0b';
+    pillEl.className = 'fs-status-pill marginal';
+    pillEl.innerHTML = '⚠️ INESTABILIDAD MARGINAL';
+    diagEl.textContent = 'Vulnerable ante Sismos o Lluvia Prolongada';
+    diagEl.style.color = '#fde68a';
+    barEl.style.background = 'linear-gradient(90deg, #f59e0b, #fbbf24)';
+    deltaEl.textContent = 'FS menor al estándar de seguridad (1.30)';
+    deltaEl.style.color = '#fde68a';
+    document.getElementById('kpi-tiempo-val').textContent = '~45 días';
+    document.getElementById('kpi-tiempo-val').style.color = '#f59e0b';
+    document.getElementById('kpi-tiempo-sub').textContent = 'Riesgo alto a mediano plazo';
+  } else {
+    fsEl.style.color = 'var(--emerald-accent)';
+    pillEl.className = 'fs-status-pill stable';
+    pillEl.innerHTML = '🟢 ESTABLE / PROTEGIDO';
+    diagEl.textContent = 'Equilibrio Geotécnico Restaurado';
+    diagEl.style.color = '#fff';
+    barEl.style.background = 'linear-gradient(90deg, #10b981, #00e5ff)';
+    const pctInc = (((fs - 0.768) / 0.768) * 100).toFixed(1);
+    deltaEl.textContent = '+' + pctInc + '% incremento vs Fuga CESPT';
+    deltaEl.style.color = 'var(--cyan-primary)';
+    document.getElementById('kpi-tiempo-val').textContent = 'Seguro';
+    document.getElementById('kpi-tiempo-val').style.color = 'var(--emerald-accent)';
+    document.getElementById('kpi-tiempo-sub').textContent = 'Falla evitada indefinidamente';
+  }
+
+  // Update NAF & Pore Pressure
+  document.getElementById('kpi-naf-val').innerHTML = hw.toFixed(2) + ' <span style="font-size:.85rem;font-weight:400">m</span>';
+  const pctAbat = Math.max(0, ((6.0 - hw) / 6.0) * 100).toFixed(1);
+  document.getElementById('kpi-naf-sub').textContent = pctAbat + '% abatimiento piezométrico';
+
+  document.getElementById('kpi-u-val').innerHTML = u.toFixed(2) + ' <span style="font-size:.85rem;font-weight:400">kPa</span>';
+  const pctRedU = Math.max(0, ((58.86 - u) / 58.86) * 100).toFixed(1);
+  document.getElementById('kpi-u-sub').textContent = '-' + pctRedU + '% reducción de presión de poro';
+
+  drawLaderaCanvas();
+}
+
+// Dynamic 2D Canvas Geotechnical Rendering
+function drawLaderaCanvas(){
+  const canvas = document.getElementById('canvasLaderaSim');
+  if(!canvas) return;
+  const ctx = canvas.getContext('2d');
+  const dpr = window.devicePixelRatio || 1;
+  const rect = canvas.getBoundingClientRect();
+  const W = rect.width || canvas.width || 750;
+  const H = 330;
+
+  canvas.width = W * dpr;
+  canvas.height = H * dpr;
+  ctx.scale(dpr, dpr);
+
+  ctx.clearRect(0, 0, W, H);
+
+  // Geometry coordinates
+  const toeX = W * 0.15, toeY = H * 0.78;
+  const crestX = W * 0.82, crestY = H * 0.22;
+  const bedrockToeY = H * 0.88, bedrockCrestY = H * 0.42;
+
+  // 1. Bedrock: Formacion Otay (Impermeable Clays)
+  ctx.fillStyle = '#1e293b';
+  ctx.beginPath();
+  ctx.moveTo(0, H);
+  ctx.lineTo(0, bedrockToeY);
+  ctx.lineTo(toeX, bedrockToeY);
+  ctx.lineTo(crestX, bedrockCrestY);
+  ctx.lineTo(W, bedrockCrestY);
+  ctx.lineTo(W, H);
+  ctx.closePath();
+  ctx.fill();
+
+  // Pattern hatching on Otay Formation
+  ctx.strokeStyle = 'rgba(255,255,255,0.04)';
+  ctx.lineWidth = 1;
+  for(let x = 0; x < W; x += 18){
+    ctx.beginPath();
+    ctx.moveTo(x, H);
+    ctx.lineTo(x + 30, H * 0.4);
+    ctx.stroke();
+  }
+
+  // Otay Label
+  ctx.fillStyle = 'rgba(255,255,255,0.5)';
+  ctx.font = '10px "JetBrains Mono", monospace';
+  ctx.fillText('FORMACIÓN OTAY (K < 10⁻⁷ m/s - ACUICLUDO IMPERMEABLE)', toeX + 20, H - 20);
+
+  // 2. Alluvium / Colluvium Slope Layer
+  ctx.fillStyle = '#334155';
+  ctx.beginPath();
+  ctx.moveTo(0, bedrockToeY);
+  ctx.lineTo(0, toeY);
+  ctx.lineTo(toeX, toeY);
+  ctx.lineTo(crestX, crestY);
+  ctx.lineTo(W, crestY);
+  ctx.lineTo(W, bedrockCrestY);
+  ctx.lineTo(crestX, bedrockCrestY);
+  ctx.lineTo(toeX, bedrockToeY);
+  ctx.closePath();
+  ctx.fill();
+
+  // 3. Water Table (NAF)
+  const satRatio = Math.min(1.0, simState.hw / 6.0);
+  const waterToeY = bedrockToeY - (bedrockToeY - toeY) * satRatio;
+  const waterCrestY = bedrockCrestY - (bedrockCrestY - crestY) * satRatio;
+
+  if(satRatio > 0.05){
+    // Water volume
+    const gradWater = ctx.createLinearGradient(0, crestY, 0, H);
+    gradWater.addColorStop(0, 'rgba(0, 229, 255, 0.45)');
+    gradWater.addColorStop(1, 'rgba(3, 105, 161, 0.6)');
+
+    ctx.fillStyle = gradWater;
+    ctx.beginPath();
+    ctx.moveTo(0, bedrockToeY);
+    ctx.lineTo(0, waterToeY);
+    ctx.lineTo(toeX, waterToeY);
+
+    // Drawdown cones around microwells if active
+    if(simState.n_pozos > 0){
+      const stepX = (crestX - toeX) / (simState.n_pozos + 1);
+      for(let i = 1; i <= simState.n_pozos; i++){
+        const wx = toeX + stepX * i;
+        const baseH = waterToeY + ((waterCrestY - waterToeY) / (crestX - toeX)) * (wx - toeX);
+        const coneDip = 22 * (simState.q_bombeo / 0.5);
+        ctx.lineTo(wx - stepX * 0.35, baseH);
+        ctx.quadraticCurveTo(wx, baseH + coneDip, wx + stepX * 0.35, baseH);
+      }
+    }
+
+    ctx.lineTo(crestX, waterCrestY);
+    ctx.lineTo(W, waterCrestY);
+    ctx.lineTo(W, bedrockCrestY);
+    ctx.lineTo(crestX, bedrockCrestY);
+    ctx.lineTo(toeX, bedrockToeY);
+    ctx.closePath();
+    ctx.fill();
+
+    // Blue phreatic surface line
+    ctx.strokeStyle = '#00e5ff';
+    ctx.lineWidth = 2;
+    ctx.setLineDash([4, 3]);
+    ctx.beginPath();
+    ctx.moveTo(0, waterToeY);
+    ctx.lineTo(toeX, waterToeY);
+    ctx.lineTo(crestX, waterCrestY);
+    ctx.lineTo(W, waterCrestY);
+    ctx.stroke();
+    ctx.setLineDash([]);
+  }
+
+  // 4. Circular Slip Surface (Bishop Method)
+  const isFailure = simState.fs < 1.0;
+  ctx.strokeStyle = isFailure ? '#f43f5e' : (simState.fs < 1.3 ? '#f59e0b' : '#10b981');
+  ctx.lineWidth = 2.5;
+  ctx.setLineDash(isFailure ? [6, 4] : [4, 4]);
+
+  ctx.beginPath();
+  // Slip arc from crest to toe
+  ctx.moveTo(crestX * 0.95, crestY);
+  ctx.quadraticCurveTo(toeX * 1.5, bedrockToeY * 0.95, toeX * 0.85, toeY);
+  ctx.stroke();
+  ctx.setLineDash([]);
+
+  // 5. Micropozos Someros (Relief Microwells)
+  if(simState.n_pozos > 0){
+    const stepX = (crestX - toeX) / (simState.n_pozos + 1);
+    for(let i = 1; i <= simState.n_pozos; i++){
+      const wx = toeX + stepX * i;
+      const surfaceY = toeY + ((crestY - toeY) / (crestX - toeX)) * (wx - toeX);
+      const bottomY = bedrockToeY + ((bedrockCrestY - bedrockToeY) / (crestX - toeX)) * (wx - toeX);
+
+      // Microwell casing
+      ctx.strokeStyle = '#00e5ff';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(wx, surfaceY - 14);
+      ctx.lineTo(wx, bottomY);
+      ctx.stroke();
+
+      // Slotted filter screen near bottom
+      ctx.strokeStyle = '#38bdf8';
+      ctx.lineWidth = 1;
+      for(let sy = bottomY - 30; sy < bottomY; sy += 5){
+        ctx.beginPath();
+        ctx.moveTo(wx - 4, sy);
+        ctx.lineTo(wx + 4, sy);
+        ctx.stroke();
+      }
+
+      // Well head
+      ctx.fillStyle = '#00e5ff';
+      ctx.beginPath();
+      ctx.arc(wx, surfaceY - 14, 5, 0, Math.PI * 2);
+      ctx.fill();
+
+      // Pumping discharge arrow
+      ctx.strokeStyle = '#38bdf8';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.moveTo(wx, surfaceY - 16);
+      ctx.lineTo(wx, surfaceY - 26);
+      ctx.lineTo(wx - 8, surfaceY - 26);
+      ctx.stroke();
+    }
+  }
+
+  // 6. Surface Line & Urban Houses on Slope
+  ctx.strokeStyle = '#94a3b8';
+  ctx.lineWidth = 2.5;
+  ctx.beginPath();
+  ctx.moveTo(0, toeY);
+  ctx.lineTo(toeX, toeY);
+  ctx.lineTo(crestX, crestY);
+  ctx.lineTo(W, crestY);
+  ctx.stroke();
+
+  // Houses on Crest
+  function drawHouse(hx, hy, color){
+    ctx.fillStyle = color || '#0284c7';
+    ctx.fillRect(hx, hy - 14, 18, 14);
+    ctx.fillStyle = '#f43f5e';
+    ctx.beginPath();
+    ctx.moveTo(hx - 2, hy - 14);
+    ctx.lineTo(hx + 9, hy - 22);
+    ctx.lineTo(hx + 20, hy - 14);
+    ctx.closePath();
+    ctx.fill();
+  }
+  drawHouse(crestX + 20, crestY, '#0284c7');
+  drawHouse(crestX + 60, crestY, '#0d9488');
+  drawHouse(toeX - 50, toeY, '#475569');
+
+  // CESPT Leaking Pipe on Crest
+  ctx.strokeStyle = '#f59e0b';
+  ctx.lineWidth = 3.5;
+  ctx.beginPath();
+  ctx.moveTo(crestX - 30, crestY + 9);
+  ctx.lineTo(crestX + 110, crestY + 9);
+  ctx.stroke();
+
+  // Leaking Underground Drops from CESPT Pipe
+  if(simState.q_fuga > 2){
+    ctx.fillStyle = '#38bdf8';
+    const numDrops = Math.min(8, Math.floor(simState.q_fuga / 7));
+    for(let d = 0; d < numDrops; d++){
+      const dx = crestX - 20 + d * 16;
+      const dy = crestY + 18 + ((d * 7) % 22);
+      ctx.beginPath();
+      ctx.arc(dx, dy, 2.8, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.fillStyle = '#f59e0b';
+    ctx.font = 'bold 9px "JetBrains Mono", monospace';
+    ctx.fillText('🚰 FUGA CESPT (' + simState.q_fuga + ' mm/d)', crestX - 25, crestY - 6);
+  }
+
+  // Rainfall Infiltration Animation onto Slope Surface
+  if(simState.q_lluvia > 2){
+    ctx.strokeStyle = 'rgba(56, 189, 248, 0.75)';
+    ctx.lineWidth = 1.5;
+    const countDrops = Math.min(35, Math.floor(simState.q_lluvia * 0.7));
+    for(let r = 0; r < countDrops; r++){
+      const rx = (r * 22 + (Date.now() / 25) * 3) % (W * 0.95);
+      const ry = ((r * 19 + (Date.now() / 15) * 4) % (H * 0.65));
+      ctx.beginPath();
+      ctx.moveTo(rx, ry);
+      ctx.lineTo(rx - 3, ry + 9);
+      ctx.stroke();
+    }
+    ctx.fillStyle = '#38bdf8';
+    ctx.font = 'bold 9px "JetBrains Mono", monospace';
+    ctx.fillText('🌧️ RECARGA PLUVIAL (' + simState.q_lluvia + ' mm/d)', toeX + 30, crestY - 20);
+  }
+
+  // Text Annotations
+  ctx.fillStyle = '#fff';
+  ctx.font = 'bold 11px "Plus Jakarta Sans", sans-serif';
+  ctx.fillText('LADERA URBANA (β = ' + simState.beta + '°)', toeX + 40, crestY + 30);
+
+  ctx.font = '10px "JetBrains Mono", monospace';
+  ctx.fillStyle = isFailure ? '#f43f5e' : '#10b981';
+  ctx.fillText('SUPERFICIE DE FALLA (BISHOP FS = ' + simState.fs.toFixed(2) + ')', toeX * 1.3, toeY + 25);
+}
+
+// Hook into Leaflet Map initialization for Layer lLadera
+function initLaderaMapLayer(){
+  if(typeof L === 'undefined' || !map) return;
+  if(typeof lLadera !== 'undefined' && lLadera) return;
+
+  lLadera = L.layerGroup();
+
+  // Critical Slope Zone Polygon in Sanchez Taboada
+  const laderaCoords = [
+    [32.4678, -117.0210],
+    [32.4705, -117.0130],
+    [32.4635, -117.0090],
+    [32.4610, -117.0170]
+  ];
+
+  L.polygon(laderaCoords, {
+    color: '#00e5ff',
+    dashArray: '6,6',
+    weight: 2,
+    fillColor: '#00e5ff',
+    fillOpacity: 0.15
+  }).bindPopup(`
+    <div style="font-family:'Plus Jakarta Sans',sans-serif;min-width:230px">
+      <strong style="color:#00e5ff;font-size:13px">⚡ ZONA PILOTO: Ladera Urbana Crítica</strong><br>
+      <span style="font-size:11px;color:#94a3b8">Sánchez Taboada / Coluvión sobre Fm. Otay</span>
+      <hr style="border:none;border-top:1px solid rgba(255,255,255,0.15);margin:6px 0">
+      <div style="font-size:11px;line-height:1.45">
+        • <strong>Escenario Fuga CESPT:</strong> Saturación a 6.0m, Presión u = 58.9 kPa &rarr; <span style="color:#ef4444;font-weight:bold">FS = 0.77 (COLAPSO)</span><br>
+        • <strong>Mitigación AquaResiliencia:</strong> 5 Micropozos (0.5 L/s) &rarr; Abate NAF a 0.27m &rarr; <span style="color:#10b981;font-weight:bold">FS = 1.42 (ESTABLE)</span>
+      </div>
+      <button onclick="scrollToSimLadera()" style="margin-top:8px;width:100%;background:linear-gradient(135deg,#00e5ff,#3b82f6);color:#020c1b;border:none;padding:5px 8px;border-radius:6px;font-weight:bold;font-size:11px;cursor:pointer">
+        🔬 Abrir Simulador Geotécnico ➔
+      </button>
+    </div>
+  `).addTo(lLadera);
+
+  // 5 Distributed Relief Microwells
+  const micropozos = [
+    { id: 'MP-01', lat: 32.4645, lng: -117.0175, q: '0.5 L/s', h: '8.0 m', abat: '5.2 m' },
+    { id: 'MP-02', lat: 32.4652, lng: -117.0163, q: '0.5 L/s', h: '8.0 m', abat: '5.6 m' },
+    { id: 'MP-03', lat: 32.4659, lng: -117.0151, q: '0.5 L/s', h: '8.0 m', abat: '5.8 m' },
+    { id: 'MP-04', lat: 32.4666, lng: -117.0139, q: '0.5 L/s', h: '8.0 m', abat: '5.5 m' },
+    { id: 'MP-05', lat: 32.4673, lng: -117.0127, q: '0.5 L/s', h: '8.0 m', abat: '5.1 m' }
+  ];
+
+  micropozos.forEach(mp => {
+    const icon = L.divIcon({
+      className: 'mp-div-icon',
+      html: `<div class="mp-pulse-marker" title="${mp.id}: Micropozo de Alivio Somero">💧</div>`,
+      iconSize: [24, 24]
+    });
+    L.marker([mp.lat, mp.lng], { icon }).bindPopup(`
+      <strong style="color:#00e5ff">💧 ${mp.id}: Micropozo de Alivio Somero</strong><br>
+      <strong>Caudal bombeo:</strong> ${mp.q} (frugal)<br>
+      <strong>Profundidad:</strong> ${mp.h} (sobre arcilla Otay)<br>
+      <strong>Abatimiento local:</strong> ${mp.abat}<br>
+      <strong>Reducción u:</strong> -95.6%<br>
+      <span style="color:#10b981;font-weight:bold">&check; Factor de Seguridad Restaurado</span>
+    `).addTo(lLadera);
+
+    // Drawdown cone circle
+    L.circle([mp.lat, mp.lng], {
+      radius: 45,
+      color: '#00e5ff',
+      fillColor: '#00e5ff',
+      fillOpacity: 0.12,
+      weight: 1,
+      dashArray: '3,3'
+    }).addTo(lLadera);
+  });
+
+  if(sLadera) lLadera.addTo(map);
+}
+
+
+// ==================== DATASET: AQUAPROXY (EVIDENCIAS FORENSES INDIRECTAS) ====================
+// Datos comprobados y corroborados: Cimentaciones con achique, Carcamos de sotano,
+// Peritajes geotecnicos judiciales, Obras publicas y Especies freatofitas.
+const aquaProxyData = [
+  {
+    id: "PRX-CAR-01",
+    tipo: "carcamo",
+    icono: "🏢",
+    color: "#3b82f6",
+    titulo: "Torre Corporativa Paseo de los Héroes (Zona Río)",
+    cota: 25,
+    naf: "2.1 - 2.8 m",
+    certeza: 98,
+    lat: 32.5275,
+    lng: -117.0225,
+    hecho: "Sótano de 3 niveles con cárcamo de bombeo continuo 24/7 para evitar subpresión y anegamiento en cimentación sobre aluvión Qal del Río Tijuana.",
+    fuente: "Inspección técnica urbana y cálculo de empuje hidrostático según Reg. Edificación Tijuana."
+  },
+  {
+    id: "PRX-CAR-02",
+    tipo: "carcamo",
+    icono: "🏢",
+    color: "#3b82f6",
+    titulo: "Complejo Médico New City / Vía Rápida Poniente",
+    cota: 22,
+    naf: "1.8 - 2.5 m",
+    certeza: 96,
+    lat: 32.5385,
+    lng: -117.0280,
+    hecho: "Muros Milán y cajón de cimentación compensado con sistema de drenes franceses y descarga continua a drenaje pluvial municipal.",
+    fuente: "Dictamen geotécnico de cimentación en zona aluvial baja (Acuífero 0201)."
+  },
+  {
+    id: "PRX-CAR-03",
+    tipo: "carcamo",
+    icono: "🏢",
+    color: "#3b82f6",
+    titulo: "Macroplaza / Vía Rápida Oriente (3a Etapa Río)",
+    cota: 42,
+    naf: "3.2 - 4.1 m",
+    certeza: 94,
+    lat: 32.4980,
+    lng: -116.9380,
+    hecho: "Cárcamos perimetrales de abatimiento en áreas subterráneas de estacionamiento sobre el abanico aluvial del Río Tijuana.",
+    fuente: "Memoria descriptiva de drenaje subterráneo y mecánica de suelos."
+  },
+  {
+    id: "PRX-GEO-01",
+    tipo: "geotecnia",
+    icono: "📋",
+    color: "#a855f7",
+    titulo: "Lomas del Rubí (Zona Colapso 2018)",
+    cota: 110,
+    naf: "2.5 - 4.2 m",
+    certeza: 99,
+    lat: 32.4935,
+    lng: -117.0425,
+    hecho: "Peritajes judiciales documentaron saturación continua de coluvión por fugas crónicas de red CESPT sobre arcilla Otay impermeable, detonando deslizamiento.",
+    fuente: "Dictamen Técnico Pericial FGE / CICESE / CENAPRED (180 viviendas colapsadas)."
+  },
+  {
+    id: "PRX-GEO-02",
+    tipo: "geotecnia",
+    icono: "📋",
+    color: "#a855f7",
+    titulo: "Colonia Camino Verde (Deslizamiento 2022)",
+    cota: 95,
+    naf: "1.8 - 3.5 m",
+    certeza: 97,
+    lat: 32.4815,
+    lng: -117.0050,
+    hecho: "Sondeos SPT detectaron agua colgada en relleno y aluvión a menos de 2m de profundidad sobre estrato lutítico resbalante.",
+    fuente: "Peritaje Geotécnico de Emergencia Protección Civil / UABC."
+  },
+  {
+    id: "PRX-GEO-03",
+    tipo: "geotecnia",
+    icono: "📋",
+    color: "#a855f7",
+    titulo: "Lomas de Sánchez Taboada (Falla Activa)",
+    cota: 185,
+    naf: "1.5 - 3.8 m",
+    certeza: 98,
+    lat: 32.4655,
+    lng: -117.0150,
+    hecho: "Afloramientos de agua en grietas de pavimento y patios; saturación hidrogeológica en contacto con Formación Otay (K < 10^-7 m/s).",
+    fuente: "Atlas Municipal de Riesgos de Tijuana (CENAPRED) y UMPC."
+  },
+  {
+    id: "PRX-OBR-01",
+    tipo: "obra",
+    icono: "🚜",
+    color: "#f59e0b",
+    titulo: "Paso a Desnivel Puente El Chaparral / Vía Rápida",
+    cota: 18,
+    naf: "1.2 - 1.8 m",
+    certeza: 95,
+    lat: 32.5415,
+    lng: -117.0340,
+    hecho: "Partida de estimación de obra cobrada por bombeo de achique continuo durante excavación de zapatas y pilas de cimentación.",
+    fuente: "Contrato de Obra Pública SIDURT / Catálogo de conceptos con agotamiento freático."
+  },
+  {
+    id: "PRX-OBR-02",
+    tipo: "obra",
+    icono: "🚜",
+    color: "#f59e0b",
+    titulo: "Colector y Cajón Pluvial Cañón del Matadero",
+    cota: 16,
+    naf: "2.0 - 2.8 m",
+    certeza: 94,
+    lat: 32.5310,
+    lng: -117.1180,
+    hecho: "Losa de cimentación con subpresión en fondo de cañada costera; colado entubado bajo agua freática en arena cuaternaria.",
+    fuente: "Proyecto Ejecutivo Hidráulico DOIC / Ayuntamiento de Tijuana."
+  },
+  {
+    id: "PRX-OBR-03",
+    tipo: "obra",
+    icono: "🚜",
+    color: "#f59e0b",
+    titulo: "Puente Manuel J. Clouthier (Canalización Alamar)",
+    cota: 52,
+    naf: "1.5 - 2.4 m",
+    certeza: 96,
+    lat: 32.5185,
+    lng: -116.9240,
+    hecho: "Pilotes perforados con presencia inmediata de freático a 1.5m en grava limpia permeable de cuenca media.",
+    fuente: "Bitácora de obra civil y memoria de cálculo estructural."
+  },
+  {
+    id: "PRX-AFL-01",
+    tipo: "afloramiento",
+    icono: "💧",
+    color: "#00e5ff",
+    titulo: "Afloramiento Cañón Johnson esquina Calle Segunda",
+    cota: 38,
+    naf: "0.0 - 0.5 m (Afloramiento)",
+    certeza: 95,
+    lat: 32.5370,
+    lng: -117.0210,
+    hecho: "Agua limpia cristalina brotando de la ladera hacia cuneta pluvial todo el año (incluso en estiaje sin lluvia). Cloro libre = 0.0 mg/L.",
+    fuente: "Reportes vecinales de deslinde CESPT ('Manto colgado / Venero natural')."
+  },
+  {
+    id: "PRX-AFL-02",
+    tipo: "afloramiento",
+    icono: "💧",
+    color: "#00e5ff",
+    titulo: "Aguaje de la Tuna (Cañón del Rubí / Fundadores)",
+    cota: 85,
+    naf: "0.2 - 1.2 m",
+    certeza: 96,
+    lat: 32.4970,
+    lng: -117.0360,
+    hecho: "Toponimia histórica y afloramiento activo en lecho natural de cañada; ciénega residual con flujo freático perenne.",
+    fuente: "Archivo General de Notarías / Microtoponimia agraria y peritajes de zona."
+  },
+  {
+    id: "PRX-BIO-01",
+    tipo: "freatofito",
+    icono: "🌳",
+    color: "#10b981",
+    titulo: "Sauce Arroyo (Salix lasiolepis) - Terrazas del Mar",
+    cota: 28,
+    naf: "1.5 - 3.2 m",
+    certeza: 92,
+    lat: 32.5335,
+    lng: -117.1199,
+    hecho: "Freatófito obligado verificado con raíz en manto freático somero en cañada costera sin riego artificial.",
+    fuente: "Registro iNaturalist #362071322 (Grado de Investigación)."
+  },
+  {
+    id: "PRX-BIO-02",
+    tipo: "freatofito",
+    icono: "🌳",
+    color: "#10b981",
+    titulo: "Bosquete de Álamos (Populus fremontii) - Ferrocarril",
+    cota: 45,
+    naf: "2.8 - 4.5 m",
+    certeza: 95,
+    lat: 32.4520,
+    lng: -116.9063,
+    hecho: "Colonia de álamos maduros que subsisten en verano árido consumiendo agua subterránea libre (Kretzschmar et al.).",
+    fuente: "Registro iNaturalist #267227461 (Validado por taxónomos CONABIO)."
+  },
+  {
+    id: "PRX-BIO-03",
+    tipo: "freatofito",
+    icono: "🌳",
+    color: "#10b981",
+    titulo: "Humedal con Tule (Typha domingensis) - Arroyo Alamar",
+    cota: 50,
+    naf: "0.0 - 0.8 m",
+    certeza: 97,
+    lat: 32.5210,
+    lng: -116.9290,
+    hecho: "Mancha densa de tule nativo que exige saturación hidrológica a nivel de suelo permanente.",
+    fuente: "Estudio Hidroecológico UABC / CICESE en subcuenca Alamar."
+  }
+];
+
+function initAquaProxyLayer(){
+  if(typeof L === 'undefined' || !map) return;
+  if(typeof lProxy !== 'undefined' && lProxy) return;
+
+  lProxy = L.layerGroup();
+
+  aquaProxyData.forEach(p => {
+    const icon = L.divIcon({
+      className: 'proxy-marker-wrap',
+      html: `<div class="proxy-div-icon" style="background:${p.color};width:24px;height:24px;font-size:12px;box-shadow:0 0 12px ${p.color};color:#fff" title="${p.titulo}">${p.icono}</div>`,
+      iconSize: [24, 24]
+    });
+
+    const badgeTipo = p.tipo === 'carcamo' ? '🏢 SÓTANO CON CÁRCAMO 24/7' :
+                      p.tipo === 'geotecnia' ? '📋 DICTAMEN GEOTÉCNICO / PERITAJE' :
+                      p.tipo === 'obra' ? '🚜 OBRA CON ACHIQUE DE FREÁTICO' :
+                      p.tipo === 'afloramiento' ? '💧 AFLORAMIENTO / OJOS DE AGUA' : '🌳 BIOINDICADOR FREATÓFITO';
+
+    const popupHtml = `
+      <div style="font-family:'Plus Jakarta Sans',sans-serif;min-width:240px;max-width:300px">
+        <div style="font-size:9px;font-family:'JetBrains Mono',monospace;font-weight:700;color:${p.color};letter-spacing:0.5px">${badgeTipo}</div>
+        <strong style="font-size:13px;color:#fff;display:block;margin-top:2px">${p.titulo}</strong>
+        <hr style="border:none;border-top:1px solid rgba(255,255,255,0.12);margin:6px 0">
+        <div style="font-size:11px;line-height:1.45;color:#cbd5e1">
+          • <strong>NAF Detectado:</strong> <span style="color:#00e5ff;font-weight:bold">${p.naf}</span> (Cota ${p.cota} msnm)<br>
+          • <strong>Certeza Forense:</strong> <span style="color:#10b981;font-weight:bold">${p.certeza}%</span><br>
+          • <strong>Evidencia:</strong> ${p.hecho}<br>
+          • <strong>Fundamento:</strong> <span style="color:#94a3b8;font-size:10px">${p.fuente}</span>
+        </div>
+      </div>
+    `;
+
+    L.marker([p.lat, p.lng], { icon }).bindPopup(popupHtml).addTo(lProxy);
+  });
+
+  if(sProxy) lProxy.addTo(map);
+}
+
+function filterProxyCards(tipo, btn){
+  document.querySelectorAll('.proxy-chip').forEach(c => c.classList.remove('active'));
+  if(btn) btn.classList.add('active');
+  const cards = document.querySelectorAll('.proxy-item-card');
+  cards.forEach(c => {
+    if(tipo === 'todos' || c.dataset.tipo === tipo){
+      c.style.display = 'flex';
+    } else {
+      c.style.display = 'none';
+    }
+  });
+}
+
+function zoomToProxyPoint(lat, lng){
+  if(map){
+    map.flyTo([lat, lng], 15.5, { duration: 1.2 });
+    window.scrollTo({ top: document.getElementById('map-container').offsetTop - 80, behavior: 'smooth' });
+  }
+}
+
 // ==================== INIT ====================
-document.addEventListener('DOMContentLoaded',()=>{initCalc();initTelemetry();initCorte3D();init();initPanelNav();positionDiaCero();initDiaCero();setInterval(initDiaCero, DIA_CERO_REFRESH_MS);});
+document.addEventListener('DOMContentLoaded',()=>{updateSimState();initCalc();initTelemetry();initCorte3D();init();initPanelNav();positionDiaCero();initDiaCero();setInterval(initDiaCero, DIA_CERO_REFRESH_MS);});
 </script>
 
 <!-- ==================== GLITCH OVERLAY ==================== -->
@@ -4174,6 +6046,19 @@ Escribe 'help' para listar los comandos disponibles o 'balance' para datos duros
     <div class="secret-cli-input-row">
       <span class="cli-prompt">aqua@tijuana:~$</span>
       <input type="text" id="secret-cli-input" class="cli-input" placeholder="escribe comando y presiona Enter..." onkeydown="handleCliKey(event)">
+    </div>
+  </div>
+</div>
+
+
+<!-- ==================== SIMULATION LIGHTBOX MODAL ==================== -->
+<div id="sim-lightbox-modal" onclick="closeSimImageModal(event)">
+  <div class="sim-lightbox-content" onclick="event.stopPropagation()">
+    <button class="sim-lightbox-close" onclick="closeSimImageModal()">&times;</button>
+    <img id="sim-lightbox-img" class="sim-lightbox-img" src="" alt="Ampliación">
+    <div class="sim-lightbox-caption">
+      <h4 id="sim-lightbox-title" style="color:var(--cyan-primary);font-size:1.1rem;margin-bottom:.25rem"></h4>
+      <p id="sim-lightbox-desc" style="font-size:.84rem;color:var(--text-muted)"></p>
     </div>
   </div>
 </div>

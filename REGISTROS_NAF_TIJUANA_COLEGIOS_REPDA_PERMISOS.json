@@ -1,0 +1,77 @@
+{
+  "metodologia": "Tercera ronda de minería de datos públicos: colegios/asociaciones de ingenieros, REPDA de CONAGUA (pozos registrados), permisos de descarga de bombeo/achique, y catálogo de estudios de suelo académicos/técnicos. Complementa REGISTROS_NAF_PLAYAS_TIJUANA_FUENTES_PUBLICAS.json y REGISTROS_NAF_TIJUANA_TODAS_DELEGACIONES_FUENTES_PUBLICAS.json.",
+  "fecha_investigacion": "2026-09-14",
+
+  "hallazgo_estrella_REPDA": {
+    "descripcion": "Se encontró y consultó directamente (vía API REST, no scraping frágil) la base pública de CONAGUA que respalda el REPDA (Registro Público de Derechos de Agua): capa geoespacial 'Aprovechamientos de aguas subterráneas' del Localizador REPDA.",
+    "endpoint": "https://sigagis.conagua.gob.mx/ArcGIS/rest/services/REPDA/MapServer/1",
+    "fecha_corte_datos": "30 de junio de 2026",
+    "resultado_tijuana": {
+      "total_titulos_pozos_municipio_tijuana": 385,
+      "total_titulos_acuifero_tijuana_clave_0201": 258,
+      "desglose_por_uso": {"PECUARIO": 126, "AGRICOLA": 126, "DOMESTICO": 48, "SERVICIOS": 44, "PUBLICO_URBANO": 20, "INDUSTRIAL": 18, "MULTIPLES": 3},
+      "volumen_concesionado_m3_anio_aprox": {"suma": 18557310, "min": 30, "max": 788400}
+    },
+    "ejemplos_reales_verificados": [
+      {"folio": "01BCA100142/01IPGR94", "uso": "SERVICIOS", "acuifero": "TIJUANA", "lon": -116.8406, "lat": 32.5183, "vol_m3_anio": 20280},
+      {"folio": "01BCA100709/01FMGR94", "uso": "INDUSTRIAL", "acuifero": "ROSARITO", "titular": "PLANTA DE AGUA LAS MONTAÑAS, S.A.", "lon": -117.03, "lat": 32.47, "vol_m3_anio": 30000}
+    ],
+    "limitacion_critica": "El esquema de esta base de datos NO incluye nivel estático, nivel dinámico ni profundidad del pozo (son datos administrativos del título: titular, uso, volumen, ubicación — no parámetros técnicos de perforación). Esos datos, si existen, solo estarían dentro del documento escaneado individual de cada título (anexo técnico del trámite CNA-01-004), no indexados como campo consultable ni descargable masivamente.",
+    "intento_de_consulta_individual": "Se intentó consultar el título 01BCA100142 directamente en el formulario https://app.conagua.gob.mx/consultarepda.aspx (ASP.NET con postback) para ver si el registro individual revela nivel estático — el formulario no devolvió resultados navegables de forma automatizada en esta sesión; requeriría interacción manual sostenida o fue rechazado por validación del propio formulario.",
+    "siguiente_paso_recomendado": "(a) Revisar manualmente en consultarepda.aspx los ~20 títulos de uso 'PUBLICO URBANO' y 44 de 'SERVICIOS' del acuífero Tijuana (ya identificados con folio y coordenadas) uno por uno, priorizando los más cercanos a Playas de Tijuana por coordenadas; (b) si el formulario no expone nivel estático ni para consulta individual, la única vía sería una solicitud de transparencia (INAI) a CONAGUA pidiendo copia del anexo técnico/estudio geohidrológico de títulos específicos."
+  },
+
+  "hallazgo_colegios_ingenieros": {
+    "CICTAC": {
+      "nombre": "Colegio de Ingenieros Civiles de Tijuana A.C.",
+      "existe": true,
+      "url": "https://www.cictac.org/",
+      "detalle": "Activo desde 1970, ~360 agremiados, certifica DRO junto con el Ayuntamiento. No publica boletines técnicos ni memorias de geotecnia en su sitio público — solo 2 cursos vigentes (DRO; Normas Técnicas Complementarias de Sismo BC)."
+    },
+    "leads_academicos_reales_pero_no_leidos": [
+      {
+        "fuente": "Sociedad Mexicana de Ingeniería Geotécnica (SMIG), Biblioteca Digital",
+        "hallazgo": "Ponencia real titulada '14 TIJUANA, B.C.N.' de Enrique Santoyo (fundador de TGC Geotecnia, referencia nacional en mecánica de suelos) y Luis Montañez, presumiblemente de la XIV Reunión Nacional de Mecánica de Suelos celebrada en Tijuana",
+        "url": "https://www.smig.org.mx/biblioteca-digital/busqueda.php?categoria=1",
+        "estado": "Documento bloqueado, solo accesible a socios SMIG — no se pudo leer el contenido ni confirmar cifras",
+        "recomendacion": "Este es probablemente el documento técnico más valioso identificado en toda la investigación (autor de referencia nacional, tema específico de Tijuana). Vale la pena que el proyecto adquiera membresía SMIG o solicite el documento directamente para desbloquearlo."
+      }
+    ]
+  },
+
+  "hallazgo_catalogo_estudios_suelo": {
+    "articulos_cientificos_reales_con_sitio_especifico_en_tijuana": [
+      {
+        "titulo": "Interpretación geológica y geoeléctrica de un deslizamiento rotacional relacionado con paleodrenaje en el fraccionamiento Valle del Sur, en Tijuana, Baja California",
+        "autores": "Delgado Argote et al.",
+        "revista": "GEOS, Unión Geofísica Mexicana, Vol. 37 No. 2 (2017)",
+        "ubicacion": "Fraccionamiento Valle del Sur, talud norte (deslizamiento invierno 2016-2017, 12 viviendas dañadas)",
+        "dato": "Reporta 'nivel freático horizontal' identificado por tomografía geoeléctrica asociado a paleocanal de limos/arcillas — sin cifra numérica confirmada (PDF no legible por extracción automática)",
+        "url": "https://www.ugm.org.mx/publicaciones/geos/pdf/geos17-2/delgado-37-2.pdf",
+        "verificado": "parcial"
+      },
+      {
+        "titulo": "Factores geológicos y antrópicos de riesgo en Tijuana: el caso del fraccionamiento Jardines de Agua Caliente",
+        "autores": "Delgado Argote et al.",
+        "revista": "GEOS Vol. 32 No. 2 (2012)",
+        "ubicacion": "Fraccionamiento Jardines de Agua Caliente (graben regional, fallas normales)",
+        "dato": "Describe corte/relleno de drenajes originales hasta +23.35 m y riesgo por obras civiles mal planeadas; sin cifra de NAF confirmada",
+        "verificado": "parcial"
+      }
+    ],
+    "documentos_oficiales_pendientes_de_lectura_completa": [
+      {"fuente": "CONAGUA - Actualización disponibilidad media anual acuífero Tijuana (0201)", "url": "https://www.gob.mx/cms/uploads/attachment/file/103399/DR_0201.pdf", "estado": "localizado, no leído por completo (PDF binario no extraíble por WebFetch — requiere descarga directa y pdftotext, como se hizo con el Atlas 2024)"}
+    ],
+    "tesis_no_accesibles": [
+      "Repositorio Institucional UABC — colecciones de tesis Tijuana existen pero buscador requiere JavaScript no ejecutable por WebFetch simple (posible con navegador real)"
+    ]
+  },
+
+  "hallazgo_permisos_bombeo_descarga": {
+    "conclusion": "No existe ningún listado público navegable de permisos de descarga de agua de bombeo/achique de excavaciones otorgados por CONAGUA o CESPT para obras específicas en Tijuana — ambas dependencias publican el trámite y sus requisitos, no el resultado otorgado.",
+    "dato_relevante_confirmado": "La Ley de Edificaciones de Baja California reconoce explícitamente el abatimiento de nivel freático mediante bombeo como práctica constructiva regulada ('cuando la construcción de la cimentación requiera abatir el nivel freático, se extraerá el agua del predio mediante bombeo...'), aunque no se pudo confirmar el número de artículo exacto por ilegibilidad del PDF fuente.",
+    "url_ley": "https://www.congresobc.gob.mx/Documentos/ProcesoParlamentario/Leyes/TOMO_VII/20250411_LEYEDIFI.PDF",
+    "contexto_indirecto": "PROFEPA sancionó en agosto 2026 más de 35 descargas contaminantes irregulares en la zona del Río Tijuana, incluyendo desarrollos inmobiliarios sin autorización ambiental o con descargas irregulares — evidencia de que existen descargas de obra no permisadas, pero sin caso puntual identificable con NAF/caudal.",
+    "siguiente_paso_recomendado": "Solicitud INAI a CONAGUA y CESPT pidiendo listado de permisos de descarga temporal/dewatering otorgados en Tijuana 2023-2026 — este dato específico no es minable por búsqueda web."
+  }
+}

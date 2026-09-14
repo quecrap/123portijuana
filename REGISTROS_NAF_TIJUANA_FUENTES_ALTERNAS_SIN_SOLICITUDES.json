@@ -1,0 +1,62 @@
+{
+  "metodologia": "Cuarta ronda: búsqueda de fuentes alternativas SIN presentar solicitudes formales de transparencia (INAI/PNT), por instrucción explícita del usuario. Se privilegió la descarga directa (curl) y extracción de texto (pdftotext) sobre WebFetch, que había fallado en varios PDFs binarios grandes en rondas anteriores.",
+  "fecha_investigacion": "2026-09-14",
+
+  "hallazgo_1_piezometria_oficial_detallada": {
+    "fuente": "CONAGUA — 'Determinación de la Disponibilidad de Agua en el Acuífero Tijuana (0201)', México D.F., octubre 2013, basado en trabajo de campo de Moro Ingeniería S.C. (2009-2010)",
+    "url": "https://www.gob.mx/cms/uploads/attachment/file/103399/DR_0201.pdf",
+    "verificado": true,
+    "nota_metodo": "Documento leído completo por primera vez en esta investigación (rondas previas solo tenían la cifra resumida '4-15m' citada de segunda mano por el Atlas 2024 de IMPLAN)",
+    "datos_clave": {
+      "profundidad_nivel_estatico_2010": "Varía de 2 a 22 m según topografía. En las inmediaciones de la ciudad de Tijuana: ~18 m. En el cauce del Río Tijuana: ~17 m. En el cauce del Arroyo Alamar: ~11 m. Los valores más profundos se dan en la porción central del acuífero y en la ciudad; los menores a lo largo del Alamar.",
+      "elevacion_nivel_estatico": "14 a 60 msnm, flujo subterráneo paralelo a los ríos Tijuana/Alamar, dirección sureste-noroeste hacia EUA",
+      "evolucion_2009_2010": "Recuperación de hasta 1.5 m en la porción central (lluvias por arriba de la media); abatimientos de hasta 0.3 m hacia el noreste",
+      "parametros_hidraulicos": "Transmisividad 4.0-35.0 x10⁻³ m²/s; conductividad hidráulica 2.0x10⁻⁶ a 2.2x10⁻³ m/s (0.173 a 193 m/día). Valores más bajos: sedimentos arcillosos aluviales y Formación Rosarito Beach. Más altos: depósitos clásticos aluviales gruesos.",
+      "calidad_agua": "Conductividad eléctrica 850-7000 µS/cm (localmente hasta 9000), STD 600-4900 ppm. Excede límites para consumo humano en Na, Cl, SO4, Mn, Fe, B y STD.",
+      "censo_aprovechamientos_2009_2010": "126 aprovechamientos (101 pozos, 23 norias, 2 papalotes): 18 en El Florido, 11 al sur/suroeste de la Presa Abelardo L. Rodríguez, 30 en zona Arroyo Alamar, 67 en zona Río Tijuana. Volumen extraído 6.0 hm³/año (45% público-urbano, 20% industrial, 15% pecuario-doméstico, 13.3% servicios, 6.7% agrícola)."
+    },
+    "hallazgo_sobre_playas_de_tijuana": {
+      "poligono_administrativo": "La poligonal oficial del Acuífero Tijuana (clave 0201, tabla de vértices geográficos) SÍ llega hasta la costa: el tramo entre los vértices 5 y 6 (aprox. 117°07'W, 32°29'-32°32'N) corre 'por la línea de bajamar a lo largo de la costa' — es decir, Playas de Tijuana está dentro del límite legal/administrativo del acuífero.",
+      "pero": "El área de estudio piezométrico real (31 km², donde efectivamente hay pozos y mediciones) se concentra a lo largo de los cauces de los ríos Tijuana y Alamar — NO se registra ningún punto de medición en la franja costera de Playas. La palabra 'Playas' no aparece ni una sola vez en todo el documento.",
+      "conclusion": "Playas de Tijuana está dentro del acuífero legalmente definido, pero fuera de la red de monitoreo piezométrico real. Esto no es contradictorio con el hallazgo previo del Programa Parcial de Playas ('fuera del área de recarga') — son dos conceptos distintos: límite administrativo vs. zona de recarga/monitoreo activo."
+    }
+  },
+
+  "hallazgo_2_dato_cuantitativo_real_valle_del_sur": {
+    "fuente": "Delgado Argote et al., 'Interpretación geológica y geoeléctrica de un deslizamiento rotacional...Valle del Sur, Tijuana', GEOS Vol. 37 No. 2 (2017), Unión Geofísica Mexicana — artículo arbitrado, leído completo",
+    "url": "https://www.ugm.org.mx/publicaciones/geos/pdf/geos17-2/delgado-37-2.pdf",
+    "verificado": true,
+    "dato": "Mediante tomografía geoeléctrica (Dipolo-Dipolo y Wenner) en el Fraccionamiento Valle del Sur (talud norte, deslizamiento rotacional invierno 2016-2017, 12-17 viviendas dañadas), se interpretó el nivel freático local a profundidades MUY VARIABLES en un área pequeña: en la base del talud norte ~14 m (y en un punto llegaba a AFLORAR en la superficie del talud, manteniendo musgo/humedad); en el perfil del parque ~3 m; en el perfil sur ~18 m.",
+    "relevancia": "Demuestra empíricamente, con datos reales medidos (no estimados), que el NAF en Tijuana puede variar drásticamente (3 a 18 m) en distancias de menos de 200 m dentro de una misma colonia — consistente con la hipótesis de paleocanales/lentes de suelo controlando el nivel freático somero, ya documentada en GEOLOGIA_SUBSUELO_ACUIFERO_SOMERO_TIJUANA.md del proyecto."
+  },
+
+  "hallazgo_3_clasificacion_suelos_playas_PDUCPT": {
+    "fuente": "Programa de Desarrollo Urbano del Centro de Población de Tijuana 2002-2025, capítulo 'Diagnóstico. Medio Físico Natural' (versión archivada por USGS California Water Science Center)",
+    "url": "https://ca.water.usgs.gov/sandiego/data/gis/geology/IMPLAN2008/PDUCPT_MEDIO%20NATURAL-Nov_02%20p29_44.pdf",
+    "verificado": true,
+    "dato_geologia_tabla5": "Formación Limolita-arenisca ubicada específicamente 'en la zona de Playas de Tijuana': areniscas y limonitas con poca consolidación, origen marino, grano fino a medio, forman 'estratos débiles' susceptibles a rápida erosión, plasticidad moderada, permeabilidad moderada. Recomendación oficial: 'condicionado para urbanizar, especialmente en combinación con altas pendientes'.",
+    "dato_suelos_tabla6": "'Suelos marinos colapsables' localizados en la 'Meseta marina de Playas': mezcla variable de arenas finas/limos arcillosos, conglomerados de boleos y grava de grano grueso, consistencia pegajosa, altamente erosionable por agua. Textualmente: 'susceptibles al fenómeno de tubificación y colapsamiento. En condición seca son fuertes y estables, pero al sustraerse agua se encogen y sufren contracciones.'",
+    "relevancia_para_cimentacion": "Este es el hallazgo más directamente accionable de la ronda: confirma oficialmente que el subsuelo de la meseta de Playas de Tijuana es un suelo COLAPSABLE cuya estabilidad depende críticamente del contenido de humedad — es decir, cualquier cambio en el NAF local (por bombeo, fuga de red, o abatimiento de obra) puede inducir colapso/asentamiento diferencial, independientemente de la profundidad exacta a la que se encuentre el agua.",
+    "fallas_adicionales_confirmadas": "Además de Silver Strand (norte/sur) y Rose Canyon/La Nación ya conocidas, este documento nombra las fallas locales: Agua Tibia, García, La Nación, La Gloria, Los Buenos del Mar y Agua Caliente."
+  },
+
+  "callejones_sin_salida_confirmados_honestamente": [
+    {
+      "intento": "Descargar el estudio completo 'Actualización del Estudio Hidrogeológico del Acuífero de Tijuana' de Moro Ingeniería S.C. (2009-2010) — la fuente primaria detrás del resumen DR_0201.pdf, que probablemente sí tiene mapas/tablas pozo por pozo",
+      "resultado": "No disponible digitalmente. Se encontró solo un catálogo de acervo físico de CONAGUA (282 páginas, 'Estudios_de_acuIferos.pdf') que lista títulos/años/autores de estudios históricos del acuífero Tijuana (1977, 1979, 1981, 1997, 1999...) como referencias de biblioteca física, sin enlaces de descarga.",
+      "url_catalogo": "https://sigagis.conagua.gob.mx/gas1/sections/pdf/Estudios_de_acuIferos.pdf"
+    },
+    {
+      "intento": "Leer completa la tesis doctoral de Napoleón Gudiño Elizondo (CICESE 2018) y el artículo GEOS 2012 de Delgado Argote (Jardines de Agua Caliente) buscando datos de NAF",
+      "resultado": "Ambos documentos se descargaron y leyeron completos (a diferencia de intentos previos con WebFetch que fallaron) pero NINGUNO de los dos menciona nivel freático/agua subterránea — la tesis trata erosión/sedimentación superficial, el artículo 2012 se enfoca en fallas y relleno de drenajes, no en NAF."
+    },
+    {
+      "intento": "Reintentar consulta individual de título REPDA en el formulario oficial de CONAGUA vía navegador",
+      "resultado": "El formulario presentó errores de JavaScript ('Sys is not defined', recurso con 403) que impidieron ejecutar la búsqueda en esta sesión — no es un callejón sin salida permanente, pero no fue posible resolverlo en este intento."
+    },
+    {
+      "intento": "Encontrar el paper de García Fons 'Estratigrafía y propiedades de los suelos de Tijuana' (SMIG) por vías abiertas (Google Scholar, Semantic Scholar, mirrors)",
+      "resultado": "Se confirmó el dato bibliográfico completo: García Fons (1988), presentado en la XIV Reunión Nacional de Mecánica de Suelos, celebrada en MONTERREY, N.L. (no en Tijuana — el título en el catálogo SMIG es '14 TIJUANA, B.C.N.' porque es la ponencia sobre el tema Tijuana dentro de esa reunión). El documento en sí no se encontró en ningún repositorio de acceso abierto — sigue bloqueado solo para socios SMIG."
+    }
+  ]
+}

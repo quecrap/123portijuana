@@ -2,6 +2,7 @@
 *.jpg
 *.jpeg
 *.png
+!fig*.png
 *.webp
 *.gif
 *.bmp
@@ -31,6 +32,7 @@ fotos_reales/
 media/
 videos/
 photos/
+Pozo/
 
 # Archivos de entorno y temporales
 .env

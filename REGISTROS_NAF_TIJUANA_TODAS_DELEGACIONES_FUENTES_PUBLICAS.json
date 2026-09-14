@@ -1,0 +1,117 @@
+{
+  "metodologia": "Minería de repositorios públicos abiertos (sin PNT/solicitud formal) ampliada a TODO el municipio de Tijuana: portal de transparencia UMAI, IMPLAN, gacetas SEMARNAT/SINAT, portal INAI de SEMARNAT, y portal de obra pública DOIUM/DAU. Se leyeron documentos PDF completos (no solo snippets de buscador) cuando fue posible. Complementa a REGISTROS_NAF_PLAYAS_TIJUANA_FUENTES_PUBLICAS.json (que cubre solo Playas de Tijuana).",
+  "fecha_investigacion": "2026-09-14",
+  "hallazgo_transversal_critico": "En NINGUNA fuente pública consultada (UMAI, IMPLAN, SEMARNAT, DOIUM) existe un inventario de profundidad de NAF desagregado por delegación o predio individual, fuera del dato regional del Acuífero Tijuana (CONAGUA, 4-15 m en 2013) que cubre Río Tijuana + Arroyo Alamar + El Florido. El propio Atlas Municipal de Riesgos 2024 (IMPLAN) reconoce textualmente (p.106) que falta información completa de pozos perforados para caracterizar el subsuelo fuera de esas zonas.",
+
+  "advertencia_fabricacion_deteccion_repetida": "En esta ronda de investigación citywide se detectaron y descartaron correctamente 3 intentos adicionales de datos falsos generados por resúmenes automáticos de búsqueda: (1) un acta de cabildo que el resumen decía mencionaba 'Unión Antorchista' y en realidad trata del Puente Peatonal El Florido sin esa mención; (2) tres MIA que el buscador asociaba a Tijuana/Otay y que, al leer el documento completo, resultaron ser de Ensenada o Mexicali; (3) confirma el patrón ya visto con el folio DOIUM inventado en la ronda anterior. Regla aplicada consistentemente: nunca reportar un dato sin haber leído el documento fuente completo.",
+
+  "verificacion_documento_previo_del_proyecto": {
+    "archivo": "FUENTES_OFICIALES_CARTOGRAFIA_Y_CAPAS_ALTERNATIVAS.md",
+    "veredicto": "Contiene fabricaciones confirmadas mezcladas con datos reales (alucinación 'con anclaje' en nombres reales)",
+    "elementos_reales": [
+      "Carta Geológico-Minera SGM Tijuana I11-11 a escala 1:250,000 (sí existe, pero SIN datos de NAF/permeabilidad)",
+      "Formación Otay como unidad geológica real",
+      "Estación USGS 11013500 existe físicamente (pero con propósito y datos falsos atribuidos)"
+    ],
+    "elementos_fabricados": [
+      "Carta SGM separada 'Playas de Tijuana' a 1:50,000 — NO EXISTE",
+      "Estación USGS 11013500 descrita como 'piezométrica de aluvión con niveles 1.8-4.2 m' — en realidad es 'Tijuana R nr Nestor CA', estación de AFORO SUPERFICIAL, inactiva desde 1982, a ~9 m de elevación (no 15 msnm)",
+      "Término 'Otay Hardpan' — no documentado en literatura científica",
+      "Porcentajes de viabilidad de perforación por formación (85-95%, 75-88%, 50-70%, 40-60%) — sin fuente rastreable",
+      "Fórmula 'Profundidad ≈ 3.5 + 0.04×(Cota-CotaBase)' — sin respaldo en literatura hidrogeológica"
+    ],
+    "recomendacion": "No presentar este documento a jueces/asesores científicos (Venture Hacks 2026) sin corregirlo: retirar la carta y estación ficticias, y marcar porcentajes/fórmula explícitamente como estimaciones internas de hipótesis del proyecto, no como datos oficiales verificados."
+  },
+
+  "registros_nuevos_todo_tijuana": [
+    {
+      "id_registro": "ACUIFERO-TIJUANA-CONAGUA-0201",
+      "tipo_fuente": "Atlas Municipal de Riesgos 2024 (IMPLAN), citando CONAGUA",
+      "cobertura_geografica": "Acuífero Tijuana: se extiende bajo Río Tijuana (centro), Arroyo Alamar (este), y El Florido (sureste) — NO exclusivo de Playas",
+      "profundidad_naf_m": "4 a 15 m (medición 2013, reportada en Atlas 2024)",
+      "espesor_sedimentos_m": "140 a 300+ m a lo largo del Río Tijuana",
+      "url_documento": "https://implan.tijuana.gob.mx/pdf/atlas/ATLASV2024.pdf",
+      "verificado": true,
+      "notas": "Es el único dato numérico de NAF con validez citywide (más allá de Playas). Implica que zonas que drenan al Alamar (La Mesa, Sánchez Taboada, Camino Verde) están dentro del área de influencia del acuífero somero, aunque sin cifra propia."
+    },
+    {
+      "id_registro": "VS30-PROXY-POR-DELEGACION",
+      "tipo_fuente": "Atlas Municipal de Riesgos 2024 (IMPLAN)",
+      "cobertura_geografica": "Todas las delegaciones",
+      "datos": {
+        "Centro_ZonaRio_LaMesa_Otay": "Vs30 aluvión ≈220 m/s; periodo dominante 1-3s (Región II-III)",
+        "Mesa_de_Otay_Otay_Centenario": "Vs30 conglomerado ≈340 m/s; periodo <1-2s (suelo más rígido)",
+        "Cerro_Colorado": "origen volcánico (única zona junto con Cerro de la Abeja); Vs30 arenisca-conglomerado este ≈328 m/s",
+        "San_Antonio_de_los_Buenos_y_Sanchez_Taboada": "Vs30 arenisca-conglomerado oeste ≈436 m/s; periodo 2->3s (mayor espesor sedimentario); mayor incidencia histórica de deslizamientos/inestabilidad de terreno del municipio"
+      },
+      "profundidad_desplante_o_naf_m": null,
+      "url_documento": "https://implan.tijuana.gob.mx/pdf/atlas/ATLASV2024.pdf",
+      "verificado": true,
+      "notas": "Vs30/periodo dominante es un proxy INDIRECTO de espesor/saturación de suelo (inferencia razonable, no vínculo textual explícito del documento con NAF). No sustituye una medición directa de nivel freático."
+    },
+    {
+      "id_registro": "FALLAS-GEOLOGICAS-MUNICIPALES",
+      "tipo_fuente": "PDUCPT 2010-2030 y Atlas 2024 (IMPLAN)",
+      "cobertura_geografica": "Todo el municipio",
+      "datos": "7% de la superficie municipal condicionada por elementos de falla. Fallas de mayor riesgo: Rose Canyon (M6.8-7.0) y La Nación (M6.25-6.5); sistema regional incluye también Silverstrand, Vallecitos y Calabazas. Geología predominantemente sedimentaria (marino/fluvial/aluvial); volcánica en Cerro Colorado/Cerro de la Abeja y extremos suroeste/sureste; ígnea intrusiva/metamórfica en extremo noreste y sur-sureste.",
+      "url_documento": "https://implan.tijuana.gob.mx/pdf/atlas/PDUCPT%202010-2030.pdf",
+      "verificado": true,
+      "notas": "Ninguno de los dos documentos reporta valores de permeabilidad por formación o zona."
+    },
+    {
+      "id_registro": "UMAI-ESTRUCTURA-PREFIJOS-EXPEDIENTE",
+      "tipo_fuente": "Listado anexo de licencias, 3er trimestre 2020, XXIII Ayuntamiento (UMAI)",
+      "cobertura_geografica": "Todo el municipio",
+      "datos": "El sistema de expedientes usa prefijos por delegación: CC, DC, LM, LP, MO, PT, SB, ST, ZC. 'PT' = Playas de Tijuana (confirmado por comparación directa con PT2022A45). 'ZC' es, con diferencia, el prefijo más numeroso del lote (~104 de 219+ expedientes visibles) — consistente con Zona Río/Centro, pero el significado exacto de cada sigla (excepto PT) NO está confirmado textualmente en ningún documento, solo inferido por volumen y contexto.",
+      "url_documento": "No aislada URL individual — listado leído dentro de PDF trimestral del portal UMAI",
+      "verificado": "parcial (estructura de prefijos confirmada; significado de siglas salvo PT es inferencia, no dato textual)",
+      "notas": "Limitación estructural clave: los PDFs individuales con domicilio/DRO/sótanos de cada expediente NO están indexados por buscadores externos ni enlazados desde los listados trimestrales — solo se puede acceder al que ya se conocía (PT2022A45). No se encontró ningún otro registro individual de licencia con sótanos/NAF en Zona Río, Centro, La Mesa, Otay, Sánchez Taboada, Cacho o Hipódromo."
+    },
+    {
+      "id_registro": "MURO-CONTENCION-OTAY-CENTENARIO-2017",
+      "tipo_fuente": "Reporte FAIS 4to Trimestre 2017 (SEDESOL/DOIUM)",
+      "ubicacion": "Calle Luz María Rico, entre Calle Carlota Sosa y Silvia, Col. Otay Centenario, Tijuana",
+      "uso_o_proyecto": "Construcción de muro de contención",
+      "profundidad_desplante_o_naf_m": null,
+      "monto": "$625,000.00 MXN",
+      "url_documento": "https://www.tijuana.gob.mx/dependencias/sdue/doium/FF/SFUreportes/04-2017/ReporteUDES4toTrimestre2017-FAIS-SEDESOL.pdf",
+      "verificado": true,
+      "notas": "Reporte presupuestal, no memoria técnica — sin datos geotécnicos."
+    },
+    {
+      "id_registro": "MURO-CONTENCION-LOMAS-TAURINAS-2017",
+      "tipo_fuente": "Reporte FAIS 4to Trimestre 2017 (SEDESOL/DOIUM)",
+      "ubicacion": "Calle Benito Juárez, Lomas Taurinas, Tijuana",
+      "uso_o_proyecto": "Construcción de muro de contención",
+      "profundidad_desplante_o_naf_m": null,
+      "monto": "$3,550,000.00 MXN",
+      "url_documento": "https://www.tijuana.gob.mx/dependencias/sdue/doium/FF/SFUreportes/04-2017/ReporteUDES4toTrimestre2017-FAIS-SEDESOL.pdf",
+      "verificado": true,
+      "notas": "Reporte presupuestal, no memoria técnica — sin datos geotécnicos."
+    }
+  ],
+
+  "expedientes_semarnat_descartados_por_verificacion": [
+    {"id": "02BC2025HD010", "ubicacion_real": "Punta Banda, Ensenada", "motivo": "buscador lo asociaba a BC costero pero no es Tijuana"},
+    {"id": "02BC2022HD003", "ubicacion_real": "Mexicali (Carnes Selectas de México)", "motivo": "buscador lo asociaba erróneamente a zona industrial de Tijuana"},
+    {"id": "02BC2020TD036", "ubicacion_real": "El Sauzal, Ensenada (API)", "motivo": "buscador lo asociaba erróneamente a Otay"}
+  ],
+
+  "folios_doium_reales_no_procesados_por_falta_de_ocr": [
+    "DOIUM-2024-DMIP-AD-005 (PDF escaneado sin capa de texto)",
+    "DOIUM-2018-SOC-R33-IS-017 (PDF escaneado sin capa de texto)",
+    "DOIUM-2019-CVC-SCO-AD-023 (drenaje pluvial, Calle Ermita Norte)",
+    "DOIUM-2019-ENH-SCO-AD-007 (concreto hidráulico y drenaje pluvial, Calle Chichimecas)",
+    "DOIUM-2020-CVC-RYM-AD-004/010/011/012",
+    "DOIUM-2024-RYM-IS-006",
+    "DOIUM-2025-DMIP-LD-AD-005"
+  ],
+
+  "brechas_no_resueltas_citywide": [
+    "No existe inventario público de NAF por pozo/predio fuera del dato regional CONAGUA (4-15 m, Río Tijuana/Alamar/El Florido) — el propio Atlas 2024 lo reconoce como carencia.",
+    "Ninguna MIA de Zona Río, Otay, Centro o Cerro Colorado con Capítulo IV completo fue localizable — el buscador de SINAT no es navegable por scraping y los snippets de búsqueda resultaron poco confiables (3 falsos positivos de otros municipios).",
+    "Los PDFs individuales de licencias UMAI (con domicilio/DRO/sótanos) no están indexados por buscador externo salvo el ya conocido de Playas — se necesitaría acceso directo al portal interno o solicitud formal para muestrear otras delegaciones.",
+    "Varios folios DOIUM reales confirmados no pudieron procesarse por ser PDFs escaneados sin capa de texto (sin OCR disponible en este entorno).",
+    "SMADS Baja California no tiene gacetas o resolutivos localizables públicamente vía buscador."
+  ]
+}
