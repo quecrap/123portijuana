@@ -1,0 +1,1452 @@
+{
+  "type": "FeatureCollection",
+  "name": "Red_Monitoreo_Piezometrico_CONAGUA_Tijuana_0201",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:OGC:1.3:CRS84"
+    }
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.045416,
+          32.532952
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "179",
+        "NOM_POZO": "CNA_11",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 27.62,
+        "LATITUD": 32.532952,
+        "LONGITUD": -117.045416,
+        "PNE_RECIENTE_M": 7.49,
+        "PNE_MIN_M": 7.49,
+        "PNE_MAX_M": 8.73,
+        "CONDICION_FREATICA": "FREATICO SOMERO-MODERADO (5-10m)",
+        "PNE_2008": "",
+        "PNE_2009": "8.73",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "7.49",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.03135,
+          32.533715
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "180",
+        "NOM_POZO": "CNA_13",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 21.68,
+        "LATITUD": 32.533715,
+        "LONGITUD": -117.03135,
+        "PNE_RECIENTE_M": 5.45,
+        "PNE_MIN_M": 5.45,
+        "PNE_MAX_M": 5.45,
+        "CONDICION_FREATICA": "FREATICO SOMERO-MODERADO (5-10m)",
+        "PNE_2008": "",
+        "PNE_2009": "5.45",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.074806,
+          32.515291
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "181",
+        "NOM_POZO": "CNA_14",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 101.77,
+        "LATITUD": 32.515291,
+        "LONGITUD": -117.074806,
+        "PNE_RECIENTE_M": 104.75,
+        "PNE_MIN_M": 104.75,
+        "PNE_MAX_M": 104.75,
+        "CONDICION_FREATICA": "FREATICO PROFUNDO / MESA (> 25m)",
+        "PNE_2008": "",
+        "PNE_2009": "104.75",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.063387,
+          32.506565
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "182",
+        "NOM_POZO": "CNA_15",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 135.43,
+        "LATITUD": 32.506565,
+        "LONGITUD": -117.063387,
+        "PNE_RECIENTE_M": 152.82,
+        "PNE_MIN_M": 152.3,
+        "PNE_MAX_M": 152.82,
+        "CONDICION_FREATICA": "FREATICO PROFUNDO / MESA (> 25m)",
+        "PNE_2008": "",
+        "PNE_2009": "152.3",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "152.82",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.011123,
+          32.488347
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "183",
+        "NOM_POZO": "CNA_17",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 125.47,
+        "LATITUD": 32.488347,
+        "LONGITUD": -117.011123,
+        "PNE_RECIENTE_M": 10.6,
+        "PNE_MIN_M": 7.31,
+        "PNE_MAX_M": 10.6,
+        "CONDICION_FREATICA": "FREATICO MEDIO (10-25m)",
+        "PNE_2008": "",
+        "PNE_2009": "7.31",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "10.6",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.021559,
+          32.506622
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "184",
+        "NOM_POZO": "CNA_20",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 68.13,
+        "LATITUD": 32.506622,
+        "LONGITUD": -117.021559,
+        "PNE_RECIENTE_M": 22.31,
+        "PNE_MIN_M": 22.31,
+        "PNE_MAX_M": 22.31,
+        "CONDICION_FREATICA": "FREATICO MEDIO (10-25m)",
+        "PNE_2008": "",
+        "PNE_2009": "22.31",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.933895,
+          32.518488
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "185",
+        "NOM_POZO": "CNA_37",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 56.04,
+        "LATITUD": 32.518488,
+        "LONGITUD": -116.933895,
+        "PNE_RECIENTE_M": 10.47,
+        "PNE_MIN_M": 7.78,
+        "PNE_MAX_M": 10.47,
+        "CONDICION_FREATICA": "FREATICO MEDIO (10-25m)",
+        "PNE_2008": "",
+        "PNE_2009": "7.78",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "10.47",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.873057,
+          32.45024
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "186",
+        "NOM_POZO": "CNA_41",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 113.68,
+        "LATITUD": 32.45024,
+        "LONGITUD": -116.873057,
+        "PNE_RECIENTE_M": 29.31,
+        "PNE_MIN_M": 29.31,
+        "PNE_MAX_M": 29.31,
+        "CONDICION_FREATICA": "FREATICO PROFUNDO / MESA (> 25m)",
+        "PNE_2008": "",
+        "PNE_2009": "29.31",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.884847,
+          32.431934
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "187",
+        "NOM_POZO": "CNA_42",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 133.49,
+        "LATITUD": 32.431934,
+        "LONGITUD": -116.884847,
+        "PNE_RECIENTE_M": 37.05,
+        "PNE_MIN_M": 21.06,
+        "PNE_MAX_M": 37.05,
+        "CONDICION_FREATICA": "FREATICO PROFUNDO / MESA (> 25m)",
+        "PNE_2008": "",
+        "PNE_2009": "21.06",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "37.05",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.918998,
+          32.457075
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "188",
+        "NOM_POZO": "CNA_43",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 74.89,
+        "LATITUD": 32.457075,
+        "LONGITUD": -116.918998,
+        "PNE_RECIENTE_M": 38.95,
+        "PNE_MIN_M": 38.95,
+        "PNE_MAX_M": 43.28,
+        "CONDICION_FREATICA": "FREATICO PROFUNDO / MESA (> 25m)",
+        "PNE_2008": "",
+        "PNE_2009": "43.28",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "38.95",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.938016,
+          32.450765
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "189",
+        "NOM_POZO": "CNA_45",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 110.7,
+        "LATITUD": 32.450765,
+        "LONGITUD": -116.938016,
+        "PNE_RECIENTE_M": 24.44,
+        "PNE_MIN_M": 24.44,
+        "PNE_MAX_M": 24.44,
+        "CONDICION_FREATICA": "FREATICO MEDIO (10-25m)",
+        "PNE_2008": "",
+        "PNE_2009": "24.44",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.909042,
+          32.461126
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "190",
+        "NOM_POZO": "CNA_46",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 84.96,
+        "LATITUD": 32.461126,
+        "LONGITUD": -116.909042,
+        "PNE_RECIENTE_M": 74.69,
+        "PNE_MIN_M": 74.69,
+        "PNE_MAX_M": 74.69,
+        "CONDICION_FREATICA": "FREATICO PROFUNDO / MESA (> 25m)",
+        "PNE_2008": "",
+        "PNE_2009": "74.69",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.969183,
+          32.503886
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "191",
+        "NOM_POZO": "CNA_47",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 52.27,
+        "LATITUD": 32.503886,
+        "LONGITUD": -116.969183,
+        "PNE_RECIENTE_M": 18.01,
+        "PNE_MIN_M": 18.01,
+        "PNE_MAX_M": 18.01,
+        "CONDICION_FREATICA": "FREATICO MEDIO (10-25m)",
+        "PNE_2008": "",
+        "PNE_2009": "18.01",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.997899,
+          32.514325
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "192",
+        "NOM_POZO": "CNA_54",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 31.07,
+        "LATITUD": 32.514325,
+        "LONGITUD": -116.997899,
+        "PNE_RECIENTE_M": 6.21,
+        "PNE_MIN_M": 6.21,
+        "PNE_MAX_M": 6.21,
+        "CONDICION_FREATICA": "FREATICO SOMERO-MODERADO (5-10m)",
+        "PNE_2008": "",
+        "PNE_2009": "6.21",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.01611,
+          32.493402
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "193",
+        "NOM_POZO": "CNA_55",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 107.03,
+        "LATITUD": 32.493402,
+        "LONGITUD": -117.01611,
+        "PNE_RECIENTE_M": 13.81,
+        "PNE_MIN_M": 7.36,
+        "PNE_MAX_M": 13.81,
+        "CONDICION_FREATICA": "FREATICO MEDIO (10-25m)",
+        "PNE_2008": "",
+        "PNE_2009": "7.36",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "13.81",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.050147,
+          32.537581
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "194",
+        "NOM_POZO": "CNA_61",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 17.35,
+        "LATITUD": 32.537581,
+        "LONGITUD": -117.050147,
+        "PNE_RECIENTE_M": 7.79,
+        "PNE_MIN_M": 7.79,
+        "PNE_MAX_M": 7.79,
+        "CONDICION_FREATICA": "FREATICO SOMERO-MODERADO (5-10m)",
+        "PNE_2008": "",
+        "PNE_2009": "7.79",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.04686,
+          32.536649
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "195",
+        "NOM_POZO": "CNA_64",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 19.0,
+        "LATITUD": 32.536649,
+        "LONGITUD": -117.04686,
+        "PNE_RECIENTE_M": 5.46,
+        "PNE_MIN_M": 5.46,
+        "PNE_MAX_M": 6.67,
+        "CONDICION_FREATICA": "FREATICO SOMERO-MODERADO (5-10m)",
+        "PNE_2008": "",
+        "PNE_2009": "6.67",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "5.46",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.923593,
+          32.52415
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "196",
+        "NOM_POZO": "CNA_65",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 60.52,
+        "LATITUD": 32.52415,
+        "LONGITUD": -116.923593,
+        "PNE_RECIENTE_M": 13.81,
+        "PNE_MIN_M": 11.21,
+        "PNE_MAX_M": 13.81,
+        "CONDICION_FREATICA": "FREATICO MEDIO (10-25m)",
+        "PNE_2008": "",
+        "PNE_2009": "11.21",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "13.81",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.034445,
+          32.489312
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "197",
+        "NOM_POZO": "CNA_82",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 223.56,
+        "LATITUD": 32.489312,
+        "LONGITUD": -117.034445,
+        "PNE_RECIENTE_M": 36.19,
+        "PNE_MIN_M": 36.19,
+        "PNE_MAX_M": 36.19,
+        "CONDICION_FREATICA": "FREATICO PROFUNDO / MESA (> 25m)",
+        "PNE_2008": "",
+        "PNE_2009": "36.19",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.918663,
+          32.522182
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "198",
+        "NOM_POZO": "CNA_88",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 58.24,
+        "LATITUD": 32.522182,
+        "LONGITUD": -116.918663,
+        "PNE_RECIENTE_M": 7.41,
+        "PNE_MIN_M": 7.41,
+        "PNE_MAX_M": 7.41,
+        "CONDICION_FREATICA": "FREATICO SOMERO-MODERADO (5-10m)",
+        "PNE_2008": "",
+        "PNE_2009": "7.41",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.946397,
+          32.509972
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "199",
+        "NOM_POZO": "CNA_91",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 46.92,
+        "LATITUD": 32.509972,
+        "LONGITUD": -116.946397,
+        "PNE_RECIENTE_M": 8.03,
+        "PNE_MIN_M": 6.27,
+        "PNE_MAX_M": 8.03,
+        "CONDICION_FREATICA": "FREATICO SOMERO-MODERADO (5-10m)",
+        "PNE_2008": "",
+        "PNE_2009": "6.27",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "8.03",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.001869,
+          32.517822
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "200",
+        "NOM_POZO": "CNA_99",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 28.17,
+        "LATITUD": 32.517822,
+        "LONGITUD": -117.001869,
+        "PNE_RECIENTE_M": 3.32,
+        "PNE_MIN_M": 3.32,
+        "PNE_MAX_M": 3.83,
+        "CONDICION_FREATICA": "AGUA SOMERA CRITICA (< 5m)",
+        "PNE_2008": "",
+        "PNE_2009": "3.83",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "3.32",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.968222,
+          32.512687
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "201",
+        "NOM_POZO": "Pozo 14",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 35.96,
+        "LATITUD": 32.512687,
+        "LONGITUD": -116.968222,
+        "PNE_RECIENTE_M": 4.82,
+        "PNE_MIN_M": 4.48,
+        "PNE_MAX_M": 4.82,
+        "CONDICION_FREATICA": "AGUA SOMERA CRITICA (< 5m)",
+        "PNE_2008": "",
+        "PNE_2009": "4.48",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "4.82",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.961007,
+          32.511867
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "202",
+        "NOM_POZO": "Pozo 3",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 41.33,
+        "LATITUD": 32.511867,
+        "LONGITUD": -116.961007,
+        "PNE_RECIENTE_M": 8.33,
+        "PNE_MIN_M": 8.33,
+        "PNE_MAX_M": 8.33,
+        "CONDICION_FREATICA": "FREATICO SOMERO-MODERADO (5-10m)",
+        "PNE_2008": "",
+        "PNE_2009": "8.33",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.033993,
+          32.541893
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "203",
+        "NOM_POZO": "Pozo 32",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 19.92,
+        "LATITUD": 32.541893,
+        "LONGITUD": -117.033993,
+        "PNE_RECIENTE_M": 7.43,
+        "PNE_MIN_M": 7.19,
+        "PNE_MAX_M": 7.43,
+        "CONDICION_FREATICA": "FREATICO SOMERO-MODERADO (5-10m)",
+        "PNE_2008": "",
+        "PNE_2009": "7.19",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "7.43",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.026766,
+          32.535868
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "204",
+        "NOM_POZO": "Pozo 36",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 20.01,
+        "LATITUD": 32.535868,
+        "LONGITUD": -117.026766,
+        "PNE_RECIENTE_M": 4.34,
+        "PNE_MIN_M": 4.34,
+        "PNE_MAX_M": 4.34,
+        "CONDICION_FREATICA": "AGUA SOMERA CRITICA (< 5m)",
+        "PNE_2008": "",
+        "PNE_2009": "4.34",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.992593,
+          32.519627
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "205",
+        "NOM_POZO": "Pozo 44",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 33.35,
+        "LATITUD": 32.519627,
+        "LONGITUD": -116.992593,
+        "PNE_RECIENTE_M": 8.94,
+        "PNE_MIN_M": 8.89,
+        "PNE_MAX_M": 8.94,
+        "CONDICION_FREATICA": "FREATICO SOMERO-MODERADO (5-10m)",
+        "PNE_2008": "",
+        "PNE_2009": "8.89",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "8.94",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.013787,
+          32.506892
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "206",
+        "NOM_POZO": "Pozo 70",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 49.07,
+        "LATITUD": 32.506892,
+        "LONGITUD": -117.013787,
+        "PNE_RECIENTE_M": 5.57,
+        "PNE_MIN_M": 5.47,
+        "PNE_MAX_M": 5.57,
+        "CONDICION_FREATICA": "FREATICO SOMERO-MODERADO (5-10m)",
+        "PNE_2008": "",
+        "PNE_2009": "5.47",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "5.57",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.013791,
+          32.530435
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "207",
+        "NOM_POZO": "Pozo 73",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 25.74,
+        "LATITUD": 32.530435,
+        "LONGITUD": -117.013791,
+        "PNE_RECIENTE_M": 6.79,
+        "PNE_MIN_M": 5.12,
+        "PNE_MAX_M": 6.79,
+        "CONDICION_FREATICA": "FREATICO SOMERO-MODERADO (5-10m)",
+        "PNE_2008": "",
+        "PNE_2009": "5.12",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "6.79",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.986476,
+          32.514732
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "208",
+        "NOM_POZO": "Pozo Corette",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 33.89,
+        "LATITUD": 32.514732,
+        "LONGITUD": -116.986476,
+        "PNE_RECIENTE_M": 7.36,
+        "PNE_MIN_M": 7.36,
+        "PNE_MAX_M": 7.36,
+        "CONDICION_FREATICA": "FREATICO SOMERO-MODERADO (5-10m)",
+        "PNE_2008": "",
+        "PNE_2009": "7.36",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.01527,
+          32.525345
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "209",
+        "NOM_POZO": "Pozo XD",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 25.83,
+        "LATITUD": 32.525345,
+        "LONGITUD": -117.01527,
+        "PNE_RECIENTE_M": 5.7,
+        "PNE_MIN_M": 4.36,
+        "PNE_MAX_M": 5.7,
+        "CONDICION_FREATICA": "FREATICO SOMERO-MODERADO (5-10m)",
+        "PNE_2008": "",
+        "PNE_2009": "4.36",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "5.7",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.937564,
+          32.490955
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "210",
+        "NOM_POZO": "PB_1",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 51.56,
+        "LATITUD": 32.490955,
+        "LONGITUD": -116.937564,
+        "PNE_RECIENTE_M": 8.84,
+        "PNE_MIN_M": 8.84,
+        "PNE_MAX_M": 8.84,
+        "CONDICION_FREATICA": "FREATICO SOMERO-MODERADO (5-10m)",
+        "PNE_2008": "",
+        "PNE_2009": "8.84",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.024769,
+          32.526122
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "211",
+        "NOM_POZO": "PB_2",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 25.97,
+        "LATITUD": 32.526122,
+        "LONGITUD": -117.024769,
+        "PNE_RECIENTE_M": 6.71,
+        "PNE_MIN_M": 6.18,
+        "PNE_MAX_M": 6.71,
+        "CONDICION_FREATICA": "FREATICO SOMERO-MODERADO (5-10m)",
+        "PNE_2008": "",
+        "PNE_2009": "6.18",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "6.71",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.960979,
+          32.511854
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "212",
+        "NOM_POZO": "PB_3",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 41.95,
+        "LATITUD": 32.511854,
+        "LONGITUD": -116.960979,
+        "PNE_RECIENTE_M": 7.96,
+        "PNE_MIN_M": 7.96,
+        "PNE_MAX_M": 7.96,
+        "CONDICION_FREATICA": "FREATICO SOMERO-MODERADO (5-10m)",
+        "PNE_2008": "",
+        "PNE_2009": "7.96",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.937535,
+          32.490939
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "213",
+        "NOM_POZO": "PO_1",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 51.55,
+        "LATITUD": 32.490939,
+        "LONGITUD": -116.937535,
+        "PNE_RECIENTE_M": 8.66,
+        "PNE_MIN_M": 8.66,
+        "PNE_MAX_M": 8.86,
+        "CONDICION_FREATICA": "FREATICO SOMERO-MODERADO (5-10m)",
+        "PNE_2008": "",
+        "PNE_2009": "8.86",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "8.66",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.032685,
+          32.523163
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "214",
+        "NOM_POZO": "PO_2",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 49.76,
+        "LATITUD": 32.523163,
+        "LONGITUD": -117.032685,
+        "PNE_RECIENTE_M": 22.39,
+        "PNE_MIN_M": 22.39,
+        "PNE_MAX_M": 22.39,
+        "CONDICION_FREATICA": "FREATICO MEDIO (10-25m)",
+        "PNE_2008": "",
+        "PNE_2009": "22.39",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.979355,
+          32.512977
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "215",
+        "NOM_POZO": "Pozo 13",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 35.67,
+        "LATITUD": 32.512977,
+        "LONGITUD": -116.979355,
+        "PNE_RECIENTE_M": 8.14,
+        "PNE_MIN_M": 7.54,
+        "PNE_MAX_M": 8.14,
+        "CONDICION_FREATICA": "FREATICO SOMERO-MODERADO (5-10m)",
+        "PNE_2008": "",
+        "PNE_2009": "7.54",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "8.14",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.937354,
+          32.51668
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "216",
+        "NOM_POZO": "CNA_10",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 54.43,
+        "LATITUD": 32.51668,
+        "LONGITUD": -116.937354,
+        "PNE_RECIENTE_M": 10.0,
+        "PNE_MIN_M": 10.0,
+        "PNE_MAX_M": 10.0,
+        "CONDICION_FREATICA": "FREATICO SOMERO-MODERADO (5-10m)",
+        "PNE_2008": "",
+        "PNE_2009": "10",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.0215,
+          32.50336
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "217",
+        "NOM_POZO": "CNA_18",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 76.26,
+        "LATITUD": 32.50336,
+        "LONGITUD": -117.0215,
+        "PNE_RECIENTE_M": 30.7,
+        "PNE_MIN_M": 30.7,
+        "PNE_MAX_M": 30.7,
+        "CONDICION_FREATICA": "FREATICO PROFUNDO / MESA (> 25m)",
+        "PNE_2008": "",
+        "PNE_2009": "30.7",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.02184,
+          32.511652
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "218",
+        "NOM_POZO": "CNA_19",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 58.24,
+        "LATITUD": 32.511652,
+        "LONGITUD": -117.02184,
+        "PNE_RECIENTE_M": 56.2,
+        "PNE_MIN_M": 56.2,
+        "PNE_MAX_M": 56.2,
+        "CONDICION_FREATICA": "FREATICO PROFUNDO / MESA (> 25m)",
+        "PNE_2008": "",
+        "PNE_2009": "56.2",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.929126,
+          32.456576
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "219",
+        "NOM_POZO": "CNA_44",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 86.94,
+        "LATITUD": 32.456576,
+        "LONGITUD": -116.929126,
+        "PNE_RECIENTE_M": 57.58,
+        "PNE_MIN_M": 57.58,
+        "PNE_MAX_M": 57.58,
+        "CONDICION_FREATICA": "FREATICO PROFUNDO / MESA (> 25m)",
+        "PNE_2008": "",
+        "PNE_2009": "57.58",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.977434,
+          32.546443
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "220",
+        "NOM_POZO": "CNA_59",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 146.19,
+        "LATITUD": 32.546443,
+        "LONGITUD": -116.977434,
+        "PNE_RECIENTE_M": 131.96,
+        "PNE_MIN_M": 131.96,
+        "PNE_MAX_M": 131.96,
+        "CONDICION_FREATICA": "FREATICO PROFUNDO / MESA (> 25m)",
+        "PNE_2008": "",
+        "PNE_2009": "131.96",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.051581,
+          32.539661
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "221",
+        "NOM_POZO": "CNA_62",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 17.36,
+        "LATITUD": 32.539661,
+        "LONGITUD": -117.051581,
+        "PNE_RECIENTE_M": 14.91,
+        "PNE_MIN_M": 14.91,
+        "PNE_MAX_M": 14.91,
+        "CONDICION_FREATICA": "FREATICO MEDIO (10-25m)",
+        "PNE_2008": "",
+        "PNE_2009": "14.91",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.04339,
+          32.539682
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "222",
+        "NOM_POZO": "CNA_63",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 19.09,
+        "LATITUD": 32.539682,
+        "LONGITUD": -117.04339,
+        "PNE_RECIENTE_M": 5.6,
+        "PNE_MIN_M": 5.6,
+        "PNE_MAX_M": 8.97,
+        "CONDICION_FREATICA": "FREATICO SOMERO-MODERADO (5-10m)",
+        "PNE_2008": "",
+        "PNE_2009": "8.97",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "5.6",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.909509,
+          32.460633
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "223",
+        "NOM_POZO": "CNA_66",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 83.33,
+        "LATITUD": 32.460633,
+        "LONGITUD": -116.909509,
+        "PNE_RECIENTE_M": 74.99,
+        "PNE_MIN_M": 74.99,
+        "PNE_MAX_M": 74.99,
+        "CONDICION_FREATICA": "FREATICO PROFUNDO / MESA (> 25m)",
+        "PNE_2008": "",
+        "PNE_2009": "74.99",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.891494,
+          32.444863
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "224",
+        "NOM_POZO": "CNA-67",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 111.68,
+        "LATITUD": 32.444863,
+        "LONGITUD": -116.891494,
+        "PNE_RECIENTE_M": 22.0,
+        "PNE_MIN_M": 16.21,
+        "PNE_MAX_M": 22.0,
+        "CONDICION_FREATICA": "FREATICO MEDIO (10-25m)",
+        "PNE_2008": "",
+        "PNE_2009": "16.21",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "22",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -117.035692,
+          32.489869
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "225",
+        "NOM_POZO": "CNA_81",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 218.29,
+        "LATITUD": 32.489869,
+        "LONGITUD": -117.035692,
+        "PNE_RECIENTE_M": 32.79,
+        "PNE_MIN_M": 32.79,
+        "PNE_MAX_M": 34.06,
+        "CONDICION_FREATICA": "FREATICO PROFUNDO / MESA (> 25m)",
+        "PNE_2008": "",
+        "PNE_2009": "34.06",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "32.79",
+        "PNE_2014": ""
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -116.940508,
+          32.498228
+        ]
+      },
+      "properties": {
+        "NUM_POZO": "226",
+        "NOM_POZO": "CNA_97",
+        "CVE_ACUI": "0201",
+        "NOM_ACUIF": "TIJUANA",
+        "ELEV_TN": 45.55,
+        "LATITUD": 32.498228,
+        "LONGITUD": -116.940508,
+        "PNE_RECIENTE_M": 6.1,
+        "PNE_MIN_M": 6.1,
+        "PNE_MAX_M": 8.31,
+        "CONDICION_FREATICA": "FREATICO SOMERO-MODERADO (5-10m)",
+        "PNE_2008": "",
+        "PNE_2009": "8.31",
+        "PNE_2010": "",
+        "PNE_2011": "",
+        "PNE_2012": "",
+        "PNE_2013": "6.1",
+        "PNE_2014": ""
+      }
+    }
+  ]
+}
