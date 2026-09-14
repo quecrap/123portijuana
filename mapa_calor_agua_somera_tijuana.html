@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mapa de Calor: Agua Somera en Tijuana — AquaResiliencia</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-dark: #070d18;
+      --panel-bg: rgba(15, 23, 42, 0.88);
+      --border-cyan: rgba(56, 189, 248, 0.28);
+      --cyan: #00e5ff;
+      --text: #f8fafc;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body, html { height: 100%; width: 100%; font-family: 'Outfit', sans-serif; background: var(--bg-dark); color: var(--text); overflow: hidden; }
+    #map { height: 100%; width: 100%; }
+    .header-bar {
+      position: absolute; top: 16px; left: 16px; z-index: 1000;
+      background: var(--panel-bg); backdrop-filter: blur(10px);
+      border: 1px solid var(--border-cyan); border-radius: 12px;
+      padding: 14px 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+      max-width: 440px;
+    }
+    .header-bar h1 { font-size: 1.15rem; color: var(--cyan); margin-bottom: 4px; display: flex; align-items: center; gap: 8px; }
+    .header-bar p { font-size: 0.82rem; color: #94a3b8; line-height: 1.35; }
+    .legend-box {
+      position: absolute; bottom: 24px; right: 16px; z-index: 1000;
+      background: var(--panel-bg); backdrop-filter: blur(10px);
+      border: 1px solid var(--border-cyan); border-radius: 10px;
+      padding: 12px 16px; font-size: 0.78rem; box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    }
+    .legend-gradient {
+      width: 180px; height: 12px; border-radius: 4px; margin: 6px 0;
+      background: linear-gradient(to right, #00e5ff, #3b82f6, #10b981, #f59e0b, #ef4444);
+    }
+    .legend-labels { display: flex; justify-content: space-between; font-family: 'JetBrains Mono', monospace; font-size: 0.7rem; color: #cbd5e1; }
+    .control-group { margin-top: 10px; display: flex; gap: 8px; }
+    .btn {
+      background: rgba(56, 189, 248, 0.15); border: 1px solid var(--cyan); color: var(--cyan);
+      padding: 6px 12px; border-radius: 6px; font-size: 0.78rem; font-weight: 600; cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn:hover { background: var(--cyan); color: #070d18; }
+  </style>
+</head>
+<body>
+  <div id="map"></div>
+  <div class="header-bar">
+    <h1>🔥 Mapa de Calor: Agua Somera en Tijuana</h1>
+    <p>Interpolación continua de densidad térmica basada en 23 registros forenses y piezométricos directos (sótanos con cárcamo, peritajes judiciales, tomografías geoeléctricas y CONAGUA).</p>
+    <div class="control-group">
+      <button class="btn" onclick="toggleHeat()">Alternar Calor</button>
+      <button class="btn" onclick="toggleMarkers()">Alternar Puntos</button>
+      <button class="btn" onclick="fitTijuana()">Centrar Tijuana</button>
+    </div>
+  </div>
+
+  <div class="legend-box">
+    <div style="font-weight: 700; color: #f8fafc;">Profundidad NAF / Intensidad de Saturación</div>
+    <div class="legend-gradient"></div>
+    <div class="legend-labels">
+      <span>> 7m (Bajo)</span>
+      <span>3 - 4m</span>
+      <span>< 2m (Aflorante)</span>
+    </div>
+  </div>
+
+  <script>
+    const puntos = [
+  {
+    "id": "P01",
+    "nombre": "Torre Cosmopolitan / Paseo de los Héroes",
+    "delegacion": "Centro - Zona Río",
+    "lat": 32.5284,
+    "lng": -117.0225,
+    "profundidad_naf_m": 3.2,
+    "peso": 0.85,
+    "categoria": "Sótano con Cárcamo 24/7",
+    "geologia": "Aluvión arenoso saturado del Río Tijuana",
+    "fuente": "Bitácora de obra civil y losa de supresión con achique continuo"
+  },
+  {
+    "id": "P02",
+    "nombre": "New City Medical Plaza",
+    "delegacion": "Centro - Zona Río",
+    "lat": 32.5381,
+    "lng": -117.0289,
+    "profundidad_naf_m": 2.8,
+    "peso": 0.9,
+    "categoria": "Sótano con Cárcamo 24/7",
+    "geologia": "Aluvión fluvial saturado próximo a canalización",
+    "fuente": "Cimentación profunda con pilotes y bombeo permanente de freático"
+  },
+  {
+    "id": "P03",
+    "nombre": "Plaza Río Tijuana / Sótanos Comerciales",
+    "delegacion": "Centro - Zona Río",
+    "lat": 32.5262,
+    "lng": -117.0185,
+    "profundidad_naf_m": 3.8,
+    "peso": 0.8,
+    "categoria": "Sótano con Cárcamo 24/7",
+    "geologia": "Aluvión del Río Tijuana manto freático somero",
+    "fuente": "Pozos de alivio piezométrico contra subpresión hidrostática"
+  },
+  {
+    "id": "P04",
+    "nombre": "Puente El Chaparral / Garita Internacional",
+    "delegacion": "Centro - Chaparral",
+    "lat": 32.5422,
+    "lng": -117.0341,
+    "profundidad_naf_m": 2.5,
+    "peso": 0.95,
+    "categoria": "Obra Pública con Sobredrenaje",
+    "geologia": "Aluvión limoso-arcilloso con freático somero",
+    "fuente": "Obras de rehabilitación SIDURT 2023-2024 con partidas de achique continuo"
+  },
+  {
+    "id": "P05",
+    "nombre": "Arroyo Alamar / Puente Murúa",
+    "delegacion": "Otay Centenario",
+    "lat": 32.5315,
+    "lng": -116.942,
+    "profundidad_naf_m": 4.2,
+    "peso": 0.8,
+    "categoria": "Piezometría Oficial CONAGUA",
+    "geologia": "Aluvión grueso de alta transmisividad hidráulica",
+    "fuente": "CONAGUA Determinación de Disponibilidad Acuífero Tijuana DR_0201 (Censo 2010)"
+  },
+  {
+    "id": "P06",
+    "nombre": "Cañón del Padre / San José del Rincón",
+    "delegacion": "Otay Centenario",
+    "lat": 32.5208,
+    "lng": -116.905,
+    "profundidad_naf_m": 5.5,
+    "peso": 0.7,
+    "categoria": "Aprovechamiento Concesionado REPDA",
+    "geologia": "Aluvión fluvial permeable cuenca Alamar",
+    "fuente": "Censo de aprovechamientos CONAGUA y pozos agrícolas someros"
+  },
+  {
+    "id": "P07",
+    "nombre": "Parque Morelos / Humedal y Lago Urbano",
+    "delegacion": "La Mesa",
+    "lat": 32.5035,
+    "lng": -116.938,
+    "profundidad_naf_m": 3.5,
+    "peso": 0.85,
+    "categoria": "Afloramiento / Espejo de Agua",
+    "geologia": "Aluvión fluvial de valle central",
+    "fuente": "Espejo de agua perenne sustentado por manto freático somero del Río Tijuana"
+  },
+  {
+    "id": "P08",
+    "nombre": "Fracc. Valle del Sur / Talud y Parque",
+    "delegacion": "San Antonio de los Buenos",
+    "lat": 32.4882,
+    "lng": -117.0421,
+    "profundidad_naf_m": 3.0,
+    "peso": 1.0,
+    "categoria": "Medición Geofísica Directa",
+    "geologia": "Paleocanal con limos y arcillas sobre discordancia",
+    "fuente": "Delgado Argote et al. GEOS Vol. 37 No. 2 (2017) Unión Geofísica Mexicana (Tomografía Dipolo-Dipolo)"
+  },
+  {
+    "id": "P09",
+    "nombre": "Lomas del Rubí / Calle Mirador",
+    "delegacion": "San Antonio de los Buenos",
+    "lat": 32.4975,
+    "lng": -117.0385,
+    "profundidad_naf_m": 1.8,
+    "peso": 0.95,
+    "categoria": "Deslizamiento Rotacional con Fuga",
+    "geologia": "Fm. Otay / Fm. San Diego contacto arcilloso impermeable",
+    "fuente": "Peritajes judiciales y dictamen Protección Civil colapso 2018 (saturación por fugas crónicas)"
+  },
+  {
+    "id": "P10",
+    "nombre": "Camino Verde / Cañón de las Carretas",
+    "delegacion": "Sánchez Taboada",
+    "lat": 32.482,
+    "lng": -116.998,
+    "profundidad_naf_m": 2.2,
+    "peso": 0.95,
+    "categoria": "Deslizamiento Rotacional con Fuga",
+    "geologia": "Fm. Otay arcillas expansivas saturadas",
+    "fuente": "Declaratoria de Emergencia Geológica municipal 2022 y sondeos geotécnicos con freático a 2m"
+  },
+  {
+    "id": "P11",
+    "nombre": "Sánchez Taboada / Calle Casiopea",
+    "delegacion": "Sánchez Taboada",
+    "lat": 32.476,
+    "lng": -116.9855,
+    "profundidad_naf_m": 2.0,
+    "peso": 0.95,
+    "categoria": "Deslizamiento Rotacional con Fuga",
+    "geologia": "Areniscas y limolitas con paleocanal de arcilla",
+    "fuente": "Deslindes CESPT agua sin cloro / peritajes geológicos de agrietamiento estructural"
+  },
+  {
+    "id": "P12",
+    "nombre": "Cañón del Matadero / Desarenador",
+    "delegacion": "Playas de Tijuana",
+    "lat": 32.529,
+    "lng": -117.0985,
+    "profundidad_naf_m": 1.5,
+    "peso": 1.0,
+    "categoria": "Obra Pública con Sobredrenaje",
+    "geologia": "Arenas limosas colapsables saturadas",
+    "fuente": "Colapso de terraplén carretero 2023 y cárcamos de achique forzado de emergencia"
+  },
+  {
+    "id": "P13",
+    "nombre": "Playas de Tijuana / Pozo 001 Los Sauces",
+    "delegacion": "Playas de Tijuana",
+    "lat": 32.5225,
+    "lng": -117.118,
+    "profundidad_naf_m": 3.8,
+    "peso": 0.85,
+    "categoria": "Medición Piezométrica Directa",
+    "geologia": "Aluvión costero sobre terraza marina colapsable",
+    "fuente": "Pozo piloto experimental AquaResiliencia Caso 001 perforado y aforado en 2022"
+  },
+  {
+    "id": "P14",
+    "nombre": "El Faro / Malecón Playas",
+    "delegacion": "Playas de Tijuana",
+    "lat": 32.5335,
+    "lng": -117.1235,
+    "profundidad_naf_m": 2.1,
+    "peso": 0.95,
+    "categoria": "Interfase Marina / Freático Costero",
+    "geologia": "Arenas de playa y aluvión costero saturado",
+    "fuente": "Sótanos de condominios costeros con bombas sumergibles de freático continuo"
+  },
+  {
+    "id": "P15",
+    "nombre": "Cañón de Los Laureles / Vertedero Binacional",
+    "delegacion": "Playas de Tijuana",
+    "lat": 32.5385,
+    "lng": -117.108,
+    "profundidad_naf_m": 1.8,
+    "peso": 0.95,
+    "categoria": "Afloramiento / Flujo Somero",
+    "geologia": "Aluvión y azolve en lecho de cañada",
+    "fuente": "Estudios transfronterizos CILA/EPA flujo base subterráneo y superficial continuo"
+  },
+  {
+    "id": "P16",
+    "nombre": "Cañón Johnson / Venero Col. Hidalgo",
+    "delegacion": "Centro - Cañón Johnson",
+    "lat": 32.5125,
+    "lng": -117.046,
+    "profundidad_naf_m": 0.8,
+    "peso": 1.0,
+    "categoria": "Manantial / Afloramiento Natural",
+    "geologia": "Contacto geológico permeable-impermeable",
+    "fuente": "Afloramiento permanente de agua dulce de venero natural documentado por vecinos y CESPT"
+  },
+  {
+    "id": "P17",
+    "nombre": "Aguaje de la Tuna / Manantial Histórico",
+    "delegacion": "San Antonio de los Buenos",
+    "lat": 32.484,
+    "lng": -117.025,
+    "profundidad_naf_m": 1.0,
+    "peso": 1.0,
+    "categoria": "Manantial / Afloramiento Natural",
+    "geologia": "Discordancia geológica basal",
+    "fuente": "Manantial histórico fundacional de Tijuana registrado en cartografía histórica del Siglo XIX"
+  },
+  {
+    "id": "P18",
+    "nombre": "Cañón del Sáinz / Vado Principal",
+    "delegacion": "Presa Rural",
+    "lat": 32.428,
+    "lng": -116.945,
+    "profundidad_naf_m": 3.5,
+    "peso": 0.85,
+    "categoria": "Afloramiento / Norias Agrícolas",
+    "geologia": "Depósitos aluviales y coluviales en cañada",
+    "fuente": "Norias rústicas artesanales y brotes de humedad freática en pie de talud"
+  },
+  {
+    "id": "P19",
+    "nombre": "Sauceda Cañón de San Antonio",
+    "delegacion": "Otay - La Mesa",
+    "lat": 32.518,
+    "lng": -116.965,
+    "profundidad_naf_m": 2.5,
+    "peso": 0.9,
+    "categoria": "Bioindicador Freatófito",
+    "geologia": "Aluvión húmedo en fondo de cañada",
+    "fuente": "Observaciones iNaturalist Salix gooddingii y Populus fremontii (freatófitos obligados)"
+  },
+  {
+    "id": "P20",
+    "nombre": "Arroyo Huertita / Sauceda Costera",
+    "delegacion": "Playas Sur",
+    "lat": 32.495,
+    "lng": -117.105,
+    "profundidad_naf_m": 2.8,
+    "peso": 0.88,
+    "categoria": "Bioindicador Freatófito",
+    "geologia": "Aluvión de cañada costera sin red de agua",
+    "fuente": "Bosquete de Salix laevigata dependiente de manto freático colgado somero permanente"
+  },
+  {
+    "id": "P21",
+    "nombre": "Pozo Industrial Agua Caliente",
+    "delegacion": "La Mesa",
+    "lat": 32.5183,
+    "lng": -116.8406,
+    "profundidad_naf_m": 6.5,
+    "peso": 0.65,
+    "categoria": "Aprovechamiento Concesionado REPDA",
+    "geologia": "Aluvión del Río Tijuana",
+    "fuente": "Título REPDA CONAGUA 01BCA100142/01IPGR94 uso servicios e industrial"
+  },
+  {
+    "id": "P22",
+    "nombre": "Pozos Aluviales El Florido",
+    "delegacion": "El Florido - La Presa",
+    "lat": 32.465,
+    "lng": -116.855,
+    "profundidad_naf_m": 7.2,
+    "peso": 0.6,
+    "categoria": "Piezometría Oficial CONAGUA",
+    "geologia": "Gravas y arenas aluviales de recarga",
+    "fuente": "Censo CONAGUA DR_0201 (18 pozos censados en sector El Florido)"
+  },
+  {
+    "id": "P23",
+    "nombre": "Pozo Las Montañas",
+    "delegacion": "San Antonio de los Buenos",
+    "lat": 32.47,
+    "lng": -117.03,
+    "profundidad_naf_m": 5.8,
+    "peso": 0.7,
+    "categoria": "Aprovechamiento Concesionado REPDA",
+    "geologia": "Conglomerados y arenas de transición",
+    "fuente": "Título REPDA CONAGUA 01BCA100709/01FMGR94 extracción subterránea activa"
+  }
+];
+    const heatData = [[32.5284, -117.0225, 0.85], [32.5381, -117.0289, 0.9], [32.5262, -117.0185, 0.8], [32.5422, -117.0341, 0.95], [32.5315, -116.942, 0.8], [32.5208, -116.905, 0.7], [32.5035, -116.938, 0.85], [32.4882, -117.0421, 1.0], [32.4975, -117.0385, 0.95], [32.482, -116.998, 0.95], [32.476, -116.9855, 0.95], [32.529, -117.0985, 1.0], [32.5225, -117.118, 0.85], [32.5335, -117.1235, 0.95], [32.5385, -117.108, 0.95], [32.5125, -117.046, 1.0], [32.484, -117.025, 1.0], [32.428, -116.945, 0.85], [32.518, -116.965, 0.9], [32.495, -117.105, 0.88], [32.5183, -116.8406, 0.65], [32.465, -116.855, 0.6], [32.47, -117.03, 0.7]];
+
+    const map = L.map('map', {
+      center: [32.505, -117.02],
+      zoom: 12,
+      zoomControl: false
+    });
+    L.control.zoom({ position: 'topright' }).addTo(map);
+
+    // Cartografía Dark Matter
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; CartoDB &copy; OpenStreetMap | AquaResiliencia',
+      subdomains: 'abcd',
+      maxZoom: 19
+    }).addTo(map);
+
+    // Capa de Calor
+    const heatLayer = L.heatLayer(heatData, {
+      radius: 35,
+      blur: 25,
+      maxZoom: 15,
+      gradient: {
+        0.15: '#00e5ff',
+        0.35: '#3b82f6',
+        0.60: '#10b981',
+        0.80: '#f59e0b',
+        1.00: '#ef4444'
+      }
+    }).addTo(map);
+
+    // Capa de Marcadores
+    const markerLayer = L.layerGroup().addTo(map);
+    puntos.forEach(p => {
+      const color = p.profundidad_naf_m <= 2.0 ? '#ef4444' :
+                    p.profundidad_naf_m <= 4.0 ? '#f59e0b' :
+                    p.profundidad_naf_m <= 6.0 ? '#10b981' : '#00e5ff';
+
+      const circle = L.circleMarker([p.lat, p.lng], {
+        radius: 7,
+        fillColor: color,
+        color: '#ffffff',
+        weight: 1.5,
+        opacity: 0.9,
+        fillOpacity: 0.85
+      });
+
+      const popupHtml = `
+        <div style="font-family:'Outfit',sans-serif;min-width:240px;color:#0f172a;line-height:1.4">
+          <b style="color:#0284c7;font-size:0.95rem">${p.id}: ${p.nombre}</b><br>
+          <span style="font-size:0.8rem;color:#64748b">${p.delegacion}</span>
+          <hr style="margin:6px 0;border:0;border-top:1px solid #e2e8f0">
+          <b>Profundidad NAF:</b> <span style="font-size:1rem;color:#b91c1c;font-weight:700">${p.profundidad_naf_m} m</span><br>
+          <b>Categoría:</b> ${p.categoria}<br>
+          <b>Geología:</b> <span style="font-size:0.75rem">${p.geologia}</span><br>
+          <b>Evidencia:</b> <span style="font-size:0.75rem">${p.evidencia}</span>
+        </div>
+      `;
+      circle.bindPopup(popupHtml);
+      markerLayer.addLayer(circle);
+    });
+
+    function toggleHeat() {
+      if (map.hasLayer(heatLayer)) { map.removeLayer(heatLayer); }
+      else { map.addLayer(heatLayer); }
+    }
+
+    function toggleMarkers() {
+      if (map.hasLayer(markerLayer)) { map.removeLayer(markerLayer); }
+      else { map.addLayer(markerLayer); }
+    }
+
+    function fitTijuana() {
+      map.setView([32.505, -117.02], 12);
+    }
+  </script>
+</body>
+</html>

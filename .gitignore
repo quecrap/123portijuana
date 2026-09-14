@@ -3,6 +3,7 @@
 *.jpeg
 *.png
 !fig*.png
+!mapa_calor_*.png
 *.webp
 *.gif
 *.bmp

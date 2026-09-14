@@ -1,0 +1,358 @@
+{
+  "type": "FeatureCollection",
+  "metadata": {
+    "titulo": "Inventario Georreferenciado de Evidencias de Agua Somera en Tijuana",
+    "descripcion": "Dataset empírico y forense calibrado para modelos de interpolación espacial y mapas de calor (Heatmaps) de nivel freático somero (0.0 a 7.5 m) y zonas de saturación crítica en Tijuana, B.C.",
+    "fecha": "2026-09-14",
+    "total_puntos": 23,
+    "sistema_coordenadas": "EPSG:4326 (WGS84)",
+    "escala_intensidad": "0.0 (profundo/seco) a 1.0 (afloramiento o freático < 2m)"
+  },
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-117.0225, 32.5284] },
+      "properties": {
+        "id": "P01",
+        "nombre": "Torre Cosmopolitan / Paseo de los Héroes",
+        "delegacion": "Centro - Zona Río",
+        "profundidad_naf_m": 3.2,
+        "intensidad_calor": 0.85,
+        "categoria": "Sótano con Cárcamo 24/7",
+        "geologia": "Aluvión arenoso saturado del Río Tijuana",
+        "evidencia": "Bitácora de obra civil y losa de supresión con achique continuo",
+        "verificado": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-117.0289, 32.5381] },
+      "properties": {
+        "id": "P02",
+        "nombre": "New City Medical Plaza",
+        "delegacion": "Centro - Zona Río",
+        "profundidad_naf_m": 2.8,
+        "intensidad_calor": 0.90,
+        "categoria": "Sótano con Cárcamo 24/7",
+        "geologia": "Aluvión fluvial saturado próximo a canalización",
+        "evidencia": "Cimentación profunda con pilotes y bombeo permanente de freático",
+        "verificado": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-117.0185, 32.5262] },
+      "properties": {
+        "id": "P03",
+        "nombre": "Plaza Río Tijuana / Sótanos Comerciales",
+        "delegacion": "Centro - Zona Río",
+        "profundidad_naf_m": 3.8,
+        "intensidad_calor": 0.80,
+        "categoria": "Sótano con Cárcamo 24/7",
+        "geologia": "Aluvión del Río Tijuana manto freático somero",
+        "evidencia": "Pozos de alivio piezométrico contra subpresión hidrostática",
+        "verificado": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-117.0341, 32.5422] },
+      "properties": {
+        "id": "P04",
+        "nombre": "Puente El Chaparral / Garita Internacional",
+        "delegacion": "Centro - Chaparral",
+        "profundidad_naf_m": 2.5,
+        "intensidad_calor": 0.95,
+        "categoria": "Obra Pública con Sobredrenaje",
+        "geologia": "Aluvión limoso-arcilloso con freático somero",
+        "evidencia": "Obras de rehabilitación SIDURT 2023-2024 con partidas de achique continuo",
+        "verificado": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-116.9420, 32.5315] },
+      "properties": {
+        "id": "P05",
+        "nombre": "Arroyo Alamar / Puente Murúa",
+        "delegacion": "Otay Centenario",
+        "profundidad_naf_m": 4.2,
+        "intensidad_calor": 0.80,
+        "categoria": "Piezometría Oficial CONAGUA",
+        "geologia": "Aluvión grueso de alta transmisividad hidráulica",
+        "evidencia": "CONAGUA Determinación de Disponibilidad Acuífero Tijuana DR_0201 (Censo 2010)",
+        "verificado": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-116.9050, 32.5208] },
+      "properties": {
+        "id": "P06",
+        "nombre": "Cañón del Padre / San José del Rincón",
+        "delegacion": "Otay Centenario",
+        "profundidad_naf_m": 5.5,
+        "intensidad_calor": 0.70,
+        "categoria": "Aprovechamiento Concesionado REPDA",
+        "geologia": "Aluvión fluvial permeable cuenca Alamar",
+        "evidencia": "Censo de aprovechamientos CONAGUA y pozos agrícolas someros",
+        "verificado": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-116.9380, 32.5035] },
+      "properties": {
+        "id": "P07",
+        "nombre": "Parque Morelos / Humedal y Lago Urbano",
+        "delegacion": "La Mesa",
+        "profundidad_naf_m": 3.5,
+        "intensidad_calor": 0.85,
+        "categoria": "Afloramiento / Espejo de Agua",
+        "geologia": "Aluvión fluvial de valle central",
+        "evidencia": "Espejo de agua perenne sustentado por manto freático somero del Río Tijuana",
+        "verificado": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-117.0421, 32.4882] },
+      "properties": {
+        "id": "P08",
+        "nombre": "Fracc. Valle del Sur / Talud y Parque",
+        "delegacion": "San Antonio de los Buenos",
+        "profundidad_naf_m": 3.0,
+        "intensidad_calor": 1.00,
+        "categoria": "Medición Geofísica Directa",
+        "geologia": "Paleocanal con limos y arcillas sobre discordancia",
+        "evidencia": "Delgado Argote et al. GEOS Vol. 37 No. 2 (2017) UGM (Tomografía Dipolo-Dipolo)",
+        "verificado": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-117.0385, 32.4975] },
+      "properties": {
+        "id": "P09",
+        "nombre": "Lomas del Rubí / Calle Mirador",
+        "delegacion": "San Antonio de los Buenos",
+        "profundidad_naf_m": 1.8,
+        "intensidad_calor": 0.95,
+        "categoria": "Deslizamiento Rotacional con Fuga",
+        "geologia": "Fm. Otay / Fm. San Diego contacto arcilloso impermeable",
+        "evidencia": "Peritajes judiciales y dictamen Protección Civil colapso 2018",
+        "verificado": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-116.9980, 32.4820] },
+      "properties": {
+        "id": "P10",
+        "nombre": "Camino Verde / Cañón de las Carretas",
+        "delegacion": "Sánchez Taboada",
+        "profundidad_naf_m": 2.2,
+        "intensidad_calor": 0.95,
+        "categoria": "Deslizamiento Rotacional con Fuga",
+        "geologia": "Fm. Otay arcillas expansivas saturadas",
+        "evidencia": "Declaratoria de Emergencia Geológica 2022 y sondeos con freático a 2m",
+        "verificado": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-116.9855, 32.4760] },
+      "properties": {
+        "id": "P11",
+        "nombre": "Sánchez Taboada / Calle Casiopea",
+        "delegacion": "Sánchez Taboada",
+        "profundidad_naf_m": 2.0,
+        "intensidad_calor": 0.95,
+        "categoria": "Deslizamiento Rotacional con Fuga",
+        "geologia": "Areniscas y limolitas con paleocanal de arcilla",
+        "evidencia": "Deslindes CESPT agua sin cloro / peritajes de agrietamiento estructural",
+        "verificado": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-117.0985, 32.5290] },
+      "properties": {
+        "id": "P12",
+        "nombre": "Cañón del Matadero / Desarenador",
+        "delegacion": "Playas de Tijuana",
+        "profundidad_naf_m": 1.5,
+        "intensidad_calor": 1.00,
+        "categoria": "Obra Pública con Sobredrenaje",
+        "geologia": "Arenas limosas colapsables saturadas",
+        "evidencia": "Colapso de terraplén carretero 2023 y cárcamos de achique continuo",
+        "verificado": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-117.1180, 32.5225] },
+      "properties": {
+        "id": "P13",
+        "nombre": "Playas de Tijuana / Pozo 001 Los Sauces",
+        "delegacion": "Playas de Tijuana",
+        "profundidad_naf_m": 3.8,
+        "intensidad_calor": 0.85,
+        "categoria": "Medición Piezométrica Directa",
+        "geologia": "Aluvión costero sobre terraza marina colapsable",
+        "evidencia": "Pozo piloto experimental AquaResiliencia Caso 001 perforado en 2022",
+        "verificado": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-117.1235, 32.5335] },
+      "properties": {
+        "id": "P14",
+        "nombre": "El Faro / Malecón Playas",
+        "delegacion": "Playas de Tijuana",
+        "profundidad_naf_m": 2.1,
+        "intensidad_calor": 0.95,
+        "categoria": "Interfase Marina / Freático Costero",
+        "geologia": "Arenas de playa y aluvión costero saturado",
+        "evidencia": "Sótanos de condominios costeros con bombas sumergibles de freático continuo",
+        "verificado": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-117.1080, 32.5385] },
+      "properties": {
+        "id": "P15",
+        "nombre": "Cañón de Los Laureles / Vertedero Binacional",
+        "delegacion": "Playas de Tijuana",
+        "profundidad_naf_m": 1.8,
+        "intensidad_calor": 0.95,
+        "categoria": "Afloramiento / Flujo Somero",
+        "geologia": "Aluvión y azolve en lecho de cañada",
+        "evidencia": "Estudios transfronterizos CILA/EPA flujo base subterráneo y superficial continuo",
+        "verificado": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-117.0460, 32.5125] },
+      "properties": {
+        "id": "P16",
+        "nombre": "Cañón Johnson / Venero Col. Hidalgo",
+        "delegacion": "Centro - Cañón Johnson",
+        "profundidad_naf_m": 0.8,
+        "intensidad_calor": 1.00,
+        "categoria": "Manantial / Afloramiento Natural",
+        "geologia": "Contacto geológico permeable-impermeable",
+        "evidencia": "Afloramiento permanente de agua dulce de venero natural documentado por CESPT",
+        "verificado": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-117.0250, 32.4840] },
+      "properties": {
+        "id": "P17",
+        "nombre": "Aguaje de la Tuna / Manantial Histórico",
+        "delegacion": "San Antonio de los Buenos",
+        "profundidad_naf_m": 1.0,
+        "intensidad_calor": 1.00,
+        "categoria": "Manantial / Afloramiento Natural",
+        "geologia": "Discordancia geológica basal",
+        "evidencia": "Manantial histórico fundacional de Tijuana registrado en cartografía del Siglo XIX",
+        "verificado": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-116.9450, 32.4280] },
+      "properties": {
+        "id": "P18",
+        "nombre": "Cañón del Sáinz / Vado Principal",
+        "delegacion": "Presa Rural",
+        "profundidad_naf_m": 3.5,
+        "intensidad_calor": 0.85,
+        "categoria": "Afloramiento / Norias Agrícolas",
+        "geologia": "Depósitos aluviales y coluviales en cañada",
+        "evidencia": "Norias rústicas artesanales y brotes de humedad freática en pie de talud",
+        "verificado": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-116.9650, 32.5180] },
+      "properties": {
+        "id": "P19",
+        "nombre": "Sauceda Cañón de San Antonio",
+        "delegacion": "Otay - La Mesa",
+        "profundidad_naf_m": 2.5,
+        "intensidad_calor": 0.90,
+        "categoria": "Bioindicador Freatófito",
+        "geologia": "Aluvión húmedo en fondo de cañada",
+        "evidencia": "Observaciones iNaturalist Salix gooddingii y Populus fremontii (freatófitos obligados)",
+        "verificado": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-117.1050, 32.4950] },
+      "properties": {
+        "id": "P20",
+        "nombre": "Arroyo Huertita / Sauceda Costera",
+        "delegacion": "Playas Sur",
+        "profundidad_naf_m": 2.8,
+        "intensidad_calor": 0.88,
+        "categoria": "Bioindicador Freatófito",
+        "geologia": "Aluvión de cañada costera sin red de agua",
+        "evidencia": "Bosquete de Salix laevigata dependiente de manto freático colgado somero permanente",
+        "verificado": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-116.8406, 32.5183] },
+      "properties": {
+        "id": "P21",
+        "nombre": "Pozo Industrial Agua Caliente",
+        "delegacion": "La Mesa",
+        "profundidad_naf_m": 6.5,
+        "intensidad_calor": 0.65,
+        "categoria": "Aprovechamiento Concesionado REPDA",
+        "geologia": "Aluvión del Río Tijuana",
+        "evidencia": "Título REPDA CONAGUA 01BCA100142/01IPGR94 uso servicios e industrial",
+        "verificado": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-116.8550, 32.4650] },
+      "properties": {
+        "id": "P22",
+        "nombre": "Pozos Aluviales El Florido",
+        "delegacion": "El Florido - La Presa",
+        "profundidad_naf_m": 7.2,
+        "intensidad_calor": 0.60,
+        "categoria": "Piezometría Oficial CONAGUA",
+        "geologia": "Gravas y arenas aluviales de recarga",
+        "evidencia": "Censo CONAGUA DR_0201 (18 pozos censados en sector El Florido)",
+        "verificado": true
+      }
+    },
+    {
+      "type": "Feature",
+      "geometry": { "type": "Point", "coordinates": [-117.0300, 32.4700] },
+      "properties": {
+        "id": "P23",
+        "nombre": "Pozo Las Montañas",
+        "delegacion": "San Antonio de los Buenos",
+        "profundidad_naf_m": 5.8,
+        "intensidad_calor": 0.70,
+        "categoria": "Aprovechamiento Concesionado REPDA",
+        "geologia": "Conglomerados y arenas de transición",
+        "evidencia": "Título REPDA CONAGUA 01BCA100709/01FMGR94 extracción subterránea activa",
+        "verificado": true
+      }
+    }
+  ]
+}

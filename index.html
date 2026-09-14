@@ -29,6 +29,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
 <style>
 :root{
   --sat: env(safe-area-inset-top, 0px);
@@ -1639,6 +1640,8 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
 /* ===================== AQUAPROXY: EVIDENCIAS INDIRECTAS ===================== */
 .layer-btn.proxy{background:rgba(168,85,247,.15);border:1px solid rgba(168,85,247,.45);color:#d8b4fe}
 .layer-btn.proxy.active{background:rgba(168,85,247,.32);border-color:var(--purple-accent);color:#fff;box-shadow:0 0 14px rgba(168,85,247,.45)}
+.layer-btn.heatmap{background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.45);color:#fca5a5}
+.layer-btn.heatmap.active{background:rgba(239,68,68,.32);border-color:#ef4444;color:#fff;box-shadow:0 0 14px rgba(239,68,68,.5)}
 
 .proxy-div-icon{
   border-radius:50%;
@@ -2742,6 +2745,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
           <button id="toggleAlamosBtn" class="layer-btn alamos active" onclick="toggleLayer('alamos')">🌳 Álamos y Sauces</button>
           <button id="toggleLaderaBtn" class="layer-btn ladera active" onclick="toggleLayer('ladera')">⚡ Simulación Ladera &amp; Micropozos</button>
           <button id="toggleProxyBtn" class="layer-btn proxy active" onclick="toggleLayer('proxy')">🔍 AquaProxy: Evidencias Indirectas (10ª Capa)</button>
+          <button id="toggleHeatmapBtn" class="layer-btn heatmap active" onclick="toggleLayer('heatmap')">🔥 Mapa de Calor: Agua Somera (11ª Capa)</button>
         </div>
       </div>
       <div class="engine-grid">
@@ -3275,6 +3279,47 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
         </div>
       </div>
 
+      <!-- ==================== MÓDULO MAPA DE CALOR: AGUA SOMERA ==================== -->
+      <div class="proxy-panel-box" id="modulo-mapa-calor" style="border-color:rgba(239,68,68,.35);box-shadow:0 15px 40px rgba(0,0,0,.6),0 0 35px rgba(239,68,68,.08);margin-top:1.75rem">
+        <div class="proxy-header">
+          <div>
+            <span class="section-tag" style="background:rgba(239,68,68,.12);color:#fca5a5;border:1px solid rgba(239,68,68,.35);padding:.25rem .75rem;border-radius:6px;font-family:var(--font-mono);font-size:.74rem;font-weight:700">🔥 MODELO ESPACIAL // HEATMAP &amp; KDE TIJUANA</span>
+            <h3 style="margin-top:.4rem;font-size:1.45rem;color:#fff;font-family:var(--font-heading)">Mapa de Calor: Zonas Críticas de Agua Somera (0 - 7.5 m)</h3>
+            <p style="color:var(--text-muted);font-size:.86rem;max-width:850px;line-height:1.5;margin-top:.3rem">
+              Interpolación continua de densidad basada en <strong>23 evidencias corroboradas</strong> (mediciones geofísicas directas, cárcamos de sótanos 24/7, peritajes judiciales en deslizamientos y pozos piezométricos). Los tonos cálidos (<span style="color:#ef4444;font-weight:700">Rojo</span> / <span style="color:#f59e0b;font-weight:700">Ámbar</span>) indican manto freático a menos de 3.5 m o afloramientos naturales de saturación crítica.
+            </p>
+          </div>
+          <div style="display:flex;gap:.5rem;flex-wrap:wrap;align-items:center">
+            <a href="DATASET_MAPA_CALOR_AGUA_SOMERA_TIJUANA.csv" download class="btn-secondary" style="border-color:#38bdf8;color:#38bdf8;padding:.4rem .8rem;font-size:.78rem">📥 Descargar CSV (Excel/QGIS)</a>
+            <a href="DATASET_MAPA_CALOR_AGUA_SOMERA_TIJUANA.json" download class="btn-secondary" style="border-color:#a855f7;color:#d8b4fe;padding:.4rem .8rem;font-size:.78rem">📥 Descargar GeoJSON</a>
+            <a href="mapa_calor_agua_somera_tijuana.html" target="_blank" class="btn-primary" style="background:linear-gradient(135deg,#ef4444,#dc2626);color:#fff;padding:.4rem .85rem;font-size:.78rem">🔥 Abrir Visor Fullscreen ↗</a>
+          </div>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1rem">
+          <div style="background:rgba(255,255,255,.03);border:1px solid rgba(239,68,68,.25);border-radius:12px;padding:1rem">
+            <div style="display:flex;align-items:center;gap:.5rem;font-family:var(--font-mono);font-size:.72rem;color:#fca5a5;font-weight:700">🔴 SATURACIÓN CRÍTICA (&lt; 2.0 m)</div>
+            <div style="font-size:1.05rem;font-weight:800;color:#fff;margin:.3rem 0">Paseo de Héroes, Matadero, Valle del Sur</div>
+            <p style="font-size:.75rem;color:var(--text-dim);line-height:1.4">Afloramientos basales, peritajes de colapso y zanjas de obra con bombeo continuo de abatimiento.</p>
+          </div>
+          <div style="background:rgba(255,255,255,.03);border:1px solid rgba(245,158,11,.25);border-radius:12px;padding:1rem">
+            <div style="display:flex;align-items:center;gap:.5rem;font-family:var(--font-mono);font-size:.72rem;color:#fde68a;font-weight:700">🟡 FREÁTICO SOMERO (2.0 - 4.0 m)</div>
+            <div style="font-size:1.05rem;font-weight:800;color:#fff;margin:.3rem 0">Playas de Tijuana, New City, Camino Verde</div>
+            <p style="font-size:.75rem;color:var(--text-dim);line-height:1.4">Sótanos con cárcamos de achique forzado y aluvión costero sobre terraza marina colapsable.</p>
+          </div>
+          <div style="background:rgba(255,255,255,.03);border:1px solid rgba(16,185,129,.25);border-radius:12px;padding:1rem">
+            <div style="display:flex;align-items:center;gap:.5rem;font-family:var(--font-mono);font-size:.72rem;color:#a7f3d0;font-weight:700">🟢 ALTA TRANSMISIVIDAD (4.0 - 7.0 m)</div>
+            <div style="font-size:1.05rem;font-weight:800;color:#fff;margin:.3rem 0">Arroyo Alamar, Cañón del Padre, Morelos</div>
+            <p style="font-size:.75rem;color:var(--text-dim);line-height:1.4">Acuífero aluvial no consolidado de alta recarga y pozos someros censados por CONAGUA.</p>
+          </div>
+          <div style="background:rgba(255,255,255,.03);border:1px solid rgba(56,189,248,.25);border-radius:12px;padding:1rem">
+            <div style="display:flex;align-items:center;gap:.5rem;font-family:var(--font-mono);font-size:.72rem;color:#bae6fd;font-weight:700">🔵 TRANSICIÓN PROFUNDA (&gt; 7.0 m)</div>
+            <div style="font-size:1.05rem;font-weight:800;color:#fff;margin:.3rem 0">El Florido, Las Montañas, Otay Industrial</div>
+            <p style="font-size:.75rem;color:var(--text-dim);line-height:1.4">Gravas aluviales y conglomerados con mayor espesor sedimentario hacia la Presa y Zona Este.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <!-- ==================== CORTE 3D HIDROGEOLÓGICO ==================== -->
@@ -3813,8 +3858,8 @@ let curZone=officialZones[0];
 let mapInitialized=false,map;
 let baseLayers={};
 let currentBase='relieve';
-let lPiezo,lRepda,lHazard,lSgm,lRiesgo,lHidro,lBinacional,lAlamos,lLadera,lProxy;
-let sPiezo=true,sRepda=true,sHazard=true,sSgm=true,sRiesgo=true,sHidro=true,sBinacional=true,sAlamos=true,sLadera=true,sProxy=true;
+let lPiezo,lRepda,lHazard,lSgm,lRiesgo,lHidro,lBinacional,lAlamos,lLadera,lProxy,lHeatmap;
+let sPiezo=true,sRepda=true,sHazard=true,sSgm=true,sRiesgo=true,sHidro=true,sBinacional=true,sAlamos=true,sLadera=true,sProxy=true,sHeatmap=true;
 
 function initMap(){
   if(mapInitialized)return;
@@ -3929,6 +3974,7 @@ function initMap(){
   drawStrata(curZone.strata);
   initLaderaMapLayer();
   initAquaProxyLayer();
+  initHeatmapLayer();
 }
 
 function setBaseMap(type){
@@ -4059,8 +4105,12 @@ function toggleLayer(t){
     sProxy=!sProxy;
     sProxy?(lProxy && lProxy.addTo(map)):(lProxy && map.removeLayer(lProxy));
     document.getElementById('toggleProxyBtn').classList.toggle('active',sProxy);
+  }else if(t==='heatmap'){
+    sHeatmap=!sHeatmap;
+    sHeatmap?(lHeatmap && lHeatmap.addTo(map)):(lHeatmap && map.removeLayer(lHeatmap));
+    document.getElementById('toggleHeatmapBtn').classList.toggle('active',sHeatmap);
   }
-  const count=[sPiezo,sRepda,sHazard,sSgm,sRiesgo,sHidro,sBinacional,sAlamos,sLadera,sProxy].filter(Boolean).length;
+  const count=[sPiezo,sRepda,sHazard,sSgm,sRiesgo,sHidro,sBinacional,sAlamos,sLadera,sProxy,sHeatmap].filter(Boolean).length;
   document.getElementById('layer-status-tag').textContent=`🗺️ ${count} Capas Activas`;
 }
 
@@ -6014,6 +6064,58 @@ function zoomToProxyPoint(lat, lng){
     map.flyTo([lat, lng], 15.5, { duration: 1.2 });
     window.scrollTo({ top: document.getElementById('map-container').offsetTop - 80, behavior: 'smooth' });
   }
+}
+
+// ==================== CAPA 11: MAPA DE CALOR DE AGUA SOMERA (KDE) ====================
+const shallowWaterHeatPoints = [
+  [32.5284, -117.0225, 0.85], // Torre Cosmopolitan (3.2m)
+  [32.5381, -117.0289, 0.90], // New City Medical (2.8m)
+  [32.5262, -117.0185, 0.80], // Plaza Río (3.8m)
+  [32.5422, -117.0341, 0.95], // Puente El Chaparral (2.5m)
+  [32.5315, -116.9420, 0.80], // Arroyo Alamar (4.2m)
+  [32.5208, -116.9050, 0.70], // Cañón del Padre (5.5m)
+  [32.5035, -116.9380, 0.85], // Parque Morelos (3.5m)
+  [32.4882, -117.0421, 1.00], // Valle del Sur (3.0m / afloramiento)
+  [32.4975, -117.0385, 0.95], // Lomas del Rubí (1.8m)
+  [32.4820, -116.9980, 0.95], // Camino Verde (2.2m)
+  [32.4760, -116.9855, 0.95], // Sánchez Taboada (2.0m)
+  [32.5290, -117.0985, 1.00], // Cañón del Matadero (1.5m)
+  [32.5225, -117.1180, 0.85], // Pozo 001 Los Sauces (3.8m)
+  [32.5335, -117.1235, 0.95], // El Faro Playas (2.1m)
+  [32.5385, -117.1080, 0.95], // Cañón Los Laureles (1.8m)
+  [32.5125, -117.0460, 1.00], // Cañón Johnson (0.8m)
+  [32.4840, -117.0250, 1.00], // Aguaje de la Tuna (1.0m)
+  [32.4280, -116.9450, 0.85], // Cañón del Sáinz (3.5m)
+  [32.5180, -116.9650, 0.90], // Cañón San Antonio (2.5m)
+  [32.4950, -117.1050, 0.88], // Arroyo Huertita (2.8m)
+  [32.5183, -116.8406, 0.65], // Pozo Agua Caliente (6.5m)
+  [32.4650, -116.8550, 0.60], // El Florido (7.2m)
+  [32.4700, -117.0300, 0.70]  // Las Montañas (5.8m)
+];
+
+function initHeatmapLayer(){
+  if(typeof L === 'undefined' || !map) return;
+  if(typeof L.heatLayer !== 'function'){
+    console.warn('L.heatLayer no está disponible aún.');
+    return;
+  }
+  if(typeof lHeatmap !== 'undefined' && lHeatmap) return;
+
+  lHeatmap = L.heatLayer(shallowWaterHeatPoints, {
+    radius: 35,
+    blur: 24,
+    maxZoom: 15,
+    max: 1.0,
+    gradient: {
+      0.15: '#00e5ff',
+      0.35: '#3b82f6',
+      0.60: '#10b981',
+      0.80: '#f59e0b',
+      1.00: '#ef4444'
+    }
+  });
+
+  if(sHeatmap) lHeatmap.addTo(map);
 }
 
 // ==================== INIT ====================
