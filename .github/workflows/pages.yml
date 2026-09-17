@@ -1,12 +1,14 @@
-name: Deploy GitHub Pages
+name: Deploy GitHub Pages & Automated Satellite Discovery
 
 on:
   push:
     branches: [main]
+  schedule:
+    - cron: '0 */6 * * *'  # Ejecución autónoma cada 6 horas
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -23,14 +25,24 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          
+      - name: Ejecutar Motor de Deteccion Continua InSAR y Meteo
+        run: |
+          python procesar_satelital_tijuana.py
+          
       - name: Setup Pages
         uses: actions/configure-pages@v5
-        with:
-          enablement: true
+        
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           path: '.'
+          
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
