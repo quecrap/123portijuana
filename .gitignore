@@ -24,6 +24,7 @@ docs/**/*.md
 !docs/RED_DOCUMENTAL_*.md
 !docs/RESUMEN_AVANCES_*.md
 !docs/PROPUESTA_MUESTREO_*.md
+!docs/ARQUITECTURA_TELEMETRIA_*.md
 docs/manual_perforacion_*.md
 *.raw.md
 
