@@ -1206,16 +1206,20 @@ def compilar_visor_html(puntos, datos_usgs, datos_clima, sismos, canones, zonas_
             const chartPointId = 'chart_pt_' + p.id;
             
             const popupPointHtml = `
-                <div style="color: #0f172a; font-family: sans-serif; width: 275px;">
-                    <div style="font-size: 0.7rem; font-weight: 800; color: #0284c7;">PUNTO FREÁTICO SOMERO [${{p.id}}]</div>
-                    <div style="font-size: 1.0rem; font-weight: 800; margin: 2px 0;">${{p.nombre}}</div>
-                    <div style="font-size: 0.8rem; color: #334155;"><strong>Delegación:</strong> ${{p.delegacion}}</div>
-                    <div style="font-size: 0.85rem; color: #0369a1; margin: 3px 0;"><strong>Profundidad Freática (NAF):</strong> ${{p.naf}} m</div>
-                    <div style="font-size: 0.75rem; color: #64748b;"><strong>Geología:</strong> ${{p.geologia}}</div>
-                    <div style="font-size: 0.7rem; color: #475569; margin-top: 2px;"><strong>Fuente:</strong> ${{p.fuente}}</div>
+                <div style="color: #0f172a; font-family: sans-serif; width: 285px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 0.68rem; font-weight: 800; color: #0284c7; letter-spacing: 0.5px;">PUNTO FREÁTICO SOMERO [${{p.id}}]</span>
+                        <span style="font-size: 0.65rem; font-weight: 700; background: #e0f2fe; color: #0369a1; padding: 2px 6px; border-radius: 4px; border: 1px solid #bae6fd;">${{p.categoria}}</span>
+                    </div>
+                    <div style="font-size: 0.98rem; font-weight: 800; margin: 4px 0 2px 0; line-height: 1.25;">${{p.nombre}}</div>
+                    <div style="font-size: 0.78rem; color: #334155;"><strong>Delegación:</strong> ${{p.delegacion}}</div>
+                    <div style="font-size: 0.84rem; color: #0369a1; margin: 3px 0;"><strong>Profundidad Freática (NAF):</strong> ${{p.naf}} m <span style="font-size: 0.68rem; color: #64748b;">(bajo nivel de terreno)</span></div>
+                    <div style="font-size: 0.74rem; color: #475569; margin: 2px 0;"><strong>Geología:</strong> ${{p.geologia}}</div>
+                    <div style="font-size: 0.72rem; color: #334155; margin-top: 3px; background: #f8fafc; padding: 4px 6px; border-radius: 4px; border-left: 3px solid #0284c7;"><strong>Fuente / Régimen:</strong> ${{p.fuente}}</div>
                     
                     <div style="margin-top: 8px; font-size: 0.72rem; font-weight: 700; color: #334155;">Evolución Histórica NAF (2018–2027 Proy):</div>
-                    <div style="height: 120px; width: 100%; margin-top: 4px;">
+                    <div style="font-size: 0.64rem; color: #64748b; margin-bottom: 2px;">▲ Curva ascendente = manto freático subiendo hacia superficie</div>
+                    <div style="height: 125px; width: 100%; margin-top: 2px;">
                         <canvas id="${{chartPointId}}"></canvas>
                     </div>
                 </div>
@@ -1232,7 +1236,7 @@ def compilar_visor_html(puntos, datos_usgs, datos_clima, sismos, canones, zonas_
                             data: {{
                                 labels: p.serie_naf.map(s => s.ano),
                                 datasets: [{{
-                                    label: 'NAF (m)',
+                                    label: 'NAF',
                                     data: p.serie_naf.map(s => s.naf),
                                     borderColor: '#0284c7',
                                     backgroundColor: 'rgba(2, 132, 199, 0.2)',
@@ -1245,10 +1249,26 @@ def compilar_visor_html(puntos, datos_usgs, datos_clima, sismos, canones, zonas_
                             options: {{
                                 responsive: true,
                                 maintainAspectRatio: false,
-                                plugins: {{ legend: {{ display: false }} }},
+                                plugins: {{
+                                    legend: {{ display: false }},
+                                    tooltip: {{
+                                        callbacks: {{
+                                            label: function(c) {{
+                                                return c.raw + ' m bajo terreno';
+                                            }}
+                                        }}
+                                    }}
+                                }},
                                 scales: {{
                                     x: {{ grid: {{ display: false }}, ticks: {{ font: {{ size: 8 }} }} }},
-                                    y: {{ reverse: true, grid: {{ color: '#e2e8f0' }}, ticks: {{ font: {{ size: 8 }} }} }}
+                                    y: {{
+                                        reverse: true,
+                                        grid: {{ color: '#e2e8f0' }},
+                                        ticks: {{
+                                            font: {{ size: 8 }},
+                                            callback: function(v) {{ return v + 'm'; }}
+                                        }}
+                                    }}
                                 }}
                             }}
                         }});

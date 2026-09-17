@@ -623,9 +623,9 @@
         "longitud": "-117.0120",
         "profundidad_naf_m": "3.8",
         "intensidad_calor": "0.90",
-        "categoria_evidencia": "Permiso de Descarga y Bombeo REPDA",
+        "categoria_evidencia": "Permiso de Descarga y Drenaje de Lagos (REPDA)",
         "tipo_suelo_geologia": "Aluvión saturado somero del Valle de Agua Caliente",
-        "fuente_documental": "REPDA CONAGUA Título 01BCA150194/01ERDA18 (Descarga y achique de 2,592 m3/día)",
+        "fuente_documental": "REPDA CONAGUA Título 01BCA150194/01ERDA18 (Descarga y drenaje de lagos: 2,592 m3/día)",
         "verificacion": "Oficial CONAGUA"
       }
     },
@@ -801,15 +801,15 @@
       },
       "properties": {
         "id": "R12",
-        "nombre_sitio": "Inmobiliaria San Antonio del Mar S.A. de C.V.",
+        "nombre_sitio": "Real del Mar / San Antonio del Mar (Descarga PTAR y Riego)",
         "delegacion": "San Antonio de los Buenos - Costa",
         "latitud": "32.4450",
         "longitud": "-117.0980",
         "profundidad_naf_m": "3.2",
         "intensidad_calor": "0.88",
-        "categoria_evidencia": "Permiso de Descarga y Drenaje Costero",
-        "tipo_suelo_geologia": "Terraza marina y aluvión costero sobre acantilado",
-        "fuente_documental": "REPDA CONAGUA Título 01BCA150205/01EROC13 (Descarga y achique de 412.80 m3/día)",
+        "categoria_evidencia": "Descarga de Efluente Tratado e Infiltración Costera",
+        "tipo_suelo_geologia": "Terraza marina y coluvión de cañada costera sobre acantilado",
+        "fuente_documental": "REPDA CONAGUA Título 01BCA150205/01EROC13 (Descarga de efluente PTAR y riego: 412.80 m3/día en cañada)",
         "verificacion": "Oficial CONAGUA"
       }
     },
@@ -824,15 +824,15 @@
       },
       "properties": {
         "id": "R13",
-        "nombre_sitio": "Fraccionadora San Marino S. de R.L. de C.V.",
+        "nombre_sitio": "Fracc. San Marino / Descarga Costera en Acantilado",
         "delegacion": "San Antonio de los Buenos - Costa",
         "latitud": "32.4350",
         "longitud": "-117.0850",
         "profundidad_naf_m": "3.5",
         "intensidad_calor": "0.85",
-        "categoria_evidencia": "Permiso de Descarga Costera",
+        "categoria_evidencia": "Descarga de Efluente y Drenaje Costero (REPDA)",
         "tipo_suelo_geologia": "Suelo colapsable de terraza marina y descarga freática",
-        "fuente_documental": "REPDA CONAGUA Título 01BCA150131/01EROC12 (Descarga de drenaje freático costero)",
+        "fuente_documental": "REPDA CONAGUA Título 01BCA150131/01EROC12 (Descarga costera autorizada de efluente y drenaje al mar)",
         "verificacion": "Oficial CONAGUA"
       }
     },
