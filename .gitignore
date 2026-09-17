@@ -21,6 +21,8 @@
 docs/*.md
 docs/**/*.md
 !docs/README.md
+!docs/RED_DOCUMENTAL_*.md
+!docs/RESUMEN_AVANCES_*.md
 docs/manual_perforacion_*.md
 *.raw.md
 
