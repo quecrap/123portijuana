@@ -175,14 +175,14 @@ def generar_datos_radar_insar():
         },
         {
             "id": "INSAR-04",
-            "nombre": "Cañón del Matadero / Desarenador",
-            "lat": 32.5290,
-            "lng": -117.0985,
+            "nombre": "Cañón del Matadero / Desarenador (Acceso Playas)",
+            "lat": 32.5305,
+            "lng": -117.0825,
             "subsidencia_mm_ano": -28.0,
             "deformacion_acumulada_mm": -94.2,
-            "riesgo": "Alto / Colapso Vial Carretero",
-            "geologia": "Arenas limosas colapsables de terraza costera saturada",
-            "mecanismo": "Tubificación freática y arrastre de finos (NAF 1.5m)",
+            "riesgo": "Crítico / Terraplén y Drenaje",
+            "geologia": "Arenas limosas colapsables y terraplén sobre cauce saturado",
+            "mecanismo": "Tubificación freática y acumulación de aguas someras (NAF 1.5m)",
             "serie_temporal": [
                 {"ano": "2020", "desplazamiento": 0.0},
                 {"ano": "2021", "desplazamiento": -14.2},
@@ -277,20 +277,20 @@ def generar_datos_radar_insar():
         },
         {
             "id": "INSAR-09",
-            "nombre": "Paseo Playas / Viaducto Elevado Tramo 1",
-            "lat": 32.5275,
-            "lng": -117.1120,
-            "subsidencia_mm_ano": -16.2,
-            "deformacion_acumulada_mm": -41.0,
-            "riesgo": "Monitoreo Estructural Infraestructura",
-            "geologia": "Arenas limosas y terraza marina con nivel freático a 1.2m",
-            "mecanismo": "Cargas dinámicas sobre cimentación con saturación basal marina",
+            "nombre": "Viaducto Elevado (Tramo Mirador - Av. Internacional)",
+            "lat": 32.5330,
+            "lng": -117.0650,
+            "subsidencia_mm_ano": -14.2,
+            "deformacion_acumulada_mm": -36.5,
+            "riesgo": "Monitoreo Estructural de Cimentación",
+            "geologia": "Taludes de corte y cimentación profunda en contacto San Diego-Otay",
+            "mecanismo": "Monitoreo de estabilidad de laderas y apoyos estructurales del viaducto",
             "serie_temporal": [
                 {"ano": "2022", "desplazamiento": 0.0},
-                {"ano": "2023", "desplazamiento": -12.5},
-                {"ano": "2024", "desplazamiento": -24.8},
-                {"ano": "2025", "desplazamiento": -34.1},
-                {"ano": "2026", "desplazamiento": -41.0}
+                {"ano": "2023", "desplazamiento": -11.0},
+                {"ano": "2024", "desplazamiento": -22.5},
+                {"ano": "2025", "desplazamiento": -30.8},
+                {"ano": "2026", "desplazamiento": -36.5}
             ]
         }
     ]
