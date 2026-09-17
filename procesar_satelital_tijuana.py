@@ -292,6 +292,24 @@ def generar_datos_radar_insar():
                 {"ano": "2025", "desplazamiento": -30.8},
                 {"ano": "2026", "desplazamiento": -36.5}
             ]
+        },
+        {
+            "id": "INSAR-10",
+            "nombre": "Playas de Tijuana (Zona Costa / Terrazas Marinas)",
+            "lat": 32.5120,
+            "lng": -117.1220,
+            "subsidencia_mm_ano": -12.5,
+            "deformacion_acumulada_mm": -32.0,
+            "riesgo": "Erosión de Acantilados y NAF Somero",
+            "geologia": "Arenas de terraza marina y areniscas semiconsolidadas",
+            "mecanismo": "Erosión por oleaje combinada con filtraciones de aguas someras hacia la costa",
+            "serie_temporal": [
+                {"ano": "2022", "desplazamiento": 0.0},
+                {"ano": "2023", "desplazamiento": -8.2},
+                {"ano": "2024", "desplazamiento": -18.4},
+                {"ano": "2025", "desplazamiento": -26.1},
+                {"ano": "2026", "desplazamiento": -32.0}
+            ]
         }
     ]
     return zonas_insar
