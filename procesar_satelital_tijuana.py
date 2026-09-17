@@ -202,10 +202,12 @@ def generar_canones_reales_tijuana():
             "nombre": "Cañón Johnson (Col. Hidalgo - Centro)",
             "delegacion": "Centro / San Antonio de los Buenos",
             "ndvi_estiaje": 0.45,
-            "naf_promedio": "1.0 - 3.5 m",
-            "descripcion": "Eje de cañada histórica con veneros perennes (P16) que bajan desde Fundadores y socavan cimentaciones y pavimento.",
+            "naf_promedio": "0.8 - 3.2 m",
+            "descripcion": "Eje de cañada histórica con veneros perennes (P16) que bajan por el fondo de cañada de Melchor Ocampo hacia el Centro.",
             "trazado": [
-                [32.5020, -117.0380], [32.5065, -117.0410], [32.5095, -117.0435], [32.5125, -117.0460], [32.5160, -117.0450], [32.5200, -117.0440], [32.5240, -117.0425], [32.5280, -117.0410]
+                [32.5125, -117.0460], [32.5150, -117.0435], [32.51713, -117.04102], [32.51754, -117.04071],
+                [32.51814, -117.04039], [32.51864, -117.03946], [32.51927, -117.03915], [32.52046, -117.03960],
+                [32.5245, -117.0398], [32.5280, -117.0395], [32.5310, -117.0388]
             ]
         },
         {
@@ -439,7 +441,7 @@ def generar_datos_radar_insar():
             "id": "INSAR-07",
             "nombre": "Cañón Johnson / Col. Hidalgo",
             "lat": 32.5180,
-            "lng": -117.0480,
+            "lng": -117.0405,
             "subsidencia_mm_ano": -19.8,
             "deformacion_acumulada_mm": -62.1,
             "pronostico_alerta": "⚠️ FOCO EMERGENTE: Aceleración de subpresión freática en fondo de cañada; riesgo para viviendas en ladera media.",
