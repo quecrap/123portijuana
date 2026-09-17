@@ -19,7 +19,8 @@
 ## 🌐 Portal Oficial del Proyecto
 Accede a la plataforma web interactiva con el visor geocientífico multicriterio (**AquaEngine v2.0**), inventario del Sistema Metropolitano de Parques (SMP) y tablero de validación comunitaria:  
 👉 **[https://quecrap.github.io/123portijuana/](https://quecrap.github.io/123portijuana/)**  
-👉 **[Visor de Parques y Nodos Piloto (candidatos.html)](https://quecrap.github.io/123portijuana/candidatos.html)**
+👉 **[Visor de Parques y Nodos Piloto (candidatos.html)](https://quecrap.github.io/123portijuana/candidatos.html)**  
+👉 **[Visor Satelital, InSAR y Telemetría IoT (visor_satelital_tijuana.html)](https://quecrap.github.io/123portijuana/visor_satelital_tijuana.html)**
 
 ---
 
