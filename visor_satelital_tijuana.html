@@ -225,11 +225,32 @@
         
         L.control.zoom({ position: 'topright' }).addTo(map);
 
-        // Capa base satelital oscura
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-            attribution: '&copy; CartoDB &copy; Copernicus Open Access Sentinel-1/2 &copy; USGS',
+        // Capas base sin marca de agua
+        const sateliteHD = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            attribution: '&copy; Esri &copy; Maxar, Earthstar Geographics, CNES/Airbus DS, USGS, AeroGRID, IGN',
             maxZoom: 19
-        }).addTo(map);
+        });
+
+        const modoOscuro = L.tileLayer('https://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', {
+            attribution: '&copy; Esri, HERE, Garmin, &copy; OpenStreetMap contributors',
+            maxZoom: 16
+        });
+
+        const callesOSM = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenStreetMap contributors',
+            maxZoom: 19
+        });
+
+        // Capa predeterminada: Satélite HD para análisis InSAR
+        sateliteHD.addTo(map);
+
+        const baseMaps = {
+            "🛰️ Satélite HD (Esri World Imagery)": sateliteHD,
+            "🌑 Modo Oscuro Profesional": modoOscuro,
+            "🗺️ Calles y Topografía (OSM)": callesOSM
+        };
+
+        L.control.layers(baseMaps, null, { position: 'topright' }).addTo(map);
 
         // 1. Zonas InSAR Subsidencia (Sentinel-1) con Gráfica Dinámica en Popup
         const zonasInSAR = [{"id": "INSAR-01", "nombre": "Lomas del Rub\u00ed", "lat": 32.4975, "lng": -117.0385, "subsidencia_mm_ano": -35.2, "deformacion_acumulada_mm": -185.4, "riesgo": "Cr\u00edtico / Deslizamiento Activo", "geologia": "Contacto Fm. Otay / Arcillas montmorillonitas saturadas", "mecanismo": "Saturaci\u00f3n h\u00eddrica basal por fuga cr\u00f3nica y fre\u00e1tico somero (NAF 1.8m)", "serie_temporal": [{"ano": "2018", "desplazamiento": 0.0}, {"ano": "2019", "desplazamiento": -45.2}, {"ano": "2020", "desplazamiento": -78.6}, {"ano": "2021", "desplazamiento": -112.3}, {"ano": "2022", "desplazamiento": -142.1}, {"ano": "2023", "desplazamiento": -165.8}, {"ano": "2024", "desplazamiento": -176.2}, {"ano": "2025", "desplazamiento": -181.5}, {"ano": "2026", "desplazamiento": -185.4}]}, {"id": "INSAR-02", "nombre": "Camino Verde (Ca\u00f1\u00f3n de las Carretas)", "lat": 32.482, "lng": -116.998, "subsidencia_mm_ano": -42.8, "deformacion_acumulada_mm": -198.6, "riesgo": "Emergencia Geol\u00f3gica Municipal", "geologia": "Fm. Otay arcillas expansivas saturadas sobre paleocanal", "mecanismo": "Presi\u00f3n de poro positiva por elevaci\u00f3n de NAF a 2.2m", "serie_temporal": [{"ano": "2018", "desplazamiento": 0.0}, {"ano": "2019", "desplazamiento": -15.4}, {"ano": "2020", "desplazamiento": -38.1}, {"ano": "2021", "desplazamiento": -72.5}, {"ano": "2022", "desplazamiento": -135.2}, {"ano": "2023", "desplazamiento": -168.4}, {"ano": "2024", "desplazamiento": -182.9}, {"ano": "2025", "desplazamiento": -191.0}, {"ano": "2026", "desplazamiento": -198.6}]}, {"id": "INSAR-03", "nombre": "S\u00e1nchez Taboada (Calle Casiopea)", "lat": 32.476, "lng": -116.9855, "subsidencia_mm_ano": -38.5, "deformacion_acumulada_mm": -162.3, "riesgo": "Cr\u00edtico / Falla Progresiva", "geologia": "Areniscas y limolitas con paleocanal de arcilla", "mecanismo": "Subpresi\u00f3n fre\u00e1tica y p\u00e9rdida de cohesi\u00f3n por agua somera (NAF 2.0m)", "serie_temporal": [{"ano": "2018", "desplazamiento": 0.0}, {"ano": "2019", "desplazamiento": -22.1}, {"ano": "2020", "desplazamiento": -51.4}, {"ano": "2021", "desplazamiento": -86.7}, {"ano": "2022", "desplazamiento": -118.0}, {"ano": "2023", "desplazamiento": -138.5}, {"ano": "2024", "desplazamiento": -149.2}, {"ano": "2025", "desplazamiento": -156.8}, {"ano": "2026", "desplazamiento": -162.3}]}, {"id": "INSAR-04", "nombre": "Ca\u00f1\u00f3n del Matadero / Desarenador", "lat": 32.529, "lng": -117.0985, "subsidencia_mm_ano": -28.0, "deformacion_acumulada_mm": -94.2, "riesgo": "Alto / Colapso Vial Carretero", "geologia": "Arenas limosas colapsables de terraza costera saturada", "mecanismo": "Tubificaci\u00f3n fre\u00e1tica y arrastre de finos (NAF 1.5m)", "serie_temporal": [{"ano": "2020", "desplazamiento": 0.0}, {"ano": "2021", "desplazamiento": -14.2}, {"ano": "2022", "desplazamiento": -32.8}, {"ano": "2023", "desplazamiento": -76.5}, {"ano": "2024", "desplazamiento": -85.1}, {"ano": "2025", "desplazamiento": -90.3}, {"ano": "2026", "desplazamiento": -94.2}]}, {"id": "INSAR-05", "nombre": "Fracc. Valle del Sur / Talud", "lat": 32.4882, "lng": -117.0421, "subsidencia_mm_ano": -18.5, "deformacion_acumulada_mm": -68.0, "riesgo": "Moderado-Alto (Monitoreo Geof\u00edsico)", "geologia": "Discordancia basal / Paleocanal limoso saturado", "mecanismo": "Afloramiento y variabilidad de 3m a 18m en 200m (GEOS 2017)", "serie_temporal": [{"ano": "2018", "desplazamiento": 0.0}, {"ano": "2019", "desplazamiento": -8.5}, {"ano": "2020", "desplazamiento": -19.4}, {"ano": "2021", "desplazamiento": -31.2}, {"ano": "2022", "desplazamiento": -45.0}, {"ano": "2023", "desplazamiento": -54.3}, {"ano": "2024", "desplazamiento": -60.1}, {"ano": "2025", "desplazamiento": -64.7}, {"ano": "2026", "desplazamiento": -68.0}]}];

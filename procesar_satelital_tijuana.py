@@ -459,11 +459,32 @@ def compilar_visor_html(puntos, datos_usgs, freatofitos, zonas_insar, output_htm
         
         L.control.zoom({{ position: 'topright' }}).addTo(map);
 
-        // Capa base satelital oscura
-        L.tileLayer('https://{{s}}.basemaps.cartocdn.com/dark_all/{{z}}/{{x}}/{{y}}{{r}}.png', {{
-            attribution: '&copy; CartoDB &copy; Copernicus Open Access Sentinel-1/2 &copy; USGS',
+        // Capas base sin marca de agua
+        const sateliteHD = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{{z}}/{{y}}/{{x}}', {{
+            attribution: '&copy; Esri &copy; Maxar, Earthstar Geographics, CNES/Airbus DS, USGS, AeroGRID, IGN',
             maxZoom: 19
-        }}).addTo(map);
+        }});
+
+        const modoOscuro = L.tileLayer('https://services.arcgisonline.com/arcgis/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{{z}}/{{y}}/{{x}}', {{
+            attribution: '&copy; Esri, HERE, Garmin, &copy; OpenStreetMap contributors',
+            maxZoom: 16
+        }});
+
+        const callesOSM = L.tileLayer('https://tile.openstreetmap.org/{{z}}/{{x}}/{{y}}.png', {{
+            attribution: '&copy; OpenStreetMap contributors',
+            maxZoom: 19
+        }});
+
+        // Capa predeterminada: Satélite HD para análisis InSAR
+        sateliteHD.addTo(map);
+
+        const baseMaps = {{
+            "🛰️ Satélite HD (Esri World Imagery)": sateliteHD,
+            "🌑 Modo Oscuro Profesional": modoOscuro,
+            "🗺️ Calles y Topografía (OSM)": callesOSM
+        }};
+
+        L.control.layers(baseMaps, null, {{ position: 'topright' }}).addTo(map);
 
         // 1. Zonas InSAR Subsidencia (Sentinel-1) con Gráfica Dinámica en Popup
         const zonasInSAR = {zonas_insar_json};
