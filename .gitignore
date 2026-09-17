@@ -52,3 +52,5 @@ Thumbs.db
 # Material de referencia pesado, no es entregable del repo
 inventario de parques/
 node_modules/
+__pycache__/
+*.pyc
