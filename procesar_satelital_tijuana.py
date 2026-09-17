@@ -5,7 +5,7 @@ procesar_satelital_tijuana.py
 =============================
 AquaResiliencia Tijuana / Colectivo 1, 2, 3 por Tijuana
 Procesamiento Satelital, Fusión de Datos y Motor Predictivo Continuo:
-1. Trazas Vectoriales de Cañones y Cañadas Reales de Tijuana + Mapa de Calor Orgánico (Leaflet.heat).
+1. Mapa de Calor Orgánico de Saturación Freática (Leaflet.heat) basado en 50 puntos georreferenciados.
 2. Gráficas Históricas Interactivas (Chart.js) en TODOS los 50 Puntos de Agua Somera y los Focos InSAR.
 3. Glosario Didáctico con Tooltips / Hints Interactivos para no expertos (NDVI, NAF, InSAR, Presión de Poro).
 4. Motor de Pronóstico Predictivo de Ventana de Falla (2026-2027 con proyección punteada).
@@ -158,137 +158,6 @@ def consultar_sismicidad_usgs():
         print(f"⚠️ [Sismicidad] Fallback ({e}).")
     return sismos
 
-def generar_canones_reales_tijuana():
-    """
-    Genera las trazas hidrográficas vectoriales de los cañones y arroyos reales de Tijuana,
-    con sus valores de NDVI de estiaje y nivel freático estimado.
-    """
-    canones = [
-        {
-            "id": "CANON-01",
-            "nombre": "Cañón del Matadero / Desarenador",
-            "delegacion": "Playas de Tijuana",
-            "ndvi_estiaje": 0.52,
-            "naf_promedio": "1.2 - 2.5 m",
-            "descripcion": "Garganta de drenaje pluvial y freático hacia la cuenca binacional. Terraplén vial de acceso a Playas con cárcamos de achique.",
-            "trazado": [
-                [32.5315, -117.0780], [32.5305, -117.0825], [32.5292, -117.0875], [32.5285, -117.0920], [32.5290, -117.0985], [32.5330, -117.1020], [32.5370, -117.1040]
-            ]
-        },
-        {
-            "id": "CANON-02",
-            "nombre": "Cañón del Pato / Salvatierra",
-            "delegacion": "San Antonio de los Buenos",
-            "ndvi_estiaje": 0.46,
-            "naf_promedio": "2.0 - 3.8 m",
-            "descripcion": "Cauce de cañada con presencia continua de tules y sauces. Descarga de veneros en taludes densamente habitados.",
-            "trazado": [
-                [32.4720, -117.0740], [32.4770, -117.0710], [32.4820, -117.0670], [32.4870, -117.0630], [32.4920, -117.0585], [32.4950, -117.0550]
-            ]
-        },
-        {
-            "id": "CANON-03",
-            "nombre": "Cañón de las Carretas (Camino Verde)",
-            "delegacion": "Sánchez Taboada",
-            "ndvi_estiaje": 0.48,
-            "naf_promedio": "1.8 - 3.2 m",
-            "descripcion": "Paleocanal saturado sobre arcillas expansivas de la Formación Otay. Zona de falla y deformación activa continua.",
-            "trazado": [
-                [32.4680, -117.0180], [32.4725, -117.0125], [32.4770, -117.0070], [32.4810, -117.0010], [32.4845, -116.9950], [32.4880, -116.9890]
-            ]
-        },
-        {
-            "id": "CANON-04",
-            "nombre": "Cañón Johnson (Col. Hidalgo - Centro)",
-            "delegacion": "Centro / San Antonio de los Buenos",
-            "ndvi_estiaje": 0.45,
-            "naf_promedio": "0.8 - 3.2 m",
-            "descripcion": "Eje de cañada histórica con veneros perennes (P16) que bajan por el fondo de cañada de Melchor Ocampo hacia el Centro.",
-            "trazado": [
-                [32.5125, -117.0460], [32.5150, -117.0435], [32.51713, -117.04102], [32.51754, -117.04071],
-                [32.51814, -117.04039], [32.51864, -117.03946], [32.51927, -117.03915], [32.52046, -117.03960],
-                [32.5245, -117.0398], [32.5280, -117.0395], [32.5310, -117.0388]
-            ]
-        },
-        {
-            "id": "CANON-04B",
-            "nombre": "Cañón K (Altamira - Alemán)",
-            "delegacion": "Centro",
-            "ndvi_estiaje": 0.42,
-            "naf_promedio": "2.2 - 4.0 m",
-            "descripcion": "Cañada paralela al oeste que drena la meseta de Altamira hacia la línea internacional.",
-            "trazado": [
-                [32.5180, -117.0560], [32.5220, -117.0545], [32.5260, -117.0530], [32.5300, -117.0515], [32.5335, -117.0500]
-            ]
-        },
-        {
-            "id": "CANON-05",
-            "nombre": "Corredor Ripario Río Alamar",
-            "delegacion": "Otay Centenario",
-            "ndvi_estiaje": 0.62,
-            "naf_promedio": "2.0 - 4.5 m",
-            "descripcion": "Bosque de galería de sauces (Salix gooddingii) y álamos. Acuífero somero aluvial de recarga regional.",
-            "trazado": [
-                [32.5400, -116.9050], [32.5350, -116.9180], [32.5300, -116.9350], [32.5260, -116.9520], [32.5225, -116.9710]
-            ]
-        },
-        {
-            "id": "CANON-06",
-            "nombre": "Cañón del Padre / Rincón",
-            "delegacion": "Otay / La Mesa",
-            "ndvi_estiaje": 0.51,
-            "naf_promedio": "3.0 - 5.2 m",
-            "descripcion": "Afluente sur del Alamar con norias tradicionales y escurrimiento subsuperficial constante.",
-            "trazado": [
-                [32.5100, -116.9250], [32.5150, -116.9180], [32.5208, -116.9050], [32.5250, -116.8950]
-            ]
-        },
-        {
-            "id": "CANON-07",
-            "nombre": "Cañón de Los Laureles",
-            "delegacion": "Playas de Tijuana",
-            "ndvi_estiaje": 0.55,
-            "naf_promedio": "1.5 - 2.8 m",
-            "descripcion": "Cañón transfronterizo con flujo base constante hacia el Estuario del Río Tijuana en California.",
-            "trazado": [
-                [32.5180, -117.1180], [32.5240, -117.1150], [32.5295, -117.1120], [32.5345, -117.1100], [32.5390, -117.1075], [32.5440, -117.1060]
-            ]
-        },
-        {
-            "id": "CANON-08",
-            "nombre": "Cañón del Sáinz",
-            "delegacion": "La Presa A.L.R.",
-            "ndvi_estiaje": 0.49,
-            "naf_promedio": "2.8 - 4.8 m",
-            "descripcion": "Cuenca de drenaje hacia la Presa Rodríguez con norias rústicas y contacto geológico permeable.",
-            "trazado": [
-                [32.4120, -116.9630], [32.4180, -116.9560], [32.4240, -116.9500], [32.4290, -116.9440], [32.4340, -116.9380]
-            ]
-        },
-        {
-            "id": "CANON-09",
-            "nombre": "Arroyo Huertita (Playas Sur)",
-            "delegacion": "Playas de Tijuana",
-            "ndvi_estiaje": 0.46,
-            "naf_promedio": "2.0 - 3.5 m",
-            "descripcion": "Descarga subsuperficial marina con sauces costeros (Salix laevigata).",
-            "trazado": [
-                [32.5020, -117.0980], [32.4980, -117.1020], [32.4950, -117.1050], [32.4910, -117.1120]
-            ]
-        },
-        {
-            "id": "CANON-10",
-            "nombre": "Cañón Pastejé / 3 de Octubre",
-            "delegacion": "Sánchez Taboada",
-            "ndvi_estiaje": 0.47,
-            "naf_promedio": "2.1 - 3.6 m",
-            "descripcion": "Ladera con grietas de tensión y presencia de aguas someras colgadas.",
-            "trazado": [
-                [32.4700, -116.9450], [32.4650, -116.9510], [32.4600, -116.9570], [32.4550, -116.9630]
-            ]
-        }
-    ]
-    return canones
 
 def generar_datos_radar_insar():
     """Genera datos de deformación InSAR (2018-2026) con pronóstico predictivo geomecánico (2027 Proyectado)."""
@@ -368,8 +237,8 @@ def generar_datos_radar_insar():
         {
             "id": "INSAR-04",
             "nombre": "Cañón del Matadero / Desarenador (Acceso Playas)",
-            "lat": 32.5305,
-            "lng": -117.0825,
+            "lat": 32.5290,
+            "lng": -117.0985,
             "subsidencia_mm_ano": -28.0,
             "deformacion_acumulada_mm": -94.2,
             "pronostico_alerta": "Estabilizado temporalmente con obras de drenaje; requiere monitoreo de azolve y filtración.",
@@ -440,8 +309,8 @@ def generar_datos_radar_insar():
         {
             "id": "INSAR-07",
             "nombre": "Cañón Johnson / Col. Hidalgo",
-            "lat": 32.5180,
-            "lng": -117.0405,
+            "lat": 32.5125,
+            "lng": -117.0460,
             "subsidencia_mm_ano": -19.8,
             "deformacion_acumulada_mm": -62.1,
             "pronostico_alerta": "⚠️ FOCO EMERGENTE: Aceleración de subpresión freática en fondo de cañada; riesgo para viviendas en ladera media.",
@@ -536,11 +405,10 @@ def generar_datos_radar_insar():
     ]
     return zonas_insar
 
-def compilar_visor_html(puntos, datos_usgs, datos_clima, sismos, canones, zonas_insar, output_html="visor_satelital_tijuana.html"):
-    """Genera el visualizador interactivo con Trazas de Cañones Reales, Gráficas en TODOS los puntos y Glosario Didáctico."""
+def compilar_visor_html(puntos, datos_usgs, datos_clima, sismos, zonas_insar, output_html="visor_satelital_tijuana.html"):
+    """Genera el visualizador interactivo con Mapa de Calor continuo, InSAR Sentinel-1, Gráficas NAF en TODOS los 50 puntos y Telemetría."""
     
     puntos_json = json.dumps(puntos)
-    canones_json = json.dumps(canones)
     zonas_insar_json = json.dumps(zonas_insar)
     sismos_json = json.dumps(sismos)
     clima_json = json.dumps(datos_clima)
@@ -561,7 +429,7 @@ def compilar_visor_html(puntos, datos_usgs, datos_clima, sismos, canones, zonas_
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AquaResiliencia Tijuana — Cañones Reales, InSAR Predictivo y Telemetría</title>
+    <title>AquaResiliencia Tijuana — InSAR Predictivo, Pozos Someros y Telemetría</title>
     
     <!-- Leaflet, Leaflet.heat, Chart.js & Google Fonts -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -701,7 +569,8 @@ def compilar_visor_html(puntos, datos_usgs, datos_clima, sismos, canones, zonas_
         
         .tooltip-box {{
             visibility: hidden;
-            width: 230px;
+            width: 240px;
+            max-width: calc(100vw - 32px);
             background-color: #0f172a;
             color: #f8fafc;
             text-align: left;
@@ -710,8 +579,7 @@ def compilar_visor_html(puntos, datos_usgs, datos_clima, sismos, canones, zonas_
             position: absolute;
             z-index: 9999;
             bottom: 125%;
-            left: 50%;
-            transform: translateX(-50%);
+            left: 0;
             opacity: 0;
             transition: opacity 0.25s ease;
             font-size: 0.72rem;
@@ -726,6 +594,18 @@ def compilar_visor_html(puntos, datos_usgs, datos_clima, sismos, canones, zonas_
         .tooltip-icon:hover .tooltip-box {{
             visibility: visible;
             opacity: 1;
+        }}
+        
+        /* Ajuste dimensional y encuadre para popups Leaflet */
+        .leaflet-popup-content-wrapper {{
+            background: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+        }}
+        .leaflet-popup-content {{
+            margin: 12px 14px !important;
+            line-height: 1.35;
+            width: 295px !important;
         }}
         
         .section-title {{
@@ -747,16 +627,7 @@ def compilar_visor_html(puntos, datos_usgs, datos_clima, sismos, canones, zonas_
             border: 1px solid var(--border);
             border-radius: 10px;
         }}
-        .canyon-tooltip {{
-            background: rgba(7, 13, 24, 0.94);
-            border: 1px solid var(--accent-cyan);
-            color: #fff;
-            font-size: 0.72rem;
-            font-weight: 700;
-            border-radius: 6px;
-            padding: 4px 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.6);
-        }}
+        
         .legend-item {{
             display: flex;
             align-items: center;
@@ -897,10 +768,10 @@ def compilar_visor_html(puntos, datos_usgs, datos_clima, sismos, canones, zonas_
     <!-- Sidebar Panel -->
     <div id="sidebar">
         <div class="header">
-            <div class="badge"><span class="live-dot"></span> InSAR Predictivo & Cañones en Vivo</div>
+            <div class="badge"><span class="live-dot"></span> InSAR Predictivo & Hidrogeología en Vivo</div>
             <h1>AquaResiliencia <span>Tijuana</span></h1>
             <div class="sub-header">
-                Fusión satelital de cañadas reales, deformación de laderas, telemetría y pronóstico de ventana de falla (2026–2027).
+                Fusión satelital de monitoreo piezométrico (CONAGUA / REPDA), deformación InSAR (Sentinel-1) y telemetría binacional en tiempo real.
             </div>
         </div>
         
@@ -948,25 +819,25 @@ def compilar_visor_html(puntos, datos_usgs, datos_clima, sismos, canones, zonas_
         <div class="section-title">Simbología del Visor</div>
         <div class="legend-box" style="margin-bottom: 8px;">
             <div class="legend-item" style="align-items: flex-start; margin-bottom: 6px;">
-                <div style="width: 22px; height: 0; border-top: 3px dashed var(--accent-cyan); margin-top: 6px; margin-right: 8px; flex-shrink: 0;"></div>
-                <div style="font-size: 0.72rem; line-height: 1.35;">
-                    <strong style="color: var(--accent-cyan);">Líneas Punteadas Azules:</strong> Ejes de Cañones y Arroyos Reales (talwegs de drenaje natural donde convergen flujos freáticos someros y vegetación activa en estiaje).
-                </div>
-            </div>
-            <div class="legend-item" style="align-items: flex-start; margin-bottom: 6px;">
                 <div style="display: flex; gap: 3px; margin-top: 4px; margin-right: 8px; flex-shrink: 0;">
                     <div style="width: 8px; height: 8px; border-radius: 50%; background: #ef4444;"></div>
                     <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--accent-cyan);"></div>
                     <div style="width: 8px; height: 8px; border-radius: 50%; background: #10b981;"></div>
                 </div>
                 <div style="font-size: 0.72rem; line-height: 1.35;">
-                    <strong style="color: #fff;">Puntos Piezométricos:</strong> Red de monitoreo NAF (<span style="color:#ef4444;">● ≤2m</span>, <span style="color:var(--accent-cyan);">● ≤4m</span>, <span style="color:#10b981;">● &gt;4m</span>). Con gráficas históricas al clic.
+                    <strong style="color: #fff;">Red Piezométrica (50 Puntos Verificados):</strong> Monitoreo NAF (<span style="color:#ef4444;">● ≤2m</span>, <span style="color:var(--accent-cyan);">● ≤4m</span>, <span style="color:#10b981;">● &gt;4m</span>). Con gráficas históricas al clic.
+                </div>
+            </div>
+            <div class="legend-item" style="align-items: flex-start; margin-bottom: 6px;">
+                <div style="width: 14px; height: 14px; border-radius: 50%; border: 2px solid #f59e0b; background: rgba(245,158,11,0.25); margin-top: 2px; margin-right: 8px; flex-shrink: 0;"></div>
+                <div style="font-size: 0.72rem; line-height: 1.35;">
+                    <strong style="color: #f59e0b;">Focos InSAR (Deformación de Terreno):</strong> Radares Sentinel-1 con medición milimétrica de subsidencia y deslizamiento.
                 </div>
             </div>
             <div class="legend-item" style="align-items: flex-start;">
-                <div style="width: 14px; height: 14px; border-radius: 50%; border: 2px solid #f59e0b; background: rgba(245,158,11,0.25); margin-top: 2px; margin-right: 8px; flex-shrink: 0;"></div>
+                <div style="width: 14px; height: 14px; border-radius: 4px; background: linear-gradient(135deg, #00E5FF, #ef4444); margin-top: 2px; margin-right: 8px; flex-shrink: 0;"></div>
                 <div style="font-size: 0.72rem; line-height: 1.35;">
-                    <strong style="color: #f59e0b;">Círculos InSAR:</strong> Focos de deformación milimétrica por radar Sentinel-1.
+                    <strong style="color: #00E5FF;">Mapa de Calor de Saturación:</strong> Gradiente continuo calculado de la presión freática somera.
                 </div>
             </div>
         </div>
@@ -1074,7 +945,6 @@ def compilar_visor_html(puntos, datos_usgs, datos_clima, sismos, canones, zonas_
 
         // Capas de datos
         const heatLayerGroup = L.layerGroup().addTo(map);
-        const canonesGroup = L.layerGroup().addTo(map);
         const zonasInSARGroup = L.layerGroup().addTo(map);
         const puntosAguaGroup = L.layerGroup().addTo(map);
         const sismosGroup = L.layerGroup().addTo(map);
@@ -1082,7 +952,6 @@ def compilar_visor_html(puntos, datos_usgs, datos_clima, sismos, canones, zonas_
 
         const overlayMaps = {{
             "🔥 Mapa de Calor Continuo de Saturación": heatLayerGroup,
-            "🌊 Cañones y Cañadas Reales de Tijuana": canonesGroup,
             "🔴 Focos InSAR (Deformación y Pronóstico)": zonasInSARGroup,
             "💧 50 Puntos de Agua Somera (Gráficas NAF)": puntosAguaGroup,
             "⚡ Sismicidad Reciente (USGS)": sismosGroup,
@@ -1093,7 +962,6 @@ def compilar_visor_html(puntos, datos_usgs, datos_clima, sismos, canones, zonas_
 
         // Datos inyectados
         const puntosAgua = {puntos_json};
-        const canones = {canones_json};
         const zonasInSAR = {zonas_insar_json};
         const sismos = {sismos_json};
         const heatPoints = {heat_points_json};
@@ -1110,40 +978,6 @@ def compilar_visor_html(puntos, datos_usgs, datos_clima, sismos, canones, zonas_
             maxZoom: 16,
             gradient: {{ 0.2: '#00E5FF', 0.45: '#10b981', 0.65: '#f59e0b', 0.85: '#f97316', 1.0: '#ef4444' }}
         }}).addTo(heatLayerGroup);
-
-        // 2. Trazas Vectoriales de Cañones Reales
-        canones.forEach(c => {{
-            const polyline = L.polyline(c.trazado, {{
-                color: '#00E5FF',
-                weight: 3.5,
-                opacity: 0.9,
-                dashArray: '8, 6'
-            }}).addTo(canonesGroup);
-            
-            polyline.bindTooltip(`🌊 ${{c.nombre}} (Drenaje Natural y Flujo Freático)`, {{
-                sticky: true,
-                className: 'canyon-tooltip'
-            }});
-            
-            polyline.bindPopup(`
-                <div style="color: #0f172a; font-family: sans-serif; width: 275px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
-                        <span style="font-size: 0.68rem; font-weight: 800; color: #0284c7; letter-spacing: 0.5px;">EJE DE CAÑÓN REAL [${{c.id}}]</span>
-                        <span style="font-size: 0.65rem; font-weight: 700; background: #e0f2fe; color: #0369a1; padding: 2px 6px; border-radius: 4px;">Drenaje Natural</span>
-                    </div>
-                    <div style="font-size: 1.02rem; font-weight: 800; margin: 3px 0; line-height: 1.25;">${{c.nombre}}</div>
-                    <div style="font-size: 0.78rem; color: #334155;"><strong>Delegación:</strong> ${{c.delegacion}}</div>
-                    <div style="font-size: 0.82rem; color: #059669; margin: 3px 0;"><strong>NDVI Estiaje:</strong> ${{c.ndvi_estiaje}} (Vegetación activa en sequía)</div>
-                    <div style="font-size: 0.82rem; color: #0284c7;"><strong>NAF Estimado:</strong> ${{c.naf_promedio}}</div>
-                    <div style="font-size: 0.72rem; color: #475569; margin-top: 4px; background: #f8fafc; padding: 5px 6px; border-radius: 4px; border-left: 3px solid #00E5FF;">
-                        <strong>Función Hidrogeológica:</strong> ${{c.descripcion}}
-                    </div>
-                    <div style="font-size: 0.68rem; color: #64748b; margin-top: 5px; font-style: italic;">
-                        Línea punteada azul = Eje de flujo subsuperficial y concentración de humedad freática.
-                    </div>
-                </div>
-            `);
-        }});
 
         // Función para calcular color de alerta
         function getAlertaColor(desplazamientoAbs) {{
@@ -1180,19 +1014,21 @@ def compilar_visor_html(puntos, datos_usgs, datos_clima, sismos, canones, zonas_
                 const chartId = 'chart_' + z.id.replace('-', '_');
                 
                 const popupHtml = `
-                    <div style="color: #0f172a; font-family: sans-serif; width: 290px;">
-                        <div style="font-size: 0.72rem; font-weight: 800; color: ${{alerta.color}};">🛰️ RADAR InSAR (BANDA C) — ${{year}}</div>
-                        <div style="font-size: 1.05rem; font-weight: 800; margin: 3px 0;">${{z.nombre}}</div>
-                        <div style="font-size: 0.82rem; color: ${{alerta.color}};"><strong>Estado en ${{year}}:</strong> ${{alerta.label}}</div>
-                        <div style="font-size: 0.82rem; color: #1e293b;"><strong>Desplazamiento acumulado:</strong> -${{dispAbs.toFixed(1)}} mm</div>
-                        <div style="font-size: 0.75rem; color: #475569; margin-top: 4px;"><strong>Mecanismo:</strong> ${{z.mecanismo}}</div>
-                        <div style="background: rgba(245, 158, 11, 0.15); border-left: 3px solid #f59e0b; padding: 4px 6px; margin-top: 6px; font-size: 0.72rem; color: #92400e;">
+                    <div style="color: #0f172a; font-family: sans-serif; width: 100%; box-sizing: border-box;">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+                            <span style="font-size: 0.70rem; font-weight: 800; color: ${{alerta.color}};">🛰️ RADAR InSAR SENTINEL-1</span>
+                            <span style="font-size: 0.64rem; font-weight: 700; background: ${{alerta.color}}22; color: ${{alerta.color}}; padding: 2px 6px; border-radius: 4px; border: 1px solid ${{alerta.color}}44;">${{alerta.nivel}}</span>
+                        </div>
+                        <div style="font-size: 1.02rem; font-weight: 800; margin: 3px 0 2px; line-height: 1.25;">${{z.nombre}}</div>
+                        <div style="font-size: 0.80rem; color: #1e293b;"><strong>Desplazamiento acumulado:</strong> <span style="color: ${{alerta.color}}; font-weight: 800;">-${{dispAbs.toFixed(1)}} mm</span></div>
+                        <div style="font-size: 0.74rem; color: #475569; margin-top: 3px;"><strong>Mecanismo:</strong> ${{z.mecanismo}}</div>
+                        <div style="background: rgba(245, 158, 11, 0.12); border-left: 3px solid #f59e0b; padding: 5px 7px; margin-top: 6px; font-size: 0.72rem; color: #92400e; border-radius: 0 4px 4px 0;">
                             <strong>🔮 Pronóstico Futuro:</strong> ${{z.pronostico_alerta}}<br>
                             <strong>Ventana Crítica:</strong> ${{z.ventana_critica}}
                         </div>
                         
                         <div style="margin-top: 8px; font-size: 0.72rem; font-weight: 700; color: #334155;">Curva Histórica y Proyección 2027 (mm):</div>
-                        <div style="height: 130px; width: 100%; margin-top: 4px;">
+                        <div style="position: relative; height: 125px; width: 100%; margin-top: 4px;">
                             <canvas id="${{chartId}}"></canvas>
                         </div>
                     </div>
@@ -1269,20 +1105,23 @@ def compilar_visor_html(puntos, datos_usgs, datos_clima, sismos, canones, zonas_
             const chartPointId = 'chart_pt_' + p.id;
             
             const popupPointHtml = `
-                <div style="color: #0f172a; font-family: sans-serif; width: 285px;">
-                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div style="color: #0f172a; font-family: sans-serif; width: 100%; box-sizing: border-box;">
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
                         <span style="font-size: 0.68rem; font-weight: 800; color: #0284c7; letter-spacing: 0.5px;">PUNTO FREÁTICO SOMERO [${{p.id}}]</span>
-                        <span style="font-size: 0.65rem; font-weight: 700; background: #e0f2fe; color: #0369a1; padding: 2px 6px; border-radius: 4px; border: 1px solid #bae6fd;">${{p.categoria}}</span>
+                        <span style="font-size: 0.68rem; font-weight: 800; color: ${{color}};">NAF: ${{p.naf}} m</span>
                     </div>
-                    <div style="font-size: 0.98rem; font-weight: 800; margin: 4px 0 2px 0; line-height: 1.25;">${{p.nombre}}</div>
+                    <div style="display: inline-block; font-size: 0.64rem; font-weight: 700; background: #e0f2fe; color: #0369a1; padding: 2px 6px; border-radius: 4px; border: 1px solid #bae6fd; margin-bottom: 4px; line-height: 1.25;">
+                        ${{p.categoria}}
+                    </div>
+                    <div style="font-size: 0.98rem; font-weight: 800; margin: 2px 0 2px 0; line-height: 1.25;">${{p.nombre}}</div>
                     <div style="font-size: 0.78rem; color: #334155;"><strong>Delegación:</strong> ${{p.delegacion}}</div>
-                    <div style="font-size: 0.84rem; color: #0369a1; margin: 3px 0;"><strong>Profundidad Freática (NAF):</strong> ${{p.naf}} m <span style="font-size: 0.68rem; color: #64748b;">(bajo nivel de terreno)</span></div>
+                    <div style="font-size: 0.84rem; color: #0369a1; margin: 2px 0;"><strong>Profundidad Freática (NAF):</strong> ${{p.naf}} m <span style="font-size: 0.68rem; color: #64748b;">(bajo nivel de terreno)</span></div>
                     <div style="font-size: 0.74rem; color: #475569; margin: 2px 0;"><strong>Geología:</strong> ${{p.geologia}}</div>
                     <div style="font-size: 0.72rem; color: #334155; margin-top: 3px; background: #f8fafc; padding: 4px 6px; border-radius: 4px; border-left: 3px solid #0284c7;"><strong>Fuente / Régimen:</strong> ${{p.fuente}}</div>
                     
                     <div style="margin-top: 8px; font-size: 0.72rem; font-weight: 700; color: #334155;">Evolución Histórica NAF (2018–2027 Proy):</div>
                     <div style="font-size: 0.64rem; color: #64748b; margin-bottom: 2px;">▲ Curva ascendente = manto freático subiendo hacia superficie</div>
-                    <div style="height: 125px; width: 100%; margin-top: 2px;">
+                    <div style="position: relative; height: 125px; width: 100%; margin-top: 2px;">
                         <canvas id="${{chartPointId}}"></canvas>
                     </div>
                 </div>
@@ -1414,18 +1253,17 @@ def compilar_visor_html(puntos, datos_usgs, datos_clima, sismos, canones, zonas_
 
 def main():
     print("==================================================")
-    print("  AQUARESILIENCIA TIJUANA — MOTOR PREDICTIVO & CAÑONES")
+    print("  AQUARESILIENCIA TIJUANA — MOTOR PREDICTIVO & SATELITAL")
     print("==================================================")
     puntos = cargar_dataset_v2()
     datos_usgs = consultar_telemetria_usgs()
     datos_clima = consultar_clima_humedad_tijuana()
     sismos = consultar_sismicidad_usgs()
-    canones = generar_canones_reales_tijuana()
     zonas_insar = generar_datos_radar_insar()
     
-    compilar_visor_html(puntos, datos_usgs, datos_clima, sismos, canones, zonas_insar)
+    compilar_visor_html(puntos, datos_usgs, datos_clima, sismos, zonas_insar)
     print("==================================================")
-    print("🚀 Proceso satelital con Cañones Reales y Gráficas completado con éxito.")
+    print("🚀 Proceso satelital e InSAR completado con éxito.")
 
 if __name__ == "__main__":
     main()
