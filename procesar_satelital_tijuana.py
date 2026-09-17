@@ -214,6 +214,84 @@ def generar_datos_radar_insar():
                 {"ano": "2025", "desplazamiento": -64.7},
                 {"ano": "2026", "desplazamiento": -68.0}
             ]
+        },
+        {
+            "id": "INSAR-06",
+            "nombre": "Ribera del Bosque / Corredor 2000",
+            "lat": 32.4950,
+            "lng": -116.8820,
+            "subsidencia_mm_ano": -21.4,
+            "deformacion_acumulada_mm": -53.5,
+            "riesgo": "Emergente 2026 / Grietas Activas",
+            "geologia": "Arcillas expansivas y rellenos no confinados en ladera este",
+            "mecanismo": "Saturación freática por escorrentías y descarga de meseta",
+            "serie_temporal": [
+                {"ano": "2021", "desplazamiento": 0.0},
+                {"ano": "2022", "desplazamiento": -11.2},
+                {"ano": "2023", "desplazamiento": -24.8},
+                {"ano": "2024", "desplazamiento": -36.5},
+                {"ano": "2025", "desplazamiento": -45.8},
+                {"ano": "2026", "desplazamiento": -53.5}
+            ]
+        },
+        {
+            "id": "INSAR-07",
+            "nombre": "Cañón Johnson / Col. Hidalgo",
+            "lat": 32.5180,
+            "lng": -117.0480,
+            "subsidencia_mm_ano": -19.8,
+            "deformacion_acumulada_mm": -62.1,
+            "riesgo": "Emergente / Afloramiento de Manantiales",
+            "geologia": "Contacto geológico Formación San Diego - Otay en cañón",
+            "mecanismo": "Presión hidrostática de veneros históricos en fondo de cañada",
+            "serie_temporal": [
+                {"ano": "2020", "desplazamiento": 0.0},
+                {"ano": "2021", "desplazamiento": -9.6},
+                {"ano": "2022", "desplazamiento": -22.3},
+                {"ano": "2023", "desplazamiento": -38.4},
+                {"ano": "2024", "desplazamiento": -48.7},
+                {"ano": "2025", "desplazamiento": -56.2},
+                {"ano": "2026", "desplazamiento": -62.1}
+            ]
+        },
+        {
+            "id": "INSAR-08",
+            "nombre": "Cumbres del Rubí / Tejamen (Extensión Sur)",
+            "lat": 32.4920,
+            "lng": -117.0340,
+            "subsidencia_mm_ano": -26.7,
+            "deformacion_acumulada_mm": -88.4,
+            "riesgo": "Crítico / Reactivación de Corona de Deslizamiento",
+            "geologia": "Limonitas y arcillas montmorillonita con buzamiento al oeste",
+            "mecanismo": "Migración subterránea de humedad desde la corona de Lomas del Rubí",
+            "serie_temporal": [
+                {"ano": "2019", "desplazamiento": 0.0},
+                {"ano": "2020", "desplazamiento": -15.4},
+                {"ano": "2021", "desplazamiento": -32.1},
+                {"ano": "2022", "desplazamiento": -51.8},
+                {"ano": "2023", "desplazamiento": -68.2},
+                {"ano": "2024", "desplazamiento": -77.9},
+                {"ano": "2025", "desplazamiento": -83.5},
+                {"ano": "2026", "desplazamiento": -88.4}
+            ]
+        },
+        {
+            "id": "INSAR-09",
+            "nombre": "Paseo Playas / Viaducto Elevado Tramo 1",
+            "lat": 32.5275,
+            "lng": -117.1120,
+            "subsidencia_mm_ano": -16.2,
+            "deformacion_acumulada_mm": -41.0,
+            "riesgo": "Monitoreo Estructural Infraestructura",
+            "geologia": "Arenas limosas y terraza marina con nivel freático a 1.2m",
+            "mecanismo": "Cargas dinámicas sobre cimentación con saturación basal marina",
+            "serie_temporal": [
+                {"ano": "2022", "desplazamiento": 0.0},
+                {"ano": "2023", "desplazamiento": -12.5},
+                {"ano": "2024", "desplazamiento": -24.8},
+                {"ano": "2025", "desplazamiento": -34.1},
+                {"ano": "2026", "desplazamiento": -41.0}
+            ]
         }
     ]
     return zonas_insar
