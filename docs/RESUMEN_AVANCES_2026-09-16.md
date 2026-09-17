@@ -79,8 +79,8 @@ Este es el corte de caja transparente de los 10 frentes que tenemos abiertos. No
 * **Investigación técnica requerida (sin asumir componentes previos):** Línea técnica abierta para investigar qué sensores compatibles con ESP32/Arduino son viables en campo (precisión, durabilidad sumergida, costo, calibración y respuesta en agua dulce vs. salina) para medir parámetros más allá de sólidos disueltos (ppm/TDS): pH, temperatura, turbidez, potencial redox (ORP) y nivel freático (hidrostático o ultrasónico estanco).
 
 ### 9. Inspección visual del pozo (Cámara sumergible / endoscópica)
-* **Acción:** Grabación del interior del pozo para verificar la integridad del ademe, acumulación de azolve y dinámica del venero; servirá también como testimonio audiovisual para difusión.
-* **Estatus actual:** En planeación logística.
+* **Acción:** Grabación y visualización directa del interior del pozo para verificar la integridad del ademe, acumulación de azolve y dinámica del venero; sirve como testimonio audiovisual y técnico de campo.
+* **Estatus actual:** ✅ **Inspección visual ejecutada con éxito en sitio**; ademe ranurado y dinamismo del venero verificados.
 
 ---
 
