@@ -166,13 +166,13 @@ def generar_canones_reales_tijuana():
     canones = [
         {
             "id": "CANON-01",
-            "nombre": "Cañón del Matadero",
+            "nombre": "Cañón del Matadero / Desarenador",
             "delegacion": "Playas de Tijuana",
             "ndvi_estiaje": 0.52,
             "naf_promedio": "1.2 - 2.5 m",
-            "descripcion": "Garganta de drenaje pluvial y freático hacia la cuenca binacional. Terraplén vial de acceso a Playas.",
+            "descripcion": "Garganta de drenaje pluvial y freático hacia la cuenca binacional. Terraplén vial de acceso a Playas con cárcamos de achique.",
             "trazado": [
-                [32.5315, -117.0780], [32.5305, -117.0825], [32.5280, -117.0890], [32.5250, -117.0950]
+                [32.5315, -117.0780], [32.5305, -117.0825], [32.5292, -117.0875], [32.5285, -117.0920], [32.5290, -117.0985], [32.5330, -117.1020], [32.5370, -117.1040]
             ]
         },
         {
@@ -181,9 +181,9 @@ def generar_canones_reales_tijuana():
             "delegacion": "San Antonio de los Buenos",
             "ndvi_estiaje": 0.46,
             "naf_promedio": "2.0 - 3.8 m",
-            "descripcion": "Cauce con presencia continua de tules y sauces. Descarga de veneros en taludes habitados.",
+            "descripcion": "Cauce de cañada con presencia continua de tules y sauces. Descarga de veneros en taludes densamente habitados.",
             "trazado": [
-                [32.4920, -117.0580], [32.4865, -117.0635], [32.4810, -117.0680], [32.4760, -117.0720]
+                [32.4720, -117.0740], [32.4770, -117.0710], [32.4820, -117.0670], [32.4870, -117.0630], [32.4920, -117.0585], [32.4950, -117.0550]
             ]
         },
         {
@@ -192,20 +192,31 @@ def generar_canones_reales_tijuana():
             "delegacion": "Sánchez Taboada",
             "ndvi_estiaje": 0.48,
             "naf_promedio": "1.8 - 3.2 m",
-            "descripcion": "Paleocanal saturado sobre arcillas expansivas de la Formación Otay. Zona de falla y deformación activa.",
+            "descripcion": "Paleocanal saturado sobre arcillas expansivas de la Formación Otay. Zona de falla y deformación activa continua.",
             "trazado": [
-                [32.4860, -116.9920], [32.4820, -116.9980], [32.4780, -117.0040], [32.4740, -117.0110]
+                [32.4680, -117.0180], [32.4725, -117.0125], [32.4770, -117.0070], [32.4810, -117.0010], [32.4845, -116.9950], [32.4880, -116.9890]
             ]
         },
         {
             "id": "CANON-04",
-            "nombre": "Cañón Johnson / Cañón K",
-            "delegacion": "Centro / San Antonio",
-            "ndvi_estiaje": 0.44,
-            "naf_promedio": "2.2 - 4.0 m",
-            "descripcion": "Cañadas históricas con manantiales y veneros perennes que socavan bases de pavimento y talud.",
+            "nombre": "Cañón Johnson (Col. Hidalgo - Centro)",
+            "delegacion": "Centro / San Antonio de los Buenos",
+            "ndvi_estiaje": 0.45,
+            "naf_promedio": "1.0 - 3.5 m",
+            "descripcion": "Eje de cañada histórica con veneros perennes (P16) que bajan desde Fundadores y socavan cimentaciones y pavimento.",
             "trazado": [
-                [32.5260, -117.0420], [32.5210, -117.0460], [32.5180, -117.0480], [32.5130, -117.0520]
+                [32.5020, -117.0380], [32.5065, -117.0410], [32.5095, -117.0435], [32.5125, -117.0460], [32.5160, -117.0450], [32.5200, -117.0440], [32.5240, -117.0425], [32.5280, -117.0410]
+            ]
+        },
+        {
+            "id": "CANON-04B",
+            "nombre": "Cañón K (Altamira - Alemán)",
+            "delegacion": "Centro",
+            "ndvi_estiaje": 0.42,
+            "naf_promedio": "2.2 - 4.0 m",
+            "descripcion": "Cañada paralela al oeste que drena la meseta de Altamira hacia la línea internacional.",
+            "trazado": [
+                [32.5180, -117.0560], [32.5220, -117.0545], [32.5260, -117.0530], [32.5300, -117.0515], [32.5335, -117.0500]
             ]
         },
         {
@@ -214,9 +225,9 @@ def generar_canones_reales_tijuana():
             "delegacion": "Otay Centenario",
             "ndvi_estiaje": 0.62,
             "naf_promedio": "2.0 - 4.5 m",
-            "descripcion": "Bosque de galería de sauces (Salix gooddingii) y álamos. Acuífero somero de recarga regional.",
+            "descripcion": "Bosque de galería de sauces (Salix gooddingii) y álamos. Acuífero somero aluvial de recarga regional.",
             "trazado": [
-                [32.5350, -116.9150], [32.5300, -116.9320], [32.5260, -116.9500], [32.5220, -116.9700]
+                [32.5400, -116.9050], [32.5350, -116.9180], [32.5300, -116.9350], [32.5260, -116.9520], [32.5225, -116.9710]
             ]
         },
         {
@@ -227,7 +238,7 @@ def generar_canones_reales_tijuana():
             "naf_promedio": "3.0 - 5.2 m",
             "descripcion": "Afluente sur del Alamar con norias tradicionales y escurrimiento subsuperficial constante.",
             "trazado": [
-                [32.5240, -116.8950], [32.5208, -116.9050], [32.5170, -116.9180], [32.5130, -116.9280]
+                [32.5100, -116.9250], [32.5150, -116.9180], [32.5208, -116.9050], [32.5250, -116.8950]
             ]
         },
         {
@@ -238,7 +249,7 @@ def generar_canones_reales_tijuana():
             "naf_promedio": "1.5 - 2.8 m",
             "descripcion": "Cañón transfronterizo con flujo base constante hacia el Estuario del Río Tijuana en California.",
             "trazado": [
-                [32.5420, -117.1020], [32.5385, -117.1080], [32.5340, -117.1120], [32.5280, -117.1160]
+                [32.5180, -117.1180], [32.5240, -117.1150], [32.5295, -117.1120], [32.5345, -117.1100], [32.5390, -117.1075], [32.5440, -117.1060]
             ]
         },
         {
@@ -249,7 +260,7 @@ def generar_canones_reales_tijuana():
             "naf_promedio": "2.8 - 4.8 m",
             "descripcion": "Cuenca de drenaje hacia la Presa Rodríguez con norias rústicas y contacto geológico permeable.",
             "trazado": [
-                [32.4350, -116.9380], [32.4280, -116.9450], [32.4220, -116.9520], [32.4150, -116.9600]
+                [32.4120, -116.9630], [32.4180, -116.9560], [32.4240, -116.9500], [32.4290, -116.9440], [32.4340, -116.9380]
             ]
         },
         {
@@ -271,7 +282,7 @@ def generar_canones_reales_tijuana():
             "naf_promedio": "2.1 - 3.6 m",
             "descripcion": "Ladera con grietas de tensión y presencia de aguas someras colgadas.",
             "trazado": [
-                [32.4680, -116.9480], [32.4640, -116.9530], [32.4600, -116.9580], [32.4550, -116.9640]
+                [32.4700, -116.9450], [32.4650, -116.9510], [32.4600, -116.9570], [32.4550, -116.9630]
             ]
         }
     ]
@@ -734,6 +745,16 @@ def compilar_visor_html(puntos, datos_usgs, datos_clima, sismos, canones, zonas_
             border: 1px solid var(--border);
             border-radius: 10px;
         }}
+        .canyon-tooltip {{
+            background: rgba(7, 13, 24, 0.94);
+            border: 1px solid var(--accent-cyan);
+            color: #fff;
+            font-size: 0.72rem;
+            font-weight: 700;
+            border-radius: 6px;
+            padding: 4px 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+        }}
         .legend-item {{
             display: flex;
             align-items: center;
@@ -921,6 +942,33 @@ def compilar_visor_html(puntos, datos_usgs, datos_clima, sismos, canones, zonas_
             </div>
         </div>
 
+        <!-- Simbología de Capas Hidrogeológicas -->
+        <div class="section-title">Simbología del Visor</div>
+        <div class="legend-box" style="margin-bottom: 8px;">
+            <div class="legend-item" style="align-items: flex-start; margin-bottom: 6px;">
+                <div style="width: 22px; height: 0; border-top: 3px dashed var(--accent-cyan); margin-top: 6px; margin-right: 8px; flex-shrink: 0;"></div>
+                <div style="font-size: 0.72rem; line-height: 1.35;">
+                    <strong style="color: var(--accent-cyan);">Líneas Punteadas Azules:</strong> Ejes de Cañones y Arroyos Reales (talwegs de drenaje natural donde convergen flujos freáticos someros y vegetación activa en estiaje).
+                </div>
+            </div>
+            <div class="legend-item" style="align-items: flex-start; margin-bottom: 6px;">
+                <div style="display: flex; gap: 3px; margin-top: 4px; margin-right: 8px; flex-shrink: 0;">
+                    <div style="width: 8px; height: 8px; border-radius: 50%; background: #ef4444;"></div>
+                    <div style="width: 8px; height: 8px; border-radius: 50%; background: var(--accent-cyan);"></div>
+                    <div style="width: 8px; height: 8px; border-radius: 50%; background: #10b981;"></div>
+                </div>
+                <div style="font-size: 0.72rem; line-height: 1.35;">
+                    <strong style="color: #fff;">Puntos Piezométricos:</strong> Red de monitoreo NAF (<span style="color:#ef4444;">● ≤2m</span>, <span style="color:var(--accent-cyan);">● ≤4m</span>, <span style="color:#10b981;">● &gt;4m</span>). Con gráficas históricas al clic.
+                </div>
+            </div>
+            <div class="legend-item" style="align-items: flex-start;">
+                <div style="width: 14px; height: 14px; border-radius: 50%; border: 2px solid #f59e0b; background: rgba(245,158,11,0.25); margin-top: 2px; margin-right: 8px; flex-shrink: 0;"></div>
+                <div style="font-size: 0.72rem; line-height: 1.35;">
+                    <strong style="color: #f59e0b;">Círculos InSAR:</strong> Focos de deformación milimétrica por radar Sentinel-1.
+                </div>
+            </div>
+        </div>
+
         <!-- Semáforo Preventivo Didáctico -->
         <div class="section-title">Semáforo de Detección Temprana</div>
         <div class="legend-box">
@@ -1065,19 +1113,32 @@ def compilar_visor_html(puntos, datos_usgs, datos_clima, sismos, canones, zonas_
         canones.forEach(c => {{
             const polyline = L.polyline(c.trazado, {{
                 color: '#00E5FF',
-                weight: 4,
-                opacity: 0.85,
-                dashArray: '6, 6'
+                weight: 3.5,
+                opacity: 0.9,
+                dashArray: '8, 6'
             }}).addTo(canonesGroup);
             
+            polyline.bindTooltip(`🌊 ${{c.nombre}} (Drenaje Natural y Flujo Freático)`, {{
+                sticky: true,
+                className: 'canyon-tooltip'
+            }});
+            
             polyline.bindPopup(`
-                <div style="color: #0f172a; font-family: sans-serif; width: 260px;">
-                    <div style="font-size: 0.7rem; font-weight: 800; color: #0284c7;">🌊 CAÑÓN / ARROYO REAL [${{c.id}}]</div>
-                    <div style="font-size: 1.05rem; font-weight: 800; margin: 3px 0;">${{c.nombre}}</div>
-                    <div style="font-size: 0.8rem; color: #334155;"><strong>Delegación:</strong> ${{c.delegacion}}</div>
-                    <div style="font-size: 0.82rem; color: #059669; margin: 3px 0;"><strong>NDVI Estiaje (Verdor):</strong> ${{c.ndvi_estiaje}} (Vegetación perenne)</div>
-                    <div style="font-size: 0.82rem; color: #0284c7;"><strong>NAF Promedio:</strong> ${{c.naf_promedio}}</div>
-                    <div style="font-size: 0.75rem; color: #475569; margin-top: 4px;">${{c.descripcion}}</div>
+                <div style="color: #0f172a; font-family: sans-serif; width: 275px;">
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                        <span style="font-size: 0.68rem; font-weight: 800; color: #0284c7; letter-spacing: 0.5px;">EJE DE CAÑÓN REAL [${{c.id}}]</span>
+                        <span style="font-size: 0.65rem; font-weight: 700; background: #e0f2fe; color: #0369a1; padding: 2px 6px; border-radius: 4px;">Drenaje Natural</span>
+                    </div>
+                    <div style="font-size: 1.02rem; font-weight: 800; margin: 3px 0; line-height: 1.25;">${{c.nombre}}</div>
+                    <div style="font-size: 0.78rem; color: #334155;"><strong>Delegación:</strong> ${{c.delegacion}}</div>
+                    <div style="font-size: 0.82rem; color: #059669; margin: 3px 0;"><strong>NDVI Estiaje:</strong> ${{c.ndvi_estiaje}} (Vegetación activa en sequía)</div>
+                    <div style="font-size: 0.82rem; color: #0284c7;"><strong>NAF Estimado:</strong> ${{c.naf_promedio}}</div>
+                    <div style="font-size: 0.72rem; color: #475569; margin-top: 4px; background: #f8fafc; padding: 5px 6px; border-radius: 4px; border-left: 3px solid #00E5FF;">
+                        <strong>Función Hidrogeológica:</strong> ${{c.descripcion}}
+                    </div>
+                    <div style="font-size: 0.68rem; color: #64748b; margin-top: 5px; font-style: italic;">
+                        Línea punteada azul = Eje de flujo subsuperficial y concentración de humedad freática.
+                    </div>
                 </div>
             `);
         }});
