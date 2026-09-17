@@ -41,10 +41,10 @@ Este es el corte de caja transparente de los 10 frentes que tenemos abiertos. No
 
 ## II. Solicitudes de Información y Mapeo Geotécnico
 
-### 5. Transparencia — Estudios de Mecánica de Suelos (EMS) y Niveles Piezométricos REPDA
-* **Acción:** Solicitudes formales de información ante dependencias federales (SICT y CONAGUA) para mecánica de suelos del Viaducto Elevado y niveles estáticos de pozos concesionados.
+### 5. Transparencia — Estudios de Mecánica de Suelos (EMS), Pozos REPDA y Permisos CESPT
+* **Acción:** Solicitudes formales de información ante dependencias federales y estatales (SICT, CONAGUA y CESPT) para mecánica de suelos del Viaducto Elevado, niveles estáticos de pozos concesionados y descargas de achique/dewatering.
 * **Objetivo:** Trazar un perfil piezométrico transversal continuo de alta resolución en la mancha urbana y contrastar mediciones oficiales con el mapa de calor.
-* **Estatus actual:** ✅ **Solicitudes ingresadas exitosamente en la PNT**:
+* **Estatus actual:** ✅ **3 solicitudes ingresadas exitosamente en la PNT**:
   1. **Solicitud 1 — Estudios de Mecánica de Suelos Viaducto Elevado:**
      * **Folio Oficial PNT:** `340025500147426`
      * **Sujeto Obligado:** FED - Secretaría de Infraestructura, Comunicaciones y Transportes (SICT)
@@ -55,6 +55,11 @@ Este es el corte de caja transparente de los 10 frentes que tenemos abiertos. No
      * **Sujeto Obligado:** FED - Comisión Nacional del Agua (CONAGUA)
      * **Fecha de recepción oficial:** 17 de septiembre de 2026
      * **Plazo legal de respuesta:** 15 de octubre de 2026 *(Competencia: 22/09/2026)*
+  3. **Solicitud 3 — Permisos de Descarga de Achique y Piezometría CESPT:**
+     * **Folio Oficial PNT:** `1121164026000109`
+     * **Sujeto Obligado:** BCN - Comisión Estatal de Servicios Públicos de Tijuana (CESPT)
+     * **Fecha de recepción oficial:** 17 de septiembre de 2026
+     * **Plazo legal de respuesta:** 19 de octubre de 2026 *(Competencia: 23/09/2026)*
 
 ### 6. Colegio de Ingenieros Civiles de Tijuana, A.C. (CICT)
 * **Documento elaborado:** Se cuenta ya con el oficio formal membretado listo para entrega: [Carta Membretada para el Colegio de Ingenieros Civiles de Tijuana (Oficio AR-TJ-2026/001)](https://drive.google.com/file/d/1dRXDbt7NURnU-CiXxjsXpVxzFp_LuYq1/view).
