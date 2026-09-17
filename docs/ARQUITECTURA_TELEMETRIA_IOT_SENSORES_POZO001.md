@@ -81,12 +81,42 @@ Para contrastar el comportamiento del acuífero costero de Tijuana frente a la c
 
 ---
 
-## 4. Estrategia de Gestión de Energía y Datos
+## 4. Arquitectura de Energía Frugal y Gestión Eléctrica
 
-1. **Ciclo de Operación (15 minutos):**
-   * *Despertar (Wakeup):* El RTC interno del ESP32 despierta el microcontrolador.
-   * *Alimentación de sensores:* El relé MOSFET enciende la línea de 12V/RS485 durante 3 segundos para estabilización.
-   * *Adquisición:* Lectura de NAF, TDS, pH y Temperatura.
-   * *Transmisión / Almacenamiento:* Envío por protocolo HTTP POST/MQTT a la base de datos abierta y respaldo en tarjeta micro-SD local.
-   * *Dormir (Deep Sleep):* El microcontrolador entra en modo de reposo profundo ($< 15\ \mu\text{A}$ de consumo).
-2. **Autonomía:** Con una batería LiFePO4 de 12V 6Ah y un panel solar de 25W, el nodo tiene **autonomía ilimitada en operación normal** y hasta 25 días continuos de operación en caso de oscuridad total.
+* **Generación Solar:** Arreglo de 2 a 3 paneles solares de 5W en paralelo (10W - 15W total), aprovechando stock existente de bajo costo.
+* **Almacenamiento Eléctrico:** Batería de motocicleta sellada de 12V (AGM / Gel de 4Ah - 7Ah), económica, de fácil reposición local y con capacidad suficiente para soportar operación continua día y noche (24/7).
+* **Consumo Eficiente:** Microcontrolador ESP32-S3 operando en modo *Deep Sleep* cíclico cada 15 minutos ($< 15\ \mu\text{A}$), activando la alimentación de sensores solo durante 3 segundos por lectura.
+
+---
+
+## 5. Conectividad Comunitaria: La "Mula de Datos Ciudadana" (Crowdsourced QR Uplink)
+
+Frente al alto costo de una estación del USGS (~$15,000 USD con módem satelital y planes de datos dedicados), AquaResiliencia implementa un modelo de **Sincronización Oportunista y Ciencia Ciudadana Participativa**:
+
+```
+┌────────────────────────────────────────────────────────────────────────────────────────┐
+│               MECANISMO DE SINCRONIZACIÓN CÍVICA "PEAJE DE DATOS"                      │
+│                                                                                        │
+│  1. REGISTRO LOCAL (24/7):                                                             │
+│     El ESP32 mide NAF, TDS y Temp cada 15 min y guarda el histórico en memoria Flash.  │
+│                                                                                        │
+│  2. ESCANEO DEL QR (En el Pozo):                                                       │
+│     Un vecino, estudiante o visitante escanea el Código QR físico pegado en el brocal. │
+│                                                                                        │
+│  3. CONEXIÓN LOCAL (BLE / SoftAP):                                                     │
+│     El teléfono del usuario lee el lote de datos acumulados desde el ESP32.            │
+│                                                                                        │
+│  4. PEAJE CÍVICO & UPLINK:                                                             │
+│     La WebApp solicita al usuario: "Préstale 5 KB de tus datos móviles al pozo".      │
+│     El smartphone hace el POST automático a la base de datos abierta en la nube.       │
+│                                                                                        │
+│  5. RECONOCIMIENTO EN PANTALLA:                                                        │
+│     "¡Gracias Centinela! Los datos de este pozo acaban de sincronizarse gracias a ti." │
+└────────────────────────────────────────────────────────────────────────────────────────┘
+```
+
+### Ventajas del Esquema:
+1. **Cero costo operativo mensual:** No se requiere contratar ni pagar planes de datos SIM 4G/LTE fijos por cada pozo.
+2. **Resiliencia:** Si hay WiFi público o residencial cercano disponible, el ESP32 se conecta de forma directa; si no, la sincronización ocurre cada vez que un ciudadano o brigada visita el pozo.
+3. **Apropiación Social:** El ciudadano se vuelve parte activa de la red de monitoreo hídrico de su propia comunidad.
+
