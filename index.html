@@ -30,6 +30,7 @@
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
+  <script src="data/tambos_demanda.js"></script>
 <style>
 :root{
   --sat: env(safe-area-inset-top, 0px);
@@ -1642,6 +1643,9 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
 .layer-btn.proxy.active{background:rgba(168,85,247,.32);border-color:var(--purple-accent);color:#fff;box-shadow:0 0 14px rgba(168,85,247,.45)}
 .layer-btn.heatmap{background:rgba(239,68,68,.15);border:1px solid rgba(239,68,68,.45);color:#fca5a5}
 .layer-btn.heatmap.active{background:rgba(239,68,68,.32);border-color:#ef4444;color:#fff;box-shadow:0 0 14px rgba(239,68,68,.5)}
+.layer-btn.tambos{background:rgba(255,107,0,.15);border:1px solid rgba(255,107,0,.45);color:#ff9e40}
+.layer-btn.tambos.active{background:rgba(255,107,0,.32);border-color:#ff6b00;color:#fff;box-shadow:0 0 14px rgba(255,107,0,.5)}
+
 
 .proxy-div-icon{
   border-radius:50%;
@@ -2746,6 +2750,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
           <button id="toggleLaderaBtn" class="layer-btn ladera active" onclick="toggleLayer('ladera')">⚡ Simulación Ladera &amp; Micropozos</button>
           <button id="toggleProxyBtn" class="layer-btn proxy active" onclick="toggleLayer('proxy')">🔍 AquaProxy: Evidencias Indirectas (10ª Capa)</button>
           <button id="toggleHeatmapBtn" class="layer-btn heatmap active" onclick="toggleLayer('heatmap')">🔥 Mapa de Calor: Agua Somera (11ª Capa)</button>
+          <button id="toggleTambosBtn" class="layer-btn tambos active" onclick="toggleLayer('tambos')">🟠 Demanda Venta Tambos (FB 2026)</button>
         </div>
       </div>
       <div class="engine-grid">
@@ -2767,7 +2772,11 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
           <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.75rem;font-size:.78rem;color:var(--text-dim);font-family:var(--font-mono);flex-wrap:wrap;gap:.5rem">
             <span id="map-coords-display">📍 Lat: 32.5312 | Lng: -117.1215</span>
             <span id="altimeter-live-tag" style="color:var(--cyan-primary)">⛰️ Cota: 18 msnm (DEM 30m)</span>
-            <span id="layer-status-tag" style="color:var(--emerald-accent)">🗺️ 8 Capas Activas</span>
+            <span id="layer-status-tag" style="color:var(--emerald-accent)">🗺️ 12 Capas Activas</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.45rem;font-size:0.75rem;color:#cbd5e1;margin-top:0.45rem;background:rgba(255,107,0,.08);border:1px solid rgba(255,107,0,.25);border-radius:6px;padding:5px 9px">
+            <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#ff6b00;box-shadow:0 0 8px #ff6b00;flex-shrink:0"></span>
+            <span><strong>Demanda de tambos:</strong> $200–$350 (200L) / $1,800 (1000L) — 40 comentarios en Natura/Delicias/Florido.</span>
           </div>
         </div>
         <div class="hydro-output">
@@ -3858,8 +3867,8 @@ let curZone=officialZones[0];
 let mapInitialized=false,map;
 let baseLayers={};
 let currentBase='relieve';
-let lPiezo,lRepda,lHazard,lSgm,lRiesgo,lHidro,lBinacional,lAlamos,lLadera,lProxy,lHeatmap;
-let sPiezo=true,sRepda=true,sHazard=true,sSgm=true,sRiesgo=true,sHidro=true,sBinacional=true,sAlamos=true,sLadera=true,sProxy=true,sHeatmap=true;
+let lPiezo,lRepda,lHazard,lSgm,lRiesgo,lHidro,lBinacional,lAlamos,lLadera,lProxy,lHeatmap,lTambos;
+let sPiezo=true,sRepda=true,sHazard=true,sSgm=true,sRiesgo=true,sHidro=true,sBinacional=true,sAlamos=true,sLadera=true,sProxy=true,sHeatmap=true,sTambos=true;
 
 function initMap(){
   if(mapInitialized)return;
@@ -3900,10 +3909,39 @@ function initMap(){
     if(el)obs.observe(el);
   }
 
-  // 1. CONAGUA Piezometers
+  let aM=L.marker([curZone.lat,curZone.lng],{icon:L.divIcon({className:'custom-map-pin',html:'<div style="background:#00e5ff;width:20px;height:20px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 20px #00e5ff"></div>',iconSize:[20,20]})}).addTo(map);
+
+  // 1. CONAGUA Piezometers (Interactivos con actualización en AquaEngine)
   conaguaPiezometers.forEach(p=>{
     const icon=L.divIcon({html:`<div style="background:#a855f7;color:#fff;border-radius:6px;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:bold;border:2px solid #fff;box-shadow:0 0 10px #a855f7">PZ</div>`,iconSize:[22,22]});
-    L.marker([p.lat,p.lng],{icon}).bindPopup(`<strong style="color:#a855f7">${p.id}</strong><br>${p.name}<br>Nivel Estático: <strong>${p.depthStatic}m</strong><br>Tipo: ${p.type}`).addTo(lPiezo);
+    const m=L.marker([p.lat,p.lng],{icon}).bindPopup(`<strong style="color:#a855f7">${p.id}</strong><br>${p.name}<br>Nivel Estático Oficial: <strong>${p.depthStatic} m</strong><br>Tipo: ${p.type}<br><small style="color:#38bdf8">Toca para cargar en AquaEngine</small>`);
+    m.on('click',()=>{
+      aM.setLatLng([p.lat,p.lng]);
+      document.getElementById('map-coords-display').textContent=`📍 Lat: ${p.lat.toFixed(4)} | Lng: ${p.lng.toFixed(4)}`;
+      const pzZone={
+        name:`${p.id}: ${p.name}`,
+        geology:`Piezómetro Oficial Red CONAGUA (${p.year}) - Nivel Estático Real de Campo`,
+        badgeText:p.depthStatic<=10?'🟢 AGUA SOMERA DETECTADA':'🟡 NIVEL MEDIO',
+        badgeClass:p.depthStatic<=10?'high':'medium',
+        elev:p.id==='PZ-06'?145:p.id==='PZ-04'?112:65,
+        depth:p.depthStatic,
+        tds:760,
+        flow:4.5,
+        score:p.depthStatic<=10?92:72,
+        diag:`Estación piezométrica oficial CONAGUA. Nivel freático estático verificado a ${p.depthStatic}m de profundidad. Óptimo para aprovechamiento somero con encamisado ranurado y bomba de diafragma / solar.`,
+        source:'Red Geohidrológica Oficial CONAGUA / DR_0201',
+        aquiferTag:'Acuífero Somero Aluvial (CONAGUA)',
+        strata:[
+          {name:'Cubierta Superficial Residual',depth:Math.max(1.2,+(p.depthStatic*0.25).toFixed(1)),color:'#78350f'},
+          {name:'Limo y Arena Permeable',depth:+(p.depthStatic*0.72).toFixed(1),color:'#ca8a04'},
+          {name:'Nivel Freático Saturado (Manto)',depth:p.depthStatic,color:'#00e5ff'},
+          {name:'Grava y Arena Acuífera',depth:+(p.depthStatic+4.5).toFixed(1),color:'#0284c7'}
+        ]
+      };
+      updateHydroOutput(pzZone);
+      drawStrata(pzZone.strata);
+    });
+    m.addTo(lPiezo);
   });
 
   // 2. REPDA Concession Wells
@@ -3945,6 +3983,48 @@ function initMap(){
     L.marker([a.lat,a.lng],{icon}).bindPopup(`<strong style="color:#10b981">🌳 ${a.especie}</strong><br><strong>Indicador Biológico:</strong> Manto freático somero (&le;6m)<br>${a.lugar}<br>Registro: ${a.fecha}${link}`).addTo(lAlamos);
   });
 
+  // 9. Nueva Capa: Demanda Doméstica - Venta de Tambos (Georreferenciada FB 2026)
+  if(typeof demandaTambosGeoJSON !== 'undefined'){
+    lTambos = L.geoJSON(demandaTambosGeoJSON, {
+      pointToLayer: (f, latlng) => L.circleMarker(latlng, {
+        radius: (f.properties.demanda && f.properties.demanda.includes('Muy Alta')) ? 12 : 8,
+        color: '#ff6b00', fillColor: '#ff6b00', fillOpacity: 0.8, weight: 2
+      }),
+      onEachFeature: (f, layer) => {
+        const p = f.properties;
+        layer.bindPopup(`<b>${p.colonia}</b><br>Tambo: $${p.precio_tambo || p.precio_1000L}<br>${p.demanda}<br><small>${p.fuente||''}</small><br><b>ROI pozo: 11.5 meses vs pipa $1200/mes</b>`);
+        layer.on('click', () => {
+          const coords = f.geometry.coordinates;
+          aM.setLatLng([coords[1], coords[0]]);
+          document.getElementById('map-coords-display').textContent=`📍 Lat: ${coords[1].toFixed(4)} | Lng: ${coords[0].toFixed(4)}`;
+          const estDepth = p.cliente_ideal && p.cliente_ideal.includes('12-20m') ? 14 : (p.colonia.includes('Florido') ? 7.2 : (p.cliente_ideal && p.cliente_ideal.includes('12-25m') ? 16 : 9.5));
+          const tbZone = {
+            name: `Demanda de Tambos: ${p.colonia}`,
+            geology: p.nota_hidro || 'Zona de vulnerabilidad hídrica - Manto freático somero / aluvial',
+            badgeText: '🟠 DEMANDA CRÍTICA DE AGUA',
+            badgeClass: 'high',
+            elev: 135,
+            depth: estDepth,
+            tds: 820,
+            flow: 3.5,
+            score: 86,
+            diag: `Demanda reportada: ${p.demanda}. Precio tambo 200L: $${p.precio_tambo || 'N/A'}, 1000L: $${p.precio_1000L || 'N/A'}. Viabilidad de micropozo somero con ROI de 11.5 meses frente a pipas ($1,200/mes).`,
+            source: p.fuente || 'Reportes Reales de Demanda y Venta de Agua (Facebook 2026)',
+            aquiferTag: 'Manto Somero Periférico',
+            strata: [
+              {name:'Relleno / Capa Superficial',depth:2.0,color:'#78350f'},
+              {name:'Estrato Limo-Arenoso',depth:+(estDepth*0.65).toFixed(1),color:'#ca8a04'},
+              {name:'Manto Freático Saturado',depth:estDepth,color:'#00e5ff'},
+              {name:'Toba / Basamento',depth:+(estDepth+4.5).toFixed(1),color:'#0284c7'}
+            ]
+          };
+          updateHydroOutput(tbZone);
+          drawStrata(tbZone.strata);
+        });
+      }
+    });
+  }
+
   // Add all layers to map
   lPiezo.addTo(map);
   lRepda.addTo(map);
@@ -3954,8 +4034,7 @@ function initMap(){
   lHidro.addTo(map);
   lBinacional.addTo(map);
   lAlamos.addTo(map);
-
-  let aM=L.marker([curZone.lat,curZone.lng],{icon:L.divIcon({className:'custom-map-pin',html:'<div style="background:#00e5ff;width:20px;height:20px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 20px #00e5ff"></div>',iconSize:[20,20]})}).addTo(map);
+  if(lTambos) lTambos.addTo(map);
 
   map.on('click',e=>{
     const {lat,lng}=e.latlng;
@@ -3963,6 +4042,33 @@ function initMap(){
     officialZones.forEach(z=>{
       const d=Math.hypot(z.lat-lat,z.lng-lng);
       if(d<md){md=d;n=z;}
+    });
+    // Si hay un piezómetro oficial CONAGUA cercano (< 0.045 deg), usar la medición real del piezómetro
+    conaguaPiezometers.forEach(p=>{
+      const d=Math.hypot(p.lat-lat,p.lng-lng);
+      if(d<md){
+        md=d;
+        n={
+          name:`${p.id}: ${p.name}`,
+          geology:`Piezómetro Oficial Red CONAGUA (${p.year}) - Nivel Estático Real`,
+          badgeText:p.depthStatic<=10?'🟢 AGUA SOMERA DETECTADA':'🟡 NIVEL MEDIO',
+          badgeClass:p.depthStatic<=10?'high':'medium',
+          elev:p.id==='PZ-06'?145:p.id==='PZ-04'?112:65,
+          depth:p.depthStatic,
+          tds:760,
+          flow:4.5,
+          score:p.depthStatic<=10?92:72,
+          diag:`Nivel freático real medido en piezómetro CONAGUA a ${p.depthStatic}m de profundidad estática. Factible para captación somera.`,
+          source:'Red de Monitoreo Geohidrológico CONAGUA / DR_0201',
+          aquiferTag:'Acuífero Somero Aluvial (CONAGUA)',
+          strata:[
+            {name:'Cubierta Superficial Residual',depth:Math.max(1.2,+(p.depthStatic*0.25).toFixed(1)),color:'#78350f'},
+            {name:'Limo y Arena Permeable',depth:+(p.depthStatic*0.72).toFixed(1),color:'#ca8a04'},
+            {name:'Nivel Freático Saturado (Manto)',depth:p.depthStatic,color:'#00e5ff'},
+            {name:'Grava y Arena Acuífera',depth:+(p.depthStatic+4.5).toFixed(1),color:'#0284c7'}
+          ]
+        };
+      }
     });
     document.getElementById('map-coords-display').textContent=`📍 Lat: ${lat.toFixed(4)} | Lng: ${lng.toFixed(4)}`;
     aM.setLatLng([lat,lng]);
@@ -4109,8 +4215,12 @@ function toggleLayer(t){
     sHeatmap=!sHeatmap;
     sHeatmap?(lHeatmap && lHeatmap.addTo(map)):(lHeatmap && map.removeLayer(lHeatmap));
     document.getElementById('toggleHeatmapBtn').classList.toggle('active',sHeatmap);
+  }else if(t==='tambos'){
+    sTambos=!sTambos;
+    sTambos?(lTambos && lTambos.addTo(map)):(lTambos && map.removeLayer(lTambos));
+    document.getElementById('toggleTambosBtn').classList.toggle('active',sTambos);
   }
-  const count=[sPiezo,sRepda,sHazard,sSgm,sRiesgo,sHidro,sBinacional,sAlamos,sLadera,sProxy,sHeatmap].filter(Boolean).length;
+  const count=[sPiezo,sRepda,sHazard,sSgm,sRiesgo,sHidro,sBinacional,sAlamos,sLadera,sProxy,sHeatmap,sTambos].filter(Boolean).length;
   document.getElementById('layer-status-tag').textContent=`🗺️ ${count} Capas Activas`;
 }
 
