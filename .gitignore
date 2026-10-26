@@ -4,11 +4,13 @@
 *.png
 !fig*.png
 !mapa_calor_*.png
+!img_tren/*.jpg
 *.webp
 *.gif
 *.bmp
 *.svg
 *.mp4
+!video/demo_tren_proceso_web.mp4
 *.mov
 *.avi
 *.mkv
@@ -21,6 +23,7 @@
 docs/*.md
 docs/**/*.md
 !docs/README.md
+!docs/**/README.md
 !docs/RED_DOCUMENTAL_*.md
 !docs/RESUMEN_AVANCES_*.md
 !docs/PROPUESTA_MUESTREO_*.md
