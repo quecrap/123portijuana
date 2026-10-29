@@ -70,3 +70,32 @@ Automatización completa del ciclo de purificación de agua por lotes en taller/
 * **Nodo 1 (ESP32 LilyGO T-A7670G):** `firmware/Nodo1_Capsula_Tiempo/Nodo1_Capsula_Tiempo.ino`
 * **Nodo 2 (ESP8266 NodeMCU):** `firmware/Nodo2_Planta_Agua/Nodo2_Planta_Agua.ino`
 
+
+
+---
+
+## 4. BITÁCORA TÉCNICA Y CONTROLADOR ESP32 DE ELECTROFLOCULACIÓN (LOTE 1 BBL / ~117.3 L)
+
+**Fecha de Registro Empírico:** 29 de octubre de 2026  
+**Firmware Asociado:** `firmware/Electrofloculacion_1BBL_ESP32/Electrofloculacion_1BBL_ESP32.ino`
+
+### 4.1 Hallazgos Empíricos de Operación (1 BBL a 22.7 °C – 23.0 °C)
+* **Migración de Potencia (12V / 15A):**
+  * Voltaje real en vacío ($V_{\text{vacío}}$): **11.4 V – 11.6 V**.
+  * Inmersión óptima: **50% de la varilla** (+200% de área frente a prueba superficial inicial de 24V/2.5A).
+  * Voltaje en carga estacionario ($V_{\text{base}}$): **10.6 V** ($\Delta V = 1.0\text{ V}$), corriente operativa de **~9A a 12A**.
+* **Descarte de Medición de Impedancia en Reposo:**
+  * Medir Ohms en DC con el electrolito en reposo es inviable por la polarización de electrodos y la película aislante de microburbujas de hidrógeno ($H_2$), que eleva la impedancia aparente a $6.3\text{ k}\Omega$.
+* **Barrido Hidráulico de Polarización:**
+  * El chorro superficial de recirculación/oxigenación barre la resistencia interfacial; durante el pulso de bomba el voltaje desciende transitoriamente hasta **10.30 V** ($\Delta V = 1.14\text{ V}$) y recupera la línea base al apagar la bomba sin romper la nata blanca superficial.
+* **Post-Tratamiento (Biofine):**
+  * El ácido silícico coloidal con carga negativa (**Biofine**) se reserva exclusivamente como etapa de pulido final una vez concluido el ciclo eléctrico y asentado el lote.
+
+### 4.2 Mapa de Pines y Divisor de Voltaje (ESP32)
+
+| Pin ESP32 | Identificador | Función en el Sistema 1 BBL |
+| :--- | :--- | :--- |
+| **`GPIO34` (`ADC1_CH6`)** | `PIN_ADC_VOLTAJE` | Lectura continua ($1\text{ Hz}$) del divisor de voltaje pasivo ($R_1 = 33\text{ k}\Omega$, $R_2 = 10\text{ k}\Omega$, factor $4.30$) conectado a los bornes de salida de la fuente de **12V / 15A** ($0\text{–}12\text{V} \rightarrow 0\text{–}2.79\text{V}$). |
+| **`GPIO26`** | `PIN_RELAY_POWER` | **Salida Digital 1 (`RELAY_POWER`):** Conmuta la potencia de 12V hacia los electrodos. |
+| **`GPIO27`** | `PIN_RELAY_PUMP` | **Salida Digital 2 (`RELAY_PUMP`):** Activa la bomba de recirculación/oxigenación en pulsos de **30–45 s** cada **5–7 min**. |
+| **`GND`** | Tierra Común | Referencia común entre el negativo (`-`) de la fuente de 12V/15A y `GND` de la fuente lógica independiente del ESP32. |

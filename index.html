@@ -2409,7 +2409,58 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
         </div>
       </div>
 
-      <div style="display:flex;justify-content:center;gap:.85rem;flex-wrap:wrap;margin:1.25rem 0 2rem">
+            <!-- SEMÁFORO DE TRANSPARENCIA TECNOLÓGICA (ESTADO REAL DEL PROYECTO) -->
+      <div id="semaforo-transparencia" style="max-width:1020px;margin:0 auto 2rem;text-align:left;background:rgba(7,13,24,.88);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:1.35rem 1.5rem;box-shadow:0 14px 36px rgba(0,0,0,.5)">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.6rem;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:1px solid rgba(255,255,255,.08)">
+          <div>
+            <span style="font-family:var(--font-mono);font-size:.73rem;font-weight:800;color:#fff;background:rgba(255,255,255,.1);padding:.22rem .65rem;border-radius:6px;letter-spacing:.5px">🚦 TRANSPARENCIA TECNOLÓGICA PARA EVALUADORES Y JURADO</span>
+            <h3 style="font-family:var(--font-heading);font-size:1.18rem;color:#fff;margin:.4rem 0 0">¿Qué está operando hoy al 100%, qué estamos calibrando y qué sigue en desarrollo?</h3>
+          </div>
+          <a href="PRESENTACION_CONCURSO_FUTURO_AGUA_MEXICO.html" target="_blank" rel="noopener" style="font-family:var(--font-mono);font-size:.76rem;font-weight:700;color:#020c1b;background:linear-gradient(135deg,#00e5ff,#10b981);padding:.45rem .9rem;border-radius:8px;text-decoration:none">🏆 Ver Presentación Ejecutiva Concurso (PDF) ↗</a>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(285px,1fr));gap:1rem">
+          <!-- VERDE -->
+          <div style="background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.45);border-radius:14px;padding:1rem 1.15rem">
+            <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.45rem">
+              <span style="width:12px;height:12px;border-radius:50%;background:#10b981;box-shadow:0 0 10px #10b981;display:inline-block"></span>
+              <strong style="font-family:var(--font-mono);font-size:.78rem;color:#34d399;text-transform:uppercase">🟢 EN VERDE · 100% Definido y Operando</strong>
+            </div>
+            <ul style="margin:0;padding-left:1.1rem;font-size:.82rem;color:#cbd5e1;line-height:1.52">
+              <li><strong>«Varita Mágica de GIA» (AquaEngine):</strong> Prospección multicriterio satelital, geológica y forense activa en Tijuana.</li>
+              <li><strong>Pozo 001 «Agua de GIA»:</strong> Perforado a 7 m de profundidad extrayendo agua somera real.</li>
+              <li><strong>Electrofloculación por Lote (1 BBL / 117 L):</strong> Operando a <code>12V / 15A</code> sin químicos externos, con monitoreo continuo de caída de tensión (<code>ΔV</code>), barrido de H₂ y tren físico 80/20 (ver video).</li>
+            </ul>
+          </div>
+
+          <!-- AMARILLO -->
+          <div style="background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.45);border-radius:14px;padding:1rem 1.15rem">
+            <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.45rem">
+              <span style="width:12px;height:12px;border-radius:50%;background:#f59e0b;box-shadow:0 0 10px #f59e0b;display:inline-block"></span>
+              <strong style="font-family:var(--font-mono);font-size:.78rem;color:#fbbf24;text-transform:uppercase">🟡 EN AMARILLO · En Calibración Activa</strong>
+            </div>
+            <ul style="margin:0;padding-left:1.1rem;font-size:.82rem;color:#cbd5e1;line-height:1.52">
+              <li><strong>Automatización Casi Autónoma (Nodo 2):</strong> Integración de <strong>válvulas solenoides</strong> de trasvase entre tanques y bloqueo de <strong>reposo forzado por algoritmo</strong> para no romper el flóculo.</li>
+              <li><strong>Actuador en Válvula de Aguja RO:</strong> Ajuste motorizado del rechazo de ósmosis para sostener <code>85–90 PSI</code> óptimos.</li>
+              <li><strong>Pruebas de TDS e Interfaz Sinóptica:</strong> Calibración de curvas de TDS post-floculación y tablero visual de recorrido del agua.</li>
+            </ul>
+          </div>
+
+          <!-- ROJO -->
+          <div style="background:rgba(244,63,94,.08);border:1px solid rgba(244,63,94,.45);border-radius:14px;padding:1rem 1.15rem">
+            <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.45rem">
+              <span style="width:12px;height:12px;border-radius:50%;background:#f43f5e;box-shadow:0 0 10px #f43f5e;display:inline-block"></span>
+              <strong style="font-family:var(--font-mono);font-size:.78rem;color:#fda4af;text-transform:uppercase">🔴 EN ROJO · Prototipado / Siguiente Fase</strong>
+            </div>
+            <ul style="margin:0;padding-left:1.1rem;font-size:.82rem;color:#cbd5e1;line-height:1.52">
+              <li><strong>Nodo 1 «Cápsula del Tiempo del Agua»:</strong> Estación subterránea independiente recargada con <strong>Batería de Tierra</strong> (Mg/Cu) y algoritmo <em>Deep Sleep</em> capaz de durar <strong>5 a 10 años</strong> sin red ni Wi-Fi.</li>
+              <li><strong>Floculación de Flujo Continuo:</strong> Evolución futura del reactor actual por lotes hacia operación continua sin detenciones.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+<div style="display:flex;justify-content:center;gap:.85rem;flex-wrap:wrap;margin:1.25rem 0 2rem">
         <button class="btn-action" onclick="showPanel('motor-hidro')">🪄 Usar la «Varita Mágica» (Mapa AquaEngine)</button>
         <button class="btn-secondary" onclick="showPanel('solucion')" style="border-color:var(--emerald-accent);color:var(--emerald-accent)">💧 Ver Pozo 001 «Agua de GIA» en Video</button>
         <button class="btn-secondary" onclick="goToWizard()" style="border-color:var(--cyan-primary);color:var(--cyan-primary)">📋 Evaluar Mi Terreno (AquaScore™)</button>
@@ -3111,6 +3162,176 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
       <div class="card"><div class="card-icon">⚙️</div><h3>Extracción Somera Frugal</h3><p>Captación asistida de bajo caudal (2–5 L/min) con equipos móviles reutilizables sin provocar sobreexplotación del acuífero.</p></div>
       <div class="card"><div class="card-icon">💧</div><h3>Tratamiento POU 80/20</h3><p>Desacople inteligente: el 80% acondiciona servicios generales y el 20% se ultrapurifica para ingesta bajo NOM-127-SSA1.</p></div>
       <div class="card"><div class="card-icon">📡</div><h3>Telemetría Regulada IoT</h3><p>Sensores ESP32 para registro inalterable de volumen, conductividad (TDS) y nivel piezométrico con corte de seguridad automático.</p></div>
+    </div>
+
+        <!-- ==================== DIAGRAMA SINÓPTICO INTERACTIVO Y ALGORITMO MAESTRO (DEL POZO AL VASO Y AL RIEGO) ==================== -->
+    <div id="sinoptico-algoritmo" style="margin-top:2rem;margin-bottom:2.25rem;background:linear-gradient(180deg,rgba(15,23,42,.92) 0%,rgba(7,13,24,.97) 100%);border:1px solid rgba(0,229,255,.35);border-radius:20px;padding:1.85rem;box-shadow:0 15px 40px rgba(0,0,0,.6)">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:1px solid rgba(255,255,255,.08)">
+        <div>
+          <span class="section-tag" style="background:rgba(0,229,255,.14);color:var(--cyan-primary);border:1px solid rgba(0,229,255,.35)">🖥️ INTERFAZ VISUAL DE PROCESO · ALGORITMO CASI AUTÓNOMO (CERO QUÍMICOS)</span>
+          <h3 style="font-family:var(--font-heading);font-size:1.5rem;color:#fff;margin:.35rem 0 .25rem">Recorrido Interactivo del Agua: Del Pozo al Vaso (20%) y al Riego (80%)</h3>
+          <p style="font-size:.86rem;color:var(--text-muted);max-width:820px;margin:0">
+            Haz clic en cada etapa o presiona <strong>«▶️ Simular Recorrido Completo»</strong> para ver por dónde pasa el agua, qué mide cada sensor, qué válvula o actuador se activa y el estado real del módulo (<span style="color:#34d399">🟢 Operando</span> / <span style="color:#fbbf24">🟡 En Calibración</span> / <span style="color:#fda4af">🔴 En Desarrollo</span>).
+          </p>
+        </div>
+        <div style="display:flex;gap:.6rem;flex-wrap:wrap">
+          <button class="btn-action" id="btnSimularRecorrido" onclick="toggleAutoSynoptic()" style="padding:.6rem 1.15rem;font-size:.84rem">▶️ Simular Recorrido Paso a Paso</button>
+        </div>
+      </div>
+
+      <!-- DIBUJO ESQUEMÁTICO INTERACTIVO (SVG) -->
+      <div style="background:#050b14;border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:1rem;overflow-x:auto;margin-bottom:1.25rem">
+        <svg viewBox="0 0 1080 290" style="width:100%;min-width:860px;height:auto;display:block;font-family:'Segoe UI',system-ui,sans-serif">
+          <defs>
+            <linearGradient id="waterFlowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="#0284c7"/>
+              <stop offset="50%" stop-color="#00e5ff"/>
+              <stop offset="100%" stop-color="#10b981"/>
+            </linearGradient>
+          </defs>
+
+          <!-- Tuberías de conexión entre las 6 etapas -->
+          <line id="pipe-1-2" x1="155" y1="145" x2="215" y2="145" stroke="#1e293b" stroke-width="8" stroke-linecap="round"/>
+          <line id="pipe-2-3" x1="335" y1="145" x2="395" y2="145" stroke="#1e293b" stroke-width="8" stroke-linecap="round"/>
+          <line id="pipe-3-4" x1="525" y1="145" x2="585" y2="145" stroke="#1e293b" stroke-width="8" stroke-linecap="round"/>
+          <line id="pipe-4-5" x1="715" y1="145" x2="775" y2="145" stroke="#1e293b" stroke-width="8" stroke-linecap="round"/>
+          <!-- Bifurcación 80/20 desde etapa 5 a etapa 6 -->
+          <path id="pipe-5-80" d="M 895 115 L 935 115 L 935 75 L 955 75" fill="none" stroke="#1e293b" stroke-width="7" stroke-linecap="round"/>
+          <path id="pipe-5-20" d="M 895 175 L 935 175 L 935 205 L 955 205" fill="none" stroke="#1e293b" stroke-width="7" stroke-linecap="round"/>
+
+          <!-- NODO ETAPA 1: POZO 001 + CÁPSULA DEL TIEMPO -->
+          <g id="syn-node-0" onclick="selectSynopticStep(0)" style="cursor:pointer">
+            <rect x="20" y="55" width="135" height="185" rx="14" fill="#0f172a" stroke="#10b981" stroke-width="2.5"/>
+            <circle cx="38" cy="74" r="6" fill="#10b981"/>
+            <circle cx="54" cy="74" r="6" fill="#f43f5e"/>
+            <text x="87" y="78" fill="#94a3b8" font-size="10" font-weight="700" text-anchor="middle">ETAPA 01</text>
+            <text x="87" y="102" fill="#ffffff" font-size="12.5" font-weight="800" text-anchor="middle">Pozo 001 (7 m)</text>
+            <text x="87" y="118" fill="#38bdf8" font-size="10.5" text-anchor="middle">+ Cápsula Tiempo</text>
+            <!-- Dibujo pozo y batería de tierra -->
+            <rect x="48" y="130" width="28" height="72" rx="4" fill="rgba(0,229,255,.18)" stroke="#00e5ff" stroke-width="1.5"/>
+            <rect x="88" y="142" width="38" height="58" rx="6" fill="rgba(244,63,94,.15)" stroke="#f43f5e" stroke-width="1.2"/>
+            <text x="107" y="166" fill="#fda4af" font-size="8.5" font-weight="700" text-anchor="middle">Bat. Tierra</text>
+            <text x="107" y="179" fill="#fda4af" font-size="8" text-anchor="middle">Mg / Cu</text>
+            <text x="107" y="192" fill="#fbbf24" font-size="8" text-anchor="middle">5–10 años</text>
+            <text x="87" y="224" fill="#cbd5e1" font-size="9.5" text-anchor="middle">Campana 0–40 kPa</text>
+          </g>
+
+          <!-- NODO ETAPA 2: VÁLVULA SOLENOIDE SV-01 + LLENADO 1 BBL -->
+          <g id="syn-node-1" onclick="selectSynopticStep(1)" style="cursor:pointer">
+            <rect x="215" y="55" width="120" height="185" rx="14" fill="#0f172a" stroke="#334155" stroke-width="2"/>
+            <circle cx="233" cy="74" r="6" fill="#10b981"/>
+            <circle cx="249" cy="74" r="6" fill="#f59e0b"/>
+            <text x="275" y="78" fill="#94a3b8" font-size="10" font-weight="700" text-anchor="middle">ETAPA 02</text>
+            <text x="275" y="102" fill="#ffffff" font-size="12.5" font-weight="800" text-anchor="middle">Llenado Lote</text>
+            <text x="275" y="118" fill="#38bdf8" font-size="10.5" text-anchor="middle">1 BBL (117.3 L)</text>
+            <rect x="242" y="132" width="66" height="55" rx="8" fill="rgba(56,189,248,.15)" stroke="#38bdf8" stroke-width="1.5"/>
+            <text x="275" y="156" fill="#fff" font-size="10" font-weight="700" text-anchor="middle">Solenoide SV-01</text>
+            <text x="275" y="172" fill="#67e8f9" font-size="9" text-anchor="middle">+ Flujo Hall</text>
+            <text x="275" y="208" fill="#fbbf24" font-size="9.5" font-weight="700" text-anchor="middle">Mide V_vacío:</text>
+            <text x="275" y="223" fill="#cbd5e1" font-size="9.5" text-anchor="middle">11.4 V – 11.6 V</text>
+          </g>
+
+          <!-- NODO ETAPA 3: ELECTROFLOCULACIÓN 12V/15A + BARRIDO H2 -->
+          <g id="syn-node-2" onclick="selectSynopticStep(2)" style="cursor:pointer">
+            <rect x="395" y="55" width="130" height="185" rx="14" fill="#0f172a" stroke="#334155" stroke-width="2"/>
+            <circle cx="415" cy="74" r="6" fill="#10b981"/>
+            <text x="460" y="78" fill="#94a3b8" font-size="10" font-weight="700" text-anchor="middle">ETAPA 03</text>
+            <text x="460" y="102" fill="#ffffff" font-size="12.5" font-weight="800" text-anchor="middle">Electrofloculación</text>
+            <text x="460" y="118" fill="#34d399" font-size="10" font-weight="700" text-anchor="middle">12V / 15A (Cero Químicos)</text>
+            <rect x="420" y="128" width="80" height="62" rx="8" fill="rgba(16,185,129,.15)" stroke="#10b981" stroke-width="1.5"/>
+            <text x="460" y="148" fill="#fff" font-size="9.5" font-weight="700" text-anchor="middle">Divisor ADC (ΔV)</text>
+            <text x="460" y="163" fill="#6ee7b7" font-size="9" text-anchor="middle">V_carga: 10.60 V</text>
+            <text x="460" y="178" fill="#fde047" font-size="8.5" text-anchor="middle">Alerta &lt; 10.30 V</text>
+            <text x="460" y="208" fill="#38bdf8" font-size="9" font-weight="700" text-anchor="middle">Bomba Barrido H₂:</text>
+            <text x="460" y="223" fill="#cbd5e1" font-size="9" text-anchor="middle">30-45s cada 5-7 min</text>
+          </g>
+
+          <!-- NODO ETAPA 4: REPOSO FORZADO POR ALGORITMO -->
+          <g id="syn-node-3" onclick="selectSynopticStep(3)" style="cursor:pointer">
+            <rect x="585" y="55" width="130" height="185" rx="14" fill="#0f172a" stroke="#334155" stroke-width="2"/>
+            <circle cx="603" cy="74" r="6" fill="#10b981"/>
+            <circle cx="619" cy="74" r="6" fill="#f59e0b"/>
+            <text x="650" y="78" fill="#94a3b8" font-size="10" font-weight="700" text-anchor="middle">ETAPA 04</text>
+            <text x="650" y="102" fill="#ffffff" font-size="12.5" font-weight="800" text-anchor="middle">Reposo Forzado</text>
+            <text x="650" y="118" fill="#fbbf24" font-size="10" font-weight="700" text-anchor="middle">Bloqueo por Software</text>
+            <rect x="610" y="128" width="80" height="62" rx="8" fill="rgba(245,158,11,.15)" stroke="#f59e0b" stroke-width="1.5"/>
+            <text x="650" y="149" fill="#fff" font-size="9.5" font-weight="700" text-anchor="middle">🔒 Válvulas OFF</text>
+            <text x="650" y="164" fill="#fde047" font-size="8.5" text-anchor="middle">Prohibido agitar</text>
+            <text x="650" y="178" fill="#cbd5e1" font-size="8.5" text-anchor="middle">Sedimenta flóculo</text>
+            <text x="650" y="208" fill="#67e8f9" font-size="9" font-weight="700" text-anchor="middle">Pulso TDS (1.5 s):</text>
+            <text x="650" y="223" fill="#cbd5e1" font-size="9" text-anchor="middle">Mide sin ruido DC</text>
+          </g>
+
+          <!-- NODO ETAPA 5: TRASVASE + MALLA 80 MICRAS -->
+          <g id="syn-node-4" onclick="selectSynopticStep(4)" style="cursor:pointer">
+            <rect x="775" y="55" width="120" height="185" rx="14" fill="#0f172a" stroke="#334155" stroke-width="2"/>
+            <circle cx="795" cy="74" r="6" fill="#f59e0b"/>
+            <text x="835" y="78" fill="#94a3b8" font-size="10" font-weight="700" text-anchor="middle">ETAPA 05</text>
+            <text x="835" y="102" fill="#ffffff" font-size="12" font-weight="800" text-anchor="middle">Trasvase y Malla</text>
+            <text x="835" y="118" fill="#38bdf8" font-size="10" text-anchor="middle">Prefiltro 80 µm</text>
+            <rect x="795" y="128" width="80" height="62" rx="8" fill="rgba(59,130,246,.15)" stroke="#3b82f6" stroke-width="1.5"/>
+            <text x="835" y="149" fill="#fff" font-size="9.5" font-weight="700" text-anchor="middle">Solenoide SV-02</text>
+            <text x="835" y="164" fill="#93c5fd" font-size="8.5" text-anchor="middle">Retiene limo/mica</text>
+            <text x="835" y="178" fill="#34d399" font-size="8.5" text-anchor="middle">Protege bombas</text>
+            <text x="835" y="208" fill="#cbd5e1" font-size="9" text-anchor="middle">Divide caudal a</text>
+            <text x="835" y="223" fill="#38bdf8" font-size="9.5" font-weight="700" text-anchor="middle">Riego 80% / RO 20%</text>
+          </g>
+
+          <!-- NODO ETAPA 6: SALIDA DUAL (80% RIEGO + 20% RO CON VÁLVULA DE AGUJA) -->
+          <g id="syn-node-5" onclick="selectSynopticStep(5)" style="cursor:pointer">
+            <!-- Caja Superior: 80% Riego y Servicios -->
+            <rect x="955" y="32" width="110" height="88" rx="12" fill="#0f172a" stroke="#10b981" stroke-width="2"/>
+            <text x="1010" y="52" fill="#34d399" font-size="10" font-weight="800" text-anchor="middle">🌿 80% RIEGO</text>
+            <text x="1010" y="68" fill="#fff" font-size="10.5" font-weight="700" text-anchor="middle">Servicios / Áreas</text>
+            <text x="1010" y="84" fill="#cbd5e1" font-size="8.5" text-anchor="middle">+ Retorno Rechazo</text>
+            <text x="1010" y="102" fill="#6ee7b7" font-size="8.5" font-weight="700" text-anchor="middle">Cero Desperdicio</text>
+
+            <!-- Caja Inferior: 20% Potable + Válvula de Aguja Motorizada -->
+            <rect x="955" y="142" width="110" height="118" rx="12" fill="#0f172a" stroke="#f59e0b" stroke-width="2"/>
+            <text x="1010" y="162" fill="#fbbf24" font-size="9.5" font-weight="800" text-anchor="middle">💧 20% INGESTA RO</text>
+            <text x="1010" y="178" fill="#fff" font-size="10" font-weight="700" text-anchor="middle">Válvula de Aguja</text>
+            <text x="1010" y="193" fill="#38bdf8" font-size="8.5" text-anchor="middle">Actuador Automático</text>
+            <text x="1010" y="209" fill="#fde047" font-size="8.5" font-weight="700" text-anchor="middle">85–90 PSI (Inox 316)</text>
+            <text x="1010" y="225" fill="#cbd5e1" font-size="8.5" text-anchor="middle">Sensor TDS final</text>
+            <text x="1010" y="244" fill="#34d399" font-size="9" font-weight="800" text-anchor="middle">Lista para Beber</text>
+          </g>
+        </svg>
+      </div>
+
+      <!-- PANEL DETALLADO DE LA ETAPA SELECCIONADA -->
+      <div id="synoptic-detail-box" style="background:rgba(2,12,27,.8);border:1px solid rgba(0,229,255,.3);border-radius:14px;padding:1.25rem 1.4rem">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;margin-bottom:.65rem">
+          <div style="display:flex;align-items:center;gap:.65rem">
+            <span id="syn-step-badge" style="font-family:var(--font-mono);font-size:.76rem;font-weight:800;padding:.25rem .7rem;border-radius:6px;background:rgba(16,185,129,.2);color:#34d399;border:1px solid #10b981">ETAPA 01 · 🟢 POZO REAL / 🔴 CÁPSULA EN DESARROLLO</span>
+            <h4 id="syn-step-title" style="font-family:var(--font-heading);font-size:1.2rem;color:#fff;margin:0">Extracción Somera (Pozo 001 a 7 m) y Estación «Cápsula del Tiempo»</h4>
+          </div>
+          <div style="display:flex;gap:.4rem">
+            <button class="btn-secondary" onclick="selectSynopticStep(0)" style="padding:.25rem .6rem;font-size:.75rem">1</button>
+            <button class="btn-secondary" onclick="selectSynopticStep(1)" style="padding:.25rem .6rem;font-size:.75rem">2</button>
+            <button class="btn-secondary" onclick="selectSynopticStep(2)" style="padding:.25rem .6rem;font-size:.75rem">3</button>
+            <button class="btn-secondary" onclick="selectSynopticStep(3)" style="padding:.25rem .6rem;font-size:.75rem">4</button>
+            <button class="btn-secondary" onclick="selectSynopticStep(4)" style="padding:.25rem .6rem;font-size:.75rem">5</button>
+            <button class="btn-secondary" onclick="selectSynopticStep(5)" style="padding:.25rem .6rem;font-size:.75rem">6</button>
+          </div>
+        </div>
+        <p id="syn-step-desc" style="font-size:.88rem;color:#cbd5e1;line-height:1.58;margin:0 0 .9rem">
+          El agua sale del manto colgado a 7 metros en el Pozo 001 con caudal calibrado bajo la Ley de Stokes para no arrastrar arena. En paralelo, el registro subterráneo aloja el prototipo del <strong>Nodo 1 («Cápsula del Tiempo del Agua»)</strong>: mide nivel por campana neumática (0–40 kPa), se recarga con una <strong>Batería de Tierra</strong> (ánodo de magnesio y tubo de cobre enterrados a un costado sin contaminar el agua) y entra en <em>Deep Sleep</em> con backoff exponencial capaz de guardar datos de <strong>5 a 10 años</strong> si cae toda red eléctrica o Wi-Fi.
+        </p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.85rem;font-size:.82rem">
+          <div style="background:rgba(255,255,255,.04);padding:.75rem .9rem;border-radius:10px;border-left:3px solid var(--cyan-primary)">
+            <strong style="display:block;color:var(--cyan-primary);font-family:var(--font-mono);font-size:.72rem;text-transform:uppercase">🔬 Sensores en Esta Etapa</strong>
+            <span id="syn-step-sensors" style="color:#e2e8f0">Campana de aire HX710B (0–40 kPa), TDS con corte MOSFET (99% apagado) y voltaje de Batería de Tierra (BQ25504).</span>
+          </div>
+          <div style="background:rgba(255,255,255,.04);padding:.75rem .9rem;border-radius:10px;border-left:3px solid var(--emerald-accent)">
+            <strong style="display:block;color:var(--emerald-accent);font-family:var(--font-mono);font-size:.72rem;text-transform:uppercase">⚙️ Actuadores / Hardware</strong>
+            <span id="syn-step-actuators" style="color:#e2e8f0">Bomba de extracción de bajo caudal (24V / 2A) + Placa LilyGO T-A7670G (ESP32 + 4G LTE + Memoria Flash LittleFS).</span>
+          </div>
+          <div style="background:rgba(255,255,255,.04);padding:.75rem .9rem;border-radius:10px;border-left:3px solid var(--amber-accent)">
+            <strong style="display:block;color:var(--amber-accent);font-family:var(--font-mono);font-size:.72rem;text-transform:uppercase">🧠 Regla del Algoritmo</strong>
+            <span id="syn-step-rule" style="color:#e2e8f0">Guarda primero en CSV local; transmite cada 30–60 min por Wi-Fi, 1/día por 4G, o hiberna en RTC de 1/día hasta 1/año.</span>
+          </div>
+        </div>
+      </div>
     </div>
 
     <!-- TREN DE PROCESO FÍSICO REAL EN OPERACIÓN -->
@@ -6418,6 +6639,134 @@ function initHeatmapLayer(){
 
 // ==================== INIT ====================
 document.addEventListener('DOMContentLoaded',()=>{updateSimState();initCalc();init();initPanelNav();positionDiaCero();initDiaCero();setInterval(initDiaCero, DIA_CERO_REFRESH_MS);});
+
+// ==================== SINÓPTICO INTERACTIVO DEL ALGORITMO (6 ETAPAS) ====================
+const SYNOPTIC_STEPS = [
+  {
+    badge: "ETAPA 01 · 🟢 POZO REAL OPERANDO / 🔴 CÁPSULA EN DESARROLLO",
+    badgeStyle: "background:rgba(16,185,129,.2);color:#34d399;border:1px solid #10b981",
+    title: "01. Extracción Somera (Pozo 001 a 7 m) y «Cápsula del Tiempo del Agua»",
+    desc: "El agua sale del manto colgado a 7 metros en el Pozo 001 con caudal calibrado bajo la Ley de Stokes para no arrastrar arena. En paralelo, el registro subterráneo aloja el prototipo del Nodo 1 («Cápsula del Tiempo»): mide nivel con campana de aire (0–40 kPa), se recarga con una Batería de Tierra (ánodo de magnesio y tubo de cobre en tierra húmeda) y usa Deep Sleep para durar de 5 a 10 años sin red eléctrica ni Wi-Fi.",
+    sensors: "Campana de aire HX710B (0–40 kPa), TDS con corte MOSFET (99% OFF) y voltaje de Batería de Tierra (Mg/Cu + BQ25504).",
+    actuators: "Bomba de extracción somera (24V) + Placa LilyGO T-A7670G (ESP32 + 4G LTE + Memoria Flash LittleFS).",
+    rule: "Guarda primero en CSV local; transmite cada 30–60 min por Wi-Fi, 1/día por 4G, o entra en Deep Sleep (backoff de 1/día hasta 1/año)."
+  },
+  {
+    badge: "ETAPA 02 · 🟢 LLENADO 1 BBL / 🟡 SOLENOIDES EN INTEGRACIÓN",
+    badgeStyle: "background:rgba(245,158,11,.2);color:#fbbf24;border:1px solid #f59e0b",
+    title: "02. Llenado Automático por Lote (1 BBL / 117.3 L) y Calibración de Vacío",
+    desc: "Antes de energizar los electrodos, el ESP32 mide el Voltaje en Vacío real de la fuente de 12V/15A (típicamente 11.4 V – 11.6 V) mientras la Válvula Solenoide SV-01 abre el paso hacia el reactor de 1 BBL (~117.3 litros). Al confirmar la inmersión al 50% de la varilla, el sistema captura la caída de tensión inicial y fija la línea base dinámica de ese lote.",
+    sensors: "Medidor de flujo por efecto Hall en interrupción + Divisor de voltaje pasivo en ADC1 (GPIO34) leyendo V_vacío.",
+    actuators: "Válvula Solenoide de Llenado (SV-01) controlada por Relé.",
+    rule: "Paso 1: Registrar V_vacío sin carga. Paso 2: Al llenar lote y activar potencia, estabilizar 5 s y guardar V_base (~10.60 V, ΔV = 1.0 V)."
+  },
+  {
+    badge: "ETAPA 03 · 🟢 PROBADO EMPÍRICAMENTE EN LOTE DE 1 BBL (12V / 15A)",
+    badgeStyle: "background:rgba(16,185,129,.2);color:#34d399;border:1px solid #10b981",
+    title: "03. Electrofloculación Dinámica (12V/15A, Sin Químicos) y Barrido de H₂",
+    desc: "Se descartó medir impedancia en reposo por la polarización de electrodos y la capa aislante de microburbujas de hidrógeno (H₂). En su lugar, el ESP32 monitorea en tiempo real (1 Hz) la caída de tensión (ΔV) sin interrumpir la floculación, y activa pulsos de bomba superficial de 30 a 45 segundos cada 5 a 7 minutos para barrer las placas sin destruir la nata blanca superior.",
+    sensors: "Divisor de voltaje continuo en GPIO34 (0–12V mapeado a 0–2.8V). Vigila Zona Verde (≥10.40V), Amarilla (10.30–10.40V) y Roja (<10.30V).",
+    actuators: "Relé de Potencia DC 12V/15A (RELAY_POWER) + Relé de Bomba de Recirculación/Oxigenación (RELAY_PUMP).",
+    rule: "Si V_carga < 10.30 V de forma sostenida, corta por sobrecorriente. Finaliza a los 60–90 min o al detectar el punto de inflexión (ΔV regresa hacia V_vacío)."
+  },
+  {
+    badge: "ETAPA 04 · 🟡 ALGORITMO DE REPOSO FORZADO Y PRUEBAS DE TDS",
+    badgeStyle: "background:rgba(245,158,11,.2);color:#fbbf24;border:1px solid #f59e0b",
+    title: "04. Reposo Forzado por Algoritmo (Cero Biofine / Separación Física Pura)",
+    desc: "No se utiliza Biofine ni floculantes químicos externos. Como mover el agua antes de tiempo rompe el flóculo y arruina la clarificación, el algoritmo impone un bloqueo estricto de Reposo Forzado tras apagar los electrodos: ninguna válvula solenoide ni bomba puede encenderse hasta completar el tiempo de sedimentación. Al finalizar, mide TDS en frío sin ruido eléctrico.",
+    sensors: "Temporizador de bloqueo de sedimentación + Sensor de TDS energizado por pulso (MOSFET/GPIO) con la fuente DC apagada.",
+    actuators: "Bloqueo por software de todas las válvulas y bombas + Válvula inferior de purga de lodos.",
+    rule: "Bloquear trasvase durante el reposo obligatorio. Si un comando intenta abrir SV-02 antes de tiempo, el controlador rechaza la orden."
+  },
+  {
+    badge: "ETAPA 05 · 🟡 EN INTEGRACIÓN HIDRÁULICA AUTOMÁTICA",
+    badgeStyle: "background:rgba(245,158,11,.2);color:#fbbf24;border:1px solid #f59e0b",
+    title: "05. Trasvase por Solenoide y Protección de 80 Micras contra Limo y Mica",
+    desc: "Una vez cumplido el reposo forzado y asentado el flóculo, el controlador abre la Válvula Solenoide de Trasvase (SV-02) tomando únicamente el agua clarificada superior. Antes de entrar a la bomba presurizadora, pasa por un prefiltro de malla de 80 micras que retiene cualquier rastro de limo o mica del acuífero de Tijuana.",
+    sensors: "Caudalímetro Hall de transferencia + Verificación de nivel en tanque de distribución.",
+    actuators: "Válvula Solenoide de Trasvase (SV-02) + Prefiltro físico lavable de 80 micras.",
+    rule: "Derivar el 80% del volumen clarificado hacia almacenamiento doméstico y riego de áreas verdes sin gastar energía extra."
+  },
+  {
+    badge: "ETAPA 06 · 🟡 ACTUADOR EN VÁLVULA DE AGUJA EN CALIBRACIÓN",
+    badgeStyle: "background:rgba(245,158,11,.2);color:#fbbf24;border:1px solid #f59e0b",
+    title: "06. Ultrapurificación 20% con Válvula de Aguja Motorizada (85–90 PSI)",
+    desc: "El 20% destinado a agua para beber ingresa a la membrana de Ósmosis Inversa impulsado por la bomba de diafragma. Un actuador motorizado acoplado a la válvula de aguja ajusta continuamente la restricción del rechazo leyendo el transductor de presión de acero inoxidable 316 (0–100 PSI), manteniendo siempre 85–90 PSI óptimos y reintegrando el rechazo al riego (Cero Desperdicio).",
+    sensors: "Transductor industrial 0–100 PSI (Acero Inox 316, salida 0.5–4.5V) + Sensor TDS final en línea de agua producto.",
+    actuators: "Bomba Booster RO + Servomotor/Actuador acoplado mecánicamente a la Válvula de Aguja de rechazo.",
+    rule: "Si PSI < 86, cierra ligeramente la válvula de aguja; si PSI > 90, abre ligeramente; si PSI > 98, ejecuta paro de protección de membrana."
+  }
+];
+
+let currentSynStep = 0;
+let autoSynTimer = null;
+
+function selectSynopticStep(idx) {
+  currentSynStep = idx;
+  const s = SYNOPTIC_STEPS[idx];
+  if (!s) return;
+  const badge = document.getElementById('syn-step-badge');
+  if (badge) {
+    badge.innerText = s.badge;
+    badge.setAttribute('style', 'font-family:var(--font-mono);font-size:.76rem;font-weight:800;padding:.25rem .7rem;border-radius:6px;' + s.badgeStyle);
+  }
+  const t = document.getElementById('syn-step-title');
+  if (t) t.innerText = s.title;
+  const d = document.getElementById('syn-step-desc');
+  if (d) d.innerText = s.desc;
+  const sen = document.getElementById('syn-step-sensors');
+  if (sen) sen.innerText = s.sensors;
+  const act = document.getElementById('syn-step-actuators');
+  if (act) act.innerText = s.actuators;
+  const rul = document.getElementById('syn-step-rule');
+  if (rul) rul.innerText = s.rule;
+
+  for (let i = 0; i < 6; i++) {
+    const g = document.getElementById('syn-node-' + i);
+    if (!g) continue;
+    const rect = g.querySelector('rect');
+    if (rect) {
+      if (i === idx) {
+        rect.setAttribute('stroke', '#00e5ff');
+        rect.setAttribute('stroke-width', '3.5');
+        rect.setAttribute('fill', '#162544');
+      } else {
+        rect.setAttribute('stroke', i <= idx ? '#10b981' : '#334155');
+        rect.setAttribute('stroke-width', '2');
+        rect.setAttribute('fill', '#0f172a');
+      }
+    }
+  }
+
+  const pipes = ['pipe-1-2', 'pipe-2-3', 'pipe-3-4', 'pipe-4-5'];
+  pipes.forEach((pid, pIdx) => {
+    const pEl = document.getElementById(pid);
+    if (pEl) {
+      pEl.setAttribute('stroke', pIdx < idx ? 'url(#waterFlowGrad)' : '#1e293b');
+    }
+  });
+  const p80 = document.getElementById('pipe-5-80');
+  const p20 = document.getElementById('pipe-5-20');
+  if (p80) p80.setAttribute('stroke', idx >= 5 ? '#10b981' : '#1e293b');
+  if (p20) p20.setAttribute('stroke', idx >= 5 ? '#00e5ff' : '#1e293b');
+}
+
+function toggleAutoSynoptic() {
+  const btn = document.getElementById('btnSimularRecorrido');
+  if (autoSynTimer) {
+    clearInterval(autoSynTimer);
+    autoSynTimer = null;
+    if (btn) btn.innerText = '▶️ Simular Recorrido Paso a Paso';
+    return;
+  }
+  if (btn) btn.innerText = '⏸️ Pausar Simulación';
+  selectSynopticStep(0);
+  autoSynTimer = setInterval(() => {
+    const next = (currentSynStep + 1) % 6;
+    selectSynopticStep(next);
+  }, 3800);
+}
+
 </script>
 
 <!-- ==================== GLITCH OVERLAY ==================== -->
