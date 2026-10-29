@@ -3357,13 +3357,29 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
         <span class="tren-pill emerald">🌧️ Recarga Pluvial desde Cubierta</span>
       </div>
 
-      <!-- Reproductor de Video HD -->
-      <div class="tren-video-container">
-        <video id="trenVideoPlayer" controls preload="metadata" poster="img_tren/etapa5_osmosis_inversa.jpg">
-          <source src="video/demo_tren_proceso_web.mp4" type="video/mp4">
-          Tu navegador no soporta reproducción directa de video HTML5.
-        </video>
+      <!-- Selector / Doble Video: Demostración Física Real + Animación 3D del Sistema -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.25rem;margin-bottom:1.75rem">
+        <div class="tren-video-container" style="margin-bottom:0">
+          <div style="padding:.6rem 1rem;background:rgba(16,185,129,.15);border-bottom:1px solid rgba(16,185,129,.3);font-family:var(--font-mono);font-size:.76rem;font-weight:700;color:#34d399">
+            🟢 VIDEO 1: TREN FÍSICO REAL EN OPERACIÓN — POZO 001 «AGUA DE GIA» (2:48)
+          </div>
+          <video id="trenVideoPlayer" controls preload="metadata" poster="img_tren/etapa5_osmosis_inversa.jpg">
+            <source src="video/demo_tren_proceso_web.mp4" type="video/mp4">
+            Tu navegador no soporta reproducción directa de video HTML5.
+          </video>
+        </div>
+
+        <div class="tren-video-container" style="margin-bottom:0">
+          <div style="padding:.6rem 1rem;background:rgba(0,229,255,.15);border-bottom:1px solid rgba(0,229,255,.3);font-family:var(--font-mono);font-size:.76rem;font-weight:700;color:var(--cyan-primary)">
+            🎬 VIDEO 2: ANIMACIÓN 3D DE ARQUITECTURA — AQUARESILIENCIA (80/20)
+          </div>
+          <video id="animacion3DPlayer" controls preload="metadata">
+            <source src="aquaresiliencia_animacion.mp4" type="video/mp4">
+            Tu navegador no soporta reproducción directa de video HTML5.
+          </video>
+        </div>
       </div>
+      <div style="display:none"></div>
 
       <!-- Tarjetas de las 8 Etapas del Tren Físico -->
       <div class="tren-grid">
