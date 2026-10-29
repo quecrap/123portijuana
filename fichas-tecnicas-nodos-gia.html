@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fichas Técnicas Oficiales: Nodo 1 y Nodo 2 — Agua de GIA (AquaResiliencia)</title>
+  <style>
+    :root {
+      --bg: #0b1120;
+      --card: #111827;
+      --border: #1e293b;
+      --cyan: #06b6d4;
+      --emerald: #10b981;
+      --amber: #f59e0b;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+    }
+    * { box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      margin: 0;
+      padding: 32px 20px;
+      line-height: 1.55;
+    }
+    .container { max-width: 1040px; margin: 0 auto; }
+    header {
+      border-bottom: 2px solid var(--cyan);
+      padding-bottom: 20px;
+      margin-bottom: 28px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .badge {
+      display: inline-block;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      background: rgba(6, 182, 212, 0.15);
+      color: var(--cyan);
+      border: 1px solid rgba(6, 182, 212, 0.35);
+      margin-bottom: 8px;
+    }
+    h1 { margin: 0; font-size: 1.85rem; color: #fff; }
+    h2 {
+      margin: 0 0 12px 0;
+      font-size: 1.35rem;
+      color: var(--cyan);
+      border-left: 4px solid var(--cyan);
+      padding-left: 12px;
+    }
+    h3 { margin: 18px 0 8px 0; font-size: 1.05rem; color: var(--emerald); }
+    .sheet {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 26px;
+      margin-bottom: 28px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+    }
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 18px;
+    }
+    .box {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 0.92rem;
+    }
+    th, td {
+      border: 1px solid var(--border);
+      padding: 10px 12px;
+      text-align: left;
+    }
+    th {
+      background: rgba(6, 182, 212, 0.12);
+      color: var(--cyan);
+      font-weight: 700;
+    }
+    code {
+      background: rgba(255,255,255,0.08);
+      padding: 2px 6px;
+      border-radius: 5px;
+      color: #67e8f9;
+      font-family: Consolas, monospace;
+    }
+    .kpi-bar {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 14px;
+    }
+    .kpi {
+      flex: 1;
+      min-width: 180px;
+      background: rgba(16, 185, 129, 0.08);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      border-radius: 10px;
+      padding: 12px 14px;
+    }
+    .kpi span { display: block; font-size: 0.78rem; color: var(--muted); }
+    .kpi strong { font-size: 1.25rem; color: var(--emerald); }
+    .btn-print {
+      background: var(--cyan);
+      color: #0f172a;
+      border: none;
+      padding: 10px 18px;
+      border-radius: 8px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    @media print {
+      body { background: #fff; color: #111; padding: 0; }
+      .sheet, .box { background: #fff; border-color: #cbd5e1; box-shadow: none; color: #111; }
+      h1, h2, h3, strong { color: #0f172a !important; }
+      .btn-print { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <span class="badge">AquaResiliencia · Pozo 001 "Agua de GIA" · Tijuana, B.C.</span>
+        <h1>Fichas Técnicas Oficiales de Ingeniería IoT Hidráulica</h1>
+        <div style="color: var(--muted); font-size: 0.95rem; margin-top: 4px;">
+          Autoría y Arquitectura: <strong>Pablo Campos Moreno</strong> · Especificación de Hardware, Mapa de Pines y Lógica de Resiliencia
+        </div>
+      </div>
+      <button class="btn-print" onclick="window.print()">🖨️ Imprimir / Guardar PDF</button>
+    </header>
+
+    <!-- NODO 1 -->
+    <section class="sheet">
+      <h2>NODO 1: Telemetría Subterránea del Pozo ("Modo Cápsula del Tiempo")</h2>
+      <p>
+        <strong>Propósito:</strong> Monitoreo autónomo y oculto del nivel del pozo y calidad del agua (TDS) a prueba de apagones prolongados y sin depender de la red eléctrica de superficie.<br>
+        <strong>Instalación:</strong> Ubicado dentro de un registro de jardín enterrado a ras de suelo (cubierto con plástico y grava para permitir radiofrecuencia), haciendo una salida lateral hacia el tubo del pozo de <strong>2 pulgadas</strong> (donde ya corre un tubo de extracción de <strong>CPVC de 1/2"</strong>).
+      </p>
+
+      <div class="grid-2">
+        <div class="box">
+          <h3>Componentes de Hardware</h3>
+          <ul>
+            <li><strong>Cerebro y Comunicaciones:</strong> Placa <code>LilyGO T-A7670G</code> (ESP32 con módem <strong>4G LTE</strong> y <strong>Wi-Fi</strong> integrado).</li>
+            <li><strong>Sensor de Nivel ("Campana de Aire"):</strong> Manguera de poliuretano flexible de <strong>4 mm</strong> bajada junto al tubo de extracción de CPVC de 1/2", conectada arriba en la caja seca a un módulo de presión de aire <code>HX710B / MPS20N0040D</code> de <strong>0–40 kPa</strong>.</li>
+            <li><strong>Sensor de Calidad (TDS):</strong> Módulo analógico <code>DFRobot Gravity TDS</code> con electrodos protegidos (apagados mediante un transistor <strong>MOSFET</strong> el <strong>99% del tiempo</strong> para evitar electrólisis y sarro).</li>
+            <li><strong>Alimentación ("Batería de Tierra"):</strong> Pila galvánica subterránea construida con una barra de <strong>Ánodo de Magnesio</strong> y un tubo de <strong>Cobre</strong> enterrados en la tierra húmeda a un lado del pozo (<em>cero contaminación al agua</em>). Recarga continuamente una batería de litio reciclada de terminal bancaria mediante un módulo cosechador de energía (<code>BQ25504</code> / regulador solar).</li>
+          </ul>
+        </div>
+
+        <div class="box">
+          <h3>Lógica de Resiliencia / Cápsula del Tiempo</h3>
+          <ul>
+            <li><strong>Persistencia Local Primaria:</strong> Guarda cada lectura primero en memoria Flash interna (<code>LittleFS</code> en formato <strong>CSV</strong>) por si se requiere extracción local por USB o Wi-Fi Direct.</li>
+            <li><strong>Operación Normal:</strong> Transmisión por <strong>Wi-Fi</strong> cada <strong>30–60 min</strong>.</li>
+            <li><strong>Contingencia Celular:</strong> Si no hay Wi-Fi, transmite por red celular <strong>4G LTE 1 vez al día</strong>.</li>
+            <li><strong>Backoff Exponencial en Memoria RTC (Sin Red):</strong>
+              <ul>
+                <li><strong>Días 1 a 7:</strong> 1 vez al día</li>
+                <li><strong>Días 8 a 30:</strong> 1 vez a la semana</li>
+                <li><strong>Meses 2 a 12:</strong> 1 vez al mes</li>
+                <li><strong>Más de 1 año sin red:</strong> 1 vez al año</li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="kpi-bar">
+        <div class="kpi"><span>Costo Base Estimado</span><strong>~$2,150 MXN</strong></div>
+        <div class="kpi"><span>Consumibles a Mitad de Vida</span><strong>+$300 MXN</strong></div>
+        <div class="kpi"><span>Horizonte de Amortización</span><strong>5 Años (1,825 días)</strong></div>
+        <div class="kpi"><span>Costo Diario Amortizado</span><strong>~$1.34 MXN / día</strong></div>
+      </div>
+    </section>
+
+    <!-- NODO 2 -->
+    <section class="sheet">
+      <h2>NODO 2: Planta de Tratamiento, Electrocoagulación y Lógica de Potencia por Lotes</h2>
+      <p>
+        <strong>Propósito:</strong> Automatización completa del ciclo de purificación de agua por lotes en taller/superficie, controlado mediante una interfaz web local en el celular con soporte bidireccional de comandos por voz (<code>Web Speech API</code>).
+      </p>
+
+      <div class="grid-2">
+        <div class="box">
+          <h3>Hardware y Protección</h3>
+          <ul>
+            <li><strong>Microcontrolador:</strong> <code>NodeMCU (ESP8266)</code>.</li>
+            <li><strong>Actuadores de Potencia (Módulo de Relés de 4 Canales):</strong>
+              <ul>
+                <li><strong>Relé 1:</strong> Válvula solenoide de llenado.</li>
+                <li><strong>Relé 2:</strong> Fuente DC de electrocoagulación.</li>
+                <li><strong>Relé 3:</strong> Bomba aireadora.</li>
+                <li><strong>Relé 4:</strong> Bomba de diafragma presurizadora de transferencia/ósmosis protegida en la succión con <strong>prefiltro de malla de 80 micras</strong> contra limo y mica.</li>
+              </ul>
+            </li>
+            <li><strong>Medición de Volumen:</strong> Medidor de flujo por efecto Hall en interrupción.</li>
+            <li><strong>Control de Presión:</strong> Transductor de presión de <strong>acero inoxidable 316 de 0–100 PSI</strong> (rosca 1/4" NPT, alimentación 5V DC, salida analógica 0.5V–4.5V).</li>
+            <li><strong>Control de Rechazo (Ósmosis):</strong> Servomotor <code>MG996R</code> (180° con engranajes metálicos) acoplado mecánicamente a la válvula reguladora manual de rechazo.</li>
+            <li><strong>Protección Eléctrica:</strong> Sensor de corriente <code>ACS712 (30A AC/DC)</code> para censar amperios de la fuente de electrocoagulación y cortar el relé por sobrecarga o corto por lodo (&gt;12 A).</li>
+            <li><strong>Calidad de Agua en Lote:</strong> Electrodo de TDS encendido únicamente durante <strong>pausas de 1.5 segundos</strong> con la fuente de electrocoagulación apagada para evitar ruido eléctrico.</li>
+          </ul>
+        </div>
+
+        <div class="box">
+          <h3>Mapa de Pines Oficial — Nodo 2 (ESP8266 NodeMCU)</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Pin</th>
+                <th>GPIO</th>
+                <th>Función Asignada</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><code>D1</code></td><td>GPIO5</td><td><strong>Relé 1:</strong> Válvula Solenoide de Llenado</td></tr>
+              <tr><td><code>D2</code></td><td>GPIO4</td><td><strong>Relé 2:</strong> Fuente DC de Electrocoagulación</td></tr>
+              <tr><td><code>D5</code></td><td>GPIO14</td><td><strong>Relé 3:</strong> Bomba Aireadora</td></tr>
+              <tr><td><code>D6</code></td><td>GPIO12</td><td><strong>Relé 4:</strong> Bomba Presurizadora RO / Transferencia</td></tr>
+              <tr><td><code>D7</code></td><td>GPIO13</td><td><strong>Medidor de Flujo</strong> (Interrupción Hall)</td></tr>
+              <tr><td><code>D8</code></td><td>GPIO15</td><td><strong>PWM Servomotor MG996R</strong> (Válvula de Rechazo)</td></tr>
+              <tr><td><code>D0</code></td><td>GPIO16</td><td><strong>VCC Sensor de TDS</strong> (encendido por pulso)</td></tr>
+              <tr><td><code>A0</code></td><td>ADC0</td><td><strong>Entrada Analógica</strong> (Corriente ACS712, TDS y Presión 100 PSI)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
+
