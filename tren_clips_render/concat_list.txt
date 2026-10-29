@@ -1,0 +1,8 @@
+file 'C:/Users/PEPITO/Downloads/123portijuana/tren_clips_render/clip_01.mp4'
+file 'C:/Users/PEPITO/Downloads/123portijuana/tren_clips_render/clip_02.mp4'
+file 'C:/Users/PEPITO/Downloads/123portijuana/tren_clips_render/clip_03.mp4'
+file 'C:/Users/PEPITO/Downloads/123portijuana/tren_clips_render/clip_04.mp4'
+file 'C:/Users/PEPITO/Downloads/123portijuana/tren_clips_render/clip_05.mp4'
+file 'C:/Users/PEPITO/Downloads/123portijuana/tren_clips_render/clip_06.mp4'
+file 'C:/Users/PEPITO/Downloads/123portijuana/tren_clips_render/clip_07.mp4'
+file 'C:/Users/PEPITO/Downloads/123portijuana/tren_clips_render/clip_08.mp4'

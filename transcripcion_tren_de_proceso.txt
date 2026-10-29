@@ -1,0 +1,40 @@
+[00:00 -> 00:06]  Bien, este es el poso y este es la bomba Evans de 24 volts con solo dos amperes de consumo.
+[00:06 -> 00:13]  Esta en los datos para que no se olvide, es la que saca el agua y lo metes este totem por la parte de arriba.
+[00:13 -> 00:20]  En la parte de abajo, por gravedad Sky y llega a este primer invento que es un eléctro
+[00:20 -> 00:28]  floculador, también de 24 volts dos amperes. Ahora como funciona, por la parte de arriba hay un
+[00:28 -> 00:37]  eléctro de fiero, es el anodo que genera una corriente entre la carcasa, que es el catedodo y que
+[00:37 -> 00:44]  flocula. Hay un intercambio allónico y genera partículas más grandes de las ales y sueltas
+[00:44 -> 00:53]  que ahora ya son fácilmente retiradas. Después de en este filto de Maya y el embono lo necesito,
+[00:53 -> 00:58]  pero me dio una altura y los niveles lo dejé y va a capturar algunas de las partículas que se
+[00:58 -> 01:05]  flocularon y luego llega este tanque de sedimentación en el que entramos por la parte de abajo y generamos
+[01:05 -> 01:12]  una corriente como un remolino muy lento y hace que caía todas las partículas que ya se flocularon
+[01:12 -> 01:18]  hasta abajo. Ahí se puede ver en el piso manchado, si yo le habrá aquí abajo, o sea que pasa,
+[01:19 -> 01:25]  se sale el oxido, el principio fue muy intenso. Lo siguiente que sucede es que por gravedad y tal
+[01:25 -> 01:31]  es que metí una error ahí, pasa por un filtro para quitarle cualquier sedimentación, entonces filtamos
+[01:31 -> 01:38]  por decantación y por el filtro y lo llevamos al totem de abajo nuevamente por gravedad y ahí
+[01:38 -> 01:46]  almacenamos el agua que ya es para uso doméstico, no para tomar. Ahora de ahí de ese tanque con una
+[01:46 -> 01:53]  pichancha a media altura para agarrar los sedimentos, alimentamos nuestra bomba presorizadora de hasta
+[01:53 -> 02:04]  100, 120 PSIs, que es la que va a pasar el agua por otro filtro de 5 micras, el carbon activado y la
+[02:04 -> 02:11]  osmosis inversa. La osmosis inversa tiene dos salidas, la agua de rechazo y el agua para tomar,
+[02:11 -> 02:16]  el agua de rechazo la vamos a volver a pasar el tanque de arriba y vuelve a caminar el mismo caminito.
+[02:16 -> 02:22]  Ahora también tenemos ahí ya una manguera que puede servir para agarrar las plantas.
+[02:24 -> 02:29]  También para el agua de rechazo, en lugar de comprar una pieza estática, tengo un regulador que
+[02:29 -> 02:35]  me permite hacer que el sistema trabaje las 85, 90 PSIs que es el máximo y que es como es más
+[02:35 -> 02:43]  eficiente. También es posible que añada algo de califacción, habrá que ver como uso el sol,
+[02:43 -> 02:49]  porque la osmosis inversa es más eficiente cuando está calentito el agua, 35 grados en tira sería
+[02:49 -> 02:57]  lo último y puede hacerlo con el sol. Hay muchas cosas que obviamente están optimizadas para este
+[02:57 -> 03:03]  caso en particular, pero que vamos a servir para poder hacer ya prototipos en serie, además hay
+[03:03 -> 03:10]  soluciones super genuinas como el hecho de que el caudal que extraigo del pozo, la velocidad a
+[03:10 -> 03:17]  la que sube es ligeramente menor a la velocidad a la que caen los granos de arena, así que no
+[03:17 -> 03:22]  arrastro el segmento hacia la bomba, eso fue una genialidad jugar con esos niveles.
+[03:23 -> 03:31]  Otra gentilidad fue poder hacer el acto floculador en una calcaza a ser o inoxidable y permitirme jugar
+[03:31 -> 03:37]  con el caudal y con el ángulo, así teniendo un control muy preciso sobre el agua que pasa.
+[03:37 -> 03:43]  Sin considerar que es lo único que he comprado es la bomba y pegamento y auto-teflón,
+[03:43 -> 03:49]  no es cierto, la calcaza de osmosis también, pero todo ha sido de sobre ruedas o de
+[03:51 -> 03:57]  desarmar cosas que ya no funcionaban. Como este, como este era un neumático casero, típico de
+[03:57 -> 04:03]  barril de cerveza, este va a durar hasta que yo me muera a diferencia de los otros de tanboas
+[04:03 -> 04:08]  un que cada dos, tres años hay que cambiar, porque la serie inoxidable es industrial. Y bueno, aquí es
+[04:08 -> 04:16]  donde ya el agua para uso, se cae la cisterna y se usa en la casa como siempre se ha usado.
+[04:16 -> 04:24]  A los oceaños llegué aquí, se podía ver todo el mar, los elfines, el pavimento no existía,
+[04:24 -> 04:31]  pero bueno, no existe y ahora tenemos esta falta de agua. Posos omeros es la solución porque además
+[04:31 -> 04:38]  que creen también se recargan con agua de lluvia desde el mismo techo de la casa y ahí está la tubería.

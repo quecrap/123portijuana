@@ -1,0 +1,72 @@
+[Script Info]
+Title: Agua de Gia - Subtitulos Estilizados y Badges
+ScriptType: v4.00+
+PlayResX: 1280
+PlayResY: 720
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: TitleBadge,Montserrat,26,&H00FFFFFF,&H000000FF,&H00000000,&H90000000,-1,0,0,0,100,100,1,0,3,10,0,8,40,40,36,1
+Style: SubBadge,Montserrat,17,&H0000FFFF,&H000000FF,&H00000000,&H90000000,0,0,0,0,100,100,1,0,3,6,0,8,40,40,70,1
+Style: SubtitleVoice,Arial,22,&H00FFFFFF,&H000000FF,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,3,8,0,2,30,30,32,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 1,0:00:01.00,0:00:09.50,TitleBadge,,0,0,0,,{\c&H00FFFF&}AGUA DE GIA{\r}
+Dialogue: 1,0:00:01.00,0:00:09.50,SubBadge,,0,0,0,,¿QUÉ HAY BAJO NUESTROS PIES?
+Dialogue: 1,0:00:09.50,0:00:29.50,TitleBadge,,0,0,0,,{\c&H00FFFF&}GIA: MI HIJA Y MI HERENCIA{\r}
+Dialogue: 1,0:00:09.50,0:00:29.50,SubBadge,,0,0,0,,El origen de AquaResiliencia Tijuana
+Dialogue: 1,0:00:33.00,0:00:47.00,TitleBadge,,0,0,0,,{\c&H00FFFF&}CRISIS HÍDRICA EN TIJUANA{\r}
+Dialogue: 1,0:00:33.00,0:00:47.00,SubBadge,,0,0,0,,Dependencia del 90% del Río Colorado
+Dialogue: 1,0:00:47.00,0:01:03.00,TitleBadge,,0,0,0,,{\c&H00FFFF&}ACUEDUCTO RÍO COLORADO - TIJUANA{\r}
+Dialogue: 1,0:00:47.00,0:01:03.00,SubBadge,,0,0,0,,Presa El Carrizo (Reserva Crítica: 3 Semanas)
+Dialogue: 1,0:01:03.00,0:01:15.50,TitleBadge,,0,0,0,,{\c&H00FFFF&}TECNOLOGÍA FRUGAL DE FERRETERÍA{\r}
+Dialogue: 1,0:01:03.00,0:01:15.50,SubBadge,,0,0,0,,Bajo costo con alto rigor de ingeniería
+Dialogue: 1,0:01:15.50,0:01:38.00,TitleBadge,,0,0,0,,{\c&H00FFFF&}POZO SOMERO A 7 METROS{\r}
+Dialogue: 1,0:01:15.50,0:01:38.00,SubBadge,,0,0,0,,Perforación en aluvión y manto freático
+Dialogue: 1,0:01:38.00,0:01:52.50,TitleBadge,,0,0,0,,{\c&H00FFFF&}DE LA MAQUILA A LA ALQUIMIA{\r}
+Dialogue: 1,0:01:38.00,0:01:52.50,SubBadge,,0,0,0,,Planta Piloto de Tratamiento y Sedimentación
+Dialogue: 1,0:01:52.50,0:02:17.00,TitleBadge,,0,0,0,,{\c&H00FFFF&}ELECTROFLOCULACIÓN CONTINUA{\r}
+Dialogue: 1,0:01:52.50,0:02:17.00,SubBadge,,0,0,0,,Intercambio de iones: bajando dureza en minutos
+Dialogue: 1,0:02:17.00,0:02:39.50,TitleBadge,,0,0,0,,{\c&H00FFFF&}CAPTACIÓN PLUVIAL EN VIVIENDA{\r}
+Dialogue: 1,0:02:17.00,0:02:39.50,SubBadge,,0,0,0,,En el pedir está el dar · Recarga del acuífero
+Dialogue: 1,0:02:40.00,0:03:00.50,TitleBadge,,0,0,0,,{\c&H00FFFF&}400 LITROS POR DÍA{\r}
+Dialogue: 1,0:02:40.00,0:03:00.50,SubBadge,,0,0,0,,Suficiente para abastecer un hogar
+Dialogue: 1,0:03:01.00,0:03:21.50,TitleBadge,,0,0,0,,{\c&H00FFFF&}SCADA IoT: DATOS Y CÓDIGO ABIERTO{\r}
+Dialogue: 1,0:03:01.00,0:03:21.50,SubBadge,,0,0,0,,ESP32 en tiempo real · Nivel, temperatura y caudal
+Dialogue: 1,0:03:21.50,0:03:36.50,TitleBadge,,0,0,0,,{\c&H00FFFF&}EL VERDADERO ALQUIMISTA{\r}
+Dialogue: 1,0:03:21.50,0:03:36.50,SubBadge,,0,0,0,,El oro puede comprar casi todo... jamás la vida.
+Dialogue: 0,0:00:00.00,0:00:03.92,SubtitleVoice,,0,0,0,,¿Qué pasaría si aprendiéramos a conocer mejor el agua que tenemos bajo nuestros pies
+Dialogue: 0,0:00:04.44,0:00:09.52,SubtitleVoice,,0,0,0,,y aprovecharla de una manera más responsable, Solo lo que se conoce se puede amar.
+Dialogue: 0,0:00:10.46,0:00:14.98,SubtitleVoice,,0,0,0,,Y esa es la pregunta que impulsa {\c&H00FFFF&}Agua de Gia{\r}, el primer prototipo experimental
+Dialogue: 0,0:00:15.68,0:00:21.40,SubtitleVoice,,0,0,0,,de {\c&H00FFFF&}AquaResiliencia{\r} en {\c&H00FFFF&}Tijuana{\r}, que integra hidrología, tratamiento de agua
+Dialogue: 0,0:00:21.40,0:00:29.66,SubtitleVoice,,0,0,0,,ingeniería accesible a muy, muy bajo costo, automatización y hasta recarga del acuífero.
+Dialogue: 0,0:00:30.02,0:00:35.52,SubtitleVoice,,0,0,0,,Su nombre viene de {\c&H00FFFF&}Gaia{\r} de la tierra que sostiene la vida, se trata de comprender los procesos naturales,
+Dialogue: 0,0:00:36.14,0:00:41.62,SubtitleVoice,,0,0,0,,utilizar la tecnología para transformar nuestro entorno, con responsabilidad, para evolucionar como
+Dialogue: 0,0:00:41.62,0:00:47.38,SubtitleVoice,,0,0,0,,especie y para triunfar. En {\c&H00FFFF&}Tijuana{\r}, el abastecimiento de agua depende en gran medida de una infraestructura
+Dialogue: 0,0:00:47.38,0:00:54.44,SubtitleVoice,,0,0,0,,que transportaba desde muy lejos, desde el {\c&H00FFFF&}Río Colorado{\r}, con tratados de más de 40 años.
+Dialogue: 0,0:00:55.32,0:01:00.70,SubtitleVoice,,0,0,0,,Y hasta hace poco con reglas de aquella época, un sistema muy interesante y complejo, costoso,
+Dialogue: 0,0:01:01.38,0:01:07.32,SubtitleVoice,,0,0,0,,mucha, mucha energía de agua con el equipo que puedes comprar en una ferretería,
+Dialogue: 0,0:01:08.14,0:01:15.44,SubtitleVoice,,0,0,0,,de muy bajo costo, no por aquello de baja calidad, ahí la belleza y lo interesante del ingeniería,
+Dialogue: 0,0:01:16.16,0:01:26.16,SubtitleVoice,,0,0,0,,porque encontramos agua somera, una capita despleciada en la que nadie se fija, como el sudor de la frente,
+Dialogue: 0,0:01:26.68,0:01:32.80,SubtitleVoice,,0,0,0,,después de trabajar, o como esa humedad que queda en tu vaso cuando está bien frío y escarchado,
+Dialogue: 0,0:01:33.48,0:01:39.00,SubtitleVoice,,0,0,0,,y se vea hacia un charquito abajo, mínimas si las comparas con el vaso lleno, con la recuperación,
+Dialogue: 0,0:01:39.00,0:01:45.44,SubtitleVoice,,0,0,0,,con la naturaleza, con el clima, y en esta observación desarrollamos para su purificación,
+Dialogue: 0,0:01:45.56,0:01:51.92,SubtitleVoice,,0,0,0,,específica, un sistema de biofloculación o electrofloculación y sedimentación,
+Dialogue: 0,0:01:52.72,0:01:57.24,SubtitleVoice,,0,0,0,,cambiamos iones de hierro, por aquellas iones de sal, es como magnesio y calcio, quitándole la
+Dialogue: 0,0:01:57.24,0:02:02.82,SubtitleVoice,,0,0,0,,dureza, al agua en cuestión de minutos a través de un sistema continua, ahora cuando digo
+Dialogue: 0,0:02:02.82,0:02:10.72,SubtitleVoice,,0,0,0,,continuo, te imaginas algo grande como un pozo, y no sé si, este tiene un caudal sutil, casi un chiste,
+Dialogue: 0,0:02:11.62,0:02:17.62,SubtitleVoice,,0,0,0,,casi ni siquiera pasa percibido, su caudal es un litro a lo mucho por minuto, es como bien dice la
+Dialogue: 0,0:02:17.62,0:02:24.94,SubtitleVoice,,0,0,0,,frase en el pedir esta el dar, y no solo es hay que pedir, sino también hay que dar, y parte del
+Dialogue: 0,0:02:24.94,0:02:31.88,SubtitleVoice,,0,0,0,,proyecto es la misma captación de agua, del techo, de la vivienda en donde se haga, responsablemente,
+Dialogue: 0,0:02:31.88,0:02:39.54,SubtitleVoice,,0,0,0,,claro, y con referencia en todo lo que ha aprendido la humanidad, siguiendo reglas, leyes, estudios,
+Dialogue: 0,0:02:40.06,0:02:45.00,SubtitleVoice,,0,0,0,,para que lo que hagamos realmente sea bueno y no se quede solo en una buena intención,
+Dialogue: 0,0:02:45.56,0:02:53.28,SubtitleVoice,,0,0,0,,como le paso la mayoría de los proyectos de agua resilencia, de muchos que 400 o 500 litros de agua
+Dialogue: 0,0:02:53.28,0:02:59.98,SubtitleVoice,,0,0,0,,por día, no más, no por el momento, para una sola casa, y eso es más que suficiente,
+Dialogue: 0,0:03:01.40,0:03:08.08,SubtitleVoice,,0,0,0,,y para comprobarlo, y para estudiarlo, cada pozo tendrán públicos, su código y sus datos,
+Dialogue: 0,0:03:08.62,0:03:15.24,SubtitleVoice,,0,0,0,,su nivel, su temperatura, el caudal, para que podamos crear una red de telemetría, o una red de información,
+Dialogue: 0,0:03:15.94,0:03:21.40,SubtitleVoice,,0,0,0,,lo que está pasando bajo nuestros pies, recordatorio, todos estamos hechos,
+Dialogue: 0,0:03:21.74,0:03:28.38,SubtitleVoice,,0,0,0,,en su mayoría de ella, y es aquí donde nace el verdadero {\c&H00FFFF&}alquimista{\r}, no aquel que convierte las
+Dialogue: 0,0:03:28.38,0:03:35.14,SubtitleVoice,,0,0,0,,cosas en oro, sino aquel que sabe que a pesar de que el oro puede comprar casi todo, jamás
+Dialogue: 0,0:03:35.14,0:03:36.38,SubtitleVoice,,0,0,0,,podrá comprar la vida.

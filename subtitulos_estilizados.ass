@@ -1,0 +1,51 @@
+[Script Info]
+ScriptType: v4.00+
+PlayResX: 1280
+PlayResY: 720
+ScaledBorderAndShadow: yes
+
+[V4+ Styles]
+Format: Name, Fontname, Fontsize, PrimaryColour, SecondaryColour, OutlineColour, BackColour, Bold, Italic, Underline, StrikeOut, ScaleX, ScaleY, Spacing, Angle, BorderStyle, Outline, Shadow, Alignment, MarginL, MarginR, MarginV, Encoding
+Style: TitleBadge,Arial,28,&H00FFFFFF,&H000000FF,&H00000000,&H80000000,-1,0,0,0,100,100,1,0,3,10,0,8,40,40,45,1
+Style: SubBadge,Arial,18,&H0000FFFF,&H000000FF,&H00000000,&H90000000,0,0,0,0,100,100,1,0,3,6,0,8,40,40,82,1
+Style: SubtitleVoice,Arial,22,&H00FFFFFF,&H000000FF,&H00000000,&H80000000,-1,0,0,0,100,100,0,0,3,8,0,2,30,30,35,1
+
+[Events]
+Format: Layer, Start, End, Style, Name, MarginL, MarginR, MarginV, Effect, Text
+Dialogue: 0,0:00:01.00,0:00:08.00,TitleBadge,,0,0,0,,{\c&H00FFFF&}AGUA DE GAIA{\r}
+Dialogue: 0,0:00:01.00,0:00:08.00,SubBadge,,0,0,0,,¿QUÉ HAY BAJO NUESTROS PIES?
+Dialogue: 0,0:00:08.50,0:00:20.00,TitleBadge,,0,0,0,,GAIA: MI HIJA Y MI IMPULSO
+Dialogue: 0,0:00:08.50,0:00:20.00,SubBadge,,0,0,0,,{\c&H00E5FF&}Herencia y responsabilidad con el territorio{\r}
+
+Dialogue: 0,0:00:33.00,0:00:46.00,TitleBadge,,0,0,0,,{\c&H0055FF&}TIJUANA: 90% DEPENDENCIA HÍDRICA{\r}
+Dialogue: 0,0:00:33.00,0:00:46.00,SubBadge,,0,0,0,,Acueducto Río Colorado y Presa El Carrizo
+
+Dialogue: 0,0:00:63.00,0:01:13.00,TitleBadge,,0,0,0,,{\c&H00FFFF&}POZO SOMERO A 7 METROS{\r}
+Dialogue: 0,0:00:63.00,0:01:13.00,SubBadge,,0,0,0,,Perforación Hidráulica Ligera con Ademe Ranurado
+
+Dialogue: 0,0:01:14.00,0:01:25.00,TitleBadge,,0,0,0,,TECNOLOGÍA FRUGAL DE FERRETERÍA
+Dialogue: 0,0:01:14.00,0:01:25.00,SubBadge,,0,0,0,,{\c&H00FFFF&}Inspección Subterránea con Cámara Endoscópica{\r}
+
+Dialogue: 0,0:01:38.00,0:01:52.00,TitleBadge,,0,0,0,,{\c&H00E5FF&}DE LA MAQUILA A LA ALQUIMIA{\r}
+Dialogue: 0,0:01:38.00,0:01:52.00,SubBadge,,0,0,0,,Planta Piloto de Tratamiento y Sedimentación
+
+Dialogue: 0,0:01:52.00,0:02:08.00,TitleBadge,,0,0,0,,{\c&H00FFFF&}ELECTROFLOCULACIÓN CONTINUA{\r}
+Dialogue: 0,0:01:52.00,0:02:08.00,SubBadge,,0,0,0,,Intercambio de iones y reducción de dureza en minutos
+
+Dialogue: 0,0:02:08.00,0:02:16.00,TitleBadge,,0,0,0,,BIOENSAYO VIVO: AGUA 100% SEGURA
+Dialogue: 0,0:02:08.00,0:02:16.00,SubBadge,,0,0,0,,{\c&H00FFFF&}Pruebas con micro-fauna acuática y tiras reactivas{\r}
+
+Dialogue: 0,0:02:16.00,0:02:30.00,TitleBadge,,0,0,0,,{\c&H00E5FF&}CAPTACIÓN PLUVIAL EN VIVIENDA{\r}
+Dialogue: 0,0:02:16.00,0:02:30.00,SubBadge,,0,0,0,,Dimensionamiento de ingeniería: 25 L/m² de techo
+
+Dialogue: 0,0:02:30.00,0:02:51.00,TitleBadge,,0,0,0,,{\c&H00FFFF&}RECARGA ARTIFICIAL DEL ACUÍFERO{\r}
+Dialogue: 0,0:02:30.00,0:02:51.00,SubBadge,,0,0,0,,Inyección de lluvia limpia para empujar la intrusión salina
+
+Dialogue: 0,0:02:51.00,0:03:07.00,TitleBadge,,0,0,0,,{\c&H00FFFF&}SCADA IoT: TELEMETRÍA EN TIEMPO REAL{\r}
+Dialogue: 0,0:02:51.00,0:03:07.00,SubBadge,,0,0,0,,ESP32 • Caudal • Presión • Lote 25L • E-STOP
+
+Dialogue: 0,0:03:07.00,0:03:19.00,TitleBadge,,0,0,0,,CÓDIGO Y DATOS PÚBLICOS
+Dialogue: 0,0:03:07.00,0:03:19.00,SubBadge,,0,0,0,,{\c&H00E5FF&}Red comunitaria replicable en parques y escuelas{\r}
+
+Dialogue: 0,0:03:19.00,0:03:37.00,TitleBadge,,0,0,0,,{\c&H00FFFF&}EL VERDADERO ALQUIMISTA{\r}
+Dialogue: 0,0:03:19.00,0:03:37.00,SubBadge,,0,0,0,,El oro puede comprar casi todo... jamás la vida.
