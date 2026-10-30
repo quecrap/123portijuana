@@ -3817,24 +3817,90 @@ body {
   </section>
 
   <section id="calculadora">
-    <div class="section-header"><span class="section-tag" style="color:#5C4B3E;letter-spacing:.2em;font-family:'Cormorant Garamond',Georgia,serif;font-weight:700">HOJA 4 · ECONOMÍA FAMILIAR</span><h2 class="section-title">¿Cuánto Ahorras en Casa con tu Pozo?</h2></div>
+    <div class="section-header">
+      <span class="section-tag" style="color:#5C4B3E;letter-spacing:.2em;font-family:'Cormorant Garamond',Georgia,serif;font-weight:700">HOJA 4 · INVERSIÓN, MEMBRESÍA Y AHORRO EN CASA</span>
+      <h2 class="section-title">Tu Propio Pozo en Casa: Costo, Membresía y Ahorro</h2>
+      <p style="color:#4A3B32;font-size:1.02rem;max-width:780px;line-height:1.62;margin-top:.35rem">
+        Hacer un pozo poco profundo con su sistema de purificación cuesta alrededor de <strong>$30,000 pesos</strong>. Si calificas para financiamiento, lo pagas como una <strong>membresía mensual</strong> y en <strong>2 años es 100% tuyo</strong>.
+      </p>
+    </div>
+
+    <!-- TARJETAS DESTACADAS: COSTO ESTIMADO ($30,000) + MEMBRESÍA 2 AÑOS (TIPO NETFLIX) -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:1.35rem;margin-bottom:1.75rem">
+      <div class="paper-sheet" style="padding:1.6rem 1.75rem;border-left:4px solid #2E6F95">
+        <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:.86rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#5C4B3E">Costo Estimado Total</div>
+        <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:2.55rem;font-weight:700;color:#2B211B;line-height:1.1;margin:.3rem 0">$30,000 <span style="font-size:1.1rem;font-weight:600;color:#5C4B3E">MXN</span></div>
+        <p style="font-size:.9rem;color:#4A3B32;line-height:1.55;margin:0">
+          Incluye perforación de <strong>pozo poco profundo</strong> (3 a 8 m), bomba de bajo consumo y sistema de purificación 80/20 (agua para jardín/hogar y agua pura para beber).
+        </p>
+      </div>
+
+      <div class="paper-sheet" style="padding:1.6rem 1.75rem;border-left:4px solid #1E6043;background:#FBF9F3">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:.5rem">
+          <span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:.86rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#1E6043">✨ Si Calificas para Financiamiento</span>
+          <span style="background:rgba(30,96,67,.12);color:#1E6043;font-size:.74rem;font-weight:700;padding:.2rem .6rem;border-radius:99px">24 Meses</span>
+        </div>
+        <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:2.15rem;font-weight:700;color:#1E6043;line-height:1.15;margin:.35rem 0">
+           ~$1,250 <span style="font-size:1rem;font-weight:600;color:#4A3B32">MXN / mes</span>
+        </div>
+        <p style="font-size:.9rem;color:#4A3B32;line-height:1.55;margin:0">
+          Funciona como una <strong>membresía mensual (tipo Netflix)</strong>: pagas una cuota fija con lo mismo que hoy gastas en garrafones, pipas o recibos altos, y <strong>en 2 años el pozo es totalmente tuyo</strong>.
+        </p>
+      </div>
+    </div>
+
     <div class="calc-box">
       <div class="calc-controls">
-        <div class="control-group"><label for="personasRange">Integrantes: <span id="personasVal" style="color:var(--cyan-primary);font-weight:700">4</span> personas</label><input type="range" id="personasRange" min="1" max="10" value="4" class="range-slider"></div>
-        <div class="control-group"><label for="consumoRange">Consumo Diario: <span id="consumoVal" style="color:var(--cyan-primary);font-weight:700">480</span> L/día</label><input type="range" id="consumoRange" min="150" max="1200" step="10" value="480" class="range-slider"></div>
-        <div style="background:rgba(0,229,255,.05);padding:1rem;border-radius:10px;border-left:3px solid var(--cyan-primary)"><p style="font-size:.85rem;color:var(--text-muted)">💡 <strong>Regla 80/20:</strong> Potabilizar todo requeriría 5x más membranas. Al purificar sólo el 20%, el costo de mantenimiento anual se reduce más de un 75%.</p></div>
-        <div style="background:rgba(16,185,129,.08);padding:1rem;border-radius:10px;border:1px solid rgba(16,185,129,.3)">
-          <div style="font-size:.75rem;color:var(--emerald-accent);font-weight:700;text-transform:uppercase">En cuánto tiempo se paga solo:</div>
-          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.4rem"><span style="font-size:.9rem;color:var(--text-muted)">Ahorro vs Pipas ($1,200/mes):</span><span id="paybackVal" style="font-family:var(--font-heading);font-size:1.3rem;font-weight:800;color:var(--emerald-accent)">11.5 meses</span></div>
+        <div class="control-group">
+          <label for="personasRange">Personas en casa: <span id="personasVal" style="color:var(--cyan-primary);font-weight:700">4</span> integrantes</label>
+          <input type="range" id="personasRange" min="1" max="10" value="4" class="range-slider">
+        </div>
+        <div class="control-group">
+          <label for="consumoRange">Agua que usan al día: <span id="consumoVal" style="color:var(--cyan-primary);font-weight:700">480</span> litros/día</label>
+          <input type="range" id="consumoRange" min="150" max="1200" step="10" value="480" class="range-slider">
+        </div>
+        <div style="background:#F6F4EE;padding:1rem;border-radius:10px;border-left:3px solid var(--cyan-primary)">
+          <p style="font-size:.88rem;color:#4A3B32;margin:0">
+            💡 <strong>¿Por qué separar 80 / 20?</strong> El 80% del agua de una casa se va en regar, lavar y baños. Al filtrar a fondo solo el 20% que bebes, tus filtros duran 5 veces más.
+          </p>
+        </div>
+        <div style="background:rgba(30,96,67,.08);padding:1.1rem;border-radius:10px;border:1px solid rgba(30,96,67,.28)">
+          <div style="font-size:.78rem;color:#1E6043;font-weight:700;text-transform:uppercase;letter-spacing:.05em">Retorno de Inversión (Costo $30,000 MXN):</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.45rem">
+            <span style="font-size:.9rem;color:#4A3B32">Se paga solo con tu ahorro en:</span>
+            <span id="paybackVal" style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.55rem;font-weight:700;color:#1E6043">20.8 meses</span>
+          </div>
+          <div style="font-size:.8rem;color:#5C4B3E;margin-top:.35rem">
+            Con la <strong>membresía mensual</strong> tienes agua desde el primer día y en <strong>24 meses (2 años)</strong> el pozo queda liquidado y es tuyo.
+          </div>
         </div>
       </div>
+
       <div class="calc-display">
-        <div><div style="font-size:.85rem;color:var(--text-dim);text-transform:uppercase;font-weight:600">Desglose del Flujo Diario</div>
-          <div class="water-bar-wrapper"><div class="water-bar"><div class="bar-80" id="bar80">80% Servicios</div><div class="bar-20" id="bar20">20% Ingesta</div></div></div>
+        <div>
+          <div style="font-size:.85rem;color:#5C4B3E;text-transform:uppercase;font-weight:700;letter-spacing:.05em">Cómo se reparte el agua de tu pozo cada día</div>
+          <div class="water-bar-wrapper">
+            <div class="water-bar">
+              <div class="bar-80" id="bar80">80% Jardín y Hogar</div>
+              <div class="bar-20" id="bar20" style="color:#FFFDF9">20% Beber</div>
+            </div>
+          </div>
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem">
-          <div style="background:rgba(2,132,199,.15);padding:1rem;border-radius:10px"><div style="font-size:.75rem;color:#38bdf8;font-weight:700">LÍNEA GENERAL (80%)</div><div id="litros80" style="font-size:1.5rem;font-weight:800;color:#2B211B">384 L</div><div style="font-size:.75rem;color:var(--text-muted)">Sanitarios, lavado, humedal</div></div>
-          <div style="background:rgba(0,229,255,.15);padding:1rem;border-radius:10px"><div style="font-size:.75rem;color:var(--cyan-primary);font-weight:700">LÍNEA INGESTA (20%)</div><div id="litros20" style="font-size:1.5rem;font-weight:800;color:#2B211B">96 L</div><div style="font-size:.75rem;color:var(--text-muted)">RO + UV + Remineralización</div></div>
+          <div style="background:#F6F4EE;border:1px solid rgba(139,94,60,.22);padding:1.1rem;border-radius:10px">
+            <div style="font-size:.76rem;color:#2E6F95;font-weight:700">AGUA PARA EL HOGAR (80%)</div>
+            <div id="litros80" style="font-size:1.65rem;font-weight:800;color:#2B211B;margin:.2rem 0">384 L</div>
+            <div style="font-size:.8rem;color:#5C4B3E">Jardín, baños, limpieza y lavado</div>
+          </div>
+          <div style="background:#F6F4EE;border:1px solid rgba(30,96,67,.28);padding:1.1rem;border-radius:10px">
+            <div style="font-size:.76rem;color:#1E6043;font-weight:700">AGUA PARA BEBER (20%)</div>
+            <div id="litros20" style="font-size:1.65rem;font-weight:800;color:#2B211B;margin:.2rem 0">96 L</div>
+            <div style="font-size:.8rem;color:#5C4B3E">Ósmosis Inversa + Luz UV (lista para beber)</div>
+          </div>
+        </div>
+        <div style="margin-top:1rem;padding:.9rem 1rem;background:#FFFDF9;border:1px dashed rgba(139,94,60,.35);border-radius:10px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem">
+          <span style="font-size:.86rem;color:#4A3B32">💳 <strong>Cuota en Membresía (24 meses):</strong></span>
+          <span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.3rem;font-weight:700;color:#2E6F95">$1,250 MXN / mes · En 2 años es tuyo</span>
         </div>
       </div>
     </div>
@@ -4940,7 +5006,7 @@ function toggleLayer(t){
 }
 
 // ==================== CALCULATOR ====================
-function initCalc(){const pr=document.getElementById('personasRange');const cr=document.getElementById('consumoRange');if(!pr||!cr)return;function update(){const p=parseInt(pr.value);const c=parseInt(cr.value);document.getElementById('personasVal').textContent=p;document.getElementById('consumoVal').textContent=c;document.getElementById('litros80').textContent=Math.round(c*.8)+' L';document.getElementById('litros20').textContent=Math.round(c*.2)+' L';const payback=(14000/(1200+c/100*50)).toFixed(1);document.getElementById('paybackVal').textContent=payback+' meses';}pr.addEventListener('input',update);cr.addEventListener('input',update);}
+function initCalc(){const pr=document.getElementById('personasRange');const cr=document.getElementById('consumoRange');if(!pr||!cr)return;function update(){const p=parseInt(pr.value);const c=parseInt(cr.value);document.getElementById('personasVal').textContent=p;document.getElementById('consumoVal').textContent=c;document.getElementById('litros80').textContent=Math.round(c*.8)+' L';document.getElementById('litros20').textContent=Math.round(c*.2)+' L';const payback=(30000/(1200+c/100*50)).toFixed(1);document.getElementById('paybackVal').textContent=payback+' meses';}pr.addEventListener('input',update);cr.addEventListener('input',update);}
 
 // ==================== TELEMETRY ====================
 function initTelemetry(){setInterval(()=>{const fr=document.getElementById('flowRate');if(!fr)return;const flow=(1.8+Math.random()*.8).toFixed(1);const level=(7.5+Math.random()*2).toFixed(1);const tds=Math.round(380+Math.random()*120);const vt=document.getElementById('volTotal');const vol=parseInt(vt.textContent)+Math.floor(Math.random()*3);document.getElementById('flowRate').innerHTML=flow+'<span class="gauge-unit">L/min</span>';document.getElementById('waterLevel').innerHTML=level+'<span class="gauge-unit">m</span>';document.getElementById('tdsVal').innerHTML=tds+'<span class="gauge-unit">ppm</span>';vt.innerHTML=vol+'<span class="gauge-unit">L</span>';},2800);}
