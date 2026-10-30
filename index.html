@@ -1992,6 +1992,210 @@ footer {
   margin-bottom: 1.2rem;
 }
 
+
+/* ===================== ESTÉTICA CUADERNO MINIMALISTA Y POÉTICO (AGUA DE GÍA) ===================== */
+body {
+  background-color: #E8E3D9 !important;
+  background-image: radial-gradient(circle at 50% 25%, #EFECE4 0%, #E2DDD1 100%) !important;
+  color: #2B241E !important;
+}
+#main-header {
+  background: rgba(246, 244, 238, 0.96) !important;
+  border-bottom: 1px solid rgba(120, 102, 82, 0.18) !important;
+  box-shadow: 0 2px 14px rgba(55, 45, 35, 0.05) !important;
+  padding: 0.55rem 1.5rem !important;
+}
+.panel-progress { display: none !important; }
+.nav-links a {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: 1.02rem !important;
+  font-weight: 700 !important;
+  color: #4A3E35 !important;
+  padding: 0.35rem 0.75rem !important;
+  border-radius: 8px !important;
+}
+.nav-links a.nav-active, .nav-links a:hover {
+  background: #EBE5D8 !important;
+  color: #2B211B !important;
+  box-shadow: none !important;
+}
+.nb-flip-btn {
+  background: #F6F4EE !important;
+  border: 1px solid rgba(120, 102, 82, 0.28) !important;
+  color: #3A2F27 !important;
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: 0.95rem !important;
+  font-weight: 700 !important;
+  padding: 0.3rem 0.75rem !important;
+  border-radius: 6px !important;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.nb-flip-btn:hover:not(:disabled) {
+  background: #FFFDF9 !important;
+  border-color: #3C7899 !important;
+  color: #2E6F95 !important;
+}
+.nb-flip-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+/* Spread de hojas de papel algodón (Portada Poética) */
+.hero {
+  padding: 1.25rem 0.5rem 2.5rem !important;
+  background: transparent !important;
+}
+.poetic-notebook-spread {
+  max-width: 1120px;
+  margin: 0 auto;
+}
+.paper-sheet {
+  background: #F6F4EE;
+  border: 1px solid rgba(180, 168, 150, 0.35);
+  border-radius: 3px;
+  box-shadow: 0 10px 28px rgba(45, 38, 30, 0.08), 0 2px 6px rgba(45, 38, 30, 0.04);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.paper-sheet:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 34px rgba(45, 38, 30, 0.11), 0 3px 8px rgba(45, 38, 30, 0.05);
+}
+.poetic-top-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 2.2rem;
+  align-items: stretch;
+  margin-bottom: 2.2rem;
+}
+.paper-logo-sheet {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  background: #F8F5EE;
+}
+.clean-logo-img {
+  width: 100%;
+  max-width: 410px;
+  height: auto;
+  display: block;
+}
+.poetic-right-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 2.2rem;
+  justify-content: space-between;
+}
+.paper-verse-sheet {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2.75rem 2.25rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.paper-watermark-sheet::after {
+  content: "";
+  position: absolute;
+  right: 4%;
+  top: 5%;
+  bottom: 5%;
+  width: 42%;
+  background: url("assets/agua_de_gia_logo.jpg") center center / contain no-repeat;
+  opacity: 0.07;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+}
+.poem-text {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: clamp(1.18rem, 1.65vw, 1.42rem);
+  line-height: 1.58;
+  color: #1F1915;
+  margin: 0;
+  position: relative;
+  z-index: 1;
+  font-weight: 500;
+}
+.poem-signature {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #1F1915;
+  margin-top: 1.35rem;
+}
+.poetic-bottom-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  align-items: stretch;
+}
+.paper-photo-sheet {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.35rem;
+}
+.clean-jarra-img {
+  width: 100%;
+  height: 230px;
+  object-fit: cover;
+  border-radius: 2px;
+}
+.paper-photo-caption {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 0.92rem;
+  color: #5C4B3E;
+  margin-top: 0.75rem;
+  letter-spacing: 0.04em;
+  font-style: italic;
+}
+.nb-open-next-btn {
+  background: #F6F4EE;
+  border: 1px solid rgba(120, 102, 82, 0.38);
+  color: #2B211B;
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  padding: 0.85rem 2.2rem;
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(45, 38, 30, 0.07);
+  transition: all 0.2s;
+}
+.nb-open-next-btn:hover {
+  background: #FFFDF9;
+  border-color: #3C7899;
+  color: #2E6F95;
+  transform: translateY(-2px);
+}
+.panel-nav button {
+  background: #F6F4EE !important;
+  border: 1px solid rgba(120, 102, 82, 0.3) !important;
+  color: #2B211B !important;
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: 1.12rem !important;
+  font-weight: 700 !important;
+  border-radius: 4px !important;
+  box-shadow: 0 4px 14px rgba(45, 38, 30, 0.05) !important;
+}
+.panel-nav button:hover:not(:disabled) {
+  background: #FFFDF9 !important;
+  border-color: #3C7899 !important;
+  color: #2E6F95 !important;
+}
+@media (max-width: 860px) {
+  .poetic-top-grid, .poetic-bottom-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  .notebook-flip-bar { display: none !important; }
+}
+
 </style>
 </head>
 <body>
@@ -2075,7 +2279,7 @@ footer {
     <div class="role-card vecino">
       <span class="role-icon">🏠</span>
       <h2>Vecino / Propietario</h2>
-      <p>Evalúa si tu terreno califica para un pozo somero con un cuestionario guiado paso a paso e inteligencia de AquaEngine.</p>
+      <p>Evalúa si tu terreno califica para un pozo poco profundo con un cuestionario guiado paso a paso e inteligencia de AquaEngine.</p>
       <ul class="role-features">
         <li><span class="check">✓</span> Cuestionario socioeconómico (9 preguntas clave)</li>
         <li><span class="check">✓</span> Evaluación de características del terreno</li>
@@ -2372,7 +2576,7 @@ footer {
 </div>
 
 <!-- ==================== USER HEADER BAR ==================== -->
-<div id="user-header-bar">
+<div id="user-header-bar" style="display:none !important" hidden>
   <div class="user-bar-inner">
     <div class="user-badge">
       <div class="user-avatar" id="user-avatar-initials">?</div>
@@ -2402,26 +2606,26 @@ footer {
 <!-- ==================== MAIN DASHBOARD ==================== -->
 <header id="main-header">
   <div class="nav-container">
-    <a href="#" class="brand">
-      <div class="brand-icon"><svg viewBox="0 0 24 24"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></div>
-      AquaResiliencia <span style="font-size:.72rem;font-family:var(--font-mono);color:var(--emerald-accent);font-weight:700;border:1px solid rgba(16,185,129,.4);background:rgba(16,185,129,.1);padding:.12rem .48rem;border-radius:6px;margin-left:.25rem">Agua de GIA</span>
+    <a href="#hero" class="brand" onclick="showPanel('hero'); return false;">
+      <span style="font-family:'Alex Brush',cursive;font-size:1.95rem;color:#3C7899;font-weight:400;line-height:1">Agua de Gía</span>
+      <span style="font-family:'Cormorant Garamond',Georgia,serif;font-size:.72rem;letter-spacing:.22em;color:#5C4B3E;font-weight:700;text-transform:uppercase;margin-left:.35rem">Nacida en Tijuana</span>
     </a>
     <ul class="nav-links">
-      <li><a href="#hero">🏠 0. Inicio</a></li>
-      <li><a href="#motor-hidro">🪄 1. Varita Mágica (Mapa)</a></li>
-      <li><a href="#solucion">💧 2. Agua de GIA (Pozo 001)</a></li>
-      <li><a href="#calculadora">💰 3. Calc 80/20</a></li>
-      <li><a href="#derecho-comparado">⚖️ 4. Derecho y Balance</a></li>
-      <!-- Secciones ocultas para mantener la página ligera y ejecutiva -->
-      <li style="display:none"><a href="#datos-conagua">📊 Balance</a></li>
-      <li style="display:none"><a href="candidatos.html" style="color:var(--emerald-accent);font-weight:700">🌳 Parques SMP</a></li>
-      <li style="display:none"><a href="#corte-3d">🏔️ 3. Corte 3D</a></li>
-      <li style="display:none"><a href="#telemetria">📡 7. IoT</a></li>
+      <li><a href="#hero">📖 1. Portada</a></li>
+      <li><a href="#motor-hidro">💧 2. El Detector de Agua</a></li>
+      <li><a href="#solucion">🏺 3. Agua de Pozo</a></li>
+      <li><a href="#calculadora">🏡 4. Ahorro en Casa</a></li>
+      <li><a href="#derecho-comparado">⚖️ 5. Derecho al Agua</a></li>
     </ul>
+    <div class="notebook-flip-bar" style="display:flex;align-items:center;gap:.45rem">
+      <button type="button" class="panel-prev nb-flip-btn" onclick="panelStep(-1)" title="Hoja anterior">← Anterior</button>
+      <span id="notebook-page-indicator" style="font-family:'Cormorant Garamond',Georgia,serif;font-size:.92rem;font-weight:700;color:#5C4B3E;padding:0 .35rem;white-space:nowrap">Hoja 1 / 5</span>
+      <button type="button" class="panel-next nb-flip-btn" onclick="panelStep(1)" title="Siguiente hoja">Siguiente →</button>
+    </div>
     <button class="mobile-nav-toggle" id="mobile-menu-btn" onclick="toggleMobileDrawer(true)" aria-label="Abrir Menú">☰</button>
   </div>
 </header>
-<div id="diaCeroPanel" class="dia-cero-panel">
+<div id="diaCeroPanel" class="dia-cero-panel" style="display:none !important" hidden>
   <div class="dia-cero-panel-head">
     <div>
       <div class="dia-cero-panel-title">🏜️ Día Cero — Río Colorado</div>
@@ -2475,140 +2679,88 @@ footer {
 <div id="drawer-backdrop" onclick="toggleMobileDrawer(false)"></div>
 <aside id="mobile-drawer" aria-label="Menú Móvil">
   <div class="drawer-header">
-    <div class="brand" style="font-size:1.15rem">
-      <div class="brand-icon" style="width:32px;height:32px"><svg viewBox="0 0 24 24" style="width:18px;height:18px"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg></div>
-      AquaResiliencia
+    <div class="brand" style="font-size:1.35rem;font-family:'Alex Brush',cursive;color:#3C7899">
+      Agua de Gía
     </div>
     <button class="drawer-close-btn" onclick="toggleMobileDrawer(false)" aria-label="Cerrar Menú">&times;</button>
   </div>
   <ul class="drawer-nav-list">
-    <li><a href="#hero" onclick="toggleMobileDrawer(false)">🏠 0. Inicio</a></li>
-    <li><a href="#motor-hidro" onclick="toggleMobileDrawer(false)">🪄 1. La Varita Mágica (Mapa AquaEngine)</a></li>
-    <li><a href="#solucion" onclick="toggleMobileDrawer(false)">💧 2. Agua de GIA (Pozo Piloto 001)</a></li>
-    <li><a href="#calculadora" onclick="toggleMobileDrawer(false)">💰 3. Calculadora 80/20 &amp; Payback</a></li>
-    <li><a href="#derecho-comparado" onclick="toggleMobileDrawer(false)">⚖️ 4. Derecho Comparado y Balance</a></li>
-    <!-- Secciones ocultas -->
-    <li style="display:none"><a href="#datos-conagua" onclick="toggleMobileDrawer(false)">📊 Diagnóstico Oficial CONAGUA</a></li>
-    <li style="display:none"><a href="#corte-3d" onclick="toggleMobileDrawer(false)">🏔️ Corte 3D Geohidrológico Transversal</a></li>
-    <li style="display:none"><a href="#telemetria" onclick="toggleMobileDrawer(false)">📡 Telemetría IoT en Vivo</a></li>
-    <li style="display:none"><a href="candidatos.html" style="color:var(--emerald-accent);border-color:rgba(16,185,129,.4)">💧 Candidatos &amp; Votación</a></li>
-    <li><a href="javascript:void(0)" onclick="toggleMobileDrawer(false);goToWizard();" style="background:linear-gradient(135deg,rgba(16,185,129,.2),rgba(13,148,136,.2));border-color:rgba(16,185,129,.4);color:var(--emerald-accent)">📋 Evaluar Mi Predio (AquaScore™)</a></li>
+    <li><a href="#hero" onclick="toggleMobileDrawer(false)">📖 1. Portada</a></li>
+    <li><a href="#motor-hidro" onclick="toggleMobileDrawer(false)">💧 2. El Detector de Agua</a></li>
+    <li><a href="#solucion" onclick="toggleMobileDrawer(false)">🏺 3. Agua de Pozo</a></li>
+    <li><a href="#calculadora" onclick="toggleMobileDrawer(false)">🏡 4. Ahorro en Casa</a></li>
+    <li><a href="#derecho-comparado" onclick="toggleMobileDrawer(false)">⚖️ 5. Derecho al Agua</a></li>
   </ul>
-  <div style="margin-top:auto;padding-top:1.5rem;border-top:1px solid rgba(139,94,60,.2);font-size:.78rem;color:var(--text-dim);font-family:var(--font-mono);text-align:center">
-    AquaResiliencia Tijuana 2026<br>Optimizado para iOS / Safari
+  <div style="margin-top:auto;padding-top:1.5rem;border-top:1px solid rgba(139,94,60,.2);font-size:.82rem;color:#5C4B3E;font-family:'Cormorant Garamond',Georgia,serif;text-align:center">
+    Agua de Gía · Nacida en Tijuana
   </div>
 </aside>
 
 <main id="main-content">
   <section class="hero" id="hero">
-    <div class="gate-chamber">
-      <!-- EMBLEMA ARTESANAL Y BOTÁNICO: AGUA DE GÍA — NACIDA EN TIJUANA -->
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;align-items:center;max-width:980px;margin:0 auto 1.85rem;padding:1.25rem;background:#FBF8F1;border:1px solid rgba(139,94,60,.25);border-radius:22px;box-shadow:0 12px 34px rgba(74,59,50,.08)">
-        <div style="text-align:center;padding:.5rem">
-          <img src="assets/agua_de_gia_logo.jpg" alt="Agua de Gía — Nacida en Tijuana" style="max-width:290px;width:100%;height:auto;border-radius:14px;box-shadow:0 6px 20px rgba(74,59,50,.08)">
+    <div class="poetic-notebook-spread">
+      <!-- FILA SUPERIOR: HOJA CARTA CON EL LOGO LIMPIO + 2 HOJAS DE POESÍA -->
+      <div class="poetic-top-grid">
+        <!-- Hoja Carta Principal: Solo el logotipo limpio tal como la imagen -->
+        <div class="paper-sheet paper-logo-sheet">
+          <img src="assets/agua_de_gia_logo.jpg" alt="Agua de Gía — Nacida en Tijuana" class="clean-logo-img">
         </div>
-        <div style="text-align:left;padding:.5rem .75rem">
-          <div class="badge-hero" style="margin-bottom:.6rem"><span class="pulse"></span> RAÍCES EN LA TIERRA · CIENCIA EN EL AGUA</div>
-          <div class="gia-script-title">Agua de Gía</div>
-          <div class="gia-born-subtitle">NACIDA EN TIJUANA</div>
-          <h1 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.65rem,3.2vw,2.35rem);line-height:1.2;margin-bottom:.75rem;color:#2B211B">
-            Antes para hacer pozos traían una «varita mágica».<br><span class="gradient-text">Hoy tenemos la «Varita Mágica de GIA»</span>
-          </h1>
-          <p style="font-size:.95rem;line-height:1.62;color:#4A3B32;margin-bottom:.9rem">
-            Tradicionalmente, quien buscaba agua subterránea caminaba el terreno con una <strong>varita de zahorí</strong> probando suerte a ciegas. Hoy unimos el respeto por la tierra con <strong>precisión hidrogeológica</strong> para encontrar el agua somera que brota entre <strong>3 y 8 metros bajo nuestras raíces</strong> y purificarla en sitio sin desperdiciar una sola gota.
-          </p>
-          <img src="assets/agua_de_gia_jarra.jpg" alt="Vitrolero Agua de Gía — Nacida en Tijuana" style="width:100%;max-height:185px;object-fit:cover;border-radius:12px;border:1px solid rgba(139,94,60,.28);box-shadow:0 6px 18px rgba(74,59,50,.12)">
+
+        <!-- Columna Derecha: Las dos primeras tarjetas del poema -->
+        <div class="poetic-right-stack">
+          <div class="paper-sheet paper-verse-sheet">
+            <p class="poem-text">
+              Nacida en Tijuana, de las extrañas entrañas<br>
+              de la Tierra, camina a tientas, a ciegas, en busca de su luz.
+            </p>
+          </div>
+
+          <div class="paper-sheet paper-verse-sheet paper-watermark-sheet">
+            <p class="poem-text">
+              Y en nuestro afán por purificarla, la hemos<br>
+              despojado casi del todo. <strong>Casi.</strong><br>
+              Dejamos lo esencial, aquello que no se filtra,<br>
+              que no se destila: la pureza de su alma, eso que la anima.
+            </p>
+          </div>
         </div>
       </div>
 
-      <!-- Arquitectura Conceptual: AquaResiliencia (Toda la Idea) vs Agua de GIA (El Primer Pozo) -->
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:1.25rem;max-width:980px;margin:0 auto 2rem;text-align:left">
-        <div style="background:linear-gradient(135deg,#FFFDF9,#F4EDE0);border:1px solid rgba(60,120,153,.45);border-radius:18px;padding:1.45rem 1.55rem;box-shadow:0 10px 28px rgba(74,59,50,.09);position:relative;overflow:hidden">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.55rem">
-            <span style="font-family:var(--font-mono);font-size:.73rem;font-weight:700;color:var(--cyan-primary);background:rgba(0,229,255,.12);padding:.22rem .65rem;border-radius:6px;border:1px solid rgba(0,229,255,.32)">🌐 TODA LA IDEA Y PLATAFORMA INTEGRAL</span>
-            <span style="font-size:1.4rem">🧭</span>
-          </div>
-          <h3 style="font-family:var(--font-heading);font-size:1.35rem;font-weight:800;color:#2B211B;margin-bottom:.45rem">AquaResiliencia</h3>
-          <p style="font-size:.89rem;color:var(--text-muted);line-height:1.58;margin:0">
-            Es <strong>el concepto global y la plataforma de ingeniería</strong>: el motor territorial <em>AquaEngine</em>, el modelo de alivio geotécnico para proteger laderas y la arquitectura de tratamiento adaptativo <strong>80/20</strong> diseñada para escalar en viviendas, escuelas y parques de Tijuana.
-          </p>
-        </div>
-
-        <div style="background:linear-gradient(135deg,#FFFDF9,#EFE6D4);border:1px solid rgba(35,107,78,.45);border-radius:18px;padding:1.45rem 1.55rem;box-shadow:0 10px 28px rgba(74,59,50,.09);position:relative;overflow:hidden">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.55rem">
-            <span style="font-family:var(--font-mono);font-size:.73rem;font-weight:700;color:var(--emerald-accent);background:rgba(16,185,129,.15);padding:.22rem .65rem;border-radius:6px;border:1px solid rgba(16,185,129,.38)">💧 EL PRIMER POZO FÍSICO (POZO 001)</span>
-            <span style="font-size:1.4rem">🪄</span>
-          </div>
-          <h3 style="font-family:var(--font-heading);font-size:1.35rem;font-weight:800;color:#2B211B;margin-bottom:.45rem">Agua de GIA</h3>
-          <p style="font-size:.89rem;color:var(--text-muted);line-height:1.58;margin:0">
-            Es como se bautizó al <strong>primer pozo y planta piloto real</strong> (en honor a <strong>GIA</strong>). Perforado a <strong>7 metros de profundidad</strong> con ingeniería frugal accesible, convierte esa agua somera descartada en agua pura mediante electrofloculación, ósmosis inversa y recarga pluvial.
+      <!-- FILA INFERIOR: LAS 3 HOJAS DE CIERRE (VERSO ALQUIMISTA + VITROLERO + VERSO ALTAR) -->
+      <div class="poetic-bottom-grid">
+        <div class="paper-sheet paper-verse-sheet">
+          <p class="poem-text">
+            Y es aquí donde nace el verdadero<br>
+            alquimista, no el que convierte las cosas<br>
+            en oro, sino el que comprende que el<br>
+            oro, aunque puede comprar casi todo,<br>
+            jamás comprará la vida.
           </p>
         </div>
-      </div>
 
-            <!-- SEMÁFORO DE TRANSPARENCIA TECNOLÓGICA (ESTADO REAL DEL PROYECTO) -->
-      <div id="semaforo-transparencia" style="max-width:1020px;margin:0 auto 2rem;text-align:left;background:#FBF8F1;border:1px solid rgba(139,94,60,.28);border-radius:18px;padding:1.35rem 1.5rem;box-shadow:0 12px 30px rgba(74,59,50,.08)">
-        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.6rem;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:1px solid rgba(139,94,60,.2)">
-          <div>
-            <span style="font-family:var(--font-mono);font-size:.73rem;font-weight:800;color:#4A3B32;background:rgba(139,94,60,.12);padding:.22rem .65rem;border-radius:6px;letter-spacing:.5px">🚦 TRANSPARENCIA TECNOLÓGICA PARA EVALUADORES Y JURADO</span>
-            <h3 style="font-family:var(--font-heading);font-size:1.18rem;color:#2B211B;margin:.4rem 0 0">¿Qué está operando hoy al 100%, qué estamos calibrando y qué sigue en desarrollo?</h3>
-          </div>
-          <a href="PRESENTACION_CONCURSO_FUTURO_AGUA_MEXICO.html" target="_blank" rel="noopener" style="font-family:var(--font-mono);font-size:.76rem;font-weight:700;color:#020c1b;background:linear-gradient(135deg,#00e5ff,#10b981);padding:.45rem .9rem;border-radius:8px;text-decoration:none">🏆 Ver Presentación Ejecutiva Concurso (PDF) ↗</a>
+        <div class="paper-sheet paper-photo-sheet">
+          <img src="assets/agua_de_gia_jarra.jpg" alt="Agua de Gía — Nacida en Tijuana" class="clean-jarra-img">
+          <span class="paper-photo-caption">Agua de pozo poco profundo · Tijuana</span>
         </div>
 
-        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(285px,1fr));gap:1rem">
-          <!-- VERDE -->
-          <div style="background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.45);border-radius:14px;padding:1rem 1.15rem">
-            <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.45rem">
-              <span style="width:12px;height:12px;border-radius:50%;background:#10b981;box-shadow:0 0 10px #10b981;display:inline-block"></span>
-              <strong style="font-family:var(--font-mono);font-size:.78rem;color:#1E6043;text-transform:uppercase">🟢 EN VERDE · 100% Definido y Operando</strong>
-            </div>
-            <ul style="margin:0;padding-left:1.1rem;font-size:.82rem;color:#4A3B32;line-height:1.52">
-              <li><strong>«Varita Mágica de GIA» (AquaEngine):</strong> Prospección multicriterio satelital, geológica y forense activa en Tijuana.</li>
-              <li><strong>Pozo 001 «Agua de GIA»:</strong> Perforado a 7 m de profundidad extrayendo agua somera real.</li>
-              <li><strong>Electrofloculación por Lote (1 BBL / 117 L):</strong> Operando a <code>12V / 15A</code> sin químicos externos, con monitoreo continuo de caída de tensión (<code>ΔV</code>), barrido de H₂ y tren físico 80/20 (ver video).</li>
-            </ul>
-          </div>
-
-          <!-- AMARILLO -->
-          <div style="background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.45);border-radius:14px;padding:1rem 1.15rem">
-            <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.45rem">
-              <span style="width:12px;height:12px;border-radius:50%;background:#f59e0b;box-shadow:0 0 10px #f59e0b;display:inline-block"></span>
-              <strong style="font-family:var(--font-mono);font-size:.78rem;color:#9A4406;text-transform:uppercase">🟡 EN AMARILLO · En Calibración Activa</strong>
-            </div>
-            <ul style="margin:0;padding-left:1.1rem;font-size:.82rem;color:#4A3B32;line-height:1.52">
-              <li><strong>Automatización Casi Autónoma (Nodo 2):</strong> Integración de <strong>válvulas solenoides</strong> de trasvase entre tanques y bloqueo de <strong>reposo forzado por algoritmo</strong> para no romper el flóculo.</li>
-              <li><strong>Actuador en Válvula de Aguja RO:</strong> Ajuste motorizado del rechazo de ósmosis para sostener <code>85–90 PSI</code> óptimos.</li>
-              <li><strong>Pruebas de TDS e Interfaz Sinóptica:</strong> Calibración de curvas de TDS post-floculación y tablero visual de recorrido del agua.</li>
-            </ul>
-          </div>
-
-          <!-- ROJO -->
-          <div style="background:rgba(244,63,94,.08);border:1px solid rgba(244,63,94,.45);border-radius:14px;padding:1rem 1.15rem">
-            <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.45rem">
-              <span style="width:12px;height:12px;border-radius:50%;background:#f43f5e;box-shadow:0 0 10px #f43f5e;display:inline-block"></span>
-              <strong style="font-family:var(--font-mono);font-size:.78rem;color:#9E2A2B;text-transform:uppercase">🔴 EN ROJO · Prototipado / Siguiente Fase</strong>
-            </div>
-            <ul style="margin:0;padding-left:1.1rem;font-size:.82rem;color:#4A3B32;line-height:1.52">
-              <li><strong>Nodo 1 «Cápsula del Tiempo del Agua»:</strong> Estación subterránea independiente recargada con <strong>Batería de Tierra</strong> (Mg/Cu) y algoritmo <em>Deep Sleep</em> capaz de durar <strong>5 a 10 años</strong> sin red ni Wi-Fi.</li>
-              <li><strong>Floculación de Flujo Continuo:</strong> Evolución futura del reactor actual por lotes hacia operación continua sin detenciones.</li>
-            </ul>
-          </div>
+        <div class="paper-sheet paper-verse-sheet">
+          <p class="poem-text">
+            Es la diferencia entre la maquila y la<br>
+            alquimia: una reproduce y la otra<br>
+            enaltece eso que la hace única.<br>
+            Jamás deberá venderse como oro ni<br>
+            convertirse en tal, sólo compartirla<br>
+            desde su altar.
+          </p>
+          <div class="poem-signature">Agua de Gía</div>
         </div>
       </div>
 
-<div style="display:flex;justify-content:center;gap:.85rem;flex-wrap:wrap;margin:1.25rem 0 2rem">
-        <button class="btn-action" onclick="showPanel('motor-hidro')">🪄 Usar la «Varita Mágica» (Mapa AquaEngine)</button>
-        <button class="btn-secondary" onclick="showPanel('solucion')" style="border-color:var(--emerald-accent);color:var(--emerald-accent)">💧 Ver Pozo 001 «Agua de GIA» en Video</button>
-        <button class="btn-secondary" onclick="goToWizard()" style="border-color:var(--cyan-primary);color:var(--cyan-primary)">📋 Evaluar Mi Terreno (AquaScore™)</button>
-        <a class="btn-secondary" href="fichas-tecnicas-nodos-gia.html" target="_blank" rel="noopener" style="border-color:rgba(245,158,11,.55);color:#9A4406;text-decoration:none;display:inline-flex;align-items:center">📄 Fichas Técnicas Nodo 1 y 2</a>
-      </div>
-
-      <div class="hero-stats" style="margin-top:1.5rem">
-        <div class="stat-card"><div class="stat-value">3 a 8 m</div><div class="stat-label">Profundidad de Agua Somera</div></div>
-        <div class="stat-card"><div class="stat-value" style="color:var(--emerald-accent)">Pozo 001</div><div class="stat-label">«Agua de GIA» Operando en Vivo</div></div>
-        <div class="stat-card"><div class="stat-value" style="color:var(--cyan-primary)">80 / 20</div><div class="stat-label">Potabilización Cero Desperdicio</div></div>
-        <div class="stat-card"><div class="stat-value">11.5 meses</div><div class="stat-label">Retorno de Inversión vs. Pipas</div></div>
+      <!-- INVITACIÓN LIMPIA A HOJEAR LA SIGUIENTE PÁGINA DEL CUADERNO -->
+      <div style="text-align:center;margin-top:2.2rem">
+        <button type="button" class="nb-open-next-btn" onclick="showPanel('motor-hidro')">
+          Hojear el cuaderno: Ir al Detector de Agua →
+        </button>
       </div>
     </div>
   </section>
@@ -2618,13 +2770,13 @@ footer {
 
   <section id="motor-hidro">
     <div class="section-header">
-      <span class="section-tag" style="background:rgba(16,185,129,.18);color:#1E6043;border:1px solid #10b981">🟢 ESTADO: 100% DEFINIDO Y OPERANDO EN LÍNEA · 7 CAPAS DE DATOS</span>
-      <h2 class="section-title">AquaEngine: Explorador Territorial Multi-Fuente</h2>
+      <span class="section-tag" style="color:#5C4B3E;letter-spacing:.2em;font-family:'Cormorant Garamond',Georgia,serif;font-weight:700">HOJA 2 · DESCUBRE QUÉ HAY BAJO TU TERRENO</span>
+      <h2 class="section-title">El Detector de Agua</h2>
     </div>
     <div class="engine-container">
-      <div class="transparency-banner">
-        <div class="icon">🔬</div>
-        <div><strong>Código Inteligente AquaEngine v2.0:</strong> Evalúa cualquier coordenada en Tijuana mediante ponderación espacial multicriterio (AHP): <strong>Cota DEM INEGI (25%)</strong>, <strong>Litología SGM I11-11 (25%)</strong>, <strong>Distancia a Red Hidrográfica INEGI (20%)</strong>, <strong>Filtro de Seguridad Geotécnica Protección Civil (Kill Switch)</strong> y <strong>Conductividad CILA/USGS</strong>.</div>
+      <div class="transparency-banner" style="background:#F6F4EE;border:1px solid rgba(139,94,60,.22)">
+        <div class="icon">💧</div>
+        <div><strong>¿Hay agua de pozo poco profundo en tu terreno?</strong> Elige tu zona de Tijuana o toca cualquier calle en el mapa. El Detector de Agua te muestra de forma sencilla a cuántos metros de profundidad está el agua y cuánta puedes obtener.</div>
       </div>
       <div class="map-controls-bar">
         <div class="zone-chip-grid">
@@ -2648,7 +2800,7 @@ footer {
           <button id="toggleAlamosBtn" class="layer-btn alamos active" onclick="toggleLayer('alamos')">🌳 Álamos y Sauces</button>
           <button id="toggleLaderaBtn" class="layer-btn ladera active" onclick="toggleLayer('ladera')">⚡ Simulación Ladera &amp; Micropozos</button>
           <button id="toggleProxyBtn" class="layer-btn proxy active" onclick="toggleLayer('proxy')">🔍 AquaProxy: Evidencias Indirectas (10ª Capa)</button>
-          <button id="toggleHeatmapBtn" class="layer-btn heatmap active" onclick="toggleLayer('heatmap')">🔥 Mapa de Calor: Agua Somera (11ª Capa)</button>
+          <button id="toggleHeatmapBtn" class="layer-btn heatmap active" onclick="toggleLayer('heatmap')">🔥 Mapa de Calor: Agua de Pozo Poco Profundo (11ª Capa)</button>
           <button id="toggleTambosBtn" class="layer-btn tambos active" onclick="toggleLayer('tambos')">🟠 Demanda Venta Tambos (FB 2026)</button>
         </div>
       </div>
@@ -2691,10 +2843,10 @@ footer {
             <div><strong>Alerta Geotécnica / Sanitaria:</strong> <span id="hazard-alert-text">Riesgo de Cuña Salina. Sello sanitario a 2.0m y Ósmosis Inversa obligatoria.</span></div>
           </div>
           <div class="metrics-row">
-            <div class="metric-box"><div class="metric-label">Altitud (Cota)</div><div class="metric-val" id="out-elev">18 <span style="font-size:.75rem;font-weight:400">msnm</span></div></div>
-            <div class="metric-box"><div class="metric-label">Profundidad Est.</div><div class="metric-val" id="out-depth">6.5 <span style="font-size:.75rem;font-weight:400">m</span></div></div>
-            <div class="metric-box"><div class="metric-label">TDS Estimado</div><div class="metric-val" id="out-tds">920 <span style="font-size:.75rem;font-weight:400">ppm</span></div></div>
-            <div class="metric-box"><div class="metric-label">Caudal Seguro</div><div class="metric-val" id="out-flow">2.5 <span style="font-size:.75rem;font-weight:400">L/min</span></div></div>
+            <div class="metric-box"><div class="metric-label">Altura del Terreno</div><div class="metric-val" id="out-elev">18 <span style="font-size:.75rem;font-weight:400">msnm</span></div></div>
+            <div class="metric-box"><div class="metric-label">Profundidad del Agua</div><div class="metric-val" id="out-depth">6.5 <span style="font-size:.75rem;font-weight:400">m</span></div></div>
+            <div class="metric-box"><div class="metric-label">Sales en el Agua</div><div class="metric-val" id="out-tds">920 <span style="font-size:.75rem;font-weight:400">ppm</span></div></div>
+            <div class="metric-box"><div class="metric-label">Agua por Minuto</div><div class="metric-val" id="out-flow">2.5 <span style="font-size:.75rem;font-weight:400">L/min</span></div></div>
           </div>
 
           <!-- Factores del Algoritmo Inteligente AHP -->
@@ -2723,8 +2875,8 @@ footer {
 
           <div class="strata-box">
             <div style="display:flex;justify-content:space-between;font-size:.75rem;color:var(--text-dim);text-transform:uppercase;font-family:var(--font-mono);margin-bottom:.4rem">
-              <span>Corte Estratigráfico SGM (0 a 10m+)</span>
-              <span id="strata-aquifer-tag" style="color:var(--cyan-primary)">Acuífero a 6.5m</span>
+              <span>Capas de tierra bajo tus pies</span>
+              <span id="strata-aquifer-tag" style="color:var(--cyan-primary)">Agua a 6.5m</span>
             </div>
             <canvas id="strataCanvas" class="strata-canvas" width="400" height="110"></canvas>
           </div>
@@ -2740,13 +2892,14 @@ footer {
       </div>
     </div>
 
+      <details style="margin-top:2rem;background:#F6F4EE;border:1px solid rgba(139,94,60,.22);border-radius:14px;padding:1rem 1.25rem"><summary style="cursor:pointer;font-family:'Cormorant Garamond',Georgia,serif;font-size:1.15rem;font-weight:700;color:#4A3B32">📖 Ver estudios adicionales de laderas y zonas con agua en Tijuana (opcional)</summary>
       <!-- ==================== MÓDULO COMPUTACIONAL: SIMULADOR DE LADERA & GEOTECNIA ==================== -->
       <div class="ladera-sim-module" id="modulo-sim-ladera">
         <div class="sim-header-row">
           <div class="sim-title-group">
             <span class="section-tag" style="background:rgba(0,229,255,.1);color:var(--cyan-primary);border:1px solid rgba(0,229,255,.3);padding:.25rem .75rem;border-radius:6px;font-family:var(--font-mono);font-size:.74rem;font-weight:700">🔬 MODELACIÓN HIDROGEOTÉCNICA // VENTURES HACK 2026</span>
             <h3 style="margin-top:.4rem">⚡ Simulador de Estabilidad de Ladera: Fugas CESPT vs. AquaResiliencia</h3>
-            <p>Contraste físico y numérico calibrado con <strong>CONAGUA DR_0201</strong>, <strong>SGM I11-11</strong> y <strong>Gudiño Elizondo (CICESE 2018)</strong>: Demostración de cómo la acumulación de fugas crónicas de agua potable sobre la impermeable Formación Otay colapsa la ladera (<strong>FS &lt; 1.0</strong>), y cómo la red de micropozos someros de alivio restaura el equilibrio geotécnico (<strong>FS &gt; 1.4</strong>).</p>
+            <p>Contraste físico y numérico calibrado con <strong>CONAGUA DR_0201</strong>, <strong>SGM I11-11</strong> y <strong>Gudiño Elizondo (CICESE 2018)</strong>: Demostración de cómo la acumulación de fugas crónicas de agua potable sobre la impermeable Formación Otay colapsa la ladera (<strong>FS &lt; 1.0</strong>), y cómo la red de micropozos poco profundos de alivio restaura el equilibrio geotécnico (<strong>FS &gt; 1.4</strong>).</p>
           </div>
           <div style="display:flex;gap:.5rem;align-items:center;flex-wrap:wrap">
             <a href="modelo_aquaresiliencia_tijuana.py" download class="btn-secondary" style="font-size:.78rem;padding:.45rem .85rem;border-color:var(--cyan-primary);color:var(--cyan-primary)">📥 Código Python (.py)</a>
@@ -3028,7 +3181,7 @@ footer {
                 <tr>
                   <td><strong>Infraestructura de Mitigación</strong></td>
                   <td>0 pozos (inacción institucional)</td>
-                  <td><strong>5 micropozos someros (0.5 L/s c/u)</strong></td>
+                  <td><strong>5 micropozos poco profundos (0.5 L/s c/u)</strong></td>
                   <td>Diseño modular AquaResiliencia</td>
                 </tr>
                 <tr>
@@ -3080,7 +3233,7 @@ footer {
         <div class="proxy-header">
           <div>
             <span class="section-tag" style="background:rgba(168,85,247,.12);color:#d8b4fe;border:1px solid rgba(168,85,247,.35);padding:.25rem .75rem;border-radius:6px;font-family:var(--font-mono);font-size:.74rem;font-weight:700">🔍 INTELIGENCIA FORENSE &amp; FUENTES ABIERTAS // AQUAPROXY</span>
-            <h3 style="margin-top:.4rem;font-size:1.45rem;color:#2B211B;font-family:var(--font-heading)">Radar de Agua Somera por Evidencias Indirectas</h3>
+            <h3 style="margin-top:.4rem;font-size:1.45rem;color:#2B211B;font-family:var(--font-heading)">Radar de Agua de Pozo Poco Profundo por Evidencias Indirectas</h3>
             <p style="color:var(--text-muted);font-size:.86rem;max-width:850px;line-height:1.5;margin-top:.3rem">
               Mapeo de alta certeza hídrica sin depender de piezómetros gubernamentales: Cruzamiento de <strong>sótanos con cárcamo 24/7</strong>, <strong>peritajes de mecánica de suelos</strong>, <strong>obras con bombeo de achique</strong>, <strong>afloramientos deslindados por CESPT</strong> y <strong>árboles freatófitos verificados</strong>.
             </p>
@@ -3192,7 +3345,7 @@ footer {
         <div class="proxy-header">
           <div>
             <span class="section-tag" style="background:rgba(239,68,68,.12);color:#fca5a5;border:1px solid rgba(239,68,68,.35);padding:.25rem .75rem;border-radius:6px;font-family:var(--font-mono);font-size:.74rem;font-weight:700">🔥 MODELO ESPACIAL // HEATMAP &amp; KDE TIJUANA</span>
-            <h3 style="margin-top:.4rem;font-size:1.45rem;color:#2B211B;font-family:var(--font-heading)">Mapa de Calor: Zonas Críticas de Agua Somera (0 - 7.5 m)</h3>
+            <h3 style="margin-top:.4rem;font-size:1.45rem;color:#2B211B;font-family:var(--font-heading)">Mapa de Calor: Zonas Críticas de Agua de Pozo Poco Profundo (0 - 7.5 m)</h3>
             <p style="color:var(--text-muted);font-size:.86rem;max-width:850px;line-height:1.5;margin-top:.3rem">
               Interpolación continua de densidad basada en <strong>50 evidencias corroboradas, macro-aprovechamientos REPDA y pozos piezométricos oficiales CONAGUA GAS1</strong> (mediciones geofísicas directas, cárcamos de sótanos 24/7, peritajes judiciales en deslizamientos, 25.17 hm³/año de extracción activa y red de monitoreo oficial). Los tonos cálidos (<span style="color:#ef4444;font-weight:700">Rojo</span> / <span style="color:#f59e0b;font-weight:700">Ámbar</span>) indican manto freático a menos de 3.5 m o afloramientos naturales de saturación crítica.
             </p>
@@ -3218,7 +3371,7 @@ footer {
           <div style="background:rgba(255,255,255,.03);border:1px solid rgba(16,185,129,.25);border-radius:12px;padding:1rem">
             <div style="display:flex;align-items:center;gap:.5rem;font-family:var(--font-mono);font-size:.72rem;color:#a7f3d0;font-weight:700">🟢 ALTA TRANSMISIVIDAD (4.0 - 7.0 m)</div>
             <div style="font-size:1.05rem;font-weight:800;color:#2B211B;margin:.3rem 0">Arroyo Alamar, Cañón del Padre, Morelos</div>
-            <p style="font-size:.75rem;color:var(--text-dim);line-height:1.4">Acuífero aluvial no consolidado de alta recarga y pozos someros censados por CONAGUA.</p>
+            <p style="font-size:.75rem;color:var(--text-dim);line-height:1.4">Acuífero aluvial no consolidado de alta recarga y pozos poco profundos censados por CONAGUA.</p>
           </div>
           <div style="background:rgba(255,255,255,.03);border:1px solid rgba(56,189,248,.25);border-radius:12px;padding:1rem">
             <div style="display:flex;align-items:center;gap:.5rem;font-family:var(--font-mono);font-size:.72rem;color:#bae6fd;font-weight:700">🔵 TRANSICIÓN PROFUNDA (&gt; 7.0 m)</div>
@@ -3228,6 +3381,7 @@ footer {
         </div>
       </div>
     </div>
+    </details>
   </section>
 
   <!-- ==================== CORTE 3D HIDROGEOLÓGICO ==================== -->
@@ -3293,42 +3447,54 @@ footer {
 
 
   <section id="solucion">
-    <div class="section-header"><span class="section-tag">De la Idea (AquaResiliencia) al Primer Pozo Real (Agua de GIA)</span><h2 class="section-title">Pilares del Sistema y Planta Piloto «Agua de GIA» (Pozo 001)</h2></div>
+    <div class="section-header">
+      <span class="section-tag" style="color:#5C4B3E;letter-spacing:.2em;font-family:'Cormorant Garamond',Georgia,serif;font-weight:700">HOJA 3 · DEL POZO A TU CASA</span>
+      <h2 class="section-title">Agua de Pozo: Cómo la Sacamos y la Purificamos</h2>
+      <p style="color:#4A3B32;font-size:1.02rem;max-width:780px;line-height:1.65;margin-top:.4rem">
+        A solo <strong>7 metros de profundidad</strong> nace nuestro primer pozo poco profundo en Tijuana. Purificamos el agua paso a paso sin usar químicos: <strong>el 80% se aprovecha para regar y el hogar</strong>, y <strong>el 20% queda pura para beber</strong>.
+      </p>
+      <div style="display:inline-flex;flex-wrap:wrap;gap:.75rem;margin-top:.85rem;padding:.55rem .95rem;background:#F6F4EE;border:1px solid rgba(139,94,60,.22);border-radius:10px;font-size:.82rem;color:#4A3B32">
+        <span><strong>Estado actual del proyecto:</strong></span>
+        <span>🟢 <strong>Verde:</strong> Funcionando hoy al 100%</span>
+        <span>🟡 <strong>Amarillo:</strong> Ajustando válvulas automáticas</span>
+        <span>🔴 <strong>Rojo:</strong> En desarrollo (Cápsula del Tiempo 5–10 años)</span>
+      </div>
+    </div>
     <div class="grid-4">
-      <div class="card" style="border-top:4px solid #10b981;box-shadow:0 8px 25px rgba(16,185,129,.12)">
+      <div class="card" style="border-top:3px solid #1E6043">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem">
-          <div class="card-icon" style="margin:0">🪄</div>
-          <span style="font-family:var(--font-mono);font-size:.68rem;font-weight:800;padding:.2rem .55rem;border-radius:6px;background:rgba(16,185,129,.18);color:#1E6043;border:1px solid #10b981">🟢 100% OPERANDO</span>
+          <span style="font-size:1.35rem">💧</span>
+          <span style="font-size:.72rem;font-weight:700;padding:.18rem .55rem;border-radius:6px;background:rgba(30,96,67,.12);color:#1E6043">🟢 Funcionando</span>
         </div>
-        <h3>1. «Varita Mágica de GIA» (SIG)</h3>
-        <p>Prospección hidrogeológica multicriterio con altimetría satelital INEGI, litología SGM, InSAR y evidencia forense activa en línea.</p>
+        <h3>1. Encontrar el Agua</h3>
+        <p>Con <strong>El Detector de Agua</strong> ubicamos dónde hay agua de pozo poco profundo (entre 3 y 8 metros) antes de excavar.</p>
       </div>
 
-      <div class="card" style="border-top:4px solid #10b981;box-shadow:0 8px 25px rgba(16,185,129,.12)">
+      <div class="card" style="border-top:3px solid #1E6043">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem">
-          <div class="card-icon" style="margin:0">⛏️</div>
-          <span style="font-family:var(--font-mono);font-size:.68rem;font-weight:800;padding:.2rem .55rem;border-radius:6px;background:rgba(16,185,129,.18);color:#1E6043;border:1px solid #10b981">🟢 100% OPERANDO</span>
+          <span style="font-size:1.35rem">🏺</span>
+          <span style="font-size:.72rem;font-weight:700;padding:.18rem .55rem;border-radius:6px;background:rgba(30,96,67,.12);color:#1E6043">🟢 Funcionando</span>
         </div>
-        <h3>2. Pozo 001 y Electrofloculación</h3>
-        <p>Pozo físico a 7 m de profundidad y reactor por lote (1 BBL / 117 L) a <code>12V/15A</code> con monitoreo continuo de <code>ΔV</code> y barrido de H₂ sin químicos.</p>
+        <h3>2. Limpiar sin Químicos</h3>
+        <p>Sacamos el agua a 7 metros y usamos electricidad suave para agrupar y asentar la tierra suspendida sin agregar ningún químico.</p>
       </div>
 
-      <div class="card" style="border-top:4px solid #f59e0b;box-shadow:0 8px 25px rgba(245,158,11,.12)">
+      <div class="card" style="border-top:3px solid #9A4406">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem">
-          <div class="card-icon" style="margin:0">🎛️</div>
-          <span style="font-family:var(--font-mono);font-size:.68rem;font-weight:800;padding:.2rem .55rem;border-radius:6px;background:rgba(245,158,11,.18);color:#9A4406;border:1px solid #f59e0b">🟡 EN CALIBRACIÓN</span>
+          <span style="font-size:1.35rem">⚙️</span>
+          <span style="font-size:.72rem;font-weight:700;padding:.18rem .55rem;border-radius:6px;background:rgba(154,68,6,.12);color:#9A4406">🟡 En Ajuste</span>
         </div>
-        <h3>3. Automatización Casi Autónoma</h3>
-        <p>Algoritmo de <strong>reposo forzado</strong>, <strong>válvulas solenoides</strong> entre tanques, <strong>actuador en válvula de aguja</strong> para rechazo RO (85–90 PSI) y pruebas de TDS.</p>
+        <h3>3. Sistema Casi Autónomo</h3>
+        <p>Válvulas automáticas que respetan el reposo del agua y ajustan por sí solas la presión para darte agua lista para beber y regar.</p>
       </div>
 
-      <div class="card" style="border-top:4px solid #f43f5e;box-shadow:0 8px 25px rgba(244,63,94,.12)">
+      <div class="card" style="border-top:3px solid #9E2A2B">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem">
-          <div class="card-icon" style="margin:0">⏳</div>
-          <span style="font-family:var(--font-mono);font-size:.68rem;font-weight:800;padding:.2rem .55rem;border-radius:6px;background:rgba(244,63,94,.18);color:#9E2A2B;border:1px solid #f43f5e">🔴 EN DESARROLLO</span>
+          <span style="font-size:1.35rem">⏳</span>
+          <span style="font-size:.72rem;font-weight:700;padding:.18rem .55rem;border-radius:6px;background:rgba(158,42,43,.12);color:#9E2A2B">🔴 En Desarrollo</span>
         </div>
-        <h3>4. «Cápsula del Tiempo» (5–10 Años)</h3>
-        <p>Nodo subterráneo independiente recargado con <strong>Batería de Tierra (Mg/Cu)</strong> y algoritmo <em>Deep Sleep</em> con backoff exponencial hasta por una década.</p>
+        <h3>4. Cápsula del Tiempo</h3>
+        <p>Un medidor independiente dentro del pozo que se recarga con una <strong>batería de tierra</strong> y puede vigilar el agua de 5 a 10 años.</p>
       </div>
     </div>
 
@@ -3336,8 +3502,8 @@ footer {
     <div id="sinoptico-algoritmo" style="margin-top:2rem;margin-bottom:2.25rem;background:linear-gradient(180deg,#FFFDF9 0%,#F4EDE0 100%);border:1px solid rgba(0,229,255,.35);border-radius:20px;padding:1.85rem;box-shadow:0 15px 40px rgba(0,0,0,.6)">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:1px solid rgba(139,94,60,.2)">
         <div>
-          <span class="section-tag" style="background:rgba(0,229,255,.14);color:var(--cyan-primary);border:1px solid rgba(0,229,255,.35)">🖥️ INTERFAZ VISUAL DE PROCESO · ALGORITMO CASI AUTÓNOMO (CERO QUÍMICOS)</span>
-          <h3 style="font-family:var(--font-heading);font-size:1.5rem;color:#2B211B;margin:.35rem 0 .25rem">Recorrido Interactivo del Agua: Del Pozo al Vaso (20%) y al Riego (80%)</h3>
+          <span class="section-tag" style="background:rgba(0,229,255,.14);color:var(--cyan-primary);border:1px solid rgba(0,229,255,.35)">PASO A PASO · DEL POZO A TU VASO Y A TU JARDÍN</span>
+          <h3 style="font-family:var(--font-heading);font-size:1.5rem;color:#2B211B;margin:.35rem 0 .25rem">El Camino del Agua: Cómo Funciona el Sistema</h3>
           <p style="font-size:.86rem;color:var(--text-muted);max-width:820px;margin:0">
             Haz clic en cada etapa o presiona <strong>«▶️ Simular Recorrido Completo»</strong> para ver por dónde pasa el agua, qué mide cada sensor, qué válvula o actuador se activa y el estado real del módulo (<span style="color:#1E6043">🟢 Operando</span> / <span style="color:#9A4406">🟡 En Calibración</span> / <span style="color:#9E2A2B">🔴 En Desarrollo</span>).
           </p>
@@ -3372,16 +3538,16 @@ footer {
             <rect x="20" y="55" width="135" height="185" rx="14" fill="#FFFDF9" stroke="#10b981" stroke-width="2.5"/>
             <circle cx="38" cy="74" r="6" fill="#10b981"/>
             <circle cx="54" cy="74" r="6" fill="#f43f5e"/>
-            <text x="87" y="78" fill="#6E5A4F" font-size="10" font-weight="700" text-anchor="middle">ETAPA 01</text>
-            <text x="87" y="102" fill="#2B211B" font-size="12.5" font-weight="800" text-anchor="middle">Pozo 001 (7 m)</text>
-            <text x="87" y="118" fill="#2E6F95" font-size="10.5" text-anchor="middle">+ Cápsula Tiempo</text>
+            <text x="87" y="78" fill="#6E5A4F" font-size="10" font-weight="700" text-anchor="middle">PASO 1</text>
+            <text x="87" y="102" fill="#2B211B" font-size="12.5" font-weight="800" text-anchor="middle">Agua de Pozo</text>
+            <text x="87" y="118" fill="#2E6F95" font-size="10.5" text-anchor="middle">a 7 metros</text>
             <!-- Dibujo pozo y batería de tierra -->
             <rect x="48" y="130" width="28" height="72" rx="4" fill="rgba(0,229,255,.18)" stroke="#00e5ff" stroke-width="1.5"/>
             <rect x="88" y="142" width="38" height="58" rx="6" fill="rgba(244,63,94,.15)" stroke="#f43f5e" stroke-width="1.2"/>
             <text x="107" y="166" fill="#fda4af" font-size="8.5" font-weight="700" text-anchor="middle">Bat. Tierra</text>
             <text x="107" y="179" fill="#fda4af" font-size="8" text-anchor="middle">Mg / Cu</text>
             <text x="107" y="192" fill="#fbbf24" font-size="8" text-anchor="middle">5–10 años</text>
-            <text x="87" y="224" fill="#4A3B32" font-size="9.5" text-anchor="middle">Campana 0–40 kPa</text>
+            <text x="87" y="224" fill="#4A3B32" font-size="9.5" text-anchor="middle">Sube sin arena</text>
           </g>
 
           <!-- NODO ETAPA 2: VÁLVULA SOLENOIDE SV-01 + LLENADO 1 BBL -->
@@ -3389,29 +3555,29 @@ footer {
             <rect x="215" y="55" width="120" height="185" rx="14" fill="#FFFDF9" stroke="#334155" stroke-width="2"/>
             <circle cx="233" cy="74" r="6" fill="#10b981"/>
             <circle cx="249" cy="74" r="6" fill="#f59e0b"/>
-            <text x="275" y="78" fill="#6E5A4F" font-size="10" font-weight="700" text-anchor="middle">ETAPA 02</text>
-            <text x="275" y="102" fill="#2B211B" font-size="12.5" font-weight="800" text-anchor="middle">Llenado Lote</text>
-            <text x="275" y="118" fill="#2E6F95" font-size="10.5" text-anchor="middle">1 BBL (117.3 L)</text>
+            <text x="275" y="78" fill="#6E5A4F" font-size="10" font-weight="700" text-anchor="middle">PASO 2</text>
+            <text x="275" y="102" fill="#2B211B" font-size="12.5" font-weight="800" text-anchor="middle">Llenar Tanque</text>
+            <text x="275" y="118" fill="#2E6F95" font-size="10.5" text-anchor="middle">117 Litros</text>
             <rect x="242" y="132" width="66" height="55" rx="8" fill="rgba(56,189,248,.15)" stroke="#38bdf8" stroke-width="1.5"/>
-            <text x="275" y="156" fill="#2B211B" font-size="10" font-weight="700" text-anchor="middle">Solenoide SV-01</text>
-            <text x="275" y="172" fill="#2E6F95" font-size="9" text-anchor="middle">+ Flujo Hall</text>
-            <text x="275" y="208" fill="#fbbf24" font-size="9.5" font-weight="700" text-anchor="middle">Mide V_vacío:</text>
-            <text x="275" y="223" fill="#4A3B32" font-size="9.5" text-anchor="middle">11.4 V – 11.6 V</text>
+            <text x="275" y="156" fill="#2B211B" font-size="10" font-weight="700" text-anchor="middle">Válvula Eléctrica</text>
+            <text x="275" y="172" fill="#2E6F95" font-size="9" text-anchor="middle">Cuenta litros</text>
+            <text x="275" y="208" fill="#fbbf24" font-size="9.5" font-weight="700" text-anchor="middle">Se calibra sola</text>
+            <text x="275" y="223" fill="#4A3B32" font-size="9.5" text-anchor="middle">al iniciar</text>
           </g>
 
           <!-- NODO ETAPA 3: ELECTROFLOCULACIÓN 12V/15A + BARRIDO H2 -->
           <g id="syn-node-2" onclick="selectSynopticStep(2)" style="cursor:pointer">
             <rect x="395" y="55" width="130" height="185" rx="14" fill="#FFFDF9" stroke="#334155" stroke-width="2"/>
             <circle cx="415" cy="74" r="6" fill="#10b981"/>
-            <text x="460" y="78" fill="#6E5A4F" font-size="10" font-weight="700" text-anchor="middle">ETAPA 03</text>
-            <text x="460" y="102" fill="#2B211B" font-size="12.5" font-weight="800" text-anchor="middle">Electrofloculación</text>
-            <text x="460" y="118" fill="#34d399" font-size="10" font-weight="700" text-anchor="middle">12V / 15A (Cero Químicos)</text>
+            <text x="460" y="78" fill="#6E5A4F" font-size="10" font-weight="700" text-anchor="middle">PASO 3</text>
+            <text x="460" y="102" fill="#2B211B" font-size="12.5" font-weight="800" text-anchor="middle">Asentar Tierra</text>
+            <text x="460" y="118" fill="#34d399" font-size="10" font-weight="700" text-anchor="middle">Con Electricidad (12V)</text>
             <rect x="420" y="128" width="80" height="62" rx="8" fill="rgba(16,185,129,.15)" stroke="#10b981" stroke-width="1.5"/>
-            <text x="460" y="148" fill="#2B211B" font-size="9.5" font-weight="700" text-anchor="middle">Divisor ADC (ΔV)</text>
-            <text x="460" y="163" fill="#1E6043" font-size="9" text-anchor="middle">V_carga: 10.60 V</text>
-            <text x="460" y="178" fill="#9A4406" font-size="8.5" text-anchor="middle">Alerta &lt; 10.30 V</text>
-            <text x="460" y="208" fill="#2E6F95" font-size="9" font-weight="700" text-anchor="middle">Bomba Barrido H₂:</text>
-            <text x="460" y="223" fill="#4A3B32" font-size="9" text-anchor="middle">30-45s cada 5-7 min</text>
+            <text x="460" y="148" fill="#2B211B" font-size="9.5" font-weight="700" text-anchor="middle">Cero Químicos</text>
+            <text x="460" y="163" fill="#1E6043" font-size="9" text-anchor="middle">Agrupa la tierra</text>
+            <text x="460" y="178" fill="#9A4406" font-size="8.5" text-anchor="middle">de forma natural</text>
+            <text x="460" y="208" fill="#2E6F95" font-size="9" font-weight="700" text-anchor="middle">Limpia burbujas:</text>
+            <text x="460" y="223" fill="#4A3B32" font-size="9" text-anchor="middle">cada 5 minutos</text>
           </g>
 
           <!-- NODO ETAPA 4: REPOSO FORZADO POR ALGORITMO -->
@@ -3419,30 +3585,30 @@ footer {
             <rect x="585" y="55" width="130" height="185" rx="14" fill="#FFFDF9" stroke="#334155" stroke-width="2"/>
             <circle cx="603" cy="74" r="6" fill="#10b981"/>
             <circle cx="619" cy="74" r="6" fill="#f59e0b"/>
-            <text x="650" y="78" fill="#6E5A4F" font-size="10" font-weight="700" text-anchor="middle">ETAPA 04</text>
-            <text x="650" y="102" fill="#2B211B" font-size="12.5" font-weight="800" text-anchor="middle">Reposo Forzado</text>
-            <text x="650" y="118" fill="#fbbf24" font-size="10" font-weight="700" text-anchor="middle">Bloqueo por Software</text>
+            <text x="650" y="78" fill="#6E5A4F" font-size="10" font-weight="700" text-anchor="middle">PASO 4</text>
+            <text x="650" y="102" fill="#2B211B" font-size="12.5" font-weight="800" text-anchor="middle">Reposo Tranquilo</text>
+            <text x="650" y="118" fill="#fbbf24" font-size="10" font-weight="700" text-anchor="middle">Agua en Calma</text>
             <rect x="610" y="128" width="80" height="62" rx="8" fill="rgba(245,158,11,.15)" stroke="#f59e0b" stroke-width="1.5"/>
-            <text x="650" y="149" fill="#2B211B" font-size="9.5" font-weight="700" text-anchor="middle">🔒 Válvulas OFF</text>
-            <text x="650" y="164" fill="#9A4406" font-size="8.5" text-anchor="middle">Prohibido agitar</text>
-            <text x="650" y="178" fill="#4A3B32" font-size="8.5" text-anchor="middle">Sedimenta flóculo</text>
-            <text x="650" y="208" fill="#2E6F95" font-size="9" font-weight="700" text-anchor="middle">Pulso TDS (1.5 s):</text>
-            <text x="650" y="223" fill="#4A3B32" font-size="9" text-anchor="middle">Mide sin ruido DC</text>
+            <text x="650" y="149" fill="#2B211B" font-size="9.5" font-weight="700" text-anchor="middle">🔒 Todo Apagado</text>
+            <text x="650" y="164" fill="#9A4406" font-size="8.5" text-anchor="middle">No se mueve</text>
+            <text x="650" y="178" fill="#4A3B32" font-size="8.5" text-anchor="middle">Cae la tierra</text>
+            <text x="650" y="208" fill="#2E6F95" font-size="9" font-weight="700" text-anchor="middle">Revisa pureza:</text>
+            <text x="650" y="223" fill="#4A3B32" font-size="9" text-anchor="middle">agua cristalina</text>
           </g>
 
           <!-- NODO ETAPA 5: TRASVASE + MALLA 80 MICRAS -->
           <g id="syn-node-4" onclick="selectSynopticStep(4)" style="cursor:pointer">
             <rect x="775" y="55" width="120" height="185" rx="14" fill="#FFFDF9" stroke="#334155" stroke-width="2"/>
             <circle cx="795" cy="74" r="6" fill="#f59e0b"/>
-            <text x="835" y="78" fill="#6E5A4F" font-size="10" font-weight="700" text-anchor="middle">ETAPA 05</text>
-            <text x="835" y="102" fill="#2B211B" font-size="12" font-weight="800" text-anchor="middle">Trasvase y Malla</text>
-            <text x="835" y="118" fill="#2E6F95" font-size="10" text-anchor="middle">Prefiltro 80 µm</text>
+            <text x="835" y="78" fill="#6E5A4F" font-size="10" font-weight="700" text-anchor="middle">PASO 5</text>
+            <text x="835" y="102" fill="#2B211B" font-size="12" font-weight="800" text-anchor="middle">Agua Clara</text>
+            <text x="835" y="118" fill="#2E6F95" font-size="10" text-anchor="middle">Malla Fina</text>
             <rect x="795" y="128" width="80" height="62" rx="8" fill="rgba(59,130,246,.15)" stroke="#3b82f6" stroke-width="1.5"/>
-            <text x="835" y="149" fill="#2B211B" font-size="9.5" font-weight="700" text-anchor="middle">Solenoide SV-02</text>
-            <text x="835" y="164" fill="#93c5fd" font-size="8.5" text-anchor="middle">Retiene limo/mica</text>
+            <text x="835" y="149" fill="#2B211B" font-size="9.5" font-weight="700" text-anchor="middle">Pasa agua limpia</text>
+            <text x="835" y="164" fill="#93c5fd" font-size="8.5" text-anchor="middle">Detiene arena fina</text>
             <text x="835" y="178" fill="#34d399" font-size="8.5" text-anchor="middle">Protege bombas</text>
-            <text x="835" y="208" fill="#4A3B32" font-size="9" text-anchor="middle">Divide caudal a</text>
-            <text x="835" y="223" fill="#2E6F95" font-size="9.5" font-weight="700" text-anchor="middle">Riego 80% / RO 20%</text>
+            <text x="835" y="208" fill="#4A3B32" font-size="9" text-anchor="middle">Separa el agua:</text>
+            <text x="835" y="223" fill="#2E6F95" font-size="9.5" font-weight="700" text-anchor="middle">80% Casa / 20% Beber</text>
           </g>
 
           <!-- NODO ETAPA 6: SALIDA DUAL (80% RIEGO + 20% RO CON VÁLVULA DE AGUJA) -->
@@ -3456,11 +3622,11 @@ footer {
 
             <!-- Caja Inferior: 20% Potable + Válvula de Aguja Motorizada -->
             <rect x="955" y="142" width="110" height="118" rx="12" fill="#FFFDF9" stroke="#f59e0b" stroke-width="2"/>
-            <text x="1010" y="162" fill="#fbbf24" font-size="9.5" font-weight="800" text-anchor="middle">💧 20% INGESTA RO</text>
+            <text x="1010" y="162" fill="#fbbf24" font-size="9.5" font-weight="800" text-anchor="middle">💧 20% PARA BEBER</text>
             <text x="1010" y="178" fill="#2B211B" font-size="10" font-weight="700" text-anchor="middle">Válvula de Aguja</text>
             <text x="1010" y="193" fill="#2E6F95" font-size="8.5" text-anchor="middle">Actuador Automático</text>
-            <text x="1010" y="209" fill="#9A4406" font-size="8.5" font-weight="700" text-anchor="middle">85–90 PSI (Inox 316)</text>
-            <text x="1010" y="225" fill="#4A3B32" font-size="8.5" text-anchor="middle">Sensor TDS final</text>
+            <text x="1010" y="209" fill="#9A4406" font-size="8.5" font-weight="700" text-anchor="middle">Presión exacta</text>
+            <text x="1010" y="225" fill="#4A3B32" font-size="8.5" text-anchor="middle">Revisión final</text>
             <text x="1010" y="244" fill="#34d399" font-size="9" font-weight="800" text-anchor="middle">Lista para Beber</text>
           </g>
         </svg>
@@ -3470,8 +3636,8 @@ footer {
       <div id="synoptic-detail-box" style="background:#FFFDF9;border:1px solid rgba(139,94,60,.3);border-radius:14px;padding:1.25rem 1.4rem">
         <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;margin-bottom:.65rem">
           <div style="display:flex;align-items:center;gap:.65rem">
-            <span id="syn-step-badge" style="font-family:var(--font-mono);font-size:.76rem;font-weight:800;padding:.25rem .7rem;border-radius:6px;background:rgba(16,185,129,.2);color:#1E6043;border:1px solid #10b981">ETAPA 01 · 🟢 POZO REAL / 🔴 CÁPSULA EN DESARROLLO</span>
-            <h4 id="syn-step-title" style="font-family:var(--font-heading);font-size:1.2rem;color:#2B211B;margin:0">Extracción Somera (Pozo 001 a 7 m) y Estación «Cápsula del Tiempo»</h4>
+            <span id="syn-step-badge" style="font-family:var(--font-mono);font-size:.76rem;font-weight:800;padding:.25rem .7rem;border-radius:6px;background:rgba(16,185,129,.2);color:#1E6043;border:1px solid #10b981">PASO 1 · 🟢 POZO REAL / 🔴 CÁPSULA EN DESARROLLO</span>
+            <h4 id="syn-step-title" style="font-family:var(--font-heading);font-size:1.2rem;color:#2B211B;margin:0">1. Sacar Agua del Pozo Poco Profundo (a 7 metros)</h4>
           </div>
           <div style="display:flex;gap:.4rem">
             <button class="btn-secondary" onclick="selectSynopticStep(0)" style="padding:.25rem .6rem;font-size:.75rem">1</button>
@@ -3483,20 +3649,20 @@ footer {
           </div>
         </div>
         <p id="syn-step-desc" style="font-size:.88rem;color:#4A3B32;line-height:1.58;margin:0 0 .9rem">
-          El agua sale del manto colgado a 7 metros en el Pozo 001 con caudal calibrado bajo la Ley de Stokes para no arrastrar arena. En paralelo, el registro subterráneo aloja el prototipo del <strong>Nodo 1 («Cápsula del Tiempo del Agua»)</strong>: mide nivel por campana neumática (0–40 kPa), se recarga con una <strong>Batería de Tierra</strong> (ánodo de magnesio y tubo de cobre enterrados a un costado sin contaminar el agua) y entra en <em>Deep Sleep</em> con backoff exponencial capaz de guardar datos de <strong>5 a 10 años</strong> si cae toda red eléctrica o Wi-Fi.
+          El agua sube suavemente desde 7 metros bajo tierra sin arrastrar arena. Aquí también estamos desarrollando la <strong>«Cápsula del Tiempo del Agua»</strong>: un medidor subterráneo independiente que se recarga con una <strong>batería de tierra</strong> (magnesio y cobre) y se duerme cuando no hay internet para durar de <strong>5 a 10 años</strong>.
         </p>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.85rem;font-size:.82rem">
           <div style="background:rgba(255,255,255,.04);padding:.75rem .9rem;border-radius:10px;border-left:3px solid var(--cyan-primary)">
-            <strong style="display:block;color:var(--cyan-primary);font-family:var(--font-mono);font-size:.72rem;text-transform:uppercase">🔬 Sensores en Esta Etapa</strong>
-            <span id="syn-step-sensors" style="color:#2B211B">Campana de aire HX710B (0–40 kPa), TDS con corte MOSFET (99% apagado) y voltaje de Batería de Tierra (BQ25504).</span>
+            <strong style="display:block;color:var(--cyan-primary);font-family:var(--font-mono);font-size:.72rem;text-transform:uppercase">💧 Qué Medimos Aquí</strong>
+            <span id="syn-step-sensors" style="color:#2B211B">Medidor de nivel de agua por aire y energía de la batería de tierra.</span>
           </div>
           <div style="background:rgba(255,255,255,.04);padding:.75rem .9rem;border-radius:10px;border-left:3px solid var(--emerald-accent)">
-            <strong style="display:block;color:var(--emerald-accent);font-family:var(--font-mono);font-size:.72rem;text-transform:uppercase">⚙️ Actuadores / Hardware</strong>
-            <span id="syn-step-actuators" style="color:#2B211B">Bomba de extracción de bajo caudal (24V / 2A) + Placa LilyGO T-A7670G (ESP32 + 4G LTE + Memoria Flash LittleFS).</span>
+            <strong style="display:block;color:var(--emerald-accent);font-family:var(--font-mono);font-size:.72rem;text-transform:uppercase">⚙️ Qué Se Activa</strong>
+            <span id="syn-step-actuators" style="color:#2B211B">Bomba suave de bajo consumo y memoria guardada dentro del pozo.</span>
           </div>
           <div style="background:rgba(255,255,255,.04);padding:.75rem .9rem;border-radius:10px;border-left:3px solid var(--amber-accent)">
-            <strong style="display:block;color:var(--amber-accent);font-family:var(--font-mono);font-size:.72rem;text-transform:uppercase">🧠 Regla del Algoritmo</strong>
-            <span id="syn-step-rule" style="color:#2B211B">Guarda primero en CSV local; transmite cada 30–60 min por Wi-Fi, 1/día por 4G, o hiberna en RTC de 1/día hasta 1/año.</span>
+            <strong style="display:block;color:var(--amber-accent);font-family:var(--font-mono);font-size:.72rem;text-transform:uppercase">🌿 Regla de Cuidado</strong>
+            <span id="syn-step-rule" style="color:#2B211B">Subir el agua despacio para que salga clara y guardar las lecturas aunque no haya luz ni Wi-Fi.</span>
           </div>
         </div>
       </div>
@@ -3506,10 +3672,10 @@ footer {
     <div class="tren-showcase">
       <div class="tren-header">
         <div>
-          <span class="section-tag" style="background:rgba(16,185,129,.15);border-color:rgba(16,185,129,.4);color:var(--emerald-accent)">POZO 001 «AGUA DE GIA» · PROTOTIPO FÍSICO OPERATIVO EN VIVO</span>
-          <h3 style="font-family:var(--font-heading);font-size:1.6rem;color:#2B211B;margin-top:.35rem">Agua de GIA (Caso 001): Tren de Tratamiento 80/20 y Cero Desperdicio</h3>
+          <span class="section-tag" style="background:rgba(16,185,129,.15);border-color:rgba(16,185,129,.4);color:var(--emerald-accent)">AGUA DE GÍA · NUESTRO PRIMER POZO EN TIJUANA</span>
+          <h3 style="font-family:var(--font-heading);font-size:1.6rem;color:#2B211B;margin-top:.35rem">En Video: Así Purificamos el Agua del Pozo en Vivo</h3>
           <p style="font-size:.88rem;color:var(--text-muted);max-width:780px;margin-top:.25rem">
-            Diseñada, fabricada y operada en Tijuana con ingeniería frugal accesible: carcasa sanitaria de acero inoxidable con abrazaderas <em>tri-clamp</em>, electrofloculación a 24V, decantación tangencial y recirculación activa de rechazo sin tirar agua al drenaje.
+            Construido y operando en Tijuana: tubería limpia de acero inoxidable, separación de tierra sin químicos, reposo tranquilo y aprovechamiento total sin tirar agua al drenaje.
           </p>
         </div>
         <button class="action-btn" onclick="document.getElementById('trenVideoPlayer').scrollIntoView({behavior:'smooth',block:'center'});document.getElementById('trenVideoPlayer').play()" style="padding:.65rem 1.25rem;font-size:.85rem">
@@ -3529,7 +3695,7 @@ footer {
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.25rem;margin-bottom:1.75rem">
         <div class="tren-video-container" style="margin-bottom:0">
           <div style="padding:.6rem 1rem;background:rgba(16,185,129,.15);border-bottom:1px solid rgba(16,185,129,.3);font-family:var(--font-mono);font-size:.76rem;font-weight:700;color:#1E6043">
-            🟢 VIDEO 1: TREN FÍSICO REAL EN OPERACIÓN — POZO 001 «AGUA DE GIA» (2:48)
+            🟢 VIDEO 1: EL POZO Y LA PURIFICACIÓN FUNCIONANDO EN VIVO (2:48)
           </div>
           <video id="trenVideoPlayer" controls preload="metadata" poster="img_tren/etapa5_osmosis_inversa.jpg">
             <source src="video/demo_tren_proceso_web.mp4" type="video/mp4">
@@ -3539,7 +3705,7 @@ footer {
 
         <div class="tren-video-container" style="margin-bottom:0">
           <div style="padding:.6rem 1rem;background:rgba(0,229,255,.15);border-bottom:1px solid rgba(0,229,255,.3);font-family:var(--font-mono);font-size:.76rem;font-weight:700;color:var(--cyan-primary)">
-            🎬 VIDEO 2: ANIMACIÓN 3D DE ARQUITECTURA — AQUARESILIENCIA (80/20)
+            🎬 VIDEO 2: ANIMACIÓN DE CÓMO VIAJA EL AGUA EN CASA (80 / 20)
           </div>
           <video id="animacion3DPlayer" controls preload="metadata">
             <source src="aquaresiliencia_animacion.mp4" type="video/mp4">
@@ -3553,60 +3719,60 @@ footer {
       <div class="tren-grid">
         <div class="tren-card" style="border:1px solid rgba(16,185,129,.45)">
           <div class="tren-card-img-wrap">
-            <span class="tren-card-badge" style="background:rgba(16,185,129,.88);color:#020c1b">🟢 ETAPA 01 · OPERANDO</span>
+            <span class="tren-card-badge" style="background:rgba(16,185,129,.88);color:#020c1b">🟢 PASO 1 · OPERANDO</span>
             <img src="img_tren/etapa1_captacion.jpg" alt="Captación Somera">
           </div>
           <div class="tren-card-body">
-            <h4>01. Captación Somera (Pozo 001 a 7m)</h4>
-            <p>Bomba de bajo impacto a 7 m de profundidad. Extrae agua somera real sin azolve hacia el reactor por lote.</p>
+            <h4>01. Agua de Pozo (a 7 metros)</h4>
+            <p>Sacamos el agua suavemente a 7 metros de profundidad para que suba limpia y sin arena.</p>
             <button class="tren-seek-btn" onclick="seekTrenVideo(0)">⏱️ Ver en 0:00</button>
           </div>
         </div>
 
         <div class="tren-card" style="border:1px solid rgba(16,185,129,.45)">
           <div class="tren-card-img-wrap">
-            <span class="tren-card-badge" style="background:rgba(16,185,129,.88);color:#020c1b">🟢 ETAPA 02 · OPERANDO</span>
-            <img src="img_tren/etapa2_electrofloculacion.jpg" alt="Electrofloculación">
+            <span class="tren-card-badge" style="background:rgba(16,185,129,.88);color:#020c1b">🟢 PASO 2 · OPERANDO</span>
+            <img src="img_tren/etapa2_electrofloculacion.jpg" alt="Asentar Tierra">
           </div>
           <div class="tren-card-body">
-            <h4>02. Electrofloculación (Cero Químicos)</h4>
-            <p>Probado en lote de 1 BBL (<code>12V/15A</code>) y carcasa sanitaria. Monitoreo continuo de caída de tensión (<code>ΔV</code>) y barrido de H₂ sin usar Biofine.</p>
+            <h4>02. Asentar Tierra (Cero Químicos)</h4>
+            <p>Con electricidad suave de 12V hacemos que la tierra suspendida se agrupe sola, sin agregar ningún químico al agua.</p>
             <button class="tren-seek-btn" onclick="seekTrenVideo(13)">⏱️ Ver en 0:13</button>
           </div>
         </div>
 
         <div class="tren-card" style="border:1px solid rgba(245,158,11,.5)">
           <div class="tren-card-img-wrap">
-            <span class="tren-card-badge" style="background:rgba(245,158,11,.92);color:#020c1b">🟢/🟡 ETAPA 03 · REPOSO FORZADO</span>
+            <span class="tren-card-badge" style="background:rgba(245,158,11,.92);color:#020c1b">🟢/🟡 PASO 3 · REPOSO FORZADO</span>
             <img src="img_tren/etapa3_clarificador.jpg" alt="Clarificador y Reposo">
           </div>
           <div class="tren-card-body">
-            <h4>03. Reposo Forzado y Separación</h4>
-            <p>Decantación física real + algoritmo de <strong>bloqueo obligatorio de reposo</strong> que impide mover el agua antes de que precipite el flóculo.</p>
+            <h4>03. Reposo Tranquilo y Separación</h4>
+            <p>Dejamos reposar el agua en calma total para que toda la tierra caiga al fondo antes de pasarla al siguiente tanque.</p>
             <button class="tren-seek-btn" onclick="seekTrenVideo(43)">⏱️ Ver en 0:43</button>
           </div>
         </div>
 
         <div class="tren-card" style="border:1px solid rgba(245,158,11,.5)">
           <div class="tren-card-img-wrap">
-            <span class="tren-card-badge" style="background:rgba(245,158,11,.92);color:#020c1b">🟢/🟡 ETAPA 04 · SOLENOIDES</span>
+            <span class="tren-card-badge" style="background:rgba(245,158,11,.92);color:#020c1b">🟢/🟡 PASO 4 · SOLENOIDES</span>
             <img src="img_tren/etapa4_totem_domestico.jpg" alt="Línea Doméstica 80%">
           </div>
           <div class="tren-card-body">
-            <h4>04. Trasvase por Solenoides y 80% Riego</h4>
-            <p>Tótems operando + integración de <strong>válvulas solenoides</strong> y malla de 80 micras para derivar el 80% a riego y servicios domésticos.</p>
+            <h4>04. Agua Lista para Regar y Lavar (80%)</h4>
+            <p>Válvulas automáticas pasan el agua clara por una malla fina para usar el 80% en jardín, limpieza y baños.</p>
             <button class="tren-seek-btn" onclick="seekTrenVideo(68)">⏱️ Ver en 1:08</button>
           </div>
         </div>
 
         <div class="tren-card" style="border:1px solid rgba(245,158,11,.5)">
           <div class="tren-card-img-wrap">
-            <span class="tren-card-badge" style="background:rgba(245,158,11,.92);color:#020c1b">🟢/🟡 ETAPA 05 · ÓSMOSIS + TDS</span>
+            <span class="tren-card-badge" style="background:rgba(245,158,11,.92);color:#020c1b">🟢/🟡 PASO 5 · ÓSMOSIS + TDS</span>
             <img src="img_tren/etapa5_osmosis_inversa.jpg" alt="Tren POU Ultrapurificación">
           </div>
           <div class="tren-card-body">
-            <h4>05. Ultrapurificación 20% y Curva TDS</h4>
-            <p>Tren de Ósmosis Inversa operando en vivo + calibración actual de sensores de <strong>TDS</strong> por pulso eléctrico sin ruido.</p>
+            <h4>05. Agua Pura para Beber (20%)</h4>
+            <p>Solo el 20% que vas a beber pasa por los filtros finales de purificación para entregarte agua fresca y cristalina.</p>
             <button class="tren-seek-btn" onclick="seekTrenVideo(82)">⏱️ Ver en 1:22</button>
           </div>
         </div>
@@ -3617,8 +3783,8 @@ footer {
             <img src="img_tren/etapa6_valvula_retorno.jpg" alt="Cero Desperdicio 90 PSI">
           </div>
           <div class="tren-card-body">
-            <h4>06. Actuador en Válvula de Aguja (90 PSI)</h4>
-            <p>Válvula de aguja regulando 85–90 PSI con retorno de rechazo + acoplamiento de <strong>actuador motorizado</strong> para ajuste autónomo.</p>
+            <h4>06. Ajuste Automático de Presión</h4>
+            <p>Un pequeño motor ajusta la válvula de presión automáticamente y regresa el agua sobrante al riego para no desperdiciar nada.</p>
             <button class="tren-seek-btn" onclick="seekTrenVideo(118)">⏱️ Ver en 1:58</button>
           </div>
         </div>
@@ -3629,8 +3795,8 @@ footer {
             <img src="img_tren/etapa7_stokes_pozo.jpg" alt="Hidrodinámica Ley de Stokes">
           </div>
           <div class="tren-card-body">
-            <h4>07. Ley de Stokes Anti-Azolve</h4>
-            <p>Caudal calibrado para que la velocidad ascendente del agua sea menor a la caída de los granos de arena, evitando azolve del pozo.</p>
+            <h4>07. Extracción Suave que Cuida el Pozo</h4>
+            <p>Al subir el agua despacio, los granos de arena nunca suben a tapar los filtros y el pozo se mantiene limpio por años.</p>
             <button class="tren-seek-btn" onclick="seekTrenVideo(134)">⏱️ Ver en 2:14</button>
           </div>
         </div>
@@ -3641,8 +3807,8 @@ footer {
             <img src="img_tren/etapa8_recarga_pluvial.jpg" alt="Recarga y Cápsula del Tiempo">
           </div>
           <div class="tren-card-body">
-            <h4>08. Recarga + «Cápsula del Tiempo»</h4>
-            <p>Recarga pluvial activa + desarrollo del <strong>Nodo 1 Subterráneo</strong> con <strong>Batería de Tierra (Mg/Cu)</strong> y <em>Deep Sleep</em> de 5 a 10 años.</p>
+            <h4>08. Lluvia y «Cápsula del Tiempo»</h4>
+            <p>Captamos el agua de lluvia del techo y preparamos nuestro medidor con batería de tierra pensado para durar de 5 a 10 años.</p>
             <button class="tren-seek-btn" onclick="seekTrenVideo(156)">⏱️ Ver en 2:36</button>
           </div>
         </div>
@@ -3651,14 +3817,14 @@ footer {
   </section>
 
   <section id="calculadora">
-    <div class="section-header"><span class="section-tag" style="background:rgba(16,185,129,.18);color:#1E6043;border:1px solid #10b981">🟢 ESTADO: MODELO FINANCIERO Y RETORNO 80/20 DEFINIDO AL 100%</span><h2 class="section-title">Calculadora de Balance Hídrico 80/20 &amp; Payback</h2></div>
+    <div class="section-header"><span class="section-tag" style="color:#5C4B3E;letter-spacing:.2em;font-family:'Cormorant Garamond',Georgia,serif;font-weight:700">HOJA 4 · ECONOMÍA FAMILIAR</span><h2 class="section-title">¿Cuánto Ahorras en Casa con tu Pozo?</h2></div>
     <div class="calc-box">
       <div class="calc-controls">
         <div class="control-group"><label for="personasRange">Integrantes: <span id="personasVal" style="color:var(--cyan-primary);font-weight:700">4</span> personas</label><input type="range" id="personasRange" min="1" max="10" value="4" class="range-slider"></div>
         <div class="control-group"><label for="consumoRange">Consumo Diario: <span id="consumoVal" style="color:var(--cyan-primary);font-weight:700">480</span> L/día</label><input type="range" id="consumoRange" min="150" max="1200" step="10" value="480" class="range-slider"></div>
         <div style="background:rgba(0,229,255,.05);padding:1rem;border-radius:10px;border-left:3px solid var(--cyan-primary)"><p style="font-size:.85rem;color:var(--text-muted)">💡 <strong>Regla 80/20:</strong> Potabilizar todo requeriría 5x más membranas. Al purificar sólo el 20%, el costo de mantenimiento anual se reduce más de un 75%.</p></div>
         <div style="background:rgba(16,185,129,.08);padding:1rem;border-radius:10px;border:1px solid rgba(16,185,129,.3)">
-          <div style="font-size:.75rem;color:var(--emerald-accent);font-weight:700;text-transform:uppercase">Retorno de Inversión (Payback):</div>
+          <div style="font-size:.75rem;color:var(--emerald-accent);font-weight:700;text-transform:uppercase">En cuánto tiempo se paga solo:</div>
           <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.4rem"><span style="font-size:.9rem;color:var(--text-muted)">Ahorro vs Pipas ($1,200/mes):</span><span id="paybackVal" style="font-family:var(--font-heading);font-size:1.3rem;font-weight:800;color:var(--emerald-accent)">11.5 meses</span></div>
         </div>
       </div>
@@ -3678,7 +3844,7 @@ footer {
   <section id="derecho-comparado">
     <div class="section-header">
       <span class="section-tag">Investigación de Derecho Comparado &amp; Casos Globales</span>
-      <h2 class="section-title">Ciudades Gemelas con Pozos Someros Urbanos</h2>
+      <h2 class="section-title">Ciudades del Mundo que Usan Pozos Poco Profundos</h2>
     </div>
     <p style="color:var(--text-muted);font-size:.95rem;max-width:850px;margin-bottom:1.5rem;line-height:1.6">
       El aprovechamiento de aguas freáticas someras (1 a 10m) en zonas urbanas densas no es una improvisación: es una práctica reglamentada en las metrópolis más avanzadas del mundo para aliviar acuíferos sobreexplotados, reducir la presión en redes públicas y mitigar riesgos de inundación de cimientos:
@@ -3900,7 +4066,7 @@ footer {
         <div class="sim-box">
           <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;flex-wrap:wrap;gap:.5rem">
             <span style="font-family:var(--font-mono);font-size:.85rem;color:var(--emerald-accent);font-weight:700;text-transform:uppercase">
-              🧮 Simulador de Impacto Acuífero a Escala Comunitaria
+              🧮 Simulador de Impacto Agua a Escala Comunitaria
             </span>
             <span style="font-size:.8rem;color:var(--text-muted)">Tope doméstico: 150 m³/año por nodo</span>
           </div>
@@ -4320,7 +4486,7 @@ const officialZones=[
     diag:"🛑 RECHAZO TÉCNICO (KILL-SWITCH): Ladera inestable con falla geológica activa en Atlas de Protección Civil. Perforar incrementa riesgo de desestabilización rotacional. Alternativa: SCALL pluvial.",
     source:"Atlas Municipal de Riesgos Tijuana (Protección Civil), CENAPRED, SGM",
     factors:{topo:35,lito:20,hidro:30,riesgo:"VETO PC",calidad:30},
-    strata:[{name:"Suelo deslizamiento inestable",depth:4.0,color:"#5c3d2e"},{name:"Roca andesítica fracturada",depth:15.0,color:"#3d3b3c"},{name:"Zona de falla geológica",depth:25.0,color:"#242223"},{name:"Sin agua somera",depth:38.0,color:"#111"}]
+    strata:[{name:"Suelo deslizamiento inestable",depth:4.0,color:"#5c3d2e"},{name:"Roca andesítica fracturada",depth:15.0,color:"#3d3b3c"},{name:"Zona de falla geológica",depth:25.0,color:"#242223"},{name:"Sin agua de pozo poco profundo",depth:38.0,color:"#111"}]
   },
   {
     name:"Ladera Urbana Piloto (Fm. Otay & Micropozos)",
@@ -4557,7 +4723,7 @@ function initMap(){
             tds: 820,
             flow: 3.5,
             score: 86,
-            diag: `Demanda reportada: ${p.demanda}. Precio tambo 200L: $${p.precio_tambo || 'N/A'}, 1000L: $${p.precio_1000L || 'N/A'}. Viabilidad de micropozo somero con ROI de 11.5 meses frente a pipas ($1,200/mes).`,
+            diag: `Demanda reportada: ${p.demanda}. Precio tambo 200L: $${p.precio_tambo || 'N/A'}, 1000L: $${p.precio_1000L || 'N/A'}. Viabilidad de micropozo poco profundo con ROI de 11.5 meses frente a pipas ($1,200/mes).`,
             source: p.fuente || 'Reportes Reales de Demanda y Venta de Agua (Facebook 2026)',
             aquiferTag: 'Manto Somero Periférico',
             strata: [
@@ -5584,7 +5750,7 @@ async function initDiaCero(){
 
 // ==================== NAVEGACIÓN POR PANELES (vista sin scroll continuo) ====================
 const PANEL_IDS = ['hero','motor-hidro','solucion','calculadora','derecho-comparado'];
-const PANEL_LABELS = ['Portada','Varita Mágica (Mapa)','Agua de GIA (Pozo 001)','Calculadora 80/20','Derecho y Balance'];
+const PANEL_LABELS = ['1. Portada Poética','2. El Detector de Agua','3. Agua de Pozo','4. Ahorro en Casa','5. Derecho al Agua'];
 let currentPanel = 'hero';
 
 function panelIndex(id){ return PANEL_IDS.indexOf(id); }
@@ -5609,6 +5775,8 @@ function showPanel(id, opts){
   });
 
   const idx = panelIndex(id);
+  const nbInd = document.getElementById('notebook-page-indicator');
+  if(nbInd) nbInd.textContent = 'Hoja ' + (idx + 1) + ' / ' + PANEL_IDS.length;
   document.querySelectorAll('.panel-prev').forEach(b=>{ b.disabled = idx <= 0; });
   document.querySelectorAll('.panel-next').forEach(b=>{ b.disabled = idx >= PANEL_IDS.length - 1; });
 
@@ -5690,6 +5858,11 @@ function initPanelNav(){
 
   window.addEventListener('popstate', ()=>{
     showPanel(location.hash.slice(1) || 'hero', { push:false });
+  });
+  window.addEventListener('keydown', (ev)=>{
+    if(ev.target && (ev.target.tagName === 'INPUT' || ev.target.tagName === 'TEXTAREA' || ev.target.tagName === 'SELECT')) return;
+    if(ev.key === 'ArrowRight') panelStep(1);
+    else if(ev.key === 'ArrowLeft') panelStep(-1);
   });
   window.addEventListener('hashchange', ()=>{
     const id = location.hash.slice(1) || 'hero';
@@ -6827,58 +7000,58 @@ document.addEventListener('DOMContentLoaded',()=>{updateSimState();initCalc();in
 // ==================== SINÓPTICO INTERACTIVO DEL ALGORITMO (6 ETAPAS) ====================
 const SYNOPTIC_STEPS = [
   {
-    badge: "ETAPA 01 · 🟢 POZO REAL OPERANDO / 🔴 CÁPSULA EN DESARROLLO",
-    badgeStyle: "background:rgba(16,185,129,.2);color:#1E6043;border:1px solid #10b981",
-    title: "01. Extracción Somera (Pozo 001 a 7 m) y «Cápsula del Tiempo del Agua»",
-    desc: "El agua sale del manto colgado a 7 metros en el Pozo 001 con caudal calibrado bajo la Ley de Stokes para no arrastrar arena. En paralelo, el registro subterráneo aloja el prototipo del Nodo 1 («Cápsula del Tiempo»): mide nivel con campana de aire (0–40 kPa), se recarga con una Batería de Tierra (ánodo de magnesio y tubo de cobre en tierra húmeda) y usa Deep Sleep para durar de 5 a 10 años sin red eléctrica ni Wi-Fi.",
-    sensors: "Campana de aire HX710B (0–40 kPa), TDS con corte MOSFET (99% OFF) y voltaje de Batería de Tierra (Mg/Cu + BQ25504).",
-    actuators: "Bomba de extracción somera (24V) + Placa LilyGO T-A7670G (ESP32 + 4G LTE + Memoria Flash LittleFS).",
-    rule: "Guarda primero en CSV local; transmite cada 30–60 min por Wi-Fi, 1/día por 4G, o entra en Deep Sleep (backoff de 1/día hasta 1/año)."
+    badge: "PASO 1 · 🟢 POZO FUNCIONANDO / 🔴 CÁPSULA EN DESARROLLO",
+    badgeStyle: "background:rgba(30,96,67,.14);color:#1E6043;border:1px solid #1E6043",
+    title: "1. Sacar Agua del Pozo Poco Profundo (a 7 metros)",
+    desc: "El agua sube suavemente desde 7 metros bajo tierra sin arrastrar arena. Aquí también estamos desarrollando la «Cápsula del Tiempo del Agua»: un medidor subterráneo independiente que se recarga con una batería de tierra (magnesio y cobre) y se duerme cuando no hay internet para durar de 5 a 10 años.",
+    sensors: "Medidor de nivel de agua por aire y energía de la batería de tierra.",
+    actuators: "Bomba suave de bajo consumo y memoria guardada dentro del pozo.",
+    rule: "Subir el agua despacio para que salga clara y guardar las lecturas aunque no haya luz ni Wi-Fi."
   },
   {
-    badge: "ETAPA 02 · 🟢 LLENADO 1 BBL / 🟡 SOLENOIDES EN INTEGRACIÓN",
-    badgeStyle: "background:rgba(245,158,11,.2);color:#9A4406;border:1px solid #f59e0b",
-    title: "02. Llenado Automático por Lote (1 BBL / 117.3 L) y Calibración de Vacío",
-    desc: "Antes de energizar los electrodos, el ESP32 mide el Voltaje en Vacío real de la fuente de 12V/15A (típicamente 11.4 V – 11.6 V) mientras la Válvula Solenoide SV-01 abre el paso hacia el reactor de 1 BBL (~117.3 litros). Al confirmar la inmersión al 50% de la varilla, el sistema captura la caída de tensión inicial y fija la línea base dinámica de ese lote.",
-    sensors: "Medidor de flujo por efecto Hall en interrupción + Divisor de voltaje pasivo en ADC1 (GPIO34) leyendo V_vacío.",
-    actuators: "Válvula Solenoide de Llenado (SV-01) controlada por Relé.",
-    rule: "Paso 1: Registrar V_vacío sin carga. Paso 2: Al llenar lote y activar potencia, estabilizar 5 s y guardar V_base (~10.60 V, ΔV = 1.0 V)."
+    badge: "PASO 2 · 🟢 TANQUE DE 117 LITROS / 🟡 VÁLVULAS AUTOMÁTICAS",
+    badgeStyle: "background:rgba(154,68,6,.14);color:#9A4406;border:1px solid #9A4406",
+    title: "2. Llenado Automático del Primer Tanque",
+    desc: "Una válvula eléctrica abre el paso para llenar un lote de 117 litros de agua de pozo. Antes de empezar a limpiarla, el sistema revisa su energía para adaptarse a qué tan cargada de minerales viene el agua ese día.",
+    sensors: "Contador de litros de agua y lector de energía al iniciar.",
+    actuators: "Primera válvula eléctrica de llenado automático.",
+    rule: "Llenar el tanque a la medida exacta y calibrarse automáticamente antes de limpiar."
   },
   {
-    badge: "ETAPA 03 · 🟢 PROBADO EMPÍRICAMENTE EN LOTE DE 1 BBL (12V / 15A)",
-    badgeStyle: "background:rgba(16,185,129,.2);color:#1E6043;border:1px solid #10b981",
-    title: "03. Electrofloculación Dinámica (12V/15A, Sin Químicos) y Barrido de H₂",
-    desc: "Se descartó medir impedancia en reposo por la polarización de electrodos y la capa aislante de microburbujas de hidrógeno (H₂). En su lugar, el ESP32 monitorea en tiempo real (1 Hz) la caída de tensión (ΔV) sin interrumpir la floculación, y activa pulsos de bomba superficial de 30 a 45 segundos cada 5 a 7 minutos para barrer las placas sin destruir la nata blanca superior.",
-    sensors: "Divisor de voltaje continuo en GPIO34 (0–12V mapeado a 0–2.8V). Vigila Zona Verde (≥10.40V), Amarilla (10.30–10.40V) y Roja (<10.30V).",
-    actuators: "Relé de Potencia DC 12V/15A (RELAY_POWER) + Relé de Bomba de Recirculación/Oxigenación (RELAY_PUMP).",
-    rule: "Si V_carga < 10.30 V de forma sostenida, corta por sobrecorriente. Finaliza a los 60–90 min o al detectar el punto de inflexión (ΔV regresa hacia V_vacío)."
+    badge: "PASO 3 · 🟢 FUNCIONANDO SIN QUÍMICOS",
+    badgeStyle: "background:rgba(30,96,67,.14);color:#1E6043;border:1px solid #1E6043",
+    title: "3. Agrupar la Tierra con Electricidad Suave (Sin Químicos)",
+    desc: "No usamos ningún producto químico. Con corriente eléctrica suave de 12 voltios hacemos que las partículas invisibles del agua de pozo se junten solas. Cada pocos minutos una pequeña bomba limpia las burbujas para que el proceso nunca pierda fuerza.",
+    sensors: "Vigilancia continua de la energía para saber cuándo ya se agrupó toda la tierra.",
+    actuators: "Placas limpiadoras de 12V y bomba de barrido de burbujas.",
+    rule: "Separar los sólidos de forma 100% física y apagar en cuanto el agua queda lista para reposar."
   },
   {
-    badge: "ETAPA 04 · 🟡 ALGORITMO DE REPOSO FORZADO Y PRUEBAS DE TDS",
-    badgeStyle: "background:rgba(245,158,11,.2);color:#9A4406;border:1px solid #f59e0b",
-    title: "04. Reposo Forzado por Algoritmo (Cero Biofine / Separación Física Pura)",
-    desc: "No se utiliza Biofine ni floculantes químicos externos. Como mover el agua antes de tiempo rompe el flóculo y arruina la clarificación, el algoritmo impone un bloqueo estricto de Reposo Forzado tras apagar los electrodos: ninguna válvula solenoide ni bomba puede encenderse hasta completar el tiempo de sedimentación. Al finalizar, mide TDS en frío sin ruido eléctrico.",
-    sensors: "Temporizador de bloqueo de sedimentación + Sensor de TDS energizado por pulso (MOSFET/GPIO) con la fuente DC apagada.",
-    actuators: "Bloqueo por software de todas las válvulas y bombas + Válvula inferior de purga de lodos.",
-    rule: "Bloquear trasvase durante el reposo obligatorio. Si un comando intenta abrir SV-02 antes de tiempo, el controlador rechaza la orden."
+    badge: "PASO 4 · 🟡 REPOSO PROTEGIDO Y MEDICIÓN DE PUREZA",
+    badgeStyle: "background:rgba(154,68,6,.14);color:#9A4406;border:1px solid #9A4406",
+    title: "4. Reposo Tranquilo del Agua (Paciencia Obligatoria)",
+    desc: "Para que la tierra agrupada caiga al fondo y el agua quede cristalina, no se debe mover antes de tiempo. El sistema bloquea todas las válvulas durante el reposo para que nada agite el agua y al final revisa las sales disueltas.",
+    sensors: "Reloj de reposo tranquilo y medidor de sales del agua.",
+    actuators: "Candado automático que mantiene cerradas las bombas y válvulas mientras asienta.",
+    rule: "Prohibido pasar el agua al siguiente tanque hasta que haya reposado por completo."
   },
   {
-    badge: "ETAPA 05 · 🟡 EN INTEGRACIÓN HIDRÁULICA AUTOMÁTICA",
-    badgeStyle: "background:rgba(245,158,11,.2);color:#9A4406;border:1px solid #f59e0b",
-    title: "05. Trasvase por Solenoide y Protección de 80 Micras contra Limo y Mica",
-    desc: "Una vez cumplido el reposo forzado y asentado el flóculo, el controlador abre la Válvula Solenoide de Trasvase (SV-02) tomando únicamente el agua clarificada superior. Antes de entrar a la bomba presurizadora, pasa por un prefiltro de malla de 80 micras que retiene cualquier rastro de limo o mica del acuífero de Tijuana.",
-    sensors: "Caudalímetro Hall de transferencia + Verificación de nivel en tanque de distribución.",
-    actuators: "Válvula Solenoide de Trasvase (SV-02) + Prefiltro físico lavable de 80 micras.",
-    rule: "Derivar el 80% del volumen clarificado hacia almacenamiento doméstico y riego de áreas verdes sin gastar energía extra."
+    badge: "PASO 5 · 🟡 PASO DE AGUA CLARA Y FILTRO FINO",
+    badgeStyle: "background:rgba(154,68,6,.14);color:#9A4406;border:1px solid #9A4406",
+    title: "5. Pasar el Agua Clara al Tanque Limpio",
+    desc: "Cuando el agua ya reposó, una segunda válvula eléctrica toma solo el agua clara de arriba y la pasa por una malla muy fina que detiene cualquier granito restante. Aquí nace el 80% del agua lista para regar y usar en casa.",
+    sensors: "Verificador de paso de agua hacia el tanque limpio.",
+    actuators: "Segunda válvula eléctrica y filtro lavable de malla fina.",
+    rule: "Aprovechar el 80% del agua limpia para jardín, limpieza y sanitarios."
   },
   {
-    badge: "ETAPA 06 · 🟡 ACTUADOR EN VÁLVULA DE AGUJA EN CALIBRACIÓN",
-    badgeStyle: "background:rgba(245,158,11,.2);color:#9A4406;border:1px solid #f59e0b",
-    title: "06. Ultrapurificación 20% con Válvula de Aguja Motorizada (85–90 PSI)",
-    desc: "El 20% destinado a agua para beber ingresa a la membrana de Ósmosis Inversa impulsado por la bomba de diafragma. Un actuador motorizado acoplado a la válvula de aguja ajusta continuamente la restricción del rechazo leyendo el transductor de presión de acero inoxidable 316 (0–100 PSI), manteniendo siempre 85–90 PSI óptimos y reintegrando el rechazo al riego (Cero Desperdicio).",
-    sensors: "Transductor industrial 0–100 PSI (Acero Inox 316, salida 0.5–4.5V) + Sensor TDS final en línea de agua producto.",
-    actuators: "Bomba Booster RO + Servomotor/Actuador acoplado mecánicamente a la Válvula de Aguja de rechazo.",
-    rule: "Si PSI < 86, cierra ligeramente la válvula de aguja; si PSI > 90, abre ligeramente; si PSI > 98, ejecuta paro de protección de membrana."
+    badge: "PASO 6 · 🟡 AJUSTE AUTOMÁTICO DE AGUA PARA BEBER",
+    badgeStyle: "background:rgba(154,68,6,.14);color:#9A4406;border:1px solid #9A4406",
+    title: "6. Purificación Final para Beber (20%) con Cero Desperdicio",
+    desc: "Solo el 20% que vamos a beber y usar para cocinar pasa por el filtro final de ósmosis. Un pequeño motor mueve una válvula de aguja para mantener la presión exacta (85 a 90 PSI) y el agua restante regresa al jardín para no desperdiciar ni una gota.",
+    sensors: "Medidor de presión en acero inoxidable y medidor final de pureza.",
+    actuators: "Motor automático que ajusta la válvula de aguja por sí solo.",
+    rule: "Entregar agua pura en el vaso y regresar el resto al riego: cero agua tirada al drenaje."
   }
 ];
 
