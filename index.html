@@ -18,68 +18,6 @@
   
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX">
-// ==================== INTERACCIÓN DEL MODELO 3D (VERDE, AMARILLO Y ROJO) ====================
-const MODEL_3D_PARTS = [
-  {
-    badge: "🟢 PARTE 1 · YA FUNCIONANDO AL 100%",
-    color: "#1E6043",
-    title: "1. Recarga del Acuífero con Agua de Lluvia",
-    desc: "Cuando llueve, el agua que cae en el techo de la casa se conduce limpia hacia el subsuelo. Así alimentamos la tierra y devolvemos agua al acuífero."
-  },
-  {
-    badge: "🟢 PARTE 2 · YA FUNCIONANDO AL 100%",
-    color: "#1E6043",
-    title: "2. Extracción del Agua de Pozo (a 7 metros)",
-    desc: "Sacamos agua de pozo poco profundo (entre 3 y 8 metros bajo casa) con una bomba suave de bajo consumo que sube el agua clara y sin arena."
-  },
-  {
-    badge: "🔴 PARTE 3 · EN DESARROLLO (CÁPSULA DEL TIEMPO)",
-    color: "#9E2A2B",
-    title: "3. Telemetría y «Cápsula del Tiempo del Agua» (5 a 10 años)",
-    desc: "Un medidor independiente dentro del pozo que vigila cuánta agua hay y su pureza. Se recarga con una batería de tierra y se duerme cuando no hay Wi-Fi para durar de 5 a 10 años."
-  },
-  {
-    badge: "🟢/🟡 PARTE 4 · LIMPIEZA LISTA / VÁLVULAS EN AJUSTE",
-    color: "#9A4406",
-    title: "4. Limpieza sin Químicos y Reposo Automático",
-    desc: "Con electricidad suave (12V) agrupamos la tierra suspendida sin usar ningún químico. Estamos calibrando las válvulas automáticas que obligan a dejar reposar el agua antes de pasarla al tanque limpio."
-  },
-  {
-    badge: "🟢 PARTE 5 · YA FUNCIONANDO",
-    color: "#1E6043",
-    title: "5. Agua para Uso Rústico, Jardín y Baños (80%)",
-    desc: "La mayor parte del agua que usa una casa no necesita ser de garrafón: el 80% va directo para regar plantas, lavar el patio y los excusados."
-  },
-  {
-    badge: "🟢/🟡 PARTE 6 · FILTROS LISTOS / VÁLVULA AUTOMÁTICA EN AJUSTE",
-    color: "#9A4406",
-    title: "6. Agua Purificada para Bañarse y Tomar (20%)",
-    desc: "La otra parte pasa por purificación fina (Ósmosis Inversa y Luz UV) para bañarse y tomar agua cristalina. Un pequeño motor ajusta la válvula automáticamente y regresa el agua sobrante al jardín."
-  }
-];
-
-function selectModel3dPart(idx) {
-  const p = MODEL_3D_PARTS[idx];
-  if (!p) return;
-  const box = document.getElementById('model3d-info-box');
-  const b = document.getElementById('model3d-info-badge');
-  const t = document.getElementById('model3d-info-title');
-  const d = document.getElementById('model3d-info-desc');
-  if (box) box.style.borderLeftColor = p.color;
-  if (b) { b.textContent = p.badge; b.style.color = p.color; }
-  if (t) t.textContent = p.title;
-  if (d) d.textContent = p.desc;
-}
-
-function switch3dVideo(src) {
-  const v = document.getElementById('animacion3DPlayer');
-  const s = document.getElementById('animacion3DSource');
-  if (!v || !s) return;
-  s.src = src;
-  v.load();
-  v.play().catch(()=>{});
-}
-
 </script>
   <script>
     window.dataLayer = window.dataLayer || [];
@@ -87,264 +25,16 @@ function switch3dVideo(src) {
     gtag('js', new Date());
     gtag('config', window.GA_MEASUREMENT_ID || 'G-XXXXXXXXXX');
   
-// ==================== INTERACCIÓN DEL MODELO 3D (VERDE, AMARILLO Y ROJO) ====================
-const MODEL_3D_PARTS = [
-  {
-    badge: "🟢 PARTE 1 · YA FUNCIONANDO AL 100%",
-    color: "#1E6043",
-    title: "1. Recarga del Acuífero con Agua de Lluvia",
-    desc: "Cuando llueve, el agua que cae en el techo de la casa se conduce limpia hacia el subsuelo. Así alimentamos la tierra y devolvemos agua al acuífero."
-  },
-  {
-    badge: "🟢 PARTE 2 · YA FUNCIONANDO AL 100%",
-    color: "#1E6043",
-    title: "2. Extracción del Agua de Pozo (a 7 metros)",
-    desc: "Sacamos agua de pozo poco profundo (entre 3 y 8 metros bajo casa) con una bomba suave de bajo consumo que sube el agua clara y sin arena."
-  },
-  {
-    badge: "🔴 PARTE 3 · EN DESARROLLO (CÁPSULA DEL TIEMPO)",
-    color: "#9E2A2B",
-    title: "3. Telemetría y «Cápsula del Tiempo del Agua» (5 a 10 años)",
-    desc: "Un medidor independiente dentro del pozo que vigila cuánta agua hay y su pureza. Se recarga con una batería de tierra y se duerme cuando no hay Wi-Fi para durar de 5 a 10 años."
-  },
-  {
-    badge: "🟢/🟡 PARTE 4 · LIMPIEZA LISTA / VÁLVULAS EN AJUSTE",
-    color: "#9A4406",
-    title: "4. Limpieza sin Químicos y Reposo Automático",
-    desc: "Con electricidad suave (12V) agrupamos la tierra suspendida sin usar ningún químico. Estamos calibrando las válvulas automáticas que obligan a dejar reposar el agua antes de pasarla al tanque limpio."
-  },
-  {
-    badge: "🟢 PARTE 5 · YA FUNCIONANDO",
-    color: "#1E6043",
-    title: "5. Agua para Uso Rústico, Jardín y Baños (80%)",
-    desc: "La mayor parte del agua que usa una casa no necesita ser de garrafón: el 80% va directo para regar plantas, lavar el patio y los excusados."
-  },
-  {
-    badge: "🟢/🟡 PARTE 6 · FILTROS LISTOS / VÁLVULA AUTOMÁTICA EN AJUSTE",
-    color: "#9A4406",
-    title: "6. Agua Purificada para Bañarse y Tomar (20%)",
-    desc: "La otra parte pasa por purificación fina (Ósmosis Inversa y Luz UV) para bañarse y tomar agua cristalina. Un pequeño motor ajusta la válvula automáticamente y regresa el agua sobrante al jardín."
-  }
-];
-
-function selectModel3dPart(idx) {
-  const p = MODEL_3D_PARTS[idx];
-  if (!p) return;
-  const box = document.getElementById('model3d-info-box');
-  const b = document.getElementById('model3d-info-badge');
-  const t = document.getElementById('model3d-info-title');
-  const d = document.getElementById('model3d-info-desc');
-  if (box) box.style.borderLeftColor = p.color;
-  if (b) { b.textContent = p.badge; b.style.color = p.color; }
-  if (t) t.textContent = p.title;
-  if (d) d.textContent = p.desc;
-}
-
-function switch3dVideo(src) {
-  const v = document.getElementById('animacion3DPlayer');
-  const s = document.getElementById('animacion3DSource');
-  if (!v || !s) return;
-  s.src = src;
-  v.load();
-  v.play().catch(()=>{});
-}
-
 </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=Alex+Brush&family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js">
-// ==================== INTERACCIÓN DEL MODELO 3D (VERDE, AMARILLO Y ROJO) ====================
-const MODEL_3D_PARTS = [
-  {
-    badge: "🟢 PARTE 1 · YA FUNCIONANDO AL 100%",
-    color: "#1E6043",
-    title: "1. Recarga del Acuífero con Agua de Lluvia",
-    desc: "Cuando llueve, el agua que cae en el techo de la casa se conduce limpia hacia el subsuelo. Así alimentamos la tierra y devolvemos agua al acuífero."
-  },
-  {
-    badge: "🟢 PARTE 2 · YA FUNCIONANDO AL 100%",
-    color: "#1E6043",
-    title: "2. Extracción del Agua de Pozo (a 7 metros)",
-    desc: "Sacamos agua de pozo poco profundo (entre 3 y 8 metros bajo casa) con una bomba suave de bajo consumo que sube el agua clara y sin arena."
-  },
-  {
-    badge: "🔴 PARTE 3 · EN DESARROLLO (CÁPSULA DEL TIEMPO)",
-    color: "#9E2A2B",
-    title: "3. Telemetría y «Cápsula del Tiempo del Agua» (5 a 10 años)",
-    desc: "Un medidor independiente dentro del pozo que vigila cuánta agua hay y su pureza. Se recarga con una batería de tierra y se duerme cuando no hay Wi-Fi para durar de 5 a 10 años."
-  },
-  {
-    badge: "🟢/🟡 PARTE 4 · LIMPIEZA LISTA / VÁLVULAS EN AJUSTE",
-    color: "#9A4406",
-    title: "4. Limpieza sin Químicos y Reposo Automático",
-    desc: "Con electricidad suave (12V) agrupamos la tierra suspendida sin usar ningún químico. Estamos calibrando las válvulas automáticas que obligan a dejar reposar el agua antes de pasarla al tanque limpio."
-  },
-  {
-    badge: "🟢 PARTE 5 · YA FUNCIONANDO",
-    color: "#1E6043",
-    title: "5. Agua para Uso Rústico, Jardín y Baños (80%)",
-    desc: "La mayor parte del agua que usa una casa no necesita ser de garrafón: el 80% va directo para regar plantas, lavar el patio y los excusados."
-  },
-  {
-    badge: "🟢/🟡 PARTE 6 · FILTROS LISTOS / VÁLVULA AUTOMÁTICA EN AJUSTE",
-    color: "#9A4406",
-    title: "6. Agua Purificada para Bañarse y Tomar (20%)",
-    desc: "La otra parte pasa por purificación fina (Ósmosis Inversa y Luz UV) para bañarse y tomar agua cristalina. Un pequeño motor ajusta la válvula automáticamente y regresa el agua sobrante al jardín."
-  }
-];
-
-function selectModel3dPart(idx) {
-  const p = MODEL_3D_PARTS[idx];
-  if (!p) return;
-  const box = document.getElementById('model3d-info-box');
-  const b = document.getElementById('model3d-info-badge');
-  const t = document.getElementById('model3d-info-title');
-  const d = document.getElementById('model3d-info-desc');
-  if (box) box.style.borderLeftColor = p.color;
-  if (b) { b.textContent = p.badge; b.style.color = p.color; }
-  if (t) t.textContent = p.title;
-  if (d) d.textContent = p.desc;
-}
-
-function switch3dVideo(src) {
-  const v = document.getElementById('animacion3DPlayer');
-  const s = document.getElementById('animacion3DSource');
-  if (!v || !s) return;
-  s.src = src;
-  v.load();
-  v.play().catch(()=>{});
-}
-
 </script>
   <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js">
-// ==================== INTERACCIÓN DEL MODELO 3D (VERDE, AMARILLO Y ROJO) ====================
-const MODEL_3D_PARTS = [
-  {
-    badge: "🟢 PARTE 1 · YA FUNCIONANDO AL 100%",
-    color: "#1E6043",
-    title: "1. Recarga del Acuífero con Agua de Lluvia",
-    desc: "Cuando llueve, el agua que cae en el techo de la casa se conduce limpia hacia el subsuelo. Así alimentamos la tierra y devolvemos agua al acuífero."
-  },
-  {
-    badge: "🟢 PARTE 2 · YA FUNCIONANDO AL 100%",
-    color: "#1E6043",
-    title: "2. Extracción del Agua de Pozo (a 7 metros)",
-    desc: "Sacamos agua de pozo poco profundo (entre 3 y 8 metros bajo casa) con una bomba suave de bajo consumo que sube el agua clara y sin arena."
-  },
-  {
-    badge: "🔴 PARTE 3 · EN DESARROLLO (CÁPSULA DEL TIEMPO)",
-    color: "#9E2A2B",
-    title: "3. Telemetría y «Cápsula del Tiempo del Agua» (5 a 10 años)",
-    desc: "Un medidor independiente dentro del pozo que vigila cuánta agua hay y su pureza. Se recarga con una batería de tierra y se duerme cuando no hay Wi-Fi para durar de 5 a 10 años."
-  },
-  {
-    badge: "🟢/🟡 PARTE 4 · LIMPIEZA LISTA / VÁLVULAS EN AJUSTE",
-    color: "#9A4406",
-    title: "4. Limpieza sin Químicos y Reposo Automático",
-    desc: "Con electricidad suave (12V) agrupamos la tierra suspendida sin usar ningún químico. Estamos calibrando las válvulas automáticas que obligan a dejar reposar el agua antes de pasarla al tanque limpio."
-  },
-  {
-    badge: "🟢 PARTE 5 · YA FUNCIONANDO",
-    color: "#1E6043",
-    title: "5. Agua para Uso Rústico, Jardín y Baños (80%)",
-    desc: "La mayor parte del agua que usa una casa no necesita ser de garrafón: el 80% va directo para regar plantas, lavar el patio y los excusados."
-  },
-  {
-    badge: "🟢/🟡 PARTE 6 · FILTROS LISTOS / VÁLVULA AUTOMÁTICA EN AJUSTE",
-    color: "#9A4406",
-    title: "6. Agua Purificada para Bañarse y Tomar (20%)",
-    desc: "La otra parte pasa por purificación fina (Ósmosis Inversa y Luz UV) para bañarse y tomar agua cristalina. Un pequeño motor ajusta la válvula automáticamente y regresa el agua sobrante al jardín."
-  }
-];
-
-function selectModel3dPart(idx) {
-  const p = MODEL_3D_PARTS[idx];
-  if (!p) return;
-  const box = document.getElementById('model3d-info-box');
-  const b = document.getElementById('model3d-info-badge');
-  const t = document.getElementById('model3d-info-title');
-  const d = document.getElementById('model3d-info-desc');
-  if (box) box.style.borderLeftColor = p.color;
-  if (b) { b.textContent = p.badge; b.style.color = p.color; }
-  if (t) t.textContent = p.title;
-  if (d) d.textContent = p.desc;
-}
-
-function switch3dVideo(src) {
-  const v = document.getElementById('animacion3DPlayer');
-  const s = document.getElementById('animacion3DSource');
-  if (!v || !s) return;
-  s.src = src;
-  v.load();
-  v.play().catch(()=>{});
-}
-
 </script>
   <script src="data/tambos_demanda.js">
-// ==================== INTERACCIÓN DEL MODELO 3D (VERDE, AMARILLO Y ROJO) ====================
-const MODEL_3D_PARTS = [
-  {
-    badge: "🟢 PARTE 1 · YA FUNCIONANDO AL 100%",
-    color: "#1E6043",
-    title: "1. Recarga del Acuífero con Agua de Lluvia",
-    desc: "Cuando llueve, el agua que cae en el techo de la casa se conduce limpia hacia el subsuelo. Así alimentamos la tierra y devolvemos agua al acuífero."
-  },
-  {
-    badge: "🟢 PARTE 2 · YA FUNCIONANDO AL 100%",
-    color: "#1E6043",
-    title: "2. Extracción del Agua de Pozo (a 7 metros)",
-    desc: "Sacamos agua de pozo poco profundo (entre 3 y 8 metros bajo casa) con una bomba suave de bajo consumo que sube el agua clara y sin arena."
-  },
-  {
-    badge: "🔴 PARTE 3 · EN DESARROLLO (CÁPSULA DEL TIEMPO)",
-    color: "#9E2A2B",
-    title: "3. Telemetría y «Cápsula del Tiempo del Agua» (5 a 10 años)",
-    desc: "Un medidor independiente dentro del pozo que vigila cuánta agua hay y su pureza. Se recarga con una batería de tierra y se duerme cuando no hay Wi-Fi para durar de 5 a 10 años."
-  },
-  {
-    badge: "🟢/🟡 PARTE 4 · LIMPIEZA LISTA / VÁLVULAS EN AJUSTE",
-    color: "#9A4406",
-    title: "4. Limpieza sin Químicos y Reposo Automático",
-    desc: "Con electricidad suave (12V) agrupamos la tierra suspendida sin usar ningún químico. Estamos calibrando las válvulas automáticas que obligan a dejar reposar el agua antes de pasarla al tanque limpio."
-  },
-  {
-    badge: "🟢 PARTE 5 · YA FUNCIONANDO",
-    color: "#1E6043",
-    title: "5. Agua para Uso Rústico, Jardín y Baños (80%)",
-    desc: "La mayor parte del agua que usa una casa no necesita ser de garrafón: el 80% va directo para regar plantas, lavar el patio y los excusados."
-  },
-  {
-    badge: "🟢/🟡 PARTE 6 · FILTROS LISTOS / VÁLVULA AUTOMÁTICA EN AJUSTE",
-    color: "#9A4406",
-    title: "6. Agua Purificada para Bañarse y Tomar (20%)",
-    desc: "La otra parte pasa por purificación fina (Ósmosis Inversa y Luz UV) para bañarse y tomar agua cristalina. Un pequeño motor ajusta la válvula automáticamente y regresa el agua sobrante al jardín."
-  }
-];
-
-function selectModel3dPart(idx) {
-  const p = MODEL_3D_PARTS[idx];
-  if (!p) return;
-  const box = document.getElementById('model3d-info-box');
-  const b = document.getElementById('model3d-info-badge');
-  const t = document.getElementById('model3d-info-title');
-  const d = document.getElementById('model3d-info-desc');
-  if (box) box.style.borderLeftColor = p.color;
-  if (b) { b.textContent = p.badge; b.style.color = p.color; }
-  if (t) t.textContent = p.title;
-  if (d) d.textContent = p.desc;
-}
-
-function switch3dVideo(src) {
-  const v = document.getElementById('animacion3DPlayer');
-  const s = document.getElementById('animacion3DSource');
-  if (!v || !s) return;
-  s.src = src;
-  v.load();
-  v.play().catch(()=>{});
-}
-
 </script>
 <style>
 :root{
@@ -3853,47 +3543,167 @@ body {
     <div class="section-header">
       <span class="section-tag" style="color:#5C4B3E;letter-spacing:.2em;font-family:'Cormorant Garamond',Georgia,serif;font-weight:700">HOJA 4 · CÓMO CORRE EL AGUA EN TU CASA</span>
       <h2 class="section-title">El Modelo 3D: Lluvia, Pozo, Uso en Casa y Telemetría</h2>
-      <p style="color:#4A3B32;font-size:1.05rem;max-width:840px;line-height:1.65;margin-top:.4rem">
-        Con palabras sencillas: nuestro modelo une <strong>la lluvia que cae en tu techo</strong>, <strong>el agua de tu pozo poco profundo</strong>, <strong>dos salidas de agua para la casa</strong> (una rústica para regar/patio y otra limpia para bañarse y tomar) y <strong>sensores inteligentes (telemetría)</strong>.
+      <p style="color:#4A3B32;font-size:1.05rem;max-width:860px;line-height:1.65;margin-top:.4rem">
+        Con palabras muy fáciles: este es nuestro <strong>modelo 3D en SketchUp</strong>. Une la <strong>recarga del acuífero con agua de lluvia</strong>, la <strong>extracción del agua de pozo poco profundo</strong>, <strong>una parte de agua para uso rústico</strong> (jardín, patio, excusado), <strong>otra parte para bañarse y tomar</strong>, y la <strong>telemetría</strong>.
       </p>
     </div>
 
-    <!-- LAS 4 PARTES DEL MODELO EXPLICADAS DE FORMA SÚPER SENCILLA -->
+    <!-- DIBUJO 3D REAL EN SKETCHUP PINTADO DE VERDE, AMARILLO Y ROJO SEGÚN EL AVANCE -->
+    <div class="paper-sheet" style="padding:1.65rem;margin-bottom:2rem">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;margin-bottom:1.1rem;padding-bottom:.9rem;border-bottom:1px solid rgba(139,94,60,.2)">
+        <div>
+          <h3 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.7rem;color:#2B211B;margin:0">Modelo 3D en SketchUp Pintado por Avance (🟢 🟡 🔴)</h3>
+          <p style="font-size:.92rem;color:#4A3B32;margin:.25rem 0 0">
+            Pintamos nuestro dibujo 3D en <strong>verde, amarillo y rojo</strong> según lo que ya está listo, lo que estamos calibrando y lo que está en desarrollo. <strong>Toca cualquier número o zona del modelo 3D:</strong>
+          </p>
+        </div>
+        <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+          <button type="button" id="btnViewSketchup" class="btn-secondary" onclick="set3dBaseImage('sketchup')" style="font-size:.8rem;padding:.4rem .85rem;background:#2B211B;color:#F6F4EE;border-color:#2B211B">📐 Dibujo 3D SketchUp</button>
+          <button type="button" id="btnViewRender" class="btn-secondary" onclick="set3dBaseImage('render')" style="font-size:.8rem;padding:.4rem .85rem">🏛️ Render 3D Realista</button>
+          <button type="button" id="btnToggleColors" class="btn-secondary" onclick="toggle3dColorOverlay()" style="font-size:.8rem;padding:.4rem .85rem">🎨 Ocultar / Ver Colores</button>
+        </div>
+      </div>
+
+      <!-- Leyenda rápida de los 3 colores -->
+      <div style="display:flex;gap:.65rem;flex-wrap:wrap;font-size:.82rem;font-weight:700;margin-bottom:1rem">
+        <span style="padding:.32rem .8rem;border-radius:99px;background:rgba(16,185,129,.15);color:#1E6043;border:1px solid #10b981">🟢 Verde: Ya Funcionando (100% Probado en Casa)</span>
+        <span style="padding:.32rem .8rem;border-radius:99px;background:rgba(245,158,11,.18);color:#9A4406;border:1px solid #f59e0b">🟡 Amarillo: Ajustando Válvulas Automáticas</span>
+        <span style="padding:.32rem .8rem;border-radius:99px;background:rgba(244,63,94,.16);color:#9E2A2B;border:1px solid #f43f5e">🔴 Rojo: En Desarrollo (Telemetría / Cápsula del Tiempo)</span>
+      </div>
+
+      <!-- CONTENEDOR DEL MODELO 3D SKETCHUP REAL + PINTURA VERDE / AMARILLO / ROJO -->
+      <div style="position:relative;border-radius:14px;overflow:hidden;border:1px solid rgba(139,94,60,.3);box-shadow:0 10px 28px rgba(43,33,27,.12);background:#E5E0D5;max-width:1040px;margin:0 auto">
+        <img id="model3dBaseImg" src="assets/sketchup_modelo_3d.jpg" alt="Modelo 3D en SketchUp — Agua de Gía" style="width:100%;height:auto;display:block">
+
+        <!-- CAPA SVG PINTADA DIRECTAMENTE SOBRE LAS PIEZAS DEL MODELO 3D EN SKETCHUP (1189 x 720) -->
+        <svg id="model3dOverlaySvg" viewBox="0 0 1189 720" style="position:absolute;inset:0;width:100%;height:100%;display:block;font-family:'Plus Jakarta Sans',sans-serif;transition:opacity .25s">
+          
+          <!-- ==================== 🟢 1. RECARGA DEL ACUÍFERO CON AGUA DE LLUVIA (VERDE) ==================== -->
+          <g onclick="selectModel3dPart(0)" style="cursor:pointer">
+            <!-- Pintura verde sobre el tanque cuadrado de captación pluvial y bajante del techo -->
+            <polygon points="353,384 468,375 519,402 519,548 393,568 353,520" fill="rgba(16,185,129,0.28)" stroke="#059669" stroke-width="3.5"/>
+            <!-- Tubería blanca de inyección de lluvia al acuífero -->
+            <path d="M 405,198 L 415,382 M 456,542 L 462,562 L 585,546" fill="none" stroke="#10b981" stroke-width="8" stroke-linecap="round"/>
+            <!-- Etiqueta flotante 1 -->
+            <rect x="65" y="425" width="265" height="74" rx="12" fill="rgba(246,244,238,0.95)" stroke="#059669" stroke-width="3"/>
+            <text x="197" y="451" fill="#1E6043" font-size="15" font-weight="800" text-anchor="middle">🟢 1. RECARGA DEL ACUÍFERO</text>
+            <text x="197" y="472" fill="#2B211B" font-size="13" font-weight="600" text-anchor="middle">Agua de lluvia del techo al subsuelo</text>
+            <text x="197" y="490" fill="#1E6043" font-size="11.5" font-weight="700" text-anchor="middle">(Alimenta la tierra y el pozo)</text>
+          </g>
+
+          <!-- ==================== 🟢 2. EXTRACCIÓN DEL AGUA DE POZO Y LIMPIEZA (VERDE) ==================== -->
+          <g onclick="selectModel3dPart(1)" style="cursor:pointer">
+            <!-- Pintura verde sobre la bomba de pozo y la tubería azul de subida -->
+            <circle cx="603" cy="542" r="28" fill="rgba(16,185,129,0.34)" stroke="#059669" stroke-width="3.5"/>
+            <path d="M 606,720 L 606,224 L 912,221" fill="none" stroke="#10b981" stroke-width="7" stroke-dasharray="10,5"/>
+            <!-- Pintura verde sobre el Tanque Cónico de Sedimentación / Limpieza sin químicos -->
+            <polygon points="694,366 768,366 768,482 734,536 722,536 694,482" fill="rgba(16,185,129,0.30)" stroke="#059669" stroke-width="3.5"/>
+            <!-- Etiqueta flotante 2 -->
+            <rect x="505" y="88" width="280" height="68" rx="12" fill="rgba(246,244,238,0.95)" stroke="#059669" stroke-width="3"/>
+            <text x="645" y="112" fill="#1E6043" font-size="15" font-weight="800" text-anchor="middle">🟢 2. EXTRACCIÓN Y LIMPIEZA</text>
+            <text x="645" y="131" fill="#2B211B" font-size="13" font-weight="600" text-anchor="middle">Sube agua del pozo y asienta la tierra</text>
+            <text x="645" y="147" fill="#1E6043" font-size="11.5" font-weight="700" text-anchor="middle">(Con 12V y sin usar químicos)</text>
+          </g>
+
+          <!-- ==================== 🔴 3. TELEMETRÍA Y CÁPSULA DEL TIEMPO (ROJO) ==================== -->
+          <g onclick="selectModel3dPart(2)" style="cursor:pointer">
+            <!-- Pintura roja sobre el tiro subterráneo del pozo donde va la sonda de telemetría -->
+            <polygon points="556,576 644,615 644,720 556,720" fill="rgba(244,63,94,0.35)" stroke="#e11d48" stroke-width="3.5"/>
+            <circle cx="600" cy="655" r="14" fill="#e11d48" stroke="#fff" stroke-width="2.5"/>
+            <!-- Etiqueta flotante 3 -->
+            <rect x="242" y="608" width="298" height="84" rx="12" fill="rgba(253,236,238,0.96)" stroke="#e11d48" stroke-width="3"/>
+            <text x="391" y="633" fill="#9E2A2B" font-size="15" font-weight="800" text-anchor="middle">🔴 3. TELEMETRÍA SUBTERRÁNEA</text>
+            <text x="391" y="653" fill="#2B211B" font-size="13" font-weight="700" text-anchor="middle">«Cápsula del Tiempo» (5 a 10 años)</text>
+            <text x="391" y="672" fill="#4A3B32" font-size="11.5" text-anchor="middle">Batería de tierra · Mide nivel y pureza</text>
+            <line x1="540" y1="652" x2="586" y2="655" stroke="#e11d48" stroke-width="3.5" stroke-dasharray="5,4"/>
+          </g>
+
+          <!-- ==================== 🟡 4. VÁLVULAS AUTOMÁTICAS Y REPOSO (AMARILLO) ==================== -->
+          <g onclick="selectModel3dPart(3)" style="cursor:pointer">
+            <!-- Pintura amarilla sobre las válvulas automáticas y tuberías de control -->
+            <rect x="665" y="330" width="36" height="145" rx="8" fill="rgba(245,158,11,0.38)" stroke="#d97706" stroke-width="3"/>
+            <polygon points="675,330 890,322 890,362 675,366" fill="rgba(245,158,11,0.32)" stroke="#d97706" stroke-width="2.5"/>
+            <!-- Etiqueta flotante 4 -->
+            <rect x="530" y="232" width="232" height="66" rx="12" fill="rgba(254,245,231,0.96)" stroke="#d97706" stroke-width="3"/>
+            <text x="646" y="255" fill="#9A4406" font-size="14.5" font-weight="800" text-anchor="middle">🟡 4. PASO AUTOMÁTICO</text>
+            <text x="646" y="274" fill="#2B211B" font-size="12.5" font-weight="600" text-anchor="middle">Válvulas que esperan a que</text>
+            <text x="646" y="290" fill="#9A4406" font-size="11.5" font-weight="700" text-anchor="middle">el agua repose y aclare sola</text>
+          </g>
+
+          <!-- ==================== 🟢 5. AGUA PARA USO RÚSTICO (JARDÍN, PATIO, EXCUSADO) (VERDE) ==================== -->
+          <g onclick="selectModel3dPart(4)" style="cursor:pointer">
+            <!-- Pintura verde sobre el tanque IBC superior (1,000 L) -->
+            <polygon points="812,235 960,232 1016,240 1012,374 898,384 812,365" fill="rgba(16,185,129,0.28)" stroke="#059669" stroke-width="3.5"/>
+            <!-- Etiqueta flotante 5 -->
+            <rect x="815" y="122" width="335" height="74" rx="12" fill="rgba(246,244,238,0.95)" stroke="#059669" stroke-width="3"/>
+            <text x="982" y="147" fill="#1E6043" font-size="15" font-weight="800" text-anchor="middle">🟢 5. AGUA PARA USO RÚSTICO (80%)</text>
+            <text x="982" y="167" fill="#2B211B" font-size="13" font-weight="600" text-anchor="middle">🌿 Regar jardín, lavar patio y excusados</text>
+            <text x="982" y="185" fill="#1E6043" font-size="11.5" font-weight="700" text-anchor="middle">(Tanque de 1,000 L ya funcionando)</text>
+          </g>
+
+          <!-- ==================== 🟢/🟡 6. AGUA PARA BAÑARSE Y TOMAR (VERDE + AMARILLO) ==================== -->
+          <g onclick="selectModel3dPart(5)" style="cursor:pointer">
+            <!-- Pintura sobre el tanque IBC inferior + filtros de purificación + barril de agua para beber -->
+            <polygon points="812,388 1010,382 1006,522 895,546 812,512" fill="rgba(16,185,129,0.24)" stroke="#059669" stroke-width="3"/>
+            <!-- Filtros y válvula automática lateral (Amarillo) -->
+            <rect x="855" y="365" width="52" height="175" rx="8" fill="rgba(245,158,11,0.38)" stroke="#d97706" stroke-width="3"/>
+            <!-- Barril de acero frontal (Agua lista para tomar) -->
+            <ellipse cx="848" cy="582" rx="36" ry="52" fill="rgba(16,185,129,0.34)" stroke="#059669" stroke-width="3.5"/>
+            <!-- Etiqueta flotante 6 -->
+            <rect x="895" y="568" width="278" height="82" rx="12" fill="rgba(254,245,231,0.96)" stroke="#d97706" stroke-width="3"/>
+            <text x="1034" y="593" fill="#9A4406" font-size="15" font-weight="800" text-anchor="middle">🟢/🟡 6. BAÑARSE Y TOMAR (20%)</text>
+            <text x="1034" y="613" fill="#2B211B" font-size="13" font-weight="600" text-anchor="middle">🚿 Regadera + 💧 Agua pura para beber</text>
+            <text x="1034" y="632" fill="#1E6043" font-size="11.5" font-weight="700" text-anchor="middle">(El sobrante regresa al jardín)</text>
+          </g>
+        </svg>
+      </div>
+
+      <!-- Cuadro de explicación sencilla al tocar cualquier parte del modelo 3D -->
+      <div id="model3d-info-box" style="margin-top:1.15rem;padding:1.2rem 1.4rem;background:#F6F4EE;border-left:5px solid #1E6043;border-radius:10px;max-width:1040px;margin-left:auto;margin-right:auto">
+        <div id="model3d-info-badge" style="font-size:.8rem;font-weight:800;color:#1E6043;text-transform:uppercase;letter-spacing:.05em">🟢 PARTE 1 · YA FUNCIONANDO AL 100%</div>
+        <h4 id="model3d-info-title" style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.45rem;color:#2B211B;margin:.2rem 0 .35rem">1. Recarga del Acuífero con Agua de Lluvia</h4>
+        <p id="model3d-info-desc" style="font-size:.96rem;color:#4A3B32;line-height:1.6;margin:0">
+          Cuando llueve en Tijuana, el agua que cae en el techo baja al tanque transparente de captación y se inyecta limpia al subsuelo. Así recargamos la tierra bajo casa para mantener vivo el pozo.
+        </p>
+      </div>
+    </div>
+
+    <!-- LAS 4 PARTES EN TARJETAS CLARAS Y SENCILLAS -->
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:1.15rem;margin-bottom:2rem">
-      <div class="paper-sheet" style="padding:1.35rem;border-top:4px solid #1E6043">
+      <div class="paper-sheet" onclick="selectModel3dPart(0)" style="padding:1.35rem;border-top:4px solid #1E6043;cursor:pointer">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.4rem">
           <span style="font-size:1.5rem">🌧️</span>
           <span style="font-size:.74rem;font-weight:700;padding:.18rem .55rem;border-radius:99px;background:rgba(30,96,67,.12);color:#1E6043">🟢 Listo</span>
         </div>
         <h3 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.3rem;margin:0 0 .35rem;color:#2B211B">1. Recarga del Acuífero</h3>
         <p style="font-size:.9rem;color:#4A3B32;line-height:1.55;margin:0">
-          Captamos el agua de lluvia que cae en el techo y la regresamos limpia al subsuelo para alimentar la tierra y mantener vivo el pozo.
+          Captamos el agua de lluvia que cae en el techo y la regresamos limpia al subsuelo para alimentar la tierra.
         </p>
       </div>
 
-      <div class="paper-sheet" style="padding:1.35rem;border-top:4px solid #1E6043">
+      <div class="paper-sheet" onclick="selectModel3dPart(1)" style="padding:1.35rem;border-top:4px solid #1E6043;cursor:pointer">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.4rem">
           <span style="font-size:1.5rem">⛏️</span>
           <span style="font-size:.74rem;font-weight:700;padding:.18rem .55rem;border-radius:99px;background:rgba(30,96,67,.12);color:#1E6043">🟢 Listo</span>
         </div>
-        <h3 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.3rem;margin:0 0 .35rem;color:#2B211B">2. Agua de Pozo y Limpieza</h3>
+        <h3 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.3rem;margin:0 0 .35rem;color:#2B211B">2. Extracción del Agua de Pozo</h3>
         <p style="font-size:.9rem;color:#4A3B32;line-height:1.55;margin:0">
-          Sacamos el agua de pozo poco profundo (a 7 m) y asentamos la tierra con electricidad suave y reposo tranquilo, sin usar químicos.
+          Sacamos el agua de pozo poco profundo (a 7 m) y asentamos la tierra en el tanque cónico con electricidad suave, sin químicos.
         </p>
       </div>
 
-      <div class="paper-sheet" style="padding:1.35rem;border-top:4px solid #9A4406">
+      <div class="paper-sheet" onclick="selectModel3dPart(5)" style="padding:1.35rem;border-top:4px solid #9A4406;cursor:pointer">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.4rem">
           <span style="font-size:1.5rem">🚿</span>
-          <span style="font-size:.74rem;font-weight:700;padding:.18rem .55rem;border-radius:99px;background:rgba(154,68,6,.14);color:#9A4406">🟡 En Ajuste</span>
+          <span style="font-size:.74rem;font-weight:700;padding:.18rem .55rem;border-radius:99px;background:rgba(154,68,6,.14);color:#9A4406">🟢/🟡 En Ajuste</span>
         </div>
         <h3 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.3rem;margin:0 0 .35rem;color:#2B211B">3. Uso Rústico + Bañarse y Tomar</h3>
         <p style="font-size:.9rem;color:#4A3B32;line-height:1.55;margin:0">
-          Válvulas automáticas dividen el agua en dos: una parte para <strong>uso rústico</strong> (jardín, patio, excusado) y otra purificada para <strong>bañarse y tomar</strong>.
+          Una parte va para <strong>uso rústico</strong> (regar, patio, excusado) y otra parte purificada para <strong>bañarse y tomar</strong>.
         </p>
       </div>
 
-      <div class="paper-sheet" style="padding:1.35rem;border-top:4px solid #9E2A2B">
+      <div class="paper-sheet" onclick="selectModel3dPart(2)" style="padding:1.35rem;border-top:4px solid #9E2A2B;cursor:pointer">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.4rem">
           <span style="font-size:1.5rem">📡</span>
           <span style="font-size:.74rem;font-weight:700;padding:.18rem .55rem;border-radius:99px;background:rgba(158,42,43,.14);color:#9E2A2B">🔴 En Desarrollo</span>
@@ -3905,145 +3715,26 @@ body {
       </div>
     </div>
 
-    <!-- DIBUJO 3D INTERACTIVO PINTADO DE VERDE, AMARILLO Y ROJO SEGÚN EL AVANCE -->
-    <div class="paper-sheet" style="padding:1.75rem;margin-bottom:2rem">
-      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;margin-bottom:1.1rem;padding-bottom:.9rem;border-bottom:1px solid rgba(139,94,60,.2)">
-        <div>
-          <h3 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.65rem;color:#2B211B;margin:0">Dibujo 3D del Sistema por Colores de Avance</h3>
-          <p style="font-size:.92rem;color:#4A3B32;margin:.25rem 0 0">
-            Toca cualquier parte del dibujo 3D para ver qué hace. Los colores muestran con total transparencia nuestro avance real:
-          </p>
-        </div>
-        <div style="display:flex;gap:.65rem;flex-wrap:wrap;font-size:.82rem;font-weight:700">
-          <span style="padding:.3rem .75rem;border-radius:99px;background:rgba(16,185,129,.16);color:#1E6043;border:1px solid #10b981">🟢 Verde: Ya Funcionando (100%)</span>
-          <span style="padding:.3rem .75rem;border-radius:99px;background:rgba(245,158,11,.18);color:#9A4406;border:1px solid #f59e0b">🟡 Amarillo: Ajustando Automático</span>
-          <span style="padding:.3rem .75rem;border-radius:99px;background:rgba(244,63,94,.16);color:#9E2A2B;border:1px solid #f43f5e">🔴 Rojo: En Desarrollo</span>
-        </div>
-      </div>
-
-      <!-- ESQUEMA 3D ISOMÉTRICO DE LA CASA, LLUVIA, POZO, TANQUES Y USOS PINTADO EN VERDE / AMARILLO / ROJO -->
-      <div style="background:#EFECE4;border:1px solid rgba(139,94,60,.25);border-radius:12px;padding:1rem;overflow-x:auto">
-        <svg viewBox="0 0 1000 470" style="width:100%;min-width:780px;height:auto;display:block;font-family:'Plus Jakarta Sans',sans-serif">
-          <!-- Cielo y Tierra (Corte 3D del Terreno) -->
-          <rect x="0" y="0" width="1000" height="290" fill="#F7F4EC"/>
-          <!-- Subsuelo (0 a 7m) -->
-          <polygon points="0,290 1000,290 1000,470 0,470" fill="#D8C9B4"/>
-          <!-- Manto de Agua Subterránea a 7m -->
-          <path d="M 0,395 Q 250,382 500,395 T 1000,390 L 1000,470 L 0,470 Z" fill="rgba(46,111,149,0.28)" stroke="#2E6F95" stroke-width="2" stroke-dasharray="6,4"/>
-          <text x="500" y="452" fill="#1E4D6B" font-size="13" font-weight="700" text-anchor="middle">💧 AGUA SUBTERRÁNEA POCO PROFUNDA (ENTRE 3 Y 8 METROS BAJO TUS PIES)</text>
-
-          <!-- Línea de piso / jardín -->
-          <line x1="0" y1="290" x2="1000" y2="290" stroke="#7A5E48" stroke-width="4"/>
-
-          <!-- ==================== 1. TECHO Y RECARGA DE LLUVIA AL ACUÍFERO (VERDE 🟢) ==================== -->
-          <g onclick="selectModel3dPart(0)" style="cursor:pointer">
-            <!-- Nube y gotas de lluvia -->
-            <ellipse cx="145" cy="48" rx="55" ry="22" fill="#D0E4F0" stroke="#2E6F95" stroke-width="1.5"/>
-            <line x1="115" y1="75" x2="108" y2="102" stroke="#2E6F95" stroke-width="2.5" stroke-linecap="round"/>
-            <line x1="145" y1="75" x2="138" y2="102" stroke="#2E6F95" stroke-width="2.5" stroke-linecap="round"/>
-            <line x1="175" y1="75" x2="168" y2="102" stroke="#2E6F95" stroke-width="2.5" stroke-linecap="round"/>
-            <!-- Bajante pluvial al subsuelo (VERDE) -->
-            <path d="M 195,135 L 95,135 L 95,385" fill="none" stroke="#10b981" stroke-width="8" stroke-linecap="round"/>
-            <rect x="24" y="155" width="142" height="68" rx="10" fill="#E6F7EF" stroke="#10b981" stroke-width="3"/>
-            <text x="95" y="177" fill="#1E6043" font-size="11" font-weight="800" text-anchor="middle">🟢 1. LLUVIA Y RECARGA</text>
-            <text x="95" y="195" fill="#2B211B" font-size="10.5" font-weight="600" text-anchor="middle">Del techo al subsuelo</text>
-            <text x="95" y="211" fill="#1E6043" font-size="9.5" text-anchor="middle">(Recarga el acuífero)</text>
-          </g>
-
-          <!-- ==================== 2. POZO POCO PROFUNDO (7m) (VERDE 🟢) ==================== -->
-          <g onclick="selectModel3dPart(1)" style="cursor:pointer">
-            <!-- Tubo del pozo hasta los 7 metros -->
-            <rect x="255" y="245" width="38" height="190" rx="6" fill="#E6F7EF" stroke="#10b981" stroke-width="3.5"/>
-            <!-- Flechas subiendo agua -->
-            <path d="M 274,415 L 274,265" fill="none" stroke="#10b981" stroke-width="5" stroke-dasharray="6,4"/>
-            <rect x="200" y="308" width="148" height="66" rx="10" fill="#E6F7EF" stroke="#10b981" stroke-width="3"/>
-            <text x="274" y="330" fill="#1E6043" font-size="11" font-weight="800" text-anchor="middle">🟢 2. POZO (A 7 METROS)</text>
-            <text x="274" y="347" fill="#2B211B" font-size="10.5" font-weight="600" text-anchor="middle">Extracción de agua</text>
-            <text x="274" y="362" fill="#1E6043" font-size="9.5" text-anchor="middle">(Sube limpia sin arena)</text>
-          </g>
-
-          <!-- ==================== 3. TELEMETRÍA Y CÁPSULA DEL TIEMPO (ROJO 🔴) ==================== -->
-          <g onclick="selectModel3dPart(2)" style="cursor:pointer">
-            <rect x="375" y="315" width="175" height="92" rx="12" fill="#FDECEE" stroke="#f43f5e" stroke-width="3"/>
-            <text x="462" y="338" fill="#9E2A2B" font-size="11" font-weight="800" text-anchor="middle">🔴 3. TELEMETRÍA Y CÁPSULA</text>
-            <text x="462" y="356" fill="#2B211B" font-size="10.5" font-weight="700" text-anchor="middle">Batería de Tierra (5–10 años)</text>
-            <text x="462" y="373" fill="#4A3B32" font-size="9.5" text-anchor="middle">Mide nivel y pureza del pozo;</text>
-            <text x="462" y="388" fill="#9E2A2B" font-size="9.5" font-weight="700" text-anchor="middle">se duerme si no hay Wi-Fi</text>
-            <!-- Cable al pozo -->
-            <line x1="375" y1="355" x2="348" y2="355" stroke="#f43f5e" stroke-width="3" stroke-dasharray="4,3"/>
-          </g>
-
-          <!-- ==================== 4. LIMPIEZA SIN QUÍMICOS + REPOSO (VERDE 🟢 / AMARILLO 🟡) ==================== -->
-          <g onclick="selectModel3dPart(3)" style="cursor:pointer">
-            <!-- Tubería del pozo al tanque -->
-            <path d="M 293,255 L 410,255 L 410,205" fill="none" stroke="#10b981" stroke-width="6"/>
-            <!-- Tanque de Electrofloculación (VERDE) y Válvulas Automáticas (AMARILLO) -->
-            <rect x="370" y="115" width="185" height="145" rx="14" fill="#E6F7EF" stroke="#10b981" stroke-width="3.5"/>
-            <rect x="382" y="198" width="161" height="50" rx="8" fill="#FEF5E7" stroke="#f59e0b" stroke-width="2.5"/>
-            <text x="462" y="140" fill="#1E6043" font-size="11" font-weight="800" text-anchor="middle">🟢 4. LIMPIEZA SIN QUÍMICOS</text>
-            <text x="462" y="158" fill="#2B211B" font-size="10.5" font-weight="600" text-anchor="middle">Asienta la tierra con 12V</text>
-            <text x="462" y="175" fill="#1E6043" font-size="9.5" text-anchor="middle">(Probado al 100% en lote)</text>
-            <text x="462" y="218" fill="#9A4406" font-size="10" font-weight="800" text-anchor="middle">🟡 Válvulas y Reposo Auto</text>
-            <text x="462" y="235" fill="#4A3B32" font-size="9.5" text-anchor="middle">Espera a que asiente sola</text>
-          </g>
-
-          <!-- ==================== 5. CASA 3D CON LAS 2 SALIDAS: USO RÚSTICO vs BAÑARSE Y TOMAR ==================== -->
-          <!-- Silueta 3D de la Casa en Tijuana -->
-          <polygon points="620,135 805,45 975,135" fill="#E5D5C0" stroke="#7A5E48" stroke-width="3"/>
-          <rect x="640" y="135" width="315" height="155" fill="#FFFDF9" stroke="#7A5E48" stroke-width="3"/>
-
-          <!-- Tuberías desde el tanque hacia las 2 salidas de la casa -->
-          <path d="M 555,155 L 655,155" fill="none" stroke="#10b981" stroke-width="6"/>
-          <path d="M 555,220 L 655,220" fill="none" stroke="#f59e0b" stroke-width="6"/>
-
-          <!-- SALIDA A: AGUA PARA USO RÚSTICO, RIEGO Y PATIO (VERDE 🟢) -->
-          <g onclick="selectModel3dPart(4)" style="cursor:pointer">
-            <rect x="655" y="142" width="285" height="62" rx="10" fill="#E6F7EF" stroke="#10b981" stroke-width="3"/>
-            <text x="797" y="164" fill="#1E6043" font-size="11.5" font-weight="800" text-anchor="middle">🟢 5. AGUA PARA USO RÚSTICO (80%)</text>
-            <text x="797" y="182" fill="#2B211B" font-size="10.5" font-weight="600" text-anchor="middle">🌿 Regar jardín, lavar patio y excusados</text>
-            <text x="797" y="197" fill="#1E6043" font-size="9.5" text-anchor="middle">(Sin gastar agua potable)</text>
-          </g>
-
-          <!-- SALIDA B: AGUA PARA BAÑARSE Y TOMAR (VERDE 🟢 / AMARILLO 🟡) -->
-          <g onclick="selectModel3dPart(5)" style="cursor:pointer">
-            <rect x="655" y="214" width="285" height="66" rx="10" fill="#FEF5E7" stroke="#f59e0b" stroke-width="3"/>
-            <text x="797" y="236" fill="#9A4406" font-size="11.5" font-weight="800" text-anchor="middle">🟢/🟡 6. AGUA PARA BAÑARSE Y TOMAR</text>
-            <text x="797" y="254" fill="#2B211B" font-size="10.5" font-weight="600" text-anchor="middle">🚿 Regadera + 💧 Cocina (Válvula automática)</text>
-            <text x="797" y="270" fill="#9A4406" font-size="9.5" text-anchor="middle">El sobrante regresa al jardín (Cero desperdicio)</text>
-          </g>
-        </svg>
-      </div>
-
-      <!-- Explicación sencilla al tocar cualquier parte del dibujo 3D -->
-      <div id="model3d-info-box" style="margin-top:1rem;padding:1.15rem 1.35rem;background:#F6F4EE;border-left:4px solid #1E6043;border-radius:8px">
-        <div id="model3d-info-badge" style="font-size:.78rem;font-weight:800;color:#1E6043;text-transform:uppercase;letter-spacing:.05em">🟢 PARTE 1 · YA FUNCIONANDO</div>
-        <h4 id="model3d-info-title" style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.35rem;color:#2B211B;margin:.2rem 0 .35rem">1. Recarga del Acuífero con Agua de Lluvia</h4>
-        <p id="model3d-info-desc" style="font-size:.95rem;color:#4A3B32;line-height:1.58;margin:0">
-          Cuando llueve en Tijuana, el agua del techo baja por un filtro sencillo directo al subsuelo. Así recargamos la tierra bajo nuestra casa para que nunca se agote el pozo.
-        </p>
-      </div>
-    </div>
-
     <!-- VIDEOS SKETCHUP DEL MODELO 3D (CÓMO CORRE EL AGUA) -->
     <div class="paper-sheet" style="padding:1.75rem">
       <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;margin-bottom:1.15rem">
         <div>
-          <span style="font-size:.76rem;font-weight:700;color:#2E6F95;text-transform:uppercase;letter-spacing:.1em">🎬 ANIMACIÓN SKETCHUP Y RECORRIDO 3D</span>
-          <h3 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.65rem;color:#2B211B;margin:.2rem 0 0">Video del Modelo 3D: Mira Cómo Corre el Agua</h3>
+          <span style="font-size:.76rem;font-weight:700;color:#2E6F95;text-transform:uppercase;letter-spacing:.1em">🎬 VIDEO SKETCHUP Y FLUJO DE AGUA 3D</span>
+          <h3 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.65rem;color:#2B211B;margin:.2rem 0 0">Video en SketchUp: Mira Cómo Corre el Agua</h3>
           <p style="font-size:.92rem;color:#4A3B32;margin:.3rem 0 0">
-            En este modelo 3D en SketchUp se ve cómo se capta la lluvia, cómo sube el agua del pozo poco profundo y cómo se divide para uso rústico y para bañarse y tomar:
+            Dale Play para ver el modelo 3D en SketchUp, cómo cae la lluvia para recargar el acuífero y cómo corre el agua por los tanques:
           </p>
         </div>
         <div style="display:flex;gap:.5rem;flex-wrap:wrap">
-          <button type="button" class="btn-secondary" onclick="switch3dVideo('aquaresiliencia_animacion.mp4')" style="font-size:.82rem;padding:.45rem .9rem">🎬 1. Recorrido 3D Completo</button>
-          <button type="button" class="btn-secondary" onclick="switch3dVideo('video/sketchup_lluvia_recarga.mp4')" style="font-size:.82rem;padding:.45rem .9rem">🌧️ 2. SketchUp: Lluvia y Recarga</button>
-          <button type="button" class="btn-secondary" onclick="switch3dVideo('video/sketchup_tratamiento.mp4')" style="font-size:.82rem;padding:.45rem .9rem">🏺 3. SketchUp: Tanques y Limpieza</button>
+          <button type="button" class="btn-secondary" onclick="switch3dVideo('video/sketchup_recorrido_completo.mp4')" style="font-size:.82rem;padding:.45rem .9rem">🎬 1. Video SketchUp + Cómo Corre el Agua (48s)</button>
+          <button type="button" class="btn-secondary" onclick="switch3dVideo('video/sketchup_lluvia_recarga.mp4')" style="font-size:.82rem;padding:.45rem .9rem">🌧️ 2. Solo Lluvia y Recarga</button>
+          <button type="button" class="btn-secondary" onclick="switch3dVideo('video/sketchup_tratamiento.mp4')" style="font-size:.82rem;padding:.45rem .9rem">🏺 3. Solo Tanques SketchUp</button>
         </div>
       </div>
 
-      <div class="tren-video-container" style="max-width:920px;margin:0 auto">
-        <video id="animacion3DPlayer" controls preload="metadata">
-          <source id="animacion3DSource" src="aquaresiliencia_animacion.mp4" type="video/mp4">
+      <div class="tren-video-container" style="max-width:960px;margin:0 auto">
+        <video id="animacion3DPlayer" controls preload="metadata" poster="assets/render_arquitectonico_3d.jpg">
+          <source id="animacion3DSource" src="video/sketchup_recorrido_completo.mp4" type="video/mp4">
           Tu navegador no soporta reproducción directa de video HTML5.
         </video>
       </div>
@@ -7176,68 +6867,6 @@ function toggleAutoSynoptic() {
 }
 
 
-// ==================== INTERACCIÓN DEL MODELO 3D (VERDE, AMARILLO Y ROJO) ====================
-const MODEL_3D_PARTS = [
-  {
-    badge: "🟢 PARTE 1 · YA FUNCIONANDO AL 100%",
-    color: "#1E6043",
-    title: "1. Recarga del Acuífero con Agua de Lluvia",
-    desc: "Cuando llueve, el agua que cae en el techo de la casa se conduce limpia hacia el subsuelo. Así alimentamos la tierra y devolvemos agua al acuífero."
-  },
-  {
-    badge: "🟢 PARTE 2 · YA FUNCIONANDO AL 100%",
-    color: "#1E6043",
-    title: "2. Extracción del Agua de Pozo (a 7 metros)",
-    desc: "Sacamos agua de pozo poco profundo (entre 3 y 8 metros bajo casa) con una bomba suave de bajo consumo que sube el agua clara y sin arena."
-  },
-  {
-    badge: "🔴 PARTE 3 · EN DESARROLLO (CÁPSULA DEL TIEMPO)",
-    color: "#9E2A2B",
-    title: "3. Telemetría y «Cápsula del Tiempo del Agua» (5 a 10 años)",
-    desc: "Un medidor independiente dentro del pozo que vigila cuánta agua hay y su pureza. Se recarga con una batería de tierra y se duerme cuando no hay Wi-Fi para durar de 5 a 10 años."
-  },
-  {
-    badge: "🟢/🟡 PARTE 4 · LIMPIEZA LISTA / VÁLVULAS EN AJUSTE",
-    color: "#9A4406",
-    title: "4. Limpieza sin Químicos y Reposo Automático",
-    desc: "Con electricidad suave (12V) agrupamos la tierra suspendida sin usar ningún químico. Estamos calibrando las válvulas automáticas que obligan a dejar reposar el agua antes de pasarla al tanque limpio."
-  },
-  {
-    badge: "🟢 PARTE 5 · YA FUNCIONANDO",
-    color: "#1E6043",
-    title: "5. Agua para Uso Rústico, Jardín y Baños (80%)",
-    desc: "La mayor parte del agua que usa una casa no necesita ser de garrafón: el 80% va directo para regar plantas, lavar el patio y los excusados."
-  },
-  {
-    badge: "🟢/🟡 PARTE 6 · FILTROS LISTOS / VÁLVULA AUTOMÁTICA EN AJUSTE",
-    color: "#9A4406",
-    title: "6. Agua Purificada para Bañarse y Tomar (20%)",
-    desc: "La otra parte pasa por purificación fina (Ósmosis Inversa y Luz UV) para bañarse y tomar agua cristalina. Un pequeño motor ajusta la válvula automáticamente y regresa el agua sobrante al jardín."
-  }
-];
-
-function selectModel3dPart(idx) {
-  const p = MODEL_3D_PARTS[idx];
-  if (!p) return;
-  const box = document.getElementById('model3d-info-box');
-  const b = document.getElementById('model3d-info-badge');
-  const t = document.getElementById('model3d-info-title');
-  const d = document.getElementById('model3d-info-desc');
-  if (box) box.style.borderLeftColor = p.color;
-  if (b) { b.textContent = p.badge; b.style.color = p.color; }
-  if (t) t.textContent = p.title;
-  if (d) d.textContent = p.desc;
-}
-
-function switch3dVideo(src) {
-  const v = document.getElementById('animacion3DPlayer');
-  const s = document.getElementById('animacion3DSource');
-  if (!v || !s) return;
-  s.src = src;
-  v.load();
-  v.play().catch(()=>{});
-}
-
 </script>
 
 <!-- ==================== GLITCH OVERLAY ==================== -->
@@ -7282,6 +6911,94 @@ Escribe 'help' para listar los comandos disponibles o 'balance' para datos duros
     </div>
   </div>
 </div>
+
+
+<script>
+// ==================== INTERACCIÓN DEL MODELO 3D SKETCHUP (VERDE, AMARILLO Y ROJO) ====================
+const MODEL_3D_PARTS = [
+  {
+    badge: "🟢 PARTE 1 · YA FUNCIONANDO AL 100%",
+    color: "#1E6043",
+    title: "1. Recarga del Acuífero con Agua de Lluvia",
+    desc: "Cuando llueve en Tijuana, el agua que cae en el techo baja al tanque transparente de captación y se inyecta limpia al subsuelo. Así alimentamos la tierra y mantenemos vivo el pozo."
+  },
+  {
+    badge: "🟢 PARTE 2 · YA FUNCIONANDO AL 100%",
+    color: "#1E6043",
+    title: "2. Extracción del Agua de Pozo y Limpieza sin Químicos",
+    desc: "La bomba saca el agua del pozo poco profundo (a 7 metros) y la sube al tanque cónico central, donde con electricidad suave (12V) asentamos la tierra suspendida sin usar ningún químico."
+  },
+  {
+    badge: "🔴 PARTE 3 · EN DESARROLLO (CÁPSULA DEL TIEMPO)",
+    color: "#9E2A2B",
+    title: "3. Telemetría Subterránea («Cápsula del Tiempo» de 5 a 10 años)",
+    desc: "Un medidor independiente dentro del tiro del pozo que vigila cuánta agua hay y su pureza. Se recarga con una batería de tierra y se duerme cuando no hay Wi-Fi para guardar la historia del agua de 5 a 10 años."
+  },
+  {
+    badge: "🟡 PARTE 4 · EN AJUSTE AUTOMÁTICO",
+    color: "#9A4406",
+    title: "4. Válvulas Automáticas y Reposo",
+    desc: "Estamos calibrando las válvulas automáticas que obligan a dejar reposar el agua el tiempo necesario para que aclare sola antes de pasarla a los tanques de la casa."
+  },
+  {
+    badge: "🟢 PARTE 5 · YA FUNCIONANDO (80% DEL AGUA DE LA CASA)",
+    color: "#1E6043",
+    title: "5. Agua para Uso Rústico: Regar Jardín, Patio y Excusados",
+    desc: "El tanque superior de 1,000 litros guarda el agua clara para todo el uso rústico de la casa: regar plantas, lavar el patio, limpiar pisos y alimentar los excusados sin gastar agua potable."
+  },
+  {
+    badge: "🟢/🟡 PARTE 6 · FILTROS LISTOS / VÁLVULA AUTOMÁTICA EN AJUSTE (20%)",
+    color: "#9A4406",
+    title: "6. Agua Purificada para Bañarse y Tomar",
+    desc: "El tanque inferior, los filtros de purificación fina y el barril de acero entregan agua suave para bañarse y agua cristalina para tomar. El agua sobrante regresa limpia para regar el jardín."
+  }
+];
+
+function selectModel3dPart(idx) {
+  const p = MODEL_3D_PARTS[idx];
+  if (!p) return;
+  const box = document.getElementById('model3d-info-box');
+  const b = document.getElementById('model3d-info-badge');
+  const t = document.getElementById('model3d-info-title');
+  const d = document.getElementById('model3d-info-desc');
+  if (box) box.style.borderLeftColor = p.color;
+  if (b) { b.textContent = p.badge; b.style.color = p.color; }
+  if (t) t.textContent = p.title;
+  if (d) d.textContent = p.desc;
+}
+
+function set3dBaseImage(mode) {
+  const img = document.getElementById('model3dBaseImg');
+  const bSk = document.getElementById('btnViewSketchup');
+  const bRn = document.getElementById('btnViewRender');
+  if (!img) return;
+  if (mode === 'render') {
+    img.src = 'assets/render_arquitectonico_3d.jpg';
+    if (bRn) { bRn.style.background = '#2B211B'; bRn.style.color = '#F6F4EE'; }
+    if (bSk) { bSk.style.background = ''; bSk.style.color = ''; }
+  } else {
+    img.src = 'assets/sketchup_modelo_3d.jpg';
+    if (bSk) { bSk.style.background = '#2B211B'; bSk.style.color = '#F6F4EE'; }
+    if (bRn) { bRn.style.background = ''; bRn.style.color = ''; }
+  }
+}
+
+function toggle3dColorOverlay() {
+  const svg = document.getElementById('model3dOverlaySvg');
+  if (!svg) return;
+  svg.style.opacity = (svg.style.opacity === '0') ? '1' : '0';
+  svg.style.pointerEvents = (svg.style.opacity === '0') ? 'none' : 'auto';
+}
+
+function switch3dVideo(src) {
+  const v = document.getElementById('animacion3DPlayer');
+  const s = document.getElementById('animacion3DSource');
+  if (!v || !s) return;
+  s.src = src;
+  v.load();
+  v.play().catch(()=>{});
+}
+</script>
 
 </body>
 </html>
