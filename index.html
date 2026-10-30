@@ -3573,7 +3573,7 @@ body {
 
       <!-- CONTENEDOR DEL MODELO 3D SKETCHUP REAL + PINTURA VERDE / AMARILLO / ROJO -->
       <div style="position:relative;border-radius:14px;overflow:hidden;border:1px solid rgba(139,94,60,.3);box-shadow:0 10px 28px rgba(43,33,27,.12);background:#E5E0D5;max-width:1040px;margin:0 auto">
-        <img id="model3dBaseImg" src="assets/sketchup_modelo_3d.jpg" alt="Modelo 3D en SketchUp — Agua de Gía" style="width:100%;height:auto;display:block">
+        <img id="model3dBaseImg" src="assets/sketchup_modelo_3d.jpg?v=6" alt="Modelo 3D en SketchUp — Agua de Gía" style="width:100%;height:auto;display:block">
 
         <!-- CAPA SVG PINTADA DIRECTAMENTE SOBRE LAS PIEZAS DEL MODELO 3D EN SKETCHUP (1189 x 720) -->
         <svg id="model3dOverlaySvg" viewBox="0 0 1189 720" style="position:absolute;inset:0;width:100%;height:100%;display:block;font-family:'Plus Jakarta Sans',sans-serif;transition:opacity .25s">
@@ -3733,8 +3733,8 @@ body {
       </div>
 
       <div class="tren-video-container" style="max-width:960px;margin:0 auto">
-        <video id="animacion3DPlayer" controls preload="metadata" poster="assets/render_arquitectonico_3d.jpg">
-          <source id="animacion3DSource" src="video/sketchup_recorrido_completo.mp4" type="video/mp4">
+        <video id="animacion3DPlayer" src="video/sketchup_recorrido_completo.mp4?v=6" controls autoplay muted loop playsinline preload="auto" poster="assets/render_arquitectonico_3d.jpg?v=6">
+          <source id="animacion3DSource" src="video/sketchup_recorrido_completo.mp4?v=6" type="video/mp4">
           Tu navegador no soporta reproducción directa de video HTML5.
         </video>
       </div>
@@ -4903,8 +4903,13 @@ function toggleEmergencyCutoff(){
 // ==================== SERVICE WORKER (OFFLINE PWA) ====================
 if('serviceWorker' in navigator){
   window.addEventListener('load', ()=>{
-    navigator.serviceWorker.register('./sw.js')
-      .then(reg=>{ console.log('Service Worker registrado:', reg.scope); })
+    if('caches' in window){
+      caches.keys().then(keys=>{
+        keys.forEach(k=>{ if(k !== 'agua-de-gia-cache-v6') caches.delete(k); });
+      });
+    }
+    navigator.serviceWorker.register('./sw.js?v=6')
+      .then(reg=>{ reg.update(); console.log('Service Worker v6 activo:', reg.scope); })
       .catch(err=>{ console.log('SW registro error:', err); });
   });
 }
@@ -5535,6 +5540,10 @@ function showPanel(id, opts){
   if(id === 'motor-hidro'){
     if(typeof map !== 'undefined' && map) setTimeout(()=>{ try{ map.invalidateSize(); }catch(e){} }, 70);
     setTimeout(()=>{ try{ drawLaderaCanvas(); }catch(e){} }, 100);
+  }
+  if(id === 'modelo-3d'){
+    const v3d = document.getElementById('animacion3DPlayer');
+    if(v3d) setTimeout(()=>{ try{ v3d.play().catch(()=>{}); }catch(e){} }, 120);
   }
 
   toggleMobileDrawer(false);
@@ -6973,11 +6982,11 @@ function set3dBaseImage(mode) {
   const bRn = document.getElementById('btnViewRender');
   if (!img) return;
   if (mode === 'render') {
-    img.src = 'assets/render_arquitectonico_3d.jpg';
+    img.src = 'assets/render_arquitectonico_3d.jpg?v=6';
     if (bRn) { bRn.style.background = '#2B211B'; bRn.style.color = '#F6F4EE'; }
     if (bSk) { bSk.style.background = ''; bSk.style.color = ''; }
   } else {
-    img.src = 'assets/sketchup_modelo_3d.jpg';
+    img.src = 'assets/sketchup_modelo_3d.jpg?v=6';
     if (bSk) { bSk.style.background = '#2B211B'; bSk.style.color = '#F6F4EE'; }
     if (bRn) { bRn.style.background = ''; bRn.style.color = ''; }
   }
@@ -6993,8 +7002,10 @@ function toggle3dColorOverlay() {
 function switch3dVideo(src) {
   const v = document.getElementById('animacion3DPlayer');
   const s = document.getElementById('animacion3DSource');
-  if (!v || !s) return;
-  s.src = src;
+  if (!v) return;
+  const busted = src + (src.indexOf('?') === -1 ? '?v=6' : '');
+  if (s) s.src = busted;
+  v.src = busted;
   v.load();
   v.play().catch(()=>{});
 }
