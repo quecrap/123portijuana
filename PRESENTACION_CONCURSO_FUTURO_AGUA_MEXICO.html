@@ -3,27 +3,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Presentación Oficial — Concurso «Por el Futuro del Agua de México» · AquaResiliencia / Agua de GIA</title>
+  <title>Presentación Oficial — Concurso «Por el Futuro del Agua de México» · AquaResiliencia / Agua de Gía</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #070d18;
-      --card: #0f172a;
-      --border: #1e293b;
-      --cyan: #00e5ff;
-      --emerald: #10b981;
-      --amber: #f59e0b;
-      --rose: #f43f5e;
-      --text: #f8fafc;
-      --muted: #94a3b8;
+      --bg: #F6F1E6;
+      --card: #FFFDF9;
+      --border: #D8C8B4;
+      --river: #2E6F95;
+      --emerald: #236B4E;
+      --amber: #B45309;
+      --rose: #A93226;
+      --text: #2B211B;
+      --muted: #5A473C;
     }
     * { box-sizing: border-box; }
     body {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
       background: var(--bg);
       color: var(--text);
       margin: 0;
       padding: 28px 18px;
-      line-height: 1.52;
+      line-height: 1.54;
     }
     .deck { max-width: 1020px; margin: 0 auto; }
     .topbar {
@@ -34,17 +37,18 @@
       gap: 12px;
       margin-bottom: 22px;
       padding-bottom: 14px;
-      border-bottom: 2px solid var(--cyan);
+      border-bottom: 2px solid var(--river);
     }
     .btn-print {
-      background: linear-gradient(135deg, #00e5ff, #10b981);
-      color: #020c1b;
+      background: linear-gradient(135deg, #2E6F95, #236B4E);
+      color: #FFFDF9;
       border: none;
       padding: 11px 20px;
       border-radius: 10px;
-      font-weight: 800;
+      font-weight: 700;
       font-size: 0.92rem;
       cursor: pointer;
+      box-shadow: 0 6px 18px rgba(46,111,149,0.25);
     }
     .slide {
       background: var(--card);
@@ -53,29 +57,33 @@
       padding: 28px;
       margin-bottom: 24px;
       page-break-after: always;
-      box-shadow: 0 12px 32px rgba(0,0,0,0.45);
+      box-shadow: 0 12px 30px rgba(74,59,50,0.08);
     }
     .slide-tag {
       display: inline-block;
-      font-family: Consolas, monospace;
-      font-size: 0.75rem;
+      font-size: 0.74rem;
       font-weight: 700;
       text-transform: uppercase;
-      padding: 4px 10px;
+      letter-spacing: 0.08em;
+      padding: 4px 12px;
       border-radius: 6px;
-      background: rgba(0,229,255,0.12);
-      color: var(--cyan);
-      border: 1px solid rgba(0,229,255,0.3);
+      background: rgba(46,111,149,0.10);
+      color: var(--river);
+      border: 1px solid rgba(46,111,149,0.3);
       margin-bottom: 8px;
     }
-    h1 { font-size: 2rem; margin: 4px 0 10px 0; color: #fff; }
-    h2 { font-size: 1.45rem; margin: 0 0 12px 0; color: var(--cyan); }
-    h3 { font-size: 1.05rem; margin: 12px 0 6px 0; color: var(--emerald); }
-    p { margin: 0 0 10px 0; color: #cbd5e1; font-size: 0.94rem; }
+    h1, h2 {
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      color: var(--text);
+    }
+    h1 { font-size: 2.2rem; margin: 4px 0 10px 0; }
+    h2 { font-size: 1.65rem; margin: 0 0 12px 0; color: var(--river); }
+    h3 { font-family: 'Cormorant Garamond', Georgia, serif; font-size: 1.25rem; margin: 10px 0 6px 0; color: var(--emerald); }
+    p { margin: 0 0 10px 0; color: var(--muted); font-size: 0.93rem; }
     .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 16px; margin-top: 12px; }
     .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-top: 12px; }
     .box {
-      background: rgba(2,12,27,0.75);
+      background: #FBF8F1;
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 16px;
@@ -83,16 +91,13 @@
     .sem-green { border-left: 4px solid var(--emerald); }
     .sem-amber { border-left: 4px solid var(--amber); }
     .sem-red   { border-left: 4px solid var(--rose); }
-    table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.88rem; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; font-size: 0.86rem; }
     th, td { border: 1px solid var(--border); padding: 9px 11px; text-align: left; }
-    th { background: rgba(0,229,255,0.1); color: var(--cyan); }
+    th { background: #EFE6D5; color: var(--text); font-weight: 700; }
     @media print {
-      body { background: #fff; color: #0f172a; padding: 0; }
+      body { background: #fff; padding: 0; }
       .topbar { display: none; }
-      .slide { background: #fff; border: 1px solid #cbd5e1; box-shadow: none; color: #0f172a; margin-bottom: 16px; }
-      .box { background: #f8fafc; border-color: #cbd5e1; }
-      h1, h2, h3, strong { color: #0f172a !important; }
-      p, td, li { color: #1e293b !important; }
+      .slide { box-shadow: none; margin-bottom: 16px; }
     }
   </style>
 </head>
@@ -100,36 +105,36 @@
   <div class="deck">
     <div class="topbar">
       <div>
-        <strong style="color:var(--cyan);font-family:Consolas,monospace;font-size:0.85rem">CONCURSO: POR EL FUTURO DEL AGUA DE MÉXICO (ENTREGABLE 1 DE 3 · DOCUMENTO / PRESENTACIÓN PDF)</strong>
-        <div style="font-size:0.85rem;color:var(--muted)">Proyecto: <strong>AquaResiliencia</strong> y Planta Piloto <strong>«Agua de GIA» (Pozo 001)</strong> · Autor: <strong>Pablo Campos Moreno</strong> · Tijuana, B.C.</div>
+        <strong style="color:var(--river);font-size:0.85rem;letter-spacing:0.04em">CONCURSO: POR EL FUTURO DEL AGUA DE MÉXICO (ENTREGABLE 1 DE 3 · PRESENTACIÓN PDF)</strong>
+        <div style="font-size:0.85rem;color:var(--muted)">Proyecto: <strong>AquaResiliencia</strong> y Planta Piloto <strong>«Agua de Gía» (Pozo 001)</strong> · Autor: <strong>Pablo Campos Moreno</strong> · Tijuana, B.C.</div>
       </div>
       <button class="btn-print" onclick="window.print()">🖨️ Guardar como PDF Oficial</button>
     </div>
 
     <!-- LAMINA 1: PORTADA Y VISION -->
     <section class="slide">
-      <span class="slide-tag">Lámina 01 · Identidad y Propuesta de Valor</span>
-      <h1>De la «Varita Mágica» de Zahorí a la «Varita Mágica de GIA»</h1>
-      <p style="font-size:1.05rem;color:#e2e8f0">
-        <strong>El Problema en Tijuana:</strong> Más del 90% del agua depende del Acueducto Río Colorado-Tijuana (bombeando a 1,060 m de altitud con alto costo energético), mientras bajo nuestros pies —a solo <strong>3 a 8 metros de profundidad</strong>— millones de metros cúbicos de agua somera saturan laderas, provocan deslaves y se tiran al drenaje pluvial por considerarse "agua salobre descartada".
-      </p>
-      <div class="grid-2">
-        <div class="box sem-green">
-          <h3>🌐 AquaResiliencia (Toda la Idea y Plataforma)</h3>
-          <p>Es el sistema integral de resiliencia hídrica urbana: combina el motor de prospección científica <strong>AquaEngine</strong> («La Varita Mágica de GIA»), el alivio geotécnico de laderas y la arquitectura de tratamiento descentralizado <strong>80/20 con cero desperdicio</strong>.</p>
+      <span class="slide-tag">Lámina 01 · Raíces en la Tierra, Ciencia en el Agua</span>
+      <div style="display:grid;grid-template-columns:230px 1fr;gap:22px;align-items:center">
+        <div style="text-align:center">
+          <img src="assets/agua_de_gia_logo.jpg" alt="Agua de Gía — Nacida en Tijuana" style="width:100%;border-radius:12px;border:1px solid var(--border)">
         </div>
-        <div class="box sem-green">
-          <h3>💧 Agua de GIA (El Primer Pozo Físico — Pozo 001)</h3>
-          <p>Es el nombre con el que bautizamos al <strong>primer pozo somero (7 metros de profundidad) y planta piloto real</strong> construida en Tijuana. Demuestra empíricamente que el agua somera puede captarse sin azolve y purificarse en sitio sin aditivos químicos externos.</p>
+        <div>
+          <div style="font-family:'Alex Brush',cursive;font-size:2.8rem;color:#3C7899;line-height:1">Agua de Gía</div>
+          <div style="font-family:'Cormorant Garamond',serif;font-size:0.82rem;font-weight:700;letter-spacing:0.28em;color:#3A2D25;margin-bottom:8px">NACIDA EN TIJUANA</div>
+          <h1 style="font-size:1.85rem;margin-top:0">De la «Varita Mágica» de Zahorí a la «Varita Mágica de GIA»</h1>
+          <p>
+            <strong>El Reto de Tijuana:</strong> Más del 90% del agua depende del Acueducto Río Colorado-Tijuana, mientras entre <strong>3 y 8 metros bajo nuestras raíces</strong> el agua somera satura laderas y se desperdicia al drenaje. <strong>AquaResiliencia</strong> es la plataforma integral para localizarla y aprovecharla; <strong>«Agua de Gía»</strong> es nuestro primer pozo físico (Pozo 001 a 7 m) y planta piloto operando en Tijuana.
+          </p>
+          <img src="assets/agua_de_gia_jarra.jpg" alt="Vitrolero Agua de Gía" style="width:100%;max-height:145px;object-fit:cover;border-radius:10px;border:1px solid var(--border);margin-top:6px">
         </div>
       </div>
     </section>
 
     <!-- LAMINA 2: ALGORITMO EN 6 ETAPAS (DEL POZO AL VASO Y AL RIEGO) -->
     <section class="slide">
-      <span class="slide-tag">Lámina 02 · Ingeniería y Algoritmo de Purificación Casi Autónomo (Cero Químicos)</span>
+      <span class="slide-tag">Lámina 02 · Algoritmo de Purificación Casi Autónomo (100% Físico · Cero Químicos)</span>
       <h2>El Recorrido Completo del Agua: Del Pozo al Vaso (20%) y al Riego (80%)</h2>
-      <p>El sistema prescinde de floculantes químicos externos (sin Biofine ni sulfato de aluminio). Todo el proceso se gobierna mediante física electroquímica, reposo forzado por software y actuadores electromecánicos:</p>
+      <p>No usamos floculantes químicos externos (sin Biofine). El proceso combina electrofloculación controlada por caída de tensión (<code>ΔV</code>), reposo forzado por software, válvulas solenoides y una válvula de aguja motorizada:</p>
       <table>
         <thead>
           <tr>
@@ -142,39 +147,39 @@
         <tbody>
           <tr>
             <td><strong>01. Extracción Somera</strong></td>
-            <td>Pozo 001 a 7 m de profundidad bajo Ley de Stokes (velocidad ascendente menor a caída de arena).</td>
-            <td>Campana de aire (<code>0–40 kPa</code>), TDS con corte MOSFET y voltaje de Batería de Tierra.</td>
+            <td>Pozo 001 a 7 m bajo Ley de Stokes (sin arrastre de arena).</td>
+            <td>Campana de aire (<code>0–40 kPa</code>), TDS con corte MOSFET y Batería de Tierra.</td>
             <td>Bomba de bajo caudal (24V) + Registro local CSV antes de transmitir.</td>
           </tr>
           <tr>
             <td><strong>02. Llenado de Lote (1 BBL)</strong></td>
-            <td>Ingreso de <strong>117.3 Litros (1 BBL)</strong> al reactor mientras se calibra la fuente en vacío.</td>
-            <td>Medidor de flujo Hall + Lectura de Voltaje en Vacío (<code>V_vacío = 11.4–11.6 V</code>).</td>
+            <td>Ingreso de <strong>117.3 Litros (1 BBL)</strong> midiendo fuente en vacío.</td>
+            <td>Medidor de flujo Hall + Voltaje en Vacío (<code>V_vacío = 11.4–11.6 V</code>).</td>
             <td><strong>Válvula Solenoide SV-01</strong> abre paso; al sumergir electrodo al 50%, fija línea base (<code>V_base ≈ 10.6 V</code>).</td>
           </tr>
           <tr>
             <td><strong>03. Electrofloculación 12V/15A</strong></td>
-            <td>Coagulación iónica por sacrificio anódico sin químicos externos y barrido de microburbujas de H₂.</td>
-            <td>Divisor de voltaje continuo en ADC (<code>1 Hz</code>) midiendo caída <code>ΔV</code> sin cortar el proceso.</td>
+            <td>Coagulación iónica sin químicos y barrido de microburbujas de H₂.</td>
+            <td>Divisor de voltaje continuo en ADC (<code>1 Hz</code>) midiendo caída <code>ΔV</code>.</td>
             <td><strong>Relé Potencia 12V</strong> + <strong>Bomba Barrido H₂</strong> (pulsos de 30–45 s cada 5–7 min sin romper nata).</td>
           </tr>
           <tr>
             <td><strong>04. Reposo Forzado</strong></td>
             <td>Precipitación gravitacional y compactación del flóculo.</td>
-            <td>Temporizador de seguridad + Pulso de sensor <code>TDS</code> (1.5 s con fuente apagada sin ruido).</td>
-            <td><strong>Bloqueo estricto por software:</strong> prohíbe abrir válvulas o agitar antes de cumplir la sedimentación.</td>
+            <td>Temporizador de seguridad + Pulso de sensor <code>TDS</code> (1.5 s sin ruido DC).</td>
+            <td><strong>Bloqueo estricto por software:</strong> prohíbe abrir válvulas o mover el agua antes de sedimentar.</td>
           </tr>
           <tr>
             <td><strong>05. Trasvase y Malla 80 µm</strong></td>
-            <td>Extracción del sobrenadante clarificado protegiendo bombas contra limo y mica.</td>
-            <td>Sensor de flujo de salida + Verificación de nivel en tanque.</td>
-            <td><strong>Válvula Solenoide SV-02</strong> + Prefiltro físico de malla de <strong>80 micras</strong> (80% va a riego/servicios).</td>
+            <td>Extracción del agua clarificada protegiendo bombas contra limo y mica.</td>
+            <td>Sensor de flujo de salida + Nivel en tanque de distribución.</td>
+            <td><strong>Válvula Solenoide SV-02</strong> + Prefiltro de malla de <strong>80 micras</strong> (80% va a riego/servicios).</td>
           </tr>
           <tr>
             <td><strong>06. Ósmosis 20% con Válvula de Aguja</strong></td>
-            <td>Ultrapurificación para ingesta humana (NOM-127) con retorno total de rechazo.</td>
-            <td>Transductor de presión de acero inoxidable 316 (<code>0–100 PSI</code>) + TDS de producto.</td>
-            <td><strong>Actuador motorizado sobre Válvula de Aguja</strong> ajusta el rechazo para clavar <strong>85–90 PSI</strong> óptimos.</td>
+            <td>Ultrapurificación para beber (NOM-127) con retorno total de rechazo.</td>
+            <td>Transductor de acero inoxidable 316 (<code>0–100 PSI</code>) + TDS final.</td>
+            <td><strong>Actuador motorizado sobre Válvula de Aguja</strong> ajusta el rechazo para sostener <strong>85–90 PSI</strong>.</td>
           </tr>
         </tbody>
       </table>
@@ -185,62 +190,57 @@
       <span class="slide-tag">Lámina 03 · Innovación de Supervivencia para el Futuro del Agua de México</span>
       <h2>Nodo 1: «La Cápsula del Tiempo del Agua» (Batería de Tierra + Deep Sleep 5 a 10 Años)</h2>
       <p>
-        ¿Cómo monitorear un acuífero urbano durante una década incluso frente a apagones prolongados, vandalismo o pérdida de internet? Diseñamos una estación subterránea completamente independiente de la red eléctrica superficial:
+        Diseñamos una estación subterránea oculta e independiente de la red eléctrica superficial, capaz de vigilar el acuífero durante media década o una década completa:
       </p>
       <div class="grid-2">
         <div class="box sem-amber">
-          <h3>🔋 Energía Subterránea: Batería de Tierra (Mg / Cu)</h3>
+          <h3>🔋 Energía de la Propia Tierra (Celda Galvánica Mg / Cu)</h3>
           <ul>
-            <li>Construida con una barra de <strong>Ánodo de Magnesio</strong> y un tubo de <strong>Cobre</strong> enterrados en la tierra húmeda a un costado externo del pozo (<strong>cero contaminación al agua</strong>).</li>
-            <li>Un módulo cosechador de energía (<code>BQ25504</code>) recarga continuamente una batería de litio reciclada de terminal bancaria.</li>
-            <li>El sensor de nivel usa una <strong>campana de aire neumática</strong> (manguera de 4 mm sin electrónica sumergida) y el electrodo de TDS permanece <strong>apagado el 99% del tiempo vía MOSFET</strong> para evitar sarro y electrólisis.</li>
+            <li>Construida con una barra de <strong>Ánodo de Magnesio</strong> y un tubo de <strong>Cobre</strong> enterrados en la tierra húmeda a un lado del pozo (<strong>cero contaminación al agua</strong>).</li>
+            <li>Un cosechador de energía (<code>BQ25504</code>) recarga de forma perpetua una batería de litio reciclada.</li>
+            <li>El sensor de nivel usa una <strong>campana de aire neumática</strong> y el electrodo de TDS permanece <strong>apagado el 99% del tiempo vía MOSFET</strong> para evitar sarro y electrólisis.</li>
           </ul>
         </div>
         <div class="box sem-red">
           <h3>⏳ Algoritmo de Supervivencia de 5 a 10 Años (Backoff en RTC)</h3>
           <ul>
-            <li>Cada lectura se guarda primero en memoria Flash interna (<code>LittleFS CSV</code>) como una verdadera <strong>cápsula del tiempo hidrogeológica</strong>.</li>
-            <li>Si hay Wi-Fi, reporta cada 30–60 min; si falla, usa 4G LTE 1 vez al día.</li>
-            <li>Si pierde toda red, aplica <strong>backoff exponencial en sueño profundo (Deep Sleep)</strong>: Días 1–7 (1/día) &rarr; Días 8–30 (1/semana) &rarr; Meses 2–12 (1/mes) &rarr; &gt;1 año sin red (1 vez al año), logrando una autonomía de <strong>5 a 10 años</strong> con un costo amortizado de <strong>~$1.34 MXN al día</strong>.</li>
+            <li>Cada lectura se guarda primero en memoria Flash interna (<code>LittleFS CSV</code>) como una verdadera <strong>cápsula del tiempo del agua</strong>.</li>
+            <li>Si pierde Wi-Fi y red celular, entra en <strong>sueño profundo (Deep Sleep) con backoff exponencial</strong>: Días 1–7 (1/día) &rarr; Días 8–30 (1/semana) &rarr; Meses 2–12 (1/mes) &rarr; &gt;1 año sin red (1 vez al año), logrando una vida útil de <strong>5 a 10 años</strong> por solo <strong>~$1.34 MXN al día</strong>.</li>
           </ul>
         </div>
       </div>
     </section>
 
-    <!-- LAMINA 4: SEMAFORO DE TRANSPARENCIA Y ENTREGABLES -->
+    <!-- LAMINA 4: SEMAFORO DE TRANSPARENCIA -->
     <section class="slide">
-      <span class="slide-tag">Lámina 04 · Hoja de Ruta y Transparencia Tecnológica ante el Jurado</span>
-      <h2>Estado Real de Madurez (Semáforo de Transparencia)</h2>
+      <span class="slide-tag">Lámina 04 · Transparencia Tecnológica ante el Jurado</span>
+      <h2>Estado Real de Implementación (Semáforo Verde / Amarillo / Rojo)</h2>
       <div class="grid-3">
         <div class="box sem-green">
-          <h3 style="color:#34d399">🟢 EN VERDE (100% Operando Hoy)</h3>
+          <h3 style="color:var(--emerald)">🟢 EN VERDE (100% Operando Hoy)</h3>
           <ul>
-            <li>Plataforma web y motor <strong>AquaEngine</strong> («La Varita Mágica de GIA») con mapas interactivos de Tijuana.</li>
-            <li><strong>Pozo 001 «Agua de GIA»</strong> perforado a 7 m produciendo agua somera real.</li>
+            <li>Plataforma y motor <strong>AquaEngine</strong> («La Varita Mágica de GIA»).</li>
+            <li><strong>Pozo 001 «Agua de Gía»</strong> perforado a 7 m produciendo agua somera real.</li>
             <li>Reactor de <strong>Electrofloculación de 1 BBL (117.3 L)</strong> operando a <code>12V / 15A</code> con monitoreo continuo de <code>ΔV</code>, barrido de H₂ y tren físico 80/20 demostrado en video.</li>
           </ul>
         </div>
         <div class="box sem-amber">
-          <h3 style="color:#fbbf24">🟡 EN AMARILLO (En Calibración Activa)</h3>
+          <h3 style="color:var(--amber)">🟡 EN AMARILLO (En Calibración Activa)</h3>
           <ul>
-            <li>Automatización por lotes con <strong>reposo forzado por algoritmo</strong> y <strong>válvulas solenoides</strong> de trasvase entre tanques.</li>
+            <li>Automatización por lotes con <strong>reposo forzado por algoritmo</strong> y <strong>válvulas solenoides</strong> entre tanques.</li>
             <li>Acoplamiento del actuador motorizado sobre la <strong>válvula de aguja</strong> para autorregular el rechazo de Ósmosis Inversa a <code>85–90 PSI</code>.</li>
-            <li>Pruebas de curva de caída de <strong>TDS</strong> por lote e interfaz sinóptica en tiempo real.</li>
+            <li>Pruebas de curva de caída de <strong>TDS</strong> e interfaz sinóptica interactiva.</li>
           </ul>
         </div>
         <div class="box sem-red">
-          <h3 style="color:#fda4af">🔴 EN ROJO (En Desarrollo / Siguiente Etapa)</h3>
+          <h3 style="color:var(--rose)">🔴 EN ROJO (En Desarrollo / Siguiente Fase)</h3>
           <ul>
-            <li>Despliegue de larga duración del <strong>Nodo 1 «Cápsula del Tiempo»</strong> enterrado con Batería de Tierra (meta de supervivencia de 5 a 10 años).</li>
-            <li>Escalamiento del reactor de electrofloculación por lotes hacia un reactor de <strong>flujo continuo</strong> automatizado.</li>
+            <li>Despliegue de larga duración del <strong>Nodo 1 «Cápsula del Tiempo»</strong> con Batería de Tierra (meta de 5 a 10 años en <em>Deep Sleep</em>).</li>
+            <li>Evolución del reactor de electrofloculación por lotes hacia un reactor de <strong>flujo continuo</strong>.</li>
           </ul>
         </div>
-      </div>
-      <div style="margin-top:16px;padding:12px 16px;background:rgba(0,229,255,0.08);border:1px solid rgba(0,229,255,0.3);border-radius:10px;font-size:0.88rem;color:#e2e8f0">
-        🌐 <strong>Plataforma Interactiva en Vivo para el Jurado:</strong> <a href="https://quecrap.github.io/123portijuana/" style="color:var(--cyan)">https://quecrap.github.io/123portijuana/</a>
       </div>
     </section>
   </div>
 </body>
 </html>
-

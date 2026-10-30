@@ -26,7 +26,7 @@
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=Alex+Brush&family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <script src="https://unpkg.com/leaflet.heat@0.2.0/dist/leaflet-heat.js"></script>
@@ -37,7 +37,7 @@
   --sab: env(safe-area-inset-bottom, 0px);
   --sal: env(safe-area-inset-left, 0px);
   --sar: env(safe-area-inset-right, 0px);
-  --bg-dark:#070d18;--bg-card:rgba(15,23,42,.8);--bg-card-hover:rgba(30,41,59,.9);--border-color:rgba(56,189,248,.18);--border-glow:rgba(56,189,248,.45);--cyan-primary:#00e5ff;--cyan-glow:rgba(0,229,255,.3);--blue-accent:#3b82f6;--emerald-accent:#10b981;--amber-accent:#f59e0b;--rose-accent:#f43f5e;--purple-accent:#a855f7;--text-main:#f8fafc;--text-muted:#94a3b8;--text-dim:#64748b;--font-heading:'Outfit',sans-serif;--font-body:'Plus Jakarta Sans',sans-serif;--font-mono:'JetBrains Mono',monospace
+  --bg-dark:#F7F3EA;--bg-card:rgba(255,252,246,.94);--bg-card-hover:#FFFDF9;--border-color:rgba(122,94,72,.22);--border-glow:rgba(60,120,153,.45);--cyan-primary:#2E6F95;--cyan-glow:rgba(60,120,153,.22);--blue-accent:#5B7A5E;--emerald-accent:#236B4E;--amber-accent:#B45309;--rose-accent:#B03A2E;--purple-accent:#7C583B;--text-main:#2B211B;--text-muted:#5A473C;--text-dim:#826C5E;--font-heading:'Cormorant Garamond',Georgia,serif;--font-body:'Plus Jakarta Sans',sans-serif;--font-mono:'JetBrains Mono',monospace
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{
@@ -87,7 +87,7 @@ input, select, textarea {
 #particles-canvas{position:absolute;inset:0;pointer-events:none;opacity:.6}
 .wave-svg{position:absolute;bottom:0;left:0;width:100%;opacity:.1;pointer-events:none;animation:waveAnim 8s ease-in-out infinite alternate}
 @keyframes waveAnim{from{transform:translateX(-20px)}to{transform:translateX(20px)}}
-.auth-card{position:relative;z-index:10;background:rgba(10,22,40,.88);border:1px solid rgba(0,229,255,.3);border-radius:24px;padding:2.5rem;width:100%;max-width:460px;-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);box-shadow:0 0 60px rgba(0,229,255,.12),0 40px 80px rgba(0,0,0,.6);margin:auto}
+.auth-card{position:relative;z-index:10;background:#FBF8F1;border:1px solid rgba(0,229,255,.3);border-radius:24px;padding:2.5rem;width:100%;max-width:460px;-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);box-shadow:0 0 60px rgba(0,229,255,.12),0 40px 80px rgba(0,0,0,.6);margin:auto}
 .auth-logo{text-align:center;margin-bottom:2rem}
 .auth-logo-icon{width:64px;height:64px;border-radius:18px;background:linear-gradient(135deg,#00e5ff,#3b82f6);display:inline-flex;align-items:center;justify-content:center;margin-bottom:1rem;animation:logoGlow 3s ease-in-out infinite;box-shadow:0 0 30px rgba(0,229,255,.4)}
 @keyframes logoGlow{0%,100%{box-shadow:0 0 20px rgba(0,229,255,.4)}50%{box-shadow:0 0 45px rgba(0,229,255,.7),0 0 80px rgba(0,229,255,.2)}}
@@ -131,7 +131,7 @@ input, select, textarea {
 .btn-demo:active{background:rgba(255,255,255,.05);transform:scale(0.98)}
 .btn-demo:hover{border-color:rgba(255,255,255,.3);color:var(--text-main)}
 .auth-divider{text-align:center;font-size:.78rem;color:var(--text-dim);margin:.5rem 0}
-.auth-error{background:rgba(244,63,94,.12);border:1px solid rgba(244,63,94,.4);color:#fda4af;padding:.75rem 1rem;border-radius:10px;font-size:.88rem;display:none}
+.auth-error{background:rgba(244,63,94,.12);border:1px solid rgba(244,63,94,.4);color:#9E2A2B;padding:.75rem 1rem;border-radius:10px;font-size:.88rem;display:none}
 .auth-hint{background:rgba(0,229,255,.07);border:1px solid rgba(0,229,255,.2);border-radius:12px;padding:.85rem;margin-top:.5rem}
 .auth-hint p{font-size:.8rem;color:var(--text-muted);margin-bottom:.3rem;line-height:1.4}
 .auth-hint code{font-family:var(--font-mono);color:var(--cyan-primary);font-size:.82rem;background:rgba(0,0,0,.3);padding:.15rem .35rem;border-radius:4px}
@@ -142,7 +142,7 @@ input, select, textarea {
 #role-overlay{
   position:fixed;inset:0;z-index:9998;
   display:flex;flex-direction:column;align-items:center;justify-content:center;
-  background:rgba(2,12,27,.97);
+  background:#FBF8F1;
   -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);
   padding:calc(1.5rem + var(--sat)) calc(1.25rem + var(--sar)) calc(2rem + var(--sab)) calc(1.25rem + var(--sal));
   overflow-y:auto;
@@ -156,7 +156,7 @@ input, select, textarea {
 .role-header p{color:var(--text-muted);font-size:.95rem}
 .role-card-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;max-width:820px;width:100%}
 @media(max-width:680px){.role-card-grid{grid-template-columns:1fr;gap:1rem}}
-.role-card{background:rgba(15,23,42,.9);border:1px solid rgba(255,255,255,.1);border-radius:22px;padding:2rem;cursor:pointer;transition:all .35s;text-align:center;position:relative;overflow:hidden;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+.role-card{background:#FBF8F1;border:1px solid rgba(139,94,60,.25);border-radius:22px;padding:2rem;cursor:pointer;transition:all .35s;text-align:center;position:relative;overflow:hidden;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
 .role-card:active{transform:scale(0.98)}
 .role-card.tecnico:hover{transform:translateY(-4px);border-color:var(--cyan-primary);box-shadow:0 20px 50px rgba(0,229,255,.15)}
 .role-card.vecino:hover{transform:translateY(-4px);border-color:var(--emerald-accent);box-shadow:0 20px 50px rgba(16,185,129,.15)}
@@ -201,7 +201,7 @@ input, select, textarea {
 .wizard-step{display:none}
 .wizard-step.active{display:block;animation:stepFadeIn .3s ease-out}
 @keyframes stepFadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-.wizard-panel{background:rgba(15,23,42,.85);border:1px solid rgba(56,189,248,.18);border-radius:20px;padding:1.75rem;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);margin-bottom:1.25rem}
+.wizard-panel{background:#FBF8F1;border:1px solid rgba(56,189,248,.18);border-radius:20px;padding:1.75rem;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);margin-bottom:1.25rem}
 .wizard-section-title{font-family:var(--font-heading);font-size:1.1rem;font-weight:700;color:var(--emerald-accent);margin-bottom:1.25rem;padding-bottom:.75rem;border-bottom:1px solid rgba(16,185,129,.2);display:flex;align-items:center;gap:.5rem}
 .wiz-group{display:flex;flex-direction:column;gap:.45rem}
 .wiz-group.full{grid-column:1/-1}
@@ -209,7 +209,7 @@ input, select, textarea {
 .wiz-label .val-display{color:var(--emerald-accent);font-family:var(--font-mono);font-weight:700}
 .wiz-input,.wiz-select{
   background:rgba(255,255,255,.06);
-  border:1px solid rgba(255,255,255,.1);
+  border:1px solid rgba(139,94,60,.25);
   border-radius:12px;
   padding:.8rem .9rem;
   color:var(--text-main);
@@ -262,7 +262,7 @@ input, select, textarea {
   gap:.4rem;
   padding:.9rem .6rem;
   background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.1);
+  border:1px solid rgba(139,94,60,.25);
   border-radius:14px;
   cursor:pointer;
   transition:all .2s;
@@ -298,11 +298,11 @@ input, select, textarea {
 .urgency-star.active{background:rgba(245,158,11,.2);border-color:var(--amber-accent);box-shadow:0 0 12px rgba(245,158,11,.2)}
 #wizard-map-container{height:360px;width:100%;border-radius:14px;border:1px solid var(--border-color);overflow:hidden;touch-action:pan-x pan-y}
 .wizard-map-instruction{background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.3);border-radius:12px;padding:.85rem 1rem;font-size:.88rem;color:#6ee7b7;margin-bottom:1rem;display:flex;align-items:center;gap:.6rem}
-.wizard-map-result{display:none;background:rgba(15,23,42,.8);border:1px solid rgba(0,229,255,.3);border-radius:14px;padding:1.25rem;margin-top:1rem}
+.wizard-map-result{display:none;background:#FBF8F1;border:1px solid rgba(0,229,255,.3);border-radius:14px;padding:1.25rem;margin-top:1rem}
 .wizard-map-result.visible{display:block;animation:stepFadeIn .3s ease-out}
 .wiz-metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:.65rem;margin-top:.85rem}
 @media(max-width:480px){.wiz-metrics{grid-template-columns:repeat(2,1fr)}}
-.wiz-metric-box{background:rgba(15,23,42,.7);border:1px solid rgba(56,189,248,.15);border-radius:10px;padding:.75rem .4rem;text-align:center}
+.wiz-metric-box{background:#FBF8F1;border:1px solid rgba(56,189,248,.15);border-radius:10px;padding:.75rem .4rem;text-align:center}
 .wiz-metric-label{font-size:.68rem;text-transform:uppercase;font-family:var(--font-mono);color:var(--text-dim);margin-bottom:.2rem}
 .wiz-metric-val{font-family:var(--font-heading);font-size:1.15rem;font-weight:700;color:var(--cyan-primary)}
 .wizard-nav{display:flex;justify-content:space-between;gap:.85rem;margin-top:1.25rem;position:sticky;bottom:0;background:linear-gradient(0deg,#071022 80%,transparent);padding-top:.75rem;padding-bottom:calc(0.5rem + var(--sab));z-index:20}
@@ -326,7 +326,7 @@ input, select, textarea {
 }
 #report-overlay.hidden{display:none}
 .report-container{max-width:780px;margin:0 auto;padding:0.5rem 0 3rem}
-.report-card{background:rgba(15,23,42,.9);border:1px solid rgba(56,189,248,.25);border-radius:22px;padding:1.85rem;margin-bottom:1.25rem;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
+.report-card{background:#FBF8F1;border:1px solid rgba(56,189,248,.25);border-radius:22px;padding:1.85rem;margin-bottom:1.25rem;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px)}
 .report-header-section{text-align:center;padding:1.75rem 1.25rem;border-radius:18px;margin-bottom:1.25rem;position:relative}
 .report-header-section.excelente{background:radial-gradient(ellipse at 50% 0%,rgba(16,185,129,.2) 0%,transparent 70%);border:2px solid rgba(16,185,129,.4)}
 .report-header-section.condicionado{background:radial-gradient(ellipse at 50% 0%,rgba(245,158,11,.2) 0%,transparent 70%);border:2px solid rgba(245,158,11,.4)}
@@ -338,7 +338,7 @@ input, select, textarea {
 .report-verdict{font-family:var(--font-heading);font-size:clamp(1.25rem,3.5vw,1.5rem);font-weight:700;margin-bottom:.5rem}
 .report-grid{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:1rem}
 @media(max-width:580px){.report-grid{grid-template-columns:1fr}}
-.report-item{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:.85rem}
+.report-item{background:rgba(255,255,255,.04);border:1px solid rgba(139,94,60,.22);border-radius:12px;padding:.85rem}
 .report-item-label{font-size:.72rem;text-transform:uppercase;color:var(--text-dim);font-family:var(--font-mono);margin-bottom:.25rem}
 .report-item-val{font-size:1rem;font-weight:600;color:var(--text-main)}
 .report-section-title{font-family:var(--font-heading);font-size:1.1rem;font-weight:700;margin-bottom:1rem;color:var(--cyan-primary);display:flex;align-items:center;gap:.5rem}
@@ -358,7 +358,7 @@ input, select, textarea {
 
 /* ===================== TOAST ===================== */
 #toast-container{position:fixed;bottom:calc(1.5rem + var(--sab));right:max(1.25rem,var(--sar));left:max(1.25rem,var(--sal));z-index:99999;display:flex;flex-direction:column;align-items:flex-end;gap:.5rem;pointer-events:none}
-.toast{background:rgba(15,23,42,.95);border:1px solid rgba(0,229,255,.4);border-radius:14px;padding:.85rem 1.25rem;color:var(--text-main);font-size:.88rem;display:flex;align-items:center;gap:.6rem;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:0 10px 30px rgba(0,0,0,.5);animation:toastIn .3s ease,toastOut .3s ease 2.7s forwards;max-width:340px;pointer-events:all}
+.toast{background:#FBF8F1;border:1px solid rgba(0,229,255,.4);border-radius:14px;padding:.85rem 1.25rem;color:var(--text-main);font-size:.88rem;display:flex;align-items:center;gap:.6rem;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);box-shadow:0 10px 30px rgba(0,0,0,.5);animation:toastIn .3s ease,toastOut .3s ease 2.7s forwards;max-width:340px;pointer-events:all}
 @keyframes toastIn{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
 @keyframes toastOut{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(20px)}}
 
@@ -399,7 +399,7 @@ input, select, textarea {
 .mobile-nav-toggle:active{transform:scale(0.92);background:rgba(0,229,255,.1)}
 #mobile-drawer{
   position:fixed;top:0;right:-100%;bottom:0;width:min(85vw,340px);
-  background:rgba(7,13,24,.96);
+  background:#FBF8F1;
   -webkit-backdrop-filter:blur(24px);backdrop-filter:blur(24px);
   border-left:1px solid var(--border-glow);
   z-index:2000;
@@ -433,7 +433,7 @@ input, select, textarea {
 header{
   position:sticky;top:0;z-index:1000;
   -webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);
-  background:rgba(7,13,24,.92);border-bottom:1px solid var(--border-color);
+  background:#FBF8F1;border-bottom:1px solid var(--border-color);
   padding:calc(.45rem + var(--sat)) max(1.25rem,var(--sar)) .45rem max(1.25rem,var(--sal));
 }
 .nav-container{max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:.75rem}
@@ -465,13 +465,13 @@ section{margin-bottom:4.5rem;scroll-margin-top:5.5rem}
 .section-tag{font-family:var(--font-mono);color:var(--cyan-primary);font-size:.8rem;text-transform:uppercase;letter-spacing:1.5px;margin-bottom:.4rem;display:block}
 .section-title{font-family:var(--font-heading);font-size:clamp(1.5rem,3.5vw,2.1rem);font-weight:700;letter-spacing:-.5px}
 .conagua-data-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1rem;margin-bottom:2rem}
-.conagua-card{background:rgba(15,23,42,.65);border:1px solid var(--border-color);border-radius:14px;padding:1.25rem;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);transition:all .2s}
+.conagua-card{background:#FBF8F1;border:1px solid var(--border-color);border-radius:14px;padding:1.25rem;-webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);transition:all .2s}
 .conagua-card:hover{border-color:var(--border-glow);transform:translateY(-2px)}
 .conagua-badge{display:inline-flex;align-items:center;gap:.4rem;font-family:var(--font-mono);font-size:.74rem;color:var(--cyan-primary);background:rgba(0,229,255,.1);padding:.25rem .6rem;border-radius:6px;margin-bottom:.65rem;font-weight:600}
 .conagua-card h4{font-family:var(--font-heading);font-size:1.1rem;margin-bottom:.4rem;color:var(--text-main)}
 .conagua-card p{font-size:.86rem;color:var(--text-muted);line-height:1.5}
 .engine-container{background:var(--bg-card);border:1px solid var(--border-glow);border-radius:20px;padding:1.5rem;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);box-shadow:0 0 40px rgba(0,229,255,.05)}
-.transparency-banner{background:rgba(15,23,42,.7);border:1px solid rgba(56,189,248,.25);border-radius:14px;padding:1rem 1.25rem;margin-bottom:1.25rem;font-size:.85rem;color:var(--text-muted);display:flex;gap:.85rem;align-items:flex-start;line-height:1.6}
+.transparency-banner{background:#FBF8F1;border:1px solid rgba(56,189,248,.25);border-radius:14px;padding:1rem 1.25rem;margin-bottom:1.25rem;font-size:.85rem;color:var(--text-muted);display:flex;gap:.85rem;align-items:flex-start;line-height:1.6}
 .transparency-banner .icon{font-size:1.25rem;color:var(--cyan-primary);flex-shrink:0;margin-top:.1rem}
 .engine-grid{display:grid;grid-template-columns:1.15fr 1fr;gap:1.5rem}
 @media(max-width:960px){.engine-grid{grid-template-columns:1fr}}
@@ -512,7 +512,7 @@ section{margin-bottom:4.5rem;scroll-margin-top:5.5rem}
 .layer-btn.piezo.active{background:rgba(168,85,247,.25);border-color:var(--purple-accent);color:#fff;box-shadow:0 0 12px rgba(168,85,247,.3)}
 .layer-btn.repda{background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.4);color:#93c5fd}
 .layer-btn.repda.active{background:rgba(59,130,246,.25);border-color:var(--blue-accent);color:#fff;box-shadow:0 0 12px rgba(59,130,246,.3)}
-.layer-btn.hazard{background:rgba(244,63,94,.12);border:1px solid rgba(244,63,94,.4);color:#fda4af}
+.layer-btn.hazard{background:rgba(244,63,94,.12);border:1px solid rgba(244,63,94,.4);color:#9E2A2B}
 .layer-btn.hazard.active{background:rgba(244,63,94,.25);border-color:var(--rose-accent);color:#fff;box-shadow:0 0 12px rgba(244,63,94,.3)}
 .layer-btn.sgm{background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.4);color:#fde68a}
 .layer-btn.sgm.active{background:rgba(245,158,11,.25);border-color:var(--amber-accent);color:#fff;box-shadow:0 0 12px rgba(245,158,11,.3)}
@@ -559,7 +559,7 @@ section{margin-bottom:4.5rem;scroll-margin-top:5.5rem}
   justify-content: space-between;
   align-items: center;
   gap: 0.75rem;
-  background: rgba(7, 13, 24, 0.85);
+  background:#FBF8F1;
   border-bottom: 1px solid rgba(0, 229, 255, 0.25);
   padding: 0.5rem 1.25rem;
   position: sticky;
@@ -786,7 +786,7 @@ section{margin-bottom:4.5rem;scroll-margin-top:5.5rem}
   text-align: left;
 }
 .gate-option-card {
-  background: rgba(15, 23, 42, 0.7);
+  background:#FBF8F1;
   border: 1px solid var(--border-color);
   border-radius: 14px;
   padding: 1.15rem 1.25rem;
@@ -798,7 +798,7 @@ section{margin-bottom:4.5rem;scroll-margin-top:5.5rem}
   -webkit-tap-highlight-color: transparent;
 }
 .gate-option-card:hover {
-  background: rgba(30, 41, 59, 0.9);
+  background:#FBF8F1;
   border-color: var(--cyan-primary);
   transform: translateX(4px);
   box-shadow: 0 0 20px rgba(0, 229, 255, 0.15);
@@ -861,7 +861,7 @@ section{margin-bottom:4.5rem;scroll-margin-top:5.5rem}
   display: block;
 }
 .water-balance-visual {
-  background: rgba(7, 13, 24, 0.75);
+  background:#FBF8F1;
   border: 1px solid var(--border-color);
   border-radius: 16px;
   padding: 1.5rem;
@@ -904,7 +904,7 @@ section{margin-bottom:4.5rem;scroll-margin-top:5.5rem}
   font-size: 0.84rem;
 }
 .chem-table th {
-  background: rgba(15, 23, 42, 0.8);
+  background:#FBF8F1;
   color: var(--cyan-primary);
   text-align: left;
   padding: 0.65rem 0.85rem;
@@ -940,7 +940,7 @@ section{margin-bottom:4.5rem;scroll-margin-top:5.5rem}
   font-family: var(--font-mono);
 }
 .sim-box {
-  background: rgba(15, 23, 42, 0.8);
+  background:#FBF8F1;
   border: 1px solid var(--border-glow);
   border-radius: 16px;
   padding: 1.5rem;
@@ -964,7 +964,7 @@ section{margin-bottom:4.5rem;scroll-margin-top:5.5rem}
     white-space:nowrap;
   }
 }
-.ahp-factors-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:.5rem;margin-top:.75rem;padding:.75rem;background:rgba(15,23,42,.6);border:1px solid rgba(56,189,248,.15);border-radius:12px}
+.ahp-factors-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:.5rem;margin-top:.75rem;padding:.75rem;background:#FBF8F1;border:1px solid rgba(56,189,248,.15);border-radius:12px}
 .ahp-factor-item{text-align:center;padding:.4rem}
 .ahp-factor-label{font-size:.65rem;color:var(--text-dim);text-transform:uppercase;font-family:var(--font-mono);margin-bottom:.2rem}
 .ahp-factor-val{font-size:.85rem;font-weight:700;color:var(--cyan-primary)}
@@ -973,25 +973,25 @@ section{margin-bottom:4.5rem;scroll-margin-top:5.5rem}
 .city-card:hover{border-color:var(--border-glow);transform:translateY(-3px);background:var(--bg-card-hover)}
 .city-flag{font-size:1.6rem}
 .city-badge{display:inline-block;padding:.2rem .6rem;border-radius:6px;font-size:.72rem;font-weight:700;font-family:var(--font-mono);text-transform:uppercase}
-.city-badge.de{background:rgba(245,158,11,.15);color:#fbbf24;border:1px solid rgba(245,158,11,.3)}
+.city-badge.de{background:rgba(245,158,11,.15);color:#9A4406;border:1px solid rgba(245,158,11,.3)}
 .city-badge.us{background:rgba(59,130,246,.15);color:#93c5fd;border:1px solid rgba(59,130,246,.3)}
 .city-badge.pe{background:rgba(239,68,68,.15);color:#fca5a5;border:1px solid rgba(239,68,68,.3)}
 .city-badge.za{background:rgba(16,185,129,.15);color:#6ee7b7;border:1px solid rgba(16,185,129,.3)}
 .city-badge.jp{background:rgba(168,85,247,.15);color:#d8b4fe;border:1px solid rgba(168,85,247,.3)}
-.hydro-output{background:rgba(7,13,24,.75);border:1px solid var(--border-color);border-radius:16px;padding:1.5rem;display:flex;flex-direction:column;gap:1rem}
+.hydro-output{background:#FBF8F1;border:1px solid var(--border-color);border-radius:16px;padding:1.5rem;display:flex;flex-direction:column;gap:1rem}
 .score-badge{display:inline-flex;align-items:center;gap:.5rem;padding:.45rem .95rem;border-radius:9999px;font-weight:700;font-size:.9rem;letter-spacing:.3px}
 .score-badge.high{background:rgba(16,185,129,.15);border:1px solid var(--emerald-accent);color:var(--emerald-accent)}
 .score-badge.medium{background:rgba(245,158,11,.15);border:1px solid var(--amber-accent);color:var(--amber-accent)}
 .score-badge.low{background:rgba(244,63,94,.15);border:1px solid var(--rose-accent);color:var(--rose-accent)}
 .metrics-row{display:grid;grid-template-columns:repeat(4,1fr);gap:.65rem}
 @media(max-width:600px){.metrics-row{grid-template-columns:repeat(2,1fr)}}
-.metric-box{background:rgba(15,23,42,.6);border:1px solid var(--border-color);border-radius:12px;padding:.75rem .45rem;text-align:center}
+.metric-box{background:#FBF8F1;border:1px solid var(--border-color);border-radius:12px;padding:.75rem .45rem;text-align:center}
 .metric-label{font-size:.68rem;color:var(--text-dim);text-transform:uppercase;font-family:var(--font-mono);margin-bottom:.2rem}
 .metric-val{font-family:var(--font-heading);font-size:1.25rem;font-weight:700;color:var(--cyan-primary)}
-.strata-box{background:rgba(15,23,42,.5);border:1px solid var(--border-color);border-radius:12px;padding:.85rem}
+.strata-box{background:#FBF8F1;border:1px solid var(--border-color);border-radius:12px;padding:.85rem}
 .strata-canvas{width:100%;height:110px;border-radius:8px;background:#0d1527;display:block}
 .hazard-alert-banner{background:rgba(244,63,94,.12);border:1px solid rgba(244,63,94,.4);border-radius:10px;padding:.85rem 1rem;font-size:.84rem;color:#fecdd3;display:flex;align-items:center;gap:.6rem}
-.legal-box{background:rgba(15,23,42,.6);border-left:3px solid var(--cyan-primary);border-radius:10px;padding:1rem;font-size:.85rem;color:var(--text-muted)}
+.legal-box{background:#FBF8F1;border-left:3px solid var(--cyan-primary);border-radius:10px;padding:1rem;font-size:.85rem;color:var(--text-muted)}
 .btn-action{background:linear-gradient(135deg,var(--cyan-primary),var(--blue-accent));color:#070d18;border:none;padding:.85rem 1.4rem;border-radius:12px;font-weight:700;font-size:.92rem;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;justify-content:center;gap:.5rem;min-height:46px;appearance:none;touch-action:manipulation}
 .btn-action:active{transform:scale(0.97)}
 .btn-action:hover{box-shadow:0 0 20px var(--cyan-glow);transform:translateY(-2px)}
@@ -1020,7 +1020,7 @@ section{margin-bottom:4.5rem;scroll-margin-top:5.5rem}
   box-shadow:0 0 10px rgba(0,229,255,.5);
   cursor:pointer;
 }
-.calc-display{background:rgba(7,13,24,.6);border:1px solid var(--border-color);border-radius:16px;padding:1.5rem;display:flex;flex-direction:column;justify-content:space-between}
+.calc-display{background:#FBF8F1;border:1px solid var(--border-color);border-radius:16px;padding:1.5rem;display:flex;flex-direction:column;justify-content:space-between}
 .water-bar-wrapper{margin:1.25rem 0}
 .water-bar{height:36px;border-radius:10px;display:flex;overflow:hidden;box-shadow:inset 0 2px 4px rgba(0,0,0,.4)}
 .bar-80{background:linear-gradient(90deg,#0284c7,#0ea5e9);width:80%;display:flex;align-items:center;justify-content:center;font-size:.85rem;font-weight:700;color:#fff}
@@ -1032,11 +1032,11 @@ section{margin-bottom:4.5rem;scroll-margin-top:5.5rem}
 .card h3{font-family:var(--font-heading);font-size:1.2rem;margin-bottom:.6rem;color:var(--text-main)}
 .card p{color:var(--text-muted);font-size:.92rem;flex-grow:1;line-height:1.5}
 .telemetry-board{background:#050b14;border:1px solid rgba(0,229,255,.3);border-radius:20px;padding:1.5rem;box-shadow:0 0 30px rgba(0,229,255,.05)}
-.telemetry-header{display:flex;justify-content:space-between;align-items:center;padding-bottom:1.25rem;border-bottom:1px solid rgba(255,255,255,.08);margin-bottom:1.25rem;flex-wrap:wrap;gap:.75rem}
+.telemetry-header{display:flex;justify-content:space-between;align-items:center;padding-bottom:1.25rem;border-bottom:1px solid rgba(139,94,60,.2);margin-bottom:1.25rem;flex-wrap:wrap;gap:.75rem}
 .telemetry-status{display:flex;align-items:center;gap:.5rem;font-family:var(--font-mono);font-size:.85rem;color:var(--emerald-accent)}
 .telemetry-status::before{content:'';width:8px;height:8px;background:var(--emerald-accent);border-radius:50%;box-shadow:0 0 8px var(--emerald-accent)}
 .gauges-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem}
-.gauge-card{background:rgba(15,23,42,.5);border:1px solid var(--border-color);border-radius:14px;padding:1.25rem}
+.gauge-card{background:#FBF8F1;border:1px solid var(--border-color);border-radius:14px;padding:1.25rem}
 .gauge-title{font-size:.78rem;color:var(--text-dim);text-transform:uppercase;font-family:var(--font-mono);margin-bottom:.4rem}
 .gauge-val{font-family:var(--font-heading);font-size:1.85rem;font-weight:700;color:var(--cyan-primary)}
 .gauge-unit{font-size:.85rem;color:var(--text-muted);font-weight:400;margin-left:.25rem}
@@ -1050,7 +1050,7 @@ section{margin-bottom:4.5rem;scroll-margin-top:5.5rem}
 .modal-overlay.open{display:flex}
 .modal-content{background:#0b1329;border:1px solid var(--cyan-primary);border-radius:20px;max-width:780px;width:100%;max-height:85vh;max-height:85dvh;display:flex;flex-direction:column;box-shadow:0 0 50px rgba(0,229,255,.2);overflow:hidden}
 .modal-header{padding:1.25rem 1.5rem;border-bottom:1px solid var(--border-color);display:flex;justify-content:space-between;align-items:center}
-.modal-body{padding:1.25rem 1.5rem;overflow-y:auto;font-family:var(--font-mono);font-size:.82rem;line-height:1.7;color:#cbd5e1;background:#060a14}
+.modal-body{padding:1.25rem 1.5rem;overflow-y:auto;font-family:var(--font-mono);font-size:.82rem;line-height:1.7;color:#4A3B32;background:#060a14}
 .modal-footer{padding:1rem 1.5rem;border-top:1px solid var(--border-color);display:flex;justify-content:flex-end;gap:.75rem;flex-wrap:wrap}
 footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5rem + var(--sab));text-align:center;color:var(--text-dim);font-size:.88rem}
 .footer-links{display:flex;justify-content:center;gap:1.5rem;margin-bottom:1.25rem;list-style:none;flex-wrap:wrap}
@@ -1059,10 +1059,10 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
 
 /* ===================== CORTE 3D SECTION ===================== */
 .corte-3d-box{background:var(--bg-card);border:1px solid var(--border-color);border-radius:20px;padding:1.5rem;box-shadow:0 20px 50px rgba(0,0,0,.5);margin-top:1.5rem}
-.corte-toolbar{display:flex;justify-content:space-between;align-items:center;gap:.75rem;flex-wrap:wrap;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:1px solid rgba(255,255,255,.08)}
+.corte-toolbar{display:flex;justify-content:space-between;align-items:center;gap:.75rem;flex-wrap:wrap;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:1px solid rgba(139,94,60,.2)}
 .corte-canvas-wrapper{position:relative;width:100%;border-radius:14px;overflow:hidden;background:radial-gradient(circle at 50% 15%,#0d1b30 0%,#040810 100%);border:1px solid rgba(56,189,248,.25);box-shadow:inset 0 0 35px rgba(0,0,0,.85)}
 .corte-canvas{width:100%;height:380px;display:block;cursor:crosshair}
-.corte-hud{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.75rem;margin-top:1rem;background:rgba(15,23,42,.7);padding:1rem;border-radius:12px;border:1px solid rgba(255,255,255,.08)}
+.corte-hud{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:.75rem;margin-top:1rem;background:#FBF8F1;padding:1rem;border-radius:12px;border:1px solid rgba(139,94,60,.22)}
 .corte-hud-item{background:rgba(255,255,255,.03);padding:.75rem;border-radius:8px;border:1px solid rgba(255,255,255,.05)}
 .corte-hud-label{font-size:.72rem;text-transform:uppercase;color:var(--text-dim);font-family:var(--font-mono);margin-bottom:.25rem}
 .corte-hud-val{font-size:1.05rem;font-weight:700;color:var(--text-main)}
@@ -1155,7 +1155,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
 }
 
 /* ===================== DÍA CERO — RÍO COLORADO (issue #1) ===================== */
-.dia-cero-widget{display:inline-flex;align-items:center;gap:.45rem;background:rgba(15,23,42,.92);border:1px solid var(--border-color);border-radius:8px;padding:.24rem .65rem;cursor:pointer;transition:border-color .25s,box-shadow .25s,transform .2s;font-family:var(--font-mono);user-select:none}
+.dia-cero-widget{display:inline-flex;align-items:center;gap:.45rem;background:#FBF8F1;border:1px solid var(--border-color);border-radius:8px;padding:.24rem .65rem;cursor:pointer;transition:border-color .25s,box-shadow .25s,transform .2s;font-family:var(--font-mono);user-select:none}
 .dia-cero-widget:hover{transform:translateY(-1px);border-color:var(--rose-accent)}
 .dia-cero-widget:active{transform:scale(.98)}
 .dia-cero-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;background:var(--text-dim)}
@@ -1172,7 +1172,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
 .dia-cero-widget.state-red .dia-cero-value{color:var(--rose-accent)}
 .dia-cero-widget.state-yellow .dia-cero-value{color:var(--amber-accent)}
 .dia-cero-widget.state-green .dia-cero-value{color:var(--emerald-accent)}
-.dia-cero-panel{position:fixed;top:calc(3.2rem + var(--sat));right:max(1.25rem,var(--sar));z-index:2100;width:min(380px,calc(100vw - 2rem));max-height:calc(100vh - 4.5rem);overflow-y:auto;background:rgba(10,18,34,.98);border:1px solid rgba(244,63,94,.45);border-radius:18px;padding:1.1rem 1.2rem 1.3rem;box-shadow:0 20px 50px rgba(0,0,0,.8);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);display:none}
+.dia-cero-panel{position:fixed;top:calc(3.2rem + var(--sat));right:max(1.25rem,var(--sar));z-index:2100;width:min(380px,calc(100vw - 2rem));max-height:calc(100vh - 4.5rem);overflow-y:auto;background:#FBF8F1;border:1px solid rgba(244,63,94,.45);border-radius:18px;padding:1.1rem 1.2rem 1.3rem;box-shadow:0 20px 50px rgba(0,0,0,.8);-webkit-backdrop-filter:blur(18px);backdrop-filter:blur(18px);display:none}
 .dia-cero-panel.open{display:block;animation:diaCeroPanelIn .22s ease}
 @keyframes diaCeroPanelIn{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
 .dia-cero-panel-head{display:flex;align-items:flex-start;justify-content:space-between;gap:.75rem;margin-bottom:.15rem}
@@ -1181,7 +1181,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
 .dia-cero-close{background:none;border:none;color:var(--text-muted);font-size:1.3rem;line-height:1;cursor:pointer;padding:.1rem .3rem;flex-shrink:0}
 .dia-cero-close:hover{color:var(--text-main)}
 .dia-cero-stats{display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin:.9rem 0}
-.dia-cero-stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:.6rem .7rem}
+.dia-cero-stat{background:rgba(255,255,255,.04);border:1px solid rgba(139,94,60,.22);border-radius:12px;padding:.6rem .7rem}
 .dia-cero-stat-label{font-size:.66rem;text-transform:uppercase;letter-spacing:.05em;color:var(--text-dim);font-family:var(--font-mono)}
 .dia-cero-stat-val{font-size:1.05rem;font-weight:700;color:var(--text-main);margin-top:.15rem;font-family:var(--font-mono)}
 .dia-cero-stat-val.down{color:var(--rose-accent)}
@@ -1195,7 +1195,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
 .dia-cero-legend{display:flex;flex-wrap:wrap;gap:.5rem .8rem;margin-top:.5rem}
 .dia-cero-legend span{font-size:.65rem;color:var(--text-dim);display:flex;align-items:center;gap:.3rem}
 .dia-cero-legend i{width:9px;height:3px;border-radius:2px;display:inline-block}
-.dia-cero-panel-foot{margin-top:.9rem;padding-top:.7rem;border-top:1px solid rgba(255,255,255,.08);font-size:.68rem;color:var(--text-dim);display:flex;justify-content:space-between;gap:.5rem;flex-wrap:wrap}
+.dia-cero-panel-foot{margin-top:.9rem;padding-top:.7rem;border-top:1px solid rgba(139,94,60,.2);font-size:.68rem;color:var(--text-dim);display:flex;justify-content:space-between;gap:.5rem;flex-wrap:wrap}
 .dia-cero-panel-foot a{color:var(--cyan-primary);text-decoration:none}
 .dia-cero-panel-foot a:hover{text-decoration:underline}
 @media(max-width:480px){
@@ -1229,7 +1229,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
 
 .ladera-sim-module{
   margin-top:2.5rem;
-  background:linear-gradient(135deg,rgba(10,22,40,.92) 0%,rgba(15,23,42,.88) 100%);
+  background:linear-gradient(135deg,#FFFDF9,#F3ECE0);
   border:1px solid rgba(0,229,255,.3);
   border-radius:22px;
   padding:2rem;
@@ -1252,7 +1252,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
   gap:1rem;
   margin-bottom:1.5rem;
   padding-bottom:1.25rem;
-  border-bottom:1px solid rgba(255,255,255,.08);
+  border-bottom:1px solid rgba(139,94,60,.2);
 }
 .sim-title-group h3{
   font-family:var(--font-heading);
@@ -1279,7 +1279,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
   background:rgba(255,255,255,.04);
   padding:4px;
   border-radius:12px;
-  border:1px solid rgba(255,255,255,.08);
+  border:1px solid rgba(139,94,60,.22);
   margin-bottom:1.75rem;
 }
 .sim-tab-btn{
@@ -1322,8 +1322,8 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
 }
 
 .sim-controls-panel{
-  background:rgba(2,12,27,.6);
-  border:1px solid rgba(255,255,255,.08);
+  background:#FBF8F1;
+  border:1px solid rgba(139,94,60,.22);
   border-radius:16px;
   padding:1.4rem;
   display:flex;
@@ -1392,8 +1392,8 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
   margin-bottom:1.25rem;
 }
 .sim-kpi-card{
-  background:rgba(2,12,27,.6);
-  border:1px solid rgba(255,255,255,.08);
+  background:#FBF8F1;
+  border:1px solid rgba(139,94,60,.22);
   border-radius:14px;
   padding:1rem;
   display:flex;
@@ -1422,7 +1422,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
 
 .fs-hero-card{
   grid-column:1/-1;
-  background:linear-gradient(135deg,rgba(15,23,42,.9) 0%,rgba(2,12,27,.9) 100%);
+  background:linear-gradient(135deg,#FFFDF9,#F3ECE0);
   border:1px solid rgba(0,229,255,.3);
   padding:1.25rem 1.5rem;
   border-radius:16px;
@@ -1444,7 +1444,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
   gap:.45rem;
   transition:all .3s ease;
 }
-.fs-status-pill.failure{background:rgba(244,63,94,.18);border:1px solid #f43f5e;color:#fda4af;box-shadow:0 0 15px rgba(244,63,94,.35)}
+.fs-status-pill.failure{background:rgba(244,63,94,.18);border:1px solid #f43f5e;color:#9E2A2B;box-shadow:0 0 15px rgba(244,63,94,.35)}
 .fs-status-pill.marginal{background:rgba(245,158,11,.18);border:1px solid #f59e0b;color:#fde68a;box-shadow:0 0 15px rgba(245,158,11,.35)}
 .fs-status-pill.stable{background:rgba(16,185,129,.18);border:1px solid #10b981;color:#6ee7b7;box-shadow:0 0 18px rgba(16,185,129,.35)}
 
@@ -1473,7 +1473,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
 }
 
 .sim-canvas-box{
-  background:rgba(2,12,27,.75);
+  background:#FBF8F1;
   border:1px solid rgba(56,189,248,.2);
   border-radius:16px;
   padding:1rem;
@@ -1504,8 +1504,8 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
   gap:1.5rem;
 }
 .sim-gallery-card{
-  background:rgba(2,12,27,.7);
-  border:1px solid rgba(255,255,255,.1);
+  background:#FBF8F1;
+  border:1px solid rgba(139,94,60,.25);
   border-radius:16px;
   overflow:hidden;
   transition:transform .25s,border-color .25s,box-shadow .25s;
@@ -1522,7 +1522,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
   width:100%;
   height:180px;
   object-fit:cover;
-  border-bottom:1px solid rgba(255,255,255,.08);
+  border-bottom:1px solid rgba(139,94,60,.2);
   background:#070d18;
 }
 .sim-gallery-body{
@@ -1558,7 +1558,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
   position:fixed;
   inset:0;
   z-index:99999;
-  background:rgba(2,12,27,.94);
+  background:#FBF8F1;
   -webkit-backdrop-filter:blur(15px);
   backdrop-filter:blur(15px);
   display:flex;
@@ -1658,7 +1658,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
 
 .proxy-panel-box{
   margin-top:2rem;
-  background:linear-gradient(135deg,rgba(15,23,42,.92) 0%,rgba(10,22,40,.88) 100%);
+  background:linear-gradient(135deg,#FFFDF9,#F3ECE0);
   border:1px solid rgba(168,85,247,.35);
   border-radius:20px;
   padding:1.75rem;
@@ -1672,7 +1672,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
   gap:1rem;
   margin-bottom:1.25rem;
   padding-bottom:1rem;
-  border-bottom:1px solid rgba(255,255,255,.08);
+  border-bottom:1px solid rgba(139,94,60,.2);
 }
 .proxy-filter-chips{
   display:flex;
@@ -1704,8 +1704,8 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
   gap:1.25rem;
 }
 .proxy-item-card{
-  background:rgba(2,12,27,.65);
-  border:1px solid rgba(255,255,255,.08);
+  background:#FBF8F1;
+  border:1px solid rgba(139,94,60,.22);
   border-radius:14px;
   padding:1.15rem;
   display:flex;
@@ -1721,7 +1721,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
 /* ===================== TREN DE PROCESO REAL ===================== */
 .tren-showcase{
   margin-top:2.5rem;
-  background:linear-gradient(180deg, rgba(15,23,42,.85) 0%, rgba(7,13,24,.95) 100%);
+  background:linear-gradient(135deg,#FFFDF9,#F3ECE0);
   border:1px solid rgba(0,229,255,.25);
   border-radius:18px;
   padding:2rem;
@@ -1776,8 +1776,8 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
   gap:1.25rem;
 }
 .tren-card{
-  background:rgba(2,12,27,.6);
-  border:1px solid rgba(255,255,255,.08);
+  background:#FBF8F1;
+  border:1px solid rgba(139,94,60,.22);
   border-radius:14px;
   overflow:hidden;
   display:flex;
@@ -1860,6 +1860,136 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
   color:#fff;
   border-color:var(--cyan-primary);
   box-shadow:0 0 10px rgba(0,229,255,.3);
+}
+
+
+/* ===================== ESTILO TIERRA, RAÍCES Y AGUA DE GÍA (NACIDA EN TIJUANA) ===================== */
+body {
+  background-color: #F7F3EA !important;
+  color: #2B211B !important;
+  background-image:
+    radial-gradient(circle at 18% 12%, rgba(60, 120, 153, 0.08) 0%, transparent 45%),
+    radial-gradient(circle at 82% 85%, rgba(139, 94, 60, 0.10) 0%, transparent 45%),
+    radial-gradient(circle at 50% 50%, rgba(255, 253, 248, 0.6) 0%, rgba(239, 230, 213, 0.45) 100%) !important;
+}
+#user-header-bar {
+  background: rgba(244, 237, 224, 0.96) !important;
+  border-bottom: 1px solid rgba(122, 94, 72, 0.22) !important;
+  color: #2B211B !important;
+}
+#main-header {
+  background: rgba(251, 248, 241, 0.95) !important;
+  border-bottom: 1px solid rgba(122, 94, 72, 0.22) !important;
+  box-shadow: 0 4px 20px rgba(74, 59, 50, 0.07) !important;
+}
+.brand {
+  color: #2B211B !important;
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: 1.55rem !important;
+  font-weight: 700 !important;
+}
+.brand-icon {
+  background: linear-gradient(135deg, #3C7899, #5B7A5E) !important;
+  box-shadow: 0 4px 12px rgba(60, 120, 153, 0.25) !important;
+}
+.brand-icon svg { fill: #FFFDF9 !important; }
+.nav-links a {
+  color: #4A3B32 !important;
+  font-weight: 600 !important;
+}
+.nav-links a:hover, .nav-links a.active {
+  color: #2E6F95 !important;
+  background: rgba(60, 120, 153, 0.10) !important;
+}
+.hero {
+  background: radial-gradient(ellipse at 50% 0%, rgba(255, 253, 249, 0.95) 0%, rgba(244, 237, 224, 0.85) 100%) !important;
+}
+.gate-chamber {
+  background: rgba(255, 252, 246, 0.92) !important;
+  border: 1px solid rgba(139, 94, 60, 0.25) !important;
+  box-shadow: 0 20px 50px rgba(74, 59, 50, 0.10), inset 0 1px 0 #FFFFFF !important;
+}
+.badge-hero {
+  background: rgba(60, 120, 153, 0.10) !important;
+  border: 1px solid rgba(60, 120, 153, 0.32) !important;
+  color: #2E6F95 !important;
+}
+.gradient-text {
+  background: linear-gradient(135deg, #2E6F95 0%, #6E472B 55%, #236B4E 100%) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
+h1, h2, h3, h4, .section-title {
+  color: #2B211B !important;
+}
+.section-title {
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: clamp(2rem, 3.8vw, 2.75rem) !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.01em !important;
+}
+.card, .stat-card, .engine-container, .calc-box, .tren-showcase, .tren-card, .conagua-card, .metric-box, .sim-box, .proxy-panel-box, .proxy-item-card {
+  background: #FFFDF9 !important;
+  border: 1px solid rgba(122, 94, 72, 0.22) !important;
+  box-shadow: 0 8px 26px rgba(74, 59, 50, 0.06) !important;
+  color: #2B211B !important;
+}
+.tren-card-body h4, .card h3, .conagua-card h4 {
+  color: #2B211B !important;
+  font-family: 'Cormorant Garamond', Georgia, serif !important;
+  font-size: 1.25rem !important;
+  font-weight: 700 !important;
+}
+.btn-action, .action-btn {
+  background: linear-gradient(135deg, #2E6F95, #3B7A57) !important;
+  color: #FFFDF9 !important;
+  box-shadow: 0 6px 18px rgba(46, 111, 149, 0.25) !important;
+}
+.btn-secondary {
+  background: #F7F1E3 !important;
+  border: 1px solid rgba(122, 94, 72, 0.35) !important;
+  color: #3A2D25 !important;
+}
+.btn-secondary:hover {
+  background: #EFE5D0 !important;
+}
+.water-balance-visual, .transparency-banner {
+  background: #F6EFE2 !important;
+  border: 1px solid rgba(122, 94, 72, 0.25) !important;
+  color: #2B211B !important;
+}
+.chem-table th, .sim-tech-table th {
+  background: #EFE6D5 !important;
+  color: #2B211B !important;
+  border-bottom: 2px solid rgba(122, 94, 72, 0.3) !important;
+}
+.chem-table td, .sim-tech-table td {
+  color: #3A2D25 !important;
+  border-bottom: 1px solid rgba(122, 94, 72, 0.14) !important;
+}
+footer {
+  background: #EFE6D5 !important;
+  border-top: 1px solid rgba(122, 94, 72, 0.25) !important;
+  color: #4A3B32 !important;
+}
+.footer-links a { color: #2E6F95 !important; font-weight: 600; }
+.gia-script-title {
+  font-family: 'Alex Brush', 'Cormorant Garamond', cursive;
+  color: #3C7899;
+  font-size: clamp(2.8rem, 6vw, 4.3rem);
+  font-weight: 400;
+  line-height: 1.05;
+  margin-bottom: 0.2rem;
+}
+.gia-born-subtitle {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 0.92rem;
+  font-weight: 700;
+  letter-spacing: 0.32em;
+  text-transform: uppercase;
+  color: #3A2D25;
+  margin-bottom: 1.2rem;
 }
 
 </style>
@@ -2225,7 +2355,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
       <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-top:1.5rem;padding-top:1rem">
         <div>
           <p style="font-weight:700;font-size:.9rem;color:#0f172a">AquaResiliencia Tijuana — Red Centinela Ciudadana</p>
-          <p style="font-size:.75rem;color:#64748b">Protocolo hidrogeológico calibrado con CONAGUA DR_0201 (2024), USGS Basin 9-19 e INEGI RHD 2.0</p>
+          <p style="font-size:.75rem;color:#6E5A4C">Protocolo hidrogeológico calibrado con CONAGUA DR_0201 (2024), USGS Basin 9-19 e INEGI RHD 2.0</p>
         </div>
         <div style="text-align:center;border-top:1px solid #475569;width:220px;padding-top:.4rem;font-size:.78rem;color:#334155">
           Firma Responsable Técnico / Perforista
@@ -2364,7 +2494,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
     <li style="display:none"><a href="candidatos.html" style="color:var(--emerald-accent);border-color:rgba(16,185,129,.4)">💧 Candidatos &amp; Votación</a></li>
     <li><a href="javascript:void(0)" onclick="toggleMobileDrawer(false);goToWizard();" style="background:linear-gradient(135deg,rgba(16,185,129,.2),rgba(13,148,136,.2));border-color:rgba(16,185,129,.4);color:var(--emerald-accent)">📋 Evaluar Mi Predio (AquaScore™)</a></li>
   </ul>
-  <div style="margin-top:auto;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,.08);font-size:.78rem;color:var(--text-dim);font-family:var(--font-mono);text-align:center">
+  <div style="margin-top:auto;padding-top:1.5rem;border-top:1px solid rgba(139,94,60,.2);font-size:.78rem;color:var(--text-dim);font-family:var(--font-mono);text-align:center">
     AquaResiliencia Tijuana 2026<br>Optimizado para iOS / Safari
   </div>
 </aside>
@@ -2372,37 +2502,44 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
 <main id="main-content">
   <section class="hero" id="hero">
     <div class="gate-chamber">
-      <div class="glyph-water-pulse" onclick="showPanel('motor-hidro')" title="Ir al Mapa de Prospección">
-        <svg viewBox="0 0 24 24" width="38" height="38" fill="var(--cyan-primary)"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+      <!-- EMBLEMA ARTESANAL Y BOTÁNICO: AGUA DE GÍA — NACIDA EN TIJUANA -->
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;align-items:center;max-width:980px;margin:0 auto 1.85rem;padding:1.25rem;background:#FBF8F1;border:1px solid rgba(139,94,60,.25);border-radius:22px;box-shadow:0 12px 34px rgba(74,59,50,.08)">
+        <div style="text-align:center;padding:.5rem">
+          <img src="assets/agua_de_gia_logo.jpg" alt="Agua de Gía — Nacida en Tijuana" style="max-width:290px;width:100%;height:auto;border-radius:14px;box-shadow:0 6px 20px rgba(74,59,50,.08)">
+        </div>
+        <div style="text-align:left;padding:.5rem .75rem">
+          <div class="badge-hero" style="margin-bottom:.6rem"><span class="pulse"></span> RAÍCES EN LA TIERRA · CIENCIA EN EL AGUA</div>
+          <div class="gia-script-title">Agua de Gía</div>
+          <div class="gia-born-subtitle">NACIDA EN TIJUANA</div>
+          <h1 style="font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.65rem,3.2vw,2.35rem);line-height:1.2;margin-bottom:.75rem;color:#2B211B">
+            Antes para hacer pozos traían una «varita mágica».<br><span class="gradient-text">Hoy tenemos la «Varita Mágica de GIA»</span>
+          </h1>
+          <p style="font-size:.95rem;line-height:1.62;color:#4A3B32;margin-bottom:.9rem">
+            Tradicionalmente, quien buscaba agua subterránea caminaba el terreno con una <strong>varita de zahorí</strong> probando suerte a ciegas. Hoy unimos el respeto por la tierra con <strong>precisión hidrogeológica</strong> para encontrar el agua somera que brota entre <strong>3 y 8 metros bajo nuestras raíces</strong> y purificarla en sitio sin desperdiciar una sola gota.
+          </p>
+          <img src="assets/agua_de_gia_jarra.jpg" alt="Vitrolero Agua de Gía — Nacida en Tijuana" style="width:100%;max-height:185px;object-fit:cover;border-radius:12px;border:1px solid rgba(139,94,60,.28);box-shadow:0 6px 18px rgba(74,59,50,.12)">
+        </div>
       </div>
-
-      <div class="badge-hero"><span class="pulse"></span> INTELIGENCIA HIDROGEOLÓGICA · PROSPECCIÓN CIENTÍFICA Y POTABILIZACIÓN 80/20</div>
-      <h1 style="font-size:clamp(1.85rem,4.2vw,3.15rem);margin-bottom:.85rem">
-        Antes para hacer pozos traían una «varita mágica».<br><span class="gradient-text">Hoy tenemos la «Varita Mágica de GIA»</span>
-      </h1>
-      <p class="hero-subtitle" style="font-size:clamp(.95rem,1.65vw,1.08rem);max-width:860px;margin-bottom:1.85rem;color:#cbd5e1">
-        Tradicionalmente, quien buscaba agua subterránea caminaba el terreno con una <strong>varita mágica de zahorí</strong> probando suerte a ciegas. Hoy sustituimos la adivinación por <strong>precisión científica</strong>: cruzamos altimetría satelital, piezómetros oficiales, geología y evidencia forense para saber en segundos <strong>dónde hay agua somera (a 3–8 m bajo nuestros pies) y cómo potabilizarla en sitio</strong> sin desperdiciar una sola gota.
-      </p>
 
       <!-- Arquitectura Conceptual: AquaResiliencia (Toda la Idea) vs Agua de GIA (El Primer Pozo) -->
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(310px,1fr));gap:1.25rem;max-width:980px;margin:0 auto 2rem;text-align:left">
-        <div style="background:linear-gradient(135deg,rgba(15,23,42,.94),rgba(10,22,40,.9));border:1px solid rgba(0,229,255,.42);border-radius:18px;padding:1.45rem 1.55rem;box-shadow:0 12px 32px rgba(0,0,0,.45);position:relative;overflow:hidden">
+        <div style="background:linear-gradient(135deg,#FFFDF9,#F4EDE0);border:1px solid rgba(60,120,153,.45);border-radius:18px;padding:1.45rem 1.55rem;box-shadow:0 10px 28px rgba(74,59,50,.09);position:relative;overflow:hidden">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.55rem">
             <span style="font-family:var(--font-mono);font-size:.73rem;font-weight:700;color:var(--cyan-primary);background:rgba(0,229,255,.12);padding:.22rem .65rem;border-radius:6px;border:1px solid rgba(0,229,255,.32)">🌐 TODA LA IDEA Y PLATAFORMA INTEGRAL</span>
             <span style="font-size:1.4rem">🧭</span>
           </div>
-          <h3 style="font-family:var(--font-heading);font-size:1.35rem;font-weight:800;color:#fff;margin-bottom:.45rem">AquaResiliencia</h3>
+          <h3 style="font-family:var(--font-heading);font-size:1.35rem;font-weight:800;color:#2B211B;margin-bottom:.45rem">AquaResiliencia</h3>
           <p style="font-size:.89rem;color:var(--text-muted);line-height:1.58;margin:0">
             Es <strong>el concepto global y la plataforma de ingeniería</strong>: el motor territorial <em>AquaEngine</em>, el modelo de alivio geotécnico para proteger laderas y la arquitectura de tratamiento adaptativo <strong>80/20</strong> diseñada para escalar en viviendas, escuelas y parques de Tijuana.
           </p>
         </div>
 
-        <div style="background:linear-gradient(135deg,rgba(15,23,42,.94),rgba(6,42,36,.72));border:1px solid rgba(16,185,129,.48);border-radius:18px;padding:1.45rem 1.55rem;box-shadow:0 12px 32px rgba(0,0,0,.45);position:relative;overflow:hidden">
+        <div style="background:linear-gradient(135deg,#FFFDF9,#EFE6D4);border:1px solid rgba(35,107,78,.45);border-radius:18px;padding:1.45rem 1.55rem;box-shadow:0 10px 28px rgba(74,59,50,.09);position:relative;overflow:hidden">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:.55rem">
             <span style="font-family:var(--font-mono);font-size:.73rem;font-weight:700;color:var(--emerald-accent);background:rgba(16,185,129,.15);padding:.22rem .65rem;border-radius:6px;border:1px solid rgba(16,185,129,.38)">💧 EL PRIMER POZO FÍSICO (POZO 001)</span>
             <span style="font-size:1.4rem">🪄</span>
           </div>
-          <h3 style="font-family:var(--font-heading);font-size:1.35rem;font-weight:800;color:#fff;margin-bottom:.45rem">Agua de GIA</h3>
+          <h3 style="font-family:var(--font-heading);font-size:1.35rem;font-weight:800;color:#2B211B;margin-bottom:.45rem">Agua de GIA</h3>
           <p style="font-size:.89rem;color:var(--text-muted);line-height:1.58;margin:0">
             Es como se bautizó al <strong>primer pozo y planta piloto real</strong> (en honor a <strong>GIA</strong>). Perforado a <strong>7 metros de profundidad</strong> con ingeniería frugal accesible, convierte esa agua somera descartada en agua pura mediante electrofloculación, ósmosis inversa y recarga pluvial.
           </p>
@@ -2410,11 +2547,11 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
       </div>
 
             <!-- SEMÁFORO DE TRANSPARENCIA TECNOLÓGICA (ESTADO REAL DEL PROYECTO) -->
-      <div id="semaforo-transparencia" style="max-width:1020px;margin:0 auto 2rem;text-align:left;background:rgba(7,13,24,.88);border:1px solid rgba(255,255,255,.14);border-radius:18px;padding:1.35rem 1.5rem;box-shadow:0 14px 36px rgba(0,0,0,.5)">
-        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.6rem;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:1px solid rgba(255,255,255,.08)">
+      <div id="semaforo-transparencia" style="max-width:1020px;margin:0 auto 2rem;text-align:left;background:#FBF8F1;border:1px solid rgba(139,94,60,.28);border-radius:18px;padding:1.35rem 1.5rem;box-shadow:0 12px 30px rgba(74,59,50,.08)">
+        <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.6rem;margin-bottom:1rem;padding-bottom:.75rem;border-bottom:1px solid rgba(139,94,60,.2)">
           <div>
-            <span style="font-family:var(--font-mono);font-size:.73rem;font-weight:800;color:#fff;background:rgba(255,255,255,.1);padding:.22rem .65rem;border-radius:6px;letter-spacing:.5px">🚦 TRANSPARENCIA TECNOLÓGICA PARA EVALUADORES Y JURADO</span>
-            <h3 style="font-family:var(--font-heading);font-size:1.18rem;color:#fff;margin:.4rem 0 0">¿Qué está operando hoy al 100%, qué estamos calibrando y qué sigue en desarrollo?</h3>
+            <span style="font-family:var(--font-mono);font-size:.73rem;font-weight:800;color:#4A3B32;background:rgba(139,94,60,.12);padding:.22rem .65rem;border-radius:6px;letter-spacing:.5px">🚦 TRANSPARENCIA TECNOLÓGICA PARA EVALUADORES Y JURADO</span>
+            <h3 style="font-family:var(--font-heading);font-size:1.18rem;color:#2B211B;margin:.4rem 0 0">¿Qué está operando hoy al 100%, qué estamos calibrando y qué sigue en desarrollo?</h3>
           </div>
           <a href="PRESENTACION_CONCURSO_FUTURO_AGUA_MEXICO.html" target="_blank" rel="noopener" style="font-family:var(--font-mono);font-size:.76rem;font-weight:700;color:#020c1b;background:linear-gradient(135deg,#00e5ff,#10b981);padding:.45rem .9rem;border-radius:8px;text-decoration:none">🏆 Ver Presentación Ejecutiva Concurso (PDF) ↗</a>
         </div>
@@ -2424,9 +2561,9 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
           <div style="background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.45);border-radius:14px;padding:1rem 1.15rem">
             <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.45rem">
               <span style="width:12px;height:12px;border-radius:50%;background:#10b981;box-shadow:0 0 10px #10b981;display:inline-block"></span>
-              <strong style="font-family:var(--font-mono);font-size:.78rem;color:#34d399;text-transform:uppercase">🟢 EN VERDE · 100% Definido y Operando</strong>
+              <strong style="font-family:var(--font-mono);font-size:.78rem;color:#1E6043;text-transform:uppercase">🟢 EN VERDE · 100% Definido y Operando</strong>
             </div>
-            <ul style="margin:0;padding-left:1.1rem;font-size:.82rem;color:#cbd5e1;line-height:1.52">
+            <ul style="margin:0;padding-left:1.1rem;font-size:.82rem;color:#4A3B32;line-height:1.52">
               <li><strong>«Varita Mágica de GIA» (AquaEngine):</strong> Prospección multicriterio satelital, geológica y forense activa en Tijuana.</li>
               <li><strong>Pozo 001 «Agua de GIA»:</strong> Perforado a 7 m de profundidad extrayendo agua somera real.</li>
               <li><strong>Electrofloculación por Lote (1 BBL / 117 L):</strong> Operando a <code>12V / 15A</code> sin químicos externos, con monitoreo continuo de caída de tensión (<code>ΔV</code>), barrido de H₂ y tren físico 80/20 (ver video).</li>
@@ -2437,9 +2574,9 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
           <div style="background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.45);border-radius:14px;padding:1rem 1.15rem">
             <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.45rem">
               <span style="width:12px;height:12px;border-radius:50%;background:#f59e0b;box-shadow:0 0 10px #f59e0b;display:inline-block"></span>
-              <strong style="font-family:var(--font-mono);font-size:.78rem;color:#fbbf24;text-transform:uppercase">🟡 EN AMARILLO · En Calibración Activa</strong>
+              <strong style="font-family:var(--font-mono);font-size:.78rem;color:#9A4406;text-transform:uppercase">🟡 EN AMARILLO · En Calibración Activa</strong>
             </div>
-            <ul style="margin:0;padding-left:1.1rem;font-size:.82rem;color:#cbd5e1;line-height:1.52">
+            <ul style="margin:0;padding-left:1.1rem;font-size:.82rem;color:#4A3B32;line-height:1.52">
               <li><strong>Automatización Casi Autónoma (Nodo 2):</strong> Integración de <strong>válvulas solenoides</strong> de trasvase entre tanques y bloqueo de <strong>reposo forzado por algoritmo</strong> para no romper el flóculo.</li>
               <li><strong>Actuador en Válvula de Aguja RO:</strong> Ajuste motorizado del rechazo de ósmosis para sostener <code>85–90 PSI</code> óptimos.</li>
               <li><strong>Pruebas de TDS e Interfaz Sinóptica:</strong> Calibración de curvas de TDS post-floculación y tablero visual de recorrido del agua.</li>
@@ -2450,9 +2587,9 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
           <div style="background:rgba(244,63,94,.08);border:1px solid rgba(244,63,94,.45);border-radius:14px;padding:1rem 1.15rem">
             <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.45rem">
               <span style="width:12px;height:12px;border-radius:50%;background:#f43f5e;box-shadow:0 0 10px #f43f5e;display:inline-block"></span>
-              <strong style="font-family:var(--font-mono);font-size:.78rem;color:#fda4af;text-transform:uppercase">🔴 EN ROJO · Prototipado / Siguiente Fase</strong>
+              <strong style="font-family:var(--font-mono);font-size:.78rem;color:#9E2A2B;text-transform:uppercase">🔴 EN ROJO · Prototipado / Siguiente Fase</strong>
             </div>
-            <ul style="margin:0;padding-left:1.1rem;font-size:.82rem;color:#cbd5e1;line-height:1.52">
+            <ul style="margin:0;padding-left:1.1rem;font-size:.82rem;color:#4A3B32;line-height:1.52">
               <li><strong>Nodo 1 «Cápsula del Tiempo del Agua»:</strong> Estación subterránea independiente recargada con <strong>Batería de Tierra</strong> (Mg/Cu) y algoritmo <em>Deep Sleep</em> capaz de durar <strong>5 a 10 años</strong> sin red ni Wi-Fi.</li>
               <li><strong>Floculación de Flujo Continuo:</strong> Evolución futura del reactor actual por lotes hacia operación continua sin detenciones.</li>
             </ul>
@@ -2464,7 +2601,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
         <button class="btn-action" onclick="showPanel('motor-hidro')">🪄 Usar la «Varita Mágica» (Mapa AquaEngine)</button>
         <button class="btn-secondary" onclick="showPanel('solucion')" style="border-color:var(--emerald-accent);color:var(--emerald-accent)">💧 Ver Pozo 001 «Agua de GIA» en Video</button>
         <button class="btn-secondary" onclick="goToWizard()" style="border-color:var(--cyan-primary);color:var(--cyan-primary)">📋 Evaluar Mi Terreno (AquaScore™)</button>
-        <a class="btn-secondary" href="fichas-tecnicas-nodos-gia.html" target="_blank" rel="noopener" style="border-color:rgba(245,158,11,.55);color:#fbbf24;text-decoration:none;display:inline-flex;align-items:center">📄 Fichas Técnicas Nodo 1 y 2</a>
+        <a class="btn-secondary" href="fichas-tecnicas-nodos-gia.html" target="_blank" rel="noopener" style="border-color:rgba(245,158,11,.55);color:#9A4406;text-decoration:none;display:inline-flex;align-items:center">📄 Fichas Técnicas Nodo 1 y 2</a>
       </div>
 
       <div class="hero-stats" style="margin-top:1.5rem">
@@ -2481,7 +2618,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
 
   <section id="motor-hidro">
     <div class="section-header">
-      <span class="section-tag" style="background:rgba(16,185,129,.18);color:#34d399;border:1px solid #10b981">🟢 ESTADO: 100% DEFINIDO Y OPERANDO EN LÍNEA · 7 CAPAS DE DATOS</span>
+      <span class="section-tag" style="background:rgba(16,185,129,.18);color:#1E6043;border:1px solid #10b981">🟢 ESTADO: 100% DEFINIDO Y OPERANDO EN LÍNEA · 7 CAPAS DE DATOS</span>
       <h2 class="section-title">AquaEngine: Explorador Territorial Multi-Fuente</h2>
     </div>
     <div class="engine-container">
@@ -2536,7 +2673,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
             <span id="altimeter-live-tag" style="color:var(--cyan-primary)">⛰️ Cota: 18 msnm (DEM 30m)</span>
             <span id="layer-status-tag" style="color:var(--emerald-accent)">🗺️ 12 Capas Activas</span>
           </div>
-          <div style="display:flex;align-items:center;gap:0.45rem;font-size:0.75rem;color:#cbd5e1;margin-top:0.45rem;background:rgba(255,107,0,.08);border:1px solid rgba(255,107,0,.25);border-radius:6px;padding:5px 9px">
+          <div style="display:flex;align-items:center;gap:0.45rem;font-size:0.75rem;color:#4A3B32;margin-top:0.45rem;background:rgba(255,107,0,.08);border:1px solid rgba(255,107,0,.25);border-radius:6px;padding:5px 9px">
             <span style="display:inline-block;width:10px;height:10px;border-radius:50%;background:#ff6b00;box-shadow:0 0 8px #ff6b00;flex-shrink:0"></span>
             <span><strong>Demanda de tambos:</strong> $200–$350 (200L) / $1,800 (1000L) — 40 comentarios en Natura/Delicias/Florido.</span>
           </div>
@@ -2629,7 +2766,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
             <!-- Left Controls -->
             <div class="sim-controls-panel">
               <div style="display:flex;justify-content:space-between;align-items:center">
-                <strong style="font-size:.88rem;color:#fff">🎛️ Parámetros Físicos</strong>
+                <strong style="font-size:.88rem;color:#2B211B">🎛️ Parámetros Físicos</strong>
                 <span style="font-size:.7rem;color:var(--cyan-primary);font-family:var(--font-mono)">Tiempo Real</span>
               </div>
 
@@ -2732,7 +2869,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
                   </div>
                   <div style="text-align:right">
                     <div style="font-size:.72rem;color:var(--text-dim);font-family:var(--font-mono)">ESTADO DE LADERA</div>
-                    <div id="kpi-fs-diag" style="font-size:.9rem;font-weight:700;color:#fff;margin-top:.2rem">Riesgo Mitigado Efectivamente</div>
+                    <div id="kpi-fs-diag" style="font-size:.9rem;font-weight:700;color:#2B211B;margin-top:.2rem">Riesgo Mitigado Efectivamente</div>
                     <div style="font-size:.75rem;color:var(--cyan-primary);margin-top:.15rem" id="kpi-fs-delta">+85.1% vs Escenario Base</div>
                   </div>
                   <div class="fs-bar-track">
@@ -2763,7 +2900,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
                 <!-- KPI Tiempo a Falla -->
                 <div class="sim-kpi-card">
                   <div class="sim-kpi-label">Tiempo Crítico Falla</div>
-                  <div class="sim-kpi-val" id="kpi-tiempo-val" style="color:#fff">Seguro</div>
+                  <div class="sim-kpi-val" id="kpi-tiempo-val" style="color:#2B211B">Seguro</div>
                   <div class="sim-kpi-sub" id="kpi-tiempo-sub">Falla evitada indefinidamente</div>
                 </div>
 
@@ -2779,7 +2916,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
               <div class="sim-canvas-box">
                 <div class="sim-canvas-toolbar">
                   <div style="display:flex;align-items:center;gap:.5rem">
-                    <strong style="color:#fff">Perfil Geotécnico 2D en Vivo:</strong>
+                    <strong style="color:#2B211B">Perfil Geotécnico 2D en Vivo:</strong>
                     <span>Corte Transversal de Ladera y Conos de Depresión</span>
                   </div>
                   <div style="display:flex;gap:.8rem;font-family:var(--font-mono);font-size:.72rem">
@@ -2856,8 +2993,8 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
 
         <!-- TAB 3: TECHNICAL SPECS & COMPARISON -->
         <div id="sim-pane-specs" class="sim-pane">
-          <div style="background:rgba(2,12,27,.6);border:1px solid rgba(255,255,255,.08);border-radius:16px;padding:1.5rem;overflow-x:auto">
-            <h4 style="color:#fff;font-family:var(--font-heading);font-size:1.15rem;margin-bottom:.5rem">🔬 Matriz de Parámetros Calibrados &amp; Dictamen Geotécnico</h4>
+          <div style="background:#FBF8F1;border:1px solid rgba(139,94,60,.22);border-radius:16px;padding:1.5rem;overflow-x:auto">
+            <h4 style="color:#2B211B;font-family:var(--font-heading);font-size:1.15rem;margin-bottom:.5rem">🔬 Matriz de Parámetros Calibrados &amp; Dictamen Geotécnico</h4>
             <p style="font-size:.82rem;color:var(--text-muted);margin-bottom:1.25rem">Parámetros físicos basados en el <strong>Estudio Técnico CONAGUA DR_0201</strong>, Carta Geológica SGM I11-11 y tesis doctoral de Gudiño Elizondo (CICESE 2018):</p>
             
             <table class="sim-tech-table">
@@ -2927,7 +3064,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
               </tbody>
             </table>
 
-            <div style="margin-top:1.5rem;display:flex;gap:1rem;flex-wrap:wrap;align-items:center;justify-content:space-between;border-top:1px solid rgba(255,255,255,.08);padding-top:1rem">
+            <div style="margin-top:1.5rem;display:flex;gap:1rem;flex-wrap:wrap;align-items:center;justify-content:space-between;border-top:1px solid rgba(139,94,60,.2);padding-top:1rem">
               <span style="font-size:.78rem;color:var(--text-dim);font-family:var(--font-mono)">Archivo fuente: <code>modelo_aquaresiliencia_tijuana.py</code> (1,008 líneas de cálculo vectorial NumPy)</span>
               <div style="display:flex;gap:.75rem">
                 <a href="modelo_aquaresiliencia_tijuana.py" download class="btn-action" style="font-size:.82rem;padding:.5rem 1rem">📥 Descargar Script Python</a>
@@ -2943,7 +3080,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
         <div class="proxy-header">
           <div>
             <span class="section-tag" style="background:rgba(168,85,247,.12);color:#d8b4fe;border:1px solid rgba(168,85,247,.35);padding:.25rem .75rem;border-radius:6px;font-family:var(--font-mono);font-size:.74rem;font-weight:700">🔍 INTELIGENCIA FORENSE &amp; FUENTES ABIERTAS // AQUAPROXY</span>
-            <h3 style="margin-top:.4rem;font-size:1.45rem;color:#fff;font-family:var(--font-heading)">Radar de Agua Somera por Evidencias Indirectas</h3>
+            <h3 style="margin-top:.4rem;font-size:1.45rem;color:#2B211B;font-family:var(--font-heading)">Radar de Agua Somera por Evidencias Indirectas</h3>
             <p style="color:var(--text-muted);font-size:.86rem;max-width:850px;line-height:1.5;margin-top:.3rem">
               Mapeo de alta certeza hídrica sin depender de piezómetros gubernamentales: Cruzamiento de <strong>sótanos con cárcamo 24/7</strong>, <strong>peritajes de mecánica de suelos</strong>, <strong>obras con bombeo de achique</strong>, <strong>afloramientos deslindados por CESPT</strong> y <strong>árboles freatófitos verificados</strong>.
             </p>
@@ -2970,7 +3107,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
               <span style="font-size:.72rem;font-family:var(--font-mono);color:#3b82f6;font-weight:700">🏢 SÓTANO CON CÁRCAMO 24/7</span>
               <span class="sim-badge" style="color:#10b981;border-color:rgba(16,185,129,.3)">98% Certeza</span>
             </div>
-            <strong style="color:#fff;font-size:.95rem">Torre Corporativa Paseo de los Héroes</strong>
+            <strong style="color:#2B211B;font-size:.95rem">Torre Corporativa Paseo de los Héroes</strong>
             <p style="font-size:.78rem;color:var(--text-muted);line-height:1.4">Sótano de 3 niveles con achique permanente sobre el aluvión cuaternario (<em>Qal</em>) del Valle de Tijuana. NAF constante a 2.1 - 2.8 m.</p>
             <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:.5rem;border-top:1px solid rgba(255,255,255,.06)">
               <span style="font-size:.74rem;color:var(--cyan-primary);font-family:var(--font-mono)">NAF: 2.1 - 2.8 m</span>
@@ -2984,7 +3121,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
               <span style="font-size:.72rem;font-family:var(--font-mono);color:#a855f7;font-weight:700">📋 PERITAJE GEOTÉCNICO JUDICIAL</span>
               <span class="sim-badge" style="color:#10b981;border-color:rgba(16,185,129,.3)">99% Certeza</span>
             </div>
-            <strong style="color:#fff;font-size:.95rem">Lomas del Rubí (Zona Colapso 2018)</strong>
+            <strong style="color:#2B211B;font-size:.95rem">Lomas del Rubí (Zona Colapso 2018)</strong>
             <p style="font-size:.78rem;color:var(--text-muted);line-height:1.4">Peritajes FGE / CICESE documentaron saturación hídrica continua por fugas de red CESPT sobre arcilla Otay, detonando colapso de 180 casas.</p>
             <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:.5rem;border-top:1px solid rgba(255,255,255,.06)">
               <span style="font-size:.74rem;color:var(--cyan-primary);font-family:var(--font-mono)">NAF: 2.5 - 4.2 m</span>
@@ -2998,7 +3135,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
               <span style="font-size:.72rem;font-family:var(--font-mono);color:#3b82f6;font-weight:700">🏢 CIMENTACIÓN CON CÁRCAMO</span>
               <span class="sim-badge" style="color:#10b981;border-color:rgba(16,185,129,.3)">96% Certeza</span>
             </div>
-            <strong style="color:#fff;font-size:.95rem">New City Medical Plaza / Vía Rápida</strong>
+            <strong style="color:#2B211B;font-size:.95rem">New City Medical Plaza / Vía Rápida</strong>
             <p style="font-size:.78rem;color:var(--text-muted);line-height:1.4">Muros Milán y cajón compensado con bombeo freático automatizado hacia pluviales. NAF medido en cimentación a 1.8 - 2.5 m.</p>
             <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:.5rem;border-top:1px solid rgba(255,255,255,.06)">
               <span style="font-size:.74rem;color:var(--cyan-primary);font-family:var(--font-mono)">NAF: 1.8 - 2.5 m</span>
@@ -3012,7 +3149,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
               <span style="font-size:.72rem;font-family:var(--font-mono);color:#f59e0b;font-weight:700">🚜 OBRA CON ACHIQUE ESTIMADO</span>
               <span class="sim-badge" style="color:#10b981;border-color:rgba(16,185,129,.3)">95% Certeza</span>
             </div>
-            <strong style="color:#fff;font-size:.95rem">Paso a Desnivel Puente El Chaparral</strong>
+            <strong style="color:#2B211B;font-size:.95rem">Paso a Desnivel Puente El Chaparral</strong>
             <p style="font-size:.78rem;color:var(--text-muted);line-height:1.4">Partida de estimación de obra pública SIDURT cobrada por abatimiento continuo de zanjas estructurales próximas al Río Tijuana.</p>
             <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:.5rem;border-top:1px solid rgba(255,255,255,.06)">
               <span style="font-size:.74rem;color:var(--cyan-primary);font-family:var(--font-mono)">NAF: 1.2 - 1.8 m</span>
@@ -3026,7 +3163,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
               <span style="font-size:.72rem;font-family:var(--font-mono);color:#00e5ff;font-weight:700">💧 AFLORAMIENTO / DESLINDE CESPT</span>
               <span class="sim-badge" style="color:#10b981;border-color:rgba(16,185,129,.3)">95% Certeza</span>
             </div>
-            <strong style="color:#fff;font-size:.95rem">Cañón Johnson esq. Calle Segunda</strong>
+            <strong style="color:#2B211B;font-size:.95rem">Cañón Johnson esq. Calle Segunda</strong>
             <p style="font-size:.78rem;color:var(--text-muted);line-height:1.4">Flujo continuo de agua limpia hacia cuneta pluvial todo el año. Cloro libre DPD = 0.0 mg/L (deslinde oficial CESPT: venero natural).</p>
             <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:.5rem;border-top:1px solid rgba(255,255,255,.06)">
               <span style="font-size:.74rem;color:var(--cyan-primary);font-family:var(--font-mono)">NAF: 0.0 - 0.5 m</span>
@@ -3040,7 +3177,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
               <span style="font-size:.72rem;font-family:var(--font-mono);color:#10b981;font-weight:700">🌳 FREATÓFITO iNATURALIST</span>
               <span class="sim-badge" style="color:#10b981;border-color:rgba(16,185,129,.3)">95% Certeza</span>
             </div>
-            <strong style="color:#fff;font-size:.95rem">Álamos de Fremont (Río 3a Etapa / Ferrocarril)</strong>
+            <strong style="color:#2B211B;font-size:.95rem">Álamos de Fremont (Río 3a Etapa / Ferrocarril)</strong>
             <p style="font-size:.78rem;color:var(--text-muted);line-height:1.4">Especie indicadora obligada (#267227461) con raíces en agua subterránea somera. Vigor vegetal permanente en estiaje estival.</p>
             <div style="margin-top:auto;display:flex;justify-content:space-between;align-items:center;padding-top:.5rem;border-top:1px solid rgba(255,255,255,.06)">
               <span style="font-size:.74rem;color:var(--cyan-primary);font-family:var(--font-mono)">NAF: 2.8 - 4.5 m</span>
@@ -3055,7 +3192,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
         <div class="proxy-header">
           <div>
             <span class="section-tag" style="background:rgba(239,68,68,.12);color:#fca5a5;border:1px solid rgba(239,68,68,.35);padding:.25rem .75rem;border-radius:6px;font-family:var(--font-mono);font-size:.74rem;font-weight:700">🔥 MODELO ESPACIAL // HEATMAP &amp; KDE TIJUANA</span>
-            <h3 style="margin-top:.4rem;font-size:1.45rem;color:#fff;font-family:var(--font-heading)">Mapa de Calor: Zonas Críticas de Agua Somera (0 - 7.5 m)</h3>
+            <h3 style="margin-top:.4rem;font-size:1.45rem;color:#2B211B;font-family:var(--font-heading)">Mapa de Calor: Zonas Críticas de Agua Somera (0 - 7.5 m)</h3>
             <p style="color:var(--text-muted);font-size:.86rem;max-width:850px;line-height:1.5;margin-top:.3rem">
               Interpolación continua de densidad basada en <strong>50 evidencias corroboradas, macro-aprovechamientos REPDA y pozos piezométricos oficiales CONAGUA GAS1</strong> (mediciones geofísicas directas, cárcamos de sótanos 24/7, peritajes judiciales en deslizamientos, 25.17 hm³/año de extracción activa y red de monitoreo oficial). Los tonos cálidos (<span style="color:#ef4444;font-weight:700">Rojo</span> / <span style="color:#f59e0b;font-weight:700">Ámbar</span>) indican manto freático a menos de 3.5 m o afloramientos naturales de saturación crítica.
             </p>
@@ -3070,22 +3207,22 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1rem">
           <div style="background:rgba(255,255,255,.03);border:1px solid rgba(239,68,68,.25);border-radius:12px;padding:1rem">
             <div style="display:flex;align-items:center;gap:.5rem;font-family:var(--font-mono);font-size:.72rem;color:#fca5a5;font-weight:700">🔴 SATURACIÓN CRÍTICA (&lt; 2.0 m)</div>
-            <div style="font-size:1.05rem;font-weight:800;color:#fff;margin:.3rem 0">Paseo de Héroes, Matadero, Valle del Sur</div>
+            <div style="font-size:1.05rem;font-weight:800;color:#2B211B;margin:.3rem 0">Paseo de Héroes, Matadero, Valle del Sur</div>
             <p style="font-size:.75rem;color:var(--text-dim);line-height:1.4">Afloramientos basales, peritajes de colapso y zanjas de obra con bombeo continuo de abatimiento.</p>
           </div>
           <div style="background:rgba(255,255,255,.03);border:1px solid rgba(245,158,11,.25);border-radius:12px;padding:1rem">
             <div style="display:flex;align-items:center;gap:.5rem;font-family:var(--font-mono);font-size:.72rem;color:#fde68a;font-weight:700">🟡 FREÁTICO SOMERO (2.0 - 4.0 m)</div>
-            <div style="font-size:1.05rem;font-weight:800;color:#fff;margin:.3rem 0">Playas de Tijuana, New City, Camino Verde</div>
+            <div style="font-size:1.05rem;font-weight:800;color:#2B211B;margin:.3rem 0">Playas de Tijuana, New City, Camino Verde</div>
             <p style="font-size:.75rem;color:var(--text-dim);line-height:1.4">Sótanos con cárcamos de achique forzado y aluvión costero sobre terraza marina colapsable.</p>
           </div>
           <div style="background:rgba(255,255,255,.03);border:1px solid rgba(16,185,129,.25);border-radius:12px;padding:1rem">
             <div style="display:flex;align-items:center;gap:.5rem;font-family:var(--font-mono);font-size:.72rem;color:#a7f3d0;font-weight:700">🟢 ALTA TRANSMISIVIDAD (4.0 - 7.0 m)</div>
-            <div style="font-size:1.05rem;font-weight:800;color:#fff;margin:.3rem 0">Arroyo Alamar, Cañón del Padre, Morelos</div>
+            <div style="font-size:1.05rem;font-weight:800;color:#2B211B;margin:.3rem 0">Arroyo Alamar, Cañón del Padre, Morelos</div>
             <p style="font-size:.75rem;color:var(--text-dim);line-height:1.4">Acuífero aluvial no consolidado de alta recarga y pozos someros censados por CONAGUA.</p>
           </div>
           <div style="background:rgba(255,255,255,.03);border:1px solid rgba(56,189,248,.25);border-radius:12px;padding:1rem">
             <div style="display:flex;align-items:center;gap:.5rem;font-family:var(--font-mono);font-size:.72rem;color:#bae6fd;font-weight:700">🔵 TRANSICIÓN PROFUNDA (&gt; 7.0 m)</div>
-            <div style="font-size:1.05rem;font-weight:800;color:#fff;margin:.3rem 0">El Florido, Las Montañas, Otay Industrial</div>
+            <div style="font-size:1.05rem;font-weight:800;color:#2B211B;margin:.3rem 0">El Florido, Las Montañas, Otay Industrial</div>
             <p style="font-size:.75rem;color:var(--text-dim);line-height:1.4">Gravas aluviales y conglomerados con mayor espesor sedimentario hacia la Presa y Zona Este.</p>
           </div>
         </div>
@@ -3161,7 +3298,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
       <div class="card" style="border-top:4px solid #10b981;box-shadow:0 8px 25px rgba(16,185,129,.12)">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem">
           <div class="card-icon" style="margin:0">🪄</div>
-          <span style="font-family:var(--font-mono);font-size:.68rem;font-weight:800;padding:.2rem .55rem;border-radius:6px;background:rgba(16,185,129,.18);color:#34d399;border:1px solid #10b981">🟢 100% OPERANDO</span>
+          <span style="font-family:var(--font-mono);font-size:.68rem;font-weight:800;padding:.2rem .55rem;border-radius:6px;background:rgba(16,185,129,.18);color:#1E6043;border:1px solid #10b981">🟢 100% OPERANDO</span>
         </div>
         <h3>1. «Varita Mágica de GIA» (SIG)</h3>
         <p>Prospección hidrogeológica multicriterio con altimetría satelital INEGI, litología SGM, InSAR y evidencia forense activa en línea.</p>
@@ -3170,7 +3307,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
       <div class="card" style="border-top:4px solid #10b981;box-shadow:0 8px 25px rgba(16,185,129,.12)">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem">
           <div class="card-icon" style="margin:0">⛏️</div>
-          <span style="font-family:var(--font-mono);font-size:.68rem;font-weight:800;padding:.2rem .55rem;border-radius:6px;background:rgba(16,185,129,.18);color:#34d399;border:1px solid #10b981">🟢 100% OPERANDO</span>
+          <span style="font-family:var(--font-mono);font-size:.68rem;font-weight:800;padding:.2rem .55rem;border-radius:6px;background:rgba(16,185,129,.18);color:#1E6043;border:1px solid #10b981">🟢 100% OPERANDO</span>
         </div>
         <h3>2. Pozo 001 y Electrofloculación</h3>
         <p>Pozo físico a 7 m de profundidad y reactor por lote (1 BBL / 117 L) a <code>12V/15A</code> con monitoreo continuo de <code>ΔV</code> y barrido de H₂ sin químicos.</p>
@@ -3179,7 +3316,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
       <div class="card" style="border-top:4px solid #f59e0b;box-shadow:0 8px 25px rgba(245,158,11,.12)">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem">
           <div class="card-icon" style="margin:0">🎛️</div>
-          <span style="font-family:var(--font-mono);font-size:.68rem;font-weight:800;padding:.2rem .55rem;border-radius:6px;background:rgba(245,158,11,.18);color:#fbbf24;border:1px solid #f59e0b">🟡 EN CALIBRACIÓN</span>
+          <span style="font-family:var(--font-mono);font-size:.68rem;font-weight:800;padding:.2rem .55rem;border-radius:6px;background:rgba(245,158,11,.18);color:#9A4406;border:1px solid #f59e0b">🟡 EN CALIBRACIÓN</span>
         </div>
         <h3>3. Automatización Casi Autónoma</h3>
         <p>Algoritmo de <strong>reposo forzado</strong>, <strong>válvulas solenoides</strong> entre tanques, <strong>actuador en válvula de aguja</strong> para rechazo RO (85–90 PSI) y pruebas de TDS.</p>
@@ -3188,7 +3325,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
       <div class="card" style="border-top:4px solid #f43f5e;box-shadow:0 8px 25px rgba(244,63,94,.12)">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem">
           <div class="card-icon" style="margin:0">⏳</div>
-          <span style="font-family:var(--font-mono);font-size:.68rem;font-weight:800;padding:.2rem .55rem;border-radius:6px;background:rgba(244,63,94,.18);color:#fda4af;border:1px solid #f43f5e">🔴 EN DESARROLLO</span>
+          <span style="font-family:var(--font-mono);font-size:.68rem;font-weight:800;padding:.2rem .55rem;border-radius:6px;background:rgba(244,63,94,.18);color:#9E2A2B;border:1px solid #f43f5e">🔴 EN DESARROLLO</span>
         </div>
         <h3>4. «Cápsula del Tiempo» (5–10 Años)</h3>
         <p>Nodo subterráneo independiente recargado con <strong>Batería de Tierra (Mg/Cu)</strong> y algoritmo <em>Deep Sleep</em> con backoff exponencial hasta por una década.</p>
@@ -3196,13 +3333,13 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
     </div>
 
         <!-- ==================== DIAGRAMA SINÓPTICO INTERACTIVO Y ALGORITMO MAESTRO (DEL POZO AL VASO Y AL RIEGO) ==================== -->
-    <div id="sinoptico-algoritmo" style="margin-top:2rem;margin-bottom:2.25rem;background:linear-gradient(180deg,rgba(15,23,42,.92) 0%,rgba(7,13,24,.97) 100%);border:1px solid rgba(0,229,255,.35);border-radius:20px;padding:1.85rem;box-shadow:0 15px 40px rgba(0,0,0,.6)">
-      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:1px solid rgba(255,255,255,.08)">
+    <div id="sinoptico-algoritmo" style="margin-top:2rem;margin-bottom:2.25rem;background:linear-gradient(180deg,#FFFDF9 0%,#F4EDE0 100%);border:1px solid rgba(0,229,255,.35);border-radius:20px;padding:1.85rem;box-shadow:0 15px 40px rgba(0,0,0,.6)">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:1rem;margin-bottom:1.25rem;padding-bottom:1rem;border-bottom:1px solid rgba(139,94,60,.2)">
         <div>
           <span class="section-tag" style="background:rgba(0,229,255,.14);color:var(--cyan-primary);border:1px solid rgba(0,229,255,.35)">🖥️ INTERFAZ VISUAL DE PROCESO · ALGORITMO CASI AUTÓNOMO (CERO QUÍMICOS)</span>
-          <h3 style="font-family:var(--font-heading);font-size:1.5rem;color:#fff;margin:.35rem 0 .25rem">Recorrido Interactivo del Agua: Del Pozo al Vaso (20%) y al Riego (80%)</h3>
+          <h3 style="font-family:var(--font-heading);font-size:1.5rem;color:#2B211B;margin:.35rem 0 .25rem">Recorrido Interactivo del Agua: Del Pozo al Vaso (20%) y al Riego (80%)</h3>
           <p style="font-size:.86rem;color:var(--text-muted);max-width:820px;margin:0">
-            Haz clic en cada etapa o presiona <strong>«▶️ Simular Recorrido Completo»</strong> para ver por dónde pasa el agua, qué mide cada sensor, qué válvula o actuador se activa y el estado real del módulo (<span style="color:#34d399">🟢 Operando</span> / <span style="color:#fbbf24">🟡 En Calibración</span> / <span style="color:#fda4af">🔴 En Desarrollo</span>).
+            Haz clic en cada etapa o presiona <strong>«▶️ Simular Recorrido Completo»</strong> para ver por dónde pasa el agua, qué mide cada sensor, qué válvula o actuador se activa y el estado real del módulo (<span style="color:#1E6043">🟢 Operando</span> / <span style="color:#9A4406">🟡 En Calibración</span> / <span style="color:#9E2A2B">🔴 En Desarrollo</span>).
           </p>
         </div>
         <div style="display:flex;gap:.6rem;flex-wrap:wrap">
@@ -3211,7 +3348,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
       </div>
 
       <!-- DIBUJO ESQUEMÁTICO INTERACTIVO (SVG) -->
-      <div style="background:#050b14;border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:1rem;overflow-x:auto;margin-bottom:1.25rem">
+      <div style="background:#F4EDE0;border:1px solid rgba(139,94,60,.28);border-radius:16px;padding:1rem;overflow-x:auto;margin-bottom:1.25rem">
         <svg viewBox="0 0 1080 290" style="width:100%;min-width:860px;height:auto;display:block;font-family:'Segoe UI',system-ui,sans-serif">
           <defs>
             <linearGradient id="waterFlowGrad" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -3222,119 +3359,119 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
           </defs>
 
           <!-- Tuberías de conexión entre las 6 etapas -->
-          <line id="pipe-1-2" x1="155" y1="145" x2="215" y2="145" stroke="#1e293b" stroke-width="8" stroke-linecap="round"/>
-          <line id="pipe-2-3" x1="335" y1="145" x2="395" y2="145" stroke="#1e293b" stroke-width="8" stroke-linecap="round"/>
-          <line id="pipe-3-4" x1="525" y1="145" x2="585" y2="145" stroke="#1e293b" stroke-width="8" stroke-linecap="round"/>
-          <line id="pipe-4-5" x1="715" y1="145" x2="775" y2="145" stroke="#1e293b" stroke-width="8" stroke-linecap="round"/>
+          <line id="pipe-1-2" x1="155" y1="145" x2="215" y2="145" stroke="#D6C7B2" stroke-width="8" stroke-linecap="round"/>
+          <line id="pipe-2-3" x1="335" y1="145" x2="395" y2="145" stroke="#D6C7B2" stroke-width="8" stroke-linecap="round"/>
+          <line id="pipe-3-4" x1="525" y1="145" x2="585" y2="145" stroke="#D6C7B2" stroke-width="8" stroke-linecap="round"/>
+          <line id="pipe-4-5" x1="715" y1="145" x2="775" y2="145" stroke="#D6C7B2" stroke-width="8" stroke-linecap="round"/>
           <!-- Bifurcación 80/20 desde etapa 5 a etapa 6 -->
-          <path id="pipe-5-80" d="M 895 115 L 935 115 L 935 75 L 955 75" fill="none" stroke="#1e293b" stroke-width="7" stroke-linecap="round"/>
-          <path id="pipe-5-20" d="M 895 175 L 935 175 L 935 205 L 955 205" fill="none" stroke="#1e293b" stroke-width="7" stroke-linecap="round"/>
+          <path id="pipe-5-80" d="M 895 115 L 935 115 L 935 75 L 955 75" fill="none" stroke="#D6C7B2" stroke-width="7" stroke-linecap="round"/>
+          <path id="pipe-5-20" d="M 895 175 L 935 175 L 935 205 L 955 205" fill="none" stroke="#D6C7B2" stroke-width="7" stroke-linecap="round"/>
 
           <!-- NODO ETAPA 1: POZO 001 + CÁPSULA DEL TIEMPO -->
           <g id="syn-node-0" onclick="selectSynopticStep(0)" style="cursor:pointer">
-            <rect x="20" y="55" width="135" height="185" rx="14" fill="#0f172a" stroke="#10b981" stroke-width="2.5"/>
+            <rect x="20" y="55" width="135" height="185" rx="14" fill="#FFFDF9" stroke="#10b981" stroke-width="2.5"/>
             <circle cx="38" cy="74" r="6" fill="#10b981"/>
             <circle cx="54" cy="74" r="6" fill="#f43f5e"/>
-            <text x="87" y="78" fill="#94a3b8" font-size="10" font-weight="700" text-anchor="middle">ETAPA 01</text>
-            <text x="87" y="102" fill="#ffffff" font-size="12.5" font-weight="800" text-anchor="middle">Pozo 001 (7 m)</text>
-            <text x="87" y="118" fill="#38bdf8" font-size="10.5" text-anchor="middle">+ Cápsula Tiempo</text>
+            <text x="87" y="78" fill="#6E5A4F" font-size="10" font-weight="700" text-anchor="middle">ETAPA 01</text>
+            <text x="87" y="102" fill="#2B211B" font-size="12.5" font-weight="800" text-anchor="middle">Pozo 001 (7 m)</text>
+            <text x="87" y="118" fill="#2E6F95" font-size="10.5" text-anchor="middle">+ Cápsula Tiempo</text>
             <!-- Dibujo pozo y batería de tierra -->
             <rect x="48" y="130" width="28" height="72" rx="4" fill="rgba(0,229,255,.18)" stroke="#00e5ff" stroke-width="1.5"/>
             <rect x="88" y="142" width="38" height="58" rx="6" fill="rgba(244,63,94,.15)" stroke="#f43f5e" stroke-width="1.2"/>
             <text x="107" y="166" fill="#fda4af" font-size="8.5" font-weight="700" text-anchor="middle">Bat. Tierra</text>
             <text x="107" y="179" fill="#fda4af" font-size="8" text-anchor="middle">Mg / Cu</text>
             <text x="107" y="192" fill="#fbbf24" font-size="8" text-anchor="middle">5–10 años</text>
-            <text x="87" y="224" fill="#cbd5e1" font-size="9.5" text-anchor="middle">Campana 0–40 kPa</text>
+            <text x="87" y="224" fill="#4A3B32" font-size="9.5" text-anchor="middle">Campana 0–40 kPa</text>
           </g>
 
           <!-- NODO ETAPA 2: VÁLVULA SOLENOIDE SV-01 + LLENADO 1 BBL -->
           <g id="syn-node-1" onclick="selectSynopticStep(1)" style="cursor:pointer">
-            <rect x="215" y="55" width="120" height="185" rx="14" fill="#0f172a" stroke="#334155" stroke-width="2"/>
+            <rect x="215" y="55" width="120" height="185" rx="14" fill="#FFFDF9" stroke="#334155" stroke-width="2"/>
             <circle cx="233" cy="74" r="6" fill="#10b981"/>
             <circle cx="249" cy="74" r="6" fill="#f59e0b"/>
-            <text x="275" y="78" fill="#94a3b8" font-size="10" font-weight="700" text-anchor="middle">ETAPA 02</text>
-            <text x="275" y="102" fill="#ffffff" font-size="12.5" font-weight="800" text-anchor="middle">Llenado Lote</text>
-            <text x="275" y="118" fill="#38bdf8" font-size="10.5" text-anchor="middle">1 BBL (117.3 L)</text>
+            <text x="275" y="78" fill="#6E5A4F" font-size="10" font-weight="700" text-anchor="middle">ETAPA 02</text>
+            <text x="275" y="102" fill="#2B211B" font-size="12.5" font-weight="800" text-anchor="middle">Llenado Lote</text>
+            <text x="275" y="118" fill="#2E6F95" font-size="10.5" text-anchor="middle">1 BBL (117.3 L)</text>
             <rect x="242" y="132" width="66" height="55" rx="8" fill="rgba(56,189,248,.15)" stroke="#38bdf8" stroke-width="1.5"/>
-            <text x="275" y="156" fill="#fff" font-size="10" font-weight="700" text-anchor="middle">Solenoide SV-01</text>
-            <text x="275" y="172" fill="#67e8f9" font-size="9" text-anchor="middle">+ Flujo Hall</text>
+            <text x="275" y="156" fill="#2B211B" font-size="10" font-weight="700" text-anchor="middle">Solenoide SV-01</text>
+            <text x="275" y="172" fill="#2E6F95" font-size="9" text-anchor="middle">+ Flujo Hall</text>
             <text x="275" y="208" fill="#fbbf24" font-size="9.5" font-weight="700" text-anchor="middle">Mide V_vacío:</text>
-            <text x="275" y="223" fill="#cbd5e1" font-size="9.5" text-anchor="middle">11.4 V – 11.6 V</text>
+            <text x="275" y="223" fill="#4A3B32" font-size="9.5" text-anchor="middle">11.4 V – 11.6 V</text>
           </g>
 
           <!-- NODO ETAPA 3: ELECTROFLOCULACIÓN 12V/15A + BARRIDO H2 -->
           <g id="syn-node-2" onclick="selectSynopticStep(2)" style="cursor:pointer">
-            <rect x="395" y="55" width="130" height="185" rx="14" fill="#0f172a" stroke="#334155" stroke-width="2"/>
+            <rect x="395" y="55" width="130" height="185" rx="14" fill="#FFFDF9" stroke="#334155" stroke-width="2"/>
             <circle cx="415" cy="74" r="6" fill="#10b981"/>
-            <text x="460" y="78" fill="#94a3b8" font-size="10" font-weight="700" text-anchor="middle">ETAPA 03</text>
-            <text x="460" y="102" fill="#ffffff" font-size="12.5" font-weight="800" text-anchor="middle">Electrofloculación</text>
+            <text x="460" y="78" fill="#6E5A4F" font-size="10" font-weight="700" text-anchor="middle">ETAPA 03</text>
+            <text x="460" y="102" fill="#2B211B" font-size="12.5" font-weight="800" text-anchor="middle">Electrofloculación</text>
             <text x="460" y="118" fill="#34d399" font-size="10" font-weight="700" text-anchor="middle">12V / 15A (Cero Químicos)</text>
             <rect x="420" y="128" width="80" height="62" rx="8" fill="rgba(16,185,129,.15)" stroke="#10b981" stroke-width="1.5"/>
-            <text x="460" y="148" fill="#fff" font-size="9.5" font-weight="700" text-anchor="middle">Divisor ADC (ΔV)</text>
-            <text x="460" y="163" fill="#6ee7b7" font-size="9" text-anchor="middle">V_carga: 10.60 V</text>
-            <text x="460" y="178" fill="#fde047" font-size="8.5" text-anchor="middle">Alerta &lt; 10.30 V</text>
-            <text x="460" y="208" fill="#38bdf8" font-size="9" font-weight="700" text-anchor="middle">Bomba Barrido H₂:</text>
-            <text x="460" y="223" fill="#cbd5e1" font-size="9" text-anchor="middle">30-45s cada 5-7 min</text>
+            <text x="460" y="148" fill="#2B211B" font-size="9.5" font-weight="700" text-anchor="middle">Divisor ADC (ΔV)</text>
+            <text x="460" y="163" fill="#1E6043" font-size="9" text-anchor="middle">V_carga: 10.60 V</text>
+            <text x="460" y="178" fill="#9A4406" font-size="8.5" text-anchor="middle">Alerta &lt; 10.30 V</text>
+            <text x="460" y="208" fill="#2E6F95" font-size="9" font-weight="700" text-anchor="middle">Bomba Barrido H₂:</text>
+            <text x="460" y="223" fill="#4A3B32" font-size="9" text-anchor="middle">30-45s cada 5-7 min</text>
           </g>
 
           <!-- NODO ETAPA 4: REPOSO FORZADO POR ALGORITMO -->
           <g id="syn-node-3" onclick="selectSynopticStep(3)" style="cursor:pointer">
-            <rect x="585" y="55" width="130" height="185" rx="14" fill="#0f172a" stroke="#334155" stroke-width="2"/>
+            <rect x="585" y="55" width="130" height="185" rx="14" fill="#FFFDF9" stroke="#334155" stroke-width="2"/>
             <circle cx="603" cy="74" r="6" fill="#10b981"/>
             <circle cx="619" cy="74" r="6" fill="#f59e0b"/>
-            <text x="650" y="78" fill="#94a3b8" font-size="10" font-weight="700" text-anchor="middle">ETAPA 04</text>
-            <text x="650" y="102" fill="#ffffff" font-size="12.5" font-weight="800" text-anchor="middle">Reposo Forzado</text>
+            <text x="650" y="78" fill="#6E5A4F" font-size="10" font-weight="700" text-anchor="middle">ETAPA 04</text>
+            <text x="650" y="102" fill="#2B211B" font-size="12.5" font-weight="800" text-anchor="middle">Reposo Forzado</text>
             <text x="650" y="118" fill="#fbbf24" font-size="10" font-weight="700" text-anchor="middle">Bloqueo por Software</text>
             <rect x="610" y="128" width="80" height="62" rx="8" fill="rgba(245,158,11,.15)" stroke="#f59e0b" stroke-width="1.5"/>
-            <text x="650" y="149" fill="#fff" font-size="9.5" font-weight="700" text-anchor="middle">🔒 Válvulas OFF</text>
-            <text x="650" y="164" fill="#fde047" font-size="8.5" text-anchor="middle">Prohibido agitar</text>
-            <text x="650" y="178" fill="#cbd5e1" font-size="8.5" text-anchor="middle">Sedimenta flóculo</text>
-            <text x="650" y="208" fill="#67e8f9" font-size="9" font-weight="700" text-anchor="middle">Pulso TDS (1.5 s):</text>
-            <text x="650" y="223" fill="#cbd5e1" font-size="9" text-anchor="middle">Mide sin ruido DC</text>
+            <text x="650" y="149" fill="#2B211B" font-size="9.5" font-weight="700" text-anchor="middle">🔒 Válvulas OFF</text>
+            <text x="650" y="164" fill="#9A4406" font-size="8.5" text-anchor="middle">Prohibido agitar</text>
+            <text x="650" y="178" fill="#4A3B32" font-size="8.5" text-anchor="middle">Sedimenta flóculo</text>
+            <text x="650" y="208" fill="#2E6F95" font-size="9" font-weight="700" text-anchor="middle">Pulso TDS (1.5 s):</text>
+            <text x="650" y="223" fill="#4A3B32" font-size="9" text-anchor="middle">Mide sin ruido DC</text>
           </g>
 
           <!-- NODO ETAPA 5: TRASVASE + MALLA 80 MICRAS -->
           <g id="syn-node-4" onclick="selectSynopticStep(4)" style="cursor:pointer">
-            <rect x="775" y="55" width="120" height="185" rx="14" fill="#0f172a" stroke="#334155" stroke-width="2"/>
+            <rect x="775" y="55" width="120" height="185" rx="14" fill="#FFFDF9" stroke="#334155" stroke-width="2"/>
             <circle cx="795" cy="74" r="6" fill="#f59e0b"/>
-            <text x="835" y="78" fill="#94a3b8" font-size="10" font-weight="700" text-anchor="middle">ETAPA 05</text>
-            <text x="835" y="102" fill="#ffffff" font-size="12" font-weight="800" text-anchor="middle">Trasvase y Malla</text>
-            <text x="835" y="118" fill="#38bdf8" font-size="10" text-anchor="middle">Prefiltro 80 µm</text>
+            <text x="835" y="78" fill="#6E5A4F" font-size="10" font-weight="700" text-anchor="middle">ETAPA 05</text>
+            <text x="835" y="102" fill="#2B211B" font-size="12" font-weight="800" text-anchor="middle">Trasvase y Malla</text>
+            <text x="835" y="118" fill="#2E6F95" font-size="10" text-anchor="middle">Prefiltro 80 µm</text>
             <rect x="795" y="128" width="80" height="62" rx="8" fill="rgba(59,130,246,.15)" stroke="#3b82f6" stroke-width="1.5"/>
-            <text x="835" y="149" fill="#fff" font-size="9.5" font-weight="700" text-anchor="middle">Solenoide SV-02</text>
+            <text x="835" y="149" fill="#2B211B" font-size="9.5" font-weight="700" text-anchor="middle">Solenoide SV-02</text>
             <text x="835" y="164" fill="#93c5fd" font-size="8.5" text-anchor="middle">Retiene limo/mica</text>
             <text x="835" y="178" fill="#34d399" font-size="8.5" text-anchor="middle">Protege bombas</text>
-            <text x="835" y="208" fill="#cbd5e1" font-size="9" text-anchor="middle">Divide caudal a</text>
-            <text x="835" y="223" fill="#38bdf8" font-size="9.5" font-weight="700" text-anchor="middle">Riego 80% / RO 20%</text>
+            <text x="835" y="208" fill="#4A3B32" font-size="9" text-anchor="middle">Divide caudal a</text>
+            <text x="835" y="223" fill="#2E6F95" font-size="9.5" font-weight="700" text-anchor="middle">Riego 80% / RO 20%</text>
           </g>
 
           <!-- NODO ETAPA 6: SALIDA DUAL (80% RIEGO + 20% RO CON VÁLVULA DE AGUJA) -->
           <g id="syn-node-5" onclick="selectSynopticStep(5)" style="cursor:pointer">
             <!-- Caja Superior: 80% Riego y Servicios -->
-            <rect x="955" y="32" width="110" height="88" rx="12" fill="#0f172a" stroke="#10b981" stroke-width="2"/>
+            <rect x="955" y="32" width="110" height="88" rx="12" fill="#FFFDF9" stroke="#10b981" stroke-width="2"/>
             <text x="1010" y="52" fill="#34d399" font-size="10" font-weight="800" text-anchor="middle">🌿 80% RIEGO</text>
-            <text x="1010" y="68" fill="#fff" font-size="10.5" font-weight="700" text-anchor="middle">Servicios / Áreas</text>
-            <text x="1010" y="84" fill="#cbd5e1" font-size="8.5" text-anchor="middle">+ Retorno Rechazo</text>
-            <text x="1010" y="102" fill="#6ee7b7" font-size="8.5" font-weight="700" text-anchor="middle">Cero Desperdicio</text>
+            <text x="1010" y="68" fill="#2B211B" font-size="10.5" font-weight="700" text-anchor="middle">Servicios / Áreas</text>
+            <text x="1010" y="84" fill="#4A3B32" font-size="8.5" text-anchor="middle">+ Retorno Rechazo</text>
+            <text x="1010" y="102" fill="#1E6043" font-size="8.5" font-weight="700" text-anchor="middle">Cero Desperdicio</text>
 
             <!-- Caja Inferior: 20% Potable + Válvula de Aguja Motorizada -->
-            <rect x="955" y="142" width="110" height="118" rx="12" fill="#0f172a" stroke="#f59e0b" stroke-width="2"/>
+            <rect x="955" y="142" width="110" height="118" rx="12" fill="#FFFDF9" stroke="#f59e0b" stroke-width="2"/>
             <text x="1010" y="162" fill="#fbbf24" font-size="9.5" font-weight="800" text-anchor="middle">💧 20% INGESTA RO</text>
-            <text x="1010" y="178" fill="#fff" font-size="10" font-weight="700" text-anchor="middle">Válvula de Aguja</text>
-            <text x="1010" y="193" fill="#38bdf8" font-size="8.5" text-anchor="middle">Actuador Automático</text>
-            <text x="1010" y="209" fill="#fde047" font-size="8.5" font-weight="700" text-anchor="middle">85–90 PSI (Inox 316)</text>
-            <text x="1010" y="225" fill="#cbd5e1" font-size="8.5" text-anchor="middle">Sensor TDS final</text>
+            <text x="1010" y="178" fill="#2B211B" font-size="10" font-weight="700" text-anchor="middle">Válvula de Aguja</text>
+            <text x="1010" y="193" fill="#2E6F95" font-size="8.5" text-anchor="middle">Actuador Automático</text>
+            <text x="1010" y="209" fill="#9A4406" font-size="8.5" font-weight="700" text-anchor="middle">85–90 PSI (Inox 316)</text>
+            <text x="1010" y="225" fill="#4A3B32" font-size="8.5" text-anchor="middle">Sensor TDS final</text>
             <text x="1010" y="244" fill="#34d399" font-size="9" font-weight="800" text-anchor="middle">Lista para Beber</text>
           </g>
         </svg>
       </div>
 
       <!-- PANEL DETALLADO DE LA ETAPA SELECCIONADA -->
-      <div id="synoptic-detail-box" style="background:rgba(2,12,27,.8);border:1px solid rgba(0,229,255,.3);border-radius:14px;padding:1.25rem 1.4rem">
+      <div id="synoptic-detail-box" style="background:#FFFDF9;border:1px solid rgba(139,94,60,.3);border-radius:14px;padding:1.25rem 1.4rem">
         <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;margin-bottom:.65rem">
           <div style="display:flex;align-items:center;gap:.65rem">
-            <span id="syn-step-badge" style="font-family:var(--font-mono);font-size:.76rem;font-weight:800;padding:.25rem .7rem;border-radius:6px;background:rgba(16,185,129,.2);color:#34d399;border:1px solid #10b981">ETAPA 01 · 🟢 POZO REAL / 🔴 CÁPSULA EN DESARROLLO</span>
-            <h4 id="syn-step-title" style="font-family:var(--font-heading);font-size:1.2rem;color:#fff;margin:0">Extracción Somera (Pozo 001 a 7 m) y Estación «Cápsula del Tiempo»</h4>
+            <span id="syn-step-badge" style="font-family:var(--font-mono);font-size:.76rem;font-weight:800;padding:.25rem .7rem;border-radius:6px;background:rgba(16,185,129,.2);color:#1E6043;border:1px solid #10b981">ETAPA 01 · 🟢 POZO REAL / 🔴 CÁPSULA EN DESARROLLO</span>
+            <h4 id="syn-step-title" style="font-family:var(--font-heading);font-size:1.2rem;color:#2B211B;margin:0">Extracción Somera (Pozo 001 a 7 m) y Estación «Cápsula del Tiempo»</h4>
           </div>
           <div style="display:flex;gap:.4rem">
             <button class="btn-secondary" onclick="selectSynopticStep(0)" style="padding:.25rem .6rem;font-size:.75rem">1</button>
@@ -3345,21 +3482,21 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
             <button class="btn-secondary" onclick="selectSynopticStep(5)" style="padding:.25rem .6rem;font-size:.75rem">6</button>
           </div>
         </div>
-        <p id="syn-step-desc" style="font-size:.88rem;color:#cbd5e1;line-height:1.58;margin:0 0 .9rem">
+        <p id="syn-step-desc" style="font-size:.88rem;color:#4A3B32;line-height:1.58;margin:0 0 .9rem">
           El agua sale del manto colgado a 7 metros en el Pozo 001 con caudal calibrado bajo la Ley de Stokes para no arrastrar arena. En paralelo, el registro subterráneo aloja el prototipo del <strong>Nodo 1 («Cápsula del Tiempo del Agua»)</strong>: mide nivel por campana neumática (0–40 kPa), se recarga con una <strong>Batería de Tierra</strong> (ánodo de magnesio y tubo de cobre enterrados a un costado sin contaminar el agua) y entra en <em>Deep Sleep</em> con backoff exponencial capaz de guardar datos de <strong>5 a 10 años</strong> si cae toda red eléctrica o Wi-Fi.
         </p>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.85rem;font-size:.82rem">
           <div style="background:rgba(255,255,255,.04);padding:.75rem .9rem;border-radius:10px;border-left:3px solid var(--cyan-primary)">
             <strong style="display:block;color:var(--cyan-primary);font-family:var(--font-mono);font-size:.72rem;text-transform:uppercase">🔬 Sensores en Esta Etapa</strong>
-            <span id="syn-step-sensors" style="color:#e2e8f0">Campana de aire HX710B (0–40 kPa), TDS con corte MOSFET (99% apagado) y voltaje de Batería de Tierra (BQ25504).</span>
+            <span id="syn-step-sensors" style="color:#2B211B">Campana de aire HX710B (0–40 kPa), TDS con corte MOSFET (99% apagado) y voltaje de Batería de Tierra (BQ25504).</span>
           </div>
           <div style="background:rgba(255,255,255,.04);padding:.75rem .9rem;border-radius:10px;border-left:3px solid var(--emerald-accent)">
             <strong style="display:block;color:var(--emerald-accent);font-family:var(--font-mono);font-size:.72rem;text-transform:uppercase">⚙️ Actuadores / Hardware</strong>
-            <span id="syn-step-actuators" style="color:#e2e8f0">Bomba de extracción de bajo caudal (24V / 2A) + Placa LilyGO T-A7670G (ESP32 + 4G LTE + Memoria Flash LittleFS).</span>
+            <span id="syn-step-actuators" style="color:#2B211B">Bomba de extracción de bajo caudal (24V / 2A) + Placa LilyGO T-A7670G (ESP32 + 4G LTE + Memoria Flash LittleFS).</span>
           </div>
           <div style="background:rgba(255,255,255,.04);padding:.75rem .9rem;border-radius:10px;border-left:3px solid var(--amber-accent)">
             <strong style="display:block;color:var(--amber-accent);font-family:var(--font-mono);font-size:.72rem;text-transform:uppercase">🧠 Regla del Algoritmo</strong>
-            <span id="syn-step-rule" style="color:#e2e8f0">Guarda primero en CSV local; transmite cada 30–60 min por Wi-Fi, 1/día por 4G, o hiberna en RTC de 1/día hasta 1/año.</span>
+            <span id="syn-step-rule" style="color:#2B211B">Guarda primero en CSV local; transmite cada 30–60 min por Wi-Fi, 1/día por 4G, o hiberna en RTC de 1/día hasta 1/año.</span>
           </div>
         </div>
       </div>
@@ -3370,7 +3507,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
       <div class="tren-header">
         <div>
           <span class="section-tag" style="background:rgba(16,185,129,.15);border-color:rgba(16,185,129,.4);color:var(--emerald-accent)">POZO 001 «AGUA DE GIA» · PROTOTIPO FÍSICO OPERATIVO EN VIVO</span>
-          <h3 style="font-family:var(--font-heading);font-size:1.6rem;color:#fff;margin-top:.35rem">Agua de GIA (Caso 001): Tren de Tratamiento 80/20 y Cero Desperdicio</h3>
+          <h3 style="font-family:var(--font-heading);font-size:1.6rem;color:#2B211B;margin-top:.35rem">Agua de GIA (Caso 001): Tren de Tratamiento 80/20 y Cero Desperdicio</h3>
           <p style="font-size:.88rem;color:var(--text-muted);max-width:780px;margin-top:.25rem">
             Diseñada, fabricada y operada en Tijuana con ingeniería frugal accesible: carcasa sanitaria de acero inoxidable con abrazaderas <em>tri-clamp</em>, electrofloculación a 24V, decantación tangencial y recirculación activa de rechazo sin tirar agua al drenaje.
           </p>
@@ -3391,7 +3528,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
       <!-- Selector / Doble Video: Demostración Física Real + Animación 3D del Sistema -->
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.25rem;margin-bottom:1.75rem">
         <div class="tren-video-container" style="margin-bottom:0">
-          <div style="padding:.6rem 1rem;background:rgba(16,185,129,.15);border-bottom:1px solid rgba(16,185,129,.3);font-family:var(--font-mono);font-size:.76rem;font-weight:700;color:#34d399">
+          <div style="padding:.6rem 1rem;background:rgba(16,185,129,.15);border-bottom:1px solid rgba(16,185,129,.3);font-family:var(--font-mono);font-size:.76rem;font-weight:700;color:#1E6043">
             🟢 VIDEO 1: TREN FÍSICO REAL EN OPERACIÓN — POZO 001 «AGUA DE GIA» (2:48)
           </div>
           <video id="trenVideoPlayer" controls preload="metadata" poster="img_tren/etapa5_osmosis_inversa.jpg">
@@ -3500,7 +3637,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
 
         <div class="tren-card" style="border:1px solid rgba(244,63,94,.55)">
           <div class="tren-card-img-wrap">
-            <span class="tren-card-badge" style="background:rgba(244,63,94,.92);color:#fff">🔴 ETAPA 08 · CÁPSULA 5–10 AÑOS</span>
+            <span class="tren-card-badge" style="background:rgba(244,63,94,.92);color:#2B211B">🔴 ETAPA 08 · CÁPSULA 5–10 AÑOS</span>
             <img src="img_tren/etapa8_recarga_pluvial.jpg" alt="Recarga y Cápsula del Tiempo">
           </div>
           <div class="tren-card-body">
@@ -3514,7 +3651,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
   </section>
 
   <section id="calculadora">
-    <div class="section-header"><span class="section-tag" style="background:rgba(16,185,129,.18);color:#34d399;border:1px solid #10b981">🟢 ESTADO: MODELO FINANCIERO Y RETORNO 80/20 DEFINIDO AL 100%</span><h2 class="section-title">Calculadora de Balance Hídrico 80/20 &amp; Payback</h2></div>
+    <div class="section-header"><span class="section-tag" style="background:rgba(16,185,129,.18);color:#1E6043;border:1px solid #10b981">🟢 ESTADO: MODELO FINANCIERO Y RETORNO 80/20 DEFINIDO AL 100%</span><h2 class="section-title">Calculadora de Balance Hídrico 80/20 &amp; Payback</h2></div>
     <div class="calc-box">
       <div class="calc-controls">
         <div class="control-group"><label for="personasRange">Integrantes: <span id="personasVal" style="color:var(--cyan-primary);font-weight:700">4</span> personas</label><input type="range" id="personasRange" min="1" max="10" value="4" class="range-slider"></div>
@@ -3530,8 +3667,8 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
           <div class="water-bar-wrapper"><div class="water-bar"><div class="bar-80" id="bar80">80% Servicios</div><div class="bar-20" id="bar20">20% Ingesta</div></div></div>
         </div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:1rem">
-          <div style="background:rgba(2,132,199,.15);padding:1rem;border-radius:10px"><div style="font-size:.75rem;color:#38bdf8;font-weight:700">LÍNEA GENERAL (80%)</div><div id="litros80" style="font-size:1.5rem;font-weight:800;color:#fff">384 L</div><div style="font-size:.75rem;color:var(--text-muted)">Sanitarios, lavado, humedal</div></div>
-          <div style="background:rgba(0,229,255,.15);padding:1rem;border-radius:10px"><div style="font-size:.75rem;color:var(--cyan-primary);font-weight:700">LÍNEA INGESTA (20%)</div><div id="litros20" style="font-size:1.5rem;font-weight:800;color:#fff">96 L</div><div style="font-size:.75rem;color:var(--text-muted)">RO + UV + Remineralización</div></div>
+          <div style="background:rgba(2,132,199,.15);padding:1rem;border-radius:10px"><div style="font-size:.75rem;color:#38bdf8;font-weight:700">LÍNEA GENERAL (80%)</div><div id="litros80" style="font-size:1.5rem;font-weight:800;color:#2B211B">384 L</div><div style="font-size:.75rem;color:var(--text-muted)">Sanitarios, lavado, humedal</div></div>
+          <div style="background:rgba(0,229,255,.15);padding:1rem;border-radius:10px"><div style="font-size:.75rem;color:var(--cyan-primary);font-weight:700">LÍNEA INGESTA (20%)</div><div id="litros20" style="font-size:1.5rem;font-weight:800;color:#2B211B">96 L</div><div style="font-size:.75rem;color:var(--text-muted)">RO + UV + Remineralización</div></div>
         </div>
       </div>
     </div>
@@ -3635,11 +3772,11 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
     <!-- ==================== BALANCE OFICIAL Y MARCO LEGAL INTEGRADO EN DERECHO ==================== -->
     <div style="margin-top:3rem;padding-top:2.25rem;border-top:1px solid var(--border-color)">
     <div class="section-header">
-      <span class="section-tag" style="background:rgba(16,185,129,.18);color:#34d399;border:1px solid #10b981">🟢 ESTADO: FUNDAMENTACIÓN JURÍDICA Y BALANCE CONAGUA VERIFICADOS</span>
+      <span class="section-tag" style="background:rgba(16,185,129,.18);color:#1E6043;border:1px solid #10b981">🟢 ESTADO: FUNDAMENTACIÓN JURÍDICA Y BALANCE CONAGUA VERIFICADOS</span>
       <h2 class="section-title">El Balance Oficial del Acuífero 0201 Tijuana: Del "Déficit" al Agua Descartada</h2>
     </div>
     
-    <div style="background:rgba(15,23,42,.75);border:1px solid var(--border-glow);border-radius:20px;padding:2rem;margin-bottom:2rem;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);box-shadow:0 0 50px rgba(0,229,255,.06)">
+    <div style="background:#FBF8F1;border:1px solid var(--border-glow);border-radius:20px;padding:2rem;margin-bottom:2rem;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);box-shadow:0 0 50px rgba(0,229,255,.06)">
       
       <!-- Pestañas Interactivas de Fundamentación -->
       <div class="conagua-tabs-bar">
@@ -3817,7 +3954,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
           </p>
         </div>
 
-        <div style="overflow-x:auto;background:rgba(7,13,24,.6);border:1px solid var(--border-color);border-radius:14px;padding:.5rem">
+        <div style="overflow-x:auto;background:#FBF8F1;border:1px solid var(--border-color);border-radius:14px;padding:.5rem">
           <table class="chem-table">
             <thead>
               <tr>
@@ -3947,7 +4084,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
         <div class="gauge-card"><div class="gauge-title">Conductividad TDS</div><div class="gauge-val" id="tdsVal">420<span class="gauge-unit">ppm</span></div></div>
         <div class="gauge-card"><div class="gauge-title">Volumen Diario</div><div class="gauge-val" id="volTotal">328<span class="gauge-unit">L</span></div></div>
       </div>
-      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:1.25rem;padding-top:1rem;border-top:1px solid rgba(255,255,255,.08);flex-wrap:wrap;gap:.75rem">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-top:1.25rem;padding-top:1rem;border-top:1px solid rgba(139,94,60,.2);flex-wrap:wrap;gap:.75rem">
         <div style="display:flex;align-items:center;gap:.6rem;font-size:.82rem;color:var(--text-muted)">
           <span>Fuente de Telemetría:</span>
           <span id="esp32SourceLabel" style="font-family:var(--font-mono);color:var(--cyan-primary);font-weight:700">Simulación Dinámica (Ciclo de Pozo)</span>
@@ -3974,7 +4111,7 @@ footer{border-top:1px solid var(--border-color);padding:2.5rem 1.5rem calc(2.5re
         <label style="display:block;font-size:.78rem;text-transform:uppercase;color:var(--text-dim);margin-bottom:.4rem">Dirección IP o Endpoint del ESP32</label>
         <input type="text" id="esp32IpInput" class="wiz-input" placeholder="http://192.168.4.1/telemetry" value="http://192.168.4.1/telemetry">
       </div>
-      <div style="background:rgba(15,23,42,.8);padding:.85rem;border-radius:10px;border:1px solid rgba(56,189,248,.2);margin-bottom:1rem;font-size:.8rem;line-height:1.5">
+      <div style="background:#FBF8F1;padding:.85rem;border-radius:10px;border:1px solid rgba(56,189,248,.2);margin-bottom:1rem;font-size:.8rem;line-height:1.5">
         <p>💡 <strong>Modo Access Point por Defecto:</strong></p>
         <p>• Conéctate al WiFi: <code>AquaResiliencia_AP</code> (Pass: <code>agua_centinela</code>)</p>
         <p>• Endpoint por defecto: <code>http://192.168.4.1/telemetry</code></p>
@@ -4258,7 +4395,7 @@ function initWizardMap(){
 }
 
 function analyzeWizardLocation(lat,lng){let nearest=officialZones[0],minDist=Infinity;officialZones.forEach(z=>{const d=Math.hypot(z.lat-lat,z.lng-lng);if(d<minDist){minDist=d;nearest=z;}});const altVal=parseInt(document.getElementById('wiz-altitud').value)||60;const penalty=Math.max(0,(altVal-30)/10);const score=Math.round(Math.min(95,Math.max(5,nearest.score-penalty+(Math.random()*6-3))));wizClickedZone={lat,lng,score,name:nearest.name,depth:(nearest.depth+(Math.random()*1.5-.75)).toFixed(1),tds:Math.round(nearest.tds+(Math.random()*150-75)),flow:(nearest.flow+(Math.random()*.5-.25)).toFixed(1),elev:altVal,diag:nearest.diag,badgeClass:score>=75?'high':score>=45?'medium':'low'};if(wizMarker)wizMap.removeLayer(wizMarker);wizMarker=L.marker([lat,lng],{icon:L.divIcon({html:'<div style="background:#10b981;width:22px;height:22px;border-radius:50%;border:3px solid #fff;box-shadow:0 0 20px #10b981"></div>',iconSize:[22,22]})}).addTo(wizMap);const res=document.getElementById('wiz-map-result');res.classList.add('visible');const em={high:'🟢',medium:'🟡',low:'🔴'}[wizClickedZone.badgeClass];document.getElementById('wiz-zone-name').textContent=nearest.name;document.getElementById('wiz-score-badge').textContent=`${em} ${score}% VIABILIDAD`;document.getElementById('wiz-score-badge').className='score-badge '+wizClickedZone.badgeClass;document.getElementById('wiz-out-elev').textContent=altVal+'m';document.getElementById('wiz-out-depth').textContent=wizClickedZone.depth+'m';document.getElementById('wiz-out-tds').textContent=wizClickedZone.tds+'ppm';document.getElementById('wiz-out-flow').textContent=wizClickedZone.flow+'L/m';document.getElementById('wiz-out-diag').textContent=nearest.diag;const btn=document.getElementById('btn-step4-next');btn.disabled=false;showToast('📍 Análisis completado','emerald');}
-function buildWizardSummary(){const d=[{l:'Nombre',v:document.getElementById('wiz-name').value||'(no especificado)'},{l:'Colonia',v:document.getElementById('wiz-colonia').value||'(no especificada)'},{l:'Integrantes',v:document.getElementById('val-personas').textContent+' personas'},{l:'Gasto en agua',v:document.getElementById('val-gasto').textContent+' MXN/mes'},{l:'Topografía',v:document.querySelector('input[name="topo"]:checked')?.value||'(no seleccionado)'},{l:'Tipo de suelo',v:document.querySelector('input[name="suelo"]:checked')?.value||'(no seleccionado)'},{l:'Urgencia',v:'💧'.repeat(urgencyVal||0)+' ('+urgencyVal+'/5)'},{l:'Viabilidad AquaEngine',v:wizClickedZone?wizClickedZone.score+'%':'No ubicado'}];document.getElementById('wiz-summary-grid').innerHTML=d.map(it=>`<div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:.8rem"><div style="font-size:.7rem;color:var(--text-dim);text-transform:uppercase;font-family:var(--font-mono);margin-bottom:.2rem">${it.l}</div><div style="font-size:.9rem;font-weight:600;color:var(--text-main)">${it.v}</div></div>`).join('');}
+function buildWizardSummary(){const d=[{l:'Nombre',v:document.getElementById('wiz-name').value||'(no especificado)'},{l:'Colonia',v:document.getElementById('wiz-colonia').value||'(no especificada)'},{l:'Integrantes',v:document.getElementById('val-personas').textContent+' personas'},{l:'Gasto en agua',v:document.getElementById('val-gasto').textContent+' MXN/mes'},{l:'Topografía',v:document.querySelector('input[name="topo"]:checked')?.value||'(no seleccionado)'},{l:'Tipo de suelo',v:document.querySelector('input[name="suelo"]:checked')?.value||'(no seleccionado)'},{l:'Urgencia',v:'💧'.repeat(urgencyVal||0)+' ('+urgencyVal+'/5)'},{l:'Viabilidad AquaEngine',v:wizClickedZone?wizClickedZone.score+'%':'No ubicado'}];document.getElementById('wiz-summary-grid').innerHTML=d.map(it=>`<div style="background:rgba(255,255,255,.04);border:1px solid rgba(139,94,60,.22);border-radius:10px;padding:.8rem"><div style="font-size:.7rem;color:var(--text-dim);text-transform:uppercase;font-family:var(--font-mono);margin-bottom:.2rem">${it.l}</div><div style="font-size:.9rem;font-weight:600;color:var(--text-main)">${it.v}</div></div>`).join('');}
 
 // ==================== REPORT ====================
 function generateReport(){const name=document.getElementById('wiz-name').value||'Solicitante';const colonia=document.getElementById('wiz-colonia').value||'(no especificada)';const personas=parseInt(document.getElementById('val-personas').textContent);const gasto=parseInt(document.getElementById('wiz-gasto').value);const ingresos=parseInt(document.getElementById('wiz-ingreso').value)||2;const urg=urgencyVal||3;const inv=parseInt(document.querySelector('input[name="inversion"]:checked')?.value)||2;const topo=document.querySelector('input[name="topo"]:checked')?.value||'canada';const veg=document.querySelector('input[name="vegetacion"]:checked')?.value;const aflo=document.querySelector('input[name="afloramiento"]:checked')?.value;const pozo=document.querySelector('input[name="pozo-cercano"]:checked')?.value;const cortes=parseInt(document.getElementById('wiz-cortes').value)||3;
@@ -6289,7 +6426,7 @@ function initLaderaMapLayer(){
   }).bindPopup(`
     <div style="font-family:'Plus Jakarta Sans',sans-serif;min-width:230px">
       <strong style="color:#00e5ff;font-size:13px">⚡ ZONA PILOTO: Ladera Urbana Crítica</strong><br>
-      <span style="font-size:11px;color:#94a3b8">Sánchez Taboada / Coluvión sobre Fm. Otay</span>
+      <span style="font-size:11px;color:#5C4B3E">Sánchez Taboada / Coluvión sobre Fm. Otay</span>
       <hr style="border:none;border-top:1px solid rgba(255,255,255,0.15);margin:6px 0">
       <div style="font-size:11px;line-height:1.45">
         • <strong>Escenario Fuga CESPT:</strong> Saturación a 6.0m, Presión u = 58.9 kPa &rarr; <span style="color:#ef4444;font-weight:bold">FS = 0.77 (COLAPSO)</span><br>
@@ -6565,11 +6702,11 @@ function initAquaProxyLayer(){
         <div style="font-size:9px;font-family:'JetBrains Mono',monospace;font-weight:700;color:${p.color};letter-spacing:0.5px">${badgeTipo}</div>
         <strong style="font-size:13px;color:#fff;display:block;margin-top:2px">${p.titulo}</strong>
         <hr style="border:none;border-top:1px solid rgba(255,255,255,0.12);margin:6px 0">
-        <div style="font-size:11px;line-height:1.45;color:#cbd5e1">
+        <div style="font-size:11px;line-height:1.45;color:#4A3B32">
           • <strong>NAF Detectado:</strong> <span style="color:#00e5ff;font-weight:bold">${p.naf}</span> (Cota ${p.cota} msnm)<br>
           • <strong>Certeza Forense:</strong> <span style="color:#10b981;font-weight:bold">${p.certeza}%</span><br>
           • <strong>Evidencia:</strong> ${p.hecho}<br>
-          • <strong>Fundamento:</strong> <span style="color:#94a3b8;font-size:10px">${p.fuente}</span>
+          • <strong>Fundamento:</strong> <span style="color:#5C4B3E;font-size:10px">${p.fuente}</span>
         </div>
       </div>
     `;
@@ -6691,7 +6828,7 @@ document.addEventListener('DOMContentLoaded',()=>{updateSimState();initCalc();in
 const SYNOPTIC_STEPS = [
   {
     badge: "ETAPA 01 · 🟢 POZO REAL OPERANDO / 🔴 CÁPSULA EN DESARROLLO",
-    badgeStyle: "background:rgba(16,185,129,.2);color:#34d399;border:1px solid #10b981",
+    badgeStyle: "background:rgba(16,185,129,.2);color:#1E6043;border:1px solid #10b981",
     title: "01. Extracción Somera (Pozo 001 a 7 m) y «Cápsula del Tiempo del Agua»",
     desc: "El agua sale del manto colgado a 7 metros en el Pozo 001 con caudal calibrado bajo la Ley de Stokes para no arrastrar arena. En paralelo, el registro subterráneo aloja el prototipo del Nodo 1 («Cápsula del Tiempo»): mide nivel con campana de aire (0–40 kPa), se recarga con una Batería de Tierra (ánodo de magnesio y tubo de cobre en tierra húmeda) y usa Deep Sleep para durar de 5 a 10 años sin red eléctrica ni Wi-Fi.",
     sensors: "Campana de aire HX710B (0–40 kPa), TDS con corte MOSFET (99% OFF) y voltaje de Batería de Tierra (Mg/Cu + BQ25504).",
@@ -6700,7 +6837,7 @@ const SYNOPTIC_STEPS = [
   },
   {
     badge: "ETAPA 02 · 🟢 LLENADO 1 BBL / 🟡 SOLENOIDES EN INTEGRACIÓN",
-    badgeStyle: "background:rgba(245,158,11,.2);color:#fbbf24;border:1px solid #f59e0b",
+    badgeStyle: "background:rgba(245,158,11,.2);color:#9A4406;border:1px solid #f59e0b",
     title: "02. Llenado Automático por Lote (1 BBL / 117.3 L) y Calibración de Vacío",
     desc: "Antes de energizar los electrodos, el ESP32 mide el Voltaje en Vacío real de la fuente de 12V/15A (típicamente 11.4 V – 11.6 V) mientras la Válvula Solenoide SV-01 abre el paso hacia el reactor de 1 BBL (~117.3 litros). Al confirmar la inmersión al 50% de la varilla, el sistema captura la caída de tensión inicial y fija la línea base dinámica de ese lote.",
     sensors: "Medidor de flujo por efecto Hall en interrupción + Divisor de voltaje pasivo en ADC1 (GPIO34) leyendo V_vacío.",
@@ -6709,7 +6846,7 @@ const SYNOPTIC_STEPS = [
   },
   {
     badge: "ETAPA 03 · 🟢 PROBADO EMPÍRICAMENTE EN LOTE DE 1 BBL (12V / 15A)",
-    badgeStyle: "background:rgba(16,185,129,.2);color:#34d399;border:1px solid #10b981",
+    badgeStyle: "background:rgba(16,185,129,.2);color:#1E6043;border:1px solid #10b981",
     title: "03. Electrofloculación Dinámica (12V/15A, Sin Químicos) y Barrido de H₂",
     desc: "Se descartó medir impedancia en reposo por la polarización de electrodos y la capa aislante de microburbujas de hidrógeno (H₂). En su lugar, el ESP32 monitorea en tiempo real (1 Hz) la caída de tensión (ΔV) sin interrumpir la floculación, y activa pulsos de bomba superficial de 30 a 45 segundos cada 5 a 7 minutos para barrer las placas sin destruir la nata blanca superior.",
     sensors: "Divisor de voltaje continuo en GPIO34 (0–12V mapeado a 0–2.8V). Vigila Zona Verde (≥10.40V), Amarilla (10.30–10.40V) y Roja (<10.30V).",
@@ -6718,7 +6855,7 @@ const SYNOPTIC_STEPS = [
   },
   {
     badge: "ETAPA 04 · 🟡 ALGORITMO DE REPOSO FORZADO Y PRUEBAS DE TDS",
-    badgeStyle: "background:rgba(245,158,11,.2);color:#fbbf24;border:1px solid #f59e0b",
+    badgeStyle: "background:rgba(245,158,11,.2);color:#9A4406;border:1px solid #f59e0b",
     title: "04. Reposo Forzado por Algoritmo (Cero Biofine / Separación Física Pura)",
     desc: "No se utiliza Biofine ni floculantes químicos externos. Como mover el agua antes de tiempo rompe el flóculo y arruina la clarificación, el algoritmo impone un bloqueo estricto de Reposo Forzado tras apagar los electrodos: ninguna válvula solenoide ni bomba puede encenderse hasta completar el tiempo de sedimentación. Al finalizar, mide TDS en frío sin ruido eléctrico.",
     sensors: "Temporizador de bloqueo de sedimentación + Sensor de TDS energizado por pulso (MOSFET/GPIO) con la fuente DC apagada.",
@@ -6727,7 +6864,7 @@ const SYNOPTIC_STEPS = [
   },
   {
     badge: "ETAPA 05 · 🟡 EN INTEGRACIÓN HIDRÁULICA AUTOMÁTICA",
-    badgeStyle: "background:rgba(245,158,11,.2);color:#fbbf24;border:1px solid #f59e0b",
+    badgeStyle: "background:rgba(245,158,11,.2);color:#9A4406;border:1px solid #f59e0b",
     title: "05. Trasvase por Solenoide y Protección de 80 Micras contra Limo y Mica",
     desc: "Una vez cumplido el reposo forzado y asentado el flóculo, el controlador abre la Válvula Solenoide de Trasvase (SV-02) tomando únicamente el agua clarificada superior. Antes de entrar a la bomba presurizadora, pasa por un prefiltro de malla de 80 micras que retiene cualquier rastro de limo o mica del acuífero de Tijuana.",
     sensors: "Caudalímetro Hall de transferencia + Verificación de nivel en tanque de distribución.",
@@ -6736,7 +6873,7 @@ const SYNOPTIC_STEPS = [
   },
   {
     badge: "ETAPA 06 · 🟡 ACTUADOR EN VÁLVULA DE AGUJA EN CALIBRACIÓN",
-    badgeStyle: "background:rgba(245,158,11,.2);color:#fbbf24;border:1px solid #f59e0b",
+    badgeStyle: "background:rgba(245,158,11,.2);color:#9A4406;border:1px solid #f59e0b",
     title: "06. Ultrapurificación 20% con Válvula de Aguja Motorizada (85–90 PSI)",
     desc: "El 20% destinado a agua para beber ingresa a la membrana de Ósmosis Inversa impulsado por la bomba de diafragma. Un actuador motorizado acoplado a la válvula de aguja ajusta continuamente la restricción del rechazo leyendo el transductor de presión de acero inoxidable 316 (0–100 PSI), manteniendo siempre 85–90 PSI óptimos y reintegrando el rechazo al riego (Cero Desperdicio).",
     sensors: "Transductor industrial 0–100 PSI (Acero Inox 316, salida 0.5–4.5V) + Sensor TDS final en línea de agua producto.",
@@ -6776,11 +6913,11 @@ function selectSynopticStep(idx) {
       if (i === idx) {
         rect.setAttribute('stroke', '#00e5ff');
         rect.setAttribute('stroke-width', '3.5');
-        rect.setAttribute('fill', '#162544');
+        rect.setAttribute('fill', '#EFE5D0');
       } else {
         rect.setAttribute('stroke', i <= idx ? '#10b981' : '#334155');
         rect.setAttribute('stroke-width', '2');
-        rect.setAttribute('fill', '#0f172a');
+        rect.setAttribute('fill', '#FFFDF9');
       }
     }
   }
