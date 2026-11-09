@@ -2055,6 +2055,38 @@ body {
   max-width: 1120px;
   margin: 0 auto;
 }
+.hero-opening-video-sheet {
+  padding: 1.1rem 1.1rem 0.9rem;
+  margin-bottom: 2.2rem;
+  background: #F8F5EE;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.hero-opening-video-wrap {
+  width: 100%;
+  border-radius: 3px;
+  overflow: hidden;
+  background: #0f172a;
+  box-shadow: 0 8px 24px rgba(31, 25, 21, 0.14);
+  position: relative;
+}
+.hero-opening-video {
+  width: 100%;
+  max-height: 540px;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  display: block;
+}
+.hero-opening-caption {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 1.02rem;
+  color: #5C4B3E;
+  margin-top: 0.65rem;
+  letter-spacing: 0.05em;
+  font-style: italic;
+  text-align: center;
+}
 .paper-sheet {
   background: #F6F4EE;
   border: 1px solid rgba(180, 168, 150, 0.35);
@@ -2245,7 +2277,7 @@ body {
       <div class="form-group"><label>Colonia / Delegación en Tijuana</label>
         <select class="form-select" id="reg-colonia">
           <option value="">— Selecciona tu colonia —</option>
-          <option>Playas de Tijuana</option><option>Colonia Libertad</option><option>Zona Río</option><option>Otay</option><option>La Mesa</option><option>Sánchez Taboada</option><option>Cerro Colorado</option><option>Cañón del Sainz</option><option>Arroyo Alamar</option><option>Maclovio Rojas</option><option>San Antonio del Mar</option><option>Valle Redondo</option><option>Camino Verde</option><option>El Florido</option><option>Lomas Verdes</option><option>La Presa</option><option>Mariano Matamoros</option><option>Baja Malibu</option><option>El Refugio</option><option>Otra colonia</option>
+          <option>Playas de Tijuana</option><option>Colonia Libertad</option><option>Zona Río</option><option>Otay</option><option>La Mesa</option><option>Sánchez Taboada</option><option>Cerro Colorado</option><option>Cañón del Sainz</option><option>Arroyo Alamar</option><option>Maclovio Rojas</option><option>San Antonio del Mar</option><option>Valle Redondo</option><option>Camino Verde</option><option>El Florido</option><option>Lomas Verdes</option><option>La Presa</option><option>Colinas de la Presa</option><option>Mariano Matamoros</option><option>Baja Malibu</option><option>El Refugio</option><option>Otra colonia</option>
         </select>
       </div>
       <div class="form-group"><label>Tipo de Participante</label>
@@ -2320,7 +2352,7 @@ body {
           <div class="wiz-group"><label class="wiz-label">Colonia / Delegación</label>
             <select class="wiz-select" id="wiz-colonia">
               <option value="">— Tu colonia —</option>
-              <option>Playas de Tijuana</option><option>Colonia Libertad</option><option>Zona Río</option><option>Otay</option><option>La Mesa</option><option>Sánchez Taboada</option><option>Cerro Colorado</option><option>Cañón del Sainz</option><option>Arroyo Alamar</option><option>Maclovio Rojas</option><option>San Antonio del Mar</option><option>Valle Redondo</option><option>Camino Verde</option><option>El Florido</option><option>Lomas Verdes</option><option>La Presa</option><option>Mariano Matamoros</option><option>Baja Malibu</option><option>El Refugio</option><option>Otra colonia</option>
+              <option>Playas de Tijuana</option><option>Colonia Libertad</option><option>Zona Río</option><option>Otay</option><option>La Mesa</option><option>Sánchez Taboada</option><option>Cerro Colorado</option><option>Cañón del Sainz</option><option>Arroyo Alamar</option><option>Maclovio Rojas</option><option>San Antonio del Mar</option><option>Valle Redondo</option><option>Camino Verde</option><option>El Florido</option><option>Lomas Verdes</option><option>La Presa</option><option>Colinas de la Presa</option><option>Mariano Matamoros</option><option>Baja Malibu</option><option>El Refugio</option><option>Otra colonia</option>
             </select>
           </div>
           <div class="wiz-group"><label class="wiz-label">Tiempo viviendo en la zona</label>
@@ -2706,6 +2738,17 @@ body {
 <main id="main-content">
   <section class="hero" id="hero">
     <div class="poetic-notebook-spread">
+      <!-- VIDEO DE APERTURA EN PORTADA (ESCENA 1 - AGUA DE GÍA) -->
+      <div class="paper-sheet hero-opening-video-sheet">
+        <div class="hero-opening-video-wrap">
+          <video class="hero-opening-video" autoplay muted loop playsinline controls preload="auto" poster="assets/agua_de_gia_jarra.jpg">
+            <source src="assets/agua_de_gia_escena_1.mp4" type="video/mp4">
+            Tu navegador no soporta reproducción directa de video HTML5.
+          </video>
+        </div>
+        <span class="hero-opening-caption">Agua de Gía · Nacida en Tijuana — De las entrañas de la Tierra en busca de su luz</span>
+      </div>
+
       <!-- FILA SUPERIOR: HOJA CARTA CON EL LOGO LIMPIO + 2 HOJAS DE POESÍA -->
       <div class="poetic-top-grid">
         <!-- Hoja Carta Principal: Solo el logotipo limpio tal como la imagen -->
@@ -2795,6 +2838,7 @@ body {
           <button class="zone-chip" onclick="setPresetZone(5)">⛰️ Cerro Colorado (Cumbre - 480m 🛑)</button>
           <button class="zone-chip" onclick="setPresetZone(6)">🛑 Sánchez Taboada (Falla PC - 190m)</button>
           <button class="zone-chip" onclick="setPresetZone(7)" style="border-color:var(--cyan-primary);color:var(--cyan-primary)">⚡ Ladera Piloto (Fm. Otay / Micropozos)</button>
+          <button class="zone-chip" onclick="setPresetZone(8)">🏞️ Colinas de la Presa (Ribera Presa - 124m)</button>
         </div>
         <div class="layers-toggle-bar">
           <button id="togglePiezoBtn" class="layer-btn piezo active" onclick="toggleLayer('piezo')">🟣 CONAGUA Piezometría</button>
@@ -4245,6 +4289,24 @@ const officialZones=[
       {name:"Filtro de grava y ranurado micropozo",depth:8.0,color:"#00e5ff"},
       {name:"Superficie crítica de falla Bishop",depth:8.5,color:"#ef4444"},
       {name:"Formación Otay (Acuicludo impermeable)",depth:12.0,color:"#334155"}
+    ]
+  },
+  {
+    name:"Colinas de la Presa (Ribera Embalse Rodríguez)",
+    lat:32.4488,lng:-116.9299,elev:124,score:58,badgeClass:"medium",badgeText:"🟡 58% VIABLE CONDICIONADO",
+    depth:28.0,tds:1180,flow:1.5,
+    geology:"SGM: Relleno Antrópico (0-6m) s/ Basamento Metavolcánico Fm. Alisitos",
+    aquiferTag:"Manto regional a 28m (Cota 96 msnm) | Flujo colgado en relleno a ~10m",
+    diag:"Plataforma urbana antropogénica (124 msnm, superior a cota de vertedor NAMO 115.85 msnm). Espesor de 4-8m de relleno compactado sobre paleocauce de cañada tributaria. Manto freático base regional a ~28m conectado hidráulicamente al vaso de la presa (~96 msnm). Si se detecta humedad/agua a ~10m es flujo subálveo colgado con alto riesgo de infiltración de drenaje urbano. Requiere sello sanitario profundo (>5m), perforación con lodo bentonítico para estabilizar relleno y martillo neumático de fondo (DTH) para penetrar basamento volcánico e ígneo.",
+    source:"CONAGUA DR_0201, Criterios Hidráulicos NAMO/NAME Presa Rodríguez, SGM I11-11",
+    factors:{topo:65,lito:45,hidro:72,riesgo:"RIESGO DRENAJE SOMERO",calidad:55},
+    strata:[
+      {name:"Relleno antrópico compactado (arcilla/escombro urbano)",depth:6.0,color:"#854d0e"},
+      {name:"Sello Sanitario de Concreto / Bentonita",depth:7.5,color:"#94a3b8"},
+      {name:"Paleocauce / Coluvión de cañada (flujo colgado ~10m)",depth:10.2,color:"#ca8a04"},
+      {name:"Basamento Metavolcánico Fm. Alisitos / Andesita dura",depth:24.0,color:"#334155"},
+      {name:"Nivel piezométrico regional / Espejo de presa (96 msnm)",depth:28.0,color:"#00e5ff"},
+      {name:"Roca ígnea masiva profunda",depth:35.0,color:"#0f172a"}
     ]
   }
 ];
