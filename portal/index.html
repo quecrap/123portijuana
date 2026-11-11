@@ -1,0 +1,926 @@
+﻿<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agua de Gía · Alquimia Hídrica y Soberanía Residencial en Tijuana</title>
+  <meta name="description" content="Prototipo de investigación sobre aprovechamiento descentralizado de agua subterránea somera y electrofloculación sin coagulantes sintéticos en Tijuana, B.C.">
+  <meta name="theme-color" content="#FAF8F5">
+
+  <!-- Open Graph / Redes Sociales -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Agua de Gía · Alquimia Hídrica y Soberanía Residencial">
+  <meta property="og:description" content="Extracción somera (-6.5 m) y purificación por Ley de Faraday en Tijuana. Sin pipas ni tandeos.">
+  <meta property="og:image" content="../assets/playas_mesa_costa.jpg">
+
+  <!-- Google Fonts: Cormorant Garamond, Playfair Display y Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS Play CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cotton: '#FAF8F5',
+            seamist: '#EBF2F5',
+            sand: '#F1ECE4',
+            charcoal: '#1F2421',
+            slateCustom: '#5C6467',
+            bronze: '#8B6D43',
+            pacific: '#0284C7',
+            goldCustom: '#D97706',
+          },
+          fontFamily: {
+            editorial: ['Cormorant Garamond', 'Playfair Display', 'serif'],
+            display: ['Playfair Display', 'Cormorant Garamond', 'serif'],
+            sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Estilos base refinados y Glassmorphism */
+    ::selection {
+      background: #0284C7;
+      color: #FFFFFF;
+    }
+
+    body {
+      background-color: #FAF8F5;
+      color: #1F2421;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow-x: hidden;
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.72);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(255, 255, 255, 0.65);
+      box-shadow: 0 20px 48px -12px rgba(31, 36, 33, 0.07), 0 2px 8px rgba(0, 0, 0, 0.02);
+    }
+
+    .glass-pill {
+      background: rgba(255, 255, 255, 0.62);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.85);
+      box-shadow: 0 4px 16px rgba(139, 109, 67, 0.08);
+    }
+
+    .glass-card-dark {
+      background: rgba(20, 27, 24, 0.78);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.35);
+    }
+
+    /* Animaciones sutiles */
+    .fade-up-element {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1), transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+      will-change: opacity, transform;
+    }
+
+    .fade-up-element.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Efecto de halo acuático que respira */
+    @keyframes gentleBreath {
+      0%, 100% { transform: scale(1); opacity: 0.45; }
+      50% { transform: scale(1.06); opacity: 0.75; }
+    }
+    .water-halo {
+      animation: gentleBreath 6s ease-in-out infinite;
+    }
+
+    /* Video container styling */
+    .hero-video-scrim {
+      background: linear-gradient(180deg, 
+        rgba(250, 248, 245, 0.25) 0%, 
+        rgba(250, 248, 245, 0.65) 55%, 
+        rgba(250, 248, 245, 0.98) 100%
+      );
+    }
+  </style>
+</head>
+<body class="antialiased text-charcoal">
+
+  <!-- ====================================================================
+       BARRA DE NAVEGACIÓN SUPERIOR (GLASSMORPHISM FLOTANTE)
+       ==================================================================== -->
+  <header class="fixed top-0 left-0 right-0 z-50 px-4 sm:px-8 py-4 transition-all duration-300" id="mainHeader">
+    <div class="max-w-7xl mx-auto flex items-center justify-between glass-pill rounded-full px-5 py-3 border border-white/60">
+      
+      <!-- Logotipo & Origen -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-bronze to-pacific p-[1px] flex items-center justify-center shadow-sm">
+          <div class="w-full h-full bg-cotton rounded-full flex items-center justify-center">
+            <span class="font-editorial text-bronze font-bold text-lg leading-none">G</span>
+          </div>
+        </div>
+        <div class="flex flex-col">
+          <span class="font-editorial font-bold text-base sm:text-lg tracking-wider text-charcoal leading-none group-hover:text-pacific transition-colors">
+            AGUA DE GÍA
+          </span>
+          <span class="text-[9px] uppercase tracking-widest text-slateCustom font-semibold mt-0.5">
+            Tijuana · México
+          </span>
+        </div>
+      </a>
+
+      <!-- Menú de Enlaces Central -->
+      <nav class="hidden md:flex items-center gap-7 text-xs font-semibold uppercase tracking-wider text-slateCustom">
+        <a href="#origen" class="hover:text-pacific transition-colors">El Acuífero</a>
+        <a href="#mecanismos" class="hover:text-pacific transition-colors">Los Mecanismos</a>
+        <a href="#economia" class="hover:text-pacific transition-colors">Soberanía & Costos</a>
+        <a href="#factibilidad" class="hover:text-pacific transition-colors">Dictamen de Predio</a>
+      </nav>
+
+      <!-- Botón de Acción Principal -->
+      <div class="flex items-center gap-3">
+        <a href="#factibilidad" class="px-4 sm:px-5 py-2 rounded-full text-xs font-bold text-white bg-gradient-to-r from-bronze to-pacific hover:opacity-95 shadow-md shadow-pacific/15 transition-all transform hover:-translate-y-0.5">
+          Consultar Factibilidad
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ====================================================================
+       SECCIÓN 1: HERO INMERSIVO (EL ALTAR DE GÍA)
+       ==================================================================== -->
+  <section class="relative min-h-screen flex items-center justify-center pt-28 pb-20 px-4 sm:px-6 overflow-hidden">
+    
+    <!-- Video de Fondo en Loop (agua_de_gia_escena_1.mp4 - Apertura Agua de Gía) -->
+    <div class="absolute inset-0 z-0">
+      <video 
+        class="w-full h-full object-cover filter brightness-[0.98] contrast-[1.02]" 
+        autoplay muted loop playsinline preload="auto" 
+        poster="../assets/playas_mesa_costa.jpg"
+        data-src="../assets/videos/agua_de_gia_escena_1.mp4">
+        <source src="../assets/videos/agua_de_gia_escena_1.mp4" type="video/mp4">
+        <source src="../assets/agua_de_gia_escena_1.mp4" type="video/mp4">
+      </video>
+      <div class="absolute inset-0 hero-video-scrim"></div>
+    </div>
+
+    <!-- Contenido Hero Centrado -->
+    <div class="relative z-10 max-w-4xl mx-auto text-center flex flex-col items-center">
+      
+      <!-- Píldora de Autor y Misión -->
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full glass-pill mb-6 border border-white/70 shadow-sm fade-up-element">
+        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span class="text-[11px] font-semibold text-charcoal tracking-wide uppercase">
+          Prototipo de Investigación · Agua Somera en Tijuana
+        </span>
+      </div>
+
+      <!-- Título Principal Editorial -->
+      <h1 class="font-editorial text-4xl sm:text-6xl md:text-7xl font-semibold text-charcoal tracking-tight leading-[1.08] mb-6 fade-up-element">
+        Agua de Gía <span class="block italic font-normal text-bronze mt-1">Nacida en Tijuana</span>
+      </h1>
+
+      <!-- Subtítulo Poético y Técnico -->
+      <p class="font-sans text-base sm:text-xl text-slateCustom max-w-2xl mx-auto font-normal leading-relaxed mb-8 fade-up-element">
+        Soberanía hídrica residencial bajo tus pies. Extracción somera y purificación de alta fidelidad sin químicos sintéticos frente a la crisis de red y el desabasto de pipas.
+      </p>
+
+      <!-- Micro-Píldoras Flotantes de Pureza -->
+      <div class="flex flex-wrap items-center justify-center gap-2.5 sm:gap-4 mb-10 fade-up-element">
+        <div class="glass-pill px-4 py-2 rounded-full flex items-center gap-2 text-xs font-medium text-charcoal">
+          <span class="text-emerald-600">✦</span>
+          <span>Cero Sulfatos ni Polímeros</span>
+        </div>
+        <div class="glass-pill px-4 py-2 rounded-full flex items-center gap-2 text-xs font-medium text-charcoal">
+          <span class="text-pacific">✦</span>
+          <span>Acuífero Somero a 6.5 m</span>
+        </div>
+        <div class="glass-pill px-4 py-2 rounded-full flex items-center gap-2 text-xs font-medium text-charcoal">
+          <span class="text-goldCustom">✦</span>
+          <span>Meta de diseño · &lt;150 ppm</span>
+        </div>
+      </div>
+
+      <!-- Botones de Llamado a la Acción (CTA) -->
+      <div class="flex flex-col sm:flex-row items-center gap-4 w-full sm:w-auto fade-up-element">
+        <a href="#factibilidad" class="w-full sm:w-auto px-8 py-4 rounded-full font-bold text-sm text-white bg-gradient-to-r from-charcoal via-slate-800 to-charcoal hover:from-bronze hover:to-pacific shadow-xl shadow-black/10 transition-all transform hover:-translate-y-0.5">
+          Consultar Factibilidad de mi Terreno
+        </a>
+        <a href="#mecanismos" class="w-full sm:w-auto px-7 py-4 rounded-full font-semibold text-sm text-charcoal glass-card hover:bg-white transition-all border border-white/80">
+          Conocer los Mecanismos ↓
+        </a>
+      </div>
+
+      <!-- Scroll Indicator -->
+      <div class="mt-14 flex flex-col items-center gap-2 text-slateCustom text-xs font-medium opacity-75">
+        <span>Desliza para explorar el acuífero</span>
+        <div class="w-5 h-9 rounded-full border border-slateCustom/40 flex items-start justify-center p-1">
+          <div class="w-1.5 h-2 bg-bronze rounded-full animate-bounce"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       SECCIÓN 2: EL ORIGEN · EL ACUÍFERO BAJO NUESTROS PIES
+       ==================================================================== -->
+  <section id="origen" class="py-24 px-4 sm:px-6 relative bg-gradient-to-b from-cotton via-seamist/50 to-sand/40">
+    <div class="max-w-6xl mx-auto">
+      
+      <!-- Cabecera de Sección -->
+      <div class="text-center max-w-3xl mx-auto mb-16 fade-up-element">
+        <span class="text-xs uppercase tracking-widest text-bronze font-bold">Territorio e Hidrología Costera</span>
+        <h2 class="font-editorial text-3xl sm:text-5xl font-semibold text-charcoal mt-2 mb-4">
+          La paradoja de Tijuana: Vivir con sed sobre un río que corre en silencio.
+        </h2>
+        <p class="text-slateCustom text-sm sm:text-base leading-relaxed">
+          Nuestra ciudad sufre tandeos crónicos y cortes intermitentes porque depende del Acueducto Río Colorado-Tijuana a más de 150 km de distancia y bombeado por 1,000 metros de sierra. Sin embargo, bajo las cañadas y laderas de Playas, Soler y los cañones, la lluvia y la niebla marina pueden alimentar sistemas de agua somera locales que estamos estudiando y midiendo.
+        </p>
+      </div>
+
+      <!-- Silueta Gráfica SVG de Playas de Tijuana e Islas Coronado -->
+      <div class="relative w-full glass-card rounded-3xl p-6 sm:p-10 mb-14 overflow-hidden fade-up-element">
+        <div class="flex flex-col md:flex-row items-center justify-between gap-8">
+          <div class="max-w-md">
+            <h3 class="font-editorial text-2xl font-semibold text-charcoal mb-2">
+              Principio de Regeneración Ghyben-Herzberg
+            </h3>
+            <p class="text-slateCustom text-xs sm:text-sm leading-relaxed mb-4">
+              Agua de Gía no es una extracción extractiva tradicional. El sistema integra zanjas de bio-retención e infiltración pluvial activa que devuelven al subsuelo más agua de la que el hogar consume, creando una barrera hidrodinámica contra la intrusión salina.
+            </p>
+            <div class="grid grid-cols-2 gap-4 pt-2">
+              <div class="border-l-2 border-pacific pl-3">
+                <span class="block font-editorial text-2xl font-bold text-pacific">6.5 a 7.3 m</span>
+                <span class="text-[11px] text-slateCustom uppercase font-semibold">Cota Freática Somera</span>
+              </div>
+              <div class="border-l-2 border-bronze pl-3">
+                <span class="block font-editorial text-2xl font-bold text-bronze">>180,000 L</span>
+                <span class="text-[11px] text-slateCustom uppercase font-semibold">Recarga Pluvial Anual</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Silueta SVG Costa & Islas Coronado -->
+          <div class="w-full md:w-1/2 flex justify-center">
+            <svg class="w-full max-w-md h-auto" viewBox="0 0 500 240" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <linearGradient id="skyGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#E5EEF2" />
+                  <stop offset="100%" stop-color="#FAF8F5" />
+                </linearGradient>
+                <linearGradient id="seaGrad" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="0%" stop-color="#9DB4BD" />
+                  <stop offset="100%" stop-color="#0284C7" stop-opacity="0.6" />
+                </linearGradient>
+              </defs>
+              <!-- Cielo y Sol tenue -->
+              <rect width="500" height="240" rx="16" fill="url(#skyGrad)"/>
+              <circle cx="390" cy="60" r="28" fill="#FDE68A" opacity="0.45" />
+
+              <!-- Islas Coronado al fondo -->
+              <path d="M70 125 C95 110, 130 110, 155 125 Z" fill="#B8CDD6" opacity="0.8"/>
+              <path d="M165 125 C185 115, 215 115, 235 125 Z" fill="#B8CDD6" opacity="0.7"/>
+
+              <!-- Océano Pacífico -->
+              <path d="M0 125 Q125 122 250 126 T500 125 L500 240 L0 240 Z" fill="url(#seaGrad)"/>
+
+              <!-- Litoral Playas de Tijuana y Mesa Rústica -->
+              <path d="M220 170 Q340 160 500 145 L500 240 L220 240 Z" fill="#D8C8B8" opacity="0.85"/>
+              <path d="M260 190 Q380 180 500 165 L500 240 L260 240 Z" fill="#8B6D43" opacity="0.35"/>
+
+              <!-- Línea Freática Somera punteada -->
+              <line x1="280" y1="210" x2="480" y2="210" stroke="#0284C7" stroke-width="2.5" stroke-dasharray="4 4"/>
+              <text x="380" y="226" fill="#0369A1" font-size="10" font-family="'Plus Jakarta Sans',sans-serif" font-weight="bold" text-anchor="middle">
+                Nivel Estático Freático (-6.5 m)
+              </text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       SECCIÓN 3: LOS MECANISMOS DE LA ALQUIMIA (SCROLLYTELLING AUDIOVISUAL)
+       ==================================================================== -->
+  <section id="mecanismos" class="py-24 px-4 sm:px-6 bg-cotton relative">
+    <div class="max-w-6xl mx-auto">
+      
+      <!-- Encabezado de la narrativa -->
+      <div class="text-center max-w-3xl mx-auto mb-20 fade-up-element">
+        <span class="text-xs uppercase tracking-widest text-pacific font-bold">Mecanismos de Purificación</span>
+        <h2 class="font-editorial text-3xl sm:text-5xl font-semibold text-charcoal mt-2 mb-4">
+          La Alquimia del Agua en 4 Actos
+        </h2>
+        <p class="text-slateCustom text-sm sm:text-base">
+          Despojamos el agua de sedimentos y durezas mediante leyes elementales de la física, electroquímica controlada y reposo natural. Sin cloro, sin sales de aluminio y sin resinas sintéticas.
+        </p>
+      </div>
+
+      <!-- Tarjetas Scrollytelling de los 4 Módulos -->
+      <div class="space-y-24">
+
+        <!-- MÓDULO 1: LA TIERRA Y EL ORIGEN (video_6.mp4) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center fade-up-element">
+          <!-- Video Box -->
+          <div class="lg:col-span-7">
+            <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-white/60 aspect-[16/10] bg-black">
+              <video 
+                class="w-full h-full object-cover" 
+                autoplay muted loop playsinline preload="metadata" 
+                poster="../assets/playas_mesa_costa.jpg"
+                data-src="../assets/videos/video_6.mp4">
+                <source src="../assets/videos/video_6.mp4" type="video/mp4">
+              </video>
+              <div class="absolute top-4 left-4 glass-pill px-3 py-1 rounded-full text-[10px] font-bold text-charcoal uppercase tracking-wider">
+                Acto I · El Pozo Somero
+              </div>
+            </div>
+          </div>
+          <!-- Texto & Manifiesto Literal -->
+          <div class="lg:col-span-5 flex flex-col justify-center">
+            <blockquote class="font-editorial text-2xl sm:text-3xl text-charcoal italic leading-relaxed mb-4 border-l-2 border-bronze pl-4">
+              “Nacida en Tijuana, de las extrañas entrañas de la Tierra, camina a tientas, a ciegas, en busca de su luz.”
+            </blockquote>
+            <p class="text-xs uppercase tracking-widest text-bronze font-bold mb-3">— Manifiesto Agua de Gía</p>
+            <h3 class="font-sans font-bold text-xl text-charcoal mb-2">
+              Extracción Laminar por Ley de Stokes
+            </h3>
+            <p class="text-slateCustom text-sm leading-relaxed">
+              Un pozo hincado a 6.5 - 7.3 metros protegido por empaque de grava sílica graduada. La velocidad de succión se calibra a bajo caudal para que las partículas de arena permanezcan en el lecho por gravedad, elevando agua cristalina pre-filtrada por la corteza terrestre.
+            </p>
+          </div>
+        </div>
+
+        <!-- MÓDULO 2: LA TRANSFORMACIÓN FÍSICA (video_1.mp4) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center fade-up-element">
+          <!-- Texto & Manifiesto (Invertido en Desktop) -->
+          <div class="lg:col-span-5 order-2 lg:order-1 flex flex-col justify-center">
+            <blockquote class="font-editorial text-2xl sm:text-3xl text-charcoal italic leading-relaxed mb-4 border-l-2 border-pacific pl-4">
+              “Y es aquí donde nace el verdadero alquimista, no el que convierte las cosas en oro, sino el que comprende que el oro, aunque puede comprar casi todo, jamás comprará la vida.”
+            </blockquote>
+            <p class="text-xs uppercase tracking-widest text-pacific font-bold mb-3">— Manifiesto Agua de Gía</p>
+            <h3 class="font-sans font-bold text-xl text-charcoal mb-2">
+              Electrofloculación Batch en Reactor 1 BBL
+            </h3>
+            <p class="text-slateCustom text-sm leading-relaxed">
+              En una tina cónica de 117 L se aplica corriente continua a placas de hierro dulce sacrificial. Por Ley de Faraday (0.0002894 g Fe/A·s), los iones coagulan coloides y bacterias mientras microburbujas de hidrógeno atrapan sales disueltas, sustituyendo por completo el sulfato de aluminio y el hipoclorito comercial.
+            </p>
+          </div>
+          <!-- Video Box -->
+          <div class="lg:col-span-7 order-1 lg:order-2">
+            <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-white/60 aspect-[16/10] bg-black">
+              <video 
+                class="w-full h-full object-cover" 
+                autoplay muted loop playsinline preload="metadata" 
+                poster="../assets/playas_mesa_costa.jpg"
+                data-src="../assets/videos/video_1.mp4">
+                <source src="../assets/videos/video_1.mp4" type="video/mp4">
+              </video>
+              <div class="absolute top-4 left-4 glass-pill px-3 py-1 rounded-full text-[10px] font-bold text-charcoal uppercase tracking-wider">
+                Acto II · La Carga Eléctrica
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- MÓDULO 3: EL REPOSO EN CALMA (video_2.mp4) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center fade-up-element">
+          <!-- Video Box -->
+          <div class="lg:col-span-7">
+            <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-white/60 aspect-[16/10] bg-black">
+              <video 
+                class="w-full h-full object-cover" 
+                autoplay muted loop playsinline preload="metadata" 
+                poster="../assets/playas_mesa_costa.jpg"
+                data-src="../assets/videos/video_2.mp4">
+                <source src="../assets/videos/video_2.mp4" type="video/mp4">
+              </video>
+              <div class="absolute top-4 left-4 glass-pill px-3 py-1 rounded-full text-[10px] font-bold text-charcoal uppercase tracking-wider">
+                Acto III · Decantación en Calma
+              </div>
+            </div>
+          </div>
+          <!-- Texto & Manifiesto Literal -->
+          <div class="lg:col-span-5 flex flex-col justify-center">
+            <blockquote class="font-editorial text-2xl sm:text-3xl text-charcoal italic leading-relaxed mb-4 border-l-2 border-emerald-600 pl-4">
+              “Y en nuestro afán por purificarla, la hemos despojado casi del todo. Casi. Dejamos lo esencial, aquello que no se filtra, que no se destila: la pureza de su alma, eso que la anima.”
+            </blockquote>
+            <p class="text-xs uppercase tracking-widest text-emerald-700 font-bold mb-3">— Manifiesto Agua de Gía</p>
+            <h3 class="font-sans font-bold text-xl text-charcoal mb-2">
+              Decantación Cónica y Malla 80 Inox
+            </h3>
+            <p class="text-slateCustom text-sm leading-relaxed">
+              La quietud absoluta durante el ciclo de sedimentación permite que el manto de lodos aglomerados precipite en la punta del cono para su purga rápida. El agua límpida superior se trasvasa a través de malla lavable 80 mesh, sedimento dual de 50/5 micras y carbón activado en bloque de cáscara de coco.
+            </p>
+          </div>
+        </div>
+
+        <!-- MÓDULO 4: LA DOBLE VÍA Y EL COMPARTIR (video_3.mp4 / video_5.mp4) -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center fade-up-element">
+          <!-- Texto & Manifiesto (Invertido en Desktop) -->
+          <div class="lg:col-span-5 order-2 lg:order-1 flex flex-col justify-center">
+            <blockquote class="font-editorial text-2xl sm:text-3xl text-charcoal italic leading-relaxed mb-4 border-l-2 border-amber-600 pl-4">
+              “Es la diferencia entre la maquila y la alquimia: una reproduce y la otra enaltece eso que la hace única. Jamás deberá venderse como oro ni convertirse en tal, sólo compartirla desde su altar.”
+            </blockquote>
+            <p class="text-xs uppercase tracking-widest text-amber-700 font-bold mb-3">— Manifiesto Agua de Gía</p>
+            <h3 class="font-sans font-bold text-xl text-charcoal mb-2">
+              Balanceo Inteligente 80/20 &amp; Luz UV
+            </h3>
+            <p class="text-slateCustom text-sm leading-relaxed">
+              El 80% del volumen purificado presuriza las tuberías de la casa a 60 PSI para servicios del hogar como riego, limpieza y sanitarios (otros usos sujetos a análisis de laboratorio). El 20% pasa por esterilización ultravioleta de 254 nm y membrana de ósmosis inversa regulada con válvula de aguja a 100 PSI, con una meta de diseño de &lt;150 ppm, pendiente de validación con análisis de laboratorio acreditado.
+            </p>
+          </div>
+          <!-- Video Box -->
+          <div class="lg:col-span-7 order-1 lg:order-2">
+            <div class="relative rounded-3xl overflow-hidden shadow-2xl border border-white/60 aspect-[16/10] bg-black">
+              <video 
+                class="w-full h-full object-cover" 
+                autoplay muted loop playsinline preload="metadata" 
+                poster="../assets/playas_mesa_costa.jpg"
+                data-src="../assets/videos/video_3.mp4">
+                <source src="../assets/videos/video_3.mp4" type="video/mp4">
+              </video>
+              <div class="absolute top-4 left-4 glass-pill px-3 py-1 rounded-full text-[10px] font-bold text-charcoal uppercase tracking-wider">
+                Acto IV · El Altar del Agua
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       SECCIÓN 4: LA ECONOMÍA DEL AGUA (SOBERANÍA Y RETORNO)
+       ==================================================================== -->
+  <section id="economia" class="py-24 px-4 sm:px-6 bg-gradient-to-b from-cotton via-sand/30 to-cotton relative">
+    <div class="max-w-6xl mx-auto">
+      
+      <div class="text-center max-w-3xl mx-auto mb-16 fade-up-element">
+        <span class="text-xs uppercase tracking-widest text-bronze font-bold">Economía Familiar y Soberanía</span>
+        <h2 class="font-editorial text-3xl sm:text-5xl font-semibold text-charcoal mt-2 mb-4">
+          La dignidad del agua no se negocia con pipas ni tandeos.
+        </h2>
+        <p class="text-slateCustom text-sm sm:text-base">
+          Desmitificamos la idea de que tener un pozo cuesta cientos de miles de pesos. El sistema Agua de Gía recupera su inversión rápidamente y blinda a tu familia de por vida.
+        </p>
+      </div>
+
+      <!-- Tabla Comparativa Editorial (3 Columnas) -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 mb-12 fade-up-element">
+        
+        <!-- Columna 1: Pipas y Red -->
+        <div class="glass-card rounded-3xl p-6 sm:p-8 flex flex-col justify-between border-t-4 border-t-rose-400">
+          <div>
+            <span class="text-xs uppercase tracking-wider font-bold text-rose-500">Modelo Frágil</span>
+            <h3 class="font-editorial text-2xl font-bold text-charcoal mt-1 mb-4">Pipas y Red Municipal</h3>
+            <div class="text-3xl font-editorial font-bold text-charcoal mb-4">
+              $190 <span class="text-sm font-sans font-normal text-slateCustom">MXN / m³</span>
+            </div>
+            <ul class="space-y-3 text-xs text-slateCustom">
+              <li class="flex items-start gap-2">
+                <span class="text-rose-500 font-bold">✕</span>
+                <span>Tandeos arbitrarios y desabasto imprevisto en fines de semana.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-rose-500 font-bold">✕</span>
+                <span>Calidad microbiológica desconocida de pipas con lodos en cisterna.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-rose-500 font-bold">✕</span>
+                <span>Gasto continuo en garrafones de plástico ($45 - $60 c/u).</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-rose-500 font-bold">✕</span>
+                <span>Estrés familiar y dependencia total de transportistas externos.</span>
+              </li>
+            </ul>
+          </div>
+          <div class="pt-6 mt-6 border-t border-slate-200 text-center">
+            <span class="text-[11px] uppercase font-semibold text-rose-500">Gasto a fondo perdido</span>
+          </div>
+        </div>
+
+        <!-- Columna 2: Pozo Profundo Convencional -->
+        <div class="glass-card rounded-3xl p-6 sm:p-8 flex flex-col justify-between border-t-4 border-t-slate-400">
+          <div>
+            <span class="text-xs uppercase tracking-wider font-bold text-slate-500">Modelo Industrial</span>
+            <h3 class="font-editorial text-2xl font-bold text-charcoal mt-1 mb-4">Pozo Profundo Comercial</h3>
+            <div class="text-3xl font-editorial font-bold text-charcoal mb-4">
+              &gt;$130,000 <span class="text-sm font-sans font-normal text-slateCustom">MXN inicial</span>
+            </div>
+            <ul class="space-y-3 text-xs text-slateCustom">
+              <li class="flex items-start gap-2">
+                <span class="text-amber-500 font-bold">!</span>
+                <span>Perforación invasiva a más de 40 metros con camiones pesados.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-amber-500 font-bold">!</span>
+                <span>Trámites concesionales costosos y lentos ante CONAGUA.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-amber-500 font-bold">!</span>
+                <span>Bombas sumergibles de alto consumo eléctrico trifásico.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-amber-500 font-bold">!</span>
+                <span>Agua cruda que aún requiere equipos adicionales de filtrado.</span>
+              </li>
+            </ul>
+          </div>
+          <div class="pt-6 mt-6 border-t border-slate-200 text-center">
+            <span class="text-[11px] uppercase font-semibold text-slate-500">Inviable para la mayoría de predios</span>
+          </div>
+        </div>
+
+        <!-- Columna 3: Agua de Gía (Destacado) -->
+        <div class="glass-card rounded-3xl p-6 sm:p-8 flex flex-col justify-between border-2 border-pacific relative shadow-2xl bg-white/85">
+          <div class="absolute -top-3.5 right-6 px-3.5 py-0.5 rounded-full bg-gradient-to-r from-bronze to-pacific text-white text-[10px] font-bold uppercase tracking-wider">
+            Recomendado
+          </div>
+          <div>
+            <span class="text-xs uppercase tracking-wider font-bold text-pacific">Soberanía Hídrica</span>
+            <h3 class="font-editorial text-2xl font-bold text-charcoal mt-1 mb-4">Sistema Agua de Gía</h3>
+            <div class="text-3xl font-editorial font-bold text-pacific mb-4">
+              $46 a $58 <span class="text-sm font-sans font-normal text-slateCustom">MXN / m³ proyectado</span>
+            </div>
+            <ul class="space-y-3 text-xs text-charcoal">
+              <li class="flex items-start gap-2 font-medium">
+                <span class="text-emerald-600 font-bold">✓</span>
+                <span>Presión doméstica de 60 PSI para servicios del hogar (según capacidad sostenible del pozo).</span>
+              </li>
+              <li class="flex items-start gap-2 font-medium">
+                <span class="text-emerald-600 font-bold">✓</span>
+                <span>Meta de diseño: agua de mesa &lt;150 ppm (pendiente de validación de laboratorio).</span>
+              </li>
+              <li class="flex items-start gap-2 font-medium">
+                <span class="text-emerald-600 font-bold">✓</span>
+                <span>Esquema comercial en definición, sujeto al marco legal de uso doméstico.</span>
+              </li>
+              <li class="flex items-start gap-2 font-medium">
+                <span class="text-emerald-600 font-bold">✓</span>
+                <span>Proyección: recuperación estimada en ~21 meses (hipótesis económica, no auditada).</span>
+              </li>
+            </ul>
+          </div>
+          <div class="pt-6 mt-6 border-t border-pacific/20 text-center">
+            <a href="#factibilidad" class="inline-block w-full py-3 rounded-full text-xs font-bold text-white bg-pacific hover:bg-sky-600 transition-colors shadow-md">
+              Verificar Factibilidad de mi Terreno
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Nota de Cumplimiento Regulatorio y Constitución -->
+      <div class="max-w-3xl mx-auto glass-pill rounded-2xl p-5 sm:p-6 text-center border border-white/70 fade-up-element mb-16">
+        <div class="flex items-center justify-center gap-2 mb-2 text-bronze font-bold text-xs uppercase tracking-wider">
+          <span>⚖️ Respaldo Constitucional y Marco Regulatorio</span>
+        </div>
+        <p class="text-slateCustom text-xs leading-relaxed">
+          Agua de Gía es un proyecto de investigación y prototipo. La extracción de agua subterránea en Tijuana está sujeta a la veda de 1965, que contempla una excepción para alumbramientos de uso doméstico, y a la Ley de Aguas Nacionales. Antes de cualquier perforación o despliegue se solicitará opinión a CONAGUA. Las cifras económicas son proyecciones; la potabilidad solo puede declararse tras análisis del producto terminado conforme a la <b>NOM-127-SSA1-2021</b>.
+        </p>
+      </div>
+
+      <!-- Vitrina Destacada: Pureza de Mesa & El Ritual Diario (video_5.mp4) -->
+      <div class="glass-card rounded-3xl p-6 sm:p-10 border border-white/80 shadow-2xl overflow-hidden fade-up-element">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          <div class="lg:col-span-7">
+            <div class="relative rounded-2xl overflow-hidden shadow-xl aspect-video bg-black border border-white/40">
+              <video 
+                class="w-full h-full object-cover"
+                autoplay muted loop playsinline preload="metadata" 
+                poster="../assets/playas_mesa_costa.jpg"
+                data-src="../assets/videos/video_5.mp4">
+                <source src="../assets/videos/video_5.mp4" type="video/mp4">
+              </video>
+              <div class="absolute top-4 left-4 glass-pill px-3 py-1 rounded-full text-[10px] font-bold text-charcoal uppercase tracking-wider">
+                Meta de diseño · &lt;150 ppm
+              </div>
+            </div>
+          </div>
+          <div class="lg:col-span-5 space-y-4">
+            <span class="text-xs uppercase tracking-widest text-pacific font-bold">El Ritual de la Mesa</span>
+            <h3 class="font-editorial text-2xl sm:text-3xl font-semibold text-charcoal">
+              El vitrolero en tu hogar: agua viva para los tuyos.
+            </h3>
+            <p class="text-slateCustom text-xs sm:text-sm leading-relaxed">
+              Una visión de agua local, medida y tratada con tecnología abierta: menos dependencia de pipas y garrafones, y más conocimiento sobre el agua bajo nuestra ciudad.
+            </p>
+            <div class="pt-2 flex items-center gap-3 text-xs text-bronze font-semibold">
+              <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span>Calidad sujeta a validación con análisis de laboratorio acreditado (NOM-127-SSA1-2021)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       SECCIÓN 5: FORMULARIO DE PRE-FACTIBILIDAD (CAPTURA DE LEADS)
+       ==================================================================== -->
+  <section id="factibilidad" class="py-24 px-4 sm:px-6 bg-gradient-to-b from-cotton via-seamist/40 to-sand/60 relative">
+    <div class="max-w-3xl mx-auto">
+      
+      <!-- Encabezado del Formulario -->
+      <div class="text-center mb-12 fade-up-element">
+        <span class="text-xs uppercase tracking-widest text-pacific font-bold">Evaluación Geohidrológica Sin Costo</span>
+        <h2 class="font-editorial text-3xl sm:text-5xl font-semibold text-charcoal mt-2 mb-3">
+          Consulta la Factibilidad Hídrica de tu Predio
+        </h2>
+        <p class="text-slateCustom text-sm leading-relaxed max-w-xl mx-auto">
+          Registra tu interés y evaluaremos la factibilidad hidrogeológica de tu zona. Esta es una etapa de investigación y prototipo, no una oferta de instalación.
+        </p>
+      </div>
+
+      <!-- Contenedor Glassmorphism del Formulario -->
+      <div class="glass-card rounded-3xl p-6 sm:p-10 shadow-2xl border border-white/80 fade-up-element relative">
+        
+        <form id="prefactibilidadForm" class="space-y-6" onsubmit="handleFormSubmit(event)">
+          
+          <!-- Nombre y Teléfono -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div>
+              <label for="nombre" class="block text-xs font-bold uppercase tracking-wider text-charcoal mb-2">
+                Nombre y Apellidos *
+              </label>
+              <input 
+                type="text" id="nombre" name="nombre" required 
+                placeholder="Ej. Roberto Salcedo"
+                class="w-full px-4 py-3 rounded-xl bg-white/80 border border-slate-200 text-charcoal text-sm focus:outline-none focus:ring-2 focus:ring-pacific/40 transition-all">
+            </div>
+            <div>
+              <label for="telefono" class="block text-xs font-bold uppercase tracking-wider text-charcoal mb-2">
+                Teléfono / WhatsApp (10 dígitos) *
+              </label>
+              <input 
+                type="tel" id="telefono" name="telefono" required pattern="[0-9]{10}"
+                placeholder="Ej. 6641234567"
+                class="w-full px-4 py-3 rounded-xl bg-white/80 border border-slate-200 text-charcoal text-sm focus:outline-none focus:ring-2 focus:ring-pacific/40 transition-all">
+            </div>
+          </div>
+
+          <!-- Colonia o Fraccionamiento & Tipo de Inmueble -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <div>
+              <label for="colonia" class="block text-xs font-bold uppercase tracking-wider text-charcoal mb-2">
+                Colonia o Fraccionamiento en Tijuana *
+              </label>
+              <select 
+                id="colonia" name="colonia" required
+                class="w-full px-4 py-3 rounded-xl bg-white/80 border border-slate-200 text-charcoal text-sm focus:outline-none focus:ring-2 focus:ring-pacific/40 transition-all">
+                <option value="" disabled selected>Selecciona tu zona...</option>
+                <option value="Playas de Tijuana (Costera)">Playas de Tijuana (Zona Costera)</option>
+                <option value="Playas de Tijuana (Secciones/Laderas)">Playas de Tijuana (Laderas / Secciones)</option>
+                <option value="Soler / Mirador">Soler / El Mirador</option>
+                <option value="Libertad / Postal">Colonia Libertad / Postal</option>
+                <option value="Otay / Altabrisa">Otay / Altabrisa</option>
+                <option value="Zona Río / Federal">Zona Río / Federal</option>
+                <option value="La Mesa / Cañón del Matadero">La Mesa / Cañón del Matadero</option>
+                <option value="Colinas de la Presa / Presa Rodríguez">Colinas de la Presa / Ribera Presa Rodríguez</option>
+                <option value="Cacho / Madero">Colonia Madero (Cacho) / Neidhart</option>
+                <option value="Otra Zona de Tijuana">Otra colonia en Tijuana</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="tipoInmueble" class="block text-xs font-bold uppercase tracking-wider text-charcoal mb-2">
+                Tipo de Inmueble *
+              </label>
+              <select 
+                id="tipoInmueble" name="tipoInmueble" required
+                class="w-full px-4 py-3 rounded-xl bg-white/80 border border-slate-200 text-charcoal text-sm focus:outline-none focus:ring-2 focus:ring-pacific/40 transition-all">
+                <option value="" disabled selected>Selecciona una opción...</option>
+                <option value="Casa Habitación Propia">Casa habitación propia</option>
+                <option value="Casa en Renta">Casa en renta</option>
+                <option value="Terreno / Predio por construir">Terreno / Predio por construir</option>
+                <option value="Taller o Pequeño Negocio">Taller o Pequeño Negocio</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Consumo Actual Promedio -->
+          <div>
+            <label for="consumoActual" class="block text-xs font-bold uppercase tracking-wider text-charcoal mb-2">
+              ¿Cómo resuelves el agua actualmente? *
+            </label>
+            <select 
+              id="consumoActual" name="consumoActual" required
+              class="w-full px-4 py-3 rounded-xl bg-white/80 border border-slate-200 text-charcoal text-sm focus:outline-none focus:ring-2 focus:ring-pacific/40 transition-all">
+              <option value="" disabled selected>Selecciona tu situación actual...</option>
+              <option value="Solo red municipal (sufro cortes)">Solo red municipal (sufro cortes constantes)</option>
+              <option value="Compro pipas con frecuencia">Compro pipas de agua frecuentemente</option>
+              <option value="Tengo cisterna pero paso días sin agua">Tengo cisterna pero paso días sin agua</option>
+              <option value="Gasto excesivo en garrafones comerciales">Gasto excesivo en garrafones comerciales</option>
+            </select>
+          </div>
+
+          <!-- Duda o mensaje particular -->
+          <div>
+            <label for="mensaje" class="block text-xs font-bold uppercase tracking-wider text-charcoal mb-2">
+              Duda o detalle de tu predio (Opcional)
+            </label>
+            <textarea 
+              id="mensaje" name="mensaje" rows="3"
+              placeholder="Ej. Tenemos un jardín en la parte trasera de 35 m2 con tierra arenosa..."
+              class="w-full px-4 py-3 rounded-xl bg-white/80 border border-slate-200 text-charcoal text-sm focus:outline-none focus:ring-2 focus:ring-pacific/40 transition-all"></textarea>
+          </div>
+
+          <!-- Botón de Envío -->
+          <div class="pt-2">
+            <button 
+              type="submit" id="submitBtn"
+              class="w-full py-4 rounded-xl font-bold text-sm text-white bg-gradient-to-r from-bronze via-slate-800 to-pacific hover:opacity-95 shadow-xl shadow-pacific/20 transition-all transform hover:-translate-y-0.5 flex items-center justify-center gap-2">
+              <span>Solicitar Dictamen de Factibilidad</span>
+              <span id="btnArrow">→</span>
+              <svg id="btnSpinner" class="hidden animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+            </button>
+            <p class="text-[11px] text-center text-slateCustom mt-3">
+              🔒 Tus datos son confidenciales y se utilizarán únicamente para evaluar la cota piezométrica de tu colonia.
+            </p>
+          </div>
+
+        </form>
+
+        <!-- Mensaje de Éxito Interactivo (Oculto inicialmente) -->
+        <div id="successModal" class="hidden absolute inset-0 glass-card-dark rounded-3xl p-8 flex flex-col items-center justify-center text-center text-white z-20">
+          <div class="w-16 h-16 rounded-full bg-emerald-500/20 border border-emerald-400 flex items-center justify-center mb-4">
+            <span class="text-3xl text-emerald-400">✓</span>
+          </div>
+          <h3 class="font-editorial text-3xl font-semibold mb-2">Solicitud de Dictamen Recibida</h3>
+          <p class="text-sm text-slate-300 max-w-md mb-6 leading-relaxed">
+            Hemos registrado las coordenadas aproximadas de tu predio. Un técnico hidrógrafo revisará la red piezométrica de tu colonia y te contactará por WhatsApp para compartir los datos del manto somero.
+          </p>
+          <button onclick="resetFormState()" class="px-6 py-2.5 rounded-full text-xs font-bold bg-white text-charcoal hover:bg-slate-200 transition-colors">
+            Cerrar Confirmación
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       SECCIÓN 6: FOOTER INSTITUCIONAL
+       ==================================================================== -->
+  <footer class="bg-charcoal text-white py-16 px-4 sm:px-8 border-t border-white/10 relative">
+    <div class="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8">
+      
+      <!-- Marca y Misión -->
+      <div class="text-center md:text-left">
+        <span class="font-editorial text-2xl font-bold tracking-wider text-white">AGUA DE GÍA</span>
+        <p class="text-xs text-slate-400 mt-1 max-w-sm leading-relaxed">
+          Ingeniería Hídrica Resiliente. Extracción somera y alquimia sin químicos sintéticos. Tijuana, Baja California, México.
+        </p>
+      </div>
+
+      <!-- Enlace Técnico Discreto -->
+      <div class="flex flex-col sm:flex-row items-center gap-4 text-xs">
+        <a 
+          href="https://aguadegia.comandamanda.com/" 
+          target="_blank" 
+          rel="noopener"
+          class="px-4 py-2 rounded-full border border-slate-700 bg-slate-900/60 hover:bg-slate-800 text-slate-400 hover:text-white transition-all flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+          <span>Red Centinela / Telemetría de Campo</span>
+          <span class="text-[10px]">↗</span>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- Leyenda Legal y Derechos Humanos -->
+    <div class="max-w-6xl mx-auto mt-12 pt-8 border-t border-slate-800 text-center text-[11px] text-slate-500 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <p>© 2026 Agua de Gía · Todos los derechos reservados. Proyecto de investigación y prototipo.</p>
+      <p class="italic font-editorial text-xs text-slate-400">“La pureza del agua comienza cuando la entendemos.”</p>
+    </div>
+  </footer>
+
+  <!-- ====================================================================
+       SCRIPTS VANILLA JS: SCROLLYTELLING, VIDEOS & LEAD CAPTURE
+       ==================================================================== -->
+  <script>
+    // 1. Observer para revelación progresiva al hacer Scroll (Fade-up)
+    const fadeObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+        }
+      });
+    }, {
+      threshold: 0.12,
+      rootMargin: '0px 0px -40px 0px'
+    });
+
+    document.querySelectorAll('.fade-up-element').forEach(el => fadeObserver.observe(el));
+
+    // 2. IntersectionObserver Inteligente para Reproducción y Pausa de Videos
+    // Ahorra batería y recursos de CPU pausando videos que salen del viewport
+    const videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        const video = entry.target;
+        if (entry.isIntersecting) {
+          if (video.paused) {
+            video.play().catch(() => {});
+          }
+        } else {
+          if (!video.paused) {
+            video.pause();
+          }
+        }
+      });
+    }, {
+      threshold: 0.25
+    });
+
+    document.querySelectorAll('video').forEach(video => {
+      videoObserver.observe(video);
+    });
+
+    // 3. Efecto Navbar al hacer Scroll
+    window.addEventListener('scroll', () => {
+      const header = document.getElementById('mainHeader');
+      if (window.scrollY > 40) {
+        header.classList.add('py-2');
+        header.classList.remove('py-4');
+      } else {
+        header.classList.add('py-4');
+        header.classList.remove('py-2');
+      }
+    });
+
+    // 4. Manejo del Formulario de Pre-Factibilidad
+    function handleFormSubmit(event) {
+      event.preventDefault();
+      
+      const form = document.getElementById('prefactibilidadForm');
+      const submitBtn = document.getElementById('submitBtn');
+      const btnArrow = document.getElementById('btnArrow');
+      const btnSpinner = document.getElementById('btnSpinner');
+      const modal = document.getElementById('successModal');
+
+      // Animación de carga
+      submitBtn.disabled = true;
+      btnArrow.classList.add('hidden');
+      btnSpinner.classList.remove('hidden');
+
+      const formData = {
+        nombre: form.nombre.value,
+        telefono: form.telefono.value,
+        colonia: form.colonia.value,
+        tipoInmueble: form.tipoInmueble.value,
+        consumoActual: form.consumoActual.value,
+        mensaje: form.mensaje.value,
+        timestamp: new Date().toISOString()
+      };
+
+      // Guardado local de respaldo
+      try {
+        const prevLeads = JSON.parse(localStorage.getItem('aguadegia_leads') || '[]');
+        prevLeads.push(formData);
+        localStorage.setItem('aguadegia_leads', JSON.stringify(prevLeads));
+      } catch (e) {}
+
+      // Envío POST asíncrono
+      fetch('/api/lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData)
+      })
+      .catch(() => {})
+      .finally(() => {
+        // Mostrar modal de éxito
+        setTimeout(() => {
+          submitBtn.disabled = false;
+          btnArrow.classList.remove('hidden');
+          btnSpinner.classList.add('hidden');
+          modal.classList.remove('hidden');
+        }, 600);
+      });
+    }
+
+    function resetFormState() {
+      document.getElementById('successModal').classList.add('hidden');
+      document.getElementById('prefactibilidadForm').reset();
+    }
+  </script>
+</body>
+</html>
