@@ -2,6 +2,8 @@
 *.jpg
 !vitrolero_gia_playas.jpg
 !portal/vitrolero_gia_playas.jpg
+!casa_*.jpg
+!portal/casa_*.jpg
 *.jpeg
 *.png
 !fig*.png
