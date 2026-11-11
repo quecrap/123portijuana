@@ -1,5 +1,7 @@
 # Archivos multimedia y confidenciales bajo llave (Privados)
 *.jpg
+!vitrolero_gia_playas.jpg
+!portal/vitrolero_gia_playas.jpg
 *.jpeg
 *.png
 !fig*.png
@@ -10,6 +12,16 @@
 *.bmp
 *.svg
 *.mp4
+!portada.mp4
+!acto_1.mp4
+!acto_2.mp4
+!acto_3.mp4
+!acto_4.mp4
+!portal/portada.mp4
+!portal/acto_1.mp4
+!portal/acto_2.mp4
+!portal/acto_3.mp4
+!portal/acto_4.mp4
 !video/demo_tren_proceso_web.mp4
 *.mov
 *.avi
