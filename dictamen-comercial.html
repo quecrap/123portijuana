@@ -151,10 +151,16 @@ async function runEvaluation(){
 
   const distRio = Math.sqrt(Math.pow(chosenLat - 32.53, 2) + Math.pow(chosenLng - (-117.02), 2)) * 111;
   const distMar = Math.abs(chosenLng - (-117.13)) * 95;
+  const distPresa = Math.sqrt(Math.pow(chosenLat - 32.4488, 2) + Math.pow(chosenLng - (-116.9299), 2)) * 111;
 
   let score=80, depth=6.0, tds=850, geo="Depósito Aluvial / Terraza Cuaternaria", diag="", method="";
 
-  if (elev > 250) {
+  if (distPresa < 2.2) {
+    score = 58; depth = 28.0; tds = 1180;
+    geo = "SGM: Relleno Antrópico (0-6m) s/ Basamento Metavolcánico Fm. Alisitos";
+    diag = `Sector Colinas de la Presa / Ribera Presa Rodríguez (${elev} msnm). Plataforma urbana sobre paleocauce. Nivel base regional condicionado por cota de embalse (~96 msnm, prof. ~28m). Si se intercepta agua a ~10m es flujo subálveo colgado en relleno con alto riesgo biológico/sanitario. Requiere sello sanitario profundo (>5m).`;
+    method = "Lodo bentonítico y camisa temporal para estabilizar relleno superior (0-8m) + Rotopercusión neumática con martillo DTH para roca metavolcánica Alisitos y boleos densos.";
+  } else if (elev > 250) {
     score = Math.max(5, Math.round(30 - (elev - 250) * 0.1));
     depth = Math.round(35 + (elev - 250) * 0.2); tds = 1400;
     geo = "SGM: Complejo Volcánico / Basaltos y Rocas Ígneas (Cumbres)";
