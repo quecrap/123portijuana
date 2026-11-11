@@ -154,13 +154,30 @@ float    pt1MvPerCm         = PT1_DEFAULT_MV_PER_CM;
 bool     pt1Connected       = false;
 bool     pt1EmaInit         = false;
 
-// Telemetría de Celda y Ánodo Pasivo (GPIO 36 / VP - Divisor 4:1 con 3x10k en serie + 1x10k a GND)
-const float DIVISOR_ANODO_PASIVO = 4.0f; // Ratio 4:1 (30k arriba / 10k abajo: 12V celda -> 3.0V ADC)
+// Telemetría de Celda y Ánodo Pasivo (GPIO 36 / VP)
+// Calibración dinámica NVS para voltaje (1:1, 2:1 o 4:1) y amperaje
+Preferences elecPrefs;
+float calibVScale            = 2.0f;   // Ratio divisor P36 (2.0f actual con 2 resistencias, 4.0f con 4 resistencias)
+int   calibIMode             = 0;      // 0 = Amperaje Nominal Fijo (Exacto y Recomendado), 1 = Sensor ACS712/Sag
+float calibINominal          = 11.0f;  // Amperes nominales de celda con SSR 1 (P33) encendido
+float calibISagFactor        = 1.0f;   // Factor de calibración fina para modo sensor
+float calibDosisMgL          = 80.0f;  // Dosis objetivo Fe en mg/L (80 = Agotamiento Total)
+uint32_t calibTiempoMaxMin   = 50;     // Minutos máximos de seguridad en floculación
+float calibVolumenL          = 117.3f; // Volumen lote en litros (1 BBL)
+
+// Cronometraje de Faraday y pronóstico en tiempo real
+uint32_t tInicioFloculacionMs   = 0;
+uint32_t tTranscurridoFlocSeg   = 0;
+uint32_t tEstimadoTotalFlocSeg  = 2940; // ~49 min a 11A para 80 mg/L en 117 L
+uint32_t tRestanteFlocSeg       = 2940;
+float    tasaDisolucionFeGps    = 0.00318f; // ~0.191 g Fe / min a 11A
+
+const float DIVISOR_ANODO_PASIVO = 2.0f; // Ratio base (actualmente 2:1 hasta instalar 4 resistencias)
 uint32_t rawAnodoPasivo      = 0;
 uint32_t ruidoPpAnodoPasivo  = 0;     // Ruido pico a pico (60Hz) para detectar pin al aire
 bool  pinP36AlAire           = true;  // True si P36 no tiene conectado el divisor 10k a GND
 float vPinAnodoPasivoV       = 0.0f;  // Voltaje directo en GPIO 36 (0 - 3.5V max)
-float vVarillaAnodoPasivoV   = 0.0f;  // Voltaje real en la celda/varilla (vPin * 4.0)
+float vVarillaAnodoPasivoV   = 0.0f;  // Voltaje real en la celda/varilla (vPin * calibVScale)
 float vAnodoConFuenteOnV     = 0.0f;  // Último voltaje en varilla con SSR 1 (P33) ENCENDIDO
 float vAnodoPausa50msV       = 0.0f;  // Voltaje en varilla a los 50 ms de apagar SSR 1 (P33)
 float vAnodoPausa1400msV     = 0.0f;  // Voltaje en varilla a los 1400 ms de apagar SSR 1 (galvánico/remanente)
@@ -402,6 +419,39 @@ void cargarCalibracionPt1Nvs() {
   }
 }
 
+void guardarCalibracionElectricaNvs() {
+  if (elecPrefs.begin("eleccal", false)) {
+    elecPrefs.putFloat("vScale", calibVScale);
+    elecPrefs.putInt("iMode", calibIMode);
+    elecPrefs.putFloat("iNom", calibINominal);
+    elecPrefs.putFloat("iMult", calibISagFactor);
+    elecPrefs.putFloat("dosis", calibDosisMgL);
+    elecPrefs.putUInt("tMaxMin", calibTiempoMaxMin);
+    elecPrefs.putFloat("volL", calibVolumenL);
+    elecPrefs.end();
+  }
+}
+
+void cargarCalibracionElectricaNvs() {
+  if (elecPrefs.begin("eleccal", true)) {
+    calibVScale       = elecPrefs.getFloat("vScale", 2.0f);
+    calibIMode        = elecPrefs.getInt("iMode", 0);
+    calibINominal     = elecPrefs.getFloat("iNom", 11.0f);
+    calibISagFactor   = elecPrefs.getFloat("iMult", 1.0f);
+    calibDosisMgL     = elecPrefs.getFloat("dosis", 80.0f);
+    calibTiempoMaxMin = elecPrefs.getUInt("tMaxMin", 50);
+    calibVolumenL     = elecPrefs.getFloat("volL", 117.3f);
+    elecPrefs.end();
+  }
+  if (isnan(calibVScale) || calibVScale < 0.5f || calibVScale > 10.0f) calibVScale = 2.0f;
+  if (calibIMode < 0 || calibIMode > 1) calibIMode = 0;
+  if (isnan(calibINominal) || calibINominal < 1.0f || calibINominal > 40.0f) calibINominal = 11.0f;
+  if (isnan(calibISagFactor) || calibISagFactor < 0.1f || calibISagFactor > 10.0f) calibISagFactor = 1.0f;
+  if (isnan(calibDosisMgL) || calibDosisMgL < 10.0f || calibDosisMgL > 150.0f) calibDosisMgL = 80.0f;
+  if (calibTiempoMaxMin < 5 || calibTiempoMaxMin > 180) calibTiempoMaxMin = 50;
+  if (isnan(calibVolumenL) || calibVolumenL < 10.0f || calibVolumenL > 250.0f) calibVolumenL = 117.3f;
+}
+
 static void muestrearPinAdcAltaRes(uint8_t pin, float* outRawAvg, float* outMvCal, bool* outConnected) {
   const int N = 256;
   uint32_t sumRaw = 0;
@@ -569,7 +619,7 @@ float leerAnodoPasivoVarillaV() {
   ruidoPpAnodoPasivo = pp;
   pinP36AlAire = flotando;
   vPinAnodoPasivoV = avgMv / 1000.0f;
-  vVarillaAnodoPasivoV = vPinAnodoPasivoV * DIVISOR_ANODO_PASIVO;
+  vVarillaAnodoPasivoV = vPinAnodoPasivoV * calibVScale;
   return vVarillaAnodoPasivoV;
 }
 
@@ -675,34 +725,39 @@ void actualizarLecturasSensores() {
     vAnodoConFuenteOnV = vVarillaAnodoPasivoV;
   }
 
-  // Estimación de Corriente Real en Electrodos (Sag de voltaje 12V + ACS712 en AC 120V):
+  // Estimación de Corriente Real en Electrodos (Nominal Fijo o Sensor Dinámico):
   if (!actuadores[2].estado) {
-    // Si la Fuente ATX (SSR 1) está APAGADA, la corriente forzada es CERO absoluto
+    // Si la Fuente ATX (SSR 1 - GPIO 33) está APAGADA, la corriente es CERO absoluto
     corrienteEstimadaDcA = 0.0f;
     corrienteElectrodosA = 0.0f;
   } else {
-    // Estimación por caída de tensión bajo carga (Sag): V_vacio ~ 12.20V, R_linea ~ 0.22 Ohm
-    float iSag = 0.0f;
-    if (vVarillaAnodoPasivoV > 4.0f && vVarillaAnodoPasivoV < 12.20f) {
-      iSag = (12.20f - vVarillaAnodoPasivoV) / 0.22f;
-      if (iSag < 0.0f) iSag = 0.0f;
-      if (iSag > 25.0f) iSag = 25.0f;
-    }
-
-    // Estimación por ACS712-05B en primaria AC 120V (tara reposo ~0.18A AC):
-    float iAcNeta = (corrienteAcPrimariaA > 0.18f) ? (corrienteAcPrimariaA - 0.18f) : 0.0f;
-    float iDcAc   = iAcNeta * 5.25f; // Relación potencia AC 120V -> DC 12V con PF 0.7 y rend 75%
-
-    if (iDcAc > 0.3f && iSag > 0.3f) {
-      corrienteEstimadaDcA = (0.5f * iDcAc) + (0.5f * iSag);
-    } else if (iDcAc > 0.3f) {
-      corrienteEstimadaDcA = iDcAc;
-    } else if (iSag > 0.3f) {
-      corrienteEstimadaDcA = iSag;
+    if (calibIMode == 0) {
+      // MODO NOMINAL FIJO: Alta estabilidad matemática para integración de Faraday
+      corrienteEstimadaDcA = calibINominal;
+      corrienteElectrodosA = calibINominal;
     } else {
-      corrienteEstimadaDcA = 0.0f;
+      // MODO SENSOR DINÁMICO: Sag de celda + ACS712 ajustado con factor fino
+      float iSag = 0.0f;
+      if (vVarillaAnodoPasivoV > 4.0f && vVarillaAnodoPasivoV < 12.20f) {
+        iSag = ((12.20f - vVarillaAnodoPasivoV) / 0.22f) * calibISagFactor;
+        if (iSag < 0.0f) iSag = 0.0f;
+        if (iSag > 25.0f) iSag = 25.0f;
+      }
+
+      float iAcNeta = (corrienteAcPrimariaA > 0.18f) ? (corrienteAcPrimariaA - 0.18f) : 0.0f;
+      float iDcAc   = iAcNeta * 5.25f * calibISagFactor;
+
+      if (iDcAc > 0.3f && iSag > 0.3f) {
+        corrienteEstimadaDcA = (0.5f * iDcAc) + (0.5f * iSag);
+      } else if (iDcAc > 0.3f) {
+        corrienteEstimadaDcA = iDcAc;
+      } else if (iSag > 0.3f) {
+        corrienteEstimadaDcA = iSag;
+      } else {
+        corrienteEstimadaDcA = calibINominal; // Fallback seguro a corriente nominal
+      }
+      corrienteElectrodosA = corrienteEstimadaDcA;
     }
-    corrienteElectrodosA = corrienteEstimadaDcA;
   }
 
   bool flotDC = false;
@@ -828,6 +883,9 @@ void cambiarEstado(EstadoProceso nuevoEstado) {
   solenoideLlenadoPulsando = false;
   tToqueAnodoMs = 0;
   lavadoRoEnCurso = false;
+  if (nuevoEstado != ESTADO_ELECTROFLOCULACION) {
+    tInicioFloculacionMs = 0;
+  }
 
   Serial.printf("[AUTO] Cambio a Estado: %d (%s)\n", nuevoEstado, getNombreEstado(nuevoEstado));
   String mot = "Cambio a Etapa " + String((int)nuevoEstado) + ": " + String(getNombreEstado(nuevoEstado));
@@ -886,27 +944,40 @@ void procesarAutomataMaestro() {
     // ETAPA 2: CÁLCULO DE RESISTENCIA INICIAL (R0), PPM Y META FARADAY
     // ------------------------------------------------------------------------
     case ESTADO_CALCULO_FARADAY: {
-      float i0 = max(corrienteElectrodosA, UMBRAL_TOQUE_ANODO_A);
-      float resistenciaInicialOhms = VOLTAJE_FUENTE_EF / i0;
-
-      // Prioriza la medición real de TDS del medidor ingresada por el usuario
+      // Prioriza la medición única del medidor físico ingresada al inicio del lote (o 3000 ppm por defecto)
       if (tdsManualIngresado && tdsManualPPM >= 50.0f) {
         tdsEstimadoPPM = tdsManualPPM;
       } else {
-        tdsEstimadoPPM = constrain(K_CELDA_PPM / resistenciaInicialOhms, 100.0f, 8000.0f);
+        tdsEstimadoPPM = 3000.0f;
+        tdsManualPPM   = 3000.0f;
+        tdsManualIngresado = true;
       }
 
-      // Calcula los gramos de Fe necesarios proporcionales a las PPM medidas reales
-      float dosisFe = DOSIS_BASE_MG_L * (tdsEstimadoPPM / PPM_REFERENCIA);
-      gramosFeMeta = (dosisFe * VOLUMEN_LOTE_L) / 1000.0f;
+      // Volumen real del lote (PT1 litros si hay lectura válida > 50L, o volumen nominal configurado)
+      float volReal = (pt1Liters > 50.0f) ? pt1Liters : calibVolumenL;
+
+      // Meta de hierro (g) = (dosis_mg_L * volumen_L) / 1000
+      gramosFeMeta = (calibDosisMgL * volReal) / 1000.0f;
       gramosFeDisueltos = 0.0f;
       pctFaraday = 0.0f;
 
-      // Enciende la Bomba Pecera Whirlpool 120VAC - SSR 3 (Actuador 4 - GPIO 26 / P26) ya inundada por gravedad
+      // Cálculo de tasa de disolución y tiempo estimado a la corriente operativa
+      float iOperacion = (calibIMode == 0) ? calibINominal : max(corrienteElectrodosA, 10.0f);
+      tasaDisolucionFeGps = (iOperacion * PESO_ATOMICO_FE) / (VALENCIA_FE * CONSTANTE_FARADAY);
+      if (tasaDisolucionFeGps > 0.0001f) {
+        tEstimadoTotalFlocSeg = (uint32_t)ceilf(gramosFeMeta / tasaDisolucionFeGps);
+      } else {
+        tEstimadoTotalFlocSeg = 2940; // ~49 minutos a 11A
+      }
+      tRestanteFlocSeg = tEstimadoTotalFlocSeg;
+      tTranscurridoFlocSeg = 0;
+      tInicioFloculacionMs = millis();
+
+      // Enciende la Bomba Pecera Whirlpool 120VAC - SSR 3 (Actuador 4 - GPIO 26 / P26)
       fijarActuador(4, true);
 
-      Serial.printf("[CONTACTO ÁNODO] I0: %.2f A | R0: %.2f Ohms | TDS (Medidor Real): %.0f PPM | Meta Fe: %.2f g\n",
-                    i0, resistenciaInicialOhms, tdsEstimadoPPM, gramosFeMeta);
+      Serial.printf("[FARADAY PROCESO] TDS: %.0f PPM | Dosis: %.1f mg/L | Vol: %.1f L | Meta Fe: %.3f g | T_Est: %u s (%.1f min)\n",
+                    tdsEstimadoPPM, calibDosisMgL, volReal, gramosFeMeta, tEstimadoTotalFlocSeg, tEstimadoTotalFlocSeg / 60.0f);
 
       cambiarEstado(ESTADO_ELECTROFLOCULACION);
       break;
@@ -916,46 +987,72 @@ void procesarAutomataMaestro() {
     // ETAPA 3: LLENADO MODULADO (11.0A - 12.5A) Y ELECTROFLOCULACIÓN ACTIVA
     // ------------------------------------------------------------------------
     case ESTADO_ELECTROFLOCULACION: {
+      if (tInicioFloculacionMs == 0) {
+        tInicioFloculacionMs = millis();
+      }
+
       // Muestreo automático cada 60 segundos: pausa de 1.5s con P33 = OFF para leer Ánodo Pasivo (P36)
       if (!pausaMuestreoActiva && (millis() - ultimoMuestreo60sMs >= 60000)) {
         ultimoMuestreo60sMs = millis();
         iniciarPausaMuestreoAnodoPasivo();
       }
       if (!pausaMuestreoActiva) {
-        fijarActuador(3, true); // Mantiene energizada Fuente ATX Electrofloculación 12V - SSR 1 (Actuador 3 - GPIO 33 / P33)
+        fijarActuador(3, true); // SSR 1 (P33) = ON (Fuente ATX 12V)
       }
-      fijarActuador(4, true); // Mantiene activa Bomba Pecera Whirlpool 120VAC - SSR 3 (Actuador 4 - GPIO 26 / P26)
+      fijarActuador(4, true); // SSR 3 (P26) = ON (Bomba Pecera recirculación)
 
-      // Verifica si ya se completó el volumen de 1 BBL (por caudalímetro o sensor de nivel a 95%)
-      if (litrosTotalizados >= VOLUMEN_LOTE_L || nivelHidrostaticoPct >= 95.0f) {
+      // Reconocimiento de tanque lleno (por caudalímetro, altura o volumen > 80L)
+      if (litrosTotalizados >= calibVolumenL || nivelHidrostaticoPct >= 80.0f || pt1Liters >= 80.0f) {
         conoLleno1BBL = true;
       }
 
-      // Mientras no se llene el BBL, modula la Solenoide Llenado Cono (Actuador 2 - GPIO 27 / P27) entre 11.0 A y 12.5 A
+      // Modulación de Solenoide Llenado (GPIO 27) si aún no está lleno
       if (!conoLleno1BBL) {
         if (corrienteElectrodosA >= I_MODULACION_MAX_A) {
-          fijarActuador(2, false); // Pausa la entrada de agua en 12.5 A (GPIO 27)
+          fijarActuador(2, false);
         } else if (corrienteElectrodosA <= I_MODULACION_MIN_A) {
-          fijarActuador(2, true);  // Reabre la entrada de agua en 11.0 A (GPIO 27)
+          fijarActuador(2, true);
         }
       } else {
-        fijarActuador(2, false);   // Cierra definitivamente la Solenoide Llenado Cono (GPIO 27) al llegar a 1 BBL
+        fijarActuador(2, false);
       }
 
-      // Odómetro de Culombios (Integración segundo a segundo por Ley de Faraday)
+      // Odómetro de Culombios y Cronómetro de Cuenta Regresiva (segundo a segundo)
       static uint32_t ultimoSegundoFaradayMs = 0;
       if (millis() - ultimoSegundoFaradayMs >= 1000) {
+        uint32_t dtMs = millis() - ultimoSegundoFaradayMs;
         ultimoSegundoFaradayMs = millis();
-        float d_mFe = (corrienteElectrodosA * 1.0f * PESO_ATOMICO_FE) / (VALENCIA_FE * CONSTANTE_FARADAY);
+        float dtSeg = dtMs / 1000.0f;
+
+        float d_mFe = (corrienteElectrodosA * dtSeg * PESO_ATOMICO_FE) / (VALENCIA_FE * CONSTANTE_FARADAY);
         gramosFeDisueltos += d_mFe;
         pctFaraday = constrain((gramosFeDisueltos / gramosFeMeta) * 100.0f, 0.0f, 100.0f);
+
+        tTranscurridoFlocSeg = (millis() - tInicioFloculacionMs) / 1000;
+        float iOp = max(corrienteElectrodosA, 0.5f);
+        tasaDisolucionFeGps = (iOp * PESO_ATOMICO_FE) / (VALENCIA_FE * CONSTANTE_FARADAY);
+        if (gramosFeMeta > gramosFeDisueltos && tasaDisolucionFeGps > 0.0001f) {
+          tRestanteFlocSeg = (uint32_t)ceilf((gramosFeMeta - gramosFeDisueltos) / tasaDisolucionFeGps);
+        } else {
+          tRestanteFlocSeg = 0;
+        }
       }
 
-      // Corte al completar el 100% de la dosis calculada con el tanque lleno
-      if (conoLleno1BBL && gramosFeDisueltos >= gramosFeMeta) {
+      // Condición de Paro Automático Seguro:
+      // 1) Se alcanzó la masa de Fe requerida (gramosFeDisueltos >= gramosFeMeta)
+      // 2) O expiró el tiempo máximo de seguridad configurado por el usuario (ej. 50-60 min)
+      uint32_t tSegundosMaximos = calibTiempoMaxMin * 60;
+      bool metaAlcanzada = (gramosFeDisueltos >= gramosFeMeta && gramosFeMeta > 0.1f);
+      bool tiempoAgotado = (tTranscurridoFlocSeg >= tSegundosMaximos);
+
+      if (metaAlcanzada || tiempoAgotado) {
+        Serial.printf("[FARADAY FIN] Fe: %.3f/%.3f g | Tiempo: %u s (Max %u s) | Paro: %s\n",
+                      gramosFeDisueltos, gramosFeMeta, tTranscurridoFlocSeg, tSegundosMaximos,
+                      metaAlcanzada ? "Meta Faraday Alcanzada" : "Tiempo Limite de Seguridad");
         fijarActuador(2, false);
         fijarActuador(3, false);
         fijarActuador(4, false);
+        tInicioFloculacionMs = 0;
         cambiarEstado(ESTADO_REPOSO_FORZADO);
       }
       break;
@@ -1113,9 +1210,29 @@ void handleApiStatus() {
   json += "\"fe_target_g\":" + String(gramosFeMeta, 3) + ",";
   json += "\"fe_dissolved_g\":" + String(gramosFeDisueltos, 3) + ",";
   json += "\"pct\":" + String(pctFaraday, 1) + ",";
+  json += "\"rate_gps\":" + String(tasaDisolucionFeGps, 5) + ",";
+  json += "\"time_elapsed_s\":" + String(tTranscurridoFlocSeg) + ",";
+  json += "\"time_total_s\":" + String(tEstimadoTotalFlocSeg) + ",";
+  json += "\"time_remaining_s\":" + String(tRestanteFlocSeg) + ",";
+  json += "\"dosis_mgl\":" + String(calibDosisMgL, 1) + ",";
   json += "\"tds_estimated_ppm\":" + String(tdsEstimadoPPM, 0) + ",";
   json += "\"tds_manual_ppm\":" + String(tdsManualPPM, 0) + ",";
-  json += "\"tds_manual_set\":" + String(tdsManualIngresado ? "true" : "false");
+  json += "\"tds_manual_set\":" + String(tdsManualIngresado ? "true" : "false") + ",";
+  json += "\"tds_projected_post_floc\":" + String((int)(tdsEstimadoPPM * 0.80f)) + ",";
+  json += "\"tds_projected_ro\":120";
+  json += "},";
+
+  json += "\"calib\":{";
+  json += "\"v_scale\":" + String(calibVScale, 3) + ",";
+  json += "\"v_pin\":" + String(vPinAnodoPasivoV, 3) + ",";
+  json += "\"v_rod\":" + String(vVarillaAnodoPasivoV, 3) + ",";
+  json += "\"i_mode\":" + String(calibIMode) + ",";
+  json += "\"i_mode_str\":\"" + String(calibIMode == 0 ? "NOMINAL_FIJO" : "SENSOR_DINAMICO") + "\",";
+  json += "\"i_nom\":" + String(calibINominal, 2) + ",";
+  json += "\"i_mult\":" + String(calibISagFactor, 3) + ",";
+  json += "\"dosis_mgl\":" + String(calibDosisMgL, 1) + ",";
+  json += "\"t_max_min\":" + String(calibTiempoMaxMin) + ",";
+  json += "\"vol_l\":" + String(calibVolumenL, 1);
   json += "},";
 
   json += "\"antigravity\":{";
@@ -1244,6 +1361,96 @@ void handleApiPt1Cal() {
                ",\"height_cm\":" + String(pt1HeightCm, 1) +
                ",\"liters\":" + String(pt1Liters, 1) + "}";
   server.send(200, "application/json", out);
+}
+
+void handleApiCalib() {
+  bool changed = false;
+
+  // Calibración de Voltaje Celda / Varilla (P36)
+  if (server.hasArg("v_scale")) {
+    float vs = server.arg("v_scale").toFloat();
+    if (vs >= 0.5f && vs <= 10.0f) {
+      calibVScale = vs;
+      changed = true;
+    }
+  }
+  if (server.hasArg("v_real")) {
+    float vr = server.arg("v_real").toFloat();
+    if (vr > 0.5f && vPinAnodoPasivoV > 0.05f) {
+      calibVScale = vr / vPinAnodoPasivoV;
+      changed = true;
+    }
+  }
+
+  // Calibración de Amperaje
+  if (server.hasArg("i_mode")) {
+    int m = server.arg("i_mode").toInt();
+    if (m >= 0 && m <= 1) {
+      calibIMode = m;
+      changed = true;
+    }
+  }
+  if (server.hasArg("i_nom")) {
+    float inom = server.arg("i_nom").toFloat();
+    if (inom >= 1.0f && inom <= 40.0f) {
+      calibINominal = inom;
+      changed = true;
+    }
+  }
+  if (server.hasArg("i_mult")) {
+    float im = server.arg("i_mult").toFloat();
+    if (im >= 0.1f && im <= 10.0f) {
+      calibISagFactor = im;
+      changed = true;
+    }
+  }
+
+  // Ajuste de Dosis y Temporizador
+  if (server.hasArg("dosis_mgl")) {
+    float d = server.arg("dosis_mgl").toFloat();
+    if (d >= 10.0f && d <= 150.0f) {
+      calibDosisMgL = d;
+      changed = true;
+    }
+  }
+  if (server.hasArg("t_max_min")) {
+    uint32_t tm = server.arg("t_max_min").toInt();
+    if (tm >= 5 && tm <= 180) {
+      calibTiempoMaxMin = tm;
+      changed = true;
+    }
+  }
+  if (server.hasArg("vol_l")) {
+    float vl = server.arg("vol_l").toFloat();
+    if (vl >= 10.0f && vl <= 250.0f) {
+      calibVolumenL = vl;
+      changed = true;
+    }
+  }
+
+  if (changed) {
+    guardarCalibracionElectricaNvs();
+    vVarillaAnodoPasivoV = vPinAnodoPasivoV * calibVScale;
+    if (actuadores[2].estado) {
+      corrienteElectrodosA = (calibIMode == 0) ? calibINominal : corrienteEstimadaDcA;
+    }
+  }
+
+  String json = "{";
+  json += "\"ok\":true,";
+  json += "\"v_scale\":" + String(calibVScale, 3) + ",";
+  json += "\"v_pin\":" + String(vPinAnodoPasivoV, 3) + ",";
+  json += "\"v_rod\":" + String(vVarillaAnodoPasivoV, 3) + ",";
+  json += "\"i_mode\":" + String(calibIMode) + ",";
+  json += "\"i_mode_str\":\"" + String(calibIMode == 0 ? "NOMINAL_FIJO" : "SENSOR_DINAMICO") + "\",";
+  json += "\"i_nom\":" + String(calibINominal, 2) + ",";
+  json += "\"i_mult\":" + String(calibISagFactor, 3) + ",";
+  json += "\"i_electrodos\":" + String(corrienteElectrodosA, 2) + ",";
+  json += "\"dosis_mgl\":" + String(calibDosisMgL, 1) + ",";
+  json += "\"t_max_min\":" + String(calibTiempoMaxMin) + ",";
+  json += "\"vol_l\":" + String(calibVolumenL, 1);
+  json += "}";
+  server.send(200, "application/json", json);
 }
 
 void handleApiBitacoraAdd() {
@@ -1472,6 +1679,7 @@ void setup() {
   analogSetPinAttenuation(PIN_ADC_I_BOMBAS_DC, ADC_11db);
   analogSetPinAttenuation(PIN_ADC_ANODO_PASIVO, ADC_11db);
   cargarCalibracionPt1Nvs();
+  cargarCalibracionElectricaNvs();
 
   // CONFIGURACIÓN WI-FI DUAL: Access Point + Conexión a Redes de Casa
   // IMPORTANTE en Core 3.x:
@@ -1531,6 +1739,7 @@ void setup() {
   server.on("/api/emergency", HTTP_POST, handleApiEmergency);
   server.on("/api/sample_anode", HTTP_POST, handleApiSampleAnode);
   server.on("/api/pt1/cal", HTTP_POST, handleApiPt1Cal);
+  server.on("/api/calib", handleApiCalib);
   server.on("/api/bitacora_add", HTTP_POST, handleApiBitacoraAdd);
   server.on("/api/bitacora", HTTP_GET, handleApiBitacoraGet);
   server.on("/api/bitacora.csv", HTTP_GET, handleApiBitacoraCsv);

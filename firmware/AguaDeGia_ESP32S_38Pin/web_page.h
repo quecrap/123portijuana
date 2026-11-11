@@ -168,6 +168,20 @@ const char INDEX_HTML[] PROGMEM = R"rawliteral(
     .pin-b-cyan { background: rgba(6, 182, 212, 0.2); color: #38bdf8; border: 1px solid rgba(6, 182, 212, 0.4); }
     .pin-b-purple { background: rgba(168, 85, 247, 0.2); color: #c084fc; border: 1px solid rgba(168, 85, 247, 0.4); }
 
+    /* Estilos Calculadora Faraday & Calibración */
+    .card-faraday { background: linear-gradient(180deg, #151f33 0%, #0d1526 100%); border: 1px solid rgba(245, 158, 11, 0.45); box-shadow: 0 4px 18px rgba(245, 158, 11, 0.1); }
+    .card-calib { background: linear-gradient(180deg, #0e1e33 0%, #091324 100%); border: 1px solid rgba(6, 182, 212, 0.45); }
+    .countdown-box { background: #070b14; border: 1px solid #1e293b; border-radius: 12px; padding: 12px; text-align: center; margin: 10px 0; }
+    .countdown-time { font-size: 34px; font-weight: 900; color: #fbbf24; font-family: monospace; letter-spacing: 2px; text-shadow: 0 0 12px rgba(251, 191, 36, 0.35); }
+    .countdown-sub { font-size: 10.5px; color: #94a3b8; font-weight: 700; text-transform: uppercase; margin-bottom: 2px; }
+    .preset-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; margin: 8px 0; }
+    @media (min-width: 520px) { .preset-grid { grid-template-columns: repeat(4, 1fr); } }
+    .btn-preset { padding: 8px 6px; border-radius: 8px; border: 1px solid #334155; background: #0f172a; color: #cbd5e1; font-size: 11px; font-weight: 700; cursor: pointer; text-align: center; transition: all 0.2s; }
+    .btn-preset:hover, .btn-preset.active { background: #f59e0b; color: #000; border-color: #f59e0b; box-shadow: 0 0 10px rgba(245, 158, 11, 0.4); }
+    .proj-box { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; background: #080d1a; border: 1px solid #1e293b; border-radius: 8px; padding: 10px; margin-top: 10px; text-align: center; }
+    .proj-val { font-size: 15px; font-weight: 800; color: #38bdf8; font-family: monospace; }
+    .proj-lbl { font-size: 9.5px; color: #64748b; text-transform: uppercase; font-weight: 700; margin-top: 2px; }
+
     /* Footer */
     footer { text-align: center; font-size: 11px; color: #475569; margin-top: 20px; }
   </style>
@@ -326,6 +340,126 @@ const char INDEX_HTML[] PROGMEM = R"rawliteral(
             <button class="btn btn-dark" style="font-size:10px; padding:6px 2px;" onclick="jumpToStage(5)">5: Trasvase</button>
             <button class="btn btn-dark" style="font-size:10px; padding:6px 2px;" onclick="jumpToStage(6)">6: Manifold</button>
             <button class="btn btn-dark" style="font-size:10px; padding:6px 2px;" onclick="jumpToStage(7)">7: Ósmosis</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- CARD: CALCULADORA & PRONÓSTICO FARADAY (TIEMPO REAL)    -->
+      <!-- ======================================================== -->
+      <div class="card card-faraday">
+        <div class="card-header">
+          <div class="card-title" style="color:#fbbf24;">⚡ Calculadora & Pronóstico Faraday</div>
+          <div class="card-badge" id="badgeFaradayStatus" style="background:#451a03; color:#fde68a; border:1px solid rgba(245, 158, 11, 0.4);">
+            AGOTAMIENTO TOTAL
+          </div>
+        </div>
+
+        <div style="font-size:11.5px; color:#cbd5e1; line-height:1.45; margin-bottom:8px;">
+          <b>Una sola medición de TDS al inicio es suficiente.</b> Para agua somera de Tijuana (~3,000 ppm), la dosis empírica recomendada es de <b>80 mg/L</b> para agotar totalmente los metales pesados y sílice coloidal sin colmatar filtros.
+        </div>
+
+        <!-- Presets de Dosis -->
+        <div class="preset-grid">
+          <button class="btn-preset" id="pbtn_35" onclick="setDosisPreset(35, 22)">
+            🌿 Ligero<br><span style="font-size:9.5px; font-weight:600;">35 mg/L · ~21m</span>
+          </button>
+          <button class="btn-preset" id="pbtn_50" onclick="setDosisPreset(50, 31)">
+            ⚖️ Estándar<br><span style="font-size:9.5px; font-weight:600;">50 mg/L · ~31m</span>
+          </button>
+          <button class="btn-preset active" id="pbtn_80" onclick="setDosisPreset(80, 50)">
+            ⚡ Agotamiento<br><span style="font-size:9.5px; font-weight:600;">80 mg/L · ~49m</span>
+          </button>
+          <button class="btn-preset" id="pbtn_100" onclick="setDosisPreset(100, 62)">
+            🔥 Máximo<br><span style="font-size:9.5px; font-weight:600;">100 mg/L · ~61m</span>
+          </button>
+        </div>
+
+        <!-- Reloj de Cuenta Regresiva -->
+        <div class="countdown-box">
+          <div class="countdown-sub">Tiempo Estimado Restante de Floculación</div>
+          <div class="countdown-time" id="faradayCountdown">49:00</div>
+          <div style="display:flex; justify-content:space-around; align-items:center; margin-top:6px; font-size:11px; color:#94a3b8;">
+            <span>⏱️ Transcurrido: <b id="valTimeElapsed" style="color:#fff;">00:00</b></span>
+            <span>🏁 Término Proyectado: <b id="valHoraTermino" style="color:#38bdf8;">--:--</b></span>
+            <span>⚡ Tasa: <b id="valRateGps" style="color:#fbbf24;">0.19 g/m</b></span>
+          </div>
+          <div class="prog-track" style="margin-top:10px; height:10px;">
+            <div class="prog-fill" id="barCountdownFaraday" style="background: linear-gradient(90deg, #f59e0b, #10b981); width: 0%;"></div>
+          </div>
+          <div style="display:flex; justify-content:space-between; margin-top:4px; font-size:10px; color:#64748b;">
+            <span>Fe Disuelto: <b id="valFeProgTxt" style="color:#f1f5f9;">0.00 / 9.38 g</b></span>
+            <span>Avance Faraday: <b id="valFePctTxt" style="color:#fbbf24;">0%</b></span>
+          </div>
+        </div>
+
+        <!-- Proyección de Calidad TDS -->
+        <div class="proj-box">
+          <div>
+            <div class="proj-val" id="projTdsInit">3,000</div>
+            <div class="proj-lbl">TDS Inicial Pozo</div>
+          </div>
+          <div>
+            <div class="proj-val" id="projTdsFloc" style="color:#34d399;">~2,400</div>
+            <div class="proj-lbl">Post-Floc / Reposo</div>
+          </div>
+          <div>
+            <div class="proj-val" id="projTdsRo" style="color:#38bdf8;">&lt; 150</div>
+            <div class="proj-lbl">Agua Pura Final (RO)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- CARD: CALIBRACIÓN AL VUELO · VOLTAJE & AMPERAJE         -->
+      <!-- ======================================================== -->
+      <div class="card card-calib">
+        <div class="card-header">
+          <div class="card-title" style="color:#38bdf8;">🎯 Calibración al Momento · Voltaje & Amperaje</div>
+          <div class="card-badge" id="calibBadgeMode" style="background:#064e3b; color:#34d399;">NVS ACTIVA</div>
+        </div>
+
+        <!-- Bloque 1: Voltaje de Celda P36 -->
+        <div style="background:#070f1e; border:1px solid #1e293b; border-radius:10px; padding:10px 12px; margin-bottom:10px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+            <span style="font-size:11px; font-weight:800; color:#38bdf8; text-transform:uppercase;">Voltaje de Celda (GPIO 36 / Pin P36)</span>
+            <span style="font-size:10.5px; font-family:monospace; color:#94a3b8;">ADC: <b id="lblPinMv" style="color:#fff;">0.000V</b> | Factor: <b id="lblVScale" style="color:#fbbf24;">x2.00</b></span>
+          </div>
+
+          <!-- Botones de Selección Rápida de Divisor -->
+          <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:6px; margin-bottom:8px;">
+            <button class="btn btn-dark" id="btnDiv1" style="font-size:10.5px; padding:7px 2px;" onclick="setVScale(1.0)">1:1 Directo (1x)</button>
+            <button class="btn btn-dark" id="btnDiv2" style="font-size:10.5px; padding:7px 2px; border-color:#06b6d4; color:#38bdf8;" onclick="setVScale(2.0)">2:1 Actual (2x)</button>
+            <button class="btn btn-dark" id="btnDiv4" style="font-size:10.5px; padding:7px 2px;" onclick="setVScale(4.0)">4:1 Futuro (4x)</button>
+          </div>
+
+          <!-- Ajuste con multímetro -->
+          <div style="display:flex; gap:6px; align-items:center;">
+            <div style="flex:1;">
+              <input type="number" step="0.01" id="inpVRealMult" placeholder="Voltaje con multímetro (ej. 11.40)" style="width:100%; padding:8px 10px; border-radius:6px; border:1px solid #334155; background:#0b1326; color:#fff; font-size:12px; font-weight:700;">
+            </div>
+            <button class="btn btn-primary" style="flex:0.9; padding:8px 6px; font-size:10.5px;" onclick="calibrateVWithMultimeter()">🎯 Calibrar V_celda</button>
+          </div>
+        </div>
+
+        <!-- Bloque 2: Amperaje de Electrodos -->
+        <div style="background:#070f1e; border:1px solid #1e293b; border-radius:10px; padding:10px 12px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+            <span style="font-size:11px; font-weight:800; color:#38bdf8; text-transform:uppercase;">Control de Amperaje Electrodos</span>
+            <span class="status-badge badge-closed" id="badgeCurrentMode" style="font-size:10px; padding:2px 6px;">NOMINAL FIJO</span>
+          </div>
+
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap:6px; margin-bottom:8px;">
+            <button class="btn btn-dark" id="btnModeNom" style="font-size:10.5px; padding:7px 2px; border-color:#10b981; color:#34d399;" onclick="setIMode(0)">🔒 Nominal Fijo (11A)</button>
+            <button class="btn btn-dark" id="btnModeSens" style="font-size:10.5px; padding:7px 2px;" onclick="setIMode(1)">📡 Sensor Dinámico</button>
+          </div>
+
+          <div style="display:flex; gap:6px; align-items:center;">
+            <div style="flex:1; display:flex; align-items:center; gap:6px;">
+              <input type="number" step="0.1" id="inpINominal" placeholder="11.0" min="2" max="30" style="width:100%; padding:8px 10px; border-radius:6px; border:1px solid #334155; background:#0b1326; color:#fff; font-size:12px; font-weight:700; text-align:center;">
+              <span style="font-size:11px; color:#94a3b8; font-weight:800;">Amps</span>
+            </div>
+            <button class="btn btn-success" style="flex:0.9; padding:8px 6px; font-size:10.5px;" onclick="saveAmpsCalibration()">💾 Guardar Amps</button>
           </div>
         </div>
       </div>
@@ -751,15 +885,10 @@ const char INDEX_HTML[] PROGMEM = R"rawliteral(
       let url = `/api/auto?cmd=${cmd}`;
       if (cmd === 'start') {
         const inp = document.getElementById('inputTdsManual');
-        const val = inp ? parseFloat(inp.value) : 0;
+        let val = inp ? parseFloat(inp.value) : 0;
         if (!val || isNaN(val) || val < 50 || val > 8000) {
-          alert('⚠️ MEDICIÓN OBLIGATORIA DE TDS:\n\nPor favor ingresa la lectura en PPM de tu medidor físico (ej. entre 50 y 8,000 ppm) en la casilla de Muestra TDS antes de iniciar el lote.');
-          if (inp) {
-            inp.focus();
-            inp.style.borderColor = '#ef4444';
-            setTimeout(() => { inp.style.borderColor = '#06b6d4'; }, 2000);
-          }
-          return;
+          val = 3000; // Default automático recomendado para agua somera de Tijuana
+          if (inp) inp.value = 3000;
         }
         url += `&tds=${val}`;
       }
@@ -772,6 +901,76 @@ const char INDEX_HTML[] PROGMEM = R"rawliteral(
           pollStatus();
         })
         .catch(e => alert('Error de enlace al enviar comando: ' + e));
+    }
+
+    function setDosisPreset(mgL, tMaxMin) {
+      [35, 50, 80, 100].forEach(d => {
+        const b = document.getElementById(`pbtn_${d}`);
+        if (b) {
+          if (d === mgL) b.classList.add('active');
+          else b.classList.remove('active');
+        }
+      });
+      fetch(`/api/calib?dosis_mgl=${mgL}&t_max_min=${tMaxMin}`, { method: 'POST' })
+        .then(() => pollStatus());
+    }
+
+    function setVScale(scale) {
+      [1.0, 2.0, 4.0].forEach(s => {
+        const id = s === 1.0 ? 'btnDiv1' : (s === 2.0 ? 'btnDiv2' : 'btnDiv4');
+        const b = document.getElementById(id);
+        if (b) {
+          if (Math.abs(s - scale) < 0.05) {
+            b.style.borderColor = '#06b6d4';
+            b.style.color = '#38bdf8';
+          } else {
+            b.style.borderColor = '#334155';
+            b.style.color = '#cbd5e1';
+          }
+        }
+      });
+      fetch(`/api/calib?v_scale=${scale}`, { method: 'POST' })
+        .then(r => r.json())
+        .then(j => {
+          alert(`Divisor P36 fijado en ${scale}x (Celda: ${(j.v_rod || 0).toFixed(2)} V)`);
+          pollStatus();
+        });
+    }
+
+    function calibrateVWithMultimeter() {
+      const inp = document.getElementById('inpVRealMult');
+      const val = inp ? parseFloat(inp.value) : 0;
+      if (!val || isNaN(val) || val <= 0.5) {
+        alert('Ingresa el voltaje medido con tu multímetro en bornes de la celda (ej. 11.40 V).');
+        return;
+      }
+      fetch(`/api/calib?v_real=${val}`, { method: 'POST' })
+        .then(r => r.json())
+        .then(j => {
+          alert(`¡Calibración guardada en NVS!\nFactor calculado: x${(j.v_scale || 0).toFixed(3)}\nVoltaje varilla: ${(j.v_rod || 0).toFixed(2)} V`);
+          pollStatus();
+        });
+    }
+
+    function setIMode(mode) {
+      fetch(`/api/calib?i_mode=${mode}`, { method: 'POST' })
+        .then(r => r.json())
+        .then(() => pollStatus());
+    }
+
+    function saveAmpsCalibration() {
+      const inp = document.getElementById('inpINominal');
+      const val = inp ? parseFloat(inp.value) : 11.0;
+      if (!val || isNaN(val) || val <= 0) {
+        alert('Ingresa un amperaje nominal válido (ej. 11.0 A).');
+        return;
+      }
+      fetch(`/api/calib?i_nom=${val}`, { method: 'POST' })
+        .then(r => r.json())
+        .then(j => {
+          alert(`¡Amperaje nominal guardado en ${val} A!`);
+          pollStatus();
+        });
     }
 
     function resetEmergency() {
@@ -942,6 +1141,111 @@ const char INDEX_HTML[] PROGMEM = R"rawliteral(
         document.getElementById('valFeMass').innerHTML = `${feDiss}<span class="telem-unit">/ ${feTarg}g</span>`;
         document.getElementById('valFaradayPct').innerText = `${fePct}%`;
         document.getElementById('barFaraday').style.width = Math.min(100, fePct) + '%';
+
+        // Actualización de la Calculadora & Pronóstico Faraday
+        if (d.faraday) {
+          const f = d.faraday;
+          const remS = f.time_remaining_s || 0;
+          const remMin = Math.floor(remS / 60);
+          const remSec = remS % 60;
+          const cdEl = document.getElementById('faradayCountdown');
+          if (cdEl) {
+            cdEl.innerText = `${remMin < 10 ? '0' : ''}${remMin}:${remSec < 10 ? '0' : ''}${remSec}`;
+          }
+
+          const elapS = f.time_elapsed_s || 0;
+          const elapMin = Math.floor(elapS / 60);
+          const elapSec = elapS % 60;
+          const elapEl = document.getElementById('valTimeElapsed');
+          if (elapEl) {
+            elapEl.innerText = `${elapMin < 10 ? '0' : ''}${elapMin}:${elapSec < 10 ? '0' : ''}${elapSec}`;
+          }
+
+          const horaTermEl = document.getElementById('valHoraTermino');
+          if (horaTermEl && remS > 0) {
+            const finishDate = new Date(Date.now() + remS * 1000);
+            horaTermEl.innerText = finishDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+          }
+
+          const rateEl = document.getElementById('valRateGps');
+          if (rateEl) {
+            const gps = f.rate_gps || 0;
+            rateEl.innerText = `${(gps * 60.0).toFixed(2)} g/m`;
+          }
+
+          const barCd = document.getElementById('barCountdownFaraday');
+          if (barCd) {
+            barCd.style.width = Math.min(100, f.pct || 0) + '%';
+          }
+          const progTxt = document.getElementById('valFeProgTxt');
+          if (progTxt) progTxt.innerText = `${f.fe_dissolved_g.toFixed(2)} / ${f.fe_target_g.toFixed(2)} g`;
+          const pctTxt = document.getElementById('valFePctTxt');
+          if (pctTxt) pctTxt.innerText = `${(f.pct || 0).toFixed(0)}%`;
+
+          const pInit = document.getElementById('projTdsInit');
+          if (pInit) pInit.innerText = Math.round(f.tds_estimated_ppm || 3000);
+          const pFloc = document.getElementById('projTdsFloc');
+          if (pFloc) pFloc.innerText = `~${Math.round(f.tds_projected_post_floc || 2400)}`;
+
+          // Resaltar preset activo de dosis
+          const curDosis = Math.round(f.dosis_mgl || 80);
+          [35, 50, 80, 100].forEach(dosisVal => {
+            const b = document.getElementById(`pbtn_${dosisVal}`);
+            if (b) {
+              if (dosisVal === curDosis) b.classList.add('active');
+              else b.classList.remove('active');
+            }
+          });
+        }
+
+        // Actualización de Calibración al Momento
+        if (d.calib) {
+          const c = d.calib;
+          const pinMvEl = document.getElementById('lblPinMv');
+          if (pinMvEl) pinMvEl.innerText = `${(c.v_pin || 0).toFixed(3)} V`;
+          const vScaleEl = document.getElementById('lblVScale');
+          if (vScaleEl) vScaleEl.innerText = `x${(c.v_scale || 2.0).toFixed(2)}`;
+
+          const badgeIMode = document.getElementById('badgeCurrentMode');
+          if (badgeIMode) {
+            badgeIMode.innerText = c.i_mode === 0 ? 'NOMINAL FIJO' : 'SENSOR DINÁMICO';
+            badgeIMode.className = c.i_mode === 0 ? 'status-badge badge-closed' : 'status-badge badge-active-green';
+          }
+
+          const vs = c.v_scale || 2.0;
+          const b1 = document.getElementById('btnDiv1');
+          const b2 = document.getElementById('btnDiv2');
+          const b4 = document.getElementById('btnDiv4');
+          if (b1 && b2 && b4) {
+            b1.style.borderColor = Math.abs(vs - 1.0) < 0.1 ? '#06b6d4' : '#334155';
+            b1.style.color = Math.abs(vs - 1.0) < 0.1 ? '#38bdf8' : '#cbd5e1';
+            b2.style.borderColor = Math.abs(vs - 2.0) < 0.1 ? '#06b6d4' : '#334155';
+            b2.style.color = Math.abs(vs - 2.0) < 0.1 ? '#38bdf8' : '#cbd5e1';
+            b4.style.borderColor = Math.abs(vs - 4.0) < 0.1 ? '#06b6d4' : '#334155';
+            b4.style.color = Math.abs(vs - 4.0) < 0.1 ? '#38bdf8' : '#cbd5e1';
+          }
+
+          const btnNom = document.getElementById('btnModeNom');
+          const btnSens = document.getElementById('btnModeSens');
+          if (btnNom && btnSens) {
+            if (c.i_mode === 0) {
+              btnNom.style.borderColor = '#10b981';
+              btnNom.style.color = '#34d399';
+              btnSens.style.borderColor = '#334155';
+              btnSens.style.color = '#cbd5e1';
+            } else {
+              btnSens.style.borderColor = '#10b981';
+              btnSens.style.color = '#34d399';
+              btnNom.style.borderColor = '#334155';
+              btnNom.style.color = '#cbd5e1';
+            }
+          }
+
+          const inpInom = document.getElementById('inpINominal');
+          if (inpInom && !inpInom.matches(':focus')) {
+            inpInom.value = (c.i_nom || 11.0).toFixed(1);
+          }
+        }
 
         const lpm = d.inputs.flow_hall.lpm.toFixed(1);
         document.getElementById('valFlowLpm').innerHTML = `${lpm}<span class="telem-unit">L/m</span>`;
