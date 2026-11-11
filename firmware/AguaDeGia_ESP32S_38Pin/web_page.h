@@ -182,6 +182,24 @@ const char INDEX_HTML[] PROGMEM = R"rawliteral(
     .proj-val { font-size: 15px; font-weight: 800; color: #38bdf8; font-family: monospace; }
     .proj-lbl { font-size: 9.5px; color: #64748b; text-transform: uppercase; font-weight: 700; margin-top: 2px; }
 
+
+    /* Estilos Diagnóstico Hidroquímico (Fraccionamiento PPM) */
+    .card-hydrochem { background: linear-gradient(180deg, #101c38 0%, #0a1122 100%); border: 1px solid rgba(14, 165, 233, 0.45); box-shadow: 0 4px 20px rgba(14, 165, 233, 0.08); }
+    .hydro-slider { -webkit-appearance: none; appearance: none; width: 100%; height: 7px; border-radius: 999px; background: #1e293b; outline: none; transition: background 0.2s; }
+    .hydro-slider::-webkit-slider-thumb { -webkit-appearance: none; appearance: none; width: 22px; height: 22px; border-radius: 50%; background: #0284C7; cursor: pointer; box-shadow: 0 0 10px rgba(2, 132, 199, 0.6); border: 2px solid #FFFFFF; }
+    .hydro-slider::-moz-range-thumb { width: 22px; height: 22px; border-radius: 50%; background: #0284C7; cursor: pointer; box-shadow: 0 0 10px rgba(2, 132, 199, 0.6); border: 2px solid #FFFFFF; }
+    .hydro-slider.slider-gold::-webkit-slider-thumb { background: #F59E0B; box-shadow: 0 0 10px rgba(245, 158, 11, 0.7); }
+    .hydro-slider.slider-gold::-moz-range-thumb { background: #F59E0B; box-shadow: 0 0 10px rgba(245, 158, 11, 0.7); }
+    .hydro-slider.slider-slate::-webkit-slider-thumb { background: #94A3B8; box-shadow: 0 0 10px rgba(148, 163, 184, 0.6); }
+    .hydro-slider.slider-slate::-moz-range-thumb { background: #94A3B8; box-shadow: 0 0 10px rgba(148, 163, 184, 0.6); }
+
+    .hydro-metric-card { background: #080e1c; border-radius: 10px; padding: 12px; border: 1px solid #1e293b; position: relative; }
+    .hydro-metric-card.gold { border-color: rgba(245, 158, 11, 0.4); background: linear-gradient(180deg, #181710 0%, #0d0f17 100%); }
+    .hydro-metric-card.cyan { border-color: rgba(6, 182, 212, 0.4); background: linear-gradient(180deg, #0e1a29 0%, #0a1120 100%); }
+    .hydro-metric-card.slate { border-color: rgba(148, 163, 184, 0.35); background: linear-gradient(180deg, #131926 0%, #090d16 100%); }
+
+    .proto-card { background: #090e1a; border: 1px solid #1e293b; border-radius: 10px; padding: 12px; display: flex; flex-direction: column; justify-content: space-between; }
+
     /* Footer */
     footer { text-align: center; font-size: 11px; color: #475569; margin-top: 20px; }
   </style>
@@ -408,6 +426,256 @@ const char INDEX_HTML[] PROGMEM = R"rawliteral(
             <div class="proj-lbl">Agua Pura Final (RO)</div>
           </div>
         </div>
+      </div>
+
+      <!-- ======================================================== -->
+      <!-- CARD: DIAGNÓSTICO HIDROQUÍMICO: FRACCIONAMIENTO DE PPM  -->
+      <!-- (Bicarbonatos vs. Cloruro de Sodio)                     -->
+      <!-- ======================================================== -->
+      <div class="card card-hydrochem" id="cardHydrochem">
+        <div class="card-header" style="flex-wrap:wrap; gap:8px;">
+          <div>
+            <div class="card-title" style="color:#38bdf8;">🔬 Diagnóstico Hidroquímico: Fraccionamiento de PPM</div>
+            <div style="font-size:10.5px; color:#94a3b8; margin-top:2px;">Bicarbonatos Precipitables vs. Cloruro de Sodio (NaCl)</div>
+          </div>
+          <div class="card-badge" style="background:#0c4a6e; color:#7dd3fc; border:1px solid rgba(14, 165, 233, 0.4);">
+            SIMULADOR TIEMPO REAL
+          </div>
+        </div>
+
+        <div style="font-size:11.5px; color:#cbd5e1; line-height:1.45; margin-bottom:10px;">
+          En el acuífero de Tijuana, una lectura de TDS (ej. 3,000 PPM) <b style="color:#f87171;">no es sal marina pura</b>. Una fracción sustancial corresponde a <b>bicarbonatos y carbonatos precipitables</b> que se abaten por desgasificación, calor y electrofloculación antes de saturar la membrana de ósmosis.
+        </div>
+
+        <!-- Presets rápidos de Campo -->
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; flex-wrap:wrap; gap:6px;">
+          <span style="font-size:10px; font-weight:800; color:#38bdf8; text-transform:uppercase;">Casos Típicos de Campo:</span>
+          <div style="display:flex; gap:5px; flex-wrap:wrap;">
+            <button class="preset-btn" style="padding:4px 8px; font-size:10px;" onclick="setHydrochemPreset(3000, 2650, 650)">📍 Playas (3,000 PPM)</button>
+            <button class="preset-btn" style="padding:4px 8px; font-size:10px;" onclick="setHydrochemPreset(4200, 3850, 900)">🌊 Litoral (4,200 PPM)</button>
+            <button class="preset-btn" style="padding:4px 8px; font-size:10px;" onclick="setHydrochemPreset(1600, 1300, 450)">🏞️ Cañón (1,600 PPM)</button>
+            <button class="preset-btn" style="padding:4px 8px; font-size:10px; background:#065f46; color:#34d399; border-color:#10b981;" onclick="syncFromManualTds()">📥 Usar TDS Actual</button>
+          </div>
+        </div>
+
+        <!-- ======================================================== -->
+        <!-- BLOQUE 1: CALCULADORA DE FRACCIONAMIENTO (SLIDERS + CHART) -->
+        <!-- ======================================================== -->
+        <div style="background:#070d18; border:1px solid #1e293b; border-radius:12px; padding:12px; margin-bottom:12px;">
+          
+          <!-- Controles de 3 Sliders -->
+          <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:14px;">
+            
+            <!-- Slider 1: TDS Inicial del Pozo -->
+            <div style="background:#0d1526; border:1px solid #1e293b; border-radius:8px; padding:8px 10px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                <label for="scadaTdsInitNum" style="font-size:11px; font-weight:800; color:#fbbf24; text-transform:uppercase; display:flex; align-items:center; gap:5px;">
+                  <span style="width:8px; height:8px; border-radius:50%; background:#f59e0b; display:inline-block;"></span>
+                  1. TDS Inicial Pozo (Agua Cruda)
+                </label>
+                <div style="display:flex; align-items:center; gap:4px;">
+                  <input type="number" id="scadaTdsInitNum" min="500" max="5000" step="25" value="3000"
+                    style="width:80px; padding:4px 6px; border-radius:4px; border:1px solid #334155; background:#070b14; color:#fbbf24; font-weight:800; font-family:monospace; font-size:12px; text-align:right;">
+                  <span style="font-size:10px; color:#94a3b8; font-weight:700;">PPM</span>
+                </div>
+              </div>
+              <input type="range" id="scadaTdsInitSlider" min="500" max="5000" step="25" value="3000" class="hydro-slider slider-gold">
+              <div style="display:flex; justify-content:space-between; font-size:9.5px; color:#64748b; font-family:monospace; margin-top:2px;">
+                <span>500 PPM</span>
+                <span style="color:#fbbf24;">Línea base: 3,000 PPM</span>
+                <span>5,000 PPM</span>
+              </div>
+            </div>
+
+            <!-- Slider 2: TDS tras hervir y re-aforar a 1.0 L -->
+            <div style="background:#0d1526; border:1px solid #1e293b; border-radius:8px; padding:8px 10px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                <label for="scadaTdsPostNum" style="font-size:11px; font-weight:800; color:#38bdf8; text-transform:uppercase; display:flex; align-items:center; gap:5px;">
+                  <span style="width:8px; height:8px; border-radius:50%; background:#0284c7; display:inline-block;"></span>
+                  2. TDS tras Hervir y Re-aforar a 1.0 L
+                </label>
+                <div style="display:flex; align-items:center; gap:4px;">
+                  <input type="number" id="scadaTdsPostNum" min="200" max="5000" step="25" value="2650"
+                    style="width:80px; padding:4px 6px; border-radius:4px; border:1px solid #334155; background:#070b14; color:#38bdf8; font-weight:800; font-family:monospace; font-size:12px; text-align:right;">
+                  <span style="font-size:10px; color:#94a3b8; font-weight:700;">PPM</span>
+                </div>
+              </div>
+              <input type="range" id="scadaTdsPostSlider" min="200" max="5000" step="25" value="2650" class="hydro-slider">
+              <div style="display:flex; justify-content:space-between; font-size:9.5px; color:#64748b; font-family:monospace; margin-top:2px;">
+                <span>200 PPM</span>
+                <span style="color:#38bdf8;">Compensación evaporación con 0 PPM</span>
+                <span>5,000 PPM</span>
+              </div>
+            </div>
+
+            <!-- Slider 3: Dureza Total GH -->
+            <div style="background:#0d1526; border:1px solid #1e293b; border-radius:8px; padding:8px 10px;">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                <label for="scadaDurezaGhNum" style="font-size:11px; font-weight:800; color:#cbd5e1; text-transform:uppercase; display:flex; align-items:center; gap:5px;">
+                  <span style="width:8px; height:8px; border-radius:50%; background:#64748b; display:inline-block;"></span>
+                  3. Dureza Total Medida GH (eq. CaCO3)
+                </label>
+                <div style="display:flex; align-items:center; gap:4px;">
+                  <input type="number" id="scadaDurezaGhNum" min="100" max="1500" step="25" value="650"
+                    style="width:80px; padding:4px 6px; border-radius:4px; border:1px solid #334155; background:#070b14; color:#cbd5e1; font-weight:800; font-family:monospace; font-size:12px; text-align:right;">
+                  <span style="font-size:10px; color:#94a3b8; font-weight:700;">PPM eq</span>
+                </div>
+              </div>
+              <input type="range" id="scadaDurezaGhSlider" min="100" max="1500" step="25" value="650" class="hydro-slider slider-slate">
+              <div style="display:flex; justify-content:space-between; font-size:9.5px; color:#64748b; font-family:monospace; margin-top:2px;">
+                <span>100 PPM</span>
+                <span style="color:#94a3b8;">Titulación EDTA (Ca + Mg)</span>
+                <span>1,500 PPM</span>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Gráfica de Barras Apiladas SVG (Comparativa Dark SCADA) -->
+          <div style="background:#090f1d; border:1px solid #1e293b; border-radius:10px; padding:12px; margin-bottom:12px;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <span style="font-size:11px; font-weight:800; color:#38bdf8; text-transform:uppercase;">📊 Balance Gráfico de Fracciones</span>
+              <span id="scadaBadgeCaidaPpm" style="font-size:10.5px; font-family:monospace; font-weight:800; padding:2px 8px; border-radius:4px; background:#451a03; color:#fde68a; border:1px solid rgba(245, 158, 11, 0.4);">
+                Caída: -350 PPM (-11.7%)
+              </span>
+            </div>
+            
+            <div style="width:100%; display:flex; justify-content:center; overflow-x:auto;">
+              <svg id="scadaStackedChart" style="width:100%; max-width:480px; height:240px;" viewBox="0 0 480 240">
+                <!-- SVG generado dinámicamente -->
+              </svg>
+            </div>
+
+            <!-- Leyenda de colores -->
+            <div style="display:grid; grid-template-columns: repeat(3, 1fr); gap:6px; margin-top:8px; padding-top:6px; border-top:1px solid #1e293b; text-align:center; font-size:10.5px;">
+              <div style="color:#fbbf24; font-weight:700;">
+                <span style="display:inline-block; width:10px; height:10px; border-radius:2px; background:#f59e0b; vertical-align:middle; margin-right:4px;"></span>
+                Bicarbonatos
+              </div>
+              <div style="color:#38bdf8; font-weight:700;">
+                <span style="display:inline-block; width:10px; height:10px; border-radius:2px; background:#0284c7; vertical-align:middle; margin-right:4px;"></span>
+                Dureza Perm.
+              </div>
+              <div style="color:#94a3b8; font-weight:700;">
+                <span style="display:inline-block; width:10px; height:10px; border-radius:2px; background:#475569; vertical-align:middle; margin-right:4px;"></span>
+                Cloruro Sodio
+              </div>
+            </div>
+          </div>
+
+          <!-- 3 Metric Cards con Desglose Dinámico -->
+          <div style="display:grid; grid-template-columns: 1fr; gap:8px;">
+            <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap:8px;">
+              
+              <!-- Card 1: Bicarbonatos / Temporal -->
+              <div class="hydro-metric-card gold">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                  <span style="font-size:10px; font-weight:800; color:#fbbf24; text-transform:uppercase;">1. Precipitables</span>
+                  <span style="font-size:9.5px; font-weight:800; font-family:monospace; background:rgba(245,158,11,0.25); color:#fde68a; padding:1px 6px; border-radius:4px;">TEMPORAL</span>
+                </div>
+                <div style="font-size:11px; font-weight:700; color:#f1f5f9; margin-bottom:4px;">Bicarbonatos + Hierro (CaCO3↓)</div>
+                <div style="font-size:22px; font-weight:900; font-family:monospace; color:#fbbf24;" id="scadaCardBicarbPpm">
+                  350 <span style="font-size:12px; font-weight:700; color:#94a3b8;">PPM</span>
+                </div>
+                <div style="font-size:10.5px; font-weight:700; color:#fde68a;" id="scadaCardBicarbPct">11.7% del TDS inicial</div>
+                <div style="font-size:9.5px; color:#94a3b8; margin-top:4px; line-height:1.35;">Abatible por calor, reposo y electrofloculación sin saturar membranas.</div>
+              </div>
+
+              <!-- Card 2: Dureza Permanente -->
+              <div class="hydro-metric-card cyan">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                  <span style="font-size:10px; font-weight:800; color:#38bdf8; text-transform:uppercase;">2. No Carbonatada</span>
+                  <span style="font-size:9.5px; font-weight:800; font-family:monospace; background:rgba(6,182,212,0.25); color:#bae6fd; padding:1px 6px; border-radius:4px;">PERMANENTE</span>
+                </div>
+                <div style="font-size:11px; font-weight:700; color:#f1f5f9; margin-bottom:4px;">Dureza Permanente (Ca / Mg)</div>
+                <div style="font-size:22px; font-weight:900; font-family:monospace; color:#38bdf8;" id="scadaCardDurezaPpm">
+                  300 <span style="font-size:12px; font-weight:700; color:#94a3b8;">PPM</span>
+                </div>
+                <div style="font-size:10.5px; font-weight:700; color:#bae6fd;" id="scadaCardDurezaPct">10.0% del TDS inicial</div>
+                <div style="font-size:9.5px; color:#94a3b8; margin-top:4px; line-height:1.35;">Sulfatos y cloruros de calcio/magnesio. Retenidos por resina o RO.</div>
+              </div>
+
+              <!-- Card 3: Cloruro de Sodio -->
+              <div class="hydro-metric-card slate">
+                <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:4px;">
+                  <span style="font-size:10px; font-weight:800; color:#94a3b8; text-transform:uppercase;">3. Monovalente</span>
+                  <span style="font-size:9.5px; font-weight:800; font-family:monospace; background:rgba(148,163,184,0.2); color:#e2e8f0; padding:1px 6px; border-radius:4px;">NACL REAL</span>
+                </div>
+                <div style="font-size:11px; font-weight:700; color:#f1f5f9; margin-bottom:4px;">Salinidad Monovalente (NaCl)</div>
+                <div style="font-size:22px; font-weight:900; font-family:monospace; color:#e2e8f0;" id="scadaCardNaclPpm">
+                  2,350 <span style="font-size:12px; font-weight:700; color:#94a3b8;">PPM</span>
+                </div>
+                <div style="font-size:10.5px; font-weight:700; color:#cbd5e1;" id="scadaCardNaclPct">78.3% del TDS inicial</div>
+                <div style="font-size:9.5px; color:#94a3b8; margin-top:4px; line-height:1.35;">Iones solubles (Na⁺ + Cl⁻). Dictan los 100 PSI de ósmosis inversa.</div>
+              </div>
+
+            </div>
+          </div>
+
+        </div>
+
+        <!-- ======================================================== -->
+        <!-- BLOQUE 2: PROTOCOLOS DE VERIFICACIÓN EN CAMPO           -->
+        <!-- ======================================================== -->
+        <div style="margin-top:10px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
+            <div style="font-size:11px; font-weight:800; color:#38bdf8; text-transform:uppercase;">📋 Protocolos de Verificación en Campo</div>
+            <button class="preset-btn" style="padding:3px 8px; font-size:10px;" onclick="toggleScadaProtocols()">
+              <span id="btnToggleProtoTxt">Mostrar Protocolos ▼</span>
+            </button>
+          </div>
+
+          <div id="scadaProtocolsBox" style="display:none; flex-direction:column; gap:8px;">
+            
+            <!-- Protocolo 1 -->
+            <div class="proto-card" style="border-left:3px solid #f59e0b;">
+              <div style="display:flex; align-items:center; gap:6px; margin-bottom:4px;">
+                <span style="font-size:12px; font-weight:900; color:#fbbf24;">1. Prueba Térmica con Re-aforo Volumétrico</span>
+              </div>
+              <div style="font-size:11px; color:#cbd5e1; line-height:1.4;">
+                • Medir TDS exacto en <b>1.0 L</b> de agua cruda a 25 °C.<br>
+                • Hervir <b>15 a 20 minutos</b> para forzar expulsión de CO2 y precipitación de CaCO3.<br>
+                • Enfriar y <b>re-aforar a 1.0 L exacto</b> con agua desionizada/ósmosis (0 PPM) para compensar evaporación.<br>
+                • Decantar y medir TDS final: La merma directa corresponde a <b>Bicarbonatos Precipitables</b>.
+              </div>
+              <div style="margin-top:6px; font-size:10px; font-family:monospace; color:#fbbf24; font-weight:800;">
+                Δ TDS = Bicarbonatos Precipitables (CaCO3↓)
+              </div>
+            </div>
+
+            <!-- Protocolo 2 -->
+            <div class="proto-card" style="border-left:3px solid #06b6d4;">
+              <div style="display:flex; align-items:center; gap:6px; margin-bottom:4px;">
+                <span style="font-size:12px; font-weight:900; color:#38bdf8;">2. Evaporación y Ataque Ácido</span>
+              </div>
+              <div style="font-size:11px; color:#cbd5e1; line-height:1.4;">
+                • Evaporar <b>50 mL</b> en superficie de vidrio oscuro o porcelana térmica.<br>
+                • Inspección con lupa 20x: <b>cristales cúbicos traslúcidos</b> (NaCl) vs. <b>costra opaca amorfa</b> (CaCO3).<br>
+                • Aplicar gotas de <b>ácido muriático diluido (5-10%)</b> o vinagre: efervescencia inmediata y burbujas de CO2 confirman carbonatos.
+              </div>
+              <div style="margin-top:6px; font-size:10px; font-family:monospace; color:#38bdf8; font-weight:800;">
+                CaCO3 + 2HCl → CaCl2 + H2O + CO2↑
+              </div>
+            </div>
+
+            <!-- Protocolo 3 -->
+            <div class="proto-card" style="border-left:3px solid #10b981;">
+              <div style="display:flex; align-items:center; gap:6px; margin-bottom:4px;">
+                <span style="font-size:12px; font-weight:900; color:#34d399;">3. Separación por Titulación Colorimétrica</span>
+              </div>
+              <div style="font-size:11px; color:#cbd5e1; line-height:1.4;">
+                • <b>Test KH (Alcalinidad):</b> Titulación de ácido para medir bicarbonatos (1 dKH = 17.86 PPM eq. CaCO3).<br>
+                • <b>Test GH (Dureza Total):</b> Titulación EDTA + Calmagite para cuantificar todo el Ca²⁺ + Mg²⁺ (1 dGH = 17.86 PPM).<br>
+                • <b>Test Cloruros (AgNO3):</b> Titulación argentométrica (PPM Cl⁻ × 1.65 = PPM NaCl).
+              </div>
+              <div style="margin-top:6px; font-size:10px; font-family:monospace; color:#34d399; font-weight:800;">
+                1 dKH = 17.86 PPM · 1 dGH = 17.86 PPM · Cl⁻ × 1.65 = NaCl
+              </div>
+            </div>
+
+          </div>
+        </div>
+
       </div>
 
       <!-- ======================================================== -->
@@ -1397,8 +1665,265 @@ const char INDEX_HTML[] PROGMEM = R"rawliteral(
       }
     }
 
+
+    // ========================================================================
+    // DIAGNÓSTICO HIDROQUÍMICO: FRACCIONAMIENTO DE PPM (SCADA)
+    // ========================================================================
+    function initScadaHydrochem() {
+      const sInit = document.getElementById('scadaTdsInitSlider');
+      const nInit = document.getElementById('scadaTdsInitNum');
+      const sPost = document.getElementById('scadaTdsPostSlider');
+      const nPost = document.getElementById('scadaTdsPostNum');
+      const sGh   = document.getElementById('scadaDurezaGhSlider');
+      const nGh   = document.getElementById('scadaDurezaGhNum');
+
+      if (!sInit || !sPost || !sGh) return;
+
+      function recalc(source) {
+        let init = parseFloat(sInit.value) || 3000;
+        let post = parseFloat(sPost.value) || 2650;
+        let gh   = parseFloat(sGh.value) || 650;
+
+        // Auto-protección física
+        if (source === 'init' && post > init) {
+          post = init;
+          sPost.value = post;
+          nPost.value = post;
+        } else if (source === 'post' && post > init) {
+          init = post;
+          sInit.value = init;
+          nInit.value = init;
+        }
+
+        // LÓGICA MATEMÁTICA EN TIEMPO REAL:
+        // 1. Bicarbonatos Precipitables
+        const bicarb = Math.max(0, init - post);
+        // 2. Dureza Permanente (Sulfatos y Cloruros de Ca/Mg)
+        const dureza = Math.max(0, Math.min(post, gh - bicarb));
+        // 3. Salinidad Monovalente Estimada (NaCl)
+        const nacl   = Math.max(0, post - dureza);
+
+        // Porcentajes respecto al TDS inicial
+        const pctBicarb = init > 0 ? ((bicarb / init) * 100).toFixed(1) : "0.0";
+        const pctDureza = init > 0 ? ((dureza / init) * 100).toFixed(1) : "0.0";
+        const pctNacl   = init > 0 ? ((nacl / init) * 100).toFixed(1) : "0.0";
+
+        // Métricas
+        const elBicarbPpm = document.getElementById('scadaCardBicarbPpm');
+        const elBicarbPct = document.getElementById('scadaCardBicarbPct');
+        const elDurezaPpm = document.getElementById('scadaCardDurezaPpm');
+        const elDurezaPct = document.getElementById('scadaCardDurezaPct');
+        const elNaclPpm   = document.getElementById('scadaCardNaclPpm');
+        const elNaclPct   = document.getElementById('scadaCardNaclPct');
+        const elBadgeCaida = document.getElementById('scadaBadgeCaidaPpm');
+
+        if (elBicarbPpm) elBicarbPpm.innerHTML = `${Math.round(bicarb)} <span style="font-size:12px; font-weight:700; color:#94a3b8;">PPM</span>`;
+        if (elBicarbPct) elBicarbPct.innerText = `${pctBicarb}% del TDS inicial`;
+        if (elDurezaPpm) elDurezaPpm.innerHTML = `${Math.round(dureza)} <span style="font-size:12px; font-weight:700; color:#94a3b8;">PPM</span>`;
+        if (elDurezaPct) elDurezaPct.innerText = `${pctDureza}% del TDS inicial`;
+        if (elNaclPpm) elNaclPpm.innerHTML = `${Math.round(nacl).toLocaleString()} <span style="font-size:12px; font-weight:700; color:#94a3b8;">PPM</span>`;
+        if (elNaclPct) elNaclPct.innerText = `${pctNacl}% del TDS inicial`;
+
+        if (elBadgeCaida) {
+          elBadgeCaida.innerText = `Caída: -${Math.round(bicarb)} PPM (-${pctBicarb}%)`;
+        }
+
+        renderScadaStackedChart(init, post, bicarb, dureza, nacl);
+      }
+
+      // Listeners bidireccionales
+      sInit.addEventListener('input', () => { nInit.value = sInit.value; recalc('init'); });
+      nInit.addEventListener('input', () => {
+        let v = Math.min(5000, Math.max(500, parseFloat(nInit.value) || 500));
+        sInit.value = v;
+        recalc('init');
+      });
+
+      sPost.addEventListener('input', () => { nPost.value = sPost.value; recalc('post'); });
+      nPost.addEventListener('input', () => {
+        let v = Math.min(5000, Math.max(200, parseFloat(nPost.value) || 200));
+        sPost.value = v;
+        recalc('post');
+      });
+
+      sGh.addEventListener('input', () => { nGh.value = sGh.value; recalc('gh'); });
+      nGh.addEventListener('input', () => {
+        let v = Math.min(1500, Math.max(100, parseFloat(nGh.value) || 100));
+        sGh.value = v;
+        recalc('gh');
+      });
+
+      recalc('init');
+    }
+
+    function setHydrochemPreset(init, post, gh) {
+      const sInit = document.getElementById('scadaTdsInitSlider');
+      const nInit = document.getElementById('scadaTdsInitNum');
+      const sPost = document.getElementById('scadaTdsPostSlider');
+      const nPost = document.getElementById('scadaTdsPostNum');
+      const sGh   = document.getElementById('scadaDurezaGhSlider');
+      const nGh   = document.getElementById('scadaDurezaGhNum');
+
+      if (sInit) { sInit.value = init; nInit.value = init; }
+      if (sPost) { sPost.value = post; nPost.value = post; }
+      if (sGh)   { sGh.value = gh;     nGh.value = gh; }
+
+      const evt = new Event('input');
+      if (sInit) sInit.dispatchEvent(evt);
+    }
+
+    function syncFromManualTds() {
+      const inp = document.getElementById('inputTdsManual');
+      let val = inp ? parseFloat(inp.value) : 0;
+      if (!val || isNaN(val)) {
+        const proj = document.getElementById('projTdsInit');
+        if (proj) val = parseFloat(proj.innerText.replace(/,/g, ''));
+      }
+      if (val && val >= 500 && val <= 5000) {
+        const postEst = Math.round(val * 0.88);
+        const ghEst = Math.round(val * 0.22);
+        setHydrochemPreset(val, postEst, ghEst);
+      } else {
+        alert('Ingresa primero un TDS válido en el campo superior (500 a 5,000 PPM)');
+      }
+    }
+
+    function toggleScadaProtocols() {
+      const box = document.getElementById('scadaProtocolsBox');
+      const btnTxt = document.getElementById('btnToggleProtoTxt');
+      if (!box) return;
+      if (box.style.display === 'none' || box.style.display === '') {
+        box.style.display = 'flex';
+        if (btnTxt) btnTxt.innerText = 'Ocultar Protocolos ▲';
+      } else {
+        box.style.display = 'none';
+        if (btnTxt) btnTxt.innerText = 'Mostrar Protocolos ▼';
+      }
+    }
+
+    function renderScadaStackedChart(tdsInit, tdsPost, bicarb, durezaPerm, nacl) {
+      const svg = document.getElementById('scadaStackedChart');
+      if (!svg) return;
+
+      const maxPpm = 5000;
+      const baseLineY = 195;
+      const plotHeight = 160;
+      const scaleY = plotHeight / maxPpm;
+
+      const barWidth = 95;
+      const bar1X = 100;
+      const bar2X = 280;
+
+      const hBicarb = bicarb * scaleY;
+      const hDureza = durezaPerm * scaleY;
+      const hNacl   = nacl * scaleY;
+
+      // Barra 1: Bicarb (base) -> Dureza (medio) -> NaCl (tope)
+      const b1BicarbY = baseLineY - hBicarb;
+      const b1DurezaY = b1BicarbY - hDureza;
+      const b1NaclY   = b1DurezaY - hNacl;
+
+      // Barra 2: Dureza (base) -> NaCl (tope)
+      const b2DurezaY = baseLineY - hDureza;
+      const b2NaclY   = b2DurezaY - hNacl;
+
+      let svgHtml = `
+        <defs>
+          <linearGradient id="scadaGradAmber" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#fbbf24" />
+            <stop offset="100%" stop-color="#d97706" />
+          </linearGradient>
+          <linearGradient id="scadaGradCyan" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#38bdf8" />
+            <stop offset="100%" stop-color="#0284c7" />
+          </linearGradient>
+          <linearGradient id="scadaGradSlate" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#64748b" />
+            <stop offset="100%" stop-color="#334155" />
+          </linearGradient>
+        </defs>
+
+        <!-- Eje Y: Guías de PPM -->
+        <g stroke="#1e293b" stroke-width="1" stroke-dasharray="2 3">
+      `;
+
+      for (let ppm = 1000; ppm <= 5000; ppm += 1000) {
+        const y = baseLineY - (ppm * scaleY);
+        svgHtml += `
+          <line x1="45" y1="${y}" x2="445" y2="${y}" />
+          <text x="38" y="${y + 3}" fill="#64748b" font-size="8.5" font-family="monospace" text-anchor="end">${ppm}</text>
+        `;
+      }
+
+      svgHtml += `
+        </g>
+        <!-- Línea Base X = 0 PPM -->
+        <line x1="40" y1="${baseLineY}" x2="445" y2="${baseLineY}" stroke="#334155" stroke-width="2"/>
+
+        <!-- ==================== BARRA 1: AGUA CRUDA DEL POZO ==================== -->
+        ${hBicarb > 1 ? `<rect x="${bar1X}" y="${b1BicarbY}" width="${barWidth}" height="${hBicarb}" rx="3" fill="url(#scadaGradAmber)"/>` : ''}
+        ${hDureza > 1 ? `<rect x="${bar1X}" y="${b1DurezaY}" width="${barWidth}" height="${hDureza}" rx="3" fill="url(#scadaGradCyan)"/>` : ''}
+        ${hNacl > 1 ? `<rect x="${bar1X}" y="${b1NaclY}" width="${barWidth}" height="${hNacl}" rx="5" fill="url(#scadaGradSlate)"/>` : ''}
+
+        <!-- Textos dentro Barra 1 -->
+        ${hNacl > 18 ? `<text x="${bar1X + barWidth/2}" y="${b1NaclY + hNacl/2 + 3.5}" fill="#FFFFFF" font-size="9.5" font-weight="bold" font-family="monospace" text-anchor="middle">${Math.round(nacl)}</text>` : ''}
+        ${hDureza > 16 ? `<text x="${bar1X + barWidth/2}" y="${b1DurezaY + hDureza/2 + 3.5}" fill="#FFFFFF" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">${Math.round(durezaPerm)}</text>` : ''}
+        ${hBicarb > 14 ? `<text x="${bar1X + barWidth/2}" y="${b1BicarbY + hBicarb/2 + 3.5}" fill="#000000" font-size="9" font-weight="900" font-family="monospace" text-anchor="middle">${Math.round(bicarb)}</text>` : ''}
+
+        <!-- Total Barra 1 -->
+        <text x="${bar1X + barWidth/2}" y="${b1NaclY - 6}" fill="#fbbf24" font-size="11" font-weight="900" font-family="monospace" text-anchor="middle">
+          ${Math.round(tdsInit)} PPM
+        </text>
+
+        <!-- ==================== BARRA 2: TRAS HERVIR Y RE-AFORAR ==================== -->
+        ${hDureza > 1 ? `<rect x="${bar2X}" y="${b2DurezaY}" width="${barWidth}" height="${hDureza}" rx="3" fill="url(#scadaGradCyan)"/>` : ''}
+        ${hNacl > 1 ? `<rect x="${bar2X}" y="${b2NaclY}" width="${barWidth}" height="${hNacl}" rx="5" fill="url(#scadaGradSlate)"/>` : ''}
+
+        <!-- Textos dentro Barra 2 -->
+        ${hNacl > 18 ? `<text x="${bar2X + barWidth/2}" y="${b2NaclY + hNacl/2 + 3.5}" fill="#FFFFFF" font-size="9.5" font-weight="bold" font-family="monospace" text-anchor="middle">${Math.round(nacl)}</text>` : ''}
+        ${hDureza > 16 ? `<text x="${bar2X + barWidth/2}" y="${b2DurezaY + hDureza/2 + 3.5}" fill="#FFFFFF" font-size="9" font-weight="bold" font-family="monospace" text-anchor="middle">${Math.round(durezaPerm)}</text>` : ''}
+
+        <!-- Total Barra 2 -->
+        <text x="${bar2X + barWidth/2}" y="${(hBicarb > 4 ? b2NaclY - hBicarb : b2NaclY) - 6}" fill="#38bdf8" font-size="11" font-weight="900" font-family="monospace" text-anchor="middle">
+          ${Math.round(tdsPost)} PPM
+        </text>
+
+        <!-- Merma Precipitada (Fantasma punteado) -->
+        ${hBicarb > 4 ? `
+          <rect x="${bar2X}" y="${b2NaclY - hBicarb}" width="${barWidth}" height="${hBicarb}" rx="4" fill="none" stroke="#f59e0b" stroke-width="1.8" stroke-dasharray="3 3"/>
+          <text x="${bar2X + barWidth/2}" y="${b2NaclY - hBicarb/2 + 3}" fill="#fbbf24" font-size="8.5" font-weight="800" font-family="monospace" text-anchor="middle">
+            -${Math.round(bicarb)} PPM CaCO3↓
+          </text>
+        ` : ''}
+
+        <!-- Líneas guía de merma -->
+        ${bicarb > 10 ? `
+          <line x1="${bar1X + barWidth}" y1="${b1NaclY}" x2="${bar2X}" y2="${b2NaclY - hBicarb}" stroke="#f59e0b" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.6"/>
+          <line x1="${bar1X + barWidth}" y1="${b1DurezaY}" x2="${bar2X}" y2="${b2NaclY}" stroke="#38bdf8" stroke-width="1.2" stroke-dasharray="3 3" opacity="0.4"/>
+        ` : ''}
+
+        <!-- Etiquetas Ejes X -->
+        <text x="${bar1X + barWidth/2}" y="215" fill="#f1f5f9" font-size="10" font-weight="800" text-anchor="middle">
+          1. Agua Cruda Pozo
+        </text>
+        <text x="${bar1X + barWidth/2}" y="228" fill="#64748b" font-size="8.5" text-anchor="middle">
+          3 Fracciones Apiladas
+        </text>
+
+        <text x="${bar2X + barWidth/2}" y="215" fill="#38bdf8" font-size="10" font-weight="800" text-anchor="middle">
+          2. Tras Hervir / Reposo
+        </text>
+        <text x="${bar2X + barWidth/2}" y="228" fill="#64748b" font-size="8.5" text-anchor="middle">
+          Caída por CaCO3 Precipitado
+        </text>
+      `;
+
+      svg.innerHTML = svgHtml;
+    }
+
     window.addEventListener('DOMContentLoaded', () => {
       renderActuatorCards();
+      initScadaHydrochem();
       pollStatus();
       setInterval(pollStatus, 500);
     });
