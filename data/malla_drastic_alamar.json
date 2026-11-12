@@ -1,0 +1,1142 @@
+[
+  {
+    "id_celda": "DRASTIC_ALAMAR_01",
+    "bounds": [
+      [
+        32.525,
+        -116.96
+      ],
+      [
+        32.5295,
+        -116.95466
+      ]
+    ],
+    "depth_to_water_m": 7.4,
+    "rango_clasificacion": "6-8 m (Moderado)",
+    "color": "#f59e0b",
+    "vulnerabilidad": "Vulnerabilidad Moderada (Terraza intermedia con estratos intercalados de grava y limo)",
+    "factor_abatimiento_canal": "3.5 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 3.5
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_02",
+    "bounds": [
+      [
+        32.5295,
+        -116.96
+      ],
+      [
+        32.534,
+        -116.95466
+      ]
+    ],
+    "depth_to_water_m": 5.8,
+    "rango_clasificacion": "4-6 m (Somero)",
+    "color": "#10b981",
+    "vulnerabilidad": "Vulnerabilidad Alta (Fácil captación freática somera / alta transmisividad sedimentaria)",
+    "factor_abatimiento_canal": "4.0 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 4.0
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_03",
+    "bounds": [
+      [
+        32.534,
+        -116.96
+      ],
+      [
+        32.5385,
+        -116.95466
+      ]
+    ],
+    "depth_to_water_m": 2.9,
+    "rango_clasificacion": "2-4 m (Muy Somero / Vulnerabilidad Alta)",
+    "color": "#00E5FF",
+    "vulnerabilidad": "Vulnerabilidad Extrema a Contaminación (Acuífero libre aluvial permeable, sin confinamiento geológico)",
+    "factor_abatimiento_canal": "4.0 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 4.0
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_04",
+    "bounds": [
+      [
+        32.5385,
+        -116.96
+      ],
+      [
+        32.543,
+        -116.95466
+      ]
+    ],
+    "depth_to_water_m": 9.2,
+    "rango_clasificacion": "8-10 m (Profundo)",
+    "color": "#f97316",
+    "vulnerabilidad": "Vulnerabilidad Baja a Moderada (Contacto de piedemonte y conglomerados Terciarios)",
+    "factor_abatimiento_canal": "3.5 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 3.5
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_05",
+    "bounds": [
+      [
+        32.523932,
+        -116.95466
+      ],
+      [
+        32.528432,
+        -116.94932
+      ]
+    ],
+    "depth_to_water_m": 7.9,
+    "rango_clasificacion": "6-8 m (Moderado)",
+    "color": "#f59e0b",
+    "vulnerabilidad": "Vulnerabilidad Moderada (Terraza intermedia con estratos intercalados de grava y limo)",
+    "factor_abatimiento_canal": "3.5 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 3.5
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_06",
+    "bounds": [
+      [
+        32.528432,
+        -116.95466
+      ],
+      [
+        32.532932,
+        -116.94932
+      ]
+    ],
+    "depth_to_water_m": 4.8,
+    "rango_clasificacion": "4-6 m (Somero)",
+    "color": "#10b981",
+    "vulnerabilidad": "Vulnerabilidad Alta (Fácil captación freática somera / alta transmisividad sedimentaria)",
+    "factor_abatimiento_canal": "4.0 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 4.0
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_07",
+    "bounds": [
+      [
+        32.532932,
+        -116.95466
+      ],
+      [
+        32.537432,
+        -116.94932
+      ]
+    ],
+    "depth_to_water_m": 3.3,
+    "rango_clasificacion": "2-4 m (Muy Somero / Vulnerabilidad Alta)",
+    "color": "#00E5FF",
+    "vulnerabilidad": "Vulnerabilidad Extrema a Contaminación (Acuífero libre aluvial permeable, sin confinamiento geológico)",
+    "factor_abatimiento_canal": "4.0 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 4.0
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_08",
+    "bounds": [
+      [
+        32.537432,
+        -116.95466
+      ],
+      [
+        32.541932,
+        -116.94932
+      ]
+    ],
+    "depth_to_water_m": 9.6,
+    "rango_clasificacion": "8-10 m (Profundo)",
+    "color": "#f97316",
+    "vulnerabilidad": "Vulnerabilidad Baja a Moderada (Contacto de piedemonte y conglomerados Terciarios)",
+    "factor_abatimiento_canal": "3.5 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 3.5
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_09",
+    "bounds": [
+      [
+        32.522864,
+        -116.94932
+      ],
+      [
+        32.527364,
+        -116.94398
+      ]
+    ],
+    "depth_to_water_m": 6.8,
+    "rango_clasificacion": "6-8 m (Moderado)",
+    "color": "#f59e0b",
+    "vulnerabilidad": "Vulnerabilidad Moderada (Terraza intermedia con estratos intercalados de grava y limo)",
+    "factor_abatimiento_canal": "3.5 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 3.5
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_10",
+    "bounds": [
+      [
+        32.527364,
+        -116.94932
+      ],
+      [
+        32.531864,
+        -116.94398
+      ]
+    ],
+    "depth_to_water_m": 5.2,
+    "rango_clasificacion": "4-6 m (Somero)",
+    "color": "#10b981",
+    "vulnerabilidad": "Vulnerabilidad Alta (Fácil captación freática somera / alta transmisividad sedimentaria)",
+    "factor_abatimiento_canal": "4.0 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 4.0
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_11",
+    "bounds": [
+      [
+        32.531864,
+        -116.94932
+      ],
+      [
+        32.536364,
+        -116.94398
+      ]
+    ],
+    "depth_to_water_m": 3.6,
+    "rango_clasificacion": "2-4 m (Muy Somero / Vulnerabilidad Alta)",
+    "color": "#00E5FF",
+    "vulnerabilidad": "Vulnerabilidad Extrema a Contaminación (Acuífero libre aluvial permeable, sin confinamiento geológico)",
+    "factor_abatimiento_canal": "4.0 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 4.0
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_12",
+    "bounds": [
+      [
+        32.536364,
+        -116.94932
+      ],
+      [
+        32.540864,
+        -116.94398
+      ]
+    ],
+    "depth_to_water_m": 8.7,
+    "rango_clasificacion": "8-10 m (Profundo)",
+    "color": "#f97316",
+    "vulnerabilidad": "Vulnerabilidad Baja a Moderada (Contacto de piedemonte y conglomerados Terciarios)",
+    "factor_abatimiento_canal": "3.5 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 3.5
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_13",
+    "bounds": [
+      [
+        32.521796,
+        -116.94398
+      ],
+      [
+        32.526296,
+        -116.93864
+      ]
+    ],
+    "depth_to_water_m": 7.3,
+    "rango_clasificacion": "6-8 m (Moderado)",
+    "color": "#f59e0b",
+    "vulnerabilidad": "Vulnerabilidad Moderada (Terraza intermedia con estratos intercalados de grava y limo)",
+    "factor_abatimiento_canal": "3.5 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 3.5
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_14",
+    "bounds": [
+      [
+        32.526296,
+        -116.94398
+      ],
+      [
+        32.530796,
+        -116.93864
+      ]
+    ],
+    "depth_to_water_m": 5.7,
+    "rango_clasificacion": "4-6 m (Somero)",
+    "color": "#10b981",
+    "vulnerabilidad": "Vulnerabilidad Alta (Fácil captación freática somera / alta transmisividad sedimentaria)",
+    "factor_abatimiento_canal": "4.0 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 4.0
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_15",
+    "bounds": [
+      [
+        32.530796,
+        -116.94398
+      ],
+      [
+        32.535296,
+        -116.93864
+      ]
+    ],
+    "depth_to_water_m": 2.8,
+    "rango_clasificacion": "2-4 m (Muy Somero / Vulnerabilidad Alta)",
+    "color": "#00E5FF",
+    "vulnerabilidad": "Vulnerabilidad Extrema a Contaminación (Acuífero libre aluvial permeable, sin confinamiento geológico)",
+    "factor_abatimiento_canal": "4.0 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 4.0
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_16",
+    "bounds": [
+      [
+        32.535296,
+        -116.94398
+      ],
+      [
+        32.539796,
+        -116.93864
+      ]
+    ],
+    "depth_to_water_m": 9.1,
+    "rango_clasificacion": "8-10 m (Profundo)",
+    "color": "#f97316",
+    "vulnerabilidad": "Vulnerabilidad Baja a Moderada (Contacto de piedemonte y conglomerados Terciarios)",
+    "factor_abatimiento_canal": "3.5 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 3.5
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_17",
+    "bounds": [
+      [
+        32.520728,
+        -116.93864
+      ],
+      [
+        32.525228,
+        -116.9333
+      ]
+    ],
+    "depth_to_water_m": 7.7,
+    "rango_clasificacion": "6-8 m (Moderado)",
+    "color": "#f59e0b",
+    "vulnerabilidad": "Vulnerabilidad Moderada (Terraza intermedia con estratos intercalados de grava y limo)",
+    "factor_abatimiento_canal": "3.5 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 3.5
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_18",
+    "bounds": [
+      [
+        32.525228,
+        -116.93864
+      ],
+      [
+        32.529728,
+        -116.9333
+      ]
+    ],
+    "depth_to_water_m": 4.6,
+    "rango_clasificacion": "4-6 m (Somero)",
+    "color": "#10b981",
+    "vulnerabilidad": "Vulnerabilidad Alta (Fácil captación freática somera / alta transmisividad sedimentaria)",
+    "factor_abatimiento_canal": "4.0 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 4.0
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_19",
+    "bounds": [
+      [
+        32.529728,
+        -116.93864
+      ],
+      [
+        32.534228,
+        -116.9333
+      ]
+    ],
+    "depth_to_water_m": 3.1,
+    "rango_clasificacion": "2-4 m (Muy Somero / Vulnerabilidad Alta)",
+    "color": "#00E5FF",
+    "vulnerabilidad": "Vulnerabilidad Extrema a Contaminación (Acuífero libre aluvial permeable, sin confinamiento geológico)",
+    "factor_abatimiento_canal": "4.0 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 4.0
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_20",
+    "bounds": [
+      [
+        32.534228,
+        -116.93864
+      ],
+      [
+        32.538728,
+        -116.9333
+      ]
+    ],
+    "depth_to_water_m": 9.4,
+    "rango_clasificacion": "8-10 m (Profundo)",
+    "color": "#f97316",
+    "vulnerabilidad": "Vulnerabilidad Baja a Moderada (Contacto de piedemonte y conglomerados Terciarios)",
+    "factor_abatimiento_canal": "3.5 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 3.5
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_21",
+    "bounds": [
+      [
+        32.51966,
+        -116.9333
+      ],
+      [
+        32.52416,
+        -116.92796
+      ]
+    ],
+    "depth_to_water_m": 6.7,
+    "rango_clasificacion": "6-8 m (Moderado)",
+    "color": "#f59e0b",
+    "vulnerabilidad": "Vulnerabilidad Moderada (Terraza intermedia con estratos intercalados de grava y limo)",
+    "factor_abatimiento_canal": "3.5 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 3.5
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_22",
+    "bounds": [
+      [
+        32.52416,
+        -116.9333
+      ],
+      [
+        32.52866,
+        -116.92796
+      ]
+    ],
+    "depth_to_water_m": 5.1,
+    "rango_clasificacion": "4-6 m (Somero)",
+    "color": "#10b981",
+    "vulnerabilidad": "Vulnerabilidad Alta (Fácil captación freática somera / alta transmisividad sedimentaria)",
+    "factor_abatimiento_canal": "4.0 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 4.0
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_23",
+    "bounds": [
+      [
+        32.52866,
+        -116.9333
+      ],
+      [
+        32.53316,
+        -116.92796
+      ]
+    ],
+    "depth_to_water_m": 3.5,
+    "rango_clasificacion": "2-4 m (Muy Somero / Vulnerabilidad Alta)",
+    "color": "#00E5FF",
+    "vulnerabilidad": "Vulnerabilidad Extrema a Contaminación (Acuífero libre aluvial permeable, sin confinamiento geológico)",
+    "factor_abatimiento_canal": "4.0 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 4.0
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_24",
+    "bounds": [
+      [
+        32.53316,
+        -116.9333
+      ],
+      [
+        32.53766,
+        -116.92796
+      ]
+    ],
+    "depth_to_water_m": 8.6,
+    "rango_clasificacion": "8-10 m (Profundo)",
+    "color": "#f97316",
+    "vulnerabilidad": "Vulnerabilidad Baja a Moderada (Contacto de piedemonte y conglomerados Terciarios)",
+    "factor_abatimiento_canal": "3.5 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 3.5
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_25",
+    "bounds": [
+      [
+        32.518592,
+        -116.92796
+      ],
+      [
+        32.523092,
+        -116.92262
+      ]
+    ],
+    "depth_to_water_m": 7.2,
+    "rango_clasificacion": "6-8 m (Moderado)",
+    "color": "#f59e0b",
+    "vulnerabilidad": "Vulnerabilidad Moderada (Terraza intermedia con estratos intercalados de grava y limo)",
+    "factor_abatimiento_canal": "3.5 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 3.5
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_26",
+    "bounds": [
+      [
+        32.523092,
+        -116.92796
+      ],
+      [
+        32.527592,
+        -116.92262
+      ]
+    ],
+    "depth_to_water_m": 5.6,
+    "rango_clasificacion": "4-6 m (Somero)",
+    "color": "#10b981",
+    "vulnerabilidad": "Vulnerabilidad Alta (Fácil captación freática somera / alta transmisividad sedimentaria)",
+    "factor_abatimiento_canal": "4.0 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 4.0
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_27",
+    "bounds": [
+      [
+        32.527592,
+        -116.92796
+      ],
+      [
+        32.532092,
+        -116.92262
+      ]
+    ],
+    "depth_to_water_m": 2.7,
+    "rango_clasificacion": "2-4 m (Muy Somero / Vulnerabilidad Alta)",
+    "color": "#00E5FF",
+    "vulnerabilidad": "Vulnerabilidad Extrema a Contaminación (Acuífero libre aluvial permeable, sin confinamiento geológico)",
+    "factor_abatimiento_canal": "4.0 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 4.0
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_28",
+    "bounds": [
+      [
+        32.532092,
+        -116.92796
+      ],
+      [
+        32.536592,
+        -116.92262
+      ]
+    ],
+    "depth_to_water_m": 9.0,
+    "rango_clasificacion": "8-10 m (Profundo)",
+    "color": "#f97316",
+    "vulnerabilidad": "Vulnerabilidad Baja a Moderada (Contacto de piedemonte y conglomerados Terciarios)",
+    "factor_abatimiento_canal": "3.5 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 3.5
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_29",
+    "bounds": [
+      [
+        32.517524,
+        -116.92262
+      ],
+      [
+        32.522024,
+        -116.91728
+      ]
+    ],
+    "depth_to_water_m": 7.6,
+    "rango_clasificacion": "6-8 m (Moderado)",
+    "color": "#f59e0b",
+    "vulnerabilidad": "Vulnerabilidad Moderada (Terraza intermedia con estratos intercalados de grava y limo)",
+    "factor_abatimiento_canal": "3.5 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 3.5
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_30",
+    "bounds": [
+      [
+        32.522024,
+        -116.92262
+      ],
+      [
+        32.526524,
+        -116.91728
+      ]
+    ],
+    "depth_to_water_m": 4.5,
+    "rango_clasificacion": "4-6 m (Somero)",
+    "color": "#10b981",
+    "vulnerabilidad": "Vulnerabilidad Alta (Fácil captación freática somera / alta transmisividad sedimentaria)",
+    "factor_abatimiento_canal": "4.0 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 4.0
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_31",
+    "bounds": [
+      [
+        32.526524,
+        -116.92262
+      ],
+      [
+        32.531024,
+        -116.91728
+      ]
+    ],
+    "depth_to_water_m": 3.0,
+    "rango_clasificacion": "2-4 m (Muy Somero / Vulnerabilidad Alta)",
+    "color": "#00E5FF",
+    "vulnerabilidad": "Vulnerabilidad Extrema a Contaminación (Acuífero libre aluvial permeable, sin confinamiento geológico)",
+    "factor_abatimiento_canal": "4.0 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 4.0
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_32",
+    "bounds": [
+      [
+        32.531024,
+        -116.92262
+      ],
+      [
+        32.535524,
+        -116.91728
+      ]
+    ],
+    "depth_to_water_m": 9.3,
+    "rango_clasificacion": "8-10 m (Profundo)",
+    "color": "#f97316",
+    "vulnerabilidad": "Vulnerabilidad Baja a Moderada (Contacto de piedemonte y conglomerados Terciarios)",
+    "factor_abatimiento_canal": "3.5 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 3.5
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_33",
+    "bounds": [
+      [
+        32.516456,
+        -116.91728
+      ],
+      [
+        32.520956,
+        -116.91194
+      ]
+    ],
+    "depth_to_water_m": 6.6,
+    "rango_clasificacion": "6-8 m (Moderado)",
+    "color": "#f59e0b",
+    "vulnerabilidad": "Vulnerabilidad Moderada (Terraza intermedia con estratos intercalados de grava y limo)",
+    "factor_abatimiento_canal": "3.5 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 3.5
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_34",
+    "bounds": [
+      [
+        32.520956,
+        -116.91728
+      ],
+      [
+        32.525456,
+        -116.91194
+      ]
+    ],
+    "depth_to_water_m": 5.0,
+    "rango_clasificacion": "4-6 m (Somero)",
+    "color": "#10b981",
+    "vulnerabilidad": "Vulnerabilidad Alta (Fácil captación freática somera / alta transmisividad sedimentaria)",
+    "factor_abatimiento_canal": "4.0 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 4.0
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_35",
+    "bounds": [
+      [
+        32.525456,
+        -116.91728
+      ],
+      [
+        32.529956,
+        -116.91194
+      ]
+    ],
+    "depth_to_water_m": 3.4,
+    "rango_clasificacion": "2-4 m (Muy Somero / Vulnerabilidad Alta)",
+    "color": "#00E5FF",
+    "vulnerabilidad": "Vulnerabilidad Extrema a Contaminación (Acuífero libre aluvial permeable, sin confinamiento geológico)",
+    "factor_abatimiento_canal": "4.0 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 4.0
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_36",
+    "bounds": [
+      [
+        32.529956,
+        -116.91728
+      ],
+      [
+        32.534456,
+        -116.91194
+      ]
+    ],
+    "depth_to_water_m": 8.5,
+    "rango_clasificacion": "8-10 m (Profundo)",
+    "color": "#f97316",
+    "vulnerabilidad": "Vulnerabilidad Baja a Moderada (Contacto de piedemonte y conglomerados Terciarios)",
+    "factor_abatimiento_canal": "3.5 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 3.5
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_37",
+    "bounds": [
+      [
+        32.515388,
+        -116.91194
+      ],
+      [
+        32.519888,
+        -116.9066
+      ]
+    ],
+    "depth_to_water_m": 7.0,
+    "rango_clasificacion": "6-8 m (Moderado)",
+    "color": "#f59e0b",
+    "vulnerabilidad": "Vulnerabilidad Moderada (Terraza intermedia con estratos intercalados de grava y limo)",
+    "factor_abatimiento_canal": "3.5 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 3.5
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_38",
+    "bounds": [
+      [
+        32.519888,
+        -116.91194
+      ],
+      [
+        32.524388,
+        -116.9066
+      ]
+    ],
+    "depth_to_water_m": 5.4,
+    "rango_clasificacion": "4-6 m (Somero)",
+    "color": "#10b981",
+    "vulnerabilidad": "Vulnerabilidad Alta (Fácil captación freática somera / alta transmisividad sedimentaria)",
+    "factor_abatimiento_canal": "4.0 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 4.0
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_39",
+    "bounds": [
+      [
+        32.524388,
+        -116.91194
+      ],
+      [
+        32.528888,
+        -116.9066
+      ]
+    ],
+    "depth_to_water_m": 2.5,
+    "rango_clasificacion": "2-4 m (Muy Somero / Vulnerabilidad Alta)",
+    "color": "#00E5FF",
+    "vulnerabilidad": "Vulnerabilidad Extrema a Contaminación (Acuífero libre aluvial permeable, sin confinamiento geológico)",
+    "factor_abatimiento_canal": "4.0 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 4.0
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_40",
+    "bounds": [
+      [
+        32.528888,
+        -116.91194
+      ],
+      [
+        32.533388,
+        -116.9066
+      ]
+    ],
+    "depth_to_water_m": 8.8,
+    "rango_clasificacion": "8-10 m (Profundo)",
+    "color": "#f97316",
+    "vulnerabilidad": "Vulnerabilidad Baja a Moderada (Contacto de piedemonte y conglomerados Terciarios)",
+    "factor_abatimiento_canal": "3.5 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 3.5
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_41",
+    "bounds": [
+      [
+        32.51432,
+        -116.9066
+      ],
+      [
+        32.51882,
+        -116.90126
+      ]
+    ],
+    "depth_to_water_m": 7.5,
+    "rango_clasificacion": "6-8 m (Moderado)",
+    "color": "#f59e0b",
+    "vulnerabilidad": "Vulnerabilidad Moderada (Terraza intermedia con estratos intercalados de grava y limo)",
+    "factor_abatimiento_canal": "3.5 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 3.5
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_42",
+    "bounds": [
+      [
+        32.51882,
+        -116.9066
+      ],
+      [
+        32.52332,
+        -116.90126
+      ]
+    ],
+    "depth_to_water_m": 4.4,
+    "rango_clasificacion": "4-6 m (Somero)",
+    "color": "#10b981",
+    "vulnerabilidad": "Vulnerabilidad Alta (Fácil captación freática somera / alta transmisividad sedimentaria)",
+    "factor_abatimiento_canal": "4.0 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 4.0
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_43",
+    "bounds": [
+      [
+        32.52332,
+        -116.9066
+      ],
+      [
+        32.52782,
+        -116.90126
+      ]
+    ],
+    "depth_to_water_m": 2.9,
+    "rango_clasificacion": "2-4 m (Muy Somero / Vulnerabilidad Alta)",
+    "color": "#00E5FF",
+    "vulnerabilidad": "Vulnerabilidad Extrema a Contaminación (Acuífero libre aluvial permeable, sin confinamiento geológico)",
+    "factor_abatimiento_canal": "4.0 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 4.0
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_44",
+    "bounds": [
+      [
+        32.52782,
+        -116.9066
+      ],
+      [
+        32.53232,
+        -116.90126
+      ]
+    ],
+    "depth_to_water_m": 9.2,
+    "rango_clasificacion": "8-10 m (Profundo)",
+    "color": "#f97316",
+    "vulnerabilidad": "Vulnerabilidad Baja a Moderada (Contacto de piedemonte y conglomerados Terciarios)",
+    "factor_abatimiento_canal": "3.5 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 3.5
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_45",
+    "bounds": [
+      [
+        32.513252,
+        -116.90126
+      ],
+      [
+        32.517752,
+        -116.89592
+      ]
+    ],
+    "depth_to_water_m": 6.5,
+    "rango_clasificacion": "6-8 m (Moderado)",
+    "color": "#f59e0b",
+    "vulnerabilidad": "Vulnerabilidad Moderada (Terraza intermedia con estratos intercalados de grava y limo)",
+    "factor_abatimiento_canal": "3.5 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 3.5
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_46",
+    "bounds": [
+      [
+        32.517752,
+        -116.90126
+      ],
+      [
+        32.522252,
+        -116.89592
+      ]
+    ],
+    "depth_to_water_m": 4.9,
+    "rango_clasificacion": "4-6 m (Somero)",
+    "color": "#10b981",
+    "vulnerabilidad": "Vulnerabilidad Alta (Fácil captación freática somera / alta transmisividad sedimentaria)",
+    "factor_abatimiento_canal": "4.0 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 4.0
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_47",
+    "bounds": [
+      [
+        32.522252,
+        -116.90126
+      ],
+      [
+        32.526752,
+        -116.89592
+      ]
+    ],
+    "depth_to_water_m": 3.3,
+    "rango_clasificacion": "2-4 m (Muy Somero / Vulnerabilidad Alta)",
+    "color": "#00E5FF",
+    "vulnerabilidad": "Vulnerabilidad Extrema a Contaminación (Acuífero libre aluvial permeable, sin confinamiento geológico)",
+    "factor_abatimiento_canal": "4.0 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 4.0
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_48",
+    "bounds": [
+      [
+        32.526752,
+        -116.90126
+      ],
+      [
+        32.531252,
+        -116.89592
+      ]
+    ],
+    "depth_to_water_m": 8.4,
+    "rango_clasificacion": "8-10 m (Profundo)",
+    "color": "#f97316",
+    "vulnerabilidad": "Vulnerabilidad Baja a Moderada (Contacto de piedemonte y conglomerados Terciarios)",
+    "factor_abatimiento_canal": "3.5 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 3.5
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_49",
+    "bounds": [
+      [
+        32.512184,
+        -116.89592
+      ],
+      [
+        32.516684,
+        -116.89058
+      ]
+    ],
+    "depth_to_water_m": 6.9,
+    "rango_clasificacion": "6-8 m (Moderado)",
+    "color": "#f59e0b",
+    "vulnerabilidad": "Vulnerabilidad Moderada (Terraza intermedia con estratos intercalados de grava y limo)",
+    "factor_abatimiento_canal": "3.5 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 3.5
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_50",
+    "bounds": [
+      [
+        32.516684,
+        -116.89592
+      ],
+      [
+        32.521184,
+        -116.89058
+      ]
+    ],
+    "depth_to_water_m": 5.3,
+    "rango_clasificacion": "4-6 m (Somero)",
+    "color": "#10b981",
+    "vulnerabilidad": "Vulnerabilidad Alta (Fácil captación freática somera / alta transmisividad sedimentaria)",
+    "factor_abatimiento_canal": "4.0 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 4.0
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_51",
+    "bounds": [
+      [
+        32.521184,
+        -116.89592
+      ],
+      [
+        32.525684,
+        -116.89058
+      ]
+    ],
+    "depth_to_water_m": 2.4,
+    "rango_clasificacion": "2-4 m (Muy Somero / Vulnerabilidad Alta)",
+    "color": "#00E5FF",
+    "vulnerabilidad": "Vulnerabilidad Extrema a Contaminación (Acuífero libre aluvial permeable, sin confinamiento geológico)",
+    "factor_abatimiento_canal": "4.0 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 4.0
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_52",
+    "bounds": [
+      [
+        32.525684,
+        -116.89592
+      ],
+      [
+        32.530184,
+        -116.89058
+      ]
+    ],
+    "depth_to_water_m": 8.7,
+    "rango_clasificacion": "8-10 m (Profundo)",
+    "color": "#f97316",
+    "vulnerabilidad": "Vulnerabilidad Baja a Moderada (Contacto de piedemonte y conglomerados Terciarios)",
+    "factor_abatimiento_canal": "3.5 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 3.5
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_53",
+    "bounds": [
+      [
+        32.511116,
+        -116.89058
+      ],
+      [
+        32.515616,
+        -116.88524
+      ]
+    ],
+    "depth_to_water_m": 7.4,
+    "rango_clasificacion": "6-8 m (Moderado)",
+    "color": "#f59e0b",
+    "vulnerabilidad": "Vulnerabilidad Moderada (Terraza intermedia con estratos intercalados de grava y limo)",
+    "factor_abatimiento_canal": "3.5 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 3.5
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_54",
+    "bounds": [
+      [
+        32.515616,
+        -116.89058
+      ],
+      [
+        32.520116,
+        -116.88524
+      ]
+    ],
+    "depth_to_water_m": 4.3,
+    "rango_clasificacion": "4-6 m (Somero)",
+    "color": "#10b981",
+    "vulnerabilidad": "Vulnerabilidad Alta (Fácil captación freática somera / alta transmisividad sedimentaria)",
+    "factor_abatimiento_canal": "4.0 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 4.0
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_55",
+    "bounds": [
+      [
+        32.520116,
+        -116.89058
+      ],
+      [
+        32.524616,
+        -116.88524
+      ]
+    ],
+    "depth_to_water_m": 2.8,
+    "rango_clasificacion": "2-4 m (Muy Somero / Vulnerabilidad Alta)",
+    "color": "#00E5FF",
+    "vulnerabilidad": "Vulnerabilidad Extrema a Contaminación (Acuífero libre aluvial permeable, sin confinamiento geológico)",
+    "factor_abatimiento_canal": "4.0 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 4.0
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_56",
+    "bounds": [
+      [
+        32.524616,
+        -116.89058
+      ],
+      [
+        32.529116,
+        -116.88524
+      ]
+    ],
+    "depth_to_water_m": 9.1,
+    "rango_clasificacion": "8-10 m (Profundo)",
+    "color": "#f97316",
+    "vulnerabilidad": "Vulnerabilidad Baja a Moderada (Contacto de piedemonte y conglomerados Terciarios)",
+    "factor_abatimiento_canal": "3.5 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 3.5
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_57",
+    "bounds": [
+      [
+        32.510048,
+        -116.88524
+      ],
+      [
+        32.514548,
+        -116.8799
+      ]
+    ],
+    "depth_to_water_m": 6.3,
+    "rango_clasificacion": "6-8 m (Moderado)",
+    "color": "#f59e0b",
+    "vulnerabilidad": "Vulnerabilidad Moderada (Terraza intermedia con estratos intercalados de grava y limo)",
+    "factor_abatimiento_canal": "3.5 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 3.5
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_58",
+    "bounds": [
+      [
+        32.514548,
+        -116.88524
+      ],
+      [
+        32.519048,
+        -116.8799
+      ]
+    ],
+    "depth_to_water_m": 4.7,
+    "rango_clasificacion": "4-6 m (Somero)",
+    "color": "#10b981",
+    "vulnerabilidad": "Vulnerabilidad Alta (Fácil captación freática somera / alta transmisividad sedimentaria)",
+    "factor_abatimiento_canal": "4.0 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 4.0
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_59",
+    "bounds": [
+      [
+        32.519048,
+        -116.88524
+      ],
+      [
+        32.523548,
+        -116.8799
+      ]
+    ],
+    "depth_to_water_m": 3.1,
+    "rango_clasificacion": "2-4 m (Muy Somero / Vulnerabilidad Alta)",
+    "color": "#00E5FF",
+    "vulnerabilidad": "Vulnerabilidad Extrema a Contaminación (Acuífero libre aluvial permeable, sin confinamiento geológico)",
+    "factor_abatimiento_canal": "4.0 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 4.0
+  },
+  {
+    "id_celda": "DRASTIC_ALAMAR_60",
+    "bounds": [
+      [
+        32.523548,
+        -116.88524
+      ],
+      [
+        32.528048,
+        -116.8799
+      ]
+    ],
+    "depth_to_water_m": 8.2,
+    "rango_clasificacion": "8-10 m (Profundo)",
+    "color": "#f97316",
+    "vulnerabilidad": "Vulnerabilidad Baja a Moderada (Contacto de piedemonte y conglomerados Terciarios)",
+    "factor_abatimiento_canal": "3.5 m de abatimiento post-canalización (Tesis Renovato UABC / Gutiérrez Anima)",
+    "abatimiento_m": 3.5
+  }
+]
