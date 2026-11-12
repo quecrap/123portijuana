@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="es" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bitácora Agua de Gía - Sistema Avanzado de Sensores</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        dark: {
+                            900: '#090d16',
+                            800: '#111827',
+                            700: '#1f2937',
+                            600: '#374151',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Alpine.js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Tesseract.js OCR CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@v5/dist/tesseract.min.js"></script>
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+    </style>
+</head>
+<body class="bg-dark-900 text-slate-100 min-h-screen flex flex-col justify-between selection:bg-cyan-500 selection:text-white" x-data="giaBitacoraApp()" x-init="init()">
+
+    <!-- Header -->
+    <header class="bg-dark-800 border-b border-dark-700 sticky top-0 z-50 shadow-xl">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="bg-cyan-500/10 p-2.5 rounded-xl border border-cyan-500/20 text-cyan-400">
+                    <i class="fa-solid fa-flask-vial text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="text-base sm:text-lg font-bold bg-gradient-to-r from-cyan-400 to-indigo-400 bg-clip-text text-transparent">Bitácora Agua de Gía</h1>
+                    <p class="text-[11px] text-slate-400">Control Multi-Equipo con OCR y Orígenes de Agua</p>
+                </div>
+            </div>
+            
+            <!-- Navigation Tabs -->
+            <nav class="hidden md:flex space-x-1 bg-dark-900 p-1 rounded-xl border border-dark-700">
+                <button @click="activeTab = 'form'" :class="activeTab === 'form' ? 'bg-cyan-600 text-white shadow' : 'text-slate-400 hover:text-white'" class="px-4 py-1.5 rounded-lg text-sm font-medium transition"><i class="fa-solid fa-plus-circle mr-1.5"></i>Nueva Lectura</button>
+                <button @click="activeTab = 'table'; $nextTick(() => renderChart())" :class="activeTab === 'table' ? 'bg-cyan-600 text-white shadow' : 'text-slate-400 hover:text-white'" class="px-4 py-1.5 rounded-lg text-sm font-medium transition"><i class="fa-solid fa-table-list mr-1.5"></i>Historial (<span x-text="entries.length"></span>)</button>
+                <button @click="activeTab = 'analytics'; $nextTick(() => renderChart())" :class="activeTab === 'analytics' ? 'bg-cyan-600 text-white shadow' : 'text-slate-400 hover:text-white'" class="px-4 py-1.5 rounded-lg text-sm font-medium transition"><i class="fa-solid fa-chart-line mr-1.5"></i>Análisis</button>
+            </nav>
+
+            <div class="flex items-center space-x-2">
+                <a href="visor_satelital_tijuana.html" title="Abrir Visor Satelital e Hidrogeológico" class="bg-dark-700 hover:bg-dark-600 border border-dark-600 text-cyan-400 px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center space-x-1.5 transition shadow-md">
+                    <i class="fa-solid fa-map-location-dot"></i>
+                    <span class="hidden sm:inline">Visor GIS</span>
+                </a>
+                <button @click="exportCSV()" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3.5 py-2 rounded-xl text-xs font-semibold flex items-center space-x-1.5 transition shadow-md">
+                    <i class="fa-solid fa-file-excel"></i>
+                    <span class="hidden sm:inline">Exportar CSV</span>
+                </button>
+            </div>
+        </div>
+        <!-- Mobile Nav Bar -->
+        <div class="flex md:hidden bg-dark-900 border-t border-dark-700 p-2 justify-around">
+            <button @click="activeTab = 'form'" :class="activeTab === 'form' ? 'text-cyan-400 font-bold' : 'text-slate-400'" class="text-xs py-1"><i class="fa-solid fa-plus-circle mr-1"></i>Registro</button>
+            <button @click="activeTab = 'table'; $nextTick(() => renderChart())" :class="activeTab === 'table' ? 'text-cyan-400 font-bold' : 'text-slate-400'" class="text-xs py-1"><i class="fa-solid fa-table-list mr-1"></i>Historial</button>
+            <button @click="activeTab = 'analytics'; $nextTick(() => renderChart())" :class="activeTab === 'analytics' ? 'text-cyan-400 font-bold' : 'text-slate-400'" class="text-xs py-1"><i class="fa-solid fa-chart-line mr-1"></i>Análisis</button>
+            <a href="visor_satelital_tijuana.html" class="text-cyan-400 text-xs py-1 flex items-center"><i class="fa-solid fa-map-location-dot mr-1"></i>GIS</a>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-grow w-full">
+
+        <!-- TOAST NOTIFICATION -->
+        <div x-show="toast.show" x-transition class="fixed bottom-5 right-5 z-50 bg-slate-800 border border-slate-700 text-white px-4 py-3 rounded-xl shadow-2xl flex items-center space-x-3">
+            <div :class="toast.type === 'success' ? 'text-emerald-400' : 'text-amber-400'">
+                <i :class="toast.type === 'success' ? 'fa-solid fa-circle-check text-lg' : 'fa-solid fa-triangle-exclamation text-lg'"></i>
+            </div>
+            <span class="text-sm font-medium" x-text="toast.message"></span>
+        </div>
+
+        <!-- MODAL DE CONFIRMACIÓN -->
+        <div x-show="showConfirmModal" x-transition class="fixed inset-0 z-50 flex items-center justify-center bg-black/70 backdrop-blur-sm p-4">
+            <div class="bg-dark-800 border border-dark-700 rounded-2xl p-6 max-w-md w-full shadow-2xl space-y-4">
+                <div class="flex items-center space-x-3 text-amber-400">
+                    <i class="fa-solid fa-circle-exclamation text-2xl"></i>
+                    <h3 class="text-lg font-bold text-slate-100">Confirmar Acción</h3>
+                </div>
+                <p class="text-sm text-slate-300" x-text="confirmMessage"></p>
+                <div class="flex justify-end space-x-3 pt-2">
+                    <button @click="showConfirmModal = false" class="px-4 py-2 rounded-xl border border-dark-600 hover:bg-dark-700 text-slate-300 text-sm">Cancelar</button>
+                    <button @click="confirmAction && confirmAction(); showConfirmModal = false;" class="px-4 py-2 rounded-xl bg-red-600 hover:bg-red-500 text-white text-sm font-semibold">Confirmar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 1: FORMULARIO DE REGISTRO -->
+        <div x-show="activeTab === 'form'" class="space-y-6">
+            <div class="bg-dark-800 border border-dark-700 rounded-2xl p-6 shadow-xl">
+                <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 pb-4 border-b border-dark-700 gap-4">
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-100 flex items-center space-x-2">
+                            <i class="fa-solid fa-clipboard-user text-cyan-400"></i>
+                            <span>Nueva Lectura (Campos 100% Opcionales)</span>
+                        </h2>
+                        <p class="text-sm text-slate-400">Seleccione el origen del agua y registre únicamente los equipos disponibles para esta muestra.</p>
+                    </div>
+                    <button @click="fillCurrentTime()" type="button" class="text-xs bg-dark-700 hover:bg-dark-600 text-cyan-400 px-3.5 py-2 rounded-xl border border-dark-600 transition flex items-center space-x-1.5">
+                        <i class="fa-solid fa-clock"></i>
+                        <span>Actualizar Hora</span>
+                    </button>
+                </div>
+
+                <form @submit.prevent="saveEntry()" class="space-y-6">
+                    
+                    <!-- BLOQUE 1: ORIGEN DE AGUA Y HORA -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 bg-dark-900/40 p-5 rounded-2xl border border-dark-700/60">
+                        <div>
+                            <label class="text-xs font-semibold uppercase tracking-wider text-slate-400 block mb-2">
+                                <i class="fa-solid fa-calendar-days text-cyan-400 mr-1"></i> Fecha y Hora de la Toma
+                            </label>
+                            <input type="datetime-local" x-model="form.timestamp" required
+                                class="w-full bg-dark-900 border border-dark-700 rounded-xl px-4 py-2.5 text-slate-200 focus:outline-none focus:border-cyan-500 text-sm font-mono">
+                        </div>
+
+                        <div>
+                            <label class="text-xs font-semibold uppercase tracking-wider text-slate-400 block mb-2">
+                                <i class="fa-solid fa-water text-cyan-400 mr-1"></i> Origen del Agua / Tanque / Etiqueta
+                            </label>
+                            <select x-model="form.waterSource" @change="onWaterSourceChange()" required
+                                class="w-full bg-dark-900 border border-dark-700 rounded-xl px-4 py-2.5 text-slate-200 focus:outline-none focus:border-cyan-500 text-sm font-medium">
+                                <option value="">-- Seleccionar Origen --</option>
+                                <option value="Agua de pozo">Agua de pozo</option>
+                                <option value="Agua de tótem 1">Agua de tótem 1</option>
+                                <option value="Agua de tótem 2">Agua de tótem 2</option>
+                                <option value="Agua de electrofloculador">Agua de electrofloculador</option>
+                                <option value="Agua después de filtros de carbón activado">Agua después de filtros de carbón activado</option>
+                                <option value="Agua en proceso de decantación">Agua en proceso de decantación</option>
+                            </select>
+                        </div>
+
+                        <!-- Sub-estado para Electrofloculador -->
+                        <template x-if="form.waterSource === 'Agua de electrofloculador'">
+                            <div class="md:col-span-2 bg-dark-800/80 p-4 rounded-xl border border-cyan-500/30 animate-fadeIn">
+                                <label class="text-xs font-bold text-cyan-300 block mb-2">
+                                    <i class="fa-solid fa-bolt mr-1"></i> Sub-etapa en Electrofloculador:
+                                </label>
+                                <div class="flex flex-wrap gap-4">
+                                    <label class="flex items-center space-x-2 cursor-pointer text-sm">
+                                        <input type="radio" x-model="form.electroSub" value="Antes de electrofloculación" class="text-cyan-500 focus:ring-cyan-500 bg-dark-900 border-dark-600">
+                                        <span>Antes de electrofloculación</span>
+                                    </label>
+                                    <label class="flex items-center space-x-2 cursor-pointer text-sm">
+                                        <input type="radio" x-model="form.electroSub" value="Durante" class="text-cyan-500 focus:ring-cyan-500 bg-dark-900 border-dark-600">
+                                        <span>Durante</span>
+                                    </label>
+                                    <label class="flex items-center space-x-2 cursor-pointer text-sm">
+                                        <input type="radio" x-model="form.electroSub" value="Después" class="text-cyan-500 focus:ring-cyan-500 bg-dark-900 border-dark-600">
+                                        <span>Después</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </template>
+                    </div>
+
+                    <!-- BLOQUE 2: EQUIPOS DE MEDICIÓN (3 SECCIONES OPCIONALES) -->
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        
+                        <!-- EQUIPO 1: MEDIDOR DE pH -->
+                        <div class="bg-dark-900/60 border border-emerald-500/30 rounded-2xl p-5 space-y-4 shadow-lg relative">
+                            <div class="absolute top-0 right-0 bg-emerald-500/10 text-emerald-400 text-[10px] px-3 py-1 rounded-bl-xl font-bold uppercase tracking-wider border-l border-b border-emerald-500/20">Peachímetro</div>
+                            <div class="flex items-center space-x-2 pb-2 border-b border-dark-700">
+                                <div class="w-3 h-3 rounded-full bg-emerald-400"></div>
+                                <h3 class="font-bold text-emerald-300 text-sm">Medidor de pH</h3>
+                            </div>
+                            
+                            <div class="space-y-3">
+                                <div>
+                                    <label class="text-xs font-semibold text-slate-300 block mb-1">Valor de pH</label>
+                                    <input type="number" step="0.01" x-model="form.ph" placeholder="Opcional (Ej. 7.20)"
+                                        class="w-full bg-dark-900 border border-dark-700 rounded-xl px-3.5 py-2 text-slate-200 focus:outline-none focus:border-emerald-500 text-sm">
+                                </div>
+                                <div>
+                                    <label class="text-xs font-semibold text-slate-300 block mb-1">Temperatura (°F)</label>
+                                    <input type="number" step="0.1" x-model="form.tempF" placeholder="Opcional (Ej. 75.2 °F)"
+                                        class="w-full bg-dark-900 border border-dark-700 rounded-xl px-3.5 py-2 text-slate-200 focus:outline-none focus:border-emerald-500 text-sm">
+                                </div>
+                                <div>
+                                    <label class="text-xs font-semibold text-slate-300 block mb-1">Milivolts del pH (mV)</label>
+                                    <input type="number" step="0.1" x-model="form.phMv" placeholder="Opcional (Ej. 12.5 mV)"
+                                        class="w-full bg-dark-900 border border-dark-700 rounded-xl px-3.5 py-2 text-slate-200 focus:outline-none focus:border-emerald-500 text-sm">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- EQUIPO 2: MULTÍMETRO -->
+                        <div class="bg-dark-900/60 border border-indigo-500/30 rounded-2xl p-5 space-y-4 shadow-lg relative">
+                            <div class="absolute top-0 right-0 bg-indigo-500/10 text-indigo-400 text-[10px] px-3 py-1 rounded-bl-xl font-bold uppercase tracking-wider border-l border-b border-indigo-500/20">Multímetro</div>
+                            <div class="flex items-center space-x-2 pb-2 border-b border-dark-700">
+                                <div class="w-3 h-3 rounded-full bg-indigo-400"></div>
+                                <h3 class="font-bold text-indigo-300 text-sm">Multímetro (mV DC y Ohms)</h3>
+                            </div>
+                            
+                            <div class="space-y-3">
+                                <div>
+                                    <label class="text-xs font-semibold text-slate-300 block mb-1">Milivolts de Corriente Directa (mV DC)</label>
+                                    <input type="number" step="0.1" x-model="form.multimeterMv" placeholder="Opcional (Ej. 180.4 mV)"
+                                        class="w-full bg-dark-900 border border-dark-700 rounded-xl px-3.5 py-2 text-slate-200 focus:outline-none focus:border-indigo-500 text-sm">
+                                </div>
+                                <div>
+                                    <label class="text-xs font-semibold text-slate-300 block mb-1">Impedancia / Resistencia</label>
+                                    <div class="flex space-x-2">
+                                        <input type="number" step="0.01" x-model="form.impedanceValue" placeholder="Ej. 25.0"
+                                            class="w-full bg-dark-900 border border-dark-700 rounded-xl px-3 py-2 text-slate-200 focus:outline-none focus:border-indigo-500 text-sm">
+                                        <select x-model="form.impedanceUnit" class="bg-dark-900 border border-dark-700 rounded-xl px-3 py-2 text-slate-200 focus:outline-none focus:border-indigo-500 text-xs font-semibold">
+                                            <option value="Ω">Ω</option>
+                                            <option value="kΩ">kΩ</option>
+                                            <option value="MΩ">MΩ</option>
+                                        </select>
+                                    </div>
+                                    <p class="text-[10px] text-slate-500 mt-1">Soporta rangos de hasta 50 MΩ</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- EQUIPO 3: MEDIDOR DE TDS -->
+                        <div class="bg-dark-900/60 border border-cyan-500/30 rounded-2xl p-5 space-y-4 shadow-lg relative">
+                            <div class="absolute top-0 right-0 bg-cyan-500/10 text-cyan-400 text-[10px] px-3 py-1 rounded-bl-xl font-bold uppercase tracking-wider border-l border-b border-cyan-500/20">TDS Meter</div>
+                            <div class="flex items-center space-x-2 pb-2 border-b border-dark-700">
+                                <div class="w-3 h-3 rounded-full bg-cyan-400"></div>
+                                <h3 class="font-bold text-cyan-300 text-sm">Medidor de TDS</h3>
+                            </div>
+                            
+                            <div class="space-y-3">
+                                <div>
+                                    <div class="flex justify-between items-center mb-1">
+                                        <label class="text-xs font-semibold text-slate-300">Partes por Millón (ppm)</label>
+                                        <label class="flex items-center space-x-1.5 cursor-pointer">
+                                            <input type="checkbox" x-model="form.tdsStuck" class="rounded bg-dark-800 border-dark-600 text-amber-500 focus:ring-amber-500 h-3.5 w-3.5">
+                                            <span class="text-[11px] text-amber-400 font-medium">¿Pegado?</span>
+                                        </label>
+                                    </div>
+                                    <input type="number" step="0.1" x-model="form.tds" placeholder="Opcional (Ej. 350 ppm)"
+                                        class="w-full bg-dark-900 border border-dark-700 rounded-xl px-3.5 py-2 text-slate-200 focus:outline-none focus:border-cyan-500 text-sm">
+                                </div>
+                                <div>
+                                    <label class="text-xs font-semibold text-slate-300 block mb-1">Temperatura (°C)</label>
+                                    <input type="number" step="0.1" x-model="form.tempC" placeholder="Opcional (Ej. 24.5 °C)"
+                                        class="w-full bg-dark-900 border border-dark-700 rounded-xl px-3.5 py-2 text-slate-200 focus:outline-none focus:border-cyan-500 text-sm">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- BLOQUE 3: CAPTURA DE FOTO Y OCR CON TESSERACT.JS -->
+                    <div class="bg-dark-900/60 border border-purple-500/30 rounded-2xl p-5 space-y-4 shadow-lg">
+                        <div class="flex items-center space-x-2 pb-2 border-b border-dark-700">
+                            <div class="text-purple-400"><i class="fa-solid fa-camera-retro text-lg"></i></div>
+                            <h3 class="font-bold text-purple-300 text-sm">Escaneo Óptico OCR (Cámara / Foto de Tira o Pantalla)</h3>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+                            <div class="space-y-3">
+                                <p class="text-xs text-slate-300">Tome o suba una foto de la tira reactiva, pantalla del medidor o etiqueta del tanque para escanear texto automáticamente con Tesseract OCR.</p>
+                                <div class="flex flex-wrap gap-2">
+                                    <label class="bg-purple-600 hover:bg-purple-500 text-white px-4 py-2 rounded-xl text-xs font-semibold cursor-pointer transition flex items-center space-x-2 shadow">
+                                        <i class="fa-solid fa-camera"></i>
+                                        <span>Tomar Foto / Seleccionar Archivo</span>
+                                        <input type="file" accept="image/*" capture="environment" @change="handleImageUpload($event)" class="hidden">
+                                    </label>
+                                    <button type="button" @click="runOCR()" x-show="form.photoUrl && !ocrLoading" class="bg-cyan-600 hover:bg-cyan-500 text-white px-4 py-2 rounded-xl text-xs font-semibold transition flex items-center space-x-1.5 shadow">
+                                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                                        <span>Ejecutar OCR</span>
+                                    </button>
+                                </div>
+                                <div x-show="ocrLoading" class="text-xs text-cyan-400 flex items-center space-x-2 animate-pulse">
+                                    <i class="fa-solid fa-spinner fa-spin"></i>
+                                    <span x-text="ocrProgressText">Procesando imagen con OCR...</span>
+                                </div>
+                            </div>
+
+                            <div class="bg-dark-900 border border-dark-700 rounded-xl p-3 flex flex-col items-center justify-center min-h-[140px] relative">
+                                <template x-if="form.photoUrl">
+                                    <div class="w-full space-y-2">
+                                        <img :src="form.photoUrl" class="max-h-36 mx-auto rounded-lg object-contain border border-dark-600">
+                                        <div class="flex justify-between items-center text-[10px]">
+                                            <span class="text-emerald-400"><i class="fa-solid fa-check"></i> Foto adjunta lista</span>
+                                            <button type="button" @click="form.photoUrl = ''; form.ocrText = '';" class="text-red-400 hover:underline">Eliminar foto</button>
+                                        </div>
+                                    </div>
+                                </template>
+                                <template x-if="!form.photoUrl">
+                                    <div class="text-center text-slate-500 py-4">
+                                        <i class="fa-solid fa-image text-2xl mb-1"></i>
+                                        <p class="text-xs">Sin foto adjunta</p>
+                                    </div>
+                                </template>
+                            </div>
+                        </div>
+
+                        <!-- Resultado OCR -->
+                        <template x-if="form.ocrText">
+                            <div class="bg-dark-800 p-3 rounded-xl border border-purple-500/20 space-y-2">
+                                <div class="flex justify-between items-center">
+                                    <span class="text-xs font-bold text-purple-300">Texto Extraído (OCR):</span>
+                                    <button type="button" @click="form.notes = (form.notes ? form.notes + ' | ' : '') + 'OCR: ' + form.ocrText" class="text-[11px] bg-purple-500/20 hover:bg-purple-500/30 text-purple-300 px-2.5 py-1 rounded-lg transition">
+                                        Añadir a Notas
+                                    </button>
+                                </div>
+                                <p class="text-xs font-mono bg-dark-900 p-2.5 rounded-lg text-slate-300 max-h-24 overflow-y-auto" x-text="form.ocrText"></p>
+                            </div>
+                        </template>
+                    </div>
+
+                    <!-- BLOQUE 4: PAPEL Y NOTAS LIBRES -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="space-y-1">
+                            <label class="text-xs font-semibold uppercase tracking-wider text-slate-400">Tiras de Papel (Estimación / Color)</label>
+                            <input type="text" x-model="form.paperStrips" placeholder="Ej. Verde oscuro / pH aprox 7.5"
+                                class="w-full bg-dark-900 border border-dark-700 rounded-xl px-4 py-2.5 text-slate-200 focus:outline-none focus:border-cyan-500 text-sm">
+                        </div>
+                        <div class="space-y-1">
+                            <label class="text-xs font-semibold uppercase tracking-wider text-slate-400">Notas / Observaciones Libres</label>
+                            <input type="text" x-model="form.notes" placeholder="Describa el estado o calibración..."
+                                class="w-full bg-dark-900 border border-dark-700 rounded-xl px-4 py-2.5 text-slate-200 focus:outline-none focus:border-cyan-500 text-sm">
+                        </div>
+                    </div>
+
+                    <!-- Submit Buttons -->
+                    <div class="flex justify-end space-x-3 pt-4 border-t border-dark-700">
+                        <button type="button" @click="resetForm()" class="px-5 py-2.5 rounded-xl border border-dark-700 hover:bg-dark-700 text-slate-300 text-sm font-medium transition">Limpiar</button>
+                        <button type="submit" class="px-6 py-2.5 rounded-xl bg-gradient-to-r from-cyan-600 to-indigo-600 hover:from-cyan-500 hover:to-indigo-500 text-white text-sm font-semibold shadow-lg shadow-cyan-900/40 transition">
+                            <i class="fa-solid fa-floppy-disk mr-1.5"></i> Guardar en Bitácora
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- TAB 2: HISTORIAL Y TABLA -->
+        <div x-show="activeTab === 'table'" class="space-y-6">
+            <div class="bg-dark-800 border border-dark-700 rounded-2xl p-6 shadow-xl space-y-4">
+                <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-4">
+                    <div>
+                        <h2 class="text-xl font-bold text-slate-100">Historial Avanzado de Registros</h2>
+                        <p class="text-sm text-slate-400">Filtre por origen de agua o busque en notas y OCR.</p>
+                    </div>
+                    <div class="flex flex-wrap gap-2 w-full lg:w-auto">
+                        <select x-model="filterSource" class="bg-dark-900 border border-dark-700 rounded-xl px-3 py-2 text-slate-200 focus:outline-none focus:border-cyan-500 text-xs font-semibold">
+                            <option value="">Todos los Orígenes</option>
+                            <option value="Agua de pozo">Agua de pozo</option>
+                            <option value="Agua de tótem 1">Agua de tótem 1</option>
+                            <option value="Agua de tótem 2">Agua de tótem 2</option>
+                            <option value="Agua de electrofloculador">Agua de electrofloculador</option>
+                            <option value="Agua después de filtros de carbón activado">Agua después de carbón activado</option>
+                            <option value="Agua en proceso de decantación">Agua en decantación</option>
+                        </select>
+                        <input type="text" x-model="searchQuery" placeholder="Buscar..."
+                            class="bg-dark-900 border border-dark-700 rounded-xl px-3.5 py-2 text-slate-200 focus:outline-none focus:border-cyan-500 text-xs w-48">
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto rounded-xl border border-dark-700">
+                    <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                        <thead class="bg-dark-900 text-slate-400 uppercase tracking-wider font-semibold border-b border-dark-700">
+                            <tr>
+                                <th class="p-3">Fecha / Origen</th>
+                                <th class="p-3 text-emerald-400">pH / Temp °F / pH mV</th>
+                                <th class="p-3 text-indigo-400">Multímetro (mV DC / Imp)</th>
+                                <th class="p-3 text-cyan-400">TDS (ppm / Temp °C)</th>
+                                <th class="p-3">Papel / OCR / Notas</th>
+                                <th class="p-3 text-right">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-dark-700 text-slate-300">
+                            <template x-for="entry in filteredEntries" :key="entry.id">
+                                <tr class="hover:bg-dark-700/50 transition">
+                                    <td class="p-3 whitespace-nowrap">
+                                        <div class="font-mono text-cyan-400 text-xs" x-text="formatDate(entry.timestamp)"></div>
+                                        <div class="font-bold text-slate-200 text-xs mt-0.5" x-text="entry.waterSource"></div>
+                                        <div x-show="entry.electroSub" class="text-[10px] text-amber-300" x-text="'• ' + entry.electroSub"></div>
+                                    </td>
+                                    
+                                    <!-- pH -->
+                                    <td class="p-3 whitespace-nowrap">
+                                        <div class="font-bold text-emerald-400" x-text="entry.ph !== null ? 'pH: ' + entry.ph : '—'"></div>
+                                        <div class="text-xs text-slate-400" x-text="entry.tempF !== null ? entry.tempF + ' °F' : ''"></div>
+                                        <div class="text-[10px] text-slate-500 font-mono" x-text="entry.phMv !== null ? entry.phMv + ' mV' : ''"></div>
+                                    </td>
+
+                                    <!-- Multímetro -->
+                                    <td class="p-3 whitespace-nowrap font-mono text-xs">
+                                        <div class="text-indigo-300" x-text="entry.multimeterMv !== null ? entry.multimeterMv + ' mV DC' : '—'"></div>
+                                        <div class="text-slate-400 text-[11px]" x-text="entry.impedanceValue !== null ? entry.impedanceValue + ' ' + entry.impedanceUnit : ''"></div>
+                                    </td>
+
+                                    <!-- TDS -->
+                                    <td class="p-3 whitespace-nowrap">
+                                        <div class="flex items-center space-x-1.5">
+                                            <span class="font-semibold text-cyan-300" x-text="entry.tds !== null ? entry.tds + ' ppm' : '—'"></span>
+                                            <span x-show="entry.tdsStuck" class="bg-amber-500/20 text-amber-400 border border-amber-500/30 text-[10px] px-1 py-0.5 rounded font-bold" title="Sensor pegado">⚠️</span>
+                                        </div>
+                                        <div class="text-xs text-slate-400" x-text="entry.tempC !== null ? entry.tempC + ' °C' : ''"></div>
+                                    </td>
+
+                                    <!-- Papel / OCR / Notas -->
+                                    <td class="p-3 max-w-xs truncate text-slate-400 text-xs">
+                                        <div x-show="entry.paperStrips" class="text-emerald-300" x-text="'Papel: ' + entry.paperStrips"></div>
+                                        <div x-show="entry.ocrText" class="text-purple-300 truncate" x-text="'OCR: ' + entry.ocrText"></div>
+                                        <div class="text-[11px] text-slate-500 truncate" x-text="entry.notes"></div>
+                                        <div x-show="entry.photoUrl" class="mt-1">
+                                            <a :href="entry.photoUrl" target="_blank" class="text-[10px] text-cyan-400 underline flex items-center space-x-1">
+                                                <i class="fa-solid fa-image"></i> <span>Ver foto</span>
+                                            </a>
+                                        </div>
+                                    </td>
+
+                                    <td class="p-3 text-right whitespace-nowrap">
+                                        <button @click="deleteEntry(entry.id)" class="text-red-400 hover:text-red-300 bg-red-500/10 hover:bg-red-500/20 p-1.5 rounded-lg transition" title="Eliminar registro">
+                                            <i class="fa-solid fa-trash-can text-sm"></i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            </template>
+                            <template x-if="filteredEntries.length === 0">
+                                <tr>
+                                    <td colspan="6" class="p-8 text-center text-slate-500 italic">No hay registros guardados con los filtros actuales.</td>
+                                </tr>
+                            </template>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Total Count & Quick Actions -->
+                <div class="flex justify-between items-center pt-2">
+                    <span class="text-xs text-slate-400">Total de registros: <strong class="text-slate-200" x-text="entries.length"></strong></span>
+                    <button @click="promptClearAll()" x-show="entries.length > 0" class="text-xs bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/20 px-3.5 py-1.5 rounded-xl transition font-medium">
+                        <i class="fa-solid fa-triangle-exclamation mr-1"></i> Borrar Todo el Historial
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: ANÁLISIS Y ESTADÍSTICAS -->
+        <div x-show="activeTab === 'analytics'" class="space-y-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="bg-dark-800 border border-dark-700 rounded-2xl p-5 shadow-lg">
+                    <p class="text-xs font-semibold text-slate-400 uppercase">Promedio pH</p>
+                    <h3 class="text-2xl font-extrabold text-emerald-400 mt-1" x-text="stats.avgPh"></h3>
+                    <p class="text-[11px] text-slate-500 mt-1">Min: <span x-text="stats.minPh"></span> | Max: <span x-text="stats.maxPh"></span></p>
+                </div>
+                <div class="bg-dark-800 border border-dark-700 rounded-2xl p-5 shadow-lg">
+                    <p class="text-xs font-semibold text-slate-400 uppercase">Promedio TDS</p>
+                    <h3 class="text-2xl font-extrabold text-cyan-400 mt-1" x-text="stats.avgTds + ' ppm'"></h3>
+                    <p class="text-[11px] text-amber-400 mt-1" x-text="stats.stuckCount + ' sensores con atasco'"></p>
+                </div>
+                <div class="bg-dark-800 border border-dark-700 rounded-2xl p-5 shadow-lg">
+                    <p class="text-xs font-semibold text-slate-400 uppercase">Temperatura Promedio (°C)</p>
+                    <h3 class="text-2xl font-extrabold text-indigo-400 mt-1" x-text="stats.avgTempC + ' °C'"></h3>
+                    <p class="text-[11px] text-slate-500 mt-1">Medidor TDS</p>
+                </div>
+                <div class="bg-dark-800 border border-dark-700 rounded-2xl p-5 shadow-lg">
+                    <p class="text-xs font-semibold text-slate-400 uppercase">Total Mediciones</p>
+                    <h3 class="text-2xl font-extrabold text-purple-400 mt-1" x-text="entries.length"></h3>
+                    <p class="text-[11px] text-slate-500 mt-1">Bitácora Activa</p>
+                </div>
+            </div>
+
+            <!-- Chart Section -->
+            <div class="bg-dark-800 border border-dark-700 rounded-2xl p-6 shadow-xl space-y-4">
+                <div class="flex justify-between items-center">
+                    <h3 class="text-lg font-bold text-slate-100">Tendencia Histórica de pH y TDS</h3>
+                    <span class="text-xs text-slate-400">Chart.js</span>
+                </div>
+                <div class="h-80 w-full relative">
+                    <canvas id="giaChart"></canvas>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-dark-800 border-t border-dark-700 py-4 mt-8 text-center text-xs text-slate-500">
+        Bitácora Agua de Gía • Sistema Avanzado de Sensores con OCR y Análisis Multi-Origen.
+    </footer>
+
+    <!-- Alpine App Logic Script -->
+    <script>
+        function giaBitacoraApp() {
+            return {
+                activeTab: 'form',
+                searchQuery: '',
+                filterSource: '',
+                toast: { show: false, message: '', type: 'success' },
+                showConfirmModal: false,
+                confirmMessage: '',
+                confirmAction: null,
+                ocrLoading: false,
+                ocrProgressText: '',
+                
+                form: {
+                    timestamp: '',
+                    waterSource: '',
+                    electroSub: '',
+                    ph: '',
+                    tempF: '',
+                    phMv: '',
+                    multimeterMv: '',
+                    impedanceValue: '',
+                    impedanceUnit: 'kΩ',
+                    tds: '',
+                    tdsStuck: false,
+                    tempC: '',
+                    paperStrips: '',
+                    notes: '',
+                    photoUrl: '',
+                    ocrText: ''
+                },
+                entries: [],
+                chartInstance: null,
+
+                init() {
+                    this.fillCurrentTime();
+                    const saved = localStorage.getItem('gia_bitacora_agua_entries');
+                    if (saved) {
+                        try {
+                            this.entries = JSON.parse(saved);
+                        } catch(e) {
+                            this.entries = [];
+                        }
+                    }
+                },
+
+                fillCurrentTime() {
+                    const now = new Date();
+                    now.setMinutes(now.getMinutes() - now.getTimezoneOffset());
+                    this.form.timestamp = now.toISOString().slice(0, 16);
+                },
+
+                showToast(message, type = 'success') {
+                    this.toast.message = message;
+                    this.toast.type = type;
+                    this.toast.show = true;
+                    setTimeout(() => {
+                        this.toast.show = false;
+                    }, 3500);
+                },
+
+                onWaterSourceChange() {
+                    if (this.form.waterSource !== 'Agua de electrofloculador') {
+                        this.form.electroSub = '';
+                    }
+                },
+
+                handleImageUpload(event) {
+                    const file = event.target.files[0];
+                    if (!file) return;
+
+                    const reader = new FileReader();
+                    reader.onload = (e) => {
+                        this.form.photoUrl = e.target.result;
+                        this.showToast('Foto cargada correctamente.');
+                    };
+                    reader.readAsDataURL(file);
+                },
+
+                async runOCR() {
+                    if (!this.form.photoUrl) return;
+                    this.ocrLoading = true;
+                    this.ocrProgressText = 'Inicializando Tesseract OCR...';
+
+                    try {
+                        const worker = await Tesseract.createWorker('spa+eng');
+                        this.ocrProgressText = 'Escaneando texto...';
+                        const ret = await worker.recognize(this.form.photoUrl);
+                        this.form.ocrText = ret.data.text.trim();
+                        await worker.terminate();
+                        this.ocrLoading = false;
+                        this.showToast('¡OCR completado con éxito!');
+                    } catch (err) {
+                        console.error(err);
+                        this.ocrLoading = false;
+                        this.showToast('Error al procesar OCR en la imagen.', 'warning');
+                    }
+                },
+
+                saveEntry() {
+                    if (!this.form.timestamp || !this.form.waterSource) {
+                        this.showToast('Debe indicar la fecha y el origen del agua.', 'warning');
+                        return;
+                    }
+
+                    const newEntry = {
+                        id: Date.now().toString(),
+                        ...this.form,
+                        ph: this.form.ph !== '' ? parseFloat(this.form.ph) : null,
+                        tempF: this.form.tempF !== '' ? parseFloat(this.form.tempF) : null,
+                        phMv: this.form.phMv !== '' ? parseFloat(this.form.phMv) : null,
+                        multimeterMv: this.form.multimeterMv !== '' ? parseFloat(this.form.multimeterMv) : null,
+                        impedanceValue: this.form.impedanceValue !== '' ? parseFloat(this.form.impedanceValue) : null,
+                        tds: this.form.tds !== '' ? parseFloat(this.form.tds) : null,
+                        tempC: this.form.tempC !== '' ? parseFloat(this.form.tempC) : null,
+                    };
+
+                    this.entries.unshift(newEntry);
+                    this.persist();
+                    this.showToast('Registro guardado en Bitácora Agua de Gía.');
+                    this.resetForm();
+                    this.activeTab = 'table';
+                    this.$nextTick(() => this.renderChart());
+                },
+
+                resetForm() {
+                    this.fillCurrentTime();
+                    this.form.waterSource = '';
+                    this.form.electroSub = '';
+                    this.form.ph = '';
+                    this.form.tempF = '';
+                    this.form.phMv = '';
+                    this.form.multimeterMv = '';
+                    this.form.impedanceValue = '';
+                    this.form.impedanceUnit = 'kΩ';
+                    this.form.tds = '';
+                    this.form.tdsStuck = false;
+                    this.form.tempC = '';
+                    this.form.paperStrips = '';
+                    this.form.notes = '';
+                    this.form.photoUrl = '';
+                    this.form.ocrText = '';
+                },
+
+                deleteEntry(id) {
+                    this.confirmMessage = '¿Está seguro de eliminar este registro de la bitácora?';
+                    this.confirmAction = () => {
+                        this.entries = this.entries.filter(e => e.id !== id);
+                        this.persist();
+                        this.showToast('Registro eliminado.', 'warning');
+                        this.renderChart();
+                    };
+                    this.showConfirmModal = true;
+                },
+
+                promptClearAll() {
+                    this.confirmMessage = '¿Está seguro de borrar todo el historial? Esta acción no se puede deshacer.';
+                    this.confirmAction = () => {
+                        this.entries = [];
+                        this.persist();
+                        this.showToast('Historial borrado por completo.', 'warning');
+                        this.renderChart();
+                    };
+                    this.showConfirmModal = true;
+                },
+
+                persist() {
+                    localStorage.setItem('gia_bitacora_agua_entries', JSON.stringify(this.entries));
+                },
+
+                formatDate(isoStr) {
+                    if (!isoStr) return '';
+                    const d = new Date(isoStr);
+                    return d.toLocaleString('es-ES', { dateStyle: 'short', timeStyle: 'short' });
+                },
+
+                get filteredEntries() {
+                    let result = this.entries;
+                    if (this.filterSource) {
+                        result = result.filter(e => e.waterSource === this.filterSource);
+                    }
+                    if (this.searchQuery) {
+                        const q = this.searchQuery.toLowerCase();
+                        result = result.filter(e => 
+                            (e.notes && e.notes.toLowerCase().includes(q)) ||
+                            (e.ocrText && e.ocrText.toLowerCase().includes(q)) ||
+                            (e.paperStrips && e.paperStrips.toLowerCase().includes(q)) ||
+                            (e.waterSource && e.waterSource.toLowerCase().includes(q))
+                        );
+                    }
+                    return result;
+                },
+
+                get stats() {
+                    if (this.entries.length === 0) {
+                        return { avgPh: '0.00', minPh: '0.00', maxPh: '0.00', avgTds: '0', stuckCount: 0, avgTempC: '0.0' };
+                    }
+                    const phs = this.entries.map(e => e.ph).filter(v => v !== null && !isNaN(v));
+                    const tdss = this.entries.map(e => e.tds).filter(v => v !== null && !isNaN(v));
+                    const tempsC = this.entries.map(e => e.tempC).filter(v => v !== null && !isNaN(v));
+                    const stuckCount = this.entries.filter(e => e.tdsStuck).length;
+                    
+                    const avgPh = phs.length ? (phs.reduce((a,b)=>a+b,0)/phs.length).toFixed(2) : '—';
+                    const minPh = phs.length ? Math.min(...phs).toFixed(2) : '—';
+                    const maxPh = phs.length ? Math.max(...phs).toFixed(2) : '—';
+                    const avgTds = tdss.length ? Math.round(tdss.reduce((a,b)=>a+b,0)/tdss.length) : '0';
+                    const avgTempC = tempsC.length ? (tempsC.reduce((a,b)=>a+b,0)/tempsC.length).toFixed(1) : '0.0';
+
+                    return { avgPh, minPh, maxPh, avgTds, stuckCount, avgTempC };
+                },
+
+                exportCSV() {
+                    if (this.entries.length === 0) {
+                        this.showToast('No hay datos para exportar.', 'warning');
+                        return;
+                    }
+
+                    let csv = 'ID,FechaHora,OrigenAgua,SubElectro,pH,Temp_F_pH,pH_mV,Multimetro_mV_DC,Impedancia_Valor,Impedancia_Unidad,TDS_ppm,TDS_Congelado,Temp_C_TDS,TirasPapel,OCR_Texto,Notas\n';
+                    this.entries.forEach(e => {
+                        csv += `"${e.id}","${e.timestamp}","${e.waterSource}","${e.electroSub || ''}","${e.ph ?? ''}","${e.tempF ?? ''}","${e.phMv ?? ''}","${e.multimeterMv ?? ''}","${e.impedanceValue ?? ''}","${e.impedanceUnit}","${e.tds ?? ''}","${e.tdsStuck ? 'SI' : 'NO'}","${e.tempC ?? ''}","${(e.paperStrips || '').replace(/"/g, '""')}","${(e.ocrText || '').replace(/"/g, '""')}","${(e.notes || '').replace(/"/g, '""')}"\n`;
+                    });
+
+                    const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.setAttribute('href', url);
+                    a.setAttribute('download', `bitacora_agua_gia_${new Date().toISOString().slice(0,10)}.csv`);
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                    this.showToast('Archivo CSV descargado con éxito.');
+                },
+
+                renderChart() {
+                    const ctx = document.getElementById('giaChart');
+                    if (!ctx) return;
+
+                    const sorted = [...this.entries].reverse();
+                    const labels = sorted.map(e => this.formatDate(e.timestamp));
+                    const phData = sorted.map(e => e.ph);
+                    const tdsData = sorted.map(e => e.tds);
+
+                    if (this.chartInstance) {
+                        this.chartInstance.destroy();
+                    }
+
+                    this.chartInstance = new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: labels,
+                            datasets: [
+                                {
+                                    label: 'pH',
+                                    data: phData,
+                                    borderColor: '#10b981',
+                                    backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                                    yAxisID: 'y-ph',
+                                    tension: 0.3,
+                                    fill: true
+                                },
+                                {
+                                    label: 'TDS (ppm)',
+                                    data: tdsData,
+                                    borderColor: '#06b6d4',
+                                    backgroundColor: 'rgba(6, 182, 212, 0.1)',
+                                    yAxisID: 'y-tds',
+                                    tension: 0.3,
+                                    fill: true
+                                }
+                            ]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            interaction: { mode: 'index', intersect: false },
+                            scales: {
+                                x: {
+                                    grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                                    ticks: { color: '#94a3b8' }
+                                },
+                                'y-ph': {
+                                    type: 'linear',
+                                    display: true,
+                                    position: 'left',
+                                    min: 0,
+                                    max: 14,
+                                    grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                                    ticks: { color: '#10b981' },
+                                    title: { display: true, text: 'pH', color: '#10b981' }
+                                },
+                                'y-tds': {
+                                    type: 'linear',
+                                    display: true,
+                                    position: 'right',
+                                    grid: { drawOnChartArea: false },
+                                    ticks: { color: '#06b6d4' },
+                                    title: { display: true, text: 'TDS (ppm)', color: '#06b6d4' }
+                                }
+                            },
+                            plugins: {
+                                legend: { labels: { color: '#f8fafc' } }
+                            }
+                        }
+                    });
+                }
+            }
+        }
+    </script>
+</body>
+</html>
