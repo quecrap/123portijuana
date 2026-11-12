@@ -1,0 +1,2261 @@
+[
+  {
+    "num_pozo": "132",
+    "nom_pozo": "CNA_11",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.532952,
+    "lng": -117.045416,
+    "unidad_hidro": "ALUVION_RIO_ALAMAR",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 27.62,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 7.49,
+      "elevacion_ne_msnm": 20.13,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2013-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 8.73,
+        "elevacion_ne_msnm": 18.89,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      },
+      {
+        "fecha": "2013-06-15",
+        "ano": 2013,
+        "profundidad_naf_m": 7.49,
+        "elevacion_ne_msnm": 20.13,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #132 verificado en Acuífero 0201. Brocal 27.62 msnm."
+  },
+  {
+    "num_pozo": "133",
+    "nom_pozo": "CNA_13",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.533715,
+    "lng": -117.03135,
+    "unidad_hidro": "ALUVION_RIO_ALAMAR",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 21.68,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 5.45,
+      "elevacion_ne_msnm": 16.23,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2009-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 5.45,
+        "elevacion_ne_msnm": 16.23,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #133 verificado en Acuífero 0201. Brocal 21.68 msnm."
+  },
+  {
+    "num_pozo": "134",
+    "nom_pozo": "CNA_14",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.515291,
+    "lng": -117.074806,
+    "unidad_hidro": "MESA_Y_CAÑONES_TERCIARIOS",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 101.77,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 104.75,
+      "elevacion_ne_msnm": -2.98,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2009-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 104.75,
+        "elevacion_ne_msnm": -2.98,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #134 verificado en Acuífero 0201. Brocal 101.77 msnm."
+  },
+  {
+    "num_pozo": "135",
+    "nom_pozo": "CNA_15",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.506565,
+    "lng": -117.063387,
+    "unidad_hidro": "MESA_Y_CAÑONES_TERCIARIOS",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 135.43,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 152.82,
+      "elevacion_ne_msnm": -17.39,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2013-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 152.3,
+        "elevacion_ne_msnm": -16.87,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      },
+      {
+        "fecha": "2013-06-15",
+        "ano": 2013,
+        "profundidad_naf_m": 152.82,
+        "elevacion_ne_msnm": -17.39,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #135 verificado en Acuífero 0201. Brocal 135.43 msnm."
+  },
+  {
+    "num_pozo": "136",
+    "nom_pozo": "CNA_17",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.488347,
+    "lng": -117.011123,
+    "unidad_hidro": "MESA_Y_CAÑONES_TERCIARIOS",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 125.47,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 10.6,
+      "elevacion_ne_msnm": 114.87,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2013-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 7.31,
+        "elevacion_ne_msnm": 118.16,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      },
+      {
+        "fecha": "2013-06-15",
+        "ano": 2013,
+        "profundidad_naf_m": 10.6,
+        "elevacion_ne_msnm": 114.87,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #136 verificado en Acuífero 0201. Brocal 125.47 msnm."
+  },
+  {
+    "num_pozo": "137",
+    "nom_pozo": "CNA_20",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.506622,
+    "lng": -117.021559,
+    "unidad_hidro": "MESA_Y_CAÑONES_TERCIARIOS",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 68.13,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 22.31,
+      "elevacion_ne_msnm": 45.82,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2009-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 22.31,
+        "elevacion_ne_msnm": 45.82,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #137 verificado en Acuífero 0201. Brocal 68.13 msnm."
+  },
+  {
+    "num_pozo": "138",
+    "nom_pozo": "CNA_37",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.518488,
+    "lng": -116.933895,
+    "unidad_hidro": "ALUVION_RIO_ALAMAR",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 56.04,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 10.47,
+      "elevacion_ne_msnm": 45.57,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2013-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 7.78,
+        "elevacion_ne_msnm": 48.26,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      },
+      {
+        "fecha": "2013-06-15",
+        "ano": 2013,
+        "profundidad_naf_m": 10.47,
+        "elevacion_ne_msnm": 45.57,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #138 verificado en Acuífero 0201. Brocal 56.04 msnm."
+  },
+  {
+    "num_pozo": "139",
+    "nom_pozo": "CNA_41",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.45024,
+    "lng": -116.873057,
+    "unidad_hidro": "MESA_Y_CAÑONES_TERCIARIOS",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 113.68,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 29.31,
+      "elevacion_ne_msnm": 84.37,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2009-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 29.31,
+        "elevacion_ne_msnm": 84.37,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #139 verificado en Acuífero 0201. Brocal 113.68 msnm."
+  },
+  {
+    "num_pozo": "140",
+    "nom_pozo": "CNA_42",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.431934,
+    "lng": -116.884847,
+    "unidad_hidro": "MESA_Y_CAÑONES_TERCIARIOS",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 133.49,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 37.05,
+      "elevacion_ne_msnm": 96.44,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2013-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 21.06,
+        "elevacion_ne_msnm": 112.43,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      },
+      {
+        "fecha": "2013-06-15",
+        "ano": 2013,
+        "profundidad_naf_m": 37.05,
+        "elevacion_ne_msnm": 96.44,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #140 verificado en Acuífero 0201. Brocal 133.49 msnm."
+  },
+  {
+    "num_pozo": "141",
+    "nom_pozo": "CNA_43",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.457075,
+    "lng": -116.918998,
+    "unidad_hidro": "MESA_Y_CAÑONES_TERCIARIOS",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 74.89,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 38.95,
+      "elevacion_ne_msnm": 35.94,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2013-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 43.28,
+        "elevacion_ne_msnm": 31.61,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      },
+      {
+        "fecha": "2013-06-15",
+        "ano": 2013,
+        "profundidad_naf_m": 38.95,
+        "elevacion_ne_msnm": 35.94,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #141 verificado en Acuífero 0201. Brocal 74.89 msnm."
+  },
+  {
+    "num_pozo": "142",
+    "nom_pozo": "CNA_45",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.450765,
+    "lng": -116.938016,
+    "unidad_hidro": "MESA_Y_CAÑONES_TERCIARIOS",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 110.7,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 24.44,
+      "elevacion_ne_msnm": 86.26,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2009-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 24.44,
+        "elevacion_ne_msnm": 86.26,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #142 verificado en Acuífero 0201. Brocal 110.7 msnm."
+  },
+  {
+    "num_pozo": "143",
+    "nom_pozo": "CNA_46",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.461126,
+    "lng": -116.909042,
+    "unidad_hidro": "MESA_Y_CAÑONES_TERCIARIOS",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 84.96,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 74.69,
+      "elevacion_ne_msnm": 10.27,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2009-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 74.69,
+        "elevacion_ne_msnm": 10.27,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #143 verificado en Acuífero 0201. Brocal 84.96 msnm."
+  },
+  {
+    "num_pozo": "144",
+    "nom_pozo": "CNA_47",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.503886,
+    "lng": -116.969183,
+    "unidad_hidro": "MESA_Y_CAÑONES_TERCIARIOS",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 52.27,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 18.01,
+      "elevacion_ne_msnm": 34.26,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2009-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 18.01,
+        "elevacion_ne_msnm": 34.26,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #144 verificado en Acuífero 0201. Brocal 52.27 msnm."
+  },
+  {
+    "num_pozo": "145",
+    "nom_pozo": "CNA_54",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.514325,
+    "lng": -116.997899,
+    "unidad_hidro": "ALUVION_RIO_ALAMAR",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 31.07,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 6.21,
+      "elevacion_ne_msnm": 24.86,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2009-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 6.21,
+        "elevacion_ne_msnm": 24.86,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #145 verificado en Acuífero 0201. Brocal 31.07 msnm."
+  },
+  {
+    "num_pozo": "146",
+    "nom_pozo": "CNA_55",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.493402,
+    "lng": -117.01611,
+    "unidad_hidro": "MESA_Y_CAÑONES_TERCIARIOS",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 107.03,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 13.81,
+      "elevacion_ne_msnm": 93.22,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2013-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 7.36,
+        "elevacion_ne_msnm": 99.67,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      },
+      {
+        "fecha": "2013-06-15",
+        "ano": 2013,
+        "profundidad_naf_m": 13.81,
+        "elevacion_ne_msnm": 93.22,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #146 verificado en Acuífero 0201. Brocal 107.03 msnm."
+  },
+  {
+    "num_pozo": "147",
+    "nom_pozo": "CNA_61",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.537581,
+    "lng": -117.050147,
+    "unidad_hidro": "ALUVION_RIO_ALAMAR",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 17.35,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 7.79,
+      "elevacion_ne_msnm": 9.56,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2009-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 7.79,
+        "elevacion_ne_msnm": 9.56,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #147 verificado en Acuífero 0201. Brocal 17.35 msnm."
+  },
+  {
+    "num_pozo": "148",
+    "nom_pozo": "CNA_64",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.536649,
+    "lng": -117.04686,
+    "unidad_hidro": "ALUVION_RIO_ALAMAR",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 19.0,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 5.46,
+      "elevacion_ne_msnm": 13.54,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2013-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 6.67,
+        "elevacion_ne_msnm": 12.33,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      },
+      {
+        "fecha": "2013-06-15",
+        "ano": 2013,
+        "profundidad_naf_m": 5.46,
+        "elevacion_ne_msnm": 13.54,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #148 verificado en Acuífero 0201. Brocal 19.0 msnm."
+  },
+  {
+    "num_pozo": "149",
+    "nom_pozo": "CNA_65",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.52415,
+    "lng": -116.923593,
+    "unidad_hidro": "ALUVION_RIO_ALAMAR",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 60.52,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 13.81,
+      "elevacion_ne_msnm": 46.71,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2013-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 11.21,
+        "elevacion_ne_msnm": 49.31,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      },
+      {
+        "fecha": "2013-06-15",
+        "ano": 2013,
+        "profundidad_naf_m": 13.81,
+        "elevacion_ne_msnm": 46.71,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #149 verificado en Acuífero 0201. Brocal 60.52 msnm."
+  },
+  {
+    "num_pozo": "150",
+    "nom_pozo": "CNA_82",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.489312,
+    "lng": -117.034445,
+    "unidad_hidro": "MESA_Y_CAÑONES_TERCIARIOS",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 223.56,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 36.19,
+      "elevacion_ne_msnm": 187.37,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2009-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 36.19,
+        "elevacion_ne_msnm": 187.37,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #150 verificado en Acuífero 0201. Brocal 223.56 msnm."
+  },
+  {
+    "num_pozo": "151",
+    "nom_pozo": "CNA_88",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.522182,
+    "lng": -116.918663,
+    "unidad_hidro": "ALUVION_RIO_ALAMAR",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 58.24,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 7.41,
+      "elevacion_ne_msnm": 50.83,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2009-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 7.41,
+        "elevacion_ne_msnm": 50.83,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #151 verificado en Acuífero 0201. Brocal 58.24 msnm."
+  },
+  {
+    "num_pozo": "152",
+    "nom_pozo": "CNA_91",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.509972,
+    "lng": -116.946397,
+    "unidad_hidro": "MESA_Y_CAÑONES_TERCIARIOS",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 46.92,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 8.03,
+      "elevacion_ne_msnm": 38.89,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2013-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 6.27,
+        "elevacion_ne_msnm": 40.65,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      },
+      {
+        "fecha": "2013-06-15",
+        "ano": 2013,
+        "profundidad_naf_m": 8.03,
+        "elevacion_ne_msnm": 38.89,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #152 verificado en Acuífero 0201. Brocal 46.92 msnm."
+  },
+  {
+    "num_pozo": "153",
+    "nom_pozo": "CNA_99",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.517822,
+    "lng": -117.001869,
+    "unidad_hidro": "ALUVION_RIO_ALAMAR",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 28.17,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 3.32,
+      "elevacion_ne_msnm": 24.85,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2013-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 3.83,
+        "elevacion_ne_msnm": 24.34,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      },
+      {
+        "fecha": "2013-06-15",
+        "ano": 2013,
+        "profundidad_naf_m": 3.32,
+        "elevacion_ne_msnm": 24.85,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #153 verificado en Acuífero 0201. Brocal 28.17 msnm."
+  },
+  {
+    "num_pozo": "154",
+    "nom_pozo": "Pozo 14",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.512687,
+    "lng": -116.968222,
+    "unidad_hidro": "ALUVION_RIO_ALAMAR",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 35.96,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 4.82,
+      "elevacion_ne_msnm": 31.14,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2013-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 4.48,
+        "elevacion_ne_msnm": 31.48,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      },
+      {
+        "fecha": "2013-06-15",
+        "ano": 2013,
+        "profundidad_naf_m": 4.82,
+        "elevacion_ne_msnm": 31.14,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #154 verificado en Acuífero 0201. Brocal 35.96 msnm."
+  },
+  {
+    "num_pozo": "155",
+    "nom_pozo": "Pozo 3",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.511867,
+    "lng": -116.961007,
+    "unidad_hidro": "ALUVION_RIO_ALAMAR",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 41.33,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 8.33,
+      "elevacion_ne_msnm": 33.0,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2009-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 8.33,
+        "elevacion_ne_msnm": 33.0,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #155 verificado en Acuífero 0201. Brocal 41.33 msnm."
+  },
+  {
+    "num_pozo": "156",
+    "nom_pozo": "Pozo 32",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.541893,
+    "lng": -117.033993,
+    "unidad_hidro": "ALUVION_RIO_ALAMAR",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 19.92,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 7.43,
+      "elevacion_ne_msnm": 12.49,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2013-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 7.19,
+        "elevacion_ne_msnm": 12.73,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      },
+      {
+        "fecha": "2013-06-15",
+        "ano": 2013,
+        "profundidad_naf_m": 7.43,
+        "elevacion_ne_msnm": 12.49,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #156 verificado en Acuífero 0201. Brocal 19.92 msnm."
+  },
+  {
+    "num_pozo": "157",
+    "nom_pozo": "Pozo 36",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.535868,
+    "lng": -117.026766,
+    "unidad_hidro": "ALUVION_RIO_ALAMAR",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 20.01,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 4.34,
+      "elevacion_ne_msnm": 15.67,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2009-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 4.34,
+        "elevacion_ne_msnm": 15.67,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #157 verificado en Acuífero 0201. Brocal 20.01 msnm."
+  },
+  {
+    "num_pozo": "158",
+    "nom_pozo": "Pozo 44",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.519627,
+    "lng": -116.992593,
+    "unidad_hidro": "ALUVION_RIO_ALAMAR",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 33.35,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 8.94,
+      "elevacion_ne_msnm": 24.41,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2013-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 8.89,
+        "elevacion_ne_msnm": 24.46,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      },
+      {
+        "fecha": "2013-06-15",
+        "ano": 2013,
+        "profundidad_naf_m": 8.94,
+        "elevacion_ne_msnm": 24.41,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #158 verificado en Acuífero 0201. Brocal 33.35 msnm."
+  },
+  {
+    "num_pozo": "159",
+    "nom_pozo": "Pozo 70",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.506892,
+    "lng": -117.013787,
+    "unidad_hidro": "MESA_Y_CAÑONES_TERCIARIOS",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 49.07,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 5.57,
+      "elevacion_ne_msnm": 43.5,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2013-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 5.47,
+        "elevacion_ne_msnm": 43.6,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      },
+      {
+        "fecha": "2013-06-15",
+        "ano": 2013,
+        "profundidad_naf_m": 5.57,
+        "elevacion_ne_msnm": 43.5,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #159 verificado en Acuífero 0201. Brocal 49.07 msnm."
+  },
+  {
+    "num_pozo": "160",
+    "nom_pozo": "Pozo 73",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.530435,
+    "lng": -117.013791,
+    "unidad_hidro": "ALUVION_RIO_ALAMAR",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 25.74,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 6.79,
+      "elevacion_ne_msnm": 18.95,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2013-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 5.12,
+        "elevacion_ne_msnm": 20.62,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      },
+      {
+        "fecha": "2013-06-15",
+        "ano": 2013,
+        "profundidad_naf_m": 6.79,
+        "elevacion_ne_msnm": 18.95,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #160 verificado en Acuífero 0201. Brocal 25.74 msnm."
+  },
+  {
+    "num_pozo": "161",
+    "nom_pozo": "Pozo Corette",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.514732,
+    "lng": -116.986476,
+    "unidad_hidro": "ALUVION_RIO_ALAMAR",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 33.89,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 7.36,
+      "elevacion_ne_msnm": 26.53,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2009-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 7.36,
+        "elevacion_ne_msnm": 26.53,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #161 verificado en Acuífero 0201. Brocal 33.89 msnm."
+  },
+  {
+    "num_pozo": "162",
+    "nom_pozo": "Pozo XD",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.525345,
+    "lng": -117.01527,
+    "unidad_hidro": "ALUVION_RIO_ALAMAR",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 25.83,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 5.7,
+      "elevacion_ne_msnm": 20.13,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2013-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 4.36,
+        "elevacion_ne_msnm": 21.47,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      },
+      {
+        "fecha": "2013-06-15",
+        "ano": 2013,
+        "profundidad_naf_m": 5.7,
+        "elevacion_ne_msnm": 20.13,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #162 verificado en Acuífero 0201. Brocal 25.83 msnm."
+  },
+  {
+    "num_pozo": "163",
+    "nom_pozo": "PB_1",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.490955,
+    "lng": -116.937564,
+    "unidad_hidro": "MESA_Y_CAÑONES_TERCIARIOS",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 51.56,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 8.84,
+      "elevacion_ne_msnm": 42.72,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2009-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 8.84,
+        "elevacion_ne_msnm": 42.72,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #163 verificado en Acuífero 0201. Brocal 51.56 msnm."
+  },
+  {
+    "num_pozo": "164",
+    "nom_pozo": "PB_2",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.526122,
+    "lng": -117.024769,
+    "unidad_hidro": "ALUVION_RIO_ALAMAR",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 25.97,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 6.71,
+      "elevacion_ne_msnm": 19.26,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2013-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 6.18,
+        "elevacion_ne_msnm": 19.79,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      },
+      {
+        "fecha": "2013-06-15",
+        "ano": 2013,
+        "profundidad_naf_m": 6.71,
+        "elevacion_ne_msnm": 19.26,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #164 verificado en Acuífero 0201. Brocal 25.97 msnm."
+  },
+  {
+    "num_pozo": "165",
+    "nom_pozo": "PB_3",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.511854,
+    "lng": -116.960979,
+    "unidad_hidro": "ALUVION_RIO_ALAMAR",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 41.95,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 7.96,
+      "elevacion_ne_msnm": 33.99,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2009-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 7.96,
+        "elevacion_ne_msnm": 33.99,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #165 verificado en Acuífero 0201. Brocal 41.95 msnm."
+  },
+  {
+    "num_pozo": "166",
+    "nom_pozo": "PO_1",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.490939,
+    "lng": -116.937535,
+    "unidad_hidro": "MESA_Y_CAÑONES_TERCIARIOS",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 51.55,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 8.66,
+      "elevacion_ne_msnm": 42.89,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2013-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 8.86,
+        "elevacion_ne_msnm": 42.69,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      },
+      {
+        "fecha": "2013-06-15",
+        "ano": 2013,
+        "profundidad_naf_m": 8.66,
+        "elevacion_ne_msnm": 42.89,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #166 verificado en Acuífero 0201. Brocal 51.55 msnm."
+  },
+  {
+    "num_pozo": "167",
+    "nom_pozo": "PO_2",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.523163,
+    "lng": -117.032685,
+    "unidad_hidro": "ALUVION_RIO_ALAMAR",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 49.76,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 22.39,
+      "elevacion_ne_msnm": 27.37,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2009-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 22.39,
+        "elevacion_ne_msnm": 27.37,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #167 verificado en Acuífero 0201. Brocal 49.76 msnm."
+  },
+  {
+    "num_pozo": "168",
+    "nom_pozo": "Pozo 13",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.512977,
+    "lng": -116.979355,
+    "unidad_hidro": "ALUVION_RIO_ALAMAR",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 35.67,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 8.14,
+      "elevacion_ne_msnm": 27.53,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2013-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 7.54,
+        "elevacion_ne_msnm": 28.13,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      },
+      {
+        "fecha": "2013-06-15",
+        "ano": 2013,
+        "profundidad_naf_m": 8.14,
+        "elevacion_ne_msnm": 27.53,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #168 verificado en Acuífero 0201. Brocal 35.67 msnm."
+  },
+  {
+    "num_pozo": "169",
+    "nom_pozo": "CNA_10",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.51668,
+    "lng": -116.937354,
+    "unidad_hidro": "ALUVION_RIO_ALAMAR",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 54.43,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 10.0,
+      "elevacion_ne_msnm": 44.43,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2009-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 10.0,
+        "elevacion_ne_msnm": 44.43,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #169 verificado en Acuífero 0201. Brocal 54.43 msnm."
+  },
+  {
+    "num_pozo": "170",
+    "nom_pozo": "CNA_18",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.50336,
+    "lng": -117.0215,
+    "unidad_hidro": "MESA_Y_CAÑONES_TERCIARIOS",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 76.26,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 30.7,
+      "elevacion_ne_msnm": 45.56,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2009-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 30.7,
+        "elevacion_ne_msnm": 45.56,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #170 verificado en Acuífero 0201. Brocal 76.26 msnm."
+  },
+  {
+    "num_pozo": "171",
+    "nom_pozo": "CNA_19",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.511652,
+    "lng": -117.02184,
+    "unidad_hidro": "ALUVION_RIO_ALAMAR",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 58.24,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 56.2,
+      "elevacion_ne_msnm": 2.04,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2009-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 56.2,
+        "elevacion_ne_msnm": 2.04,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #171 verificado en Acuífero 0201. Brocal 58.24 msnm."
+  },
+  {
+    "num_pozo": "172",
+    "nom_pozo": "CNA_44",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.456576,
+    "lng": -116.929126,
+    "unidad_hidro": "MESA_Y_CAÑONES_TERCIARIOS",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 86.94,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 57.58,
+      "elevacion_ne_msnm": 29.36,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2009-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 57.58,
+        "elevacion_ne_msnm": 29.36,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #172 verificado en Acuífero 0201. Brocal 86.94 msnm."
+  },
+  {
+    "num_pozo": "173",
+    "nom_pozo": "CNA_59",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.546443,
+    "lng": -116.977434,
+    "unidad_hidro": "ALUVION_RIO_ALAMAR",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 146.19,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 131.96,
+      "elevacion_ne_msnm": 14.23,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2009-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 131.96,
+        "elevacion_ne_msnm": 14.23,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #173 verificado en Acuífero 0201. Brocal 146.19 msnm."
+  },
+  {
+    "num_pozo": "174",
+    "nom_pozo": "CNA_62",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.539661,
+    "lng": -117.051581,
+    "unidad_hidro": "ALUVION_RIO_ALAMAR",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 17.36,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 14.91,
+      "elevacion_ne_msnm": 2.45,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2009-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 14.91,
+        "elevacion_ne_msnm": 2.45,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #174 verificado en Acuífero 0201. Brocal 17.36 msnm."
+  },
+  {
+    "num_pozo": "175",
+    "nom_pozo": "CNA_63",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.539682,
+    "lng": -117.04339,
+    "unidad_hidro": "ALUVION_RIO_ALAMAR",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 19.09,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 5.6,
+      "elevacion_ne_msnm": 13.49,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2013-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 8.97,
+        "elevacion_ne_msnm": 10.12,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      },
+      {
+        "fecha": "2013-06-15",
+        "ano": 2013,
+        "profundidad_naf_m": 5.6,
+        "elevacion_ne_msnm": 13.49,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #175 verificado en Acuífero 0201. Brocal 19.09 msnm."
+  },
+  {
+    "num_pozo": "176",
+    "nom_pozo": "CNA_66",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.460633,
+    "lng": -116.909509,
+    "unidad_hidro": "MESA_Y_CAÑONES_TERCIARIOS",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 83.33,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 74.99,
+      "elevacion_ne_msnm": 8.34,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2009-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 74.99,
+        "elevacion_ne_msnm": 8.34,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #176 verificado en Acuífero 0201. Brocal 83.33 msnm."
+  },
+  {
+    "num_pozo": "177",
+    "nom_pozo": "CNA-67",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.444863,
+    "lng": -116.891494,
+    "unidad_hidro": "MESA_Y_CAÑONES_TERCIARIOS",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 111.68,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 22.0,
+      "elevacion_ne_msnm": 89.68,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2013-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 16.21,
+        "elevacion_ne_msnm": 95.47,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      },
+      {
+        "fecha": "2013-06-15",
+        "ano": 2013,
+        "profundidad_naf_m": 22.0,
+        "elevacion_ne_msnm": 89.68,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #177 verificado en Acuífero 0201. Brocal 111.68 msnm."
+  },
+  {
+    "num_pozo": "178",
+    "nom_pozo": "CNA_81",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.489869,
+    "lng": -117.035692,
+    "unidad_hidro": "MESA_Y_CAÑONES_TERCIARIOS",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 218.29,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 32.79,
+      "elevacion_ne_msnm": 185.5,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2013-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 34.06,
+        "elevacion_ne_msnm": 184.23,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      },
+      {
+        "fecha": "2013-06-15",
+        "ano": 2013,
+        "profundidad_naf_m": 32.79,
+        "elevacion_ne_msnm": 185.5,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #178 verificado en Acuífero 0201. Brocal 218.29 msnm."
+  },
+  {
+    "num_pozo": "179",
+    "nom_pozo": "CNA_97",
+    "clave_acuifero": "0201",
+    "nombre_acuifero": "TIJUANA",
+    "lat": 32.498228,
+    "lng": -116.940508,
+    "unidad_hidro": "MESA_Y_CAÑONES_TERCIARIOS",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 45.55,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 6.1,
+      "elevacion_ne_msnm": 39.45,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2013-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2009-06-15",
+        "ano": 2009,
+        "profundidad_naf_m": 8.31,
+        "elevacion_ne_msnm": 37.24,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      },
+      {
+        "fecha": "2013-06-15",
+        "ano": 2013,
+        "profundidad_naf_m": 6.1,
+        "elevacion_ne_msnm": 39.45,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #179 verificado en Acuífero 0201. Brocal 45.55 msnm."
+  },
+  {
+    "num_pozo": "817",
+    "nom_pozo": "CNA 45 22",
+    "clave_acuifero": "0245",
+    "nombre_acuifero": "ROSARITO",
+    "lat": 32.420583,
+    "lng": -117.037472,
+    "unidad_hidro": "MESA_Y_CAÑONES_TERCIARIOS",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 135.0,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 36.28,
+      "elevacion_ne_msnm": 98.72,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2013-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2013-06-15",
+        "ano": 2013,
+        "profundidad_naf_m": 36.28,
+        "elevacion_ne_msnm": 98.72,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #817 verificado en Acuífero 0201. Brocal 135.0 msnm."
+  },
+  {
+    "num_pozo": "818",
+    "nom_pozo": "CNA 45 23",
+    "clave_acuifero": "0245",
+    "nombre_acuifero": "ROSARITO",
+    "lat": 32.406167,
+    "lng": -117.049639,
+    "unidad_hidro": "MESA_Y_CAÑONES_TERCIARIOS",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 57.0,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 36.7,
+      "elevacion_ne_msnm": 20.3,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2013-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2013-06-15",
+        "ano": 2013,
+        "profundidad_naf_m": 36.7,
+        "elevacion_ne_msnm": 20.3,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #818 verificado en Acuífero 0201. Brocal 57.0 msnm."
+  },
+  {
+    "num_pozo": "823",
+    "nom_pozo": "CNA 45 28",
+    "clave_acuifero": "0245",
+    "nombre_acuifero": "ROSARITO",
+    "lat": 32.433528,
+    "lng": -117.012639,
+    "unidad_hidro": "MESA_Y_CAÑONES_TERCIARIOS",
+    "tipo_evidencia": "MEDICION_OFICIAL",
+    "fuente": "CONAGUA_GAS1_RED_PIEZOMETRICA_2025",
+    "calidad_dato": "VERIFICADO_OFICIAL",
+    "interpolable": true,
+    "hidrometria": {
+      "elevacion_brocal_msnm": 257.0,
+      "origen_cota_brocal": "NIVELACION_TOPOGRAFICA_CONAGUA",
+      "profundidad_naf_m": 45.84,
+      "elevacion_ne_msnm": 211.16,
+      "nivel_dinamico_m": null,
+      "profundidad_total_m": null,
+      "caudal_lps": null,
+      "fecha_ultima_medicion": "2013-06-15"
+    },
+    "fisicoquimica": {
+      "tds_ppm": null,
+      "conductividad_us_cm": null,
+      "ph": null,
+      "temp_c": null,
+      "estado_marea": null,
+      "tiempo_bombeo_min": null
+    },
+    "historial_verificado": [
+      {
+        "fecha": "2013-06-15",
+        "ano": 2013,
+        "profundidad_naf_m": 45.84,
+        "elevacion_ne_msnm": 211.16,
+        "tipo": "MEDICION_OFICIAL_CONAGUA"
+      }
+    ],
+    "notas_auditoria": "Pozo oficial #823 verificado en Acuífero 0201. Brocal 257.0 msnm."
+  }
+]
