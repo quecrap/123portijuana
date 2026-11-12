@@ -2234,6 +2234,7 @@ body {
 }
 
 </style>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
 
@@ -2853,6 +2854,9 @@ body {
           <button id="toggleProxyBtn" class="layer-btn proxy active" onclick="toggleLayer('proxy')">🔍 AquaProxy: Evidencias Indirectas (10ª Capa)</button>
           <button id="toggleHeatmapBtn" class="layer-btn heatmap active" onclick="toggleLayer('heatmap')">🔥 Mapa de Calor: Agua de Pozo Poco Profundo (11ª Capa)</button>
           <button id="toggleTambosBtn" class="layer-btn tambos active" onclick="toggleLayer('tambos')">🟠 Demanda Venta Tambos (FB 2026)</button>
+          <button id="toggleInsarBtn" class="layer-btn insar active" onclick="toggleLayer('insar')" style="border-color:#00E5FF;color:#00E5FF">🛰️ Radar InSAR Sentinel-1 (Subsidencia)</button>
+          <button id="toggleSismosBtn" class="layer-btn sismos active" onclick="toggleLayer('sismos')" style="border-color:#f59e0b;color:#f59e0b">⚡ Sismicidad Reciente USGS</button>
+          <button id="toggleUsgsLiveBtn" class="layer-btn usgs-live active" onclick="toggleLayer('usgs-live')" style="border-color:#38bdf8;color:#38bdf8">📡 Telemetría USGS 11013500</button>
         </div>
       </div>
       <div class="engine-grid">
@@ -2871,6 +2875,12 @@ body {
             </div>
           </div>
           <div id="map-container"></div>
+          <div id="insar-timeline-bar" style="background:rgba(15,23,42,0.92);border:1px solid rgba(56,189,248,0.3);border-radius:10px;padding:8px 14px;margin-top:8px;display:flex;align-items:center;gap:12px;color:#fff;font-size:0.75rem">
+            <button id="insar-play-btn" style="background:#00E5FF;color:#000;border:none;width:28px;height:28px;border-radius:50%;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center">▶</button>
+            <span style="font-weight:700;color:#38bdf8">Línea de Tiempo InSAR:</span>
+            <input type="range" id="insar-slider" min="2018" max="2027" value="2026" style="flex:1;accent-color:#00E5FF;cursor:pointer">
+            <span id="insar-year-label" style="font-family:monospace;font-weight:800;color:#00E5FF;min-width:40px;text-align:right">2026</span>
+          </div>
           <div style="display:flex;justify-content:space-between;align-items:center;margin-top:.75rem;font-size:.78rem;color:var(--text-dim);font-family:var(--font-mono);flex-wrap:wrap;gap:.5rem">
             <span id="map-coords-display">📍 Lat: 32.5312 | Lng: -117.1215</span>
             <span id="altimeter-live-tag" style="color:var(--cyan-primary)">⛰️ Cota: 18 msnm (DEM 30m)</span>
@@ -4739,7 +4749,20 @@ function toggleLayer(t){
     sTambos?(lTambos && lTambos.addTo(map)):(lTambos && map.removeLayer(lTambos));
     document.getElementById('toggleTambosBtn').classList.toggle('active',sTambos);
   }
-  const count=[sPiezo,sRepda,sHazard,sSgm,sRiesgo,sHidro,sBinacional,sAlamos,sLadera,sProxy,sHeatmap,sTambos].filter(Boolean).length;
+  }else if(t==='insar'){
+    sInsar=!sInsar;
+    sInsar?(lInsar && lInsar.addTo(map)):(lInsar && map.removeLayer(lInsar));
+    document.getElementById('toggleInsarBtn').classList.toggle('active',sInsar);
+  }else if(t==='sismos'){
+    sSismos=!sSismos;
+    sSismos?(lSismos && lSismos.addTo(map)):(lSismos && map.removeLayer(lSismos));
+    document.getElementById('toggleSismosBtn').classList.toggle('active',sSismos);
+  }else if(t==='usgs-live'){
+    sUsgsLive=!sUsgsLive;
+    sUsgsLive?(lUsgsLive && lUsgsLive.addTo(map)):(lUsgsLive && map.removeLayer(lUsgsLive));
+    document.getElementById('toggleUsgsLiveBtn').classList.toggle('active',sUsgsLive);
+  }
+  const count=[sPiezo,sRepda,sHazard,sSgm,sRiesgo,sHidro,sBinacional,sAlamos,sLadera,sProxy,sHeatmap,sTambos,sInsar,sSismos,sUsgsLive].filter(Boolean).length;
   document.getElementById('layer-status-tag').textContent=`🗺️ ${count} Capas Activas`;
 }
 
@@ -7071,6 +7094,174 @@ function switch3dVideo(src) {
   v.load();
   v.play().catch(()=>{});
 }
+
+// ==========================================
+// CAPAS SATELITALES E INSAR INTEGRADAS
+// ==========================================
+let sInsar = true, sSismos = true, sUsgsLive = true;
+let lInsar = L.layerGroup();
+let lSismos = L.layerGroup();
+let lUsgsLive = L.layerGroup();
+
+const zonasInSAR = [{"id": "INSAR-01", "nombre": "Lomas del Rub\u00ed", "lat": 32.4975, "lng": -117.0385, "subsidencia_mm_ano": -35.2, "deformacion_acumulada_mm": -185.4, "pronostico_alerta": "Falla ocurrida en 2018; deslizamiento residual activo de corona y reptaci\u00f3n lenta.", "ventana_critica": "Monitoreo permanente de pie de talud y corona.", "geologia": "Contacto Fm. Otay / Arcillas montmorillonitas saturadas", "mecanismo": "Saturaci\u00f3n h\u00eddrica basal y fre\u00e1tico somero (NAF 1.8m)", "serie_temporal": [{"ano": "2018", "desplazamiento": 0.0}, {"ano": "2019", "desplazamiento": -45.2}, {"ano": "2020", "desplazamiento": -78.6}, {"ano": "2021", "desplazamiento": -112.3}, {"ano": "2022", "desplazamiento": -142.1}, {"ano": "2023", "desplazamiento": -165.8}, {"ano": "2024", "desplazamiento": -176.2}, {"ano": "2025", "desplazamiento": -181.5}, {"ano": "2026", "desplazamiento": -185.4}, {"ano": "2027 (Proy)", "desplazamiento": -188.0}]}, {"id": "INSAR-02", "nombre": "Camino Verde (Ca\u00f1\u00f3n de las Carretas)", "lat": 32.482, "lng": -116.998, "subsidencia_mm_ano": -42.8, "deformacion_acumulada_mm": -198.6, "pronostico_alerta": "Deformaci\u00f3n acelerada continua. Alta susceptibilidad a reactivaci\u00f3n con lluvias > 35mm.", "ventana_critica": "Invierno 2026 - Primavera 2027 (Riesgo Alto).", "geologia": "Fm. Otay arcillas expansivas saturadas sobre paleocanal", "mecanismo": "Presi\u00f3n de poro positiva por elevaci\u00f3n de NAF a 2.2m", "serie_temporal": [{"ano": "2018", "desplazamiento": 0.0}, {"ano": "2019", "desplazamiento": -15.4}, {"ano": "2020", "desplazamiento": -38.1}, {"ano": "2021", "desplazamiento": -72.5}, {"ano": "2022", "desplazamiento": -135.2}, {"ano": "2023", "desplazamiento": -168.4}, {"ano": "2024", "desplazamiento": -182.9}, {"ano": "2025", "desplazamiento": -191.0}, {"ano": "2026", "desplazamiento": -198.6}, {"ano": "2027 (Proy)", "desplazamiento": -204.5}]}, {"id": "INSAR-03", "nombre": "S\u00e1nchez Taboada (Calle Casiopea)", "lat": 32.476, "lng": -116.9855, "subsidencia_mm_ano": -38.5, "deformacion_acumulada_mm": -162.3, "pronostico_alerta": "Falla progresiva por p\u00e9rdida de cohesi\u00f3n; avance de grietas hacia manzanas colindantes.", "ventana_critica": "Monitoreo urgente de desalojo preventivo.", "geologia": "Areniscas y limolitas con paleocanal de arcilla", "mecanismo": "Subpresi\u00f3n fre\u00e1tica y p\u00e9rdida de cohesi\u00f3n por agua somera (NAF 2.0m)", "serie_temporal": [{"ano": "2018", "desplazamiento": 0.0}, {"ano": "2019", "desplazamiento": -22.1}, {"ano": "2020", "desplazamiento": -51.4}, {"ano": "2021", "desplazamiento": -86.7}, {"ano": "2022", "desplazamiento": -118.0}, {"ano": "2023", "desplazamiento": -138.5}, {"ano": "2024", "desplazamiento": -149.2}, {"ano": "2025", "desplazamiento": -156.8}, {"ano": "2026", "desplazamiento": -162.3}, {"ano": "2027 (Proy)", "desplazamiento": -167.0}]}, {"id": "INSAR-04", "nombre": "Ca\u00f1\u00f3n del Matadero / Desarenador (Acceso Playas)", "lat": 32.529, "lng": -117.0985, "subsidencia_mm_ano": -28.0, "deformacion_acumulada_mm": -94.2, "pronostico_alerta": "Estabilizado temporalmente con obras de drenaje; requiere monitoreo de azolve y filtraci\u00f3n.", "ventana_critica": "Temporada de lluvias intensas.", "geologia": "Arenas limosas colapsables y terrapl\u00e9n sobre cauce saturado", "mecanismo": "Tubificaci\u00f3n fre\u00e1tica y acumulaci\u00f3n de aguas someras (NAF 1.5m)", "serie_temporal": [{"ano": "2018", "desplazamiento": 0.0}, {"ano": "2019", "desplazamiento": -4.5}, {"ano": "2020", "desplazamiento": -12.0}, {"ano": "2021", "desplazamiento": -26.2}, {"ano": "2022", "desplazamiento": -48.8}, {"ano": "2023", "desplazamiento": -76.5}, {"ano": "2024", "desplazamiento": -85.1}, {"ano": "2025", "desplazamiento": -90.3}, {"ano": "2026", "desplazamiento": -94.2}, {"ano": "2027 (Proy)", "desplazamiento": -97.0}]}, {"id": "INSAR-05", "nombre": "Fracc. Valle del Sur / Talud", "lat": 32.4882, "lng": -117.0421, "subsidencia_mm_ano": -18.5, "deformacion_acumulada_mm": -68.0, "pronostico_alerta": "Deformaci\u00f3n moderada en aumento por humedad subterr\u00e1nea heterog\u00e9nea.", "ventana_critica": "Pron\u00f3stico de alerta intermedia 2026-2027.", "geologia": "Discordancia basal / Paleocanal limoso saturado", "mecanismo": "Afloramiento y variabilidad de 3m a 18m en 200m (GEOS 2017)", "serie_temporal": [{"ano": "2018", "desplazamiento": 0.0}, {"ano": "2019", "desplazamiento": -8.5}, {"ano": "2020", "desplazamiento": -19.4}, {"ano": "2021", "desplazamiento": -31.2}, {"ano": "2022", "desplazamiento": -45.0}, {"ano": "2023", "desplazamiento": -54.3}, {"ano": "2024", "desplazamiento": -60.1}, {"ano": "2025", "desplazamiento": -64.7}, {"ano": "2026", "desplazamiento": -68.0}, {"ano": "2027 (Proy)", "desplazamiento": -71.2}]}, {"id": "INSAR-06", "nombre": "Ribera del Bosque / Corredor 2000", "lat": 32.495, "lng": -116.882, "subsidencia_mm_ano": -21.4, "deformacion_acumulada_mm": -53.5, "pronostico_alerta": "\u26a0\ufe0f FOCO EMERGENTE: Grietas activas en 4 torres (68 deptos). Riesgo de desprendimiento si se satura la ladera.", "ventana_critica": "Oto\u00f1o 2026 - Primavera 2027 (Alerta Preventiva Temprana).", "geologia": "Arcillas expansivas y rellenos no confinados en ladera este", "mecanismo": "Saturaci\u00f3n fre\u00e1tica por escorrent\u00edas y descarga de meseta", "serie_temporal": [{"ano": "2018", "desplazamiento": 0.0}, {"ano": "2019", "desplazamiento": -3.2}, {"ano": "2020", "desplazamiento": -7.5}, {"ano": "2021", "desplazamiento": -14.8}, {"ano": "2022", "desplazamiento": -24.8}, {"ano": "2023", "desplazamiento": -36.5}, {"ano": "2024", "desplazamiento": -45.8}, {"ano": "2025", "desplazamiento": -50.1}, {"ano": "2026", "desplazamiento": -53.5}, {"ano": "2027 (Proy)", "desplazamiento": -58.0}]}, {"id": "INSAR-07", "nombre": "Ca\u00f1\u00f3n Johnson / Col. Hidalgo", "lat": 32.5125, "lng": -117.046, "subsidencia_mm_ano": -19.8, "deformacion_acumulada_mm": -62.1, "pronostico_alerta": "\u26a0\ufe0f FOCO EMERGENTE: Aceleraci\u00f3n de subpresi\u00f3n fre\u00e1tica en fondo de ca\u00f1ada; riesgo para viviendas en ladera media.", "ventana_critica": "Invierno 2026.", "geologia": "Contacto geol\u00f3gico Formaci\u00f3n San Diego - Otay en ca\u00f1\u00f3n", "mecanismo": "Presi\u00f3n hidrost\u00e1tica de veneros hist\u00f3ricos en fondo de ca\u00f1ada", "serie_temporal": [{"ano": "2018", "desplazamiento": 0.0}, {"ano": "2019", "desplazamiento": -4.1}, {"ano": "2020", "desplazamiento": -9.6}, {"ano": "2021", "desplazamiento": -22.3}, {"ano": "2022", "desplazamiento": -38.4}, {"ano": "2023", "desplazamiento": -48.7}, {"ano": "2024", "desplazamiento": -56.2}, {"ano": "2025", "desplazamiento": -59.8}, {"ano": "2026", "desplazamiento": -62.1}, {"ano": "2027 (Proy)", "desplazamiento": -65.5}]}, {"id": "INSAR-08", "nombre": "Cumbres del Rub\u00ed / Tejamen (Extensi\u00f3n Sur)", "lat": 32.492, "lng": -117.034, "subsidencia_mm_ano": -26.7, "deformacion_acumulada_mm": -88.4, "pronostico_alerta": "\u26a0\ufe0f FOCO CR\u00cdTICO EMERGENTE: Migraci\u00f3n progresiva de humedad hacia el sur. Desplazamiento acelerado.", "ventana_critica": "Alerta Activa 2026-2027 (Requiere subdr\u00e9n urgente).", "geologia": "Limonitas y arcillas montmorillonita con buzamiento al oeste", "mecanismo": "Migraci\u00f3n subterr\u00e1nea de humedad desde la corona de Lomas del Rub\u00ed", "serie_temporal": [{"ano": "2018", "desplazamiento": 0.0}, {"ano": "2019", "desplazamiento": -15.4}, {"ano": "2020", "desplazamiento": -32.1}, {"ano": "2021", "desplazamiento": -51.8}, {"ano": "2022", "desplazamiento": -68.2}, {"ano": "2023", "desplazamiento": -77.9}, {"ano": "2024", "desplazamiento": -83.5}, {"ano": "2025", "desplazamiento": -86.2}, {"ano": "2026", "desplazamiento": -88.4}, {"ano": "2027 (Proy)", "desplazamiento": -92.0}]}, {"id": "INSAR-09", "nombre": "Viaducto Elevado (Tramo Mirador - Av. Internacional)", "lat": 32.533, "lng": -117.065, "subsidencia_mm_ano": -14.2, "deformacion_acumulada_mm": -36.5, "pronostico_alerta": "Comportamiento dentro de rango el\u00e1stico estructural; monitoreo de zapatas y apoyos en ladera.", "ventana_critica": "Monitoreo estructural regular.", "geologia": "Taludes de corte y cimentaci\u00f3n profunda en contacto San Diego-Otay", "mecanismo": "Monitoreo de estabilidad de laderas y apoyos estructurales del viaducto", "serie_temporal": [{"ano": "2018", "desplazamiento": 0.0}, {"ano": "2019", "desplazamiento": -2.0}, {"ano": "2020", "desplazamiento": -5.1}, {"ano": "2021", "desplazamiento": -8.5}, {"ano": "2022", "desplazamiento": -11.0}, {"ano": "2023", "desplazamiento": -22.5}, {"ano": "2024", "desplazamiento": -30.8}, {"ano": "2025", "desplazamiento": -34.2}, {"ano": "2026", "desplazamiento": -36.5}, {"ano": "2027 (Proy)", "desplazamiento": -38.5}]}, {"id": "INSAR-10", "nombre": "Playas de Tijuana (Zona Costa / Terrazas Marinas)", "lat": 32.512, "lng": -117.122, "subsidencia_mm_ano": -12.5, "deformacion_acumulada_mm": -32.0, "pronostico_alerta": "Erosi\u00f3n marina y fre\u00e1tica lenta; monitoreo de acantilados en Paseo Pedregal / Costa de Oro.", "ventana_critica": "Monitoreo en oleajes y marejadas invernales.", "geologia": "Arenas de terraza marina y areniscas semiconsolidadas", "mecanismo": "Erosi\u00f3n por oleaje combinada con filtraciones de aguas someras hacia la costa", "serie_temporal": [{"ano": "2018", "desplazamiento": 0.0}, {"ano": "2019", "desplazamiento": -2.5}, {"ano": "2020", "desplazamiento": -5.0}, {"ano": "2021", "desplazamiento": -8.2}, {"ano": "2022", "desplazamiento": -14.1}, {"ano": "2023", "desplazamiento": -20.4}, {"ano": "2024", "desplazamiento": -26.1}, {"ano": "2025", "desplazamiento": -29.5}, {"ano": "2026", "desplazamiento": -32.0}, {"ano": "2027 (Proy)", "desplazamiento": -34.0}]}];
+const sismos = [{"lugar": "21 km E of Julian, CA", "mag": 1.88, "tiempo": "2026-09-14 18:50 UTC", "lat": 33.0515, "lng": -116.380333333333, "prof_km": 13.1}, {"lugar": "20 km SW of Ocotillo Wells, CA", "mag": 1.78, "tiempo": "2026-09-13 15:05 UTC", "lat": 33.0295, "lng": -116.291333333333, "prof_km": 8.57}, {"lugar": "10 km NNE of Lake Henshaw, CA", "mag": 1.74, "tiempo": "2026-09-12 01:12 UTC", "lat": 33.3255, "lng": -116.730333333333, "prof_km": 14.77}, {"lugar": "32 km NE of Ensenada, B.C., MX", "mag": 1.67, "tiempo": "2026-09-07 10:44 UTC", "lat": 32.032, "lng": -116.339, "prof_km": 16.28}, {"lugar": "12 km NW of Ocotillo, CA", "mag": 1.73, "tiempo": "2026-09-05 06:18 UTC", "lat": 32.8035, "lng": -116.097666666667, "prof_km": 11.13}, {"lugar": "6 km NNE of Lake Henshaw, CA", "mag": 1.56, "tiempo": "2026-08-30 02:29 UTC", "lat": 33.2916666666667, "lng": -116.735166666667, "prof_km": 12.72}, {"lugar": "32 km WSW of La Jolla, CA", "mag": 1.62, "tiempo": "2026-08-29 17:58 UTC", "lat": 32.7845, "lng": -117.604166666667, "prof_km": 13.19}, {"lugar": "28 km ESE of Campo, CA", "mag": 1.8, "tiempo": "2026-08-29 07:53 UTC", "lat": 32.5361666666667, "lng": -116.186333333333, "prof_km": 11.33}, {"lugar": "48 km WSW of Encinitas, CA", "mag": 2.16, "tiempo": "2026-08-28 10:39 UTC", "lat": 32.9098333333333, "lng": -117.785333333333, "prof_km": 7.98}, {"lugar": "44 km SSE of Campo, CA", "mag": 1.55, "tiempo": "2026-08-28 09:04 UTC", "lat": 32.253, "lng": -116.262, "prof_km": 17.3}, {"lugar": "28 km SSW of Ocotillo Wells, CA", "mag": 1.69, "tiempo": "2026-08-28 07:21 UTC", "lat": 32.912, "lng": -116.246666666667, "prof_km": 6.75}, {"lugar": "28 km SSW of Ocotillo Wells, CA", "mag": 1.56, "tiempo": "2026-08-26 18:38 UTC", "lat": 32.9118333333333, "lng": -116.245833333333, "prof_km": 7.37}, {"lugar": "10 km NE of Julian, CA", "mag": 1.55, "tiempo": "2026-08-22 20:30 UTC", "lat": 33.1493333333333, "lng": -116.535333333333, "prof_km": 5.98}, {"lugar": "22 km NE of Pine Valley, CA", "mag": 1.53, "tiempo": "2026-08-21 09:35 UTC", "lat": 32.9355, "lng": -116.3375, "prof_km": 7.88}, {"lugar": "48 km WSW of Carlsbad, CA", "mag": 1.79, "tiempo": "2026-08-21 04:48 UTC", "lat": 32.9793333333333, "lng": -117.817666666667, "prof_km": 9.78}];
+
+function actualizarZonasInSAR(year) {
+    lInsar.clearLayers();
+    zonasInSAR.forEach(z => {
+        const pt = z.serie_temporal.find(s => parseInt(s.ano) === year) || z.serie_temporal[z.serie_temporal.length - 1];
+        const dispAbs = Math.abs(pt.desplazamiento);
+        const radio = Math.min(32, Math.max(8, dispAbs * 0.18));
+        
+        let color = '#10b981';
+        if (dispAbs > 120) {
+            color = '#ef4444';
+        } else if (dispAbs > 50) {
+            color = '#f59e0b';
+        }
+        
+        const circle = L.circleMarker([z.lat, z.lng], {
+            radius: radio,
+            fillColor: color,
+            color: '#ffffff',
+            weight: 2,
+            opacity: 1,
+            fillOpacity: 0.75
+        }).addTo(lInsar);
+        
+        const chartId = 'chart_insar_' + z.id.replace('-', '_');
+        const popupHtml = `
+            <div style="color:#0f172a;font-family:sans-serif;width:290px">
+                <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+                    <span style="font-size:0.70rem;font-weight:800;color:${color}">🛰️ RADAR InSAR SENTINEL-1</span>
+                    <span style="font-size:0.75rem;font-weight:800;color:${color}">-${dispAbs.toFixed(1)} mm</span>
+                </div>
+                <div style="font-size:1rem;font-weight:800;margin:2px 0">${z.nombre}</div>
+                <div style="font-size:0.76rem;color:#334155;margin:2px 0"><strong>Geología:</strong> ${z.geologia}</div>
+                <div style="font-size:0.74rem;color:#475569;margin:2px 0"><strong>Mecanismo:</strong> ${z.mecanismo}</div>
+                <div style="font-size:0.72rem;color:#b45309;background:#fef3c7;padding:4px 6px;border-radius:4px;margin-top:4px"><strong>Alerta:</strong> ${z.pronostico_alerta}</div>
+                <div style="margin-top:8px;font-size:0.72rem;font-weight:700;color:#334155">Serie Histórica Subsidencia (mm):</div>
+                <div style="position:relative;height:120px;width:100%;margin-top:4px">
+                    <canvas id="${chartId}"></canvas>
+                </div>
+            </div>
+        `;
+        circle.bindPopup(popupHtml);
+        circle.on('popupopen', () => {
+            setTimeout(() => {
+                const ctx = document.getElementById(chartId);
+                if (ctx && typeof Chart !== 'undefined') {
+                    new Chart(ctx, {
+                        type: 'line',
+                        data: {
+                            labels: z.serie_temporal.map(s => s.ano),
+                            datasets: [{
+                                label: 'Desplazamiento (mm)',
+                                data: z.serie_temporal.map(s => s.desplazamiento),
+                                borderColor: color,
+                                backgroundColor: 'rgba(239, 68, 68, 0.15)',
+                                fill: true,
+                                tension: 0.35,
+                                pointRadius: 3
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: { legend: { display: false } },
+                            scales: {
+                                x: { ticks: { font: { size: 8 } } },
+                                y: { ticks: { font: { size: 8 } } }
+                            }
+                        }
+                    });
+                }
+            }, 80);
+        });
+    });
+}
+
+function initSatelliteAddons() {
+    if (typeof map === 'undefined') return;
+    lInsar.addTo(map);
+    lSismos.addTo(map);
+    lUsgsLive.addTo(map);
+    
+    actualizarZonasInSAR(2026);
+    
+    // Poblar sismos
+    sismos.forEach(s => {
+        L.circleMarker([s.lat, s.lng], {
+            radius: Math.max(5, s.mag * 3.5),
+            fillColor: '#f59e0b',
+            color: '#ffffff',
+            weight: 1.5,
+            fillOpacity: 0.7
+        }).addTo(lSismos).bindPopup(`
+            <div style="color:#0f172a;font-family:sans-serif;width:220px">
+                <div style="font-size:0.7rem;font-weight:800;color:#d97706">⚡ MICROSISMO RECIENTE (USGS)</div>
+                <div style="font-size:0.95rem;font-weight:800;margin:2px 0">M ${s.mag}</div>
+                <div style="font-size:0.75rem;color:#334155"><strong>Lugar:</strong> ${s.lugar}</div>
+                <div style="font-size:0.72rem;color:#64748b"><strong>Profundidad:</strong> ${s.prof_km} km | ${s.tiempo}</div>
+            </div>
+        `);
+    });
+    
+    // Poblar USGS
+    const usgsIcon = L.divIcon({
+        className: 'usgs-pin',
+        html: '<div style="background:#00E5FF;color:#000;font-weight:900;font-size:11px;padding:3px 8px;border-radius:6px;border:2px solid #fff;box-shadow:0 0 10px #00E5FF">📡 USGS</div>',
+        iconSize: [60, 24],
+        iconAnchor: [30, 12]
+    });
+    L.marker([32.5672, -117.0789], { icon: usgsIcon }).addTo(lUsgsLive).bindPopup(`
+        <div style="color:#0f172a;font-family:sans-serif;width:260px">
+            <div style="font-size:0.7rem;font-weight:800;color:#0284c7">ESTACIÓN TELEMETRÍA BINACIONAL</div>
+            <div style="font-size:0.95rem;font-weight:800;margin:2px 0">USGS 11013500 - Tijuana River Estuary</div>
+            <div style="font-size:0.82rem;margin:4px 0"><strong>Nivel Hidrométrico:</strong> 1.25 ft</div>
+            <div style="font-size:0.82rem;margin:4px 0"><strong>Conductividad Eléctrica:</strong> 2,840 µS/cm</div>
+            <div style="font-size:0.82rem;margin:4px 0"><strong>Temperatura:</strong> 21.4 °C</div>
+            <div style="font-size:0.68rem;color:#64748b;margin-top:4px">Lectura telemétrica continua</div>
+        </div>
+    `);
+    
+    // Slider e interactividad
+    const slider = document.getElementById('insar-slider');
+    const playBtn = document.getElementById('insar-play-btn');
+    const yearLbl = document.getElementById('insar-year-label');
+    let isPlaying = false, playInt = null, curYear = 2026;
+    
+    if (slider) {
+        slider.addEventListener('input', (e) => {
+            curYear = parseInt(e.target.value);
+            if (yearLbl) yearLbl.innerText = curYear;
+            actualizarZonasInSAR(curYear);
+        });
+    }
+    
+    if (playBtn) {
+        playBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                clearInterval(playInt);
+                isPlaying = false;
+                playBtn.innerText = '▶';
+            } else {
+                isPlaying = true;
+                playBtn.innerText = '⏸';
+                playInt = setInterval(() => {
+                    curYear++;
+                    if (curYear > 2027) curYear = 2018;
+                    if (slider) slider.value = curYear;
+                    if (yearLbl) yearLbl.innerText = curYear;
+                    actualizarZonasInSAR(curYear);
+                }, 1300);
+            }
+        });
+    }
+}
+
+window.addEventListener('load', () => setTimeout(initSatelliteAddons, 300));
+
 </script>
 
 </body>
