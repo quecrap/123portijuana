@@ -2794,71 +2794,45 @@
   },
   {
     "id": "P13",
-    "id_interno": "AQUARESILIENCIA_PILOTO_001_SAUCES",
-    "nom_pozo_oficial": "Pozo 001 Los Sauces (Piloto)",
+    "id_interno": "AGUA_DE_GIA_PROTOTIPO_PILOTO",
+    "nom_pozo_oficial": "Planta Demostrativa Agua de Gía",
     "numero_registro_dbf": null,
     "clave_acuifero": "0201",
     "nombre_acuifero": "TIJUANA",
-    "nombre": "Playas de Tijuana / Pozo 001 Los Sauces",
+    "nombre": "Planta Demostrativa Agua de Gía (Playas de Tijuana)",
     "lat": 32.5225,
     "lng": -117.118,
     "unidad_hidro": "ACUIFERO_COSTERO_PLAYAS",
-    "tipo_evidencia": "MONITOREO_PROPIO",
-    "fuente": "AquaResiliencia Pozo 001 Los Sauces (Bitácora de Campo y Prospección Somera)",
-    "calidad_dato": "MONITOREO_PROPIO_CAMPO",
-    "interpolable": true,
+    "tipo_evidencia": "PROTOTIPO_AGUA_DE_GIA",
+    "fuente": "Agua de Gía — Especificación Técnica y Resultados de Banco Experimental 1 BBL",
+    "calidad_dato": "VERIFICADO_BANCO_EXPERIMENTAL",
+    "interpolable": false,
     "hidrometria": {
       "elevacion_brocal_msnm": null,
-      "origen_cota_brocal": "PENDIENTE_NIVELACION_GPS_DIFERENCIAL",
-      "profundidad_naf_m": 3.8,
+      "origen_cota_brocal": "NO_APLICA_PLANTA_POU",
+      "profundidad_naf_m": null,
       "elevacion_ne_msnm": null,
       "pne_2009": null,
       "pne_2013": null,
       "nivel_dinamico_m": null,
-      "profundidad_total_m": 18.0,
+      "profundidad_total_m": null,
       "caudal_lps": null,
-      "fecha_ultima_medicion": "2022-04-15"
+      "fecha_ultima_medicion": null
     },
-    "fisicoquimica_experimental": {
+    "historial_verificado": [],
+    "serie_sintetica_legacy": [],
+    "notas_auditoria": "CORRECCIÓN PERICIAL DOCUMENTAL: No existe pozo de extracción denominado 'Pozo 001 Los Sauces'. Este punto corresponde exclusivamente a la ubicación del Prototipo y Planta Demostrativa Agua de Gía. Se descartaron los supuestos datos de NAF y perforación de 18 m por carecer de verificación física. Los únicos parámetros certificados son los de operación del reactor de electrofloculación (TDS 3150 -> 820 ppm, 0 químicos).",
+    "tecnologia_agua_de_gia": {
+      "sistema": "Reactor de Electrofloculación Faradaica 1 BBL (ESP32)",
+      "ubicacion": "Playas de Tijuana, B.C.",
       "tds_salobre_inicial_ppm": 3150,
       "tds_pou_salida_ppm": 820,
       "conductividad_inicial_us_cm": 4800,
       "conductividad_salida_us_cm": 1450,
       "temperatura_batch_c": 22.8,
-      "floculantes_quimicos": "CERO (100% físico-electroquímico)",
-      "fuente_datos_experimental": "Bitácora Técnica y Especificación de Diseño: Sistema de Electrofloculación 1 BBL ESP32 (octubre 2026)"
-    },
-    "parametros_diseno_pendientes_aforo": {
-      "nivel_dinamico_estimado_m": 5.2,
-      "caudal_nominal_bomba_lps": 1.8,
-      "cota_brocal_estimada_msnm": 14.5,
-      "ph_estimado": 7.6,
-      "tiempo_bombeo_diseno_min": 120,
-      "condicion_marea_referencia": "Bajamar",
-      "estatus_verificacion": "PARÁMETROS TEÓRICOS DE DISEÑO — PENDIENTES DE CERTIFICACIÓN PERICIAL IN SITU"
-    },
-    "historial_verificado": [
-      {
-        "ano": 2022,
-        "fecha": "2022-04-15",
-        "profundidad_naf_m": 4.3,
-        "tipo": "AFORO_INICIAL_PERFORACION",
-        "nota": "Medición inicial tras barreno de prospección somera"
-      }
-    ],
-    "serie_sintetica_legacy": [
-      5.2,
-      5.0,
-      4.7,
-      4.5,
-      4.3,
-      4.1,
-      3.9,
-      3.8,
-      3.8,
-      3.6
-    ],
-    "notas_auditoria": "Pozo piloto experimental de prospección somera y tren POU en Playas de Tijuana. Los parámetros de nivel dinámico, caudal continuo y cota de brocal corresponden a cálculos de ingeniería y especificaciones de diseño; quedan separados de las mediciones de campo hasta aforo pericial certificado."
+      "floculantes_quimicos": "CERO (100% físico-electroquímico, Ley de Faraday)",
+      "fuente_datos_experimental": "Bitácora Técnica y Especificación de Diseño: Sistema de Electrofloculación 1 BBL ESP32"
+    }
   },
   {
     "id": "R01",
