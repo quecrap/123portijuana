@@ -6,7 +6,7 @@
   <title>Sondeo Satelital · Alondra | Agua de Ya Tijuana</title>
 
   <!-- Meta Preview para WhatsApp & Móvil -->
-  <meta name="description" content="Visor Comercial y de Prospección Rápida para Alondra. Detección instantánea de factibilidad hídrica, capa de servicios de agua (CESPT vs Pipas) y guion comercial para clientes.">
+  <meta name="description" content="Visor Comercial y de Prospección Rápida para Alondra. Detección instantánea de factibilidad hídrica, capa de servicios de agua (CESPT vs Pipas), sitios comprobados en campo y guion comercial.">
   <meta name="theme-color" content="#0B132B">
 
   <!-- Google Fonts: Inter & JetBrains Mono -->
@@ -34,10 +34,11 @@
               navy: '#1C2541',
               card: '#151E38',
               cyan: '#00B4D8',
+              electricCyan: '#00E5FF',
               emerald: '#10B981',
               amber: '#F59E0B',
               red: '#EF4444',
-              pink: '#EC4899',
+              purple: '#A855F7',
               gold: '#F59E0B'
             }
           }
@@ -63,22 +64,22 @@
     }
 
     .glass-bar {
-      background: rgba(11, 19, 43, 0.92);
+      background: rgba(11, 19, 43, 0.94);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(58, 80, 107, 0.55);
+      border: 1px solid rgba(58, 80, 107, 0.6);
     }
 
     .glass-sheet {
-      background: rgba(21, 30, 56, 0.97);
+      background: rgba(21, 30, 56, 0.98);
       backdrop-filter: blur(18px);
       -webkit-backdrop-filter: blur(18px);
-      border: 1px solid rgba(0, 180, 216, 0.3);
+      border: 1px solid rgba(0, 229, 255, 0.35);
     }
 
     @keyframes pulse-pin {
       0% { transform: scale(0.9); opacity: 0.9; }
-      50% { transform: scale(1.2); opacity: 0.4; }
+      50% { transform: scale(1.25); opacity: 0.35; }
       100% { transform: scale(0.9); opacity: 0.9; }
     }
     .pin-pulse {
@@ -87,14 +88,13 @@
 
     @keyframes gold-glow {
       0%, 100% { box-shadow: 0 0 15px rgba(245, 158, 11, 0.4), inset 0 0 15px rgba(245, 158, 11, 0.2); }
-      50% { box-shadow: 0 0 25px rgba(245, 158, 11, 0.8), inset 0 0 25px rgba(245, 158, 11, 0.4); }
+      50% { box-shadow: 0 0 25px rgba(245, 158, 11, 0.85), inset 0 0 25px rgba(245, 158, 11, 0.45); }
     }
     .gold-box-active {
       animation: gold-glow 2.5s infinite ease-in-out;
       border-color: #F59E0B !important;
     }
 
-    /* Scrollbar oculta pero funcional */
     .no-scrollbar::-webkit-scrollbar {
       display: none;
     }
@@ -103,20 +103,44 @@
       scrollbar-width: none;
     }
 
-    /* Tooltips en mapa */
+    /* Estilo de Marca de Agua (Watermark Badges flotantes) */
+    .watermark-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 8px;
+      border-radius: 9999px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      pointer-events: none;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.6);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      white-space: nowrap;
+    }
+    .watermark-cyan {
+      background: rgba(8, 20, 38, 0.88);
+      border: 1.5px solid #00E5FF;
+      color: #00E5FF;
+    }
+    .watermark-purple {
+      background: rgba(25, 15, 45, 0.88);
+      border: 1.5px solid #C084FC;
+      color: #E9D5FF;
+    }
+
     .leaflet-tooltip.custom-service-tip {
-      background: rgba(15, 23, 42, 0.92);
-      border: 1px solid rgba(0, 180, 216, 0.5);
+      background: rgba(15, 23, 42, 0.95);
+      border: 1px solid #00E5FF;
       color: #fff;
       font-family: 'Inter', sans-serif;
       font-size: 11px;
       font-weight: 600;
-      border-radius: 8px;
-      padding: 4px 8px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-    }
-    .leaflet-tooltip-top:before {
-      border-top-color: rgba(15, 23, 42, 0.92);
+      border-radius: 10px;
+      padding: 6px 10px;
+      box-shadow: 0 6px 18px rgba(0,0,0,0.6);
     }
   </style>
 </head>
@@ -137,7 +161,7 @@
     <!-- Fila 1: Barra de búsqueda principal -->
     <div class="glass-bar rounded-2xl p-2 sm:p-2.5 shadow-2xl flex items-center gap-2">
       <!-- Icono Alondra / Logo -->
-      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center flex-shrink-0 text-white shadow-md">
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center flex-shrink-0 text-white shadow-md">
         <i data-lucide="map-pin" class="w-5 h-5"></i>
       </div>
 
@@ -172,14 +196,14 @@
       </button>
     </div>
 
-    <!-- Fila 2: Chips rápidos con las Zonas de Oro Prioritarias -->
+    <!-- Fila 2: Chips rápidos con Destino de Mañana & Zonas Clave -->
     <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5 text-[11px] font-mono px-1">
-      <span class="text-[10px] text-amber-400 font-bold flex items-center gap-1 flex-shrink-0">
-        <i data-lucide="target" class="w-3.5 h-3.5"></i> STRIKE:
-      </span>
-      <button type="button" onclick="volarA(32.532, -116.885, 'Ribera Alamar / La Morita', true)" class="px-2.5 py-1 rounded-full bg-amber-950/80 border border-amber-500/70 hover:bg-amber-900 text-amber-200 transition whitespace-nowrap flex items-center gap-1 shadow-md">
-        <span>🎯 La Morita</span>
+      
+      <!-- CHIP DE MAÑANA DESTACADO -->
+      <button type="button" onclick="irADestinoManana()" class="px-3 py-1 rounded-full bg-gradient-to-r from-amber-500 via-yellow-400 to-amber-500 text-slate-950 font-black transition whitespace-nowrap flex items-center gap-1.5 shadow-lg animate-pulse">
+        <span>🚀 MAÑANA: La Morita</span>
       </button>
+
       <button type="button" onclick="volarA(32.478, -116.800, 'Maclovio Rojas (Vado Aluvial)', true)" class="px-2.5 py-1 rounded-full bg-amber-950/80 border border-amber-500/70 hover:bg-amber-900 text-amber-200 transition whitespace-nowrap flex items-center gap-1 shadow-md">
         <span>🎯 Maclovio</span>
       </button>
@@ -192,11 +216,11 @@
       <button type="button" onclick="volarA(32.505, -116.820, 'Ojo de Agua', true)" class="px-2.5 py-1 rounded-full bg-amber-950/80 border border-amber-500/70 hover:bg-amber-900 text-amber-200 transition whitespace-nowrap flex items-center gap-1 shadow-md">
         <span>🎯 Ojo de Agua</span>
       </button>
+      <button type="button" onclick="volarA(32.5225, -117.1180, 'Pozo 01 Piloto Pablo (Los Sauces)', true)" class="px-2.5 py-1 rounded-full bg-emerald-950/80 border border-emerald-500/70 text-emerald-300 transition whitespace-nowrap flex items-center gap-1">
+        <span>📍 Pozo 01</span>
+      </button>
       <button type="button" onclick="volarA(32.445, -117.035, 'Santa Fe (Tandeo Severo)')" class="px-2 py-1 rounded-full bg-[#0B132B]/85 border border-slate-700 hover:border-cyan-400 text-slate-300 transition whitespace-nowrap">
         💧 Santa Fe
-      </button>
-      <button type="button" onclick="volarA(32.420, -116.960, 'Natura / Delicias (Pipas $350)')" class="px-2 py-1 rounded-full bg-[#0B132B]/85 border border-slate-700 hover:border-cyan-400 text-slate-300 transition whitespace-nowrap">
-        🚚 Natura
       </button>
       <button type="button" onclick="volarA(32.525, -117.015, 'Zona Río (Plaza Río)')" class="px-2 py-1 rounded-full bg-[#0B132B]/85 border border-slate-700 hover:border-cyan-400 text-slate-300 transition whitespace-nowrap">
         🏢 Zona Río
@@ -206,16 +230,27 @@
     <!-- Fila 3: Barra de Control de Capas y Modos de Visualización -->
     <div class="glass-bar rounded-2xl p-2 px-3 flex items-center justify-between gap-2 shadow-xl flex-wrap text-xs font-mono">
       
-      <!-- Toggle Capa de Servicios CESPT vs Pipas -->
+      <!-- Toggle Capa de Servicios CESPT vs Pipas (Electric Cyan) -->
       <button 
         type="button" 
         id="btn-toggle-servicios" 
         onclick="toggleCapaServicios()" 
-        class="px-2.5 py-1 rounded-xl bg-pink-950/80 border border-pink-500/60 text-pink-300 hover:bg-pink-900 font-bold transition flex items-center gap-1.5 shadow-sm"
-        title="Mostrar polígonos de cobertura y carencia de agua"
+        class="px-2.5 py-1 rounded-xl bg-cyan-950/80 border border-cyan-400 text-cyan-300 hover:bg-cyan-900 font-bold transition flex items-center gap-1.5 shadow-sm"
+        title="Mostrar polígonos y marcas de agua de cobertura y carencia de agua"
       >
-        <span class="w-2.5 h-2.5 rounded-full bg-pink-500 inline-block"></span>
-        <span id="label-toggle-servicios">Pipas & CESPT: ON</span>
+        <span class="w-2.5 h-2.5 rounded-full bg-cyan-400 inline-block animate-pulse"></span>
+        <span id="label-toggle-servicios">Pipas (Cyan): ON</span>
+      </button>
+
+      <!-- Toggle Sitios Comprobados en Campo -->
+      <button 
+        type="button" 
+        id="btn-toggle-comprobados" 
+        onclick="toggleCapaComprobados()" 
+        class="px-2.5 py-1 rounded-xl bg-emerald-950/80 border border-emerald-500 text-emerald-300 hover:bg-emerald-900 font-bold transition flex items-center gap-1.5 shadow-sm"
+        title="Ver pozos reales y sitios comprobados en campo"
+      >
+        <span>✅ Comprobados</span>
       </button>
 
       <!-- Toggle Puntos de Tambos de Campo -->
@@ -223,15 +258,15 @@
         type="button" 
         id="btn-toggle-tambos" 
         onclick="toggleCapaTambos()" 
-        class="px-2.5 py-1 rounded-xl bg-slate-900 border border-slate-700 text-slate-300 hover:text-white transition flex items-center gap-1.5"
+        class="px-2.5 py-1 rounded-xl bg-slate-900 border border-slate-700 text-slate-300 hover:text-white transition flex items-center gap-1"
         title="Ver precios de tambos recopilados en campo"
       >
-        <i data-lucide="tag" class="w-3.5 h-3.5 text-cyan-400"></i>
-        <span>Tambos ($350)</span>
+        <i data-lucide="tag" class="w-3.5 h-3.5 text-amber-400"></i>
+        <span>$350 Tambos</span>
       </button>
 
       <!-- Control de Opacidad del Semáforo Hidrogeológico -->
-      <div class="flex items-center gap-2 bg-slate-900/90 rounded-xl px-2.5 py-1 border border-slate-700/80">
+      <div class="flex items-center gap-1.5 bg-slate-900/90 rounded-xl px-2 py-1 border border-slate-700/80">
         <span class="text-[10px] text-slate-400">Semáforo:</span>
         <input 
           type="range" 
@@ -240,21 +275,21 @@
           max="1" 
           step="0.05" 
           value="0.38" 
-          class="w-14 sm:w-16 h-1.5 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-cyan-400"
+          class="w-12 sm:w-16 h-1.5 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-cyan-400"
           oninput="actualizarOpacidad(this.value)"
         >
         <span id="label-opacidad" class="text-cyan-400 font-bold text-[10px] w-6 text-right">38%</span>
       </div>
 
-      <!-- Botón Focalizar Zonas de Oro -->
+      <!-- Botón Registrar Visita de Campo -->
       <button 
         type="button" 
-        onclick="focalizarZonasDeOro()" 
-        class="px-2.5 py-1 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-400 hover:to-amber-500 text-slate-950 font-black transition flex items-center gap-1.5 shadow-md"
-        title="Centrar en el cruce de Oro: Sin Red + Agua Somera Favorable"
+        onclick="abrirModalVisita()" 
+        class="px-2.5 py-1 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-bold transition flex items-center gap-1 shadow-md"
+        title="Registrar una nueva prueba o visita de campo en tu celular"
       >
-        <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
-        <span>Zonas de Oro</span>
+        <i data-lucide="plus-circle" class="w-3.5 h-3.5"></i>
+        <span>+ Visita</span>
       </button>
 
     </div>
@@ -265,9 +300,9 @@
   <!-- INSTRUCCIÓN FLOTANTE (CUANDO NO SE HA DADO CLIC)                          -->
   <!-- ========================================================================= -->
   <div id="hint-floating" class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 pointer-events-none transition-all duration-300">
-    <div class="glass-bar rounded-full px-4 py-2 border border-cyan-500/40 text-xs text-cyan-300 font-mono flex items-center gap-2 shadow-2xl animate-bounce">
+    <div class="glass-bar rounded-full px-4 py-2 border border-cyan-400/50 text-xs text-cyan-300 font-mono flex items-center gap-2 shadow-2xl animate-bounce">
       <i data-lucide="hand" class="w-4 h-4"></i>
-      <span>Toca cualquier casa, cañón o patio para evaluar el cruce</span>
+      <span>Toca cualquier casa, vado o cañón para evaluar el cruce</span>
     </div>
   </div>
 
@@ -314,6 +349,20 @@
       </div>
 
       <!-- ===================================================================== -->
+      <!-- ALERTA SI ES SITIO COMPROBADO EN CAMPO                                -->
+      <!-- ===================================================================== -->
+      <div id="box-sitio-comprobado" class="hidden rounded-2xl p-3 bg-emerald-950/70 border border-emerald-400 space-y-1.5 text-[11px] text-emerald-200">
+        <div class="flex items-center justify-between font-bold text-emerald-300">
+          <div class="flex items-center gap-1.5">
+            <i data-lucide="check-check" class="w-4 h-4 text-emerald-400"></i>
+            <span id="txt-comprobado-titulo">SITIO VERIFICADO EN CAMPO</span>
+          </div>
+          <span class="px-2 py-0.5 rounded-full bg-emerald-500 text-slate-950 font-black text-[9px] font-mono" id="txt-comprobado-naf">NAF: 3.8m</span>
+        </div>
+        <p id="txt-comprobado-detalle" class="leading-relaxed text-emerald-100/90"></p>
+      </div>
+
+      <!-- ===================================================================== -->
       <!-- CAJA DE IMPACTO COMERCIAL CRUZADO ("EL CRUCE")                       -->
       <!-- ===================================================================== -->
       <div id="box-cruce-dorado" class="rounded-2xl p-3.5 bg-gradient-to-br from-amber-950/80 via-slate-900/90 to-amber-950/50 border border-amber-500/80 space-y-2 shadow-xl gold-box-active">
@@ -323,12 +372,12 @@
             <span>¡ZONA DE ORO DETECTADA!</span>
           </div>
           <span class="px-2 py-0.5 rounded-full bg-amber-500 text-slate-950 font-black text-[10px] font-mono">
-            ALTA CONVERSIÓN
+            STRIKE ZONE
           </span>
         </div>
 
         <p class="text-[11px] text-amber-100/90 leading-tight">
-          Aquí se cruza la mayor necesidad de agua con las condiciones más favorables del subsuelo. El cliente está pagando precios abusivos en tambos y el agua limpia está a pocos metros.
+          El cliente gasta miles de pesos al mes en tambos de pipa y el subsuelo aluvial tiene agua limpia somera (< 6m). Retorno de inversión garantizado en pocos meses.
         </p>
 
         <!-- Métricas Económicas del Cliente -->
@@ -346,18 +395,18 @@
           <div class="p-2 rounded-xl bg-slate-950/80 border border-amber-500/30">
             <div class="text-[9px] text-slate-400 uppercase">Obra en Patio</div>
             <div class="text-xs sm:text-sm font-black text-cyan-300">1 a 2 Días</div>
-            <div class="text-[8px] text-slate-500 mt-0.5">Suelo aluvial noble</div>
+            <div class="text-[8px] text-slate-500 mt-0.5">Aluvión noble</div>
           </div>
         </div>
       </div>
 
       <!-- Caja para casos TANDEO SEVERO (Respaldo) -->
-      <div id="box-cruce-tandeo" class="hidden rounded-2xl p-3 bg-blue-950/60 border border-blue-500/50 space-y-1 text-[11px] text-blue-200">
-        <div class="font-bold flex items-center gap-1.5 text-blue-300">
+      <div id="box-cruce-tandeo" class="hidden rounded-2xl p-3 bg-purple-950/60 border border-purple-500/50 space-y-1 text-[11px] text-purple-200">
+        <div class="font-bold flex items-center gap-1.5 text-purple-300">
           <i data-lucide="droplets" class="w-4 h-4"></i> MERCADO DE RESPALDO (CORTES CESPT)
         </div>
         <p class="leading-relaxed">
-          Esta colonia sí cuenta con red, pero sufre suspensiones frecuentes (2 a 5 días) por fallas del Acueducto Florido-Aguaje. El producto a ofrecer es un micropozo de respaldo para llenado automático de tinaco/cisterna.
+          Esta colonia cuenta con red pero sufre suspensiones frecuentes (2 a 5 días) por fallas del Acueducto Florido-Aguaje. El producto a ofrecer es un micropozo somero para llenado automático de tinaco/cisterna.
         </p>
       </div>
 
@@ -367,7 +416,7 @@
           <i data-lucide="building" class="w-4 h-4 text-cyan-400"></i> RED FORMAL CESPT CONSOLIDADA
         </div>
         <p class="leading-relaxed">
-          El cliente cuenta con suministro continuo regular (~$25 MXN/m³). La urgencia doméstica es baja; el pozo somero aplica principalmente para comercios con alto consumo (autolavados, lavanderías) o naves industriales del portafolio de Joe.
+          Suministro regular continuo (~$25 MXN/m³). Baja urgencia doméstica; prospecto aplicable principalmente para giros comerciales (autolavados, lavanderías) o naves industriales (Joe).
         </p>
       </div>
 
@@ -395,7 +444,7 @@
         <div class="p-2 rounded-lg bg-emerald-950/60 border border-emerald-500/40 text-[11px] text-emerald-300 flex items-start gap-2">
           <i data-lucide="coins" class="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5"></i>
           <div>
-            <strong>Tu Ganancia Alondra:</strong> Cobras <strong>$300 MXN de adelanto en efectivo</strong> al terminar el estudio + el resto de tu <strong>7% de comisión</strong> al entregar el pozo ($855 Base / $1,275 Medio / $1,765 Completo).
+            <strong>Tu Ganancia Alondra:</strong> Cobras <strong>$300 MXN de adelanto en efectivo</strong> al terminar el estudio + tu <strong>7% de comisión</strong> al entregar el pozo funcionando ($855 Base / $1,275 Medio / $1,765 Completo).
           </div>
         </div>
       </div>
@@ -406,7 +455,7 @@
           <i data-lucide="shield-alert" class="w-4 h-4"></i> CERO COSTO AL CLIENTE (HONESTIDAD ÉTICA)
         </div>
         <p class="leading-relaxed">
-          No se le cobra nada al vecino. Aunque no tenga red de agua, el terreno es rocoso o ladera sin recarga somera. Se descarta con honestidad por WhatsApp para proteger su dinero y la reputación de Agua de Ya.
+          No se le cobra nada al vecino. Aunque no tenga red de agua, el terreno es rocoso o cima sin recarga somera. Se descarta con honestidad para proteger su dinero y la reputación de Agua de Ya.
         </p>
       </div>
 
@@ -417,7 +466,7 @@
           type="button" 
           onclick="copiarMensajeWhatsApp()" 
           id="btn-copiar-wa" 
-          class="w-full py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 border border-cyan-500/40 text-cyan-300 font-bold text-xs flex items-center justify-center gap-2 transition"
+          class="w-full py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 border border-cyan-400/50 text-cyan-300 font-bold text-xs flex items-center justify-center gap-2 transition"
         >
           <i data-lucide="copy" class="w-4 h-4"></i>
           <span id="label-btn-copiar">Copiar Mensaje para WhatsApp</span>
@@ -438,37 +487,100 @@
     </div>
   </div>
 
+  <!-- ========================================================================= -->
+  <!-- MODAL: REGISTRAR VISITA DE CAMPO (ALMACENAMIENTO LOCAL EN CELULAR)        -->
+  <!-- ========================================================================= -->
+  <div id="modal-visita" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-3">
+    <div class="glass-sheet max-w-md w-full rounded-3xl p-5 border border-cyan-400 space-y-4 shadow-2xl">
+      <div class="flex items-center justify-between border-b border-slate-700 pb-2">
+        <div class="flex items-center gap-2 text-cyan-300 font-bold text-sm">
+          <i data-lucide="clipboard-check" class="w-5 h-5"></i>
+          <span>Registrar Visita o Pozo en Campo</span>
+        </div>
+        <button type="button" onclick="cerrarModalVisita()" class="p-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <form id="form-visita" onsubmit="guardarVisitaCampo(event)" class="space-y-3 text-xs">
+        <div>
+          <label class="block text-slate-400 mb-1">Nombre del Vecino o Referencia:</label>
+          <input type="text" id="visita-nombre" placeholder="Ej: Don Pedro / Patio de Tierra" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white">
+        </div>
+
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block text-slate-400 mb-1">Colonia / Sector:</label>
+            <input type="text" id="visita-colonia" placeholder="Ej: La Morita Oriente" required class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white">
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-1">NAF Estimado/Medido:</label>
+            <input type="text" id="visita-naf" placeholder="Ej: 4.0 metros" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white font-mono">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2">
+          <div>
+            <label class="block text-slate-400 mb-1">Latitud:</label>
+            <input type="text" id="visita-lat" readonly class="w-full bg-slate-950 border border-slate-800 rounded-xl px-2 py-1.5 text-cyan-400 font-mono text-[11px]">
+          </div>
+          <div>
+            <label class="block text-slate-400 mb-1">Longitud:</label>
+            <input type="text" id="visita-lng" readonly class="w-full bg-slate-950 border border-slate-800 rounded-xl px-2 py-1.5 text-cyan-400 font-mono text-[11px]">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-slate-400 mb-1">Resultado de Visita:</label>
+          <select id="visita-resultado" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white">
+            <option value="VIABLE_COMPROBADO">✅ Viable (Patio apto + Alta humedad)</option>
+            <option value="ESTUDIO_PENDIENTE">⏳ Estudio de Electrodos Agendado</option>
+            <option value="DESCARTADO_ROCA">❌ Descartado (Losa completa o roca)</option>
+          </select>
+        </div>
+
+        <div>
+          <label class="block text-slate-400 mb-1">Observaciones (Tambos, espacio, tubería):</label>
+          <textarea id="visita-notas" rows="2" placeholder="Gasta 3 tambos/semana ($350 c/u). Patio de tierra 3x3m libre al fondo..." class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-white"></textarea>
+        </div>
+
+        <div class="flex gap-2 pt-2">
+          <button type="button" onclick="cerrarModalVisita()" class="flex-1 py-2 rounded-xl bg-slate-800 text-slate-300 font-bold">Cancelar</button>
+          <button type="submit" class="flex-1 py-2 rounded-xl bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-black">Guardar en Mapa</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
 
   <!-- ========================================================================= -->
-  <!-- JAVASCRIPT: MOTOR LEAFLET + RASTER PROBE + CAPA DE SERVICIOS             -->
+  <!-- JAVASCRIPT: MOTOR LEAFLET + RASTER PROBE + CAPAS COMPROBADAS              -->
   <!-- ========================================================================= -->
   <script>
-    // Bounding Box oficial de Tijuana
     const LAT_MIN = 32.35;
     const LAT_MAX = 32.56;
     const LNG_MIN = -117.15;
     const LNG_MAX = -116.75;
     const BOUNDS_TIJUANA = [[LAT_MIN, LNG_MIN], [LAT_MAX, LNG_MAX]];
 
-    // Imagen Raster Base64 embebida como fallback inmediato
     const RASTER_B64_URI = "data:image/png;base64,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";
-
-    // Capa de Servicios de Agua GeoJSON embebida
     const DATA_SERVICIOS = {"type": "FeatureCollection", "name": "Capa_Servicios_Agua_Tijuana_2026", "features": [{"type": "Feature", "id": "SR_MACLOVIO_VALLE", "properties": {"nombre_poligono": "Corredor Maclovio Rojas - Valle Redondo - Ojo de Agua", "tipo_servicio": "SIN_RED_PIPAS", "categoria_label": "100% Dependencia de Pipas y Tambos", "color_hex": "#EC4899", "colonias_principales": ["Maclovio Rojas", "Valle Redondo", "Ojo de Agua", "Granjas Familiares La Esperanza", "Parajes del Valle", "Rincón de Oro"], "precio_tambo_200l": " -  MXN", "gasto_mensual_estimado": ",000 - ,500 MXN", "habitantes_afectados": "85,000 hab", "cobertura_formal_cespt": "0% a 15% (Tomas comunitarias precarias)", "urgencia_comercial": "MÁXIMA (Strike Zone #1)", "nota_operativa": "Familias pagan hasta  por tambo. Cuenca aluvial con NAF somero a 4.5-8m. Amortización en 6-8 meses."}, "geometry": {"type": "Polygon", "coordinates": [[[-116.85, 32.455], [-116.855, 32.485], [-116.84, 32.518], [-116.78, 32.518], [-116.775, 32.47], [-116.8, 32.45], [-116.85, 32.455]]]}}, {"type": "Feature", "id": "SR_ALAMAR_MORITA", "properties": {"nombre_poligono": "Ribera Alamar Este - La Morita - Terrazas del Valle", "tipo_servicio": "SIN_RED_PIPAS", "categoria_label": "100% Dependencia de Pipas y Tambos", "color_hex": "#EC4899", "colonias_principales": ["La Morita (irregular/ribera)", "Terrazas del Valle Este", "Ejido Francisco Villa", "Ribera Alamar Oriental", "Ejido Rojo Gómez"], "precio_tambo_200l": " -  MXN", "gasto_mensual_estimado": ",500 - ,800 MXN", "habitantes_afectados": "45,000 hab", "cobertura_formal_cespt": "10% a 25% (Tomas comunitarias y mangueras)", "urgencia_comercial": "MÁXIMA (Strike Zone #2)", "nota_operativa": "Lecho aluvial permeable activo del Río Alamar. NAF muy somero a 3.5-6m. Perforación fácil en 1 a 2 días."}, "geometry": {"type": "Polygon", "coordinates": [[[-116.905, 32.52], [-116.905, 32.545], [-116.85, 32.545], [-116.85, 32.52], [-116.88, 32.518], [-116.905, 32.52]]]}}, {"type": "Feature", "id": "SR_CANON_SAINZ", "properties": {"nombre_poligono": "Cañón del Sainz y Cañadas del Sur", "tipo_servicio": "SIN_RED_PIPAS", "categoria_label": "100% Dependencia de Pipas y Tambos", "color_hex": "#EC4899", "colonias_principales": ["Cañón del Sainz", "Granjas División del Norte", "Lomas de la Amistad Alta", "Laderas Presa Alta"], "precio_tambo_200l": " -  MXN", "gasto_mensual_estimado": ",800 - ,200 MXN", "habitantes_afectados": "35,000 hab", "cobertura_formal_cespt": "0% a 20%", "urgencia_comercial": "ALTA (Strike Zone #3)", "nota_operativa": "Terracería empinada donde las pipas cobran sobreprecio por subir. Fondo de cañada con agua accesible."}, "geometry": {"type": "Polygon", "coordinates": [[[-116.96, 32.435], [-116.965, 32.46], [-116.925, 32.46], [-116.92, 32.435], [-116.94, 32.43], [-116.96, 32.435]]]}}, {"type": "Feature", "id": "SR_NIDO_AGUILAS", "properties": {"nombre_poligono": "Nido de las Águilas (Frontera Este Otay)", "tipo_servicio": "SIN_RED_PIPAS", "categoria_label": "100% Dependencia de Pipas y Tambos", "color_hex": "#EC4899", "colonias_principales": ["Nido de las Águilas", "Rincón Otay Este"], "precio_tambo_200l": " -  MXN", "gasto_mensual_estimado": ",500 - ,500 MXN", "habitantes_afectados": "15,000 hab", "cobertura_formal_cespt": "0% a 10%", "urgencia_comercial": "ALTA (Strike Zone #4)", "nota_operativa": "Asentamiento junto al muro fronterizo sin red formal. Suelo aluvial de cañada apto para barreno somero."}, "geometry": {"type": "Polygon", "coordinates": [[[-116.925, 32.54], [-116.925, 32.558], [-116.885, 32.558], [-116.885, 32.54], [-116.925, 32.54]]]}}, {"type": "Feature", "id": "SR_CANONES_PONIENTE", "properties": {"nombre_poligono": "Cañones Poniente (Palmeras / El Pato / Laureles)", "tipo_servicio": "SIN_RED_PIPAS", "categoria_label": "100% Dependencia de Pipas y Tambos", "color_hex": "#EC4899", "colonias_principales": ["Cañón de las Palmeras", "Cañón del Pato", "Rancho Las Flores Alto", "Los Laureles Alto"], "precio_tambo_200l": " -  MXN", "gasto_mensual_estimado": ",500 - ,000 MXN", "habitantes_afectados": "30,000 hab", "cobertura_formal_cespt": "10% a 30%", "urgencia_comercial": "MEDIA-ALTA (Terreno complejo)", "nota_operativa": "Cañadas profundas del poniente. Requiere estudio por pendientes pronunciadas."}, "geometry": {"type": "Polygon", "coordinates": [[[-117.075, 32.495], [-117.075, 32.525], [-117.045, 32.525], [-117.045, 32.495], [-117.075, 32.495]]]}}, {"type": "Feature", "id": "TAND_SANTA_FE", "properties": {"nombre_poligono": "Macro-Polígono Santa Fe y Corredor Costero", "tipo_servicio": "TANDEO_SEVERO", "categoria_label": "Red Formal con Tandeo Crónico y Cortes Semanales", "color_hex": "#F59E0B", "colonias_principales": ["Santa Fe (Secc I a V)", "Pórticos de San Antonio", "Real de San Antonio", "Urbi Quinta del Cedro", "La Gloria"], "frecuencia_cortes": "2 a 5 días/mes (Fugas Acueducto Florido-Aguaje)", "precio_tambo_200l": " MXN (en contingencia)", "habitantes_afectados": "130,000 hab", "cobertura_formal_cespt": "98% con tomas pero servicio intermitente", "urgencia_comercial": "OPORTUNIDAD DE RESPALDO (Cisterna Auxiliar)", "nota_operativa": "Fraccionamientos con red pero cortes frecuentes. Producto ideal: pozo de recarga de tinaco."}, "geometry": {"type": "Polygon", "coordinates": [[[-117.055, 32.425], [-117.055, 32.47], [-117.015, 32.47], [-117.015, 32.425], [-117.055, 32.425]]]}}, {"type": "Feature", "id": "TAND_NATURA_DELICIAS", "properties": {"nombre_poligono": "Macro-Desarrollo Natura - Delicias - Urbi Villa del Prado", "tipo_servicio": "TANDEO_SEVERO", "categoria_label": "Red Formal con Tandeo Crónico y Cortes Semanales", "color_hex": "#F59E0B", "colonias_principales": ["Natura (Secc 1 a 7)", "Delicias 1, 2 y 3", "Urbi Villa del Prado", "Villas del Campo"], "frecuencia_cortes": "Baja presión continua y cortes intermitentes semanales", "precio_tambo_200l": " MXN", "precio_1000l": ",800 MXN pipa", "habitantes_afectados": "95,000 hab", "cobertura_formal_cespt": "95% con tubería pero presión nula en pisos altos", "urgencia_comercial": "ALTA (Mercado Híbrido Pipa + Red)", "nota_operativa": "Comprobado en campo:  por tambo y ,800 por 1000L. Gran mercado para pozos de 8 a 15m."}, "geometry": {"type": "Polygon", "coordinates": [[[-116.985, 32.395], [-116.985, 32.432], [-116.935, 32.432], [-116.935, 32.395], [-116.985, 32.395]]]}}, {"type": "Feature", "id": "TAND_FLORIDO_MATAMOROS", "properties": {"nombre_poligono": "El Florido Altos - Mariano Matamoros Altos", "tipo_servicio": "TANDEO_SEVERO", "categoria_label": "Red Formal con Tandeo Crónico y Cortes Semanales", "color_hex": "#F59E0B", "colonias_principales": ["El Florido 3ra y 4ta", "Mariano Matamoros Alto", "Buenos Aires Sur", "El Pípila Alto"], "frecuencia_cortes": "Suspensiones periódicas por bombeo insuficiente", "precio_tambo_200l": " -  MXN", "habitantes_afectados": "80,000 hab", "cobertura_formal_cespt": "90% conectada", "urgencia_comercial": "MEDIA-ALTA", "nota_operativa": "Fugas en redes viejas (16-24% pérdida de agua CESPT) que generan mantos freáticos colgados."}, "geometry": {"type": "Polygon", "coordinates": [[[-116.93, 32.465], [-116.93, 32.505], [-116.87, 32.505], [-116.87, 32.465], [-116.93, 32.465]]]}}]};
-
-    // Puntos de Demanda de Tambos en Campo
     const DATA_TAMBOS = {"type": "FeatureCollection", "features": [{"type": "Feature", "properties": {"colonia": "Natura", "precio_tambo": 350, "precio_1000L": 1800, "demanda": "Muy Alta - 40 comentarios", "fuente": "FB 402330768853014/post/1116077894144961 2026-08-25", "entrega": "Sí", "cliente_ideal": "pozo somero 12-20m"}, "geometry": {"type": "Point", "coordinates": [-116.9676, 32.4249]}}, {"type": "Feature", "properties": {"colonia": "Delicias 2 y 3", "precio_tambo": 350, "demanda": "Alta", "fuente": "comentarios post $350"}, "geometry": {"type": "Point", "coordinates": [-116.94269, 32.52549]}}, {"type": "Feature", "properties": {"colonia": "El Florido 1ra-3ra", "precio_tambo": 350, "demanda": "Muy Alta", "nota_hidro": "Transición Profunda >7m pero con manto colgado por fugas CESPT 16-24% (Reporte CESPT 2024-2025)"}, "geometry": {"type": "Point", "coordinates": [-116.8871, 32.4647]}}, {"type": "Feature", "properties": {"colonia": "Urbi Villa del Prado 1 y 2", "precio_tambo": 350, "demanda": "Alta"}, "geometry": {"type": "Point", "coordinates": [-116.96919, 32.4053]}}, {"type": "Feature", "properties": {"colonia": "Mariano Matamoros", "precio_tambo": 200, "demanda": "Media - agotado", "fuente": "FB 540929850040992/post/1933602037440426 2026-09-14"}, "geometry": {"type": "Point", "coordinates": [-116.97904, 32.49865]}}, {"type": "Feature", "properties": {"colonia": "Villas del Campo / Venados / Amanecer", "precio_tambo": 350, "demanda": "Alta", "fuente": "comentarios Venados, Urbi, Amanecer"}, "geometry": {"type": "Point", "coordinates": [-116.95, 32.43]}}, {"type": "Feature", "properties": {"colonia": "Valle de las Palmas", "precio_1000L": 1800, "demanda": "Alta - ranchos", "cliente_ideal": "pozo somero 12-25m + bomba solar"}, "geometry": {"type": "Point", "coordinates": [-117.0383, 32.5149]}}]};
+    const SITIOS_COMPROBADOS_BASE = [{"id": "POZO_01", "nombre": "Pozo 01 Piloto Pablo (Los Sauces)", "colonia": "Playas de Tijuana", "lat": 32.5225, "lng": -117.118, "naf_medido": "3.8 m", "tipo": "Pozo Somero Artesanal Operativo", "estatus": "VERIFICADO_EN_CAMPO", "fecha": "Agosto 2026", "notas": "Pozo piloto de Pablo. Bomba manual, aluvión costero sobre terraza marina. Nivel freático continuo y verificado."}, {"id": "CROM_PIPAS", "nombre": "Batería de Pozos Pipas CROM/CROC", "colonia": "La Mesa / Ermita", "lat": 32.518, "lng": -116.985, "naf_medido": "4.2 m", "tipo": "Punto de Carga Masiva de Pipas", "estatus": "VERIFICADO_EN_CAMPO", "fecha": "Septiembre 2026", "notas": "Punto de extracción de los piperos. Extraen agua del aluvión somero a 4.2m para vender tambos a $350 en colonias altas."}, {"id": "ALAMAR_MURUA", "nombre": "Piezómetro Oficial Alamar Murúa", "colonia": "Murúa Oriental / Alamar", "lat": 32.5315, "lng": -116.942, "naf_medido": "4.2 m", "tipo": "Piezometría Oficial CONAGUA", "estatus": "VERIFICADO_EN_CAMPO", "fecha": "Octubre 2026", "notas": "Aluvión grueso de máxima transmisividad. NAF a 4.2m en la cuenca baja del Alamar."}, {"id": "CARCAMO_ZONARIO", "nombre": "Cárcamo 24/7 New City / Cosmopolitan", "colonia": "Zona Río", "lat": 32.5284, "lng": -117.0225, "naf_medido": "2.8 a 3.2 m", "tipo": "Achique Continuo de Losa Subterránea", "estatus": "VERIFICADO_EN_CAMPO", "fecha": "2024-2026", "notas": "Sótanos comerciales con bombeo permanente de manto freático somero contra subpresión hidrostática."}, {"id": "VADO_SAINZ", "nombre": "Vado Cañón del Sainz (Fondo de Cañada)", "colonia": "Cañón del Sainz", "lat": 32.428, "lng": -116.945, "naf_medido": "3.5 m", "tipo": "Sondeo de Cañada y Aluvión", "estatus": "VERIFICADO_EN_CAMPO", "fecha": "Octubre 2026", "notas": "Comprobación de humedad y freático somero en fondo de cañada aluvial libre de basalto."}];
 
     let map;
     let overlaySemaforo;
     let layerGroupServicios;
+    let layerGroupWatermarks;
     let layerGroupTambos;
+    let layerGroupComprobados;
     let marcadorPunto = null;
     let canvas2d, ctx2d;
     let rasterListo = false;
 
     let capaServiciosVisible = true;
     let capaTambosVisible = false;
+    let capaComprobadosVisible = true;
 
     let resultadoActual = {
       colorTipo: 'TRANSPARENTE',
@@ -476,6 +588,7 @@
       lng: -117.015,
       folio: 'AY-TJ-0000',
       servicioInfo: null,
+      comprobadoCercano: null,
       mensajeWhatsApp: ''
     };
 
@@ -493,13 +606,13 @@
 
       L.control.zoom({ position: 'bottomright' }).addTo(map);
 
-      // 1. Capa Satelital Esri World Imagery (Fondo de Alta Resolución)
+      // 1. Capa Satelital Esri World Imagery
       L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
         attribution: 'Esri, Maxar, Earthstar',
         maxZoom: 19
       }).addTo(map);
 
-      // 2. Capa Híbrida de Calles y Nombres de Colonias
+      // 2. Capa Híbrida de Calles y Nombres
       L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
         maxZoom: 19,
         opacity: 0.85
@@ -510,31 +623,35 @@
         opacity: 0.75
       }).addTo(map);
 
-      // 3. Superposición del Semáforo Raster (L.imageOverlay)
+      // 3. Superposición del Semáforo Raster
       overlaySemaforo = L.imageOverlay('mapa_semaforo_tijuana.png', BOUNDS_TIJUANA, {
         opacity: 0.38,
         interactive: false
       }).addTo(map);
 
-      // 4. Inicializar Capa de Polígonos de Servicios
+      // 4. Capas Vectoriales
       layerGroupServicios = L.layerGroup().addTo(map);
+      layerGroupWatermarks = L.layerGroup().addTo(map);
       renderCapaServicios();
 
-      // 5. Inicializar Capa de Tambos de Campo
+      // 5. Capa de Sitios Comprobados
+      layerGroupComprobados = L.layerGroup().addTo(map);
+      renderCapaComprobados();
+
+      // 6. Capa de Tambos
       layerGroupTambos = L.layerGroup();
       renderCapaTambos();
 
-      // Evento de clic en cualquier punto del mapa
+      // Clic en mapa
       map.on('click', function(e) {
         ejecutarSondeo(e.latlng.lat, e.latlng.lng);
       });
 
-      // Inicializar Canvas en memoria con la imagen raster
       initCanvasRaster();
     }
 
     // =========================================================================
-    // 2. CARGA DEL RASTER EN CANVAS 2D EN MEMORIA
+    // 2. RASTER PROBE EN MEMORIA (PROTECCIÓN DE IP)
     // =========================================================================
     function initCanvasRaster() {
       canvas2d = document.getElementById('hidden-raster-canvas');
@@ -551,7 +668,7 @@
       };
 
       img.onerror = function() {
-        console.warn("Fallo carga de mapa_semaforo_tijuana.png, usando respaldo base64.");
+        console.warn("Fallo carga de imagen, usando fallback data URI.");
         img.src = RASTER_B64_URI;
       };
 
@@ -559,35 +676,36 @@
     }
 
     // =========================================================================
-    // 3. RENDERIZADO DE CAPAS VECTORIALES (SERVICIOS & TAMBOS)
+    // 3. RENDERIZADO DE CAPAS: SERVICIOS CON CYAN ALTO CONTRASTE + WATERMARKS
     // =========================================================================
     function renderCapaServicios() {
       layerGroupServicios.clearLayers();
+      layerGroupWatermarks.clearLayers();
 
       DATA_SERVICIOS.features.forEach(feat => {
         const props = feat.properties;
         const coords = feat.geometry.coordinates[0];
-        // Invertir [lng, lat] a [lat, lng] para Leaflet
         const latLngs = coords.map(c => [c[1], c[0]]);
 
         const isSinRed = props.tipo_servicio === 'SIN_RED_PIPAS';
-        const colorBorder = isSinRed ? '#EC4899' : '#F59E0B';
-        const fillColor = isSinRed ? '#BE185D' : '#D97706';
-        const fillOpacity = isSinRed ? 0.28 : 0.20;
+        
+        // Colores de alto contraste óptico contra rojo/satélite
+        const colorBorder = isSinRed ? '#00E5FF' : '#C084FC'; // Cyan Eléctrico vs Lavanda
+        const fillColor = isSinRed ? '#00B4D8' : '#7C3AED';
+        const fillOpacity = isSinRed ? 0.22 : 0.18;
 
         const poly = L.polygon(latLngs, {
           color: colorBorder,
-          weight: 2,
-          dashArray: isSinRed ? '4, 4' : '6, 3',
+          weight: isSinRed ? 3 : 2.5,
+          dashArray: isSinRed ? '6, 4' : '4, 4',
           fillColor: fillColor,
           fillOpacity: fillOpacity,
           interactive: true
         });
 
-        // Tooltip con info clave
         poly.bindTooltip(`
           <div class="custom-service-tip">
-            <div class="${isSinRed ? 'text-pink-400' : 'text-amber-400'} font-bold">${props.nombre_poligono}</div>
+            <div class="${isSinRed ? 'text-cyan-300' : 'text-purple-300'} font-bold">${props.nombre_poligono}</div>
             <div class="text-[10px] text-slate-300">${props.categoria_label}</div>
             <div class="text-[10px] text-emerald-400 font-mono mt-0.5">Tambo: ${props.precio_tambo_200l || 'N/A'}</div>
           </div>
@@ -599,6 +717,89 @@
         });
 
         layerGroupServicios.addLayer(poly);
+
+        // Centroide para la etiqueta de Marca de Agua
+        let avgLat = 0, avgLng = 0;
+        latLngs.forEach(ll => { avgLat += ll[0]; avgLng += ll[1]; });
+        avgLat /= latLngs.length;
+        avgLng /= latLngs.length;
+
+        const watermarkHtml = isSinRed
+          ? `<div class="watermark-badge watermark-cyan">🚚 100% PIPAS · ${props.precio_tambo_200l || '$300'}</div>`
+          : `<div class="watermark-badge watermark-purple">⚠️ RED CON TANDEO CRÓNICO</div>`;
+
+        const watermarkIcon = L.divIcon({
+          className: 'watermark-container',
+          html: watermarkHtml,
+          iconSize: [160, 24],
+          iconAnchor: [80, 12]
+        });
+
+        const watermarkMarker = L.marker([avgLat, avgLng], {
+          icon: watermarkIcon,
+          interactive: false,
+          zIndexOffset: 200
+        });
+
+        layerGroupWatermarks.addLayer(watermarkMarker);
+      });
+    }
+
+    // =========================================================================
+    // 4. RENDERIZADO DE CAPA: SITIOS COMPROBADOS EN CAMPO
+    // =========================================================================
+    function getSitiosComprobadosTotales() {
+      let locales = [];
+      try {
+        const raw = localStorage.getItem('AY_VISITAS_CAMPO');
+        if (raw) locales = JSON.parse(raw);
+      } catch(e) {
+        console.warn('Error leyendo visitas de localStorage', e);
+      }
+      return [...SITIOS_COMPROBADOS_BASE, ...locales];
+    }
+
+    function renderCapaComprobados() {
+      layerGroupComprobados.clearLayers();
+      const sitios = getSitiosComprobadosTotales();
+
+      sitios.forEach(s => {
+        const isPozo01 = s.id === 'POZO_01';
+        const markerHtml = `
+          <div class="relative flex items-center justify-center cursor-pointer group">
+            <span class="absolute w-7 h-7 rounded-full bg-emerald-500/40 animate-ping"></span>
+            <div class="w-7 h-7 rounded-full bg-slate-900 border-2 ${isPozo01 ? 'border-amber-400' : 'border-emerald-400'} flex items-center justify-center shadow-xl text-white font-bold text-xs">
+              ${isPozo01 ? '⭐' : '✅'}
+            </div>
+            <div class="absolute -bottom-5 px-1.5 py-0.5 rounded bg-slate-950/90 border border-emerald-400 text-emerald-300 font-mono text-[9px] font-bold whitespace-nowrap shadow-md">
+              ${s.naf_medido ? 'NAF: ' + s.naf_medido : 'VERIFICADO'}
+            </div>
+          </div>
+        `;
+
+        const icon = L.divIcon({
+          className: 'comprobado-marker-icon',
+          html: markerHtml,
+          iconSize: [28, 28],
+          iconAnchor: [14, 14]
+        });
+
+        const marker = L.marker([s.lat, s.lng], { icon: icon, zIndexOffset: 500 });
+        
+        marker.bindTooltip(`
+          <div class="p-1 font-sans text-xs">
+            <div class="font-bold text-emerald-400">${s.nombre}</div>
+            <div class="text-[10px] text-slate-300">${s.colonia} • ${s.tipo}</div>
+            <div class="text-[10px] text-amber-300 font-mono mt-0.5">NAF Real: ${s.naf_medido || 'Comprobado'}</div>
+          </div>
+        `, { sticky: true });
+
+        marker.on('click', function(e) {
+          L.DomEvent.stopPropagation(e);
+          ejecutarSondeo(s.lat, s.lng, s.nombre, s);
+        });
+
+        layerGroupComprobados.addLayer(marker);
       });
     }
 
@@ -610,7 +811,7 @@
         const [lng, lat] = t.geometry.coordinates;
 
         const badgeHtml = `
-          <div class="px-2 py-0.5 rounded-full bg-slate-900/90 border border-cyan-400 text-cyan-300 font-mono text-[10px] font-bold shadow-xl whitespace-nowrap flex items-center gap-1">
+          <div class="px-2 py-0.5 rounded-full bg-slate-900/95 border border-amber-400 text-amber-300 font-mono text-[10px] font-bold shadow-xl whitespace-nowrap flex items-center gap-1">
             <span>🏷️</span>
             <span>${props.colonia}: ${props.precio_tambo ? '$' + props.precio_tambo : '$' + props.precio_1000L + '/1000L'}</span>
           </div>
@@ -633,6 +834,9 @@
       });
     }
 
+    // =========================================================================
+    // 5. TOGGLES DE CAPAS
+    // =========================================================================
     function toggleCapaServicios() {
       capaServiciosVisible = !capaServiciosVisible;
       const btn = document.getElementById('btn-toggle-servicios');
@@ -640,12 +844,27 @@
 
       if (capaServiciosVisible) {
         map.addLayer(layerGroupServicios);
-        btn.className = 'px-2.5 py-1 rounded-xl bg-pink-950/80 border border-pink-500/60 text-pink-300 hover:bg-pink-900 font-bold transition flex items-center gap-1.5 shadow-sm';
-        lbl.textContent = 'Pipas & CESPT: ON';
+        map.addLayer(layerGroupWatermarks);
+        btn.className = 'px-2.5 py-1 rounded-xl bg-cyan-950/80 border border-cyan-400 text-cyan-300 hover:bg-cyan-900 font-bold transition flex items-center gap-1.5 shadow-sm';
+        lbl.textContent = 'Pipas (Cyan): ON';
       } else {
         map.removeLayer(layerGroupServicios);
+        map.removeLayer(layerGroupWatermarks);
         btn.className = 'px-2.5 py-1 rounded-xl bg-slate-900 border border-slate-700 text-slate-400 hover:text-white transition flex items-center gap-1.5';
-        lbl.textContent = 'Pipas & CESPT: OFF';
+        lbl.textContent = 'Pipas (Cyan): OFF';
+      }
+    }
+
+    function toggleCapaComprobados() {
+      capaComprobadosVisible = !capaComprobadosVisible;
+      const btn = document.getElementById('btn-toggle-comprobados');
+
+      if (capaComprobadosVisible) {
+        map.addLayer(layerGroupComprobados);
+        btn.className = 'px-2.5 py-1 rounded-xl bg-emerald-950/80 border border-emerald-500 text-emerald-300 hover:bg-emerald-900 font-bold transition flex items-center gap-1.5 shadow-sm';
+      } else {
+        map.removeLayer(layerGroupComprobados);
+        btn.className = 'px-2.5 py-1 rounded-xl bg-slate-900 border border-slate-700 text-slate-400 hover:text-white transition flex items-center gap-1.5';
       }
     }
 
@@ -655,24 +874,22 @@
 
       if (capaTambosVisible) {
         map.addLayer(layerGroupTambos);
-        btn.className = 'px-2.5 py-1 rounded-xl bg-cyan-950/80 border border-cyan-400 text-cyan-300 font-bold transition flex items-center gap-1.5 shadow-sm';
+        btn.className = 'px-2.5 py-1 rounded-xl bg-amber-950/80 border border-amber-400 text-amber-300 font-bold transition flex items-center gap-1.5 shadow-sm';
       } else {
         map.removeLayer(layerGroupTambos);
-        btn.className = 'px-2.5 py-1 rounded-xl bg-slate-900 border border-slate-700 text-slate-300 hover:text-white transition flex items-center gap-1.5';
+        btn.className = 'px-2 py-1 rounded-xl bg-slate-900 border border-slate-700 text-slate-300 hover:text-white transition flex items-center gap-1';
       }
     }
 
-    function focalizarZonasDeOro() {
-      // Encuadra la vista en la franja oriental de alta prioridad (Alamar - Maclovio - Valle Redondo)
-      map.flyToBounds([
-        [32.440, -116.920],
-        [32.550, -116.780]
-      ], { duration: 1.5 });
-      if (!capaServiciosVisible) toggleCapaServicios();
+    // =========================================================================
+    // 6. ACCIÓN DE MAÑANA: LA MORITA / RIBERA ALAMAR ORIENTAL
+    // =========================================================================
+    function irADestinoManana() {
+      volarA(32.5325, -116.8920, 'Ribera Alamar Este / Vado La Morita', true);
     }
 
     // =========================================================================
-    // 4. MUESTREO DE PÍXEL (HIDROGEOLOGÍA) Y POINT-IN-POLYGON (SERVICIOS)
+    // 7. MUESTREO DE PÍXEL (HIDROGEOLOGÍA) Y POINT-IN-POLYGON (SERVICIOS)
     // =========================================================================
     function leerColorEnPunto(lat, lng) {
       if (!rasterListo || !ctx2d) return 'VERDE';
@@ -704,13 +921,8 @@
       const [r, g, b, a] = data;
       if (a < 30) return 'FUERA';
 
-      // VERDE (#10B981)
       if (g > 140 && r < 120) return 'VERDE';
-
-      // NARANJA (#F59E0B)
       if (r > 190 && g > 110 && b < 90) return 'NARANJA';
-
-      // ROJO (#EF4444)
       if (r > 180 && g < 110) return 'ROJO';
 
       return 'VERDE';
@@ -760,16 +972,28 @@
         habitantes_afectados: '1.2M hab',
         cobertura_formal_cespt: '99%',
         urgencia_comercial: 'BAJA RESIDENCIAL / ALTA INDUSTRIAL JOE',
-        nota_operativa: 'Servicio formal continuo. Clientes domésticos no tienen urgencia por pozo somero, pero giros industriales pagan tarifas elevadas.'
+        nota_operativa: 'Servicio formal continuo regular.'
       };
     }
 
+    function buscarComprobadoCercano(lat, lng) {
+      const sitios = getSitiosComprobadosTotales();
+      for (const s of sitios) {
+        const dist = Math.sqrt(Math.pow(lat - s.lat, 2) + Math.pow(lng - s.lng, 2));
+        if (dist < 0.0035) {
+          return s;
+        }
+      }
+      return null;
+    }
+
     // =========================================================================
-    // 5. EJECUCIÓN DEL SONDEO AL DAR CLIC O BUSCAR
+    // 8. EJECUCIÓN DEL SONDEO AL DAR CLIC O BUSCAR
     // =========================================================================
-    function ejecutarSondeo(lat, lng, labelLugar = null) {
+    function ejecutarSondeo(lat, lng, labelLugar = null, comprobadoObj = null) {
       const color = leerColorEnPunto(lat, lng);
       const servInfo = clasificarServicioEnPunto(lat, lng);
+      const comprobado = comprobadoObj || buscarComprobadoCercano(lat, lng);
       const folio = 'AY-TJ-' + Math.floor(1000 + Math.random() * 9000);
 
       resultadoActual = {
@@ -778,10 +1002,10 @@
         lng: lng,
         folio: folio,
         servicioInfo: servInfo,
+        comprobadoCercano: comprobado,
         mensajeWhatsApp: ''
       };
 
-      // Color del pin en mapa
       const markerColor = (color === 'VERDE') ? '#10B981' : (color === 'NARANJA' ? '#F59E0B' : (color === 'ROJO' ? '#EF4444' : '#64748b'));
 
       const customIcon = L.divIcon({
@@ -805,22 +1029,20 @@
         marcadorPunto = L.marker([lat, lng], { icon: customIcon, zIndexOffset: 1000 }).addTo(map);
       }
 
-      // Ocultar hint flotante
       document.getElementById('hint-floating').classList.add('opacity-0', 'pointer-events-none');
-
-      // Actualizar tarjeta inferior con el diagnóstico cruzado
-      mostrarTarjetaResultado(color, servInfo, lat, lng, folio, labelLugar);
+      mostrarTarjetaResultado(color, servInfo, comprobado, lat, lng, folio, labelLugar);
     }
 
     // =========================================================================
-    // 6. RENDERIZADO DEL DIAGNÓSTICO CRUZADO ("EL CRUCE")
+    // 9. RENDERIZADO DEL DIAGNÓSTICO CRUZADO ("EL CRUCE")
     // =========================================================================
-    function mostrarTarjetaResultado(color, servInfo, lat, lng, folio, labelLugar) {
+    function mostrarTarjetaResultado(color, servInfo, comprobado, lat, lng, folio, labelLugar) {
       const sheet = document.getElementById('sheet-resultado');
       const badgeHidro = document.getElementById('badge-semaforo');
       const badgeServ = document.getElementById('badge-servicio');
       const border = document.getElementById('sheet-card-border');
 
+      const boxComprobado = document.getElementById('box-sitio-comprobado');
       const boxCruceDorado = document.getElementById('box-cruce-dorado');
       const boxCruceTandeo = document.getElementById('box-cruce-tandeo');
       const boxCruceFormal = document.getElementById('box-cruce-formal');
@@ -830,7 +1052,7 @@
       document.getElementById('label-folio').textContent = `Folio: ${folio}`;
       document.getElementById('txt-coordenadas').textContent = `${lat.toFixed(5)}, ${lng.toFixed(5)} • ${labelLugar || servInfo.nombre_poligono}`;
 
-      // 1. Configurar Badge Hidrogeológico
+      // 1. Badge Hidrogeológico
       if (color === 'VERDE') {
         badgeHidro.className = 'px-2.5 py-1 rounded-full text-[11px] font-black font-mono tracking-wider bg-emerald-500 text-slate-950 shadow-md';
         badgeHidro.innerHTML = `🟢 FACTIBLE DIRECTO`;
@@ -845,27 +1067,36 @@
         badgeHidro.innerHTML = `⚪ FUERA ÁREA`;
       }
 
-      // 2. Configurar Badge de Servicio
+      // 2. Badge de Servicio (Electric Cyan para Pipas)
       const isSinRed = servInfo.tipo_servicio === 'SIN_RED_PIPAS';
       const isTandeo = servInfo.tipo_servicio === 'TANDEO_SEVERO';
 
       if (isSinRed) {
-        badgeServ.className = 'px-2.5 py-1 rounded-full text-[11px] font-black font-mono tracking-wider bg-pink-600 text-white shadow-md';
+        badgeServ.className = 'px-2.5 py-1 rounded-full text-[11px] font-black font-mono tracking-wider bg-cyan-400 text-slate-950 shadow-md border border-white/40';
         badgeServ.innerHTML = `🚚 100% PIPAS (${servInfo.precio_tambo_200l || '$300'})`;
       } else if (isTandeo) {
-        badgeServ.className = 'px-2.5 py-1 rounded-full text-[11px] font-black font-mono tracking-wider bg-amber-600 text-white shadow-md';
+        badgeServ.className = 'px-2.5 py-1 rounded-full text-[11px] font-black font-mono tracking-wider bg-purple-600 text-white shadow-md';
         badgeServ.innerHTML = `⚠️ TANDEO SEVERO`;
       } else {
         badgeServ.className = 'px-2.5 py-1 rounded-full text-[11px] font-black font-mono tracking-wider bg-slate-700 text-cyan-300';
         badgeServ.innerHTML = `🏢 RED CESPT`;
       }
 
-      // 3. Evaluar El Cruce ("Y ahí donde se cruzan los puntos ahí vamos a ir")
+      // 3. Alerta de Sitio Comprobado
+      if (comprobado) {
+        boxComprobado.classList.remove('hidden');
+        document.getElementById('txt-comprobado-titulo').textContent = comprobado.nombre;
+        document.getElementById('txt-comprobado-naf').textContent = `NAF: ${comprobado.naf_medido || 'Comprobado'}`;
+        document.getElementById('txt-comprobado-detalle').textContent = comprobado.notas || 'Punto validado empíricamente en campo con pozo o estudio físico.';
+      } else {
+        boxComprobado.classList.add('hidden');
+      }
+
+      // 4. Evaluar El Cruce
       let titulo = '';
       let explicacion = '';
       let mensajeWA = '';
 
-      // Ocultar todas las cajas condicionales primero
       boxCruceDorado.classList.add('hidden');
       boxCruceTandeo.classList.add('hidden');
       boxCruceFormal.classList.add('hidden');
@@ -873,10 +1104,7 @@
       boxRojo.classList.add('hidden');
 
       if (isSinRed && color === 'VERDE') {
-        // =====================================================================
-        // CUADRANTE 1: ZONA DE ORO (DIAMANTE)
-        // =====================================================================
-        border.style.borderColor = 'rgba(245, 158, 11, 0.9)';
+        border.style.borderColor = 'rgba(245, 158, 11, 0.95)';
         boxCruceDorado.classList.remove('hidden');
 
         titulo = '🎯 ¡ZONA DE ORO! Carencia de Red + Agua Somera Noble';
@@ -893,10 +1121,7 @@
           `¿Qué día de esta semana te gustaría que pasemos a revisar tu patio?`;
 
       } else if (isSinRed && color === 'NARANJA') {
-        // =====================================================================
-        // CUADRANTE 2: ZONA DE PLATA (ALTA DEMANDA CON RIESGO DE BOLEOS)
-        // =====================================================================
-        border.style.borderColor = 'rgba(245, 158, 11, 0.7)';
+        border.style.borderColor = 'rgba(245, 158, 11, 0.75)';
         boxCruceDorado.classList.remove('hidden');
         document.getElementById('val-gasto-pipas').textContent = servInfo.gasto_mensual_estimado || '$3,200/mes';
 
@@ -912,28 +1137,22 @@
           `¿Te gustaría que programemos la visita para evaluar tu terreno esta semana?`;
 
       } else if (isSinRed && color === 'ROJO') {
-        // =====================================================================
-        // CUADRANTE 3: DESCARTE HONESTO (CERO COBRO)
-        // =====================================================================
         border.style.borderColor = 'rgba(239, 68, 68, 0.8)';
         boxCobro.classList.add('hidden');
         boxRojo.classList.remove('hidden');
 
-        titulo = '⛔ Descarte Técnico Honesto · Terreno No Viable';
-        explicacion = 'Aunque en esta zona no hay red de agua potable, el subsuelo presenta basamento volcánico masivo, falla geológica o pendiente fuerte sin recarga freática somera. No se debe perforar.';
+        titulo = '⛔ Descarte Técnico Honesto · Cima o Ladera Rocosa';
+        explicacion = 'Aunque no hay red de agua, este punto se ubica sobre una cima o ladera con basamento volcánico masivo sin almacenamiento freático somero. No se recomienda perforar.';
 
         mensajeWA = `¡Hola! 👋 Revisamos con mucho cuidado tu ubicación en nuestro sistema satelital Aqua Engine de Tijuana.%0A%0A` +
           `📋 *Folio de Sondeo:* ${folio}%0A` +
           `📍 *Coordenadas:* ${lat.toFixed(5)}, ${lng.toFixed(5)}%0A` +
-          `🔴 *Dictamen:* ZONA NO FACTIBLE PARA MICROPOZO%0A%0A` +
-          `En Agua de Ya nos regimos por la honestidad técnica: el análisis satelital indica que tu predio se encuentra sobre roca masiva o ladera sin recarga somera suficiente, por lo que un micropozo artesanal no tendría éxito.%0A%0A` +
+          `🔴 *Dictamen:* ZONA NO FACTIBLE PARA MICROPOZO SOMERO%0A%0A` +
+          `En Agua de Ya nos regimos por la honestidad técnica: el análisis satelital indica que tu predio se encuentra sobre una elevación rocosa sin recarga somera suficiente, por lo que un micropozo artesanal no tendría éxito.%0A%0A` +
           `Por esta razón preferimos no cobrarte absolutamente nada ni hacerte gastar en estudios o visitas que no van a funcionar. Si en el futuro abrimos proyectos de pozos profundos comunitarios en tu colonia, con gusto te contactamos. ¡Gracias por tu confianza!`;
 
       } else if (isTandeo) {
-        // =====================================================================
-        // CUADRANTE 4: CLIENTE DE RESPALDO (TANDEO SEVERO CESPT)
-        // =====================================================================
-        border.style.borderColor = 'rgba(59, 130, 246, 0.7)';
+        border.style.borderColor = 'rgba(168, 85, 247, 0.7)';
         boxCruceTandeo.classList.remove('hidden');
 
         titulo = '💧 Oportunidad de Respaldo · Tandeos y Cortes Crónicos';
@@ -947,9 +1166,6 @@
           `El primer paso es la *Inspección Visual en Patio ($500 MXN)* para revisar el acceso a tierra y conexión a tinaco. ¿Qué día te gustaría que te visitemos?`;
 
       } else {
-        // =====================================================================
-        // CUADRANTE 5: RED FORMAL CONSOLIDADA
-        // =====================================================================
         border.style.borderColor = 'rgba(148, 163, 184, 0.6)';
         boxCruceFormal.classList.remove('hidden');
 
@@ -967,10 +1183,7 @@
       document.getElementById('txt-dictamen-explicacion').textContent = explicacion;
       resultadoActual.mensajeWhatsApp = decodeURIComponent(mensajeWA);
 
-      // Configurar enlace de WhatsApp
       document.getElementById('btn-abrir-whatsapp-link').href = `https://wa.me/?text=${mensajeWA}`;
-
-      // Abrir sheet deslizante
       sheet.classList.remove('translate-y-full');
       lucide.createIcons();
     }
@@ -981,7 +1194,60 @@
     }
 
     // =========================================================================
-    // 7. BUSCADOR DE DIRECCIONES & COORDENADAS GPS
+    // 10. GESTIÓN DE VISITAS DE CAMPO EN VIVO (+ Registrar Visita)
+    // =========================================================================
+    function abrirModalVisita() {
+      document.getElementById('visita-lat').value = resultadoActual.lat.toFixed(5);
+      document.getElementById('visita-lng').value = resultadoActual.lng.toFixed(5);
+      document.getElementById('visita-colonia').value = resultadoActual.servicioInfo ? resultadoActual.servicioInfo.nombre_poligono : '';
+      document.getElementById('modal-visita').classList.remove('hidden');
+      lucide.createIcons();
+    }
+
+    function cerrarModalVisita() {
+      document.getElementById('modal-visita').classList.add('hidden');
+    }
+
+    function guardarVisitaCampo(e) {
+      e.preventDefault();
+      const nombre = document.getElementById('visita-nombre').value.trim();
+      const colonia = document.getElementById('visita-colonia').value.trim();
+      const naf = document.getElementById('visita-naf').value.trim() || 'No medido';
+      const resultado = document.getElementById('visita-resultado').value;
+      const notas = document.getElementById('visita-notas').value.trim();
+      const lat = parseFloat(document.getElementById('visita-lat').value);
+      const lng = parseFloat(document.getElementById('visita-lng').value);
+
+      const nuevaVisita = {
+        id: 'VISITA_' + Date.now(),
+        nombre: nombre,
+        colonia: colonia,
+        lat: lat,
+        lng: lng,
+        naf_medido: naf,
+        tipo: resultado === 'VIABLE_COMPROBADO' ? 'Visita Aprobada en Sitio' : 'Sondeo Pendiente',
+        estatus: resultado,
+        fecha: new Date().toLocaleDateString('es-MX'),
+        notas: notas
+      };
+
+      let guardadas = [];
+      try {
+        const raw = localStorage.getItem('AY_VISITAS_CAMPO');
+        if (raw) guardadas = JSON.parse(raw);
+      } catch(err) {}
+
+      guardadas.push(nuevaVisita);
+      localStorage.setItem('AY_VISITAS_CAMPO', JSON.stringify(guardadas));
+
+      cerrarModalVisita();
+      renderCapaComprobados();
+      alert('¡Visita guardada exitosamente en tu celular! Ahora aparece con pin verificado en el mapa.');
+      ejecutarSondeo(lat, lng, nombre, nuevaVisita);
+    }
+
+    // =========================================================================
+    // 11. BUSCADOR DE DIRECCIONES & COORDENADAS GPS
     // =========================================================================
     async function buscarDireccionOcoords() {
       const query = document.getElementById('input-busqueda').value.trim();
@@ -991,7 +1257,6 @@
       btn.innerHTML = `<i data-lucide="loader-2" class="w-4 h-4 animate-spin text-slate-900"></i>`;
       lucide.createIcons();
 
-      // 1. Detectar si son coordenadas directas (ej: "32.525, -117.015")
       const coordsRegex = /^[-+]?([0-9]*\.[0-9]+|[0-9]+)[,\s]+[-+]?([0-9]*\.[0-9]+|[0-9]+)$/;
       const match = query.match(coordsRegex);
 
@@ -1007,7 +1272,6 @@
         }
       }
 
-      // 2. Consulta a Nominatim acotada a Tijuana B.C.
       try {
         const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query + ', Tijuana, Baja California')}&viewbox=-117.15,32.56,-116.75,32.35&bounded=1&limit=1`;
         const res = await fetch(url, { headers: { 'Accept-Language': 'es' } });
@@ -1045,9 +1309,7 @@
       }
       navigator.geolocation.getCurrentPosition(
         (pos) => {
-          const lat = pos.coords.latitude;
-          const lng = pos.coords.longitude;
-          volarA(lat, lng, 'Tu Ubicación Actual');
+          volarA(pos.coords.latitude, pos.coords.longitude, 'Tu Ubicación Actual');
         },
         (err) => {
           alert('No pudimos acceder a tu GPS. Por favor escribe la colonia o pega las coordenadas.');
@@ -1079,7 +1341,7 @@
     }
 
     // =========================================================================
-    // 8. ARRANQUE AL CARGAR DOM
+    // 12. ARRANQUE AL CARGAR DOM
     // =========================================================================
     document.addEventListener('DOMContentLoaded', () => {
       initMap();
