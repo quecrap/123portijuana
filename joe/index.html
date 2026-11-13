@@ -1,0 +1,1625 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agua de Ya · Portal Privado de Joe | Compras Industriales & Alianza 50/50</title>
+  
+  <!-- Meta SEO & Social Preview para WhatsApp -->
+  <meta name="description" content="Portal privado para Joel (Joe): Simulador de ganancias 50/50, pliego técnico BOM y auditoría de compras industriales para el proyecto Agua de Ya en Tijuana.">
+  <meta property="og:title" content="Agua de Ya · Bienvenido Joe | Simulador de Ganancias y RFQ Industrial">
+  <meta property="og:description" content="Usando el sistema godín y el poder de compra industrial a nuestro favor. Descubre cuánto ganas por obra y al año.">
+  <meta property="og:type" content="website">
+  <meta name="theme-color" content="#0B132B">
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', '-apple-system', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              dark: '#0B132B',
+              navy: '#1C2541',
+              card: '#151E38',
+              cardHover: '#1E2A4E',
+              cyan: '#00B4D8',
+              cyanLight: '#48CAE4',
+              emerald: '#10B981',
+              emeraldLight: '#34D399',
+              amber: '#F59E0B',
+              amberLight: '#FBBF24',
+              slate: '#3A506B',
+            }
+          },
+          boxShadow: {
+            'glow-cyan': '0 0 25px -5px rgba(0, 180, 216, 0.35)',
+            'glow-emerald': '0 0 30px -5px rgba(16, 185, 129, 0.35)',
+            'glow-amber': '0 0 25px -5px rgba(245, 158, 11, 0.3)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* Custom scrollbar & glassmorphism */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0B132B;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1C2541;
+      border-radius: 4px;
+      border: 1px solid #3A506B;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #00B4D8;
+    }
+
+    .glass-panel {
+      background: rgba(21, 30, 56, 0.75);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(58, 80, 107, 0.45);
+    }
+
+    .glass-card {
+      background: rgba(28, 37, 65, 0.6);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border: 1px solid rgba(72, 202, 228, 0.15);
+    }
+
+    /* Range slider custom styling */
+    input[type=range] {
+      -webkit-appearance: none;
+      background: transparent;
+    }
+    input[type=range]::-webkit-slider-runnable-track {
+      height: 8px;
+      border-radius: 4px;
+      background: #1C2541;
+      border: 1px solid #3A506B;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 22px;
+      width: 22px;
+      border-radius: 50%;
+      background: #00B4D8;
+      border: 2px solid #FFFFFF;
+      box-shadow: 0 0 10px rgba(0, 180, 216, 0.6);
+      cursor: pointer;
+      margin-top: -7px;
+      transition: transform 0.1s ease, background 0.2s ease;
+    }
+    input[type=range]::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
+      background: #10B981;
+    }
+
+    /* Pulse wave for AI avatar */
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); opacity: 0.8; }
+      50% { transform: scale(1.12); opacity: 0.3; }
+      100% { transform: scale(0.95); opacity: 0.8; }
+    }
+    .animate-pulse-ring {
+      animation: pulse-ring 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+    }
+
+    /* Water shimmer background */
+    .bg-grid-pattern {
+      background-size: 36px 36px;
+      background-image: 
+        linear-gradient(to right, rgba(58, 80, 107, 0.12) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(58, 80, 107, 0.12) 1px, transparent 1px);
+    }
+  </style>
+</head>
+
+<body class="bg-[#0B132B] text-slate-100 font-sans min-h-screen antialiased selection:bg-cyan-500 selection:text-white pb-24 md:pb-16 bg-grid-pattern">
+
+  <!-- ========================================================================= -->
+  <!-- TOP NAVIGATION & STATUS BAR                                              -->
+  <!-- ========================================================================= -->
+  <header class="sticky top-0 z-40 bg-[#0B132B]/90 backdrop-blur-md border-b border-slate-800">
+    <div class="max-w-6xl mx-auto px-4 py-3 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-lg bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center shadow-glow-cyan text-white font-bold">
+          <i data-lucide="droplet" class="w-5 h-5 fill-white"></i>
+        </div>
+        <div>
+          <span class="text-base font-extrabold tracking-tight text-white flex items-center gap-1.5">
+            AGUA DE YA <span class="text-xs px-2 py-0.5 rounded-full bg-cyan-950 text-cyan-400 border border-cyan-800/60 font-mono font-medium">TIJUANA</span>
+          </span>
+          <p class="text-[11px] text-slate-400 font-mono">Dossier Operativo & Compras Industrial</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <div class="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-slate-900 border border-slate-700 text-xs text-slate-300">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          <span>Invitado: <strong>Joel ("Joe")</strong></span>
+        </div>
+        <a href="#simulador" class="text-xs font-semibold px-3 py-1.5 rounded-md bg-cyan-500/10 hover:bg-cyan-500/20 text-cyan-400 border border-cyan-500/30 transition flex items-center gap-1">
+          <i data-lucide="calculator" class="w-3.5 h-3.5"></i>
+          <span>Simulador</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 pt-6 pb-12 space-y-12">
+
+    <!-- ========================================================================= -->
+    <!-- SECCIÓN A: HERO BANNER PERSONALIZADO                                      -->
+    <!-- ========================================================================= -->
+    <section class="space-y-6">
+      <!-- Badge superior de confidencialidad -->
+      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/70 border border-cyan-500/30 text-cyan-300 text-xs font-mono font-semibold tracking-wide shadow-sm">
+        <span class="relative flex h-2 w-2">
+          <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+          <span class="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+        </span>
+        <span>CONFIDENCIAL • INVITACIÓN DE SOCIO OPERATIVO • PROYECTO AGUA DE YA</span>
+      </div>
+
+      <!-- Título Principal & Subtítulo -->
+      <div class="space-y-3">
+        <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight text-white leading-tight">
+          Bienvenido Joe a <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-emerald-400">Agua de Ya</span>
+        </h1>
+        <p class="text-lg sm:text-2xl text-slate-300 font-light max-w-3xl leading-relaxed">
+          Usando el <span class="text-cyan-300 font-semibold underline decoration-cyan-500/40 underline-offset-4">sistema godín</span> y el poder de compra industrial a nuestro favor.
+        </p>
+      </div>
+
+      <!-- NOTA DESTACADA DE LA TÍA GEMINA -->
+      <div class="relative overflow-hidden rounded-2xl glass-panel p-5 sm:p-7 border border-cyan-500/30 shadow-xl bg-gradient-to-br from-[#151E38]/90 via-[#1C2541]/80 to-[#10243C]/90">
+        <!-- Decoración de fondo -->
+        <div class="absolute -right-16 -top-16 w-48 h-48 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute right-4 bottom-4 text-cyan-500/10 text-8xl font-black font-mono select-none pointer-events-none">IA</div>
+
+        <div class="flex flex-col sm:flex-row items-start gap-4 sm:gap-6 relative z-10">
+          <!-- Avatar de La Tía Gemina -->
+          <div class="relative flex-shrink-0">
+            <div class="w-14 h-14 sm:w-16 sm:h-16 rounded-2xl bg-gradient-to-tr from-cyan-600 via-blue-500 to-emerald-400 p-0.5 shadow-glow-cyan flex items-center justify-center">
+              <div class="w-full h-full bg-[#0B132B] rounded-2xl flex items-center justify-center relative overflow-hidden">
+                <i data-lucide="bot" class="w-8 h-8 text-cyan-400 animate-pulse"></i>
+              </div>
+            </div>
+            <span class="absolute -bottom-1 -right-1 bg-emerald-500 text-[10px] text-white font-mono font-bold px-1.5 py-0.2 rounded-full border border-slate-900">
+              ACTIVA
+            </span>
+          </div>
+
+          <!-- Mensaje -->
+          <div class="space-y-2.5 flex-1">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <div class="flex items-center gap-2">
+                <h3 class="text-lg font-bold text-white flex items-center gap-2">
+                  La Tía Gemina
+                  <span class="text-xs px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300 font-mono font-normal border border-cyan-500/30">
+                    Asistente Personal de Pablo
+                  </span>
+                </h3>
+              </div>
+              <span class="text-xs text-slate-400 font-mono flex items-center gap-1">
+                <i data-lucide="sparkles" class="w-3.5 h-3.5 text-amber-400"></i> Modelo Estimativo IA v2.4
+              </span>
+            </div>
+
+            <p class="text-slate-200 text-sm sm:text-base leading-relaxed">
+              <span class="font-semibold text-cyan-300">"Hola Joe, soy La Tía Gemina.</span> Yo armé los costos base de este modelo investigando el mercado abierto, pero aún no han sido validados por un <span class="text-white font-semibold">humano experto en compras de maquila</span>. Tu misión es destrozar mis números con tus proveedores industriales: <span class="text-emerald-400 font-bold bg-emerald-950/60 px-1.5 py-0.5 rounded border border-emerald-800/40">de cada peso que logres bajar, la mitad es tuya en efectivo</span>."
+            </p>
+
+            <div class="pt-2 flex flex-wrap items-center gap-3 text-xs text-slate-400 font-mono">
+              <span class="inline-flex items-center gap-1.5 text-emerald-400">
+                <i data-lucide="check-circle-2" class="w-4 h-4"></i> Liquidación inmediata en Hito 2
+              </span>
+              <span class="text-slate-600">•</span>
+              <span class="inline-flex items-center gap-1.5 text-cyan-300">
+                <i data-lucide="shield-check" class="w-4 h-4"></i> Cero riesgo de capital personal
+              </span>
+              <span class="text-slate-600">•</span>
+              <span class="inline-flex items-center gap-1.5 text-amber-300">
+                <i data-lucide="wrench" class="w-4 h-4"></i> Opción de entrar como instalador
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 TARJETAS DE CONTEXTO RÁPIDO -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <!-- Tarjeta 1: Dolor de Mercado -->
+        <div class="glass-card rounded-xl p-5 border border-red-500/20 bg-slate-900/60 space-y-2 hover:border-red-500/40 transition">
+          <div class="flex items-center justify-between">
+            <span class="w-8 h-8 rounded-lg bg-red-500/10 text-red-400 flex items-center justify-center font-bold">
+              <i data-lucide="alert-triangle" class="w-4 h-4"></i>
+            </span>
+            <span class="text-xs font-mono text-red-400 font-semibold px-2 py-0.5 rounded bg-red-950/50 border border-red-800/40">
+              GASTO FAMILIAR BRUTAL
+            </span>
+          </div>
+          <h4 class="text-base font-bold text-white">Dolor del Mercado</h4>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Familias en la periferia de Tijuana gastan <strong class="text-red-300">&gt;$3,300 MXN/mes</strong> en pipas (60 tambos de 200 L) y garrafones comerciales. Agua cara, turbia e incierta.
+          </p>
+        </div>
+
+        <!-- Tarjeta 2: Arquitectura 400 L/día -->
+        <div class="glass-card rounded-xl p-5 border border-cyan-500/20 bg-slate-900/60 space-y-2 hover:border-cyan-500/40 transition">
+          <div class="flex items-center justify-between">
+            <span class="w-8 h-8 rounded-lg bg-cyan-500/10 text-cyan-400 flex items-center justify-center font-bold">
+              <i data-lucide="refresh-cw" class="w-4 h-4"></i>
+            </span>
+            <span class="text-xs font-mono text-cyan-400 font-semibold px-2 py-0.5 rounded bg-cyan-950/50 border border-cyan-800/40">
+              400 L/DÍA SIN DESPERDICIO
+            </span>
+          </div>
+          <h4 class="text-base font-bold text-white">Arquitectura Hídrica</h4>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            <strong class="text-cyan-300">100 L purificada</strong> (RO + UV, 5 garrafones/día grado cocina) + <strong class="text-cyan-300">300 L uso común</strong> (rechazo 2:1 recirculado a baños y riego). Cero desperdicio.
+          </p>
+        </div>
+
+        <!-- Tarjeta 3: 100% Autofinanciado -->
+        <div class="glass-card rounded-xl p-5 border border-emerald-500/20 bg-slate-900/60 space-y-2 hover:border-emerald-500/40 transition">
+          <div class="flex items-center justify-between">
+            <span class="w-8 h-8 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-bold">
+              <i data-lucide="wallet" class="w-4 h-4"></i>
+            </span>
+            <span class="text-xs font-mono text-emerald-400 font-semibold px-2 py-0.5 rounded bg-emerald-950/50 border border-emerald-800/40">
+              ESQUEMA 50% / 25% / 25%
+            </span>
+          </div>
+          <h4 class="text-base font-bold text-white">100% Autofinanciado</h4>
+          <p class="text-xs text-slate-300 leading-relaxed">
+            Se construye en 2 etapas con el anticipo del cliente: <strong class="text-emerald-300">50% para materiales</strong>, 25% a media perforación y 25% al entregar funcionando. Cero deuda, cero capital nuestro.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SECCIÓN B: SIMULADOR INTERACTIVO DE GANANCIAS DE JOE                      -->
+    <!-- ========================================================================= -->
+    <section id="simulador" class="space-y-6 pt-2">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-2 border-b border-slate-800 pb-4">
+        <div>
+          <div class="text-xs font-mono font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-1.5 mb-1">
+            <i data-lucide="trending-up" class="w-4 h-4"></i> Calculadora Reactiva en Tiempo Real
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+            Simulador de Ganancias de Joe
+          </h2>
+        </div>
+        <p class="text-xs text-slate-400 font-mono">
+          Mueve los controles para ver tu balance por obra y tus ingresos recurrentes
+        </p>
+      </div>
+
+      <!-- Panel del Simulador -->
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        
+        <!-- COLUMNA IZQUIERDA: CONTROLES DEL SIMULADOR (7 COLS) -->
+        <div class="lg:col-span-7 space-y-5 glass-panel rounded-2xl p-5 sm:p-6 border border-slate-700/60 shadow-xl">
+          
+          <!-- CONTROL 1: SELECTOR DE PAQUETE -->
+          <div class="space-y-2.5">
+            <label class="block text-xs font-mono uppercase tracking-wider text-slate-300 font-semibold flex items-center justify-between">
+              <span>1. Selecciona el Paquete Tecnológico</span>
+              <span id="label-paquete-activo" class="text-cyan-400 normal-case font-mono font-medium">Paquete Medio (Recomendado)</span>
+            </label>
+            <div class="grid grid-cols-3 gap-2.5">
+              <!-- Botón Paquete Base -->
+              <button type="button" onclick="setPaquete('base')" id="btn-pkg-base" class="pkg-card p-3 rounded-xl border border-slate-700 bg-slate-900/70 text-left transition relative hover:border-slate-500">
+                <div class="text-xs font-bold text-slate-200">Base</div>
+                <div class="text-[11px] text-slate-400 font-mono mt-0.5">BOM: $8,700</div>
+                <div class="text-[10px] text-cyan-400 mt-1">Técnico: $3,000</div>
+              </button>
+
+              <!-- Botón Paquete Medio (Default) -->
+              <button type="button" onclick="setPaquete('medio')" id="btn-pkg-medio" class="pkg-card p-3 rounded-xl border-2 border-cyan-400 bg-cyan-950/40 text-left transition relative shadow-glow-cyan">
+                <span class="absolute -top-2 right-2 px-1.5 py-0.2 rounded-full bg-cyan-500 text-[9px] font-bold text-black uppercase font-mono">DEFAULT</span>
+                <div class="text-xs font-bold text-white">Medio</div>
+                <div class="text-[11px] text-cyan-300 font-mono mt-0.5">BOM: $12,825</div>
+                <div class="text-[10px] text-emerald-400 mt-1">Técnico: $3,000</div>
+              </button>
+
+              <!-- Botón Paquete Completo -->
+              <button type="button" onclick="setPaquete('completo')" id="btn-pkg-completo" class="pkg-card p-3 rounded-xl border border-slate-700 bg-slate-900/70 text-left transition relative hover:border-slate-500">
+                <div class="text-xs font-bold text-slate-200">Completo</div>
+                <div class="text-[11px] text-slate-400 font-mono mt-0.5">BOM: $18,000</div>
+                <div class="text-[10px] text-cyan-400 mt-1">Técnico: $3,500</div>
+              </button>
+            </div>
+            <p id="pkg-description" class="text-[11px] text-slate-400 font-mono">
+              BOM Base IA: $12,825 MXN • Skid RO + UV + Telemetría ESP32 + Prefiltración lavable.
+            </p>
+          </div>
+
+          <!-- CONTROL 2: SLIDER DE % DE AHORRO EN COMPRAS -->
+          <div class="space-y-2 pt-2 border-t border-slate-800">
+            <div class="flex items-center justify-between">
+              <label for="slider-ahorro" class="text-xs font-mono uppercase tracking-wider text-slate-300 font-semibold flex items-center gap-1.5">
+                <i data-lucide="percent" class="w-3.5 h-3.5 text-emerald-400"></i>
+                <span>2. % de Ahorro que Joe logra con sus proveedores</span>
+              </label>
+              <span id="display-ahorro-pct" class="text-base font-extrabold text-emerald-400 font-mono bg-emerald-950/60 px-2 py-0.5 rounded border border-emerald-800/40">
+                20%
+              </span>
+            </div>
+            <input type="range" id="slider-ahorro" min="5" max="40" step="1" value="20" class="w-full cursor-pointer accent-cyan-400" oninput="actualizarSimulador()">
+            
+            <div class="flex justify-between text-[10px] text-slate-400 font-mono">
+              <span>5% (Mínimo conservador)</span>
+              <span>20% (Promedio compras maquila)</span>
+              <span>40% (Compra directa fabricante)</span>
+            </div>
+
+            <!-- Detalle de la Vía 1 -->
+            <div class="rounded-lg p-3 bg-slate-900/80 border border-slate-800 flex items-center justify-between text-xs">
+              <div class="space-y-0.5">
+                <div class="text-slate-300 font-medium flex items-center gap-1.5">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                  Vía 1: Tu Comisión de Compras (50% del Ahorro)
+                </div>
+                <div class="text-[11px] text-slate-400">
+                  Ahorro total: <span id="display-ahorro-bruto" class="font-mono text-slate-200">$2,565 MXN</span>
+                </div>
+              </div>
+              <div class="text-right">
+                <span id="display-comision-compras" class="text-sm font-bold text-emerald-400 font-mono">+$1,283 MXN</span>
+                <div class="text-[9px] text-slate-400">se liquida en Hito 2</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CONTROL 3: TOGGLE SWITCH INSTALADOR TÉCNICO -->
+          <div class="pt-2 border-t border-slate-800">
+            <div class="flex items-start justify-between gap-4 p-3.5 rounded-xl bg-slate-900/60 border border-slate-700/80 hover:border-slate-600 transition">
+              <div class="space-y-1">
+                <div class="text-xs font-mono uppercase tracking-wider text-slate-200 font-bold flex items-center gap-1.5">
+                  <i data-lucide="wrench" class="w-3.5 h-3.5 text-amber-400"></i>
+                  <span>3. ¿Entrar también como Técnico Instalador en esa obra?</span>
+                </div>
+                <p class="text-[11px] text-slate-300 leading-snug">
+                  Gana <strong class="text-amber-300" id="label-tarifa-tecnico">$3,000 MXN</strong> fijos por obra (3 días @ $1,000/día). Cubre 2 días de perforación/ademe + 1 día extra de colchón por si sale piedra + 1 día de montaje del tren.
+                </p>
+              </div>
+
+              <!-- Switch Reactivo -->
+              <label class="relative inline-flex items-center cursor-pointer flex-shrink-0 mt-1">
+                <input type="checkbox" id="toggle-tecnico" class="sr-only peer" checked onchange="actualizarSimulador()">
+                <div class="w-11 h-6 bg-slate-750 peer-focus:outline-none rounded-full peer bg-slate-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-emerald-500"></div>
+              </label>
+            </div>
+          </div>
+
+          <!-- CONTROL 4: SLIDER DE SISTEMAS ACUMULADOS (INGRESO RECURRENTE 50/50) -->
+          <div class="space-y-2.5 pt-2 border-t border-slate-800">
+            <div class="flex items-center justify-between">
+              <label for="slider-sistemas" class="text-xs font-mono uppercase tracking-wider text-slate-300 font-semibold flex items-center gap-1.5">
+                <i data-lucide="repeat" class="w-3.5 h-3.5 text-cyan-400"></i>
+                <span>4. Sistemas instalados acumulados (Ingreso Recurrente)</span>
+              </label>
+              <span id="display-sistemas-count" class="text-base font-extrabold text-cyan-400 font-mono bg-cyan-950/60 px-2 py-0.5 rounded border border-cyan-800/40">
+                20 sistemas
+              </span>
+            </div>
+            <input type="range" id="slider-sistemas" min="1" max="50" step="1" value="20" class="w-full cursor-pointer accent-cyan-400" oninput="actualizarSimulador()">
+            
+            <div class="flex justify-between text-[10px] text-slate-400 font-mono">
+              <span>1 sistema</span>
+              <span>20 sistemas (Meta Mes 6)</span>
+              <span>50 sistemas (Meta Año 1)</span>
+            </div>
+
+            <!-- Vía 2: Consumibles Recurrentes 50/50 -->
+            <div class="rounded-lg p-3 bg-slate-900/80 border border-slate-800 space-y-2 text-xs">
+              <div class="flex items-center justify-between">
+                <div>
+                  <div class="text-slate-300 font-medium">Vía 2: Negocio Recurrente en Refacciones (50% Joe / 50% Pablo)</div>
+                  <div class="text-[11px] text-slate-400">Margen neto cartuchos por casa: $1,210/año → <span class="text-cyan-300 font-mono">Joe gana $605/año pasivos</span></div>
+                </div>
+                <div class="text-right">
+                  <span id="display-recurrente-refacciones" class="text-sm font-bold text-cyan-400 font-mono">+$12,100 MXN/año</span>
+                  <div class="text-[9px] text-slate-400">100% pasivo</div>
+                </div>
+              </div>
+
+              <!-- Toggle secundario: Mantenimientos semestrales físicos -->
+              <div class="pt-2 border-t border-slate-800/80 flex items-center justify-between">
+                <label for="toggle-mantenimiento-fisico" class="text-[11px] text-slate-300 flex items-center gap-2 cursor-pointer">
+                  <input type="checkbox" id="toggle-mantenimiento-fisico" class="rounded bg-slate-800 border-slate-700 text-cyan-500 focus:ring-0" onchange="actualizarSimulador()">
+                  <span>¿Hacer también los mantenimientos físicos semestrales? (+<strong class="text-amber-300 font-mono">$2,610/año</strong> por casa)</span>
+                </label>
+                <span id="display-recurrente-mano-obra" class="text-xs font-mono text-amber-400 hidden">+$0 MXN/año</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- COLUMNA DERECHA: LOS 3 KPIS GIGANTES Y DESGLOSE (5 COLS) -->
+        <div class="lg:col-span-5 space-y-4">
+          
+          <!-- KPI 1: GANANCIA POR 1 OBRA -->
+          <div class="glass-panel rounded-2xl p-5 border-2 border-emerald-500/40 shadow-glow-emerald bg-gradient-to-br from-[#151E38] to-[#1C2541] space-y-3 relative overflow-hidden">
+            <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-emerald-500/10 rounded-full blur-2xl pointer-events-none"></div>
+
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-mono font-bold uppercase tracking-wider text-emerald-400">
+                1. TU GANANCIA POR 1 OBRA INSTALADA
+              </span>
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">
+                LIQUIDACIÓN INMEDIATA
+              </span>
+            </div>
+
+            <div class="flex items-baseline gap-2">
+              <span id="kpi-ganancia-obra" class="text-4xl sm:text-5xl font-black text-white font-mono tracking-tight">
+                $4,283
+              </span>
+              <span class="text-sm font-bold text-emerald-400 font-mono">MXN</span>
+            </div>
+
+            <!-- Desglose Compras vs Técnico -->
+            <div class="grid grid-cols-2 gap-2 pt-2 border-t border-slate-700/60 text-xs font-mono">
+              <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-800">
+                <div class="text-[10px] text-slate-400">COMISIÓN COMPRAS</div>
+                <div id="sub-comision-obra" class="text-sm font-bold text-emerald-400">+$1,283 MXN</div>
+              </div>
+              <div class="bg-slate-900/60 p-2 rounded-lg border border-slate-800">
+                <div class="text-[10px] text-slate-400">MANO OBRA TÉCNICA</div>
+                <div id="sub-tecnico-obra" class="text-sm font-bold text-amber-400">+$3,000 MXN</div>
+              </div>
+            </div>
+            <p class="text-[11px] text-slate-300">
+              *Se paga con el anticipo del cliente al iniciar la obra y al recibir materiales. Cero esperas a fin de mes.
+            </p>
+          </div>
+
+          <!-- KPI 2: GANANCIA POR LOTE DE 5 OBRAS -->
+          <div class="glass-panel rounded-2xl p-5 border border-cyan-500/30 shadow-glow-cyan bg-slate-900/80 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-mono font-bold uppercase tracking-wider text-cyan-400">
+                2. GANANCIA POR LOTE DE 5 OBRAS
+              </span>
+              <span class="text-[10px] font-mono text-slate-400">
+                Meta mensual (~15 días trabajo)
+              </span>
+            </div>
+
+            <div class="flex items-baseline gap-2">
+              <span id="kpi-ganancia-lote5" class="text-3xl sm:text-4xl font-extrabold text-white font-mono tracking-tight">
+                $21,413
+              </span>
+              <span class="text-sm font-bold text-cyan-400 font-mono">MXN</span>
+            </div>
+
+            <div class="text-xs text-slate-300 leading-snug">
+              Equivalente a <strong class="text-emerald-400" id="sub-lote5-compras">$6,413 MXN</strong> en comisiones de compras + <strong class="text-amber-400" id="sub-lote5-tecnico">$15,000 MXN</strong> de honorarios técnicos.
+            </div>
+          </div>
+
+          <!-- KPI 3: INGRESO RECURRENTE ANUAL -->
+          <div class="glass-panel rounded-2xl p-5 border border-blue-500/30 bg-slate-900/80 space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="text-xs font-mono font-bold uppercase tracking-wider text-blue-400">
+                3. INGRESO RECURRENTE ANUAL (REFACCIONES)
+              </span>
+              <span id="badge-recurrente-sistemas" class="text-[10px] font-mono text-cyan-300 bg-cyan-950 px-2 py-0.5 rounded border border-cyan-800">
+                20 CASAS
+              </span>
+            </div>
+
+            <div class="flex items-baseline gap-2">
+              <span id="kpi-ingreso-recurrente" class="text-3xl sm:text-4xl font-extrabold text-white font-mono tracking-tight">
+                $12,100
+              </span>
+              <span class="text-sm font-bold text-blue-400 font-mono">MXN/año</span>
+            </div>
+
+            <p class="text-xs text-slate-300 leading-snug">
+              Dinero que entra en automático por el suministro periódico de carbón activado, filtros plisados y lámparas UV a las familias instaladas.
+            </p>
+          </div>
+
+          <!-- Call to action rápido al formulario -->
+          <div class="pt-1">
+            <a href="#drive-unlock" class="w-full py-3 px-4 rounded-xl bg-gradient-to-r from-emerald-500 to-cyan-500 hover:from-emerald-400 hover:to-cyan-400 text-slate-950 font-extrabold text-sm flex items-center justify-center gap-2 shadow-lg transition transform hover:-translate-y-0.5">
+              <span>Desbloquear Excel Maestro con estos datos</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SECCIÓN C: LOS 5 ENCARGOS CRÍTICOS DE INGENIERÍA Y COMPRAS               -->
+    <!-- ========================================================================= -->
+    <section class="space-y-6 pt-4">
+      <div class="border-b border-slate-800 pb-4">
+        <div class="text-xs font-mono font-bold uppercase tracking-wider text-amber-400 flex items-center gap-1.5 mb-1">
+          <i data-lucide="clipboard-check" class="w-4 h-4"></i> Misiones Estratégicas para Compras Industriales
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+          Los 5 Encargos Críticos de Ingeniería y Compras
+        </h2>
+        <p class="text-slate-400 text-sm mt-1">
+          Donde las especificaciones técnicas marcan la diferencia entre un sistema que dura 10 años o un desastre en campo.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        
+        <!-- ENCARGO 1: BOMBA SUMERGIBLE <2" (PRIORIDAD MÁXIMA) -->
+        <div class="md:col-span-2 lg:col-span-2 glass-panel rounded-2xl p-6 border-2 border-red-500/40 bg-gradient-to-br from-red-950/20 via-slate-900/80 to-[#151E38] relative overflow-hidden space-y-4">
+          <div class="flex flex-wrap items-center justify-between gap-2">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-950/80 border border-red-500/50 text-red-300 text-xs font-mono font-bold animate-pulse">
+              <i data-lucide="alert-octagon" class="w-4 h-4"></i> ENCARGO #1 — PRIORIDAD TÉCNICA CRÍTICA
+            </div>
+            <span class="text-xs font-mono text-slate-400">BOM-01 • Meta: ≤ $1,500 MXN</span>
+          </div>
+
+          <div>
+            <h3 class="text-xl font-bold text-white flex items-center gap-2">
+              Bomba Sumergible &lt; 2 Pulgadas (Bajo Caudal 1 a 2 L/min)
+            </h3>
+            <p class="text-slate-300 text-xs sm:text-sm mt-1 leading-relaxed">
+              El reto técnico número 1 del proyecto. Por favor lee esto antes de cotizar cualquier bomba comercial.
+            </p>
+          </div>
+
+          <!-- DIAGRAMA VISUAL COMPARATIVO DE CALIBRE -->
+          <div class="bg-slate-950/80 rounded-xl p-4 border border-slate-800 space-y-3 font-mono text-xs">
+            <div class="text-slate-300 font-semibold flex items-center gap-2 text-[11px] uppercase tracking-wider">
+              <i data-lucide="ruler" class="w-4 h-4 text-cyan-400"></i> Anatomía del Ademe vs Diámetro Exterior (OD)
+            </div>
+
+            <div class="space-y-2">
+              <!-- Tubo PVC -->
+              <div>
+                <div class="flex justify-between text-[11px] mb-1">
+                  <span class="text-slate-400">Ademe PVC Cédula 40 (2" nominal):</span>
+                  <span class="text-cyan-400 font-bold">ID Real = 52.5 mm</span>
+                </div>
+                <div class="w-full bg-slate-800 h-4 rounded-full overflow-hidden p-0.5 border border-slate-700">
+                  <div class="bg-cyan-600 h-full rounded-full" style="width: 100%"></div>
+                </div>
+              </div>
+
+              <!-- Bomba Comercial 2" (SE ATORA) -->
+              <div>
+                <div class="flex justify-between text-[11px] mb-1">
+                  <span class="text-red-400">Bomba Comercial común "2 pulgadas" (OD 50-51 mm):</span>
+                  <span class="text-red-400 font-bold">Holgura &lt; 1 mm ❌ ¡SE ATORA!</span>
+                </div>
+                <div class="w-full bg-slate-800 h-4 rounded-full overflow-hidden p-0.5 border border-red-900/50">
+                  <div class="bg-red-500 h-full rounded-full" style="width: 96%"></div>
+                </div>
+              </div>
+
+              <!-- Bomba Requerida Bullet -->
+              <div>
+                <div class="flex justify-between text-[11px] mb-1">
+                  <span class="text-emerald-400">Bomba Requerida Bullet / Lápiz (OD 38 a 45 mm):</span>
+                  <span class="text-emerald-400 font-bold">Holgura 7 a 14 mm ✅ ENTRA FLUIDA</span>
+                </div>
+                <div class="w-full bg-slate-800 h-4 rounded-full overflow-hidden p-0.5 border border-emerald-900/50">
+                  <div class="bg-emerald-500 h-full rounded-full" style="width: 76%"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- DETALLES DE CAUDAL -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+            <div class="p-3 rounded-lg bg-slate-900/90 border border-slate-800 space-y-1">
+              <div class="text-amber-400 font-bold font-mono flex items-center gap-1.5">
+                <i data-lucide="gauge" class="w-3.5 h-3.5"></i> Caudal Óptimo: 1 a 2 L/min
+              </div>
+              <p class="text-slate-300 text-[11px] leading-relaxed">
+                Extrae los 400 L/día en una ventana de 3.3 a 6.6 horas sin provocar abatimiento violento del cono freático ni arrastrar sedimentos finos/limos.
+              </p>
+            </div>
+
+            <div class="p-3 rounded-lg bg-slate-900/90 border border-slate-800 space-y-1">
+              <div class="text-cyan-400 font-bold font-mono flex items-center gap-1.5">
+                <i data-lucide="zap" class="w-3.5 h-3.5"></i> Alimentación: 12V o 24V DC
+              </div>
+              <p class="text-slate-300 text-[11px] leading-relaxed">
+                Tolerancia de caudal hasta <strong>6 L/min</strong>. Si supera los 2 L/min, se requiere estrangulamiento o línea de retorno hidráulico calibrada.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- ENCARGO 2: CARTUCHOS LAVABLES -->
+        <div class="glass-panel rounded-2xl p-5 border border-slate-700/60 bg-slate-900/70 space-y-3 flex flex-col justify-between">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-0.5 rounded-full bg-cyan-950 text-cyan-300 text-[10px] font-mono font-bold border border-cyan-800">
+                ENCARGO #2
+              </span>
+              <span class="text-[10px] font-mono text-slate-400">BOM-02</span>
+            </div>
+            <h3 class="text-lg font-bold text-white">Cartuchos Lavables & Spin-Down</h3>
+            <p class="text-slate-300 text-xs leading-relaxed">
+              Evitar que el usuario gaste comprando cartuchos de celulosa cada 15 días:
+            </p>
+            <ul class="text-xs text-slate-300 space-y-1.5 list-disc list-inside">
+              <li><strong>Pre-filtro Spin-Down</strong> con malla de acero inoxidable lavable (40 a 50 micras) y válvula de purga rápida.</li>
+              <li><strong>Cartucho plisado de poliéster lavable</strong> reutilizable (5 micras) antes del carbón activado en bloque.</li>
+            </ul>
+          </div>
+          <div class="p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 text-[11px] text-cyan-300 font-mono">
+            Meta compras: Kit completo ≤ $1,300 MXN
+          </div>
+        </div>
+
+        <!-- ENCARGO 3: MÓDULOS RO PREARMADOS (SKID) -->
+        <div class="glass-panel rounded-2xl p-5 border border-slate-700/60 bg-slate-900/70 space-y-3 flex flex-col justify-between">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-0.5 rounded-full bg-cyan-950 text-cyan-300 text-[10px] font-mono font-bold border border-cyan-800">
+                ENCARGO #3
+              </span>
+              <span class="text-[10px] font-mono text-slate-400">BOM-03</span>
+            </div>
+            <h3 class="text-lg font-bold text-white">Módulos RO Prearmados (Skid)</h3>
+            <p class="text-slate-300 text-xs leading-relaxed">
+              No queremos armar mangueras en campo bajo el sol:
+            </p>
+            <ul class="text-xs text-slate-300 space-y-1.5 list-disc list-inside">
+              <li>Tren de Ósmosis Inversa de <strong>100 a 150 GPD</strong> montado sobre un chasis compacto.</li>
+              <li>Bomba booster 24V DC pre-cableada.</li>
+              <li><strong>Restrictor calibrado a relación 2:1</strong> (por cada 2 L de uso común, 1 L de agua osmotizada). Conectores Push-Fit rápidos.</li>
+            </ul>
+          </div>
+          <div class="p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 text-[11px] text-cyan-300 font-mono">
+            Meta compras: Skid prearmado ≤ $2,650 MXN
+          </div>
+        </div>
+
+        <!-- ENCARGO 4: TELEMETRÍA ESP32 Y AUTOMATIZACIÓN -->
+        <div class="glass-panel rounded-2xl p-5 border border-slate-700/60 bg-slate-900/70 space-y-3 flex flex-col justify-between">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-0.5 rounded-full bg-cyan-950 text-cyan-300 text-[10px] font-mono font-bold border border-cyan-800">
+                ENCARGO #4
+              </span>
+              <span class="text-[10px] font-mono text-slate-400">BOM-04 & 05</span>
+            </div>
+            <h3 class="text-lg font-bold text-white">Telemetría ESP32 & Válvulas</h3>
+            <p class="text-slate-300 text-xs leading-relaxed">
+              Automatización IoT a prueba de fallas con componentes industriales:
+            </p>
+            <ul class="text-xs text-slate-300 space-y-1.5 list-disc list-inside">
+              <li>Placas <strong>ESP32 DevKit v1</strong> (o ESP32-S3) con Wi-Fi/Bluetooth.</li>
+              <li>Caudalímetros de turbina Hall de 1/2" + Transductores de presión (0-100 PSI).</li>
+              <li>Sondas TDS en línea + Relés de estado sólido (SSR) + <strong>4 electroválvulas solenoides 1/2" NC</strong> (12V/24V DC).</li>
+            </ul>
+          </div>
+          <div class="p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 text-[11px] text-cyan-300 font-mono">
+            Meta compras: Lote electrónico ≤ $1,350 MXN
+          </div>
+        </div>
+
+        <!-- ENCARGO 5: CONVENIO LABORATORIO & BENCHMARK -->
+        <div class="glass-panel rounded-2xl p-5 border border-slate-700/60 bg-slate-900/70 space-y-3 flex flex-col justify-between">
+          <div class="space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="px-2.5 py-0.5 rounded-full bg-cyan-950 text-cyan-300 text-[10px] font-mono font-bold border border-cyan-800">
+                ENCARGO #5
+              </span>
+              <span class="text-[10px] font-mono text-slate-400">BOM-11 & BENCHMARK</span>
+            </div>
+            <h3 class="text-lg font-bold text-white">Convenio NOM-201 & Benchmark</h3>
+            <p class="text-slate-300 text-xs leading-relaxed">
+              El poder de la maquila para certificación oficial y validación comercial:
+            </p>
+            <ul class="text-xs text-slate-300 space-y-1.5 list-disc list-inside">
+              <li><strong>Convenio con Laboratorio Acreditado EMA:</strong> Tarifa por volumen para análisis de potabilidad (coliformes, metales, TDS).</li>
+              <li><strong>Benchmark Industrial:</strong> Investigar cuánto cobra un proveedor comercial a la maquila por un skid similar de 400 L/día (rango típico: $45K-$80K MXN).</li>
+            </ul>
+          </div>
+          <div class="p-2.5 rounded-lg bg-slate-950/60 border border-slate-800 text-[11px] text-emerald-300 font-mono">
+            Meta laboratorio: ≤ $1,350 MXN por análisis
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SECCIÓN D: TABLA INTERACTIVA DE REQUISICIÓN (BOM / RFQ)                   -->
+    <!-- ========================================================================= -->
+    <section id="tabla-bom" class="space-y-5 pt-4">
+      <div class="flex flex-col md:flex-row md:items-end justify-between gap-3 border-b border-slate-800 pb-4">
+        <div>
+          <div class="text-xs font-mono font-bold uppercase tracking-wider text-cyan-400 flex items-center gap-1.5 mb-1">
+            <i data-lucide="table" class="w-4 h-4"></i> Bill of Materials / Pliego Técnico
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+            Pliego de Materiales Auditables (Paquete Medio $12,825 MXN)
+          </h2>
+          <p class="text-slate-400 text-xs sm:text-sm mt-1">
+            Escribe en los campos editables a cuánto crees conseguir cada pieza con tus proveedores. Tu comisión del 50% se calcula en vivo.
+          </p>
+        </div>
+
+        <!-- Presets Rápidos -->
+        <div class="flex items-center gap-2 self-start md:self-end">
+          <button type="button" onclick="aplicarDescuentoGlobal(0.15)" class="px-2.5 py-1.5 rounded-lg bg-slate-800 hover:bg-slate-700 text-slate-200 text-xs font-mono font-medium border border-slate-700 transition">
+            -15% Parejo
+          </button>
+          <button type="button" onclick="aplicarDescuentoGlobal(0.25)" class="px-2.5 py-1.5 rounded-lg bg-emerald-950 hover:bg-emerald-900 text-emerald-300 text-xs font-mono font-medium border border-emerald-800 transition">
+            -25% Agresivo
+          </button>
+          <button type="button" onclick="restablecerPreciosBase()" class="px-2.5 py-1.5 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-400 text-xs font-mono border border-slate-800 transition">
+            Reset Base IA
+          </button>
+        </div>
+      </div>
+
+      <!-- Tabla Contenedora con Scroll Horizontal en móvil -->
+      <div class="glass-panel rounded-2xl border border-slate-700/60 overflow-hidden shadow-2xl">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr class="bg-slate-900/90 border-b border-slate-700/80 text-[11px] font-mono uppercase tracking-wider text-slate-300">
+                <th class="py-3 px-3">Código</th>
+                <th class="py-3 px-4 min-w-[220px]">Componente & Especificación Técnica</th>
+                <th class="py-3 px-2 text-center">Cant. 1x</th>
+                <th class="py-3 px-2 text-center text-slate-400">5x</th>
+                <th class="py-3 px-2 text-center text-slate-400">10x</th>
+                <th class="py-3 px-3 text-right">Tope IA</th>
+                <th class="py-3 px-3 text-center min-w-[125px] bg-cyan-950/40 text-cyan-300">Precio Joe (MXN)</th>
+                <th class="py-3 px-3 text-right">Ahorro Unit.</th>
+                <th class="py-3 px-4 text-right text-emerald-400 font-bold bg-emerald-950/20">Tu 50% (MXN)</th>
+              </tr>
+            </thead>
+            <tbody id="bom-table-body" class="divide-y divide-slate-800/80 font-mono text-[11px]">
+              <!-- Las filas se renderizan dinámicamente vía JavaScript -->
+            </tbody>
+            <tfoot class="bg-slate-900/95 border-t-2 border-slate-700 font-mono text-xs font-bold text-white">
+              <tr>
+                <td colspan="5" class="py-3 px-4 text-right uppercase tracking-wider text-slate-400">
+                  Subtotal Sistema Primario (BOM 01 al 10):
+                </td>
+                <td class="py-3 px-3 text-right text-slate-300 font-mono" id="tfoot-total-base">
+                  $12,825
+                </td>
+                <td class="py-3 px-3 text-center bg-cyan-950/50 text-cyan-300" id="tfoot-total-joe">
+                  $10,260
+                </td>
+                <td class="py-3 px-3 text-right text-slate-200" id="tfoot-total-ahorro">
+                  -$2,565
+                </td>
+                <td class="py-3 px-4 text-right text-emerald-400 text-sm bg-emerald-950/40 font-black" id="tfoot-total-comision">
+                  +$1,283 MXN
+                </td>
+              </tr>
+              <!-- Fila opcional BOM-11 Laboratorio -->
+              <tr class="text-[10px] text-slate-400 bg-slate-950/40 border-t border-slate-800">
+                <td colspan="5" class="py-2 px-4 text-right">
+                  + Servicio Adicional: BOM-11 Laboratorio NOM-201 (Opcional):
+                </td>
+                <td class="py-2 px-3 text-right">$1,350</td>
+                <td class="py-2 px-3 text-center text-cyan-400" id="tfoot-lab-joe">$1,200</td>
+                <td class="py-2 px-3 text-right" id="tfoot-lab-ahorro">-$150</td>
+                <td class="py-2 px-4 text-right text-emerald-400" id="tfoot-lab-comision">+$75 MXN</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+
+      <!-- Resumen de Impacto por Volumen -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 font-mono text-xs">
+        <div class="p-3 rounded-xl bg-slate-900/60 border border-slate-800 flex items-center justify-between">
+          <span class="text-slate-400">Ahorro en 1 Obra:</span>
+          <span id="resumen-vol-1" class="font-bold text-slate-200">$2,565 MXN</span>
+        </div>
+        <div class="p-3 rounded-xl bg-slate-900/60 border border-slate-800 flex items-center justify-between">
+          <span class="text-slate-400">Ahorro en Lote 5 Obras:</span>
+          <span id="resumen-vol-5" class="font-bold text-cyan-300">$12,825 MXN</span>
+        </div>
+        <div class="p-3 rounded-xl bg-slate-900/60 border border-slate-800 flex items-center justify-between">
+          <span class="text-slate-400">Ahorro en Lote 10 Obras:</span>
+          <span id="resumen-vol-10" class="font-bold text-emerald-300">$25,650 MXN</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SECCIÓN E: COMPUERTA DE DESBLOQUEO DRIVE & WHATSAPP                       -->
+    <!-- ========================================================================= -->
+    <section id="drive-unlock" class="space-y-6 pt-4">
+      <div class="border-b border-slate-800 pb-4">
+        <div class="text-xs font-mono font-bold uppercase tracking-wider text-emerald-400 flex items-center gap-1.5 mb-1">
+          <i data-lucide="key" class="w-4 h-4"></i> Acceso Seguro a Google Drive & Notificación
+        </div>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+          Desbloquear el Plan Maestro en Google Drive
+        </h2>
+        <p class="text-slate-400 text-xs sm:text-sm mt-1">
+          Ingresa tu correo de Gmail/Google Workspace para asignarte permisos inmediatos de Editor en el archivo maestro de Excel en la nube.
+        </p>
+      </div>
+
+      <div class="glass-panel rounded-2xl p-6 sm:p-8 border-2 border-cyan-500/30 shadow-2xl relative overflow-hidden bg-gradient-to-br from-[#151E38] via-[#1C2541] to-[#0B132B]">
+        <!-- Fondo interactivo -->
+        <div class="absolute -right-20 -bottom-20 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <form id="form-unlock-drive" onsubmit="ejecutarDesbloqueoDrive(event)" class="space-y-6 relative z-10 max-w-2xl mx-auto">
+          
+          <!-- Correo de Google -->
+          <div class="space-y-2">
+            <label for="input-email-joe" class="block text-xs font-mono uppercase tracking-wider text-slate-300 font-semibold flex items-center gap-2">
+              <i data-lucide="mail" class="w-4 h-4 text-cyan-400"></i>
+              <span>Tu Correo Electrónico de Google (Gmail o Workspace)</span>
+            </label>
+            <div class="relative">
+              <input 
+                type="email" 
+                id="input-email-joe" 
+                required 
+                placeholder="ejemplo: joel.compras@gmail.com" 
+                class="w-full px-4 py-3.5 pl-11 rounded-xl bg-slate-950/80 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-cyan-400 focus:ring-2 focus:ring-cyan-500/20 font-mono text-sm transition"
+              >
+              <i data-lucide="at-sign" class="w-5 h-5 text-slate-400 absolute left-3.5 top-3.5"></i>
+            </div>
+            <p class="text-[11px] text-slate-400">
+              *A este correo un Webhook de Google Apps Script le otorgará permiso directo <code class="text-cyan-300 font-mono">addEditor</code>.
+            </p>
+          </div>
+
+          <!-- Checkboxes de Modalidad de Participación -->
+          <div class="space-y-2.5">
+            <span class="block text-xs font-mono uppercase tracking-wider text-slate-300 font-semibold">
+              Modalidad en la que te interesa participar con Pablo:
+            </span>
+            <div class="space-y-2 text-xs">
+              <label class="flex items-center gap-3 p-3 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-slate-700 cursor-pointer transition">
+                <input type="checkbox" id="check-rol-compras" checked class="w-4 h-4 rounded text-emerald-500 focus:ring-0 bg-slate-800 border-slate-600">
+                <span class="text-slate-200">
+                  <strong class="text-emerald-300">Auditor de Compras & Suministro 50/50:</strong> Negociar BOM con proveedores industriales y cobrar la mitad del ahorro en efectivo.
+                </span>
+              </label>
+
+              <label class="flex items-center gap-3 p-3 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-slate-700 cursor-pointer transition">
+                <input type="checkbox" id="check-rol-tecnico" checked class="w-4 h-4 rounded text-amber-500 focus:ring-0 bg-slate-800 border-slate-600">
+                <span class="text-slate-200">
+                  <strong class="text-amber-300">Técnico Instalador en Obra:</strong> Participar en perforación y montaje en campo (<span class="font-mono text-amber-300">$3,000 - $3,500/obra</span>).
+                </span>
+              </label>
+
+              <label class="flex items-center gap-3 p-3 rounded-xl bg-slate-900/60 border border-slate-800 hover:border-slate-700 cursor-pointer transition">
+                <input type="checkbox" id="check-rol-mantenimiento" class="w-4 h-4 rounded text-cyan-500 focus:ring-0 bg-slate-800 border-slate-600">
+                <span class="text-slate-200">
+                  <strong class="text-cyan-300">Ruta de Mantenimientos Semestrales:</strong> Dar servicio físico de recambio a los sistemas instalados (+<span class="font-mono text-cyan-300">$2,610/año</span> por casa).
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <!-- Botón de Envío Principal -->
+          <div>
+            <button 
+              type="submit" 
+              id="btn-submit-unlock" 
+              class="w-full py-4 px-6 rounded-xl bg-gradient-to-r from-cyan-500 via-sky-400 to-emerald-400 hover:from-cyan-400 hover:to-emerald-300 text-slate-950 font-black text-base flex items-center justify-center gap-3 shadow-glow-cyan transition transform hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+            >
+              <i data-lucide="lock-keyhole-open" class="w-5 h-5"></i>
+              <span>Desbloquear Excel Maestro en mi Google Drive</span>
+            </button>
+          </div>
+
+        </form>
+
+        <!-- PANEL DE RESPUESTA / ÉXITO (OCULTO INICIALMENTE) -->
+        <div id="unlock-success-panel" class="hidden max-w-2xl mx-auto space-y-5 pt-4 text-center">
+          <div class="w-16 h-16 mx-auto rounded-full bg-emerald-500/20 text-emerald-400 flex items-center justify-center border-2 border-emerald-400 shadow-glow-emerald">
+            <i data-lucide="check" class="w-9 h-9"></i>
+          </div>
+
+          <div class="space-y-1">
+            <h3 class="text-2xl font-black text-white">¡Permiso Concedido Exitosamente!</h3>
+            <p class="text-sm text-slate-300">
+              Se ha vinculado el acceso para <span id="success-email-target" class="font-mono text-cyan-300 font-bold"></span> al Google Drive de Agua de Ya.
+            </p>
+          </div>
+
+          <!-- Tarjetas de Acción Post-Desbloqueo -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 text-left">
+            <!-- Botón 1: Abrir Sheet -->
+            <a 
+              id="link-abrir-google-sheet" 
+              href="https://docs.google.com/spreadsheets/d/1fT9YFl_CDJ0bKJujPWT88AnswQVD-DQduo_QPiJt1V8/edit" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              class="p-4 rounded-xl bg-slate-900 border border-cyan-500/40 hover:border-cyan-400 transition flex items-center gap-3 group"
+            >
+              <div class="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-400 flex items-center justify-center font-bold group-hover:scale-110 transition">
+                <i data-lucide="file-spreadsheet" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <div class="text-xs font-bold text-white group-hover:text-cyan-300">Abrir Google Sheet Maestro</div>
+                <div class="text-[10px] text-slate-400 font-mono">Plan Maestro y Cotizador Oficial</div>
+              </div>
+            </a>
+
+            <!-- Botón 2: Notificar por WhatsApp -->
+            <a 
+              id="btn-whatsapp-pablo" 
+              href="#" 
+              target="_blank" 
+              class="p-4 rounded-xl bg-emerald-950/60 border border-emerald-500/50 hover:border-emerald-400 transition flex items-center gap-3 group"
+            >
+              <div class="w-10 h-10 rounded-lg bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold group-hover:scale-110 transition">
+                <i data-lucide="message-square" class="w-5 h-5"></i>
+              </div>
+              <div>
+                <div class="text-xs font-bold text-white group-hover:text-emerald-300">Enviar Resumen a Pablo</div>
+                <div class="text-[10px] text-emerald-300/80 font-mono">WhatsApp directo con tu propuesta</div>
+              </div>
+            </a>
+          </div>
+
+          <div class="text-[11px] text-slate-400 font-mono pt-2">
+            *Si el permiso tarda unos segundos en reflejarse, solicita acceso directo desde la ventana de Google Drive y el bot de Apps Script lo aprobará.
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ========================================================================= -->
+  <!-- BARRA STICKY INFERIOR PARA MÓVILES (RESUMEN SIEMPRE VISIBLE)              -->
+  <!-- ========================================================================= -->
+  <div class="fixed bottom-0 left-0 right-0 z-30 bg-[#0B132B]/95 backdrop-blur-lg border-t border-slate-800 p-3 sm:hidden shadow-2xl">
+    <div class="flex items-center justify-between gap-3">
+      <div>
+        <div class="text-[9px] font-mono uppercase text-slate-400">Tu ganancia / obra:</div>
+        <div class="text-lg font-black text-emerald-400 font-mono" id="sticky-ganancia-obra">$4,283 MXN</div>
+      </div>
+      <div class="text-right">
+        <div class="text-[9px] font-mono uppercase text-slate-400">Recurrente anual:</div>
+        <div class="text-xs font-bold text-cyan-300 font-mono" id="sticky-recurrente-anual">$12,100 MXN</div>
+      </div>
+      <a href="#drive-unlock" class="px-3.5 py-2 rounded-lg bg-emerald-500 text-slate-950 font-bold text-xs flex items-center gap-1 shadow-glow-emerald">
+        <span>Desbloquear</span>
+        <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+      </a>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- FOOTER & MODAL DE CONFIGURACIÓN PARA PABLO                                -->
+  <!-- ========================================================================= -->
+  <footer class="border-t border-slate-800/80 bg-slate-950/60 mt-16 py-8 text-center text-xs text-slate-500">
+    <div class="max-w-6xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-2">
+        <div class="w-5 h-5 rounded bg-cyan-600/30 text-cyan-400 flex items-center justify-center text-[10px] font-bold">
+          AY
+        </div>
+        <span>Agua de Ya · Tijuana, B.C. · Protocolo Operativo 2026</span>
+      </div>
+
+      <div class="flex items-center gap-4">
+        <button type="button" onclick="abrirModalConfig()" class="text-slate-400 hover:text-cyan-400 transition flex items-center gap-1 font-mono text-[11px]">
+          <i data-lucide="settings" class="w-3.5 h-3.5"></i>
+          <span>⚙️ Configurar Drive Webhook</span>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- MODAL DE CONFIGURACIÓN DE PABLO (DRIVE WEBHOOK) -->
+  <div id="modal-config-pablo" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-[#151E38] border border-cyan-500/40 rounded-2xl max-w-xl w-full p-6 space-y-4 shadow-2xl relative">
+      <div class="flex items-center justify-between border-b border-slate-700 pb-3">
+        <h3 class="text-base font-bold text-white flex items-center gap-2">
+          <i data-lucide="sliders" class="w-4 h-4 text-cyan-400"></i>
+          <span>Configuración de Integración (Solo para Pablo)</span>
+        </h3>
+        <button type="button" onclick="cerrarModalConfig()" class="text-slate-400 hover:text-white">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <div class="space-y-3 text-xs">
+        <div>
+          <label class="block text-slate-300 font-mono mb-1 font-semibold">URL de tu Google Sheet Maestro:</label>
+          <input type="url" id="cfg-sheet-url" class="w-full p-2.5 rounded-lg bg-slate-900 border border-slate-700 text-white font-mono" placeholder="https://docs.google.com/spreadsheets/d/TU_ID_AQUI/edit">
+        </div>
+
+        <div>
+          <label class="block text-slate-300 font-mono mb-1 font-semibold">URL del Webhook (Google Apps Script Web App):</label>
+          <input type="url" id="cfg-webhook-url" class="w-full p-2.5 rounded-lg bg-slate-900 border border-slate-700 text-white font-mono" placeholder="https://script.google.com/macros/s/AKfycb.../exec">
+          <p class="text-[10px] text-slate-400 mt-1">
+            *Al publicarlo en Apps Script, elige "Ejecutar como: Yo" y "¿Quién tiene acceso?: Cualquier persona".
+          </p>
+        </div>
+
+        <!-- Código Code.gs para copiar -->
+        <div class="space-y-1">
+          <div class="flex justify-between items-center">
+            <span class="font-mono text-slate-300 font-semibold">Código Apps Script (Code.gs):</span>
+            <button type="button" onclick="copiarCodigoAppsScript()" class="text-[10px] text-cyan-400 hover:underline flex items-center gap-1 font-mono">
+              <i data-lucide="copy" class="w-3 h-3"></i> Copiar Código
+            </button>
+          </div>
+          <pre id="code-gs-snippet" class="p-3 rounded-lg bg-slate-950 text-slate-300 font-mono text-[10px] overflow-x-auto max-h-36 border border-slate-800">function doPost(e) {
+  try {
+    var data = JSON.parse(e.postData.contents);
+    var FILE_ID = "PEGA_AQUI_EL_ID_DE_TU_GOOGLE_SHEET";
+    var file = DriveApp.getFileById(FILE_ID);
+    
+    // Otorgar permiso de Editor o Lector a Joe
+    file.addEditor(data.email);
+    
+    // Guardar en hoja de bitácora
+    var ss = SpreadsheetApp.openById(FILE_ID);
+    var sheet = ss.getSheetByName("Bitacora_Joe") || ss.insertSheet("Bitacora_Joe");
+    sheet.appendRow([
+      new Date(), 
+      data.email, 
+      JSON.stringify(data.roles), 
+      data.paquete, 
+      data.gananciaObra, 
+      data.recurrenteAnual
+    ]);
+    
+    return ContentService.createTextOutput(JSON.stringify({status: "ok"})).setMimeType(ContentService.MimeType.JSON);
+  } catch(err) {
+    return ContentService.createTextOutput(JSON.stringify({status: "error", error: err.toString()})).setMimeType(ContentService.MimeType.JSON);
+  }
+}</pre>
+        </div>
+      </div>
+
+      <div class="flex justify-end gap-2 pt-2 border-t border-slate-700">
+        <button type="button" onclick="cerrarModalConfig()" class="px-4 py-2 rounded-lg bg-slate-800 text-slate-300 text-xs font-mono">
+          Cerrar
+        </button>
+        <button type="button" onclick="guardarConfigPablo()" class="px-4 py-2 rounded-lg bg-cyan-500 text-slate-950 font-bold text-xs font-mono">
+          Guardar Cambios
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ========================================================================= -->
+  <!-- JAVASCRIPT REACTIVO (VANILLA JS)                                          -->
+  <!-- ========================================================================= -->
+  <script>
+    // =========================================================================
+    // 1. ESTADO GLOBAL DE LA APLICACIÓN
+    // =========================================================================
+    const PAQUETES = {
+      base: {
+        nombre: 'Paquete Base',
+        bomBase: 8700,
+        tecnicoBase: 3000,
+        diasTecnico: 3,
+        descripcion: 'BOM Base IA: $8,700 MXN • Bomba de bajo caudal + Filtración modular directa.'
+      },
+      medio: {
+        nombre: 'Paquete Medio (Recomendado)',
+        bomBase: 12825,
+        tecnicoBase: 3000,
+        diasTecnico: 3,
+        descripcion: 'BOM Base IA: $12,825 MXN • Skid RO + UV + Telemetría ESP32 + Prefiltro lavable.'
+      },
+      completo: {
+        nombre: 'Paquete Completo',
+        bomBase: 18000,
+        tecnicoBase: 3500,
+        diasTecnico: 3.5,
+        descripcion: 'BOM Base IA: $18,000 MXN • Skid RO Doble Paso + Floculación Automatizada + Presostato.'
+      }
+    };
+
+    // Ítems del BOM (Paquete Medio $12,825)
+    const BOM_ITEMS = [
+      {
+        id: 'BOM-01',
+        nombre: 'Bomba Sumergible < 2" (OD 38-45mm)',
+        especificacion: 'Bullet pump acero inox, caudal 1-2 L/min (máx 6 L/min), 12V/24V DC. Crítica.',
+        cant1: '1 pza',
+        cant5: '5 pzas',
+        cant10: '10 pzas',
+        precioBase: 1500,
+        precioJoe: 1200
+      },
+      {
+        id: 'BOM-02',
+        nombre: 'Pre-Filtro Spin-Down + Plisado + Carbón',
+        especificacion: 'Malla inox 40 µm lavable + cartucho poliéster plisado 5 µm + bloque carbón.',
+        cant1: '1 kit',
+        cant5: '5 kits',
+        cant10: '10 kits',
+        precioBase: 1300,
+        precioJoe: 1040
+      },
+      {
+        id: 'BOM-03',
+        nombre: 'Skid Ósmosis Inversa 100-150 GPD Prearmado',
+        especificacion: 'Chasis con bomba booster 24V, restrictor 2:1 y conectores Push-Fit rápidos.',
+        cant1: '1 sist',
+        cant5: '5 sist',
+        cant10: '10 sist',
+        precioBase: 2650,
+        precioJoe: 2120
+      },
+      {
+        id: 'BOM-04',
+        nombre: 'Kit Telemetría ESP32, Sensores y SSR',
+        especificacion: 'Placa ESP32, caudalímetro Hall 1/2", sensor presión 100 PSI, sonda TDS, relé SSR.',
+        cant1: '1 kit',
+        cant5: '5 kits',
+        cant10: '10 kits',
+        precioBase: 750,
+        precioJoe: 600
+      },
+      {
+        id: 'BOM-05',
+        nombre: 'Electroválvulas Solenoides 1/2" NC (4 pzas)',
+        especificacion: '4 electroválvulas de 1/2" normalmente cerradas (12V/24V DC) a $150 c/u.',
+        cant1: '4 pzas',
+        cant5: '20 pzas',
+        cant10: '40 pzas',
+        precioBase: 600,
+        precioJoe: 480
+      },
+      {
+        id: 'BOM-06',
+        nombre: 'Esterilizador Luz UV 1-2 GPM Inox',
+        especificacion: 'Cámara cuarzo/acero inox con balastro electrónico certificado sin ozono.',
+        cant1: '1 pza',
+        cant5: '5 pzas',
+        cant10: '10 pzas',
+        precioBase: 1350,
+        precioJoe: 1080
+      },
+      {
+        id: 'BOM-07',
+        nombre: 'Tubería PVC Cédula 40 + Grava Sílica',
+        especificacion: 'Tubería hidráulica 2"-3" ranurada para ademe + 2 sacos grava sílica seleccionada.',
+        cant1: '1 lote',
+        cant5: '5 lotes',
+        cant10: '10 lotes',
+        precioBase: 2100,
+        precioJoe: 1680
+      },
+      {
+        id: 'BOM-08',
+        nombre: 'Módulo Floculación Adaptativa',
+        especificacion: 'Electrodos Fe/Al + cátodo acero inox + fuente de alimentación DC modulada.',
+        cant1: '1 kit',
+        cant5: '5 kits',
+        cant10: '10 kits',
+        precioBase: 950,
+        precioJoe: 760
+      },
+      {
+        id: 'BOM-09',
+        nombre: 'Tambo 200 L Grado Alimenticio HDPE',
+        especificacion: 'Tambo limpio recuperado de maquila + bridas pasamuros plásticas + flotador.',
+        cant1: '1 pza',
+        cant5: '5 pzas',
+        cant10: '10 pzas',
+        precioBase: 800,
+        precioJoe: 640
+      },
+      {
+        id: 'BOM-10',
+        nombre: 'Plomería Menor, Check y Tomas',
+        especificacion: 'Coples rápidos, mangueras PE grado alimenticio, válvula check y llave dispensadora.',
+        cant1: '1 lote',
+        cant5: '5 lotes',
+        cant10: '10 lotes',
+        precioBase: 825,
+        precioJoe: 660
+      }
+    ];
+
+    // BOM-11 adicional
+    const BOM_11_LAB = {
+      id: 'BOM-11',
+      nombre: 'Análisis Laboratorio Acreditado EMA (NOM-201)',
+      precioBase: 1350,
+      precioJoe: 1200
+    };
+
+    let estado = {
+      paqueteKey: 'medio',
+      pctAhorro: 20,
+      esTecnico: true,
+      sistemasRecurrente: 20,
+      incluyeMantenimientoFisico: false,
+      sheetUrl: localStorage.getItem('ay_sheet_url') || 'https://docs.google.com/spreadsheets/d/1fT9YFl_CDJ0bKJujPWT88AnswQVD-DQduo_QPiJt1V8/edit',
+      webhookUrl: localStorage.getItem('ay_webhook_url') || ''
+    };
+
+    // =========================================================================
+    // 2. FORMATEO DE MONEDA Y NÚMEROS
+    // =========================================================================
+    function formatMoney(amount) {
+      return '$' + Math.round(amount).toLocaleString('es-MX');
+    }
+
+    // =========================================================================
+    // 3. CAMBIO DE PAQUETE
+    // =========================================================================
+    function setPaquete(key) {
+      if (!PAQUETES[key]) return;
+      estado.paqueteKey = key;
+
+      // Actualizar clases de botones
+      ['base', 'medio', 'completo'].forEach(k => {
+        const btn = document.getElementById(`btn-pkg-${k}`);
+        if (!btn) return;
+        if (k === key) {
+          btn.className = 'pkg-card p-3 rounded-xl border-2 border-cyan-400 bg-cyan-950/40 text-left transition relative shadow-glow-cyan';
+        } else {
+          btn.className = 'pkg-card p-3 rounded-xl border border-slate-700 bg-slate-900/70 text-left transition relative hover:border-slate-500';
+        }
+      });
+
+      const pkg = PAQUETES[key];
+      document.getElementById('label-paquete-activo').textContent = pkg.nombre;
+      document.getElementById('pkg-description').textContent = pkg.descripcion;
+      document.getElementById('label-tarifa-tecnico').textContent = formatMoney(pkg.tecnicoBase) + ' MXN';
+
+      actualizarSimulador();
+    }
+
+    // =========================================================================
+    // 4. MOTOR DE CÁLCULO PRINCIPAL (SIMULADOR)
+    // =========================================================================
+    function actualizarSimulador() {
+      const pkg = PAQUETES[estado.paqueteKey];
+      const sliderAhorro = document.getElementById('slider-ahorro');
+      const toggleTecnico = document.getElementById('toggle-tecnico');
+      const sliderSistemas = document.getElementById('slider-sistemas');
+      const toggleMantenimiento = document.getElementById('toggle-mantenimiento-fisico');
+
+      estado.pctAhorro = parseInt(sliderAhorro.value, 10);
+      estado.esTecnico = toggleTecnico.checked;
+      estado.sistemasRecurrente = parseInt(sliderSistemas.value, 10);
+      estado.incluyeMantenimientoFisico = toggleMantenimiento.checked;
+
+      // Cálculos Vía 1: Compras
+      const factorAhorro = estado.pctAhorro / 100;
+      const ahorroBrutoObra = pkg.bomBase * factorAhorro;
+      const comisionComprasObra = ahorroBrutoObra * 0.50; // 50% de Joe
+
+      // Cálculos Vía 2: Técnico
+      const tarifaTecnicoObra = estado.esTecnico ? pkg.tecnicoBase : 0;
+
+      // Total por 1 Obra
+      const totalGananciaObra = comisionComprasObra + tarifaTecnicoObra;
+
+      // Lote de 5 Obras
+      const lote5Compras = comisionComprasObra * 5;
+      const lote5Tecnico = tarifaTecnicoObra * 5;
+      const totalLote5 = totalGananciaObra * 5;
+
+      // Cálculos Recurrente Anual (Consumibles 50/50: $605/año por sistema)
+      const pasivoConsumibles = estado.sistemasRecurrente * 605;
+      const manoObraMantenimiento = estado.incluyeMantenimientoFisico ? (estado.sistemasRecurrente * 2610) : 0;
+      const totalRecurrenteAnual = pasivoConsumibles + manoObraMantenimiento;
+
+      // Actualizar UI - Textos y Números
+      document.getElementById('display-ahorro-pct').textContent = `${estado.pctAhorro}%`;
+      document.getElementById('display-ahorro-bruto').textContent = formatMoney(ahorroBrutoObra) + ' MXN';
+      document.getElementById('display-comision-compras').textContent = `+${formatMoney(comisionComprasObra)} MXN`;
+
+      document.getElementById('display-sistemas-count').textContent = `${estado.sistemasRecurrente} sistemas`;
+      document.getElementById('display-recurrente-refacciones').textContent = `+${formatMoney(pasivoConsumibles)} MXN/año`;
+
+      const elManoObra = document.getElementById('display-recurrente-mano-obra');
+      if (estado.incluyeMantenimientoFisico) {
+        elManoObra.classList.remove('hidden');
+        elManoObra.textContent = `+${formatMoney(manoObraMantenimiento)} MXN/año`;
+      } else {
+        elManoObra.classList.add('hidden');
+      }
+
+      // KPIs Gigantes
+      document.getElementById('kpi-ganancia-obra').textContent = formatMoney(totalGananciaObra);
+      document.getElementById('sub-comision-obra').textContent = `+${formatMoney(comisionComprasObra)} MXN`;
+      document.getElementById('sub-tecnico-obra').textContent = `+${formatMoney(tarifaTecnicoObra)} MXN`;
+
+      document.getElementById('kpi-ganancia-lote5').textContent = formatMoney(totalLote5);
+      document.getElementById('sub-lote5-compras').textContent = formatMoney(lote5Compras) + ' MXN';
+      document.getElementById('sub-lote5-tecnico').textContent = formatMoney(lote5Tecnico) + ' MXN';
+
+      document.getElementById('kpi-ingreso-recurrente').textContent = formatMoney(totalRecurrenteAnual);
+      document.getElementById('badge-recurrente-sistemas').textContent = `${estado.sistemasRecurrente} CASAS`;
+
+      // Barra Sticky Móvil
+      const elStickyObra = document.getElementById('sticky-ganancia-obra');
+      const elStickyAnual = document.getElementById('sticky-recurrente-anual');
+      if (elStickyObra) elStickyObra.textContent = formatMoney(totalGananciaObra) + ' MXN';
+      if (elStickyAnual) elStickyAnual.textContent = formatMoney(totalRecurrenteAnual) + ' MXN';
+    }
+
+    // =========================================================================
+    // 5. RENDER Y GESTIÓN DE LA TABLA BOM
+    // =========================================================================
+    function renderTablaBOM() {
+      const tbody = document.getElementById('bom-table-body');
+      if (!tbody) return;
+      tbody.innerHTML = '';
+
+      let totalBase = 0;
+      let totalJoe = 0;
+
+      BOM_ITEMS.forEach((item, index) => {
+        totalBase += item.precioBase;
+        totalJoe += item.precioJoe;
+
+        const ahorroUnit = Math.max(0, item.precioBase - item.precioJoe);
+        const comision50 = ahorroUnit * 0.50;
+
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-slate-800/40 transition';
+        tr.innerHTML = `
+          <td class="py-2.5 px-3 font-mono text-cyan-400 font-bold">${item.id}</td>
+          <td class="py-2.5 px-4 font-sans">
+            <div class="text-white font-semibold text-xs">${item.nombre}</div>
+            <div class="text-[10px] text-slate-400 font-mono mt-0.5">${item.especificacion}</div>
+          </td>
+          <td class="py-2.5 px-2 text-center text-slate-300">${item.cant1}</td>
+          <td class="py-2.5 px-2 text-center text-slate-500">${item.cant5}</td>
+          <td class="py-2.5 px-2 text-center text-slate-500">${item.cant10}</td>
+          <td class="py-2.5 px-3 text-right text-slate-300 font-mono">${formatMoney(item.precioBase)}</td>
+          <td class="py-2.5 px-3 text-center bg-cyan-950/20">
+            <div class="relative inline-block w-24">
+              <span class="absolute left-2 top-1.5 text-slate-400 text-[10px]">$</span>
+              <input 
+                type="number" 
+                value="${item.precioJoe}" 
+                min="0" 
+                max="${item.precioBase * 1.5}" 
+                step="25"
+                onchange="actualizarPrecioJoeItem(${index}, this.value)"
+                class="w-full pl-5 pr-2 py-1 rounded bg-slate-900 border border-cyan-800 text-cyan-300 font-mono text-right text-xs focus:outline-none focus:border-cyan-400"
+              >
+            </div>
+          </td>
+          <td class="py-2.5 px-3 text-right font-mono ${ahorroUnit > 0 ? 'text-slate-200' : 'text-slate-500'}">
+            -${formatMoney(ahorroUnit)}
+          </td>
+          <td class="py-2.5 px-4 text-right font-mono font-bold ${comision50 > 0 ? 'text-emerald-400 bg-emerald-950/30' : 'text-slate-500'}">
+            +${formatMoney(comision50)} MXN
+          </td>
+        `;
+        tbody.appendChild(tr);
+      });
+
+      // Actualizar Tfoot
+      const totalAhorro = Math.max(0, totalBase - totalJoe);
+      const totalComision = totalAhorro * 0.50;
+
+      document.getElementById('tfoot-total-base').textContent = formatMoney(totalBase);
+      document.getElementById('tfoot-total-joe').textContent = formatMoney(totalJoe);
+      document.getElementById('tfoot-total-ahorro').textContent = `-${formatMoney(totalAhorro)}`;
+      document.getElementById('tfoot-total-comision').textContent = `+${formatMoney(totalComision)} MXN`;
+
+      // Resumen de Volumen
+      document.getElementById('resumen-vol-1').textContent = formatMoney(totalAhorro) + ' MXN';
+      document.getElementById('resumen-vol-5').textContent = formatMoney(totalAhorro * 5) + ' MXN';
+      document.getElementById('resumen-vol-10').textContent = formatMoney(totalAhorro * 10) + ' MXN';
+    }
+
+    function actualizarPrecioJoeItem(index, valor) {
+      const num = parseFloat(valor);
+      if (!isNaN(num) && num >= 0) {
+        BOM_ITEMS[index].precioJoe = num;
+        renderTablaBOM();
+      }
+    }
+
+    function aplicarDescuentoGlobal(factor) {
+      BOM_ITEMS.forEach(item => {
+        item.precioJoe = Math.round(item.precioBase * (1 - factor));
+      });
+      renderTablaBOM();
+      // Reflejar en el slider del simulador
+      const slider = document.getElementById('slider-ahorro');
+      if (slider) {
+        slider.value = Math.round(factor * 100);
+        actualizarSimulador();
+      }
+    }
+
+    function restablecerPreciosBase() {
+      BOM_ITEMS.forEach(item => {
+        item.precioJoe = item.precioBase;
+      });
+      renderTablaBOM();
+      const slider = document.getElementById('slider-ahorro');
+      if (slider) {
+        slider.value = 5;
+        actualizarSimulador();
+      }
+    }
+
+    // =========================================================================
+    // 6. DESBLOQUEO DRIVE & ENVÍO A GOOGLE APPS SCRIPT
+    // =========================================================================
+    async function ejecutarDesbloqueoDrive(event) {
+      event.preventDefault();
+
+      const emailInput = document.getElementById('input-email-joe');
+      const email = emailInput.value.trim();
+      if (!email) return;
+
+      const btnSubmit = document.getElementById('btn-submit-unlock');
+      const originalText = btnSubmit.innerHTML;
+
+      // Estado visual de carga
+      btnSubmit.disabled = true;
+      btnSubmit.innerHTML = `
+        <i data-lucide="loader-2" class="w-5 h-5 animate-spin"></i>
+        <span>Conectando con Google Apps Script & Drive...</span>
+      `;
+      lucide.createIcons();
+
+      // Recopilar datos de la sesión para el payload
+      const roles = [];
+      if (document.getElementById('check-rol-compras').checked) roles.push('Compras y Suministro 50/50');
+      if (document.getElementById('check-rol-tecnico').checked) roles.push('Técnico Instalador');
+      if (document.getElementById('check-rol-mantenimiento').checked) roles.push('Mantenimientos Semestrales');
+
+      const pkg = PAQUETES[estado.paqueteKey];
+      const factorAhorro = estado.pctAhorro / 100;
+      const comisionCompras = (pkg.bomBase * factorAhorro) * 0.50;
+      const pagoTecnico = estado.esTecnico ? pkg.tecnicoBase : 0;
+      const gananciaObra = comisionCompras + pagoTecnico;
+      const recurrenteAnual = (estado.sistemasRecurrente * 605) + (estado.incluyeMantenimientoFisico ? estado.sistemasRecurrente * 2610 : 0);
+
+      const payload = {
+        email: email,
+        roles: roles,
+        paquete: pkg.nombre,
+        ahorroPct: estado.pctAhorro,
+        gananciaComprasObra: comisionCompras,
+        pagoTecnicoObra: pagoTecnico,
+        gananciaObra: gananciaObra,
+        recurrenteAnual: recurrenteAnual,
+        timestamp: new Date().toISOString()
+      };
+
+      // Si hay webhook configurado, enviar POST real
+      if (estado.webhookUrl && estado.webhookUrl.startsWith('http')) {
+        try {
+          await fetch(estado.webhookUrl, {
+            method: 'POST',
+            mode: 'no-cors', // Para evitar bloqueos CORS con Google Apps Script Web App
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+        } catch (err) {
+          console.warn('Webhook notification notice:', err);
+        }
+      }
+
+      // Simular latencia elegante si no hay webhook o tras fetch
+      await new Promise(resolve => setTimeout(resolve, 900));
+
+      // Mostrar panel de éxito
+      document.getElementById('form-unlock-drive').classList.add('hidden');
+      const successPanel = document.getElementById('unlock-success-panel');
+      successPanel.classList.remove('hidden');
+
+      document.getElementById('success-email-target').textContent = email;
+
+      // Configurar enlace del Google Sheet
+      const sheetLink = document.getElementById('link-abrir-google-sheet');
+      sheetLink.href = estado.sheetUrl;
+
+      // Configurar mensaje dinámico de WhatsApp para Pablo
+      const mensajeWhatsApp = `¡Hola Pablo! Soy Joe. Ya revisé la plataforma de Agua de Ya y ajusté los números con mis estimaciones de compras en maquila.%0A%0A` +
+        `📊 *Mi Resumen de Participación:*%0A` +
+        `• *Paquete Seleccionado:* ${pkg.nombre}%0A` +
+        `• *Ahorro Estimado en BOM:* ${estado.pctAhorro}%%0A` +
+        `• *Mi Comisión en Compras:* ${formatMoney(comisionCompras)} MXN/obra%0A` +
+        `• *Mi Tarifa de Instalador:* ${formatMoney(pagoTecnico)} MXN/obra%0A` +
+        `💰 *Ganancia Total por Obra:* ${formatMoney(gananciaObra)} MXN%0A` +
+        `🚀 *Ganancia por Lote (5 obras):* ${formatMoney(gananciaObra * 5)} MXN%0A` +
+        `📈 *Ingreso Recurrente Anual:* ${formatMoney(recurrenteAnual)} MXN/año (${estado.sistemasRecurrente} casas)%0A%0A` +
+        `Ya solicité acceso de editor con mi correo: ${email}%0A` +
+        `¡Hablemos para coordinar la primera compra!`;
+
+      // Enlace a WhatsApp (Pablo: se puede personalizar)
+      const btnWA = document.getElementById('btn-whatsapp-pablo');
+      btnWA.href = `https://wa.me/?text=${mensajeWhatsApp}`;
+
+      lucide.createIcons();
+    }
+
+    // =========================================================================
+    // 7. MODAL DE CONFIGURACIÓN DE PABLO
+    // =========================================================================
+    function abrirModalConfig() {
+      const modal = document.getElementById('modal-config-pablo');
+      document.getElementById('cfg-sheet-url').value = estado.sheetUrl;
+      document.getElementById('cfg-webhook-url').value = estado.webhookUrl;
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function cerrarModalConfig() {
+      const modal = document.getElementById('modal-config-pablo');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function guardarConfigPablo() {
+      const sheetVal = document.getElementById('cfg-sheet-url').value.trim();
+      const webhookVal = document.getElementById('cfg-webhook-url').value.trim();
+
+      if (sheetVal) {
+        estado.sheetUrl = sheetVal;
+        localStorage.setItem('ay_sheet_url', sheetVal);
+      }
+      if (webhookVal) {
+        estado.webhookUrl = webhookVal;
+        localStorage.setItem('ay_webhook_url', webhookVal);
+      }
+
+      cerrarModalConfig();
+      alert('Configuración guardada en tu navegador con éxito.');
+    }
+
+    function copiarCodigoAppsScript() {
+      const snippet = document.getElementById('code-gs-snippet').innerText;
+      navigator.clipboard.writeText(snippet).then(() => {
+        alert('Código de Google Apps Script copiado al portapapeles. Pégalo en tu editor de Google Apps Script (Code.gs).');
+      });
+    }
+
+    // =========================================================================
+    // 8. INICIALIZACIÓN
+    // =========================================================================
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      actualizarSimulador();
+      renderTablaBOM();
+    });
+  </script>
+</body>
+</html>
