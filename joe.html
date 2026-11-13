@@ -1063,9 +1063,9 @@
 
         <div>
           <label class="block text-slate-300 font-mono mb-1 font-semibold">URL del Webhook (Google Apps Script Web App):</label>
-          <input type="url" id="cfg-webhook-url" class="w-full p-2.5 rounded-lg bg-slate-900 border border-slate-700 text-white font-mono" placeholder="https://script.google.com/macros/s/AKfycb.../exec">
+          <input type="url" id="cfg-webhook-url" class="w-full p-2.5 rounded-lg bg-slate-900 border border-slate-700 text-white font-mono" value="https://script.google.com/macros/s/AKfycbzXPofSnh2-hYQcFYgDIWiP2kJUI_a6EO6vWitIZc-D4peWPuXc7qMOceOPNMugzUryZA/exec">
           <p class="text-[10px] text-slate-400 mt-1">
-            *Al publicarlo en Apps Script, elige "Ejecutar como: Yo" y "¿Quién tiene acceso?: Cualquier persona".
+            *Conectado en vivo a tu script de Google Apps Script. Al recibir un envío, procesa los datos y asigna permisos en Drive.
           </p>
         </div>
 
@@ -1268,7 +1268,7 @@
       sistemasRecurrente: 20,
       incluyeMantenimientoFisico: false,
       sheetUrl: localStorage.getItem('ay_sheet_url') || 'https://docs.google.com/spreadsheets/d/1fT9YFl_CDJ0bKJujPWT88AnswQVD-DQduo_QPiJt1V8/edit',
-      webhookUrl: localStorage.getItem('ay_webhook_url') || ''
+      webhookUrl: localStorage.getItem('ay_webhook_url') || 'https://script.google.com/macros/s/AKfycbzXPofSnh2-hYQcFYgDIWiP2kJUI_a6EO6vWitIZc-D4peWPuXc7qMOceOPNMugzUryZA/exec'
     };
 
     // =========================================================================
@@ -1523,13 +1523,13 @@
         timestamp: new Date().toISOString()
       };
 
-      // Si hay webhook configurado, enviar POST real
+      // Envío en tiempo real a Google Apps Script Web App
       if (estado.webhookUrl && estado.webhookUrl.startsWith('http')) {
         try {
           await fetch(estado.webhookUrl, {
             method: 'POST',
-            mode: 'no-cors', // Para evitar bloqueos CORS con Google Apps Script Web App
-            headers: { 'Content-Type': 'application/json' },
+            mode: 'no-cors', // Evita bloqueos CORS con Google Apps Script Web App
+            headers: { 'Content-Type': 'text/plain;charset=utf-8' },
             body: JSON.stringify(payload)
           });
         } catch (err) {
@@ -1623,3 +1623,4 @@
   </script>
 </body>
 </html>
+
