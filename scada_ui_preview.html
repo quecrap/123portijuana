@@ -197,7 +197,240 @@
 
     /* Footer */
     footer { text-align: center; font-size: 11px; color: #475569; margin-top: 20px; }
-  </style>
+  
+
+/* ======================================================================
+   MAREÓGRAFO PLAYAS DE TIJUANA & INTERLOCK DE INTRUSIÓN SALINA
+   ====================================================================== */
+.tide-card-container {
+  background: linear-gradient(135deg, rgba(11, 19, 43, 0.95) 0%, rgba(15, 23, 42, 0.98) 100%);
+  border: 1.5px solid #00e5ff;
+  border-radius: 16px;
+  padding: 16px 18px;
+  margin: 18px 0;
+  box-shadow: 0 10px 30px rgba(0, 229, 255, 0.15), 0 0 1px rgba(255, 255, 255, 0.2);
+  color: #f1f5f9;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  position: relative;
+  overflow: hidden;
+}
+.tide-card-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, #10b981 0%, #00e5ff 50%, #f59e0b 80%, #ef4444 100%);
+}
+.tide-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+.tide-title-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.tide-icon-wave {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: rgba(0, 229, 255, 0.15);
+  border: 1px solid rgba(0, 229, 255, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 16px;
+}
+.tide-title-text {
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  color: #f8fafc;
+  text-transform: uppercase;
+}
+.tide-sub-text {
+  font-size: 11px;
+  color: #94a3b8;
+  font-family: monospace;
+}
+.tide-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 9999px;
+  font-size: 11px;
+  font-weight: 800;
+  font-family: monospace;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  transition: all 0.3s ease;
+}
+.tide-badge-safe {
+  background: rgba(6, 78, 59, 0.9);
+  border: 1.5px solid #10b981;
+  color: #6ee7b7;
+  box-shadow: 0 0 16px rgba(16, 185, 129, 0.3);
+}
+.tide-badge-caution {
+  background: rgba(120, 53, 15, 0.9);
+  border: 1.5px solid #f59e0b;
+  color: #fde68a;
+  box-shadow: 0 0 16px rgba(245, 158, 11, 0.3);
+}
+.tide-badge-danger {
+  background: rgba(127, 29, 29, 0.95);
+  border: 1.5px solid #ef4444;
+  color: #fca5a5;
+  box-shadow: 0 0 20px rgba(239, 68, 68, 0.5);
+  animation: tidePulseAlert 1.8s infinite;
+}
+@keyframes tidePulseAlert {
+  0% { transform: scale(1); box-shadow: 0 0 10px rgba(239, 68, 68, 0.4); }
+  50% { transform: scale(1.02); box-shadow: 0 0 24px rgba(239, 68, 68, 0.8); }
+  100% { transform: scale(1); box-shadow: 0 0 10px rgba(239, 68, 68, 0.4); }
+}
+.tide-metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 8px;
+  margin: 12px 0;
+}
+.tide-metric-pill {
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(51, 65, 85, 0.8);
+  border-radius: 10px;
+  padding: 8px 10px;
+}
+.tide-metric-label {
+  font-size: 10px;
+  color: #94a3b8;
+  font-family: monospace;
+  text-transform: uppercase;
+  margin-bottom: 2px;
+}
+.tide-metric-val {
+  font-size: 15px;
+  font-weight: 800;
+  font-family: monospace;
+  color: #f8fafc;
+}
+.tide-svg-box {
+  width: 100%;
+  height: 95px;
+  background: rgba(7, 10, 20, 0.7);
+  border: 1px solid rgba(51, 65, 85, 0.6);
+  border-radius: 10px;
+  margin: 10px 0;
+  position: relative;
+  overflow: hidden;
+}
+.tide-warning-banner {
+  background: linear-gradient(90deg, rgba(127, 29, 29, 0.95) 0%, rgba(185, 28, 28, 0.9) 100%);
+  border: 1px solid #f87171;
+  border-radius: 10px;
+  padding: 10px 12px;
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.tide-warning-text {
+  font-size: 11px;
+  line-height: 1.4;
+  color: #fff;
+  font-weight: 600;
+}
+.tide-bypass-btn {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid #fca5a5;
+  color: #fef2f2;
+  border-radius: 6px;
+  padding: 6px 10px;
+  font-size: 10px;
+  font-weight: 800;
+  font-family: monospace;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s;
+}
+.tide-bypass-btn:hover {
+  background: #dc2626;
+  border-color: #fff;
+}
+/* Modal de Alerta de Pleamar */
+.tide-modal-backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 3000;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(6px);
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.tide-modal-box {
+  background: #0f172a;
+  border: 2px solid #ef4444;
+  border-radius: 16px;
+  max-width: 460px;
+  width: 100%;
+  padding: 20px;
+  box-shadow: 0 0 35px rgba(239, 68, 68, 0.45);
+  color: #f8fafc;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+.tide-modal-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 900;
+  color: #f87171;
+  margin-bottom: 10px;
+}
+.tide-modal-body {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #cbd5e1;
+  margin-bottom: 16px;
+}
+.tide-modal-actions {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+.tide-modal-btn-cancel {
+  background: #1e293b;
+  border: 1px solid #475569;
+  color: #cbd5e1;
+  padding: 9px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.tide-modal-btn-bypass {
+  background: #dc2626;
+  border: 1px solid #f87171;
+  color: #fff;
+  padding: 9px 14px;
+  border-radius: 8px;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+</style>
 </head>
 <body>
 
@@ -303,6 +536,63 @@
     <!-- TAB 1: DASHBOARD MAESTRO AUTOMÁTICO                     -->
     <!-- ======================================================== -->
     <div id="tabContentAuto">
+
+      <!-- ================================================================
+           MAREÓGRAFO PLAYAS DE TIJUANA & INTERLOCK DE INTRUSIÓN SALINA
+           ================================================================ -->
+      <section class="tide-card-container" id="tideProtectionCard">
+        <div class="tide-header">
+          <div class="tide-title-box">
+            <div class="tide-icon-wave">🌊</div>
+            <div>
+              <div class="tide-title-text">MAREÓGRAFO PLAYAS DE TIJUANA · PROTECCIÓN DE POZO</div>
+              <div class="tide-sub-text" id="tideStationInfo">Estación Costera · NOAA 9410170 / Ensenada-San Diego</div>
+            </div>
+          </div>
+          <div id="tideStatusBadge" class="tide-status-badge tide-badge-safe">
+            <span id="tideDotIndicator">●</span>
+            <span id="tideStatusText">VENTANA SEGURA · AGUA DULCE</span>
+          </div>
+        </div>
+
+        <!-- Métricas Mareográficas Clave -->
+        <div class="tide-metrics-grid">
+          <div class="tide-metric-pill">
+            <div class="tide-metric-label">Nivel de Marea Actual</div>
+            <div class="tide-metric-val" id="tideCurrentHeight">1.05 m</div>
+          </div>
+          <div class="tide-metric-pill">
+            <div class="tide-metric-label">Tendencia Costera</div>
+            <div class="tide-metric-val" id="tideTrendText" style="color:#38bdf8;">Subiendo ↗</div>
+          </div>
+          <div class="tide-metric-pill">
+            <div class="tide-metric-label">Próxima Pleamar (Alta)</div>
+            <div class="tide-metric-val" id="tideNextHigh" style="color:#f87171;">--:-- (-- m)</div>
+          </div>
+          <div class="tide-metric-pill">
+            <div class="tide-metric-label">Próxima Bajamar (Baja)</div>
+            <div class="tide-metric-val" id="tideNextLow" style="color:#4ade80;">--:-- (-- m)</div>
+          </div>
+        </div>
+
+        <!-- Curva SVG de las 24 horas del día -->
+        <div class="tide-svg-box">
+          <svg id="tideSvgCurve" viewBox="0 0 720 95" preserveAspectRatio="none" style="width:100%; height:100%;">
+            <!-- Renderizado dinámico en JS -->
+          </svg>
+        </div>
+
+        <!-- Banner de Advertencia Dinámica -->
+        <div id="tideWarningBanner" class="tide-warning-banner" style="display:none;">
+          <div class="tide-warning-text" id="tideWarningMessage">
+            ⚠️ <b>ALERTA DE PLEAMAR ALTA:</b> Riesgo de succión de agua marina por cuña salina. Bomba de pozo bloqueada automáticamente para proteger el reactor.
+          </div>
+          <button type="button" class="tide-bypass-btn" onclick="activarBypassMareaManual()">
+            ⚠️ Desbloqueo Manual
+          </button>
+        </div>
+      </section>
+
       
       <!-- Current Stage Banner -->
       <div class="card">
@@ -1116,6 +1406,10 @@
     }
 
     function setRelay(id, state) {
+      // Interlock contra intrusión salina en Bomba Evans Pozo 24V M1 (Id 1)
+      if (id == 1 && state) {
+        if (!validarSeguridadMareaParaBomba(() => setRelay(id, state))) return;
+      }
       fetch(`/api/relay?id=${id}&state=${state}`, { method: 'POST' })
         .then(() => pollStatus());
     }
@@ -1145,6 +1439,9 @@
     }
 
     function sendAutoCmd(cmd) {
+      if (cmd === 'start') {
+        if (!validarSeguridadMareaParaBomba(() => sendAutoCmd(cmd))) return;
+      }
       let url = `/api/auto?cmd=${cmd}`;
       if (cmd === 'start') {
         const inp = document.getElementById('inputTdsManual');
@@ -1921,7 +2218,419 @@
       initScadaHydrochem();
       pollStatus();
       setInterval(pollStatus, 500);
+    initTideModule();
     });
-  </script>
+  
+
+  // ===========================================================================
+  // MÓDULO MAREOGRÁFICO Y PROTECCIÓN CONTRA INTRUSIÓN SALINA (PLAYAS TIJUANA)
+  // ===========================================================================
+  const TIDE_CONFIG = {
+    stationId: '9410170', // NOAA San Diego Bay Entrance / Point Loma (Inmediato a Playas de Tijuana)
+    umbralPeligroPleamarM: 1.20, // Altura en metros sobre MLLW donde inicia riesgo crítico salino
+    umbralPrecaucionM: 0.80,    // Nivel intermedio (monitoreo conductividad)
+    ventanaSeguridadMinutos: 90  // Minutos de restricción alrededor de pleamares altas
+  };
+
+  let tideState = {
+    loaded: false,
+    online: false,
+    currentHeightM: 1.05,
+    trend: 'SUBIENDO', // 'SUBIENDO' | 'BAJANDO' | 'PLEAMAR' | 'BAJAMAR'
+    status: 'SAFE',    // 'SAFE' | 'CAUTION' | 'DANGER'
+    isBlocked: false,
+    bypassActive: false,
+    pendingAction: null,
+    nextHigh: null,
+    nextLow: null,
+    hourlyToday: [],
+    hiloEvents: []
+  };
+
+  async function initTideModule() {
+    try {
+      await fetchTideDataNOAA();
+    } catch(e) {
+      console.warn("Fallo carga NOAA, usando cálculo armónico astronómico local:", e);
+      generarMareasAstronomicasLocales();
+    }
+    evaluarEstadoMareaYActualizarUI();
+    setInterval(evaluarEstadoMareaYActualizarUI, 60000); // Actualizar cada minuto
+  }
+
+  async function fetchTideDataNOAA() {
+    const today = new Date();
+    const y = today.getFullYear();
+    const m = String(today.getMonth() + 1).padStart(2, '0');
+    const d = String(today.getDate()).padStart(2, '0');
+    const dateStr = `${y}${m}${d}`;
+
+    const urlH = `https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?date=today&station=${TIDE_CONFIG.stationId}&product=predictions&datum=MLLW&time_zone=lst_ldt&interval=h&units=metric&application=AguaDeGia&format=json`;
+    const urlHL = `https://api.tidesandcurrents.noaa.gov/api/prod/datagetter?date=today&station=${TIDE_CONFIG.stationId}&product=predictions&datum=MLLW&time_zone=lst_ldt&interval=hilo&units=metric&application=AguaDeGia&format=json`;
+
+    const [resH, resHL] = await Promise.all([
+      fetch(urlH, { mode: 'cors' }),
+      fetch(urlHL, { mode: 'cors' })
+    ]);
+
+    if (!resH.ok || !resHL.ok) throw new Error("Respuesta NOAA no válida");
+
+    const dataH = await resH.json();
+    const dataHL = await resHL.json();
+
+    if (!dataH.predictions || dataH.predictions.length === 0) throw new Error("Sin datos de predicción");
+
+    tideState.hourlyToday = dataH.predictions.map(p => ({
+      time: p.t,
+      hour: parseInt(p.t.split(' ')[1].split(':')[0], 10),
+      heightM: parseFloat(p.v)
+    }));
+
+    tideState.hiloEvents = (dataHL.predictions || []).map(p => ({
+      time: p.t,
+      timeShort: p.t.split(' ')[1],
+      type: p.type, // 'H' o 'L'
+      heightM: parseFloat(p.v)
+    }));
+
+    tideState.online = true;
+    tideState.loaded = true;
+  }
+
+  // Modelo armónico astronómico de respaldo si no hay internet (Playas de Tijuana)
+  function generarMareasAstronomicasLocales() {
+    const now = new Date();
+    const epoch = new Date(now.getFullYear(), 0, 1, 0, 0, 0);
+    const hourly = [];
+    const hilo = [];
+
+    let prevH = 0;
+    let prevDiff = 0;
+
+    for (let h = 0; h < 24; h++) {
+      const dt = new Date(now.getFullYear(), now.getMonth(), now.getDate(), h, 0, 0);
+      const hours = (dt - epoch) / 3600000;
+      // Armónicos M2, S2, N2, K1, O1 calibrados para Playas de Tijuana / Point Loma
+      const m2 = 0.50 * Math.cos(0.505868 * hours - 3.8);
+      const s2 = 0.14 * Math.cos(0.523599 * hours - 4.2);
+      const n2 = 0.11 * Math.cos(0.496367 * hours - 3.2);
+      const k1 = 0.36 * Math.cos(0.262516 * hours - 1.1);
+      const o1 = 0.22 * Math.cos(0.243351 * hours - 0.7);
+      const height = Math.round((0.95 + m2 + s2 + n2 + k1 + o1) * 100) / 100;
+
+      hourly.push({
+        time: `${String(h).padStart(2, '0')}:00`,
+        hour: h,
+        heightM: height
+      });
+    }
+
+    // Detectar picos
+    for (let i = 1; i < 23; i++) {
+      if (hourly[i].heightM > hourly[i-1].heightM && hourly[i].heightM > hourly[i+1].heightM) {
+        hilo.push({ timeShort: `${String(hourly[i].hour).padStart(2, '0')}:00`, type: 'H', heightM: hourly[i].heightM });
+      } else if (hourly[i].heightM < hourly[i-1].heightM && hourly[i].heightM < hourly[i+1].heightM) {
+        hilo.push({ timeShort: `${String(hourly[i].hour).padStart(2, '0')}:00`, type: 'L', heightM: hourly[i].heightM });
+      }
+    }
+
+    tideState.hourlyToday = hourly;
+    tideState.hiloEvents = hilo;
+    tideState.online = false;
+    tideState.loaded = true;
+  }
+
+  function evaluarEstadoMareaYActualizarUI() {
+    if (!tideState.loaded || tideState.hourlyToday.length === 0) return;
+
+    const now = new Date();
+    const currentHour = now.getHours();
+    const currentMin = now.getMinutes();
+    const fractHour = currentHour + currentMin / 60;
+
+    // Interpolar altura actual
+    const h1 = tideState.hourlyToday[currentHour] ? tideState.hourlyToday[currentHour].heightM : 1.0;
+    const nextHIndex = (currentHour + 1) % 24;
+    const h2 = tideState.hourlyToday[nextHIndex] ? tideState.hourlyToday[nextHIndex].heightM : h1;
+    const currentHeight = Math.round((h1 + (h2 - h1) * (currentMin / 60)) * 100) / 100;
+    tideState.currentHeightM = currentHeight;
+
+    // Tendencia
+    tideState.trend = (h2 >= h1) ? 'SUBIENDO' : 'BAJANDO';
+
+    // Próxima pleamar y bajamar
+    const currentMinutesOfDay = currentHour * 60 + currentMin;
+    let nextH = null;
+    let nextL = null;
+
+    for (const ev of tideState.hiloEvents) {
+      const [eh, em] = ev.timeShort.split(':').map(Number);
+      const evMinutes = eh * 60 + em;
+      if (evMinutes >= currentMinutesOfDay) {
+        if (ev.type === 'H' && !nextH) nextH = ev;
+        if (ev.type === 'L' && !nextL) nextL = ev;
+      }
+    }
+    // Si no hay más en el día, tomar el primero del ciclo
+    if (!nextH) nextH = tideState.hiloEvents.find(e => e.type === 'H') || { timeShort: '10:00', heightM: 1.65 };
+    if (!nextL) nextL = tideState.hiloEvents.find(e => e.type === 'L') || { timeShort: '18:00', heightM: 0.15 };
+
+    tideState.nextHigh = nextH;
+    tideState.nextLow = nextL;
+
+    // Clasificación de Riesgo de Intrusión Salina
+    if (currentHeight >= TIDE_CONFIG.umbralPeligroPleamarM) {
+      tideState.status = 'DANGER';
+      tideState.isBlocked = true;
+    } else if (currentHeight >= TIDE_CONFIG.umbralPrecaucionM) {
+      tideState.status = 'CAUTION';
+      tideState.isBlocked = false;
+    } else {
+      tideState.status = 'SAFE';
+      tideState.isBlocked = false;
+    }
+
+    renderizarDatosMareografo(fractHour);
+  }
+
+  function renderizarDatosMareografo(fractHour) {
+    const elHeight = document.getElementById('tideCurrentHeight');
+    const elTrend = document.getElementById('tideTrendText');
+    const elBadge = document.getElementById('tideStatusBadge');
+    const elBadgeText = document.getElementById('tideStatusText');
+    const elNextH = document.getElementById('tideNextHigh');
+    const elNextL = document.getElementById('tideNextLow');
+    const elWarning = document.getElementById('tideWarningBanner');
+    const elWarningMsg = document.getElementById('tideWarningMessage');
+    const elStation = document.getElementById('tideStationInfo');
+
+    if (!elHeight) return;
+
+    elHeight.textContent = `${tideState.currentHeightM.toFixed(2)} m`;
+    elTrend.textContent = tideState.trend === 'SUBIENDO' ? 'Subiendo ↗' : 'Bajando ↘';
+    elTrend.style.color = tideState.trend === 'SUBIENDO' ? '#38bdf8' : '#34d399';
+
+    if (tideState.nextHigh) {
+      elNextH.textContent = `${tideState.nextHigh.timeShort} (${tideState.nextHigh.heightM.toFixed(2)}m)`;
+    }
+    if (tideState.nextLow) {
+      elNextL.textContent = `${tideState.nextLow.timeShort} (${tideState.nextLow.heightM.toFixed(2)}m)`;
+    }
+
+    if (elStation) {
+      elStation.textContent = tideState.online 
+        ? 'Estación Costera · NOAA 9410170 (San Diego/Tijuana) · En Tiempo Real'
+        : 'Estación Costera · Cálculo Armónico Local Offline (Sin Conexión)';
+    }
+
+    // Actualizar Badges y Alertas
+    if (tideState.status === 'DANGER') {
+      elBadge.className = 'tide-status-badge tide-badge-danger';
+      elBadgeText.textContent = tideState.bypassActive 
+        ? '⚠️ BYPASS ACTIVO · PLEAMAR ALTA' 
+        : '⛔ BLOQUEO · RIESGO AGUA SALADA';
+      elWarning.style.display = 'flex';
+      elWarningMsg.innerHTML = `⚠️ <b>ALERTA DE PLEAMAR ALTA (${tideState.currentHeightM.toFixed(2)}m):</b> Presión marina máxima en acuífero somero. <b>Bomba de pozo bloqueada</b> para no succionar agua salobre. Próxima bajamar segura a las <b>${tideState.nextLow.timeShort} hrs</b>.`;
+    } else if (tideState.status === 'CAUTION') {
+      elBadge.className = 'tide-status-badge tide-badge-caution';
+      elBadgeText.textContent = '🟡 PRECAUCIÓN · MAREA MEDIA';
+      elWarning.style.display = 'none';
+    } else {
+      elBadge.className = 'tide-status-badge tide-badge-safe';
+      elBadgeText.textContent = '🟢 VENTANA SEGURA · AGUA DULCE';
+      elWarning.style.display = 'none';
+    }
+
+    // Dibujar Curva SVG de 24 Horas
+    dibujarCurvaMareasSVG(fractHour);
+
+    // Actualizar también lámpara en Lavadora 70s e interlock en Ingeniero
+    actualizarIndicadoresEnSkins(tideState.status, tideState.currentHeightM);
+  }
+
+  function dibujarCurvaMareasSVG(fractHour) {
+    const svg = document.getElementById('tideSvgCurve');
+    if (!svg || tideState.hourlyToday.length === 0) return;
+
+    const W = 720;
+    const H = 95;
+    const maxVal = 2.0;
+    const minVal = 0.0;
+
+    let pathD = '';
+    let areaD = `M 0 ${H} `;
+
+    tideState.hourlyToday.forEach((p, idx) => {
+      const x = (idx / 23) * W;
+      const normalizedH = Math.max(0, Math.min(1, (p.heightM - minVal) / (maxVal - minVal)));
+      const y = H - (normalizedH * (H - 18) + 8);
+
+      if (idx === 0) {
+        pathD += `M ${x} ${y} `;
+        areaD += `L ${x} ${y} `;
+      } else {
+        pathD += `L ${x} ${y} `;
+        areaD += `L ${x} ${y} `;
+      }
+    });
+
+    areaD += `L ${W} ${H} Z`;
+
+    // Posición del cursor de la hora actual
+    const currentX = (fractHour / 24) * W;
+    const currNormH = Math.max(0, Math.min(1, (tideState.currentHeightM - minVal) / (maxVal - minVal)));
+    const currentY = H - (currNormH * (H - 18) + 8);
+
+    // Línea de umbral crítico de peligro (1.20 m)
+    const normPeligro = (TIDE_CONFIG.umbralPeligroPleamarM - minVal) / (maxVal - minVal);
+    const dangerY = H - (normPeligro * (H - 18) + 8);
+
+    svg.innerHTML = `
+      <defs>
+        <linearGradient id="tideGradient" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0%" stop-color="#ef4444" stop-opacity="0.45"/>
+          <stop offset="40%" stop-color="#f59e0b" stop-opacity="0.3"/>
+          <stop offset="75%" stop-color="#10b981" stop-opacity="0.2"/>
+          <stop offset="100%" stop-color="#06b6d4" stop-opacity="0.05"/>
+        </linearGradient>
+      </defs>
+      <!-- Zona de relleno -->
+      <path d="${areaD}" fill="url(#tideGradient)"/>
+      
+      <!-- Línea de Peligro Pleamar (1.20 m) -->
+      <line x1="0" y1="${dangerY}" x2="${W}" y2="${dangerY}" stroke="#ef4444" stroke-dasharray="4 4" stroke-width="1.2" opacity="0.75"/>
+      <text x="6" y="${dangerY - 3}" fill="#fca5a5" font-size="9" font-family="monospace">Umbral Crítico Pleamar (1.20m)</text>
+      
+      <!-- Curva de Marea -->
+      <path d="${pathD}" fill="none" stroke="#00e5ff" stroke-width="2.2" stroke-linecap="round"/>
+      
+      <!-- Marcador de Hora Actual -->
+      <line x1="${currentX}" y1="0" x2="${currentX}" y2="${H}" stroke="#ffffff" stroke-width="1.5" stroke-dasharray="2 2" opacity="0.8"/>
+      <circle cx="${currentX}" cy="${currentY}" r="5" fill="#f8fafc" stroke="${tideState.status === 'DANGER' ? '#ef4444' : '#10b981'}" stroke-width="3"/>
+      <text x="${Math.min(W - 65, Math.max(10, currentX - 25))}" y="12" fill="#38bdf8" font-size="10" font-weight="bold" font-family="monospace">AHORA (${tideState.currentHeightM}m)</text>
+    `;
+  }
+
+  function actualizarIndicadoresEnSkins(status, height) {
+    // 1. En Lavadora 70s
+    const lampK1 = document.getElementById('lampK1');
+    if (lampK1 && status === 'DANGER' && !tideState.bypassActive) {
+      lampK1.title = `BLOQUEO MAREA: ${height}m (Riesgo Agua Marina)`;
+    }
+
+    // 2. En Ingeniero I/O (Actuador 1)
+    const cardAct1 = document.querySelector('.coil-card:first-child');
+    if (cardAct1) {
+      let badge = document.getElementById('interlockBadgeAct1');
+      if (!badge) {
+        badge = document.createElement('div');
+        badge.id = 'interlockBadgeAct1';
+        badge.style.fontSize = '10px';
+        badge.style.fontWeight = 'bold';
+        badge.style.fontFamily = 'monospace';
+        badge.style.padding = '3px 6px';
+        badge.style.borderRadius = '4px';
+        badge.style.marginTop = '6px';
+        badge.style.textAlign = 'center';
+        cardAct1.appendChild(badge);
+      }
+      if (status === 'DANGER' && !tideState.bypassActive) {
+        badge.style.background = '#7f1d1d';
+        badge.style.color = '#fecaca';
+        badge.style.border = '1px solid #ef4444';
+        badge.innerHTML = `⛔ INTERLOCK MAREA ALTA (${height}m) · BOMBA BLOQUEADA`;
+      } else if (tideState.bypassActive) {
+        badge.style.background = '#78350f';
+        badge.style.color = '#fde68a';
+        badge.style.border = '1px solid #f59e0b';
+        badge.innerHTML = `⚠️ BYPASS MANUAL ACTIVO (${height}m)`;
+      } else {
+        badge.style.background = '#064e3b';
+        badge.style.color = '#a7f3d0';
+        badge.style.border = '1px solid #10b981';
+        badge.innerHTML = `🟢 MAREA SEGURA (${height}m) · BOMBA HABILITADA`;
+      }
+    }
+  }
+
+  // ===========================================================================
+  // INTERLOCK & CONTROL DE SEGURIDAD DE LA BOMBA
+  // ===========================================================================
+  function validarSeguridadMareaParaBomba(actionCallback) {
+    if (tideState.isBlocked && !tideState.bypassActive) {
+      tideState.pendingAction = actionCallback;
+      abrirModalMareaBloqueo();
+      return false; // BLOQUEADO
+    }
+    return true; // PERMITIDO
+  }
+
+  function abrirModalMareaBloqueo() {
+    const modal = document.getElementById('modalMareaBloqueo');
+    if (!modal) return;
+    document.getElementById('modalTideHeightTxt').textContent = `${tideState.currentHeightM.toFixed(2)} m (Pleamar Crítica)`;
+    if (tideState.nextLow) {
+      document.getElementById('modalLowTideTxt').textContent = `${tideState.nextLow.timeShort} hrs (${tideState.nextLow.heightM.toFixed(2)} m)`;
+      document.getElementById('modalNextSafeTxt').textContent = `a partir de las ${tideState.nextLow.timeShort}`;
+    }
+    modal.style.display = 'flex';
+  }
+
+  function cerrarModalMareaBloqueo() {
+    const modal = document.getElementById('modalMareaBloqueo');
+    if (modal) modal.style.display = 'none';
+    tideState.pendingAction = null;
+  }
+
+  function forzarEncendidoMareaManual() {
+    tideState.bypassActive = true;
+    cerrarModalMareaBloqueo();
+    evaluarEstadoMareaYActualizarUI();
+    alert("⚠️ ATENCIÓN: Bypass de seguridad activado por el operador. La bomba operará bajo tu estricta supervisión. Verifica conductividad/TDS.");
+    if (typeof tideState.pendingAction === 'function') {
+      tideState.pendingAction();
+    }
+  }
+
+  function activarBypassMareaManual() {
+    if (confirm("¿Deseas activar el DESBLOQUEO MANUAL DE EMERGENCIA para permitir el encendido de la bomba durante pleamar?")) {
+      tideState.bypassActive = true;
+      evaluarEstadoMareaYActualizarUI();
+    }
+  }
+
+</script>
+
+  <!-- MODAL DE BLOQUEO DE SEGURIDAD POR PLEAMAR / INTRUSIÓN SALINA -->
+  <div id="modalMareaBloqueo" class="tide-modal-backdrop">
+    <div class="tide-modal-box">
+      <div class="tide-modal-title">
+        <span>🌊</span>
+        <span>BLOQUEO DE SEGURIDAD · PLEAMAR EN PLAYAS</span>
+      </div>
+      <div class="tide-modal-body">
+        <p style="margin-bottom:8px;">
+          En este momento el nivel del Océano Pacífico está en <b id="modalTideHeightTxt" style="color:#f87171;">1.70 m</b> (Pleamar Alta).
+        </p>
+        <div style="background:rgba(239,68,68,0.15); border-left:3px solid #ef4444; padding:8px 10px; margin-bottom:10px; font-size:11px;">
+          <b>RIESGO HIDROGEOLÓGICO:</b><br>
+          La presión del mar empuja la cuña salina hacia el acuífero somero de Playas de Tijuana. Si enciendes la bomba ahora, <b>extraerás agua salada/salobre</b> que contaminará el Totem de agua cruda y destruirá las membranas de ósmosis inversa.
+        </div>
+        <p style="color:#94a3b8; font-size:11px;">
+          • <b style="color:#4ade80;">Próxima Ventana Segura de Bombeo:</b> <span id="modalNextSafeTxt">a partir de las 15:30 hrs</span>.<br>
+          • <b style="color:#38bdf8;">Bajamar Óptima:</b> <span id="modalLowTideTxt">18:05 hrs (0.14 m)</span>.
+        </p>
+      </div>
+      <div class="tide-modal-actions">
+        <button type="button" class="tide-modal-btn-cancel" onclick="cerrarModalMareaBloqueo()">
+          ✕ Cancelar y Proteger Pozo
+        </button>
+        <button type="button" class="tide-modal-btn-bypass" onclick="forzarEncendidoMareaManual()">
+          ⚠️ Forzar Encendido (Bypass de Emergencia)
+        </button>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>
