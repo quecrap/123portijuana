@@ -1,0 +1,418 @@
+// Capa de Servicios de Agua Potable y Cobertura CESPT vs. Pipas en Tijuana (2026)
+window.CAPA_SERVICIOS_TIJUANA = {
+  "type": "FeatureCollection",
+  "name": "Capa_Servicios_Agua_Tijuana_2026",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "SR_MACLOVIO_VALLE",
+      "properties": {
+        "nombre_poligono": "Corredor Maclovio Rojas - Valle Redondo - Ojo de Agua",
+        "tipo_servicio": "SIN_RED_PIPAS",
+        "categoria_label": "100% Dependencia de Pipas y Tambos",
+        "color_hex": "#EC4899",
+        "colonias_principales": [
+          "Maclovio Rojas",
+          "Valle Redondo",
+          "Ojo de Agua",
+          "Granjas Familiares La Esperanza",
+          "Parajes del Valle",
+          "Rincón de Oro"
+        ],
+        "precio_tambo_200l": " -  MXN",
+        "gasto_mensual_estimado": ",000 - ,500 MXN",
+        "habitantes_afectados": "85,000 hab",
+        "cobertura_formal_cespt": "0% a 15% (Tomas comunitarias precarias)",
+        "urgencia_comercial": "MÁXIMA (Strike Zone #1)",
+        "nota_operativa": "Familias pagan hasta  por tambo. Cuenca aluvial con NAF somero a 4.5-8m. Amortización en 6-8 meses."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -116.85,
+              32.455
+            ],
+            [
+              -116.855,
+              32.485
+            ],
+            [
+              -116.84,
+              32.518
+            ],
+            [
+              -116.78,
+              32.518
+            ],
+            [
+              -116.775,
+              32.47
+            ],
+            [
+              -116.8,
+              32.45
+            ],
+            [
+              -116.85,
+              32.455
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SR_ALAMAR_MORITA",
+      "properties": {
+        "nombre_poligono": "Ribera Alamar Este - La Morita - Terrazas del Valle",
+        "tipo_servicio": "SIN_RED_PIPAS",
+        "categoria_label": "100% Dependencia de Pipas y Tambos",
+        "color_hex": "#EC4899",
+        "colonias_principales": [
+          "La Morita (irregular/ribera)",
+          "Terrazas del Valle Este",
+          "Ejido Francisco Villa",
+          "Ribera Alamar Oriental",
+          "Ejido Rojo Gómez"
+        ],
+        "precio_tambo_200l": " -  MXN",
+        "gasto_mensual_estimado": ",500 - ,800 MXN",
+        "habitantes_afectados": "45,000 hab",
+        "cobertura_formal_cespt": "10% a 25% (Tomas comunitarias y mangueras)",
+        "urgencia_comercial": "MÁXIMA (Strike Zone #2)",
+        "nota_operativa": "Lecho aluvial permeable activo del Río Alamar. NAF muy somero a 3.5-6m. Perforación fácil en 1 a 2 días."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -116.905,
+              32.52
+            ],
+            [
+              -116.905,
+              32.545
+            ],
+            [
+              -116.85,
+              32.545
+            ],
+            [
+              -116.85,
+              32.52
+            ],
+            [
+              -116.88,
+              32.518
+            ],
+            [
+              -116.905,
+              32.52
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SR_CANON_SAINZ",
+      "properties": {
+        "nombre_poligono": "Cañón del Sainz y Cañadas del Sur",
+        "tipo_servicio": "SIN_RED_PIPAS",
+        "categoria_label": "100% Dependencia de Pipas y Tambos",
+        "color_hex": "#EC4899",
+        "colonias_principales": [
+          "Cañón del Sainz",
+          "Granjas División del Norte",
+          "Lomas de la Amistad Alta",
+          "Laderas Presa Alta"
+        ],
+        "precio_tambo_200l": " -  MXN",
+        "gasto_mensual_estimado": ",800 - ,200 MXN",
+        "habitantes_afectados": "35,000 hab",
+        "cobertura_formal_cespt": "0% a 20%",
+        "urgencia_comercial": "ALTA (Strike Zone #3)",
+        "nota_operativa": "Terracería empinada donde las pipas cobran sobreprecio por subir. Fondo de cañada con agua accesible."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -116.96,
+              32.435
+            ],
+            [
+              -116.965,
+              32.46
+            ],
+            [
+              -116.925,
+              32.46
+            ],
+            [
+              -116.92,
+              32.435
+            ],
+            [
+              -116.94,
+              32.43
+            ],
+            [
+              -116.96,
+              32.435
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SR_NIDO_AGUILAS",
+      "properties": {
+        "nombre_poligono": "Nido de las Águilas (Frontera Este Otay)",
+        "tipo_servicio": "SIN_RED_PIPAS",
+        "categoria_label": "100% Dependencia de Pipas y Tambos",
+        "color_hex": "#EC4899",
+        "colonias_principales": [
+          "Nido de las Águilas",
+          "Rincón Otay Este"
+        ],
+        "precio_tambo_200l": " -  MXN",
+        "gasto_mensual_estimado": ",500 - ,500 MXN",
+        "habitantes_afectados": "15,000 hab",
+        "cobertura_formal_cespt": "0% a 10%",
+        "urgencia_comercial": "ALTA (Strike Zone #4)",
+        "nota_operativa": "Asentamiento junto al muro fronterizo sin red formal. Suelo aluvial de cañada apto para barreno somero."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -116.925,
+              32.54
+            ],
+            [
+              -116.925,
+              32.558
+            ],
+            [
+              -116.885,
+              32.558
+            ],
+            [
+              -116.885,
+              32.54
+            ],
+            [
+              -116.925,
+              32.54
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SR_CANONES_PONIENTE",
+      "properties": {
+        "nombre_poligono": "Cañones Poniente (Palmeras / El Pato / Laureles)",
+        "tipo_servicio": "SIN_RED_PIPAS",
+        "categoria_label": "100% Dependencia de Pipas y Tambos",
+        "color_hex": "#EC4899",
+        "colonias_principales": [
+          "Cañón de las Palmeras",
+          "Cañón del Pato",
+          "Rancho Las Flores Alto",
+          "Los Laureles Alto"
+        ],
+        "precio_tambo_200l": " -  MXN",
+        "gasto_mensual_estimado": ",500 - ,000 MXN",
+        "habitantes_afectados": "30,000 hab",
+        "cobertura_formal_cespt": "10% a 30%",
+        "urgencia_comercial": "MEDIA-ALTA (Terreno complejo)",
+        "nota_operativa": "Cañadas profundas del poniente. Requiere estudio por pendientes pronunciadas."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -117.075,
+              32.495
+            ],
+            [
+              -117.075,
+              32.525
+            ],
+            [
+              -117.045,
+              32.525
+            ],
+            [
+              -117.045,
+              32.495
+            ],
+            [
+              -117.075,
+              32.495
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "TAND_SANTA_FE",
+      "properties": {
+        "nombre_poligono": "Macro-Polígono Santa Fe y Corredor Costero",
+        "tipo_servicio": "TANDEO_SEVERO",
+        "categoria_label": "Red Formal con Tandeo Crónico y Cortes Semanales",
+        "color_hex": "#F59E0B",
+        "colonias_principales": [
+          "Santa Fe (Secc I a V)",
+          "Pórticos de San Antonio",
+          "Real de San Antonio",
+          "Urbi Quinta del Cedro",
+          "La Gloria"
+        ],
+        "frecuencia_cortes": "2 a 5 días/mes (Fugas Acueducto Florido-Aguaje)",
+        "precio_tambo_200l": " MXN (en contingencia)",
+        "habitantes_afectados": "130,000 hab",
+        "cobertura_formal_cespt": "98% con tomas pero servicio intermitente",
+        "urgencia_comercial": "OPORTUNIDAD DE RESPALDO (Cisterna Auxiliar)",
+        "nota_operativa": "Fraccionamientos con red pero cortes frecuentes. Producto ideal: pozo de recarga de tinaco."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -117.055,
+              32.425
+            ],
+            [
+              -117.055,
+              32.47
+            ],
+            [
+              -117.015,
+              32.47
+            ],
+            [
+              -117.015,
+              32.425
+            ],
+            [
+              -117.055,
+              32.425
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "TAND_NATURA_DELICIAS",
+      "properties": {
+        "nombre_poligono": "Macro-Desarrollo Natura - Delicias - Urbi Villa del Prado",
+        "tipo_servicio": "TANDEO_SEVERO",
+        "categoria_label": "Red Formal con Tandeo Crónico y Cortes Semanales",
+        "color_hex": "#F59E0B",
+        "colonias_principales": [
+          "Natura (Secc 1 a 7)",
+          "Delicias 1, 2 y 3",
+          "Urbi Villa del Prado",
+          "Villas del Campo"
+        ],
+        "frecuencia_cortes": "Baja presión continua y cortes intermitentes semanales",
+        "precio_tambo_200l": " MXN",
+        "precio_1000l": ",800 MXN pipa",
+        "habitantes_afectados": "95,000 hab",
+        "cobertura_formal_cespt": "95% con tubería pero presión nula en pisos altos",
+        "urgencia_comercial": "ALTA (Mercado Híbrido Pipa + Red)",
+        "nota_operativa": "Comprobado en campo:  por tambo y ,800 por 1000L. Gran mercado para pozos de 8 a 15m."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -116.985,
+              32.395
+            ],
+            [
+              -116.985,
+              32.432
+            ],
+            [
+              -116.935,
+              32.432
+            ],
+            [
+              -116.935,
+              32.395
+            ],
+            [
+              -116.985,
+              32.395
+            ]
+          ]
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "TAND_FLORIDO_MATAMOROS",
+      "properties": {
+        "nombre_poligono": "El Florido Altos - Mariano Matamoros Altos",
+        "tipo_servicio": "TANDEO_SEVERO",
+        "categoria_label": "Red Formal con Tandeo Crónico y Cortes Semanales",
+        "color_hex": "#F59E0B",
+        "colonias_principales": [
+          "El Florido 3ra y 4ta",
+          "Mariano Matamoros Alto",
+          "Buenos Aires Sur",
+          "El Pípila Alto"
+        ],
+        "frecuencia_cortes": "Suspensiones periódicas por bombeo insuficiente",
+        "precio_tambo_200l": " -  MXN",
+        "habitantes_afectados": "80,000 hab",
+        "cobertura_formal_cespt": "90% conectada",
+        "urgencia_comercial": "MEDIA-ALTA",
+        "nota_operativa": "Fugas en redes viejas (16-24% pérdida de agua CESPT) que generan mantos freáticos colgados."
+      },
+      "geometry": {
+        "type": "Polygon",
+        "coordinates": [
+          [
+            [
+              -116.93,
+              32.465
+            ],
+            [
+              -116.93,
+              32.505
+            ],
+            [
+              -116.87,
+              32.505
+            ],
+            [
+              -116.87,
+              32.465
+            ],
+            [
+              -116.93,
+              32.465
+            ]
+          ]
+        ]
+      }
+    }
+  ]
+};
