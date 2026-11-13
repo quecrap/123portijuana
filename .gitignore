@@ -8,6 +8,7 @@
 *.png
 !fig*.png
 !mapa_calor_*.png
+!mapa_semaforo_tijuana.png
 !img_tren/*.jpg
 *.webp
 *.gif

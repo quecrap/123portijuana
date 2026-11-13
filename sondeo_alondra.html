@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="es" class="h-full">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>Sondeo Satelital · Alondra | Agua de Ya Tijuana</title>
+
+  <!-- Meta Preview para WhatsApp & Móvil -->
+  <meta name="description" content="Visor Comercial y de Prospección Rápida para Alondra. Detección instantánea de factibilidad hídrica y guion comercial para clientes.">
+  <meta name="theme-color" content="#0B132B">
+
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+
+  <!-- Leaflet CSS & JS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              dark: '#0B132B',
+              navy: '#1C2541',
+              card: '#151E38',
+              cyan: '#00B4D8',
+              emerald: '#10B981',
+              amber: '#F59E0B',
+              red: '#EF4444',
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* Estilos del Mapa y Canvas Oculto */
+    #map {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 1;
+      background: #0f172a;
+    }
+
+    .glass-bar {
+      background: rgba(11, 19, 43, 0.90);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(58, 80, 107, 0.5);
+    }
+
+    .glass-sheet {
+      background: rgba(21, 30, 56, 0.96);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(0, 180, 216, 0.25);
+    }
+
+    /* Estilo de animación para el marcador de sondeo */
+    @keyframes pulse-pin {
+      0% { transform: scale(0.9); opacity: 0.9; }
+      50% { transform: scale(1.15); opacity: 0.5; }
+      100% { transform: scale(0.9); opacity: 0.9; }
+    }
+    .pin-pulse {
+      animation: pulse-pin 2s infinite ease-in-out;
+    }
+  </style>
+</head>
+
+<body class="h-full w-full overflow-hidden bg-[#0B132B] text-slate-100 font-sans select-none">
+
+  <!-- MAPA PRINCIPAL LEAFLET -->
+  <div id="map"></div>
+
+  <!-- CANVAS 2D EN MEMORIA (OCULTO - PARA LECTURA DE PÍXELES) -->
+  <canvas id="hidden-raster-canvas" width="1600" height="840" class="hidden"></canvas>
+
+  <!-- ========================================================================= -->
+  <!-- BARRA SUPERIOR FLOTANTE: BUSCADOR & CONTROL DE OPACIDAD                  -->
+  <!-- ========================================================================= -->
+  <header class="absolute top-2 left-2 right-2 sm:top-4 sm:left-4 sm:right-4 z-20 max-w-xl mx-auto space-y-2 pointer-events-auto">
+    
+    <!-- Barra de búsqueda principal -->
+    <div class="glass-bar rounded-2xl p-2 sm:p-2.5 shadow-2xl flex items-center gap-2">
+      <!-- Icono Alondra / Logo -->
+      <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center flex-shrink-0 text-white shadow-md">
+        <i data-lucide="map-pin" class="w-5 h-5"></i>
+      </div>
+
+      <!-- Input de Búsqueda -->
+      <div class="relative flex-1">
+        <input 
+          type="text" 
+          id="input-busqueda" 
+          placeholder="Escribe calle y colonia o pega coordenadas GPS..."
+          class="w-full bg-slate-900/90 border border-slate-700/80 rounded-xl px-3 py-2 text-xs sm:text-sm text-white placeholder-slate-400 focus:outline-none focus:border-cyan-400 focus:ring-1 focus:ring-cyan-400 font-sans"
+          onkeydown="if(event.key==='Enter') buscarDireccionOcoords()"
+        >
+        <button 
+          type="button" 
+          onclick="buscarDireccionOcoords()" 
+          id="btn-buscar"
+          class="absolute right-1.5 top-1.5 p-1 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-bold transition flex items-center justify-center"
+          title="Buscar"
+        >
+          <i data-lucide="search" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Botón Ubicación GPS en Vivo de Alondra -->
+      <button 
+        type="button" 
+        onclick="geolocalizarAlondra()" 
+        class="w-9 h-9 rounded-xl bg-slate-900 hover:bg-slate-800 border border-slate-700 text-cyan-400 hover:text-white flex items-center justify-center flex-shrink-0 transition"
+        title="Mi Ubicación Actual"
+      >
+        <i data-lucide="crosshair" class="w-4 h-4"></i>
+      </button>
+    </div>
+
+    <!-- Barra de chips rápidos y control de opacidad -->
+    <div class="flex items-center justify-between gap-2 px-1">
+      <!-- Presets de Colonias Populares -->
+      <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5 text-[11px] font-mono">
+        <button type="button" onclick="volarA(32.532, -116.940, 'Arroyo Alamar (Murúa)')" class="px-2 py-1 rounded-full bg-[#0B132B]/85 border border-slate-700 hover:border-cyan-400 text-slate-300 transition whitespace-nowrap">
+          🏞️ Alamar
+        </button>
+        <button type="button" onclick="volarA(32.525, -117.015, 'Zona Río (Plaza Río)')" class="px-2 py-1 rounded-full bg-[#0B132B]/85 border border-slate-700 hover:border-cyan-400 text-slate-300 transition whitespace-nowrap">
+          🏢 Zona Río
+        </button>
+        <button type="button" onclick="volarA(32.518, -117.118, 'Playas de Tijuana')" class="px-2 py-1 rounded-full bg-[#0B132B]/85 border border-slate-700 hover:border-cyan-400 text-slate-300 transition whitespace-nowrap">
+          🌊 Playas
+        </button>
+        <button type="button" onclick="volarA(32.540, -116.960, 'Mesa de Otay')" class="px-2 py-1 rounded-full bg-[#0B132B]/85 border border-slate-700 hover:border-cyan-400 text-slate-300 transition whitespace-nowrap">
+          🏭 Otay
+        </button>
+        <button type="button" onclick="volarA(32.476, -116.985, 'Sánchez Taboada')" class="px-2 py-1 rounded-full bg-[#0B132B]/85 border border-slate-700 hover:border-cyan-400 text-slate-300 transition whitespace-nowrap">
+          ⛰️ Sánchez T.
+        </button>
+      </div>
+
+      <!-- Control de Opacidad del Semáforo -->
+      <div class="glass-bar rounded-full px-2.5 py-1 flex items-center gap-2 text-[11px] text-slate-300 font-mono shadow-md flex-shrink-0">
+        <span class="text-[10px] text-slate-400">Capa:</span>
+        <input 
+          type="range" 
+          id="slider-opacidad" 
+          min="0" 
+          max="1" 
+          step="0.05" 
+          value="0.42" 
+          class="w-16 h-1.5 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-cyan-400"
+          oninput="actualizarOpacidad(this.value)"
+        >
+        <span id="label-opacidad" class="text-cyan-400 font-bold text-[10px] w-6 text-right">42%</span>
+      </div>
+    </div>
+
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- INSTRUCCIÓN FLOTANTE (CUANDO NO SE HA DADO CLIC)                          -->
+  <!-- ========================================================================= -->
+  <div id="hint-floating" class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 pointer-events-none transition-all duration-300">
+    <div class="glass-bar rounded-full px-4 py-2 border border-cyan-500/40 text-xs text-cyan-300 font-mono flex items-center gap-2 shadow-2xl animate-bounce">
+      <i data-lucide="hand" class="w-4 h-4"></i>
+      <span>Toca la casa o patio del vecino para sondear</span>
+    </div>
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- PANEL INFERIOR DE RESULTADOS (BOTTOM SHEET RESPONSIVE)                    -->
+  <!-- ========================================================================= -->
+  <div 
+    id="sheet-resultado" 
+    class="fixed bottom-0 left-0 right-0 z-30 transform translate-y-full transition-transform duration-300 ease-out max-w-xl mx-auto px-3 pb-3 pointer-events-auto"
+  >
+    <div class="glass-sheet rounded-3xl p-4 sm:p-5 shadow-2xl border-2 space-y-4 text-xs" id="sheet-card-border">
+      
+      <!-- Tirador superior para arrastrar/cerrar en móvil -->
+      <div class="flex items-center justify-between pb-1 border-b border-slate-700/60">
+        <div class="flex items-center gap-2">
+          <span id="badge-semaforo" class="px-2.5 py-1 rounded-full text-xs font-black font-mono tracking-wider flex items-center gap-1.5 shadow-md">
+            <!-- Icono y texto dinámico -->
+          </span>
+          <span id="label-folio" class="text-[10px] font-mono text-slate-400"></span>
+        </div>
+
+        <button type="button" onclick="cerrarTarjeta()" class="p-1 rounded-lg bg-slate-800 text-slate-400 hover:text-white transition">
+          <i data-lucide="x" class="w-4 h-4"></i>
+        </button>
+      </div>
+
+      <!-- Coordenadas & Dictamen Rápido -->
+      <div class="space-y-1">
+        <div class="text-[11px] font-mono text-slate-400 flex items-center gap-1.5">
+          <i data-lucide="compass" class="w-3.5 h-3.5 text-cyan-400"></i>
+          <span id="txt-coordenadas">32.5250, -117.0150</span>
+        </div>
+        <h3 id="txt-dictamen-titulo" class="text-base sm:text-lg font-black text-white leading-tight">
+          <!-- Título del resultado -->
+        </h3>
+        <p id="txt-dictamen-explicacion" class="text-xs text-slate-300 leading-relaxed">
+          <!-- Explicación de campo para Alondra -->
+        </p>
+      </div>
+
+      <!-- Desglose de Cobro Comercial (Paso 3A y 3B) -->
+      <div id="box-cobro-comercial" class="rounded-xl p-3 bg-slate-900/90 border border-slate-700 space-y-2">
+        <div class="text-[10px] font-mono uppercase tracking-wider text-cyan-400 font-bold flex items-center justify-between">
+          <span>Ruta de Cobro al Cliente</span>
+          <span class="text-emerald-400">Total Estudio: $1,500 MXN</span>
+        </div>
+
+        <div class="grid grid-cols-2 gap-2 text-[11px] font-mono">
+          <div class="p-2 rounded-lg bg-slate-950/70 border border-slate-800">
+            <div class="text-slate-400 text-[10px]">PASO 3A (VISUAL)</div>
+            <div class="text-sm font-bold text-white">$500 MXN</div>
+            <div class="text-[9px] text-slate-400 leading-tight mt-0.5">Visita física patio</div>
+          </div>
+          <div class="p-2 rounded-lg bg-slate-950/70 border border-slate-800">
+            <div class="text-slate-400 text-[10px]">PASO 3B (ELECTRODOS)</div>
+            <div class="text-sm font-bold text-white">$1,000 MXN</div>
+            <div class="text-[9px] text-slate-400 leading-tight mt-0.5">Sondeo y distancias</div>
+          </div>
+        </div>
+
+        <!-- Alerta de comisión de Alondra -->
+        <div class="p-2 rounded-lg bg-emerald-950/60 border border-emerald-500/40 text-[11px] text-emerald-300 flex items-start gap-2">
+          <i data-lucide="coins" class="w-4 h-4 text-emerald-400 flex-shrink-0 mt-0.5"></i>
+          <div>
+            <strong>Tu Ganancia Alondra:</strong> Cobras <strong>$300 MXN de adelanto en efectivo</strong> al terminar el estudio + el resto de tu <strong>7% de comisión</strong> al entregar el pozo ($855 Base / $1,275 Medio / $1,765 Completo).
+          </div>
+        </div>
+      </div>
+
+      <!-- Caja para casos ROJO (Cero Cobro) -->
+      <div id="box-rojo-descarte" class="hidden rounded-xl p-3 bg-red-950/60 border border-red-500/40 text-[11px] text-red-200 space-y-1">
+        <div class="font-bold flex items-center gap-1.5 text-red-300">
+          <i data-lucide="shield-alert" class="w-4 h-4"></i> CERO COSTO AL CLIENTE
+        </div>
+        <p class="leading-relaxed">
+          No se le cobra nada al vecino. Se descarta con total honestidad por WhatsApp para proteger la reputación de Agua de Ya y no hacerle perder tiempo ni dinero al cliente.
+        </p>
+      </div>
+
+      <!-- Botones de Acción para Alondra -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 pt-1">
+        <!-- Botón Copiar al Portapapeles -->
+        <button 
+          type="button" 
+          onclick="copiarMensajeWhatsApp()" 
+          id="btn-copiar-wa" 
+          class="w-full py-2.5 px-3 rounded-xl bg-slate-800 hover:bg-slate-700 border border-cyan-500/40 text-cyan-300 font-bold text-xs flex items-center justify-center gap-2 transition"
+        >
+          <i data-lucide="copy" class="w-4 h-4"></i>
+          <span id="label-btn-copiar">Copiar Mensaje para WhatsApp</span>
+        </button>
+
+        <!-- Botón Abrir WhatsApp Directo -->
+        <a 
+          id="btn-abrir-whatsapp-link" 
+          href="#" 
+          target="_blank" 
+          class="w-full py-2.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs flex items-center justify-center gap-2 shadow-lg transition"
+        >
+          <i data-lucide="send" class="w-4 h-4"></i>
+          <span>Abrir en WhatsApp</span>
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ========================================================================= -->
+  <!-- JAVASCRIPT: MOTOR LIGERO LEAFLET + CANVAS RASTER PIXEL PROBE              -->
+  <!-- ========================================================================= -->
+  <script>
+    // Bounding Box oficial de Tijuana
+    const LAT_MIN = 32.35;
+    const LAT_MAX = 32.56;
+    const LNG_MIN = -117.15;
+    const LNG_MAX = -116.75;
+    const BOUNDS_TIJUANA = [[LAT_MIN, LNG_MIN], [LAT_MAX, LNG_MAX]];
+
+    // Imagen Raster Base64 embebida como fallback inmediato
+    const RASTER_B64_URI = "data:image/png;base64,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";
+
+    let map;
+    let overlaySemaforo;
+    let marcadorPunto = null;
+    let canvas2d, ctx2d;
+    let rasterListo = false;
+
+    let resultadoActual = {
+      colorTipo: 'TRANSPARENTE',
+      lat: 32.525,
+      lng: -117.015,
+      folio: 'AY-TJ-0000',
+      mensajeWhatsApp: ''
+    };
+
+    // =========================================================================
+    // 1. INICIALIZACIÓN DEL MAPA
+    // =========================================================================
+    function initMap() {
+      // Centro de Tijuana (Zona Río / Alamar)
+      map = L.map('map', {
+        center: [32.518, -117.000],
+        zoom: 13,
+        minZoom: 11,
+        maxZoom: 19,
+        zoomControl: false // Lo ponemos abajo a la derecha
+      });
+
+      L.control.zoom({ position: 'bottomright' }).addTo(map);
+
+      // 1. Capa Satelital Esri World Imagery (Fondo de Alta Resolución)
+      const satelite = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Esri, Maxar, Earthstar',
+        maxZoom: 19
+      }).addTo(map);
+
+      // 2. Capa Híbrida de Calles y Nombres de Colonias (Transparente encima)
+      L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {
+        maxZoom: 19,
+        opacity: 0.85
+      }).addTo(map);
+
+      L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Transportation/MapServer/tile/{z}/{y}/{x}', {
+        maxZoom: 19,
+        opacity: 0.75
+      }).addTo(map);
+
+      // 3. Superposición de la Imagen Estática Georreferenciada (L.imageOverlay)
+      overlaySemaforo = L.imageOverlay('mapa_semaforo_tijuana.png', BOUNDS_TIJUANA, {
+        opacity: 0.42,
+        interactive: false
+      }).addTo(map);
+
+      // Evento de clic en cualquier punto del mapa
+      map.on('click', function(e) {
+        ejecutarSondeo(e.latlng.lat, e.latlng.lng);
+      });
+
+      // Inicializar Canvas en memoria con la imagen raster
+      initCanvasRaster();
+    }
+
+    // =========================================================================
+    // 2. CARGA DEL RASTER EN CANVAS 2D EN MEMORIA
+    // =========================================================================
+    function initCanvasRaster() {
+      canvas2d = document.getElementById('hidden-raster-canvas');
+      ctx2d = canvas2d.getContext('2d', { willReadFrequently: true });
+
+      const img = new Image();
+      img.crossOrigin = "anonymous";
+
+      img.onload = function() {
+        ctx2d.clearRect(0, 0, canvas2d.width, canvas2d.height);
+        ctx2d.drawImage(img, 0, 0, canvas2d.width, canvas2d.height);
+        rasterListo = true;
+        console.log("Raster Semáforo cargado en memoria exitosamente (1600x840 px).");
+      };
+
+      img.onerror = function() {
+        console.warn("Fallo carga de 'mapa_semaforo_tijuana.png', usando respaldo data URI.");
+        img.src = RASTER_B64_URI;
+      };
+
+      img.src = 'mapa_semaforo_tijuana.png';
+    }
+
+    // =========================================================================
+    // 3. MUESTREO DE PÍXEL (PROYECCIÓN LAT/LNG -> X/Y CANVAS)
+    // =========================================================================
+    function leerColorEnPunto(lat, lng) {
+      if (!rasterListo || !ctx2d) return 'VERDE'; // Fallback seguro
+
+      const normX = (lng - LNG_MIN) / (LNG_MAX - LNG_MIN);
+      const normY = (LAT_MAX - lat) / (LAT_MAX - LAT_MIN);
+
+      if (normX < 0 || normX > 1 || normY < 0 || normY > 1) {
+        return 'FUERA';
+      }
+
+      const px = Math.floor(normX * canvas2d.width);
+      const py = Math.floor(normY * canvas2d.height);
+
+      // Muestrear en el punto y en una vecindad de 3x3 por si cae en un borde fino
+      let data = ctx2d.getImageData(px, py, 1, 1).data;
+      if (data[3] < 30) {
+        // Buscar en radio de 2 píxeles
+        for (let dx = -2; dx <= 2; dx++) {
+          for (let dy = -2; dy <= 2; dy++) {
+            const sx = Math.max(0, Math.min(canvas2d.width - 1, px + dx));
+            const sy = Math.max(0, Math.min(canvas2d.height - 1, py + dy));
+            const testData = ctx2d.getImageData(sx, sy, 1, 1).data;
+            if (testData[3] > 30) {
+              data = testData;
+              break;
+            }
+          }
+          if (data[3] > 30) break;
+        }
+      }
+
+      const [r, g, b, a] = data;
+
+      if (a < 30) return 'FUERA';
+
+      // VERDE (#10B981): g alto, r bajo
+      if (g > 140 && r < 120) return 'VERDE';
+
+      // NARANJA (#F59E0B): r alto, g medio-alto, b bajo
+      if (r > 190 && g > 110 && b < 90) return 'NARANJA';
+
+      // ROJO (#EF4444): r alto, g bajo
+      if (r > 180 && g < 110) return 'ROJO';
+
+      return 'VERDE'; // Por defecto si hay ambigüedad
+    }
+
+    // =========================================================================
+    // 4. EJECUCIÓN DEL SONDEO AL DAR CLIC O BUSCAR
+    // =========================================================================
+    function ejecutarSondeo(lat, lng, labelLugar = null) {
+      const color = leerColorEnPunto(lat, lng);
+      const folio = 'AY-TJ-' + Math.floor(1000 + Math.random() * 9000);
+
+      resultadoActual = {
+        colorTipo: color,
+        lat: lat,
+        lng: lng,
+        folio: folio,
+        mensajeWhatsApp: ''
+      };
+
+      // Actualizar o crear marcador en mapa
+      const markerColor = (color === 'VERDE') ? '#10B981' : (color === 'NARANJA' ? '#F59E0B' : (color === 'ROJO' ? '#EF4444' : '#64748b'));
+
+      const customIcon = L.divIcon({
+        className: 'custom-pin-marker',
+        html: `
+          <div class="relative flex items-center justify-center">
+            <span class="absolute w-8 h-8 rounded-full pin-pulse" style="background: ${markerColor}44;"></span>
+            <div class="w-6 h-6 rounded-full flex items-center justify-center text-white font-bold shadow-2xl border-2 border-white" style="background: ${markerColor};">
+              <span style="font-size: 10px;">💧</span>
+            </div>
+          </div>
+        `,
+        iconSize: [24, 24],
+        iconAnchor: [12, 12]
+      });
+
+      if (marcadorPunto) {
+        marcadorPunto.setLatLng([lat, lng]);
+        marcadorPunto.setIcon(customIcon);
+      } else {
+        marcadorPunto = L.marker([lat, lng], { icon: customIcon, zIndexOffset: 1000 }).addTo(map);
+      }
+
+      // Ocultar hint flotante
+      document.getElementById('hint-floating').classList.add('opacity-0', 'pointer-events-none');
+
+      // Actualizar tarjeta inferior
+      mostrarTarjetaResultado(color, lat, lng, folio, labelLugar);
+    }
+
+    // =========================================================================
+    // 5. RENDERIZADO DE LA TARJETA DE RESULTADO Y MENSAJE DE WHATSAPP
+    // =========================================================================
+    function mostrarTarjetaResultado(color, lat, lng, folio, labelLugar) {
+      const sheet = document.getElementById('sheet-resultado');
+      const badge = document.getElementById('badge-semaforo');
+      const border = document.getElementById('sheet-card-border');
+      const boxCobro = document.getElementById('box-cobro-comercial');
+      const boxRojo = document.getElementById('box-rojo-descarte');
+
+      document.getElementById('label-folio').textContent = `Folio: ${folio}`;
+      document.getElementById('txt-coordenadas').textContent = `${lat.toFixed(5)}, ${lng.toFixed(5)} ${labelLugar ? '• ' + labelLugar : ''}`;
+
+      let titulo = '';
+      let explicacion = '';
+      let mensajeWA = '';
+
+      if (color === 'VERDE') {
+        badge.className = 'px-3 py-1 rounded-full text-xs font-black font-mono tracking-wider bg-emerald-500 text-slate-950 shadow-md';
+        badge.innerHTML = `🟢 ZONA VERDE · FACTIBLE DIRECTO`;
+        border.style.borderColor = 'rgba(16, 185, 129, 0.6)';
+
+        titulo = 'Alta probabilidad de agua somera y suelo favorable';
+        explicacion = 'Nuestra matriz satelital detecta lecho aluvial noble y manto freático accesible. Avance ágil estimado del técnico instalador (1 a 2 días de perforación).';
+
+        boxCobro.classList.remove('hidden');
+        boxRojo.classList.add('hidden');
+
+        mensajeWA = `¡Hola! 👋 Revisamos tu ubicación en nuestro sistema satelital Aqua Engine de Tijuana.%0A%0A` +
+          `📋 *Folio de Consulta:* ${folio}%0A` +
+          `📍 *Coordenadas:* ${lat.toFixed(5)}, ${lng.toFixed(5)}%0A` +
+          `🟢 *Dictamen:* ZONA VERDE (Factible Directo)%0A%0A` +
+          `¡Buenas noticias! Tu domicilio cuenta con alta probabilidad hidrogeológica de agua somera limpia y suelo aluvial favorable.%0A%0A` +
+          `El siguiente paso oficial es agendar la *Inspección Visual en Sitio (Paso 3A: $500 MXN)*. En esta visita verificamos el acceso a tu patio de tierra y las condiciones de instalación. Si todo es viable físicamente, avanzamos con la prueba de electrodos y levantamiento técnico ($1,000 MXN) para emitirte tu cotización formal inamovible.%0A%0A` +
+          `¿Qué día y horario te queda mejor para que pasemos a revisar tu patio?`;
+
+      } else if (color === 'NARANJA') {
+        badge.className = 'px-3 py-1 rounded-full text-xs font-black font-mono tracking-wider bg-amber-500 text-slate-950 shadow-md';
+        badge.innerHTML = `🟠 ZONA NARANJA · PROBABLE PIEDRA`;
+        border.style.borderColor = 'rgba(245, 158, 11, 0.6)';
+
+        titulo = 'Hay agua abajo, pero presencia probable de piedra/boleos';
+        explicacion = 'La matriz detecta nivel freático viable, pero la colonia presenta estratos de piedra bola o arcilla pesada. Sí califica plenamente para el Estudio de Factibilidad ($500 visual + $1,000 electrodos) para ubicar el punto sin roca en el patio (la Etapa 1 ya cubre hasta 3 días de técnico por si hay que reubicar el barreno).';
+
+        boxCobro.classList.remove('hidden');
+        boxRojo.classList.add('hidden');
+
+        mensajeWA = `¡Hola! 👋 Revisamos tu ubicación en nuestro sistema satelital Aqua Engine de Tijuana.%0A%0A` +
+          `📋 *Folio de Consulta:* ${folio}%0A` +
+          `📍 *Coordenadas:* ${lat.toFixed(5)}, ${lng.toFixed(5)}%0A` +
+          `🟠 *Dictamen:* ZONA NARANJA (Factible con Precaución)%0A%0A` +
+          `Tu zona sí cuenta con presencia de agua subterránea aprovechable, pero nuestra matriz detecta que en esta colonia es muy común encontrar estratos de piedra bola o arcilla compacta en el subsuelo.%0A%0A` +
+          `Para proteger tu inversión y no hacerte gastar en vano, el paso indispensable es la *Inspección en Sitio ($500 MXN)* y la posterior prueba con electrodos en tierra ($1,000 MXN). Este estudio nos permite mapear tu patio e identificar el punto exacto libre de roca antes de meter cualquier herramienta.%0A%0A` +
+          `¿Te gustaría que programemos la visita para evaluar tu terreno?`;
+
+      } else if (color === 'ROJO') {
+        badge.className = 'px-3 py-1 rounded-full text-xs font-black font-mono tracking-wider bg-red-500 text-white shadow-md';
+        badge.innerHTML = `🔴 ZONA ROJA · NO VIABLE`;
+        border.style.borderColor = 'rgba(239, 68, 68, 0.6)';
+
+        titulo = 'Baja probabilidad o terreno rocoso/ladera no apta';
+        explicacion = 'Zona no viable para micropozos someros (presencia de basamento volcánico masivo, ladera con pendiente fuerte sin recarga o cercanía a falla geológica activa). No se recomienda perforar.';
+
+        boxCobro.classList.add('hidden');
+        boxRojo.classList.remove('hidden');
+
+        mensajeWA = `¡Hola! 👋 Revisamos detalladamente tu ubicación en nuestro sistema satelital Aqua Engine de Tijuana.%0A%0A` +
+          `📋 *Folio de Consulta:* ${folio}%0A` +
+          `📍 *Coordenadas:* ${lat.toFixed(5)}, ${lng.toFixed(5)}%0A` +
+          `🔴 *Dictamen:* ZONA ROJA (No Viable para Micropozo)%0A%0A` +
+          `En Agua de Ya nos regimos por la honestidad técnica: el análisis satelital indica que tu zona se encuentra sobre un estrato rocoso masivo o ladera sin recarga freática suficiente, por lo que la probabilidad de captar agua a nivel somero es prácticamente nula.%0A%0A` +
+          `Por esta razón, preferimos no cobrarte absolutamente nada ni hacerte gastar en visitas o estudios que no tendrían éxito. Si en el futuro abrimos pozos profundos comunitarios o líneas de distribución en tu colonia, con gusto te avisamos. ¡Agradecemos mucho tu confianza e interés!`;
+
+      } else {
+        badge.className = 'px-3 py-1 rounded-full text-xs font-black font-mono tracking-wider bg-slate-700 text-slate-300';
+        badge.innerHTML = `⚪ FUERA DE COBERTURA`;
+        border.style.borderColor = 'rgba(100, 116, 139, 0.5)';
+
+        titulo = 'Ubicación fuera de la mancha metropolitana';
+        explicacion = 'La coordenada se ubica en zona rural o fuera de los límites calibrados del Acuífero 0201 de Tijuana.';
+        boxCobro.classList.add('hidden');
+        boxRojo.classList.remove('hidden');
+
+        mensajeWA = `¡Hola! 👋 Revisamos tu ubicación. Al momento este punto se encuentra fuera de la cobertura principal de estudio en Tijuana. ¡Seguimos a tus órdenes!`;
+      }
+
+      document.getElementById('txt-dictamen-titulo').textContent = titulo;
+      document.getElementById('txt-dictamen-explicacion').textContent = explicacion;
+      resultadoActual.mensajeWhatsApp = decodeURIComponent(mensajeWA);
+
+      // Configurar enlace de WhatsApp
+      document.getElementById('btn-abrir-whatsapp-link').href = `https://wa.me/?text=${mensajeWA}`;
+
+      // Abrir sheet deslizante
+      sheet.classList.remove('translate-y-full');
+      lucide.createIcons();
+    }
+
+    function cerrarTarjeta() {
+      document.getElementById('sheet-resultado').classList.add('translate-y-full');
+      document.getElementById('hint-floating').classList.remove('opacity-0', 'pointer-events-none');
+    }
+
+    // =========================================================================
+    // 6. BUSCADOR DE DIRECCIONES & COORDENADAS GPS
+    // =========================================================================
+    async function buscarDireccionOcoords() {
+      const query = document.getElementById('input-busqueda').value.trim();
+      if (!query) return;
+
+      const btn = document.getElementById('btn-buscar');
+      btn.innerHTML = `<i data-lucide="loader-2" class="w-4 h-4 animate-spin text-slate-900"></i>`;
+      lucide.createIcons();
+
+      // 1. Detectar si son coordenadas directas (ej: "32.525, -117.015")
+      const coordsRegex = /^[-+]?([0-9]*\.[0-9]+|[0-9]+)[,\s]+[-+]?([0-9]*\.[0-9]+|[0-9]+)$/;
+      const match = query.match(coordsRegex);
+
+      if (match) {
+        const lat = parseFloat(match[1]);
+        const lng = parseFloat(match[2]);
+        btn.innerHTML = `<i data-lucide="search" class="w-4 h-4"></i>`;
+        lucide.createIcons();
+
+        if (lat >= 30.0 && lat <= 35.0 && lng <= -110.0 && lng >= -120.0) {
+          volarA(lat, lng, 'Coordenadas GPS');
+          return;
+        }
+      }
+
+      // 2. Consulta a Nominatim acotada a Tijuana B.C.
+      try {
+        const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(query + ', Tijuana, Baja California')}&viewbox=-117.15,32.56,-116.75,32.35&bounded=1&limit=1`;
+        const res = await fetch(url, { headers: { 'Accept-Language': 'es' } });
+        const data = await res.json();
+
+        if (data && data.length > 0) {
+          const place = data[0];
+          const lat = parseFloat(place.lat);
+          const lng = parseFloat(place.lon);
+          const label = place.display_name.split(',')[0];
+          volarA(lat, lng, label);
+        } else {
+          alert('No encontramos esa dirección en Tijuana. Intenta pegando el Pin GPS de WhatsApp o el nombre de la colonia.');
+        }
+      } catch (err) {
+        console.error('Error buscando dirección:', err);
+        alert('Error conectando al buscador. Por favor pega las coordenadas GPS.');
+      } finally {
+        btn.innerHTML = `<i data-lucide="search" class="w-4 h-4"></i>`;
+        lucide.createIcons();
+      }
+    }
+
+    function volarA(lat, lng, label = null) {
+      map.flyTo([lat, lng], 18, { duration: 1.2 });
+      setTimeout(() => {
+        ejecutarSondeo(lat, lng, label);
+      }, 1200);
+    }
+
+    function geolocalizarAlondra() {
+      if (!navigator.geolocation) {
+        alert('Tu navegador no soporta geolocalización.');
+        return;
+      }
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          const lat = pos.coords.latitude;
+          const lng = pos.coords.longitude;
+          volarA(lat, lng, 'Tu Ubicación Actual');
+        },
+        (err) => {
+          alert('No pudimos acceder a tu GPS. Por favor escribe la colonia o pega las coordenadas.');
+        },
+        { enableHighAccuracy: true, timeout: 8000 }
+      );
+    }
+
+    function actualizarOpacidad(val) {
+      if (overlaySemaforo) {
+        overlaySemaforo.setOpacity(parseFloat(val));
+      }
+      document.getElementById('label-opacidad').textContent = Math.round(val * 100) + '%';
+    }
+
+    function copiarMensajeWhatsApp() {
+      if (!resultadoActual.mensajeWhatsApp) return;
+      navigator.clipboard.writeText(resultadoActual.mensajeWhatsApp).then(() => {
+        const btn = document.getElementById('btn-copiar-wa');
+        const lbl = document.getElementById('label-btn-copiar');
+        const prevText = lbl.textContent;
+        lbl.textContent = '¡Copiado para WhatsApp!';
+        btn.classList.add('bg-emerald-700', 'text-white');
+        setTimeout(() => {
+          lbl.textContent = prevText;
+          btn.classList.remove('bg-emerald-700', 'text-white');
+        }, 2200);
+      });
+    }
+
+    // =========================================================================
+    // 7. ARRANQUE AL CARGAR DOM
+    // =========================================================================
+    document.addEventListener('DOMContentLoaded', () => {
+      initMap();
+      lucide.createIcons();
+    });
+  </script>
+</body>
+</html>
