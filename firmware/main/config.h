@@ -19,11 +19,14 @@ struct WifiCredential {
 };
 
 static const WifiCredential WIFI_STA_LIST[] = {
-  { "la última compuerta", "6646802560" },
-  { "La última compuerta", "6646802560" },
-  { "la ultima compuerta", "6646802560" },
-  { "La ultima compuerta", "6646802560" },
-  { "Lacasita",            "6646802560" }
+  { "la última compuerta",      "6646802560" }, // UTF-8 minúsculas con acento
+  { "la \xfa" "ltima compuerta", "6646802560" }, // Latin-1 / ISO-8859-1 minúsculas con acento (\xfa)
+  { "la ultima compuerta",      "6646802560" }, // Minúsculas sin acento
+  { "La última compuerta",      "6646802560" }, // UTF-8 Mayúscula inicial con acento
+  { "La \xfa" "ltima compuerta", "6646802560" }, // Latin-1 Mayúscula inicial con acento (\xfa)
+  { "La ultima compuerta",      "6646802560" }, // Mayúscula inicial sin acento
+  { "Lacasita",                 "6646802560" },
+  { "lacasita",                 "6646802560" }
 };
 static const uint8_t WIFI_STA_COUNT = sizeof(WIFI_STA_LIST) / sizeof(WIFI_STA_LIST[0]);
 
