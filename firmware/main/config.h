@@ -97,9 +97,9 @@ static const float CORRIENTE_MAX_LLENADO_A    = 15.5f;    // Límite de corrient
 static const float CORRIENTE_HISTERESIS_A     = 13.5f;    // Rearranque de válvula YV1 al bajar corriente (A)
 static const float CORRIENTE_DEADHEAD_DC_A    = 6.8f;     // Umbral de atasco / dead-head en bombas de diafragma DC (CT2)
 
-// Divisor de tensión en GPIO 34 (Pin 5 - Electrodo Activo 12V -> <3.0V en ESP32):
-// Con 3x10k arriba y 1x10k abajo: factor teórico = (30k + 10k) / 10k = 4.0
-static const float FACTOR_DIVISOR_CELDA_P34   = 4.0f;     // Factor del divisor de tensión en Pin 5 (GPIO 34)
+// Divisor de tensión en GPIO 34 (Pin 5 - Electrodo Activo 12V -> <3.3V en ESP32):
+// Calibración exacta en campo: 11.35V entrada / 3.26V pin = factor 3.4816
+static const float FACTOR_DIVISOR_CELDA_P34   = 3.4816f;  // Factor real calibrado en campo para Pin 5 (GPIO 34)
 static const float R_INTERNA_FUENTE_ATX_OHMS  = 0.20f;    // Resistencia interna fuente + cables (caída 12.2V -> 9.5V @ ~13.5A)
 static const float V_VACIO_FUENTE_ATX_V       = 12.2f;    // Voltaje en circuito abierto de la fuente ATX
 
