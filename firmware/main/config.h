@@ -19,9 +19,11 @@ struct WifiCredential {
 };
 
 static const WifiCredential WIFI_STA_LIST[] = {
-  { "Lacasita",            "6646802560" },
   { "la última compuerta", "6646802560" },
-  { "la ultima compuerta", "6646802560" }
+  { "La última compuerta", "6646802560" },
+  { "la ultima compuerta", "6646802560" },
+  { "La ultima compuerta", "6646802560" },
+  { "Lacasita",            "6646802560" }
 };
 static const uint8_t WIFI_STA_COUNT = sizeof(WIFI_STA_LIST) / sizeof(WIFI_STA_LIST[0]);
 
