@@ -94,11 +94,13 @@ void halRingCycleEndBell();
 void halSetServoAngle(int angleDeg);
 int  halGetServoAngle();
 
-// Control y Calibración de Sensor de Corriente #1 (CT1 - GPIO 34)
+// Control y Calibración de Sensor de Corriente #1 y Divisor de Tensión (CT1 - GPIO 34)
 void  halSetElectrodeMeasurement(bool enabled);
 bool  halGetElectrodeMeasurement();
 void  halTareElectrodeZero();
 float halGetElectrodeZeroVolts();
+void  halSetCellDividerFactor(float factor);
+float halGetCellDividerFactor();
 
 // Control y Calibración de Alta Resolución del Presostato / Transductor PT1 (100 PSI en Tanque 110 cm)
 void  halTarePt1Zero();

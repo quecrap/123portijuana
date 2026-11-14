@@ -137,6 +137,7 @@ static String buildStatusJson() {
   json += "\"psl03\":"        + String(m.psl03Closed ? "true" : "false") + ",";
   json += "\"srv1Angle\":"    + String(m.srv1AngleDeg) + ",";
   json += "\"electrodeEnabled\":" + String(halGetElectrodeMeasurement() ? "true" : "false") + ",";
+  json += "\"cellDividerFactor\":" + String(halGetCellDividerFactor(), 2) + ",";
   json += "\"electrodeZeroVolts\":" + String(halGetElectrodeZeroVolts(), 3);
   json += "},";
 
@@ -266,7 +267,7 @@ static void handleApiResetFlow() {
   server.send(200, "application/json", "{\"ok\":true}");
 }
 
-// POST /api/electrode?enable=1|0&tare=1
+// POST /api/electrode?enable=1|0&tare=1&factor=4.48
 static void handleApiElectrode() {
   if (server.hasArg("enable")) {
     bool en = (server.arg("enable").toInt() == 1);
@@ -274,6 +275,12 @@ static void handleApiElectrode() {
   }
   if (server.hasArg("tare")) {
     halTareElectrodeZero();
+  }
+  if (server.hasArg("factor")) {
+    float f = server.arg("factor").toFloat();
+    if (f >= 1.0f && f <= 20.0f) {
+      halSetCellDividerFactor(f);
+    }
   }
   server.sendHeader("Access-Control-Allow-Origin", "*");
   server.send(200, "application/json", "{\"ok\":true}");

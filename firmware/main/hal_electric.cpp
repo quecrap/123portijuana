@@ -46,6 +46,7 @@ static uint32_t s_lastTempSampleMs          = 0;
 static bool  s_electrodeMeasurementEnabled  = true;   // Habilitado por defecto para el integrador de Faraday
 static float s_ct1ZeroVolts                 = 1.65f;  // Punto medio en reposo del ACS712
 static float s_ct1Sensitivity               = 0.185f; // Sensibilidad 185 mV/A (ACS712-05B en entrada 120V AC ATX)
+static float s_cellDividerFactor            = FACTOR_DIVISOR_CELDA_P34; // Factor real del divisor en Pin 5 (GPIO 34)
 
 // Variables de Alta Resolución y Calibración del Transductor de Presión PT1 (100 PSI en Tanque 110 cm)
 // Cono inferior: 35 cm (15.79 L) + Cilindro: 75 cm (101.51 L) = 110 cm totales (117.3 L)
@@ -215,7 +216,7 @@ static void sampleCt1AcAndDcCurrent() {
 
   s_telemetry.ct1Raw    = meanRaw;
   s_telemetry.ct1Volts  = pinV;
-  float cellV           = pinV * FACTOR_DIVISOR_CELDA_P34;
+  float cellV           = pinV * s_cellDividerFactor;
   s_telemetry.cellVolts = cellV;
 
   // Si se detecta voltaje en la celda o el actuador de electrofloculación está encendido:
@@ -650,6 +651,16 @@ void halTareElectrodeZero() {
 
 float halGetElectrodeZeroVolts() {
   return s_ct1ZeroVolts;
+}
+
+void halSetCellDividerFactor(float factor) {
+  if (factor >= 1.0f && factor <= 20.0f) {
+    s_cellDividerFactor = factor;
+  }
+}
+
+float halGetCellDividerFactor() {
+  return s_cellDividerFactor;
 }
 
 void halTarePt1Zero() {
